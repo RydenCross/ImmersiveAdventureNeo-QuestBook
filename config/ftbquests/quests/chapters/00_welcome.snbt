@@ -1,0 +1,289 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "00_welcome"
+	group: ""
+	id: "9B9B3F8730302BD7"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "1EEF3E25D80332D0"
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				id: "5ECFF9273B081372"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1EEF3E25D80332D0"]
+			id: "1799DA7EF0A355E7"
+			rewards: [{
+				count: 16
+				id: "F019C142CE4701F4"
+				item: {
+					count: 1
+					id: "minecraft:bread"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				id: "4D376F18956F70EB"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1799DA7EF0A355E7"]
+			id: "199400EE49E428E7"
+			rewards: [{
+				count: 16
+				id: "1EABF08B5013BA5A"
+				item: {
+					count: 1
+					id: "minecraft:torch"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				id: "EE6BC892569A48A7"
+				item: { count: 1, id: "minecraft:oak_log" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["199400EE49E428E7"]
+			id: "8D304C0E937FA03F"
+			rewards: [{
+				count: 16
+				id: "538D4EE4A03C530E"
+				item: {
+					count: 1
+					id: "minecraft:stick"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				id: "6DD8910CA8AB0571"
+				item: { count: 1, id: "minecraft:crafting_table" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["8D304C0E937FA03F"]
+			id: "AD198E6921366431"
+			rewards: [{
+				count: 8
+				id: "8A4862D736B189D8"
+				item: {
+					count: 1
+					id: "minecraft:coal"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				advancement: "minecraft:story/mine_stone"
+				criterion: ""
+				id: "E98C95E645FD9B9B"
+				type: "advancement"
+			}]
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["AD198E6921366431"]
+			id: "DC0050691E89AAFE"
+			rewards: [{
+				count: 4
+				id: "3306DBD4B5C3CADE"
+				item: {
+					count: 1
+					id: "minecraft:iron_ingot"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				advancement: "minecraft:story/smelt_iron"
+				criterion: ""
+				id: "764AB0E88AE6F7EE"
+				type: "advancement"
+			}]
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["DC0050691E89AAFE"]
+			id: "A18A540F96F7A19C"
+			rewards: [{
+				count: 8
+				id: "E49DB42EF173FB42"
+				item: {
+					count: 1
+					id: "minecraft:cooked_beef"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				advancement: "minecraft:adventure/sleep_in_bed"
+				criterion: ""
+				id: "AFACD37881FE3269"
+				type: "advancement"
+			}]
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["A18A540F96F7A19C"]
+			id: "3BC939653E644E2B"
+			rewards: [{
+				count: 32
+				id: "10C52A8320ECBA3B"
+				item: {
+					count: 1
+					id: "minecraft:torch"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				Reskillable: {
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "SKILL_LEVEL"
+					second: 20
+					skill_id: "mining"
+				}
+				SkillsLevel: {
+					category: ""
+					check: 0b
+					comparison: "GREATER_OR_EQUAL"
+					first: 10
+					mode: "TOTAL_LEVEL"
+					second: 20
+				}
+				id: "3C57F077449432C7"
+				type: "checkmark"
+			}]
+			x: 14.0d
+			y: 0.0d
+		}
+	]
+}
