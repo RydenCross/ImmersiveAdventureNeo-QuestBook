@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Immersive Adventure Neo — Quest Book
 
 Repository-ready FTB Quests project for Minecraft 1.21.1 NeoForge.
@@ -30,3 +31,22 @@ Edit `source/welcome.json` as the human-readable reference. `tools/generate.py` 
 ## Important
 
 `rewards.snbt` and `loot_crates.snbt` are intentionally empty placeholders. Rewards in this release are embedded directly in quests, matching the verified scaffold.
+=======
+# Immersive Adventure Neo Quest Builder
+
+Python toolkit for building and maintaining the FTB Quests content for **Immersive Adventure Neo**.
+
+## Features
+
+- FTB Quests v13 support
+- Deterministic UUID generation
+- Validation
+- Automatic quest layout
+- Localization generation
+- Quest statistics
+- Release packaging
+
+## Status
+
+🚧 Early Development
+>>>>>>> ca18d66 (feat: bootstrap quest builder)

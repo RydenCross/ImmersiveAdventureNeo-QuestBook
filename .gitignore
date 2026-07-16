@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+
+.pytest_cache/
+.ruff_cache/
+
+.venv/
+
+output/
+
+dist/
+build/
+
+.idea/
+.vscode/

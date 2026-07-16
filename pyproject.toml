@@ -1,0 +1,20 @@
+[project]
+name = "immersive-adventure-neo-questbuilder"
+version = "0.1.0"
+description = "Quest Builder for Immersive Adventure Neo"
+requires-python = ">=3.12"
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "black",
+]
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
