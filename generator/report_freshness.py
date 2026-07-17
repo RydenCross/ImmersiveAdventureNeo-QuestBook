@@ -11,6 +11,7 @@ from generator.cli_audit import run_cli_audit
 from generator.contract_guard import run_contract_guard
 from generator.dependency_audit import audit_dependencies
 from generator.determinism_audit import run_determinism_audit
+from generator.documentation_audit import run_documentation_audit
 from generator.identity_guard import run_identity_guard
 from generator.output_manifest import run_output_manifest_guard
 from generator.packaging_audit import run_packaging_audit
@@ -81,6 +82,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "output-manifest-guard.json": lambda: run_output_manifest_guard().format_json(),
         "packaging-audit.json": lambda: run_packaging_audit().format_json(),
         "cli-audit.json": lambda: run_cli_audit().format_json(),
+        "documentation-audit.json": lambda: run_documentation_audit().format_json(),
     }
 
 

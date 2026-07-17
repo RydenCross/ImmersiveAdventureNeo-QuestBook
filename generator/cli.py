@@ -11,6 +11,7 @@ from generator.cli_audit import run_cli_audit
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
 from generator.determinism_audit import run_determinism_audit
+from generator.documentation_audit import run_documentation_audit
 from generator.contract_guard import (
     DEFAULT_CONTRACT_BASELINE_PATH,
     refresh_contract_baseline,
@@ -242,6 +243,11 @@ def create_parser() -> argparse.ArgumentParser:
     )
     cli_audit.add_argument("--format", choices=("text", "json"), default="text")
     cli_audit.add_argument("--output", type=Path)
+    documentation_audit = subparsers.add_parser(
+        "documentation-audit", help="Validate CLI documentation coverage and local Markdown links."
+    )
+    documentation_audit.add_argument("--format", choices=("text", "json"), default="text")
+    documentation_audit.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -496,6 +502,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "documentation-audit":
+        result = run_documentation_audit()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "cli-audit":
         result = run_cli_audit()
         rendered = result.format_json() if args.format == "json" else result.format()

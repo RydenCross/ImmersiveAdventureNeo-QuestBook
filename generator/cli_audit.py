@@ -16,6 +16,7 @@ EXPECTED_COMMANDS = (
     "contract-guard",
     "dependency-audit",
     "dependency-graph",
+    "documentation-audit",
     "determinism-audit",
     "identity-baseline",
     "identity-guard",

@@ -1,4 +1,5 @@
 ## Commit #60 — CLI Contract Audit
+- Added a documentation contract audit for command coverage and local Markdown links.
 
 - Added `python -m generator cli-audit` to protect the documented command surface.
 - Validates all expected subcommands, help text, and the installed console entry point.

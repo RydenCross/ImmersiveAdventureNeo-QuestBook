@@ -1,11 +1,12 @@
 {
-  "checked_reports": 14,
+  "checked_reports": 15,
   "fresh_reports": [
     "chapter-audit.json",
     "cli-audit.json",
     "contract-guard.json",
     "dependency-audit.json",
     "determinism-audit.json",
+    "documentation-audit.json",
     "identity-guard.json",
     "output-manifest-guard.json",
     "packaging-audit.json",

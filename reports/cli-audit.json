@@ -1,5 +1,5 @@
 {
-  "command_count": 27,
+  "command_count": 28,
   "commands": [
     "audit",
     "chapter-audit",
@@ -9,6 +9,7 @@
     "dependency-audit",
     "dependency-graph",
     "determinism-audit",
+    "documentation-audit",
     "identity-baseline",
     "identity-guard",
     "lint",

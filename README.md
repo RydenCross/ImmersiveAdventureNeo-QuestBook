@@ -273,3 +273,13 @@ Use the CLI contract audit to ensure every supported subcommand remains register
 python -m generator cli-audit
 python -m generator cli-audit --format json --output reports/cli-audit.json
 ```
+
+
+## Documentation contract audit
+
+```bash
+python -m generator documentation-audit
+python -m generator documentation-audit --format json --output reports/documentation-audit.json
+```
+
+See [`docs/DOCUMENTATION_AUDIT.md`](docs/DOCUMENTATION_AUDIT.md).

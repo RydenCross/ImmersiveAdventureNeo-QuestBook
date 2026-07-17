@@ -10,6 +10,7 @@ from generator.cli_audit import run_cli_audit
 from generator.contract_guard import run_contract_guard
 from generator.dependency_audit import audit_dependencies
 from generator.determinism_audit import run_determinism_audit
+from generator.documentation_audit import run_documentation_audit
 from generator.identity_guard import run_identity_guard
 from generator.output_manifest import run_output_manifest_guard
 from generator.packaging_audit import run_packaging_audit
@@ -95,6 +96,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "report freshness guard": run_report_freshness_guard,
         "packaging audit": run_packaging_audit,
         "CLI contract audit": run_cli_audit,
+        "documentation contract audit": run_documentation_audit,
     }
 
 

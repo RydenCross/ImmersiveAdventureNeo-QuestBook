@@ -1,5 +1,5 @@
 {
-  "checked": 14,
+  "checked": 15,
   "checks": [
     {
       "detail": "clean",
@@ -70,10 +70,15 @@
       "detail": "clean",
       "name": "CLI contract audit",
       "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "documentation contract audit",
+      "status": "pass"
     }
   ],
   "failed": 0,
   "failed_checks": [],
-  "passed": 14,
+  "passed": 15,
   "status": "pass"
 }
