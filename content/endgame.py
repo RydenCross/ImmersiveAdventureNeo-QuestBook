@@ -219,7 +219,7 @@ def build_endgame(
     legendary_loadout = (
         chapter.quest(
             "legendary_loadout",
-            "A Legendary Loadout",
+            "Endgame Arsenal",
             "minecraft:netherite_chestplate",
             (
                 "Assemble a coherent endgame equipment set with strong affixes, useful sockets, advanced "
@@ -253,7 +253,7 @@ def build_endgame(
     field_test = (
         chapter.quest(
             "field_test",
-            "Prove the Build",
+            "Prove the Integrated Build",
             "minecraft:totem_of_undying",
             (
                 "Take your complete spell and equipment loadout into a dangerous expedition or boss fight. "

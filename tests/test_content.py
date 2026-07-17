@@ -427,7 +427,7 @@ def test_mekanism_power_and_reactors_follow_advanced_processing() -> None:
     processing = next(
         q for q in mekanism.quests if q.title == "A Scalable Industrial Processor"
     )
-    wind = next(q for q in mekanism.quests if q.title == "Power from the Sky")
+    wind = next(q for q in mekanism.quests if q.title == "Harness the High Winds")
     reactor = next(q for q in mekanism.quests if q.title == "Contain the Reaction")
     complete = next(
         q for q in mekanism.quests if q.title == "A Stable Nuclear Power Station"

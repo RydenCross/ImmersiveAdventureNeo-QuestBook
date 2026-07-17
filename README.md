@@ -1,30 +1,51 @@
 # Immersive Adventure Neo Quest Builder
 
-Python toolkit for building and maintaining the FTB Quests content for **Immersive Adventure Neo**.
+A deterministic Python authoring toolkit and generated FTB Quests v13 questbook for **Immersive Adventure Neo** on Minecraft 1.21.1/NeoForge.
 
-## Features
+## Current questbook
 
-- FTB Quests v13 support
-- Deterministic UUID generation
-- Validation
-- Automatic quest layout
-- Localization generation
-- Quest statistics
-- Release packaging
+- 13 chapters
+- 656 quests
+- 223 optional quests
+- Welcome, Survival, Mining, Exploration
+- Create and Create Addons
+- Actually Additions
+- Ars Nouveau
+- Apotheosis
+- Applied Energistics 2
+- Mekanism
+- Endgame and Challenges
 
-## Status
-
-🚧 Early Development
-## Build the Questbook
+## Build
 
 ```bash
 python -m generator
 ```
 
-This validates the source content and writes the generated FTB Quests v13 files to:
+Generated files are written to:
 
 ```text
 output/config/ftbquests/quests/
 ```
 
-The current playable milestone contains the nine-quest Welcome chapter.
+## Validate generated SNBT
+
+```bash
+python -m generator lint output/config/ftbquests/quests
+```
+
+## Audit authored content
+
+```bash
+python -m generator audit --strict
+```
+
+The audit summarizes chapter and quest totals, optional quests, task and reward coverage, empty descriptions, taskless quests, and duplicate titles.
+
+## Test
+
+```bash
+pytest -q
+```
+
+The repository uses deterministic IDs, cross-chapter dependency checks, generated-file regression tests, and validator coverage to keep the questbook stable as content evolves.

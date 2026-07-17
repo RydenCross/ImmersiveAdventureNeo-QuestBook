@@ -79,3 +79,10 @@
 - Added a 31-quest Create Addons chapter.
 - Covered electrical, diesel, artillery, railway, contraption utility, and aviation expansions.
 - Added regression coverage and addon documentation.
+
+## Commit 37 - Content Audit and Documentation Polish
+
+- Added `python -m generator audit` for source-level questbook quality checks.
+- Added strict audit regression tests.
+- Replaced the outdated early-development README with current build, lint, audit, and questbook information.
+- Documented the content-audit workflow.

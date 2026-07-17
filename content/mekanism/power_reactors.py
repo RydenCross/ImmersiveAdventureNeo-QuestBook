@@ -7,7 +7,7 @@ def build_mekanism_power_reactors(
     wind = (
         chapter.quest(
             "wind_generator",
-            "Power from the Sky",
+            "Harness the High Winds",
             "mekanismgenerators:wind_generator",
             (
                 "Craft a Wind Generator and place it high above the ground. Wind power is clean, "
