@@ -14,6 +14,7 @@ def test_build_generates_playable_core_chapters(tmp_path: Path) -> None:
     assert (quests_root / "chapters" / "01_survival.snbt").is_file()
     assert (quests_root / "chapters" / "02_mining.snbt").is_file()
     assert (quests_root / "chapters" / "03_exploration.snbt").is_file()
-    assert len(project.chapters) == 4
-    assert len(project.quests) == 91
+    assert (quests_root / "chapters" / "04_create.snbt").is_file()
+    assert len(project.chapters) == 5
+    assert len(project.quests) == 109
     assert report.is_valid

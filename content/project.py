@@ -1,4 +1,5 @@
 from generator.builder import ChapterBuilder
+from content.create import build_create_foundations
 from model import Project
 
 
@@ -907,7 +908,7 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .finish()
     )
 
-    mining.quest(
+    return mining.quest(
         "mastery",
         "Master of the Underground",
         "minecraft:diamond",
@@ -1090,6 +1091,7 @@ def create_project() -> Project:
     project = Project(name="Immersive Adventure Neo", version="13")
     welcome_complete = _build_welcome(project)
     survival_complete = _build_survival(project, welcome_complete)
-    _build_mining(project, survival_complete)
+    mining_complete = _build_mining(project, survival_complete)
     _build_exploration(project, survival_complete)
+    build_create_foundations(project, mining_complete)
     return project
