@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 616
+    assert len(project.quests) == 636
 
 
 def test_quest_ids_are_stable() -> None:
@@ -303,8 +303,8 @@ def test_ae2_depends_on_apotheosis_completion() -> None:
     assert ae2 is not None
     mastery = next(q for q in apotheosis.quests if q.title == "Apotheosis Mastery")
     assert ae2.quests[0].dependencies[0].quest_id == mastery.ftb_id
-    assert len(ae2.quests) == 63
-    assert ae2.quests[-1].title == "Master of the ME Network"
+    assert len(ae2.quests) == 83
+    assert next(q for q in ae2.quests if q.title == "Master of the ME Network")
 
 
 def test_ae2_foundations_cover_processors_power_and_storage() -> None:
@@ -337,7 +337,7 @@ def test_ae2_channels_and_autocrafting_follow_foundations() -> None:
     assert channels.dependencies[0].quest_id == foundations.ftb_id
     assert ae2.quests.index(first_craft) < ae2.quests.index(complete)
     assert ae2.quests.index(complete) < len(ae2.quests) - 1
-    assert len(ae2.quests) == 63
+    assert len(ae2.quests) == 83
 
 
 def test_ae2_advanced_storage_and_networking_follow_autocrafting() -> None:
@@ -352,9 +352,24 @@ def test_ae2_advanced_storage_and_networking_follow_autocrafting() -> None:
 
     assert larger_cells.dependencies[0].quest_id == autocrafting.ftb_id
     assert ae2.quests.index(larger_cells) < ae2.quests.index(p2p)
-    assert mastery.ftb_id == ae2.quests[-1].ftb_id
-    assert len(ae2.quests) == 63
+    assert ae2.quests.index(mastery) < len(ae2.quests) - 1
+    assert len(ae2.quests) == 83
 
+
+
+def test_ae2_expansion_is_optional_and_follows_mastery() -> None:
+    project = create_project()
+    ae2 = project.get_chapter("08_ae2")
+
+    assert ae2 is not None
+    mastery = next(q for q in ae2.quests if q.title == "Master of the ME Network")
+    plan = next(q for q in ae2.quests if q.title == "Plan the Quantum Network")
+    quantum = next(q for q in ae2.quests if q.title == "The Quantum Architect")
+
+    assert plan.dependencies[0].quest_id == mastery.ftb_id
+    assert ae2.quests.index(mastery) < ae2.quests.index(quantum)
+    assert all(q.optional for q in ae2.quests[ae2.quests.index(mastery) + 1 :])
+    assert len(ae2.quests) == 83
 
 def test_mekanism_depends_on_ae2_completion() -> None:
     project = create_project()
@@ -363,7 +378,8 @@ def test_mekanism_depends_on_ae2_completion() -> None:
 
     assert ae2 is not None
     assert mekanism is not None
-    assert mekanism.quests[0].dependencies[0].quest_id == ae2.quests[-1].ftb_id
+    mastery = next(q for q in ae2.quests if q.title == "Master of the ME Network")
+    assert mekanism.quests[0].dependencies[0].quest_id == mastery.ftb_id
     assert len(mekanism.quests) == 62
     assert mekanism.quests[-1].title == "A Stable Nuclear Power Station"
 
@@ -446,7 +462,11 @@ def test_endgame_depends_on_all_major_mastery_quests() -> None:
             for q in project.get_chapter("07_apotheosis").quests
             if q.title == "Apotheosis Mastery"
         ),
-        project.get_chapter("08_ae2").quests[-1].ftb_id,
+        next(
+            q.ftb_id
+            for q in project.get_chapter("08_ae2").quests
+            if q.title == "Master of the ME Network"
+        ),
         project.get_chapter("09_mekanism").quests[-1].ftb_id,
     }
 

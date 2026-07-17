@@ -1,3 +1,10 @@
+## Commit 35 - AE2 Expansion
+
+- Added 20 optional AE2 quests for bulk storage, advanced autocrafting, redundancy, spatial storage, and quantum networking.
+- Added `content/ae2/quantum_engineering.py`.
+- Preserved **Master of the ME Network** as the downstream chapter handoff.
+- Added expansion documentation and regression coverage.
+
 ## Commit 34 - Apotheosis Expansion
 
 - Added 20 optional Apotheosis quests for mythic hunting, gem refinement, specialized reforging, advanced enchanting, legendary loadouts, and mastery trials.
