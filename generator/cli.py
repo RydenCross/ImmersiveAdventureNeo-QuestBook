@@ -6,6 +6,7 @@ from pathlib import Path
 from content import create_project
 from generator.audit import audit_project
 from generator.build import build
+from generator.dependency_audit import audit_dependencies
 from generator.parser import FTBQuestParser
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.release_check import run_release_check
@@ -30,6 +31,21 @@ def create_parser() -> argparse.ArgumentParser:
         "--strict",
         action="store_true",
         help="Return a non-zero exit code when empty descriptions or taskless quests are found.",
+    )
+    dependency = subparsers.add_parser(
+        "dependency-audit",
+        help="Analyze quest progression dependencies and detect structural defects.",
+    )
+    dependency.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    dependency.add_argument(
+        "--output", type=Path, help="Write the report to a file instead of standard output."
+    )
+    dependency.add_argument(
+        "--strict", action="store_true",
+        help="Return a non-zero exit code when progression defects are detected.",
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -139,6 +155,16 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if comparison.is_clean or not args.strict else 1
+
+    if args.command == "dependency-audit":
+        report = audit_dependencies(create_project())
+        rendered = report.format_json() if args.format == "json" else report.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if report.is_clean or not args.strict else 1
 
     if args.command == "registry-audit":
         audit = audit_registry(create_project(), args.sources)

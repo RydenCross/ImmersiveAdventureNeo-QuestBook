@@ -1,5 +1,12 @@
 # Changelog
 
+## Commit 45 - Quest Dependency Analyzer
+
+- Added progression graph analysis for cycles, reachability, duplicate dependencies, and chapter entry paths.
+- Added text and JSON `dependency-audit` reports with strict CI behavior.
+- Added dependency-audit tests, documentation, and CI integration.
+
+
 ## Commit 42 - Release Report Comparison
 
 - Added `python -m generator release-compare` for comparing machine-readable release reports.

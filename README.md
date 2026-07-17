@@ -80,3 +80,14 @@ pytest -q
 ```
 
 The repository uses deterministic IDs, cross-chapter dependency checks, generated-file regression tests, and validator coverage to keep the questbook stable as content evolves.
+
+
+## Quest dependency audit
+
+Validate progression cycles, reachability, duplicate prerequisites, and chapter entry paths:
+
+```bash
+python -m generator dependency-audit --strict
+```
+
+Machine-readable reports are supported; see [`docs/DEPENDENCY_AUDIT.md`](docs/DEPENDENCY_AUDIT.md).
