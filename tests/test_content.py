@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 12
-    assert len(project.quests) == 485
+    assert len(project.chapters) == 13
+    assert len(project.quests) == 516
 
 
 def test_quest_ids_are_stable() -> None:
@@ -419,3 +419,26 @@ def test_challenges_cover_factories_power_adventure_and_building() -> None:
     assert challenges.quests.index(reactor) < challenges.quests.index(completion)
     assert challenges.quests.index(boss) < challenges.quests.index(completion)
     assert completion.ftb_id == challenges.quests[-1].ftb_id
+
+
+def test_create_addons_unlock_after_core_create() -> None:
+    project = create_project()
+    create = project.get_chapter("04_create")
+    addons = project.get_chapter("12_create_addons")
+    assert create is not None
+    assert addons is not None
+    assert addons.quests[0].dependencies[0].quest_id == create.quests[-1].ftb_id
+    assert len(addons.quests) == 31
+    assert addons.quests[-1].title == "Master of Expanded Engineering"
+
+
+def test_create_addons_cover_major_installed_expansions() -> None:
+    project = create_project()
+    addons = project.get_chapter("12_create_addons")
+    assert addons is not None
+    titles = {quest.title for quest in addons.quests}
+    assert "A New Age of Rotation" in titles
+    assert "Combustion Engineering" in titles
+    assert "Heavy Engineering" in titles
+    assert "Engineering the Sky" in titles
+    assert "The Grand Railway Showcase" in titles

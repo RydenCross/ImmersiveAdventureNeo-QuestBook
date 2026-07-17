@@ -7,6 +7,7 @@ from content.create import build_create
 from content.mekanism import build_mekanism
 from content.endgame import build_endgame
 from content.challenges import build_challenges
+from content.create_addons import build_create_addons
 from model import Project
 
 
@@ -1116,4 +1117,5 @@ def create_project() -> Project:
         mekanism_complete,
     )
     build_challenges(project, endgame_complete)
+    build_create_addons(project, create_complete)
     return project

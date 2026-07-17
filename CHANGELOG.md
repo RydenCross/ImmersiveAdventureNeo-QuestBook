@@ -26,3 +26,9 @@
 - Added cross-chapter progression from Welcome into Survival.
 - Expanded generated output to 2 chapters and 34 quests.
 - Added Survival content and build regression tests.
+
+## Commit 29 - Create Addons
+
+- Added a 31-quest Create Addons chapter.
+- Covered electrical, diesel, artillery, railway, contraption utility, and aviation expansions.
+- Added regression coverage and addon documentation.
