@@ -134,3 +134,9 @@
 - Added strict audit regression tests.
 - Replaced the outdated early-development README with current build, lint, audit, and questbook information.
 - Documented the content-audit workflow.
+
+## Commit 46 - Progression Graph Export
+
+- Added Graphviz DOT and JSON dependency graph exports.
+- Grouped quest nodes by chapter and marked optional quests visually.
+- Added CLI, documentation, generated reports, and automated tests.

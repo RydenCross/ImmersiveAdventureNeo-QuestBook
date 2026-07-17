@@ -91,3 +91,12 @@ python -m generator dependency-audit --strict
 ```
 
 Machine-readable reports are supported; see [`docs/DEPENDENCY_AUDIT.md`](docs/DEPENDENCY_AUDIT.md).
+
+### Progression graph export
+
+```bash
+python -m generator dependency-graph --output reports/dependency-graph.dot
+python -m generator dependency-graph --format json --output reports/dependency-graph.json
+```
+
+See [`docs/DEPENDENCY_GRAPH.md`](docs/DEPENDENCY_GRAPH.md).

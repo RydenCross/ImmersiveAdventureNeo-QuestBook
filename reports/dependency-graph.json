@@ -1,0 +1,8133 @@
+{
+  "chapters": [
+    {
+      "id": "00_welcome",
+      "quests": 9,
+      "title": "Welcome"
+    },
+    {
+      "id": "01_survival",
+      "quests": 45,
+      "title": "Survival"
+    },
+    {
+      "id": "02_mining",
+      "quests": 30,
+      "title": "Mining"
+    },
+    {
+      "id": "03_exploration",
+      "quests": 47,
+      "title": "Exploration"
+    },
+    {
+      "id": "04_create",
+      "quests": 74,
+      "title": "Create"
+    },
+    {
+      "id": "05_actually_additions",
+      "quests": 78,
+      "title": "Actually Additions"
+    },
+    {
+      "id": "06_ars_nouveau",
+      "quests": 61,
+      "title": "Ars Nouveau"
+    },
+    {
+      "id": "07_apotheosis",
+      "quests": 62,
+      "title": "Apotheosis"
+    },
+    {
+      "id": "08_ae2",
+      "quests": 83,
+      "title": "Applied Energistics 2"
+    },
+    {
+      "id": "09_mekanism",
+      "quests": 82,
+      "title": "Mekanism"
+    },
+    {
+      "id": "10_endgame",
+      "quests": 24,
+      "title": "Endgame"
+    },
+    {
+      "id": "11_challenges",
+      "quests": 30,
+      "title": "Challenges"
+    },
+    {
+      "id": "12_create_addons",
+      "quests": 31,
+      "title": "Create Addons"
+    }
+  ],
+  "edges": [
+    {
+      "from": "80577CD7348BDFBE",
+      "to": "9F6BB4DDD86F51E6"
+    },
+    {
+      "from": "80B37FE530981498",
+      "to": "A9E0FCFE85A29061"
+    },
+    {
+      "from": "80DA0E309B663B45",
+      "to": "AC9F2919C5100A37"
+    },
+    {
+      "from": "811256755221EC5B",
+      "to": "8516910B33D2D6E8"
+    },
+    {
+      "from": "811256755221EC5B",
+      "to": "9061F97F7930A854"
+    },
+    {
+      "from": "8128ACD415D0EDE6",
+      "to": "ADAB9C6863C362CF"
+    },
+    {
+      "from": "812A1F8C1F140DE9",
+      "to": "A97629F51D2A1191"
+    },
+    {
+      "from": "817056BDD8A2A6FB",
+      "to": "A85C3BDC125C481C"
+    },
+    {
+      "from": "817F63D3A762E1B9",
+      "to": "A0481C380E02FEF9"
+    },
+    {
+      "from": "81826D4C8CB6D85B",
+      "to": "80A0705EBA9F5E23"
+    },
+    {
+      "from": "81826D4C8CB6D85B",
+      "to": "9B1BE51B69AF2691"
+    },
+    {
+      "from": "818DBA9FBB463763",
+      "to": "BD1A1FB31B32B99D"
+    },
+    {
+      "from": "819B5CAA1E021C82",
+      "to": "A45762366BF24115"
+    },
+    {
+      "from": "819B5CAA1E021C82",
+      "to": "B0F5257B504A882F"
+    },
+    {
+      "from": "81A6970419C36D8B",
+      "to": "9BD77EA6F9E45F95"
+    },
+    {
+      "from": "81B73D1AC8D8947F",
+      "to": "AD9BC27565B1BF45"
+    },
+    {
+      "from": "81C22EAE6B41B35C",
+      "to": "86BCFF9F98D13E0C"
+    },
+    {
+      "from": "81C22EAE6B41B35C",
+      "to": "BEF7829B331D6426"
+    },
+    {
+      "from": "81F24691DB5C2E37",
+      "to": "A01D4ECBDDCBEA74"
+    },
+    {
+      "from": "824885A54969E4D2",
+      "to": "88AC3A0A05D0BC85"
+    },
+    {
+      "from": "82735DCAB2EACE4E",
+      "to": "9B73EAB0B5811EFA"
+    },
+    {
+      "from": "82735DCAB2EACE4E",
+      "to": "AF9D2635BF0B5622"
+    },
+    {
+      "from": "82735DCAB2EACE4E",
+      "to": "B139531EE751B64E"
+    },
+    {
+      "from": "82845A9ACF0F546A",
+      "to": "A9C77A0C21EC9A95"
+    },
+    {
+      "from": "8284C6CB2098B3DD",
+      "to": "B8411405EAF2DF28"
+    },
+    {
+      "from": "829B5302AFAC391B",
+      "to": "B077DD429E9F183A"
+    },
+    {
+      "from": "82A659FD4883BCD5",
+      "to": "9485CE362D91BCA2"
+    },
+    {
+      "from": "82A659FD4883BCD5",
+      "to": "A8761577762CB136"
+    },
+    {
+      "from": "82AA2A99586169A0",
+      "to": "A8F1AA336D2FFBB8"
+    },
+    {
+      "from": "82AB7FB013899B64",
+      "to": "BF307F44967ABAE9"
+    },
+    {
+      "from": "82B22EDE3179697A",
+      "to": "88F236C1D5C576E6"
+    },
+    {
+      "from": "833ADC4D97E9D8C1",
+      "to": "AF36A22B610743C5"
+    },
+    {
+      "from": "8359C036EB89DC18",
+      "to": "9B2BF37C23DA9E18"
+    },
+    {
+      "from": "8359C036EB89DC18",
+      "to": "BF25D46119E659C8"
+    },
+    {
+      "from": "837B35340BC9B6CD",
+      "to": "8B3BBF4905174CBB"
+    },
+    {
+      "from": "837E8C12F9ABF317",
+      "to": "B276D1086BC4DB24"
+    },
+    {
+      "from": "838A61441A7DC3B9",
+      "to": "B3EA453F3158E134"
+    },
+    {
+      "from": "838A61441A7DC3B9",
+      "to": "B7A6CE85AC91DF4B"
+    },
+    {
+      "from": "83A148C822911342",
+      "to": "838A61441A7DC3B9"
+    },
+    {
+      "from": "83B027F730A6E9D9",
+      "to": "9CC8D4163FD38290"
+    },
+    {
+      "from": "83D72D8426FC093E",
+      "to": "8516910B33D2D6E8"
+    },
+    {
+      "from": "83D72D8426FC093E",
+      "to": "9F853CBFCF67030B"
+    },
+    {
+      "from": "8424B971E8A5851F",
+      "to": "945FD127D5024504"
+    },
+    {
+      "from": "8436A655571D1E9A",
+      "to": "A7A1F49D1D59FD08"
+    },
+    {
+      "from": "84714854F94A035D",
+      "to": "80A0705EBA9F5E23"
+    },
+    {
+      "from": "84714854F94A035D",
+      "to": "9B1BE51B69AF2691"
+    },
+    {
+      "from": "84BBC231B43A64AF",
+      "to": "82B22EDE3179697A"
+    },
+    {
+      "from": "84E163F9D1282016",
+      "to": "88E1E05A3248427C"
+    },
+    {
+      "from": "84E163F9D1282016",
+      "to": "9FE72E4EB602117C"
+    },
+    {
+      "from": "84F25C16E88A2208",
+      "to": "B4318579C5EF37E5"
+    },
+    {
+      "from": "84F8DBE12090C2B5",
+      "to": "BA004962B32CC583"
+    },
+    {
+      "from": "8507C3CDEEDA58EB",
+      "to": "8FDFFD522B645DE3"
+    },
+    {
+      "from": "8516910B33D2D6E8",
+      "to": "BE8E152EA08CFEC0"
+    },
+    {
+      "from": "851BDD4FF266DF1B",
+      "to": "9B433E35D77DD943"
+    },
+    {
+      "from": "851CC5CA43E9D9FF",
+      "to": "86264C02FE0570FE"
+    },
+    {
+      "from": "856930E0995E2C5F",
+      "to": "99905FFF20ABDE63"
+    },
+    {
+      "from": "85857E736D5FE1B0",
+      "to": "831690E1512E7D1B"
+    },
+    {
+      "from": "8591F80B49E64073",
+      "to": "875A04C6ED54DF26"
+    },
+    {
+      "from": "8591F80B49E64073",
+      "to": "B17B174DF8E6BDDD"
+    },
+    {
+      "from": "85A4D6A569C114BA",
+      "to": "BCBFA427740A3426"
+    },
+    {
+      "from": "85A815ABBF0A9DA6",
+      "to": "A6D5AF54B25B7629"
+    },
+    {
+      "from": "85A815ABBF0A9DA6",
+      "to": "B1A21DB8939C58B5"
+    },
+    {
+      "from": "85BDC07386BFBC3F",
+      "to": "87F940CCBABD069C"
+    },
+    {
+      "from": "85D0790D6832C7FF",
+      "to": "84E163F9D1282016"
+    },
+    {
+      "from": "85D0790D6832C7FF",
+      "to": "9A1214F8710D5DA6"
+    },
+    {
+      "from": "86264C02FE0570FE",
+      "to": "AFC4F321C39227FF"
+    },
+    {
+      "from": "86264C02FE0570FE",
+      "to": "BA1629E13B48DED0"
+    },
+    {
+      "from": "862936BBF1122ABF",
+      "to": "BEDEE3E1EDBB7154"
+    },
+    {
+      "from": "8644F9E2552ADA16",
+      "to": "B4B67154F5A491A6"
+    },
+    {
+      "from": "864CE44BCC5D88BB",
+      "to": "A53AF62A74F8E4BF"
+    },
+    {
+      "from": "864CE44BCC5D88BB",
+      "to": "ABA24462997D0B7E"
+    },
+    {
+      "from": "864E4657EB932804",
+      "to": "A0481C380E02FEF9"
+    },
+    {
+      "from": "8664215185FB1D4C",
+      "to": "97D4725AB336EBC5"
+    },
+    {
+      "from": "867B5B5FE474C1D7",
+      "to": "8507C3CDEEDA58EB"
+    },
+    {
+      "from": "867B5B5FE474C1D7",
+      "to": "8A8122457C9D5C8C"
+    },
+    {
+      "from": "867B5B5FE474C1D7",
+      "to": "B1CA30C820C4D545"
+    },
+    {
+      "from": "867B5B5FE474C1D7",
+      "to": "BFBE373A7DEC902F"
+    },
+    {
+      "from": "869376E5406CA0FD",
+      "to": "8E0A74745A66AA20"
+    },
+    {
+      "from": "869376E5406CA0FD",
+      "to": "BA55076B2D38B8F4"
+    },
+    {
+      "from": "86A7B26CB2896867",
+      "to": "95C2EB89A951F5E4"
+    },
+    {
+      "from": "86BCFF9F98D13E0C",
+      "to": "9E8D43336369B20B"
+    },
+    {
+      "from": "86CEA98D360CDE41",
+      "to": "A71A267AFC948FBE"
+    },
+    {
+      "from": "86CEA98D360CDE41",
+      "to": "BFE0DB70C9572947"
+    },
+    {
+      "from": "870BBD54BAC225C7",
+      "to": "8A4711EEF716EC33"
+    },
+    {
+      "from": "871AFC185B50EFFF",
+      "to": "B27AD0513ED20FBB"
+    },
+    {
+      "from": "871AFC185B50EFFF",
+      "to": "B988AA247DE86327"
+    },
+    {
+      "from": "871B688E8A006169",
+      "to": "A8BF8FACEEBD5E95"
+    },
+    {
+      "from": "873B5CE7511ED010",
+      "to": "AD3B35FE7F3B413A"
+    },
+    {
+      "from": "8748B6F83EDAC3C2",
+      "to": "83D503D2B4892BED"
+    },
+    {
+      "from": "8759FF9AADA1603E",
+      "to": "A0E70B9748FC06BB"
+    },
+    {
+      "from": "8759FF9AADA1603E",
+      "to": "B9B76BE8F7309733"
+    },
+    {
+      "from": "875A04C6ED54DF26",
+      "to": "A637EB22B7C77CDA"
+    },
+    {
+      "from": "87650E9F9A630A31",
+      "to": "B747455529E0D98D"
+    },
+    {
+      "from": "87ABCB2393238138",
+      "to": "B85F6BBC41B5CA87"
+    },
+    {
+      "from": "87C7E3B137AE0764",
+      "to": "97D4725AB336EBC5"
+    },
+    {
+      "from": "87EB532FCC9ABB49",
+      "to": "933D829F1B973068"
+    },
+    {
+      "from": "87EB532FCC9ABB49",
+      "to": "A0552E09DC8568FF"
+    },
+    {
+      "from": "87F940CCBABD069C",
+      "to": "84BBC231B43A64AF"
+    },
+    {
+      "from": "87F940CCBABD069C",
+      "to": "85A4D6A569C114BA"
+    },
+    {
+      "from": "87F940CCBABD069C",
+      "to": "8EA39B2D6E073CBB"
+    },
+    {
+      "from": "87F940CCBABD069C",
+      "to": "9B56F25D0B4B4DE2"
+    },
+    {
+      "from": "87F940CCBABD069C",
+      "to": "B1B931A3B6524919"
+    },
+    {
+      "from": "87F940CCBABD069C",
+      "to": "BF6BC6174D4EBEEA"
+    },
+    {
+      "from": "8832AC4306046859",
+      "to": "8FD313B983CAF86B"
+    },
+    {
+      "from": "8832AC4306046859",
+      "to": "AA9B42E287FDB0C6"
+    },
+    {
+      "from": "8853864FC42ABE96",
+      "to": "AFC4F321C39227FF"
+    },
+    {
+      "from": "8856520543E7071D",
+      "to": "A705F3E3BE0DFF82"
+    },
+    {
+      "from": "88AC3A0A05D0BC85",
+      "to": "B98EB7625C1717E0"
+    },
+    {
+      "from": "88B23A62146512E9",
+      "to": "96E79C9F66877EE1"
+    },
+    {
+      "from": "88B23A62146512E9",
+      "to": "9C96567C0A119D02"
+    },
+    {
+      "from": "88B23A62146512E9",
+      "to": "A1C5D5B5DAB4132A"
+    },
+    {
+      "from": "88CB799732AA9690",
+      "to": "9E6D0205BFE242C3"
+    },
+    {
+      "from": "88D76CD65B7EE1DB",
+      "to": "89D61BD0FACFEAE5"
+    },
+    {
+      "from": "88D889EA3EEE346A",
+      "to": "949A81D66331C647"
+    },
+    {
+      "from": "88D889EA3EEE346A",
+      "to": "A6A56EBE14B7472B"
+    },
+    {
+      "from": "88E1E05A3248427C",
+      "to": "82AB7FB013899B64"
+    },
+    {
+      "from": "88E1E05A3248427C",
+      "to": "AE097681990BD3FE"
+    },
+    {
+      "from": "88F236C1D5C576E6",
+      "to": "9069146718797293"
+    },
+    {
+      "from": "89043341FF9A9128",
+      "to": "A00EB27C920C4924"
+    },
+    {
+      "from": "8951405532F11016",
+      "to": "87A06407AD84B561"
+    },
+    {
+      "from": "8951405532F11016",
+      "to": "A4F702BF298458F9"
+    },
+    {
+      "from": "896EE43275174350",
+      "to": "A4430F2F080370F6"
+    },
+    {
+      "from": "89AA12DF45FBA9C1",
+      "to": "9DA1B33BD57A2209"
+    },
+    {
+      "from": "89C32E74A04F7196",
+      "to": "AC9F2919C5100A37"
+    },
+    {
+      "from": "89D61BD0FACFEAE5",
+      "to": "871AFC185B50EFFF"
+    },
+    {
+      "from": "89E0157E1D39B37B",
+      "to": "B3C43E0ADE7AA8AC"
+    },
+    {
+      "from": "8A01B818A71120E5",
+      "to": "AEA58432C60A98F6"
+    },
+    {
+      "from": "8A4711EEF716EC33",
+      "to": "B8F6C6BA08679235"
+    },
+    {
+      "from": "8A7050F858CB4070",
+      "to": "8DEDB07833A097EE"
+    },
+    {
+      "from": "8A8122457C9D5C8C",
+      "to": "873B5CE7511ED010"
+    },
+    {
+      "from": "8AA44D1DEF03B639",
+      "to": "B51B772F4775297A"
+    },
+    {
+      "from": "8ADEA45924262360",
+      "to": "B6153F2046B77FB8"
+    },
+    {
+      "from": "8AE6C81C2A6D9A52",
+      "to": "930EF2D7E4EBCCDC"
+    },
+    {
+      "from": "8AE6C81C2A6D9A52",
+      "to": "BA5939A712FEAE89"
+    },
+    {
+      "from": "8AE6C81C2A6D9A52",
+      "to": "BFD04978194CCFF9"
+    },
+    {
+      "from": "8AF69DF0AC29ED14",
+      "to": "9330F0731F389E4E"
+    },
+    {
+      "from": "8AF69DF0AC29ED14",
+      "to": "BCB87C29FE7AB8A5"
+    },
+    {
+      "from": "8B15E5401F47D009",
+      "to": "9D02244C61A804E9"
+    },
+    {
+      "from": "8B15E5401F47D009",
+      "to": "A19DF8022965BC42"
+    },
+    {
+      "from": "8B16E20EEE585F4D",
+      "to": "99A4AFB056051713"
+    },
+    {
+      "from": "8B16E20EEE585F4D",
+      "to": "A0A8740984C5FEA9"
+    },
+    {
+      "from": "8B3BBF4905174CBB",
+      "to": "B9A8B723D0255D65"
+    },
+    {
+      "from": "8B41FF8ACB9DC9B6",
+      "to": "A8CBC8CAC1B4EC8A"
+    },
+    {
+      "from": "8B5499824A5D4041",
+      "to": "8C46AC758BB29EF3"
+    },
+    {
+      "from": "8B572A15D57EDE98",
+      "to": "97D4725AB336EBC5"
+    },
+    {
+      "from": "8B694AD5E1DB9D20",
+      "to": "9FF5BF98C8C49096"
+    },
+    {
+      "from": "8B8B1B2771D2B338",
+      "to": "AFE7F2B93837D38E"
+    },
+    {
+      "from": "8BD092676AEE266C",
+      "to": "80B37FE530981498"
+    },
+    {
+      "from": "8C2D5941103F4824",
+      "to": "87ABCB2393238138"
+    },
+    {
+      "from": "8C38294EFA31CDB6",
+      "to": "87ABCB2393238138"
+    },
+    {
+      "from": "8C3F41752B2ABC64",
+      "to": "912959347E47C6E6"
+    },
+    {
+      "from": "8C3F41752B2ABC64",
+      "to": "9EAA6EC52F81D1CC"
+    },
+    {
+      "from": "8C46AC758BB29EF3",
+      "to": "95C9180B1493A3D3"
+    },
+    {
+      "from": "8C46AC758BB29EF3",
+      "to": "98DFF3A902BA08F4"
+    },
+    {
+      "from": "8C46AC758BB29EF3",
+      "to": "A1C5D5B5DAB4132A"
+    },
+    {
+      "from": "8C479ADAAF24B87F",
+      "to": "BB78D41C38643BE7"
+    },
+    {
+      "from": "8C4D641B43AEF4AE",
+      "to": "88D889EA3EEE346A"
+    },
+    {
+      "from": "8C4D641B43AEF4AE",
+      "to": "98347CA4FE3C78A5"
+    },
+    {
+      "from": "8C4D641B43AEF4AE",
+      "to": "9CAF4D2C0A579875"
+    },
+    {
+      "from": "8C4DC095A550DF95",
+      "to": "BD1A1FB31B32B99D"
+    },
+    {
+      "from": "8C68E1C4D0216B1F",
+      "to": "9F6105A4DE8501DF"
+    },
+    {
+      "from": "8C68E1C4D0216B1F",
+      "to": "BFE0DB70C9572947"
+    },
+    {
+      "from": "8C82FED985B20243",
+      "to": "9C7B674F2973EEC0"
+    },
+    {
+      "from": "8C94E34719F45A47",
+      "to": "BD59723E4005DFA8"
+    },
+    {
+      "from": "8D301B044AF9999C",
+      "to": "8AF69DF0AC29ED14"
+    },
+    {
+      "from": "8D80B55827B94A3A",
+      "to": "A1CA04D34EAED17F"
+    },
+    {
+      "from": "8DE3B7495F932626",
+      "to": "8D301B044AF9999C"
+    },
+    {
+      "from": "8DE3B7495F932626",
+      "to": "9F6D7A15250EECE6"
+    },
+    {
+      "from": "8DEA5F756F78C53D",
+      "to": "A94F27079A2C04BA"
+    },
+    {
+      "from": "8DEA5F756F78C53D",
+      "to": "BA0BB7279D7AB190"
+    },
+    {
+      "from": "8DFEF4248E9B32CC",
+      "to": "B718462454CD6D43"
+    },
+    {
+      "from": "8E0A74745A66AA20",
+      "to": "A29EF94E42D59678"
+    },
+    {
+      "from": "8E0A74745A66AA20",
+      "to": "A35714AEAFA7479F"
+    },
+    {
+      "from": "8E15D88A6086BB62",
+      "to": "89AA12DF45FBA9C1"
+    },
+    {
+      "from": "8E32A09F810A39EF",
+      "to": "9253068A1317AE3E"
+    },
+    {
+      "from": "8E32A09F810A39EF",
+      "to": "B3C43E0ADE7AA8AC"
+    },
+    {
+      "from": "8E3C693690EE37D1",
+      "to": "A2E7482F4139D103"
+    },
+    {
+      "from": "8EA39B2D6E073CBB",
+      "to": "88CB799732AA9690"
+    },
+    {
+      "from": "8F0C5A2C102D65FB",
+      "to": "91029C024674F674"
+    },
+    {
+      "from": "8F0C5A2C102D65FB",
+      "to": "96B61AA733F131D0"
+    },
+    {
+      "from": "8F0C5A2C102D65FB",
+      "to": "AE9D39429B5A2836"
+    },
+    {
+      "from": "8F0C5A2C102D65FB",
+      "to": "B17468A4DE681B0F"
+    },
+    {
+      "from": "8F3234B1AB40066A",
+      "to": "9DD1825495B8D062"
+    },
+    {
+      "from": "8F4467BFC3761559",
+      "to": "930EF2D7E4EBCCDC"
+    },
+    {
+      "from": "8F4467BFC3761559",
+      "to": "AB9C5E88FB1FDAD9"
+    },
+    {
+      "from": "8F92A3AF2B513C75",
+      "to": "A38C1BAE1D6F8FA0"
+    },
+    {
+      "from": "8F92A3AF2B513C75",
+      "to": "A85C3BDC125C481C"
+    },
+    {
+      "from": "8FAEE6B2D3EA77D9",
+      "to": "9449E56C6BBF0EE2"
+    },
+    {
+      "from": "8FD313B983CAF86B",
+      "to": "BAF02F981712573A"
+    },
+    {
+      "from": "8FDFFD522B645DE3",
+      "to": "9E3885F64E7BED87"
+    },
+    {
+      "from": "8FE91F2F3F9C634C",
+      "to": "A4EDEB8B697A1006"
+    },
+    {
+      "from": "8FE91F2F3F9C634C",
+      "to": "BF6FDBC9EB6ABBB9"
+    },
+    {
+      "from": "90174B72B0D10EC7",
+      "to": "84F8DBE12090C2B5"
+    },
+    {
+      "from": "904F4811ACE99711",
+      "to": "97D4725AB336EBC5"
+    },
+    {
+      "from": "905B3D999E4666E2",
+      "to": "AD9BC27565B1BF45"
+    },
+    {
+      "from": "905B3D999E4666E2",
+      "to": "B5DAA8D1C8F96727"
+    },
+    {
+      "from": "905B3D999E4666E2",
+      "to": "BE562EA84B4CACC6"
+    },
+    {
+      "from": "9061F97F7930A854",
+      "to": "BE8E152EA08CFEC0"
+    },
+    {
+      "from": "9069146718797293",
+      "to": "A78D2A48D0C09BA2"
+    },
+    {
+      "from": "9084EC2BA85315F0",
+      "to": "A4783D8F61602502"
+    },
+    {
+      "from": "9084EC2BA85315F0",
+      "to": "A725DD84901F9A7A"
+    },
+    {
+      "from": "90BCBA78663F3EB4",
+      "to": "8160E20156C93D1A"
+    },
+    {
+      "from": "90BD9107F1D9925B",
+      "to": "AFC1DB6AD2C604D6"
+    },
+    {
+      "from": "91029C024674F674",
+      "to": "856930E0995E2C5F"
+    },
+    {
+      "from": "91248A7DC19CBBF0",
+      "to": "9928FD826DBF1470"
+    },
+    {
+      "from": "91248A7DC19CBBF0",
+      "to": "9D02244C61A804E9"
+    },
+    {
+      "from": "912959347E47C6E6",
+      "to": "9C9E35668AB129DC"
+    },
+    {
+      "from": "912959347E47C6E6",
+      "to": "9D733452C9DF241A"
+    },
+    {
+      "from": "912959347E47C6E6",
+      "to": "A57AB0E93C7E7635"
+    },
+    {
+      "from": "912959347E47C6E6",
+      "to": "B46E9F1208FEB20C"
+    },
+    {
+      "from": "913265B1A80AB926",
+      "to": "A2EFC08726A04440"
+    },
+    {
+      "from": "913CFE701933EF50",
+      "to": "A2A62C75B51BDB4F"
+    },
+    {
+      "from": "913CFE701933EF50",
+      "to": "A4E7E65996822E1B"
+    },
+    {
+      "from": "9171D6BB0BDC2370",
+      "to": "851ECDD1B2B0CA97"
+    },
+    {
+      "from": "9171D6BB0BDC2370",
+      "to": "ADA3FFB7E07964E5"
+    },
+    {
+      "from": "9171D6BB0BDC2370",
+      "to": "B032FFB2DD08F812"
+    },
+    {
+      "from": "9171D6BB0BDC2370",
+      "to": "B36ADC8892444351"
+    },
+    {
+      "from": "9181615AB112184A",
+      "to": "9F513DEAF55705E1"
+    },
+    {
+      "from": "9188177C0E124401",
+      "to": "8A01B818A71120E5"
+    },
+    {
+      "from": "91BEB312BC51E284",
+      "to": "9F592D0904AE4109"
+    },
+    {
+      "from": "91D2B2C4D1AF61C2",
+      "to": "A9C77A0C21EC9A95"
+    },
+    {
+      "from": "91D6B74576F8EE81",
+      "to": "94E8400FFB47E297"
+    },
+    {
+      "from": "9210BD151FB630BA",
+      "to": "ABE733A6CB5B1624"
+    },
+    {
+      "from": "9253068A1317AE3E",
+      "to": "89E0157E1D39B37B"
+    },
+    {
+      "from": "92645023F57184BF",
+      "to": "A637EB22B7C77CDA"
+    },
+    {
+      "from": "92A87C3EFC574FF5",
+      "to": "9E8C7AC6FEC15513"
+    },
+    {
+      "from": "92AAF6A83CB42F4A",
+      "to": "85D0790D6832C7FF"
+    },
+    {
+      "from": "92B80EE106A4AD3D",
+      "to": "A02F127E1720FF68"
+    },
+    {
+      "from": "92D0A7158A550163",
+      "to": "8746AED2E206F76E"
+    },
+    {
+      "from": "92D0A7158A550163",
+      "to": "9C7B674F2973EEC0"
+    },
+    {
+      "from": "92F436C6D6F38859",
+      "to": "B161A0B71156120C"
+    },
+    {
+      "from": "92F436C6D6F38859",
+      "to": "B5A99C3A3A62A1EF"
+    },
+    {
+      "from": "9330F0731F389E4E",
+      "to": "978A7B20BB10CB4D"
+    },
+    {
+      "from": "933D829F1B973068",
+      "to": "8B5499824A5D4041"
+    },
+    {
+      "from": "9341C5AEFC9D2D1B",
+      "to": "8B41FF8ACB9DC9B6"
+    },
+    {
+      "from": "9341C5AEFC9D2D1B",
+      "to": "972FC26349EBE4AF"
+    },
+    {
+      "from": "938FFD169C221DC8",
+      "to": "BD59723E4005DFA8"
+    },
+    {
+      "from": "939EE65C90820C2D",
+      "to": "9E8D43336369B20B"
+    },
+    {
+      "from": "939EE65C90820C2D",
+      "to": "A77B2B519863BE61"
+    },
+    {
+      "from": "93BE9D1AC014268C",
+      "to": "A7100062D34FBA61"
+    },
+    {
+      "from": "93BE9D1AC014268C",
+      "to": "B36A1645844D78E6"
+    },
+    {
+      "from": "93BE9D1AC014268C",
+      "to": "B4D85603A05195C0"
+    },
+    {
+      "from": "93BE9D1AC014268C",
+      "to": "B5DAA8D1C8F96727"
+    },
+    {
+      "from": "93D5FAFED1968A53",
+      "to": "BEA82A645AF8E305"
+    },
+    {
+      "from": "94305CF42338D453",
+      "to": "AE097681990BD3FE"
+    },
+    {
+      "from": "94305CF42338D453",
+      "to": "B00A78B6A0EB8B14"
+    },
+    {
+      "from": "9447C8637E797451",
+      "to": "B988AA247DE86327"
+    },
+    {
+      "from": "94498A2D8B2625C5",
+      "to": "BAEA2E1A822B7589"
+    },
+    {
+      "from": "9449E56C6BBF0EE2",
+      "to": "BB888FDBFEEB6BDC"
+    },
+    {
+      "from": "945FD127D5024504",
+      "to": "A1A7BFE2BAA97C02"
+    },
+    {
+      "from": "9485CE362D91BCA2",
+      "to": "9523F05B4EFE9BC5"
+    },
+    {
+      "from": "94E8400FFB47E297",
+      "to": "91BEB312BC51E284"
+    },
+    {
+      "from": "94F9BEF9AF0CF3DF",
+      "to": "8424B971E8A5851F"
+    },
+    {
+      "from": "950D9CBBC78DDBDC",
+      "to": "84E163F9D1282016"
+    },
+    {
+      "from": "9523F05B4EFE9BC5",
+      "to": "B759BC4982387FB0"
+    },
+    {
+      "from": "95551C6838D7CE57",
+      "to": "88D76CD65B7EE1DB"
+    },
+    {
+      "from": "959F9AE5EC4D8446",
+      "to": "950D9CBBC78DDBDC"
+    },
+    {
+      "from": "95C2EB89A951F5E4",
+      "to": "B7E098274A378F3B"
+    },
+    {
+      "from": "95C324C31470DE0C",
+      "to": "87F940CCBABD069C"
+    },
+    {
+      "from": "95C9180B1493A3D3",
+      "to": "B35C447EF716A33F"
+    },
+    {
+      "from": "95CA8225930FDF9B",
+      "to": "8B572A15D57EDE98"
+    },
+    {
+      "from": "9602F5A255689E6B",
+      "to": "A6DD3A2275842DF7"
+    },
+    {
+      "from": "960FA2FDDE766B3B",
+      "to": "8C82FED985B20243"
+    },
+    {
+      "from": "96455F6A63FAE23E",
+      "to": "904F4811ACE99711"
+    },
+    {
+      "from": "9675C9132A59EB72",
+      "to": "B42C4B0DA4320CA2"
+    },
+    {
+      "from": "9684F104E7FA03F3",
+      "to": "92B80EE106A4AD3D"
+    },
+    {
+      "from": "9684F104E7FA03F3",
+      "to": "991EB3049DA99F36"
+    },
+    {
+      "from": "9684F104E7FA03F3",
+      "to": "B0925ADA471A16B8"
+    },
+    {
+      "from": "96AE104817B743C0",
+      "to": "871B688E8A006169"
+    },
+    {
+      "from": "96B61AA733F131D0",
+      "to": "B453BB06FD7DF238"
+    },
+    {
+      "from": "96D042E647F223E0",
+      "to": "A380CF3730F3FD59"
+    },
+    {
+      "from": "96E4C1F365355EF2",
+      "to": "AB96CC82C83D90D9"
+    },
+    {
+      "from": "96E79C9F66877EE1",
+      "to": "9834B0E8CBA57607"
+    },
+    {
+      "from": "96E79C9F66877EE1",
+      "to": "98D3369343FB9198"
+    },
+    {
+      "from": "96E79C9F66877EE1",
+      "to": "9DFACB3E1AEF2683"
+    },
+    {
+      "from": "96E79C9F66877EE1",
+      "to": "B755C061DAE051C5"
+    },
+    {
+      "from": "96F19ACAB774A9E9",
+      "to": "959F9AE5EC4D8446"
+    },
+    {
+      "from": "972C9432897D5019",
+      "to": "A88848765A7AEAFD"
+    },
+    {
+      "from": "972C9432897D5019",
+      "to": "BE562EA84B4CACC6"
+    },
+    {
+      "from": "972FC26349EBE4AF",
+      "to": "A8CBC8CAC1B4EC8A"
+    },
+    {
+      "from": "9732AB556F0ED0A2",
+      "to": "AAD8807D22C1BADF"
+    },
+    {
+      "from": "974906EEAB7C4332",
+      "to": "BF567BD87BAB9DA7"
+    },
+    {
+      "from": "978223E6BBE7400B",
+      "to": "B31A1C414CFF62F7"
+    },
+    {
+      "from": "97862F9850C98672",
+      "to": "851CC5CA43E9D9FF"
+    },
+    {
+      "from": "97862F9850C98672",
+      "to": "A79ADBC289CBB991"
+    },
+    {
+      "from": "9787BAA31BCDE14E",
+      "to": "9D3342A10ADB1B73"
+    },
+    {
+      "from": "9787BAA31BCDE14E",
+      "to": "A57AB0E93C7E7635"
+    },
+    {
+      "from": "978A7B20BB10CB4D",
+      "to": "9EC6CF191778963F"
+    },
+    {
+      "from": "978A7B20BB10CB4D",
+      "to": "B1EF07988A5F1190"
+    },
+    {
+      "from": "97A22F0A1ECD3DB5",
+      "to": "82845A9ACF0F546A"
+    },
+    {
+      "from": "97EC57E5BDA2AA7F",
+      "to": "A9A41799F8AA3CA1"
+    },
+    {
+      "from": "97EC57E5BDA2AA7F",
+      "to": "AA0D037CCABC1D9D"
+    },
+    {
+      "from": "97F2BC13EE31F1EA",
+      "to": "9188177C0E124401"
+    },
+    {
+      "from": "97F2BC13EE31F1EA",
+      "to": "B37459E5008A1A4E"
+    },
+    {
+      "from": "9821586AE623D645",
+      "to": "8B16E20EEE585F4D"
+    },
+    {
+      "from": "98347CA4FE3C78A5",
+      "to": "824885A54969E4D2"
+    },
+    {
+      "from": "98347CA4FE3C78A5",
+      "to": "A758291BA29B5FAF"
+    },
+    {
+      "from": "98347CA4FE3C78A5",
+      "to": "B600C574DC364ACF"
+    },
+    {
+      "from": "9834B0E8CBA57607",
+      "to": "A0CD16D3813CFEF0"
+    },
+    {
+      "from": "983E48F2B5BB28FD",
+      "to": "9210BD151FB630BA"
+    },
+    {
+      "from": "988B56FD0D24F3FE",
+      "to": "B7073653189A6AB2"
+    },
+    {
+      "from": "98D3369343FB9198",
+      "to": "8D80B55827B94A3A"
+    },
+    {
+      "from": "98DFF3A902BA08F4",
+      "to": "8284C6CB2098B3DD"
+    },
+    {
+      "from": "98DFF3A902BA08F4",
+      "to": "9A1BD4CBBC0E9F60"
+    },
+    {
+      "from": "98DFF3A902BA08F4",
+      "to": "9D8417D8F33B204B"
+    },
+    {
+      "from": "98FDBE2B335B7BA3",
+      "to": "999E9C1D07A5EA92"
+    },
+    {
+      "from": "98FDBE2B335B7BA3",
+      "to": "A0DD2BAC223CB981"
+    },
+    {
+      "from": "991EB3049DA99F36",
+      "to": "812A1F8C1F140DE9"
+    },
+    {
+      "from": "9928FD826DBF1470",
+      "to": "A97629F51D2A1191"
+    },
+    {
+      "from": "99295A746E66BD8D",
+      "to": "A9FC6C72C3E6FC36"
+    },
+    {
+      "from": "994750AF33EFBC92",
+      "to": "92AAF6A83CB42F4A"
+    },
+    {
+      "from": "9952BD09AF554E2A",
+      "to": "97A22F0A1ECD3DB5"
+    },
+    {
+      "from": "99905FFF20ABDE63",
+      "to": "B52D8835DA07488B"
+    },
+    {
+      "from": "999E9C1D07A5EA92",
+      "to": "8BD092676AEE266C"
+    },
+    {
+      "from": "999E9C1D07A5EA92",
+      "to": "AD1F4E90E449074B"
+    },
+    {
+      "from": "99A4AFB056051713",
+      "to": "A8BF8FACEEBD5E95"
+    },
+    {
+      "from": "99FB31DEFE4DA0C8",
+      "to": "B555077192EAE77B"
+    },
+    {
+      "from": "99FD479647F8A3FE",
+      "to": "97845C22D864AB2A"
+    },
+    {
+      "from": "99FF75DA7A72BA2A",
+      "to": "97E30FCE87652D0E"
+    },
+    {
+      "from": "99FF75DA7A72BA2A",
+      "to": "A074A1D6D7735B1A"
+    },
+    {
+      "from": "99FF75DA7A72BA2A",
+      "to": "AD8973AE02566CBB"
+    },
+    {
+      "from": "9A11CEDA3D2C13DD",
+      "to": "B2A477502A56E8CF"
+    },
+    {
+      "from": "9A1214F8710D5DA6",
+      "to": "A2D26C98D567D239"
+    },
+    {
+      "from": "9A144F8E83E0C63E",
+      "to": "91D6B74576F8EE81"
+    },
+    {
+      "from": "9A1BD4CBBC0E9F60",
+      "to": "86A7B26CB2896867"
+    },
+    {
+      "from": "9A3290F3906D437D",
+      "to": "A6E4CD1B9B30C6A5"
+    },
+    {
+      "from": "9A3966014461AC0B",
+      "to": "8A7050F858CB4070"
+    },
+    {
+      "from": "9AAA03E14138EE73",
+      "to": "99295A746E66BD8D"
+    },
+    {
+      "from": "9AE8C242AA4683BE",
+      "to": "B3AF9416579B3DF4"
+    },
+    {
+      "from": "9B1BE51B69AF2691",
+      "to": "8DE3B7495F932626"
+    },
+    {
+      "from": "9B1BE51B69AF2691",
+      "to": "A1C5D5B5DAB4132A"
+    },
+    {
+      "from": "9B1BE51B69AF2691",
+      "to": "B3B54EEABCCBFA4F"
+    },
+    {
+      "from": "9B2BF37C23DA9E18",
+      "to": "84F25C16E88A2208"
+    },
+    {
+      "from": "9B433E35D77DD943",
+      "to": "B36A1645844D78E6"
+    },
+    {
+      "from": "9B46F07792E727EB",
+      "to": "B7F034C699D7BDE4"
+    },
+    {
+      "from": "9B56F25D0B4B4DE2",
+      "to": "8C3F41752B2ABC64"
+    },
+    {
+      "from": "9B56F25D0B4B4DE2",
+      "to": "978223E6BBE7400B"
+    },
+    {
+      "from": "9B56F25D0B4B4DE2",
+      "to": "99FF75DA7A72BA2A"
+    },
+    {
+      "from": "9B56F25D0B4B4DE2",
+      "to": "BF5F62806F210529"
+    },
+    {
+      "from": "9B73EAB0B5811EFA",
+      "to": "8E3C693690EE37D1"
+    },
+    {
+      "from": "9B73EAB0B5811EFA",
+      "to": "9FC966A646B440CA"
+    },
+    {
+      "from": "9BA1B6AA1AA1EB92",
+      "to": "8951405532F11016"
+    },
+    {
+      "from": "9BC80D9BE4C9EA8E",
+      "to": "869376E5406CA0FD"
+    },
+    {
+      "from": "9BC80D9BE4C9EA8E",
+      "to": "9ED49A00445BACD3"
+    },
+    {
+      "from": "9BC80D9BE4C9EA8E",
+      "to": "A10D11CD2F654FBF"
+    },
+    {
+      "from": "9BC80D9BE4C9EA8E",
+      "to": "A4ECC2D2E7B95A2A"
+    },
+    {
+      "from": "9BC80D9BE4C9EA8E",
+      "to": "B44D6A57904F26ED"
+    },
+    {
+      "from": "9BC80D9BE4C9EA8E",
+      "to": "BDBBC978DD22F50E"
+    },
+    {
+      "from": "9BD77EA6F9E45F95",
+      "to": "A19DF8022965BC42"
+    },
+    {
+      "from": "9C724CDA73318AC1",
+      "to": "831690E1512E7D1B"
+    },
+    {
+      "from": "9C7B674F2973EEC0",
+      "to": "ABA318CFB591F5AE"
+    },
+    {
+      "from": "9C849DAFA126952C",
+      "to": "94498A2D8B2625C5"
+    },
+    {
+      "from": "9C930103FEFC7D4E",
+      "to": "945830A36E8E22EC"
+    },
+    {
+      "from": "9C930103FEFC7D4E",
+      "to": "9D733452C9DF241A"
+    },
+    {
+      "from": "9C96567C0A119D02",
+      "to": "81F24691DB5C2E37"
+    },
+    {
+      "from": "9C96567C0A119D02",
+      "to": "B38BD8C9CA5A9D96"
+    },
+    {
+      "from": "9C9E35668AB129DC",
+      "to": "945830A36E8E22EC"
+    },
+    {
+      "from": "9C9E35668AB129DC",
+      "to": "BE82448FFE736673"
+    },
+    {
+      "from": "9CAF4D2C0A579875",
+      "to": "824885A54969E4D2"
+    },
+    {
+      "from": "9CC8D4163FD38290",
+      "to": "9928FD826DBF1470"
+    },
+    {
+      "from": "9CC8D4163FD38290",
+      "to": "A15B107B8B33255D"
+    },
+    {
+      "from": "9D02244C61A804E9",
+      "to": "8B694AD5E1DB9D20"
+    },
+    {
+      "from": "9D02244C61A804E9",
+      "to": "A393484D99BC4641"
+    },
+    {
+      "from": "9D02244C61A804E9",
+      "to": "BF3C4D9AAB1DEC09"
+    },
+    {
+      "from": "9D0E8993BE224A75",
+      "to": "B64DB0DA9A542B02"
+    },
+    {
+      "from": "9D0E8993BE224A75",
+      "to": "BA004962B32CC583"
+    },
+    {
+      "from": "9D3342A10ADB1B73",
+      "to": "9D733452C9DF241A"
+    },
+    {
+      "from": "9D3342A10ADB1B73",
+      "to": "A6808430A8AC05B4"
+    },
+    {
+      "from": "9D3342A10ADB1B73",
+      "to": "BA6E2A4E49A56B01"
+    },
+    {
+      "from": "9D6987D63779188B",
+      "to": "92645023F57184BF"
+    },
+    {
+      "from": "9D6987D63779188B",
+      "to": "A637EB22B7C77CDA"
+    },
+    {
+      "from": "9D7059B93201F34D",
+      "to": "A2BE7DA11F998D0A"
+    },
+    {
+      "from": "9D733452C9DF241A",
+      "to": "80577CD7348BDFBE"
+    },
+    {
+      "from": "9D733452C9DF241A",
+      "to": "9A11CEDA3D2C13DD"
+    },
+    {
+      "from": "9D733452C9DF241A",
+      "to": "ABE5D2024E1580C1"
+    },
+    {
+      "from": "9D733452C9DF241A",
+      "to": "AF0DE77EEB143D10"
+    },
+    {
+      "from": "9D733452C9DF241A",
+      "to": "BC3918DB5AECEBC7"
+    },
+    {
+      "from": "9D733452C9DF241A",
+      "to": "BE82448FFE736673"
+    },
+    {
+      "from": "9D8417D8F33B204B",
+      "to": "B9FD84D3EC0EF312"
+    },
+    {
+      "from": "9D980188B336A710",
+      "to": "851ECDD1B2B0CA97"
+    },
+    {
+      "from": "9D980188B336A710",
+      "to": "B626AC759387A7EF"
+    },
+    {
+      "from": "9D9C89D1B3C6CB70",
+      "to": "9C7B674F2973EEC0"
+    },
+    {
+      "from": "9DA1B33BD57A2209",
+      "to": "838A61441A7DC3B9"
+    },
+    {
+      "from": "9DB6CC7F6EC64BC4",
+      "to": "B98EB7625C1717E0"
+    },
+    {
+      "from": "9DD1825495B8D062",
+      "to": "AF519C86336AC5AB"
+    },
+    {
+      "from": "9DFACB3E1AEF2683",
+      "to": "8FAEE6B2D3EA77D9"
+    },
+    {
+      "from": "9DFEF90D76F529BB",
+      "to": "9D6987D63779188B"
+    },
+    {
+      "from": "9E3885F64E7BED87",
+      "to": "A85C3BDC125C481C"
+    },
+    {
+      "from": "9E6D0205BFE242C3",
+      "to": "AF500466035EE361"
+    },
+    {
+      "from": "9E8C7AC6FEC15513",
+      "to": "9D7059B93201F34D"
+    },
+    {
+      "from": "9E8D43336369B20B",
+      "to": "B877A8F58DAD6C28"
+    },
+    {
+      "from": "9EAA6EC52F81D1CC",
+      "to": "AE484099900614BD"
+    },
+    {
+      "from": "9EC6CF191778963F",
+      "to": "829B5302AFAC391B"
+    },
+    {
+      "from": "9ECFE47D39F90472",
+      "to": "A84B1F3171833F9B"
+    },
+    {
+      "from": "9ED49A00445BACD3",
+      "to": "837B35340BC9B6CD"
+    },
+    {
+      "from": "9F183F98D7E341A2",
+      "to": "B555077192EAE77B"
+    },
+    {
+      "from": "9F354CEE891D4767",
+      "to": "A4EDEB8B697A1006"
+    },
+    {
+      "from": "9F513DEAF55705E1",
+      "to": "A868060874F46240"
+    },
+    {
+      "from": "9F592D0904AE4109",
+      "to": "B32361D3EED7D5C8"
+    },
+    {
+      "from": "9F6105A4DE8501DF",
+      "to": "B923E5CA57CB09D7"
+    },
+    {
+      "from": "9F6BB4DDD86F51E6",
+      "to": "8664215185FB1D4C"
+    },
+    {
+      "from": "9F6D7A15250EECE6",
+      "to": "82AA2A99586169A0"
+    },
+    {
+      "from": "9F6D7A15250EECE6",
+      "to": "B8CFF3DDB14B7C60"
+    },
+    {
+      "from": "9F6D7A15250EECE6",
+      "to": "BCB87C29FE7AB8A5"
+    },
+    {
+      "from": "9F785BFCAA2E2902",
+      "to": "9D02244C61A804E9"
+    },
+    {
+      "from": "9F853CBFCF67030B",
+      "to": "811256755221EC5B"
+    },
+    {
+      "from": "9F89E688118941E3",
+      "to": "A2F1BA07FC096B52"
+    },
+    {
+      "from": "9F8F69B382DA8B5F",
+      "to": "AE789AF2A07613DF"
+    },
+    {
+      "from": "9FA4AF7125A642F3",
+      "to": "A4F702BF298458F9"
+    },
+    {
+      "from": "9FC598DED3EF23F1",
+      "to": "81826D4C8CB6D85B"
+    },
+    {
+      "from": "9FC966A646B440CA",
+      "to": "A6CF387A1471A729"
+    },
+    {
+      "from": "9FC966A646B440CA",
+      "to": "A74FB9340C09F796"
+    },
+    {
+      "from": "9FE72E4EB602117C",
+      "to": "819B5CAA1E021C82"
+    },
+    {
+      "from": "9FE72E4EB602117C",
+      "to": "B00A78B6A0EB8B14"
+    },
+    {
+      "from": "9FF5BF98C8C49096",
+      "to": "8591F80B49E64073"
+    },
+    {
+      "from": "A00EB27C920C4924",
+      "to": "A4F702BF298458F9"
+    },
+    {
+      "from": "A01D4ECBDDCBEA74",
+      "to": "93BE9D1AC014268C"
+    },
+    {
+      "from": "A01D4ECBDDCBEA74",
+      "to": "9993CCA381AF3A7B"
+    },
+    {
+      "from": "A0215546138AAF19",
+      "to": "90BCBA78663F3EB4"
+    },
+    {
+      "from": "A02F127E1720FF68",
+      "to": "91248A7DC19CBBF0"
+    },
+    {
+      "from": "A03D4E1C21DE3FBC",
+      "to": "98FDBE2B335B7BA3"
+    },
+    {
+      "from": "A03D4E1C21DE3FBC",
+      "to": "B90E649D464DF6DC"
+    },
+    {
+      "from": "A0471C1EAF3FD8CF",
+      "to": "851CC5CA43E9D9FF"
+    },
+    {
+      "from": "A0471C1EAF3FD8CF",
+      "to": "ACE9D78DD7767BE3"
+    },
+    {
+      "from": "A0481C380E02FEF9",
+      "to": "BA5939A712FEAE89"
+    },
+    {
+      "from": "A0481C380E02FEF9",
+      "to": "BFD04978194CCFF9"
+    },
+    {
+      "from": "A0552E09DC8568FF",
+      "to": "8B5499824A5D4041"
+    },
+    {
+      "from": "A06FF6166863CE5C",
+      "to": "884062AB8753FF4E"
+    },
+    {
+      "from": "A06FF6166863CE5C",
+      "to": "A5181DF98801BFE6"
+    },
+    {
+      "from": "A06FF6166863CE5C",
+      "to": "B0321D75604FA303"
+    },
+    {
+      "from": "A084253139E38F70",
+      "to": "817056BDD8A2A6FB"
+    },
+    {
+      "from": "A0A8740984C5FEA9",
+      "to": "B74A0466FD914402"
+    },
+    {
+      "from": "A0B150555FF7CEE3",
+      "to": "A193721445D8B966"
+    },
+    {
+      "from": "A0CD16D3813CFEF0",
+      "to": "9602F5A255689E6B"
+    },
+    {
+      "from": "A0DD2BAC223CB981",
+      "to": "99FB31DEFE4DA0C8"
+    },
+    {
+      "from": "A0DD2BAC223CB981",
+      "to": "AEC5D374610E1741"
+    },
+    {
+      "from": "A0E70B9748FC06BB",
+      "to": "B56824684E876134"
+    },
+    {
+      "from": "A0F32B96F9D2ED42",
+      "to": "8E32A09F810A39EF"
+    },
+    {
+      "from": "A0F32B96F9D2ED42",
+      "to": "9253068A1317AE3E"
+    },
+    {
+      "from": "A0F32B96F9D2ED42",
+      "to": "A9A230AEE12A7A79"
+    },
+    {
+      "from": "A0F8E272D1041D95",
+      "to": "84714854F94A035D"
+    },
+    {
+      "from": "A10D11CD2F654FBF",
+      "to": "B3FDA8B852F1471F"
+    },
+    {
+      "from": "A110FCB74ECB8CB6",
+      "to": "82845A9ACF0F546A"
+    },
+    {
+      "from": "A1434E90EADA6BF3",
+      "to": "B822885D3BC61710"
+    },
+    {
+      "from": "A15B107B8B33255D",
+      "to": "81A6970419C36D8B"
+    },
+    {
+      "from": "A15B107B8B33255D",
+      "to": "A90812C36D68D0A7"
+    },
+    {
+      "from": "A1829ED2935D4DA3",
+      "to": "B17B174DF8E6BDDD"
+    },
+    {
+      "from": "A193721445D8B966",
+      "to": "84D099EB78C23ACE"
+    },
+    {
+      "from": "A193721445D8B966",
+      "to": "B2AE9BD6755DFEFF"
+    },
+    {
+      "from": "A19DF8022965BC42",
+      "to": "837E8C12F9ABF317"
+    },
+    {
+      "from": "A1A7BFE2BAA97C02",
+      "to": "BB3EC930162B20E7"
+    },
+    {
+      "from": "A1B4DD334A3D3F8D",
+      "to": "B2E09813AD2B53D8"
+    },
+    {
+      "from": "A1C4085EC2E533B9",
+      "to": "9B1BE51B69AF2691"
+    },
+    {
+      "from": "A1C5D5B5DAB4132A",
+      "to": "95551C6838D7CE57"
+    },
+    {
+      "from": "A1C5D5B5DAB4132A",
+      "to": "A0471C1EAF3FD8CF"
+    },
+    {
+      "from": "A1C5D5B5DAB4132A",
+      "to": "AFC2753344996824"
+    },
+    {
+      "from": "A1CA04D34EAED17F",
+      "to": "BFBEEE7AD8BAB210"
+    },
+    {
+      "from": "A1DDFD211EE738AB",
+      "to": "BC8F9F380EF22918"
+    },
+    {
+      "from": "A1E50AFAF05433A8",
+      "to": "A084253139E38F70"
+    },
+    {
+      "from": "A26EDD8B6F22030F",
+      "to": "896EE43275174350"
+    },
+    {
+      "from": "A26EDD8B6F22030F",
+      "to": "8C479ADAAF24B87F"
+    },
+    {
+      "from": "A26EDD8B6F22030F",
+      "to": "94F9BEF9AF0CF3DF"
+    },
+    {
+      "from": "A26EDD8B6F22030F",
+      "to": "B0617CFEB4A3B624"
+    },
+    {
+      "from": "A29EF94E42D59678",
+      "to": "95C324C31470DE0C"
+    },
+    {
+      "from": "A2A62C75B51BDB4F",
+      "to": "97F2BC13EE31F1EA"
+    },
+    {
+      "from": "A2A62C75B51BDB4F",
+      "to": "B0E60583E8751C2B"
+    },
+    {
+      "from": "A2BE7DA11F998D0A",
+      "to": "9A3966014461AC0B"
+    },
+    {
+      "from": "A2D26C98D567D239",
+      "to": "84E163F9D1282016"
+    },
+    {
+      "from": "A2E7482F4139D103",
+      "to": "9B1BE51B69AF2691"
+    },
+    {
+      "from": "A2E7482F4139D103",
+      "to": "A6CF387A1471A729"
+    },
+    {
+      "from": "A2EFC08726A04440",
+      "to": "A3B41B28620BF54B"
+    },
+    {
+      "from": "A2F1BA07FC096B52",
+      "to": "B492D2FF61985422"
+    },
+    {
+      "from": "A37678A030180735",
+      "to": "87F940CCBABD069C"
+    },
+    {
+      "from": "A380CF3730F3FD59",
+      "to": "8ADEA45924262360"
+    },
+    {
+      "from": "A38C1BAE1D6F8FA0",
+      "to": "A54160D4E7775AF1"
+    },
+    {
+      "from": "A393484D99BC4641",
+      "to": "8748B6F83EDAC3C2"
+    },
+    {
+      "from": "A3B41B28620BF54B",
+      "to": "87EB532FCC9ABB49"
+    },
+    {
+      "from": "A4249FA3297C605B",
+      "to": "A7E5A37B0B159E08"
+    },
+    {
+      "from": "A4430F2F080370F6",
+      "to": "A1DDFD211EE738AB"
+    },
+    {
+      "from": "A4430F2F080370F6",
+      "to": "BD2503BE14791311"
+    },
+    {
+      "from": "A454168BC07AC6F6",
+      "to": "A8D32456D8AB794F"
+    },
+    {
+      "from": "A45762366BF24115",
+      "to": "9AE8C242AA4683BE"
+    },
+    {
+      "from": "A4783D8F61602502",
+      "to": "B0E60583E8751C2B"
+    },
+    {
+      "from": "A4BF60171DB7E683",
+      "to": "818DBA9FBB463763"
+    },
+    {
+      "from": "A4BF60171DB7E683",
+      "to": "8C4DC095A550DF95"
+    },
+    {
+      "from": "A4E7E65996822E1B",
+      "to": "97F2BC13EE31F1EA"
+    },
+    {
+      "from": "A4ECC2D2E7B95A2A",
+      "to": "BECE81E59DCE75FB"
+    },
+    {
+      "from": "A4EDEB8B697A1006",
+      "to": "9D9C89D1B3C6CB70"
+    },
+    {
+      "from": "A4F5770E8A7FD1EE",
+      "to": "87218212BFFDA0F7"
+    },
+    {
+      "from": "A4F5770E8A7FD1EE",
+      "to": "B8AEAEF7FAD06B08"
+    },
+    {
+      "from": "A4F702BF298458F9",
+      "to": "81C22EAE6B41B35C"
+    },
+    {
+      "from": "A4F702BF298458F9",
+      "to": "A1C5D5B5DAB4132A"
+    },
+    {
+      "from": "A4F702BF298458F9",
+      "to": "B36280571FBB2132"
+    },
+    {
+      "from": "A53AF62A74F8E4BF",
+      "to": "BA9FCA36AF0BDEEB"
+    },
+    {
+      "from": "A54160D4E7775AF1",
+      "to": "9C849DAFA126952C"
+    },
+    {
+      "from": "A5765B7B78F3D8E0",
+      "to": "B718462454CD6D43"
+    },
+    {
+      "from": "A57AB0E93C7E7635",
+      "to": "9D733452C9DF241A"
+    },
+    {
+      "from": "A57AB0E93C7E7635",
+      "to": "A957FC8B1FA55040"
+    },
+    {
+      "from": "A57B969E522D8D2E",
+      "to": "9181615AB112184A"
+    },
+    {
+      "from": "A57B969E522D8D2E",
+      "to": "96D042E647F223E0"
+    },
+    {
+      "from": "A57B969E522D8D2E",
+      "to": "983E48F2B5BB28FD"
+    },
+    {
+      "from": "A57B969E522D8D2E",
+      "to": "ADA932A5750A959A"
+    },
+    {
+      "from": "A57B969E522D8D2E",
+      "to": "BBFE712DC0E373E5"
+    },
+    {
+      "from": "A62AA427ADF8811E",
+      "to": "A00EB27C920C4924"
+    },
+    {
+      "from": "A637EB22B7C77CDA",
+      "to": "8F0C5A2C102D65FB"
+    },
+    {
+      "from": "A637EB22B7C77CDA",
+      "to": "A1C5D5B5DAB4132A"
+    },
+    {
+      "from": "A6808430A8AC05B4",
+      "to": "97D4725AB336EBC5"
+    },
+    {
+      "from": "A6A56EBE14B7472B",
+      "to": "B98EB7625C1717E0"
+    },
+    {
+      "from": "A6A73505D9D65BBA",
+      "to": "8FE91F2F3F9C634C"
+    },
+    {
+      "from": "A6A73505D9D65BBA",
+      "to": "B36ADC8892444351"
+    },
+    {
+      "from": "A6A73505D9D65BBA",
+      "to": "BAA0861A9C3F146E"
+    },
+    {
+      "from": "A6CF387A1471A729",
+      "to": "A1C4085EC2E533B9"
+    },
+    {
+      "from": "A6D5AF54B25B7629",
+      "to": "9C9E35668AB129DC"
+    },
+    {
+      "from": "A6D9B5F2B234E6F1",
+      "to": "831690E1512E7D1B"
+    },
+    {
+      "from": "A6D9B5F2B234E6F1",
+      "to": "85857E736D5FE1B0"
+    },
+    {
+      "from": "A6DD3A2275842DF7",
+      "to": "BCB7D2C2C2517A0C"
+    },
+    {
+      "from": "A6E4CD1B9B30C6A5",
+      "to": "9084EC2BA85315F0"
+    },
+    {
+      "from": "A6E4CD1B9B30C6A5",
+      "to": "AF3477333CA5AF26"
+    },
+    {
+      "from": "A705F3E3BE0DFF82",
+      "to": "994750AF33EFBC92"
+    },
+    {
+      "from": "A705F3E3BE0DFF82",
+      "to": "AA9B42E287FDB0C6"
+    },
+    {
+      "from": "A705F3E3BE0DFF82",
+      "to": "B9006FBF5ED29A5A"
+    },
+    {
+      "from": "A7100062D34FBA61",
+      "to": "81B73D1AC8D8947F"
+    },
+    {
+      "from": "A7100062D34FBA61",
+      "to": "905B3D999E4666E2"
+    },
+    {
+      "from": "A7100062D34FBA61",
+      "to": "B5DAA8D1C8F96727"
+    },
+    {
+      "from": "A71A267AFC948FBE",
+      "to": "8B8B1B2771D2B338"
+    },
+    {
+      "from": "A71FE75A6D7F509D",
+      "to": "8BD092676AEE266C"
+    },
+    {
+      "from": "A749D47998D96B7E",
+      "to": "99FD479647F8A3FE"
+    },
+    {
+      "from": "A74C4DB7DB80353C",
+      "to": "9CD433BE1079EE39"
+    },
+    {
+      "from": "A74FB9340C09F796",
+      "to": "89A7F54AAE0A097B"
+    },
+    {
+      "from": "A758291BA29B5FAF",
+      "to": "B98EB7625C1717E0"
+    },
+    {
+      "from": "A77B2B519863BE61",
+      "to": "A4F5770E8A7FD1EE"
+    },
+    {
+      "from": "A79ADBC289CBB991",
+      "to": "9447C8637E797451"
+    },
+    {
+      "from": "A7A1F49D1D59FD08",
+      "to": "A9C77A0C21EC9A95"
+    },
+    {
+      "from": "A7E5A37B0B159E08",
+      "to": "8B16E20EEE585F4D"
+    },
+    {
+      "from": "A7E5A37B0B159E08",
+      "to": "B222F5BBAD6F6DA7"
+    },
+    {
+      "from": "A834402931029070",
+      "to": "938FFD169C221DC8"
+    },
+    {
+      "from": "A84B1F3171833F9B",
+      "to": "9F592D0904AE4109"
+    },
+    {
+      "from": "A85C3BDC125C481C",
+      "to": "BAEA2E1A822B7589"
+    },
+    {
+      "from": "A868060874F46240",
+      "to": "BB2F5F64FBB1F573"
+    },
+    {
+      "from": "A8761577762CB136",
+      "to": "9DFEF90D76F529BB"
+    },
+    {
+      "from": "A88848765A7AEAFD",
+      "to": "B5DAA8D1C8F96727"
+    },
+    {
+      "from": "A88FA86334651685",
+      "to": "9FC598DED3EF23F1"
+    },
+    {
+      "from": "A88FA86334651685",
+      "to": "A0790F7890A5BED0"
+    },
+    {
+      "from": "A88FA86334651685",
+      "to": "A0F8E272D1041D95"
+    },
+    {
+      "from": "A8BF8FACEEBD5E95",
+      "to": "8A7050F858CB4070"
+    },
+    {
+      "from": "A8CBC8CAC1B4EC8A",
+      "to": "94305CF42338D453"
+    },
+    {
+      "from": "A8CBC8CAC1B4EC8A",
+      "to": "BA31AB8910CE5D02"
+    },
+    {
+      "from": "A8D32456D8AB794F",
+      "to": "974906EEAB7C4332"
+    },
+    {
+      "from": "A8F1AA336D2FFBB8",
+      "to": "9F853CBFCF67030B"
+    },
+    {
+      "from": "A90812C36D68D0A7",
+      "to": "8B15E5401F47D009"
+    },
+    {
+      "from": "A94F27079A2C04BA",
+      "to": "B402E30F194D520F"
+    },
+    {
+      "from": "A97629F51D2A1191",
+      "to": "9D02244C61A804E9"
+    },
+    {
+      "from": "A97629F51D2A1191",
+      "to": "A90812C36D68D0A7"
+    },
+    {
+      "from": "A9A230AEE12A7A79",
+      "to": "AC9F2919C5100A37"
+    },
+    {
+      "from": "A9A41799F8AA3CA1",
+      "to": "A0B150555FF7CEE3"
+    },
+    {
+      "from": "A9C77A0C21EC9A95",
+      "to": "81D1F635E6908C6C"
+    },
+    {
+      "from": "A9E0FCFE85A29061",
+      "to": "9F183F98D7E341A2"
+    },
+    {
+      "from": "A9FC6C72C3E6FC36",
+      "to": "867B5B5FE474C1D7"
+    },
+    {
+      "from": "A9FC6C72C3E6FC36",
+      "to": "97EC57E5BDA2AA7F"
+    },
+    {
+      "from": "A9FC6C72C3E6FC36",
+      "to": "A1C5D5B5DAB4132A"
+    },
+    {
+      "from": "AA0D037CCABC1D9D",
+      "to": "A0B150555FF7CEE3"
+    },
+    {
+      "from": "AA0D037CCABC1D9D",
+      "to": "A193721445D8B966"
+    },
+    {
+      "from": "AA8B64CAF7398B97",
+      "to": "ADF01D28576E9C4A"
+    },
+    {
+      "from": "AA8B64CAF7398B97",
+      "to": "B492D2FF61985422"
+    },
+    {
+      "from": "AA9B42E287FDB0C6",
+      "to": "959F9AE5EC4D8446"
+    },
+    {
+      "from": "AA9B42E287FDB0C6",
+      "to": "BAF02F981712573A"
+    },
+    {
+      "from": "AAD8807D22C1BADF",
+      "to": "B40FCC69A643CC90"
+    },
+    {
+      "from": "AB00CE83D702A823",
+      "to": "8B572A15D57EDE98"
+    },
+    {
+      "from": "AB6B7E01C5686691",
+      "to": "A5765B7B78F3D8E0"
+    },
+    {
+      "from": "AB6BE981A573966E",
+      "to": "AEDA82FCA6CD8E34"
+    },
+    {
+      "from": "AB8BA193D598B0A8",
+      "to": "B484AB12056ECD8F"
+    },
+    {
+      "from": "AB96CC82C83D90D9",
+      "to": "87C7E3B137AE0764"
+    },
+    {
+      "from": "AB9C5E88FB1FDAD9",
+      "to": "8AE6C81C2A6D9A52"
+    },
+    {
+      "from": "AB9C5E88FB1FDAD9",
+      "to": "BA5939A712FEAE89"
+    },
+    {
+      "from": "ABA24462997D0B7E",
+      "to": "AC9F2919C5100A37"
+    },
+    {
+      "from": "ABA318CFB591F5AE",
+      "to": "ADBC773F4E498B89"
+    },
+    {
+      "from": "ABA318CFB591F5AE",
+      "to": "B963CB46ABA30A7E"
+    },
+    {
+      "from": "ABE5D2024E1580C1",
+      "to": "A6808430A8AC05B4"
+    },
+    {
+      "from": "ABE733A6CB5B1624",
+      "to": "9952BD09AF554E2A"
+    },
+    {
+      "from": "AC9F2919C5100A37",
+      "to": "8856520543E7071D"
+    },
+    {
+      "from": "AC9F2919C5100A37",
+      "to": "B4F7B9CBC9ADD1C4"
+    },
+    {
+      "from": "ACA23C8218E75173",
+      "to": "BEDEE3E1EDBB7154"
+    },
+    {
+      "from": "ACD1B4D74A52286E",
+      "to": "8E15D88A6086BB62"
+    },
+    {
+      "from": "ACD1B4D74A52286E",
+      "to": "9732AB556F0ED0A2"
+    },
+    {
+      "from": "ACE9D78DD7767BE3",
+      "to": "86264C02FE0570FE"
+    },
+    {
+      "from": "ACF91C42BFB38EFC",
+      "to": "B98A1EB81C72FD01"
+    },
+    {
+      "from": "AD1F4E90E449074B",
+      "to": "B06F8EAD9707BD81"
+    },
+    {
+      "from": "AD2CCB825545CE30",
+      "to": "88D889EA3EEE346A"
+    },
+    {
+      "from": "AD2CCB825545CE30",
+      "to": "8C4D641B43AEF4AE"
+    },
+    {
+      "from": "AD2CCB825545CE30",
+      "to": "98347CA4FE3C78A5"
+    },
+    {
+      "from": "AD2CCB825545CE30",
+      "to": "9CAF4D2C0A579875"
+    },
+    {
+      "from": "AD2CCB825545CE30",
+      "to": "A758291BA29B5FAF"
+    },
+    {
+      "from": "AD3B35FE7F3B413A",
+      "to": "97546D3876DFCB9F"
+    },
+    {
+      "from": "AD4F03355AD934B8",
+      "to": "B718462454CD6D43"
+    },
+    {
+      "from": "AD8973AE02566CBB",
+      "to": "9D733452C9DF241A"
+    },
+    {
+      "from": "AD9BC27565B1BF45",
+      "to": "A88848765A7AEAFD"
+    },
+    {
+      "from": "ADA3FFB7E07964E5",
+      "to": "B5A99C3A3A62A1EF"
+    },
+    {
+      "from": "ADA932A5750A959A",
+      "to": "93D5FAFED1968A53"
+    },
+    {
+      "from": "ADAB9C6863C362CF",
+      "to": "B718462454CD6D43"
+    },
+    {
+      "from": "ADBC773F4E498B89",
+      "to": "A03D4E1C21DE3FBC"
+    },
+    {
+      "from": "ADBC773F4E498B89",
+      "to": "A71FE75A6D7F509D"
+    },
+    {
+      "from": "ADF01D28576E9C4A",
+      "to": "A71A267AFC948FBE"
+    },
+    {
+      "from": "AE097681990BD3FE",
+      "to": "B51B772F4775297A"
+    },
+    {
+      "from": "AE1010D11B1F94A0",
+      "to": "AD9BC27565B1BF45"
+    },
+    {
+      "from": "AE789AF2A07613DF",
+      "to": "A110FCB74ECB8CB6"
+    },
+    {
+      "from": "AE9662864259F245",
+      "to": "BFE0DB70C9572947"
+    },
+    {
+      "from": "AE9D39429B5A2836",
+      "to": "833ADC4D97E9D8C1"
+    },
+    {
+      "from": "AE9D39429B5A2836",
+      "to": "BED4B0B1D13805C5"
+    },
+    {
+      "from": "AEA58432C60A98F6",
+      "to": "A26EDD8B6F22030F"
+    },
+    {
+      "from": "AEC5D374610E1741",
+      "to": "B555077192EAE77B"
+    },
+    {
+      "from": "AEDA82FCA6CD8E34",
+      "to": "9A3290F3906D437D"
+    },
+    {
+      "from": "AF0DE77EEB143D10",
+      "to": "95CA8225930FDF9B"
+    },
+    {
+      "from": "AF0DE77EEB143D10",
+      "to": "AB00CE83D702A823"
+    },
+    {
+      "from": "AF0DE77EEB143D10",
+      "to": "B98645362C471154"
+    },
+    {
+      "from": "AF3477333CA5AF26",
+      "to": "B4F6B55D67DF1A5A"
+    },
+    {
+      "from": "AF36A22B610743C5",
+      "to": "A749D47998D96B7E"
+    },
+    {
+      "from": "AF500466035EE361",
+      "to": "BC7AE56054D3232E"
+    },
+    {
+      "from": "AF519C86336AC5AB",
+      "to": "BE4CC733C50E4459"
+    },
+    {
+      "from": "AF5B381D3887B404",
+      "to": "B11FE991121198E4"
+    },
+    {
+      "from": "AF9D2635BF0B5622",
+      "to": "9FC966A646B440CA"
+    },
+    {
+      "from": "AF9D2635BF0B5622",
+      "to": "A88FA86334651685"
+    },
+    {
+      "from": "AF9D2635BF0B5622",
+      "to": "B94374ECD457E3F6"
+    },
+    {
+      "from": "AFC1DB6AD2C604D6",
+      "to": "862936BBF1122ABF"
+    },
+    {
+      "from": "AFC2753344996824",
+      "to": "97862F9850C98672"
+    },
+    {
+      "from": "AFC3502C21C42A87",
+      "to": "9BC80D9BE4C9EA8E"
+    },
+    {
+      "from": "AFC4F321C39227FF",
+      "to": "ACA23C8218E75173"
+    },
+    {
+      "from": "AFC4F321C39227FF",
+      "to": "AFC1DB6AD2C604D6"
+    },
+    {
+      "from": "AFD8A67B8C4C08B0",
+      "to": "A4BF60171DB7E683"
+    },
+    {
+      "from": "AFE7F2B93837D38E",
+      "to": "9F89E688118941E3"
+    },
+    {
+      "from": "B00A78B6A0EB8B14",
+      "to": "B51B772F4775297A"
+    },
+    {
+      "from": "B0321D75604FA303",
+      "to": "9188177C0E124401"
+    },
+    {
+      "from": "B0321D75604FA303",
+      "to": "BF80958ADB5F9A3A"
+    },
+    {
+      "from": "B032FFB2DD08F812",
+      "to": "92F436C6D6F38859"
+    },
+    {
+      "from": "B032FFB2DD08F812",
+      "to": "B161A0B71156120C"
+    },
+    {
+      "from": "B0617CFEB4A3B624",
+      "to": "8424B971E8A5851F"
+    },
+    {
+      "from": "B06F8EAD9707BD81",
+      "to": "80B37FE530981498"
+    },
+    {
+      "from": "B06F8EAD9707BD81",
+      "to": "99FB31DEFE4DA0C8"
+    },
+    {
+      "from": "B077DD429E9F183A",
+      "to": "8516910B33D2D6E8"
+    },
+    {
+      "from": "B07B0186EE6AB982",
+      "to": "B9A8B723D0255D65"
+    },
+    {
+      "from": "B0925ADA471A16B8",
+      "to": "83B027F730A6E9D9"
+    },
+    {
+      "from": "B0E60583E8751C2B",
+      "to": "A06FF6166863CE5C"
+    },
+    {
+      "from": "B0F5257B504A882F",
+      "to": "972FC26349EBE4AF"
+    },
+    {
+      "from": "B0F5257B504A882F",
+      "to": "9AE8C242AA4683BE"
+    },
+    {
+      "from": "B11FE991121198E4",
+      "to": "9C724CDA73318AC1"
+    },
+    {
+      "from": "B11FE991121198E4",
+      "to": "A6D9B5F2B234E6F1"
+    },
+    {
+      "from": "B139531EE751B64E",
+      "to": "8E3C693690EE37D1"
+    },
+    {
+      "from": "B139531EE751B64E",
+      "to": "B94374ECD457E3F6"
+    },
+    {
+      "from": "B153151D51E06B70",
+      "to": "AC9F2919C5100A37"
+    },
+    {
+      "from": "B161A0B71156120C",
+      "to": "92D0A7158A550163"
+    },
+    {
+      "from": "B161A0B71156120C",
+      "to": "A74C4DB7DB80353C"
+    },
+    {
+      "from": "B161A0B71156120C",
+      "to": "B5BCE2998697F111"
+    },
+    {
+      "from": "B161A0B71156120C",
+      "to": "B626AC759387A7EF"
+    },
+    {
+      "from": "B17468A4DE681B0F",
+      "to": "BED4B0B1D13805C5"
+    },
+    {
+      "from": "B17B174DF8E6BDDD",
+      "to": "82A659FD4883BCD5"
+    },
+    {
+      "from": "B1A1A0E2BCE1AF37",
+      "to": "9F592D0904AE4109"
+    },
+    {
+      "from": "B1A21DB8939C58B5",
+      "to": "ACF91C42BFB38EFC"
+    },
+    {
+      "from": "B1B931A3B6524919",
+      "to": "8F3234B1AB40066A"
+    },
+    {
+      "from": "B1CA30C820C4D545",
+      "to": "8F92A3AF2B513C75"
+    },
+    {
+      "from": "B1CA813E827B3123",
+      "to": "B11FE991121198E4"
+    },
+    {
+      "from": "B1EF07988A5F1190",
+      "to": "829B5302AFAC391B"
+    },
+    {
+      "from": "B222F5BBAD6F6DA7",
+      "to": "9E8C7AC6FEC15513"
+    },
+    {
+      "from": "B222F5BBAD6F6DA7",
+      "to": "A0A8740984C5FEA9"
+    },
+    {
+      "from": "B222F5BBAD6F6DA7",
+      "to": "BABF491C05EEF2A1"
+    },
+    {
+      "from": "B231D67823C2E307",
+      "to": "BE3C5FA66FDF25AF"
+    },
+    {
+      "from": "B24FAA272EB35E01",
+      "to": "9AAA03E14138EE73"
+    },
+    {
+      "from": "B2694216E642CE93",
+      "to": "BA3C0E49711BE95A"
+    },
+    {
+      "from": "B276D1086BC4DB24",
+      "to": "9F785BFCAA2E2902"
+    },
+    {
+      "from": "B27AD0513ED20FBB",
+      "to": "8853864FC42ABE96"
+    },
+    {
+      "from": "B27AD0513ED20FBB",
+      "to": "BE43C3DA4AC9B60D"
+    },
+    {
+      "from": "B2A477502A56E8CF",
+      "to": "96455F6A63FAE23E"
+    },
+    {
+      "from": "B2AE9BD6755DFEFF",
+      "to": "AD2CCB825545CE30"
+    },
+    {
+      "from": "B2AE9BD6755DFEFF",
+      "to": "BFB25574E8F03D3C"
+    },
+    {
+      "from": "B2E09813AD2B53D8",
+      "to": "B9162A5F51821070"
+    },
+    {
+      "from": "B31A1C414CFF62F7",
+      "to": "9787BAA31BCDE14E"
+    },
+    {
+      "from": "B3493D4523F9BB4B",
+      "to": "97845C22D864AB2A"
+    },
+    {
+      "from": "B35C447EF716A33F",
+      "to": "B79660C49D2C1A74"
+    },
+    {
+      "from": "B36280571FBB2132",
+      "to": "8759FF9AADA1603E"
+    },
+    {
+      "from": "B36280571FBB2132",
+      "to": "9A144F8E83E0C63E"
+    },
+    {
+      "from": "B36280571FBB2132",
+      "to": "B231D67823C2E307"
+    },
+    {
+      "from": "B36280571FBB2132",
+      "to": "BC757685B58142CF"
+    },
+    {
+      "from": "B36A1645844D78E6",
+      "to": "972C9432897D5019"
+    },
+    {
+      "from": "B36ADC8892444351",
+      "to": "A74C4DB7DB80353C"
+    },
+    {
+      "from": "B36ADC8892444351",
+      "to": "B7634409768FD953"
+    },
+    {
+      "from": "B37459E5008A1A4E",
+      "to": "BF80958ADB5F9A3A"
+    },
+    {
+      "from": "B37D400F8CFF7A5D",
+      "to": "B5BBE951DA0D4B19"
+    },
+    {
+      "from": "B388A7FA0187EDF5",
+      "to": "AB9C5E88FB1FDAD9"
+    },
+    {
+      "from": "B38BD8C9CA5A9D96",
+      "to": "A01D4ECBDDCBEA74"
+    },
+    {
+      "from": "B38BD8C9CA5A9D96",
+      "to": "B6B8C33654AB5D5A"
+    },
+    {
+      "from": "B3AF9416579B3DF4",
+      "to": "9341C5AEFC9D2D1B"
+    },
+    {
+      "from": "B3B54EEABCCBFA4F",
+      "to": "92A87C3EFC574FF5"
+    },
+    {
+      "from": "B3B54EEABCCBFA4F",
+      "to": "96AE104817B743C0"
+    },
+    {
+      "from": "B3B54EEABCCBFA4F",
+      "to": "9821586AE623D645"
+    },
+    {
+      "from": "B3B54EEABCCBFA4F",
+      "to": "A4249FA3297C605B"
+    },
+    {
+      "from": "B3C43E0ADE7AA8AC",
+      "to": "AC9F2919C5100A37"
+    },
+    {
+      "from": "B3EA453F3158E134",
+      "to": "988B56FD0D24F3FE"
+    },
+    {
+      "from": "B3FDA8B852F1471F",
+      "to": "B07B0186EE6AB982"
+    },
+    {
+      "from": "B402E30F194D520F",
+      "to": "8C38294EFA31CDB6"
+    },
+    {
+      "from": "B40FCC69A643CC90",
+      "to": "83A148C822911342"
+    },
+    {
+      "from": "B40FCC69A643CC90",
+      "to": "B44C03A2E84281B7"
+    },
+    {
+      "from": "B40FCC69A643CC90",
+      "to": "BC3E9AA3C7FDEF8E"
+    },
+    {
+      "from": "B41F5908E8D84A9D",
+      "to": "92AAF6A83CB42F4A"
+    },
+    {
+      "from": "B42C4B0DA4320CA2",
+      "to": "AD4F03355AD934B8"
+    },
+    {
+      "from": "B4318579C5EF37E5",
+      "to": "8DFEF4248E9B32CC"
+    },
+    {
+      "from": "B44C03A2E84281B7",
+      "to": "838A61441A7DC3B9"
+    },
+    {
+      "from": "B44C03A2E84281B7",
+      "to": "988B56FD0D24F3FE"
+    },
+    {
+      "from": "B44D6A57904F26ED",
+      "to": "B37D400F8CFF7A5D"
+    },
+    {
+      "from": "B453BB06FD7DF238",
+      "to": "A1434E90EADA6BF3"
+    },
+    {
+      "from": "B484583659A21C16",
+      "to": "ABA24462997D0B7E"
+    },
+    {
+      "from": "B484583659A21C16",
+      "to": "BA7985C09CE173DE"
+    },
+    {
+      "from": "B484AB12056ECD8F",
+      "to": "A1B4DD334A3D3F8D"
+    },
+    {
+      "from": "B492D2FF61985422",
+      "to": "BFE0DB70C9572947"
+    },
+    {
+      "from": "B4B67154F5A491A6",
+      "to": "8C68E1C4D0216B1F"
+    },
+    {
+      "from": "B4D85603A05195C0",
+      "to": "905B3D999E4666E2"
+    },
+    {
+      "from": "B4D85603A05195C0",
+      "to": "AE1010D11B1F94A0"
+    },
+    {
+      "from": "B4D85603A05195C0",
+      "to": "B5DAA8D1C8F96727"
+    },
+    {
+      "from": "B4F6B55D67DF1A5A",
+      "to": "913CFE701933EF50"
+    },
+    {
+      "from": "B4F7B9CBC9ADD1C4",
+      "to": "8832AC4306046859"
+    },
+    {
+      "from": "B4F7B9CBC9ADD1C4",
+      "to": "B41F5908E8D84A9D"
+    },
+    {
+      "from": "B4F7B9CBC9ADD1C4",
+      "to": "B8FDFD71DACF1E8A"
+    },
+    {
+      "from": "B4F7B9CBC9ADD1C4",
+      "to": "B9006FBF5ED29A5A"
+    },
+    {
+      "from": "B51B772F4775297A",
+      "to": "88B23A62146512E9"
+    },
+    {
+      "from": "B52D8835DA07488B",
+      "to": "99FD479647F8A3FE"
+    },
+    {
+      "from": "B555077192EAE77B",
+      "to": "864CE44BCC5D88BB"
+    },
+    {
+      "from": "B555077192EAE77B",
+      "to": "A0F32B96F9D2ED42"
+    },
+    {
+      "from": "B555077192EAE77B",
+      "to": "B484583659A21C16"
+    },
+    {
+      "from": "B555077192EAE77B",
+      "to": "B75DF97580512ACE"
+    },
+    {
+      "from": "B5637721B22A8F27",
+      "to": "8FE91F2F3F9C634C"
+    },
+    {
+      "from": "B56824684E876134",
+      "to": "A84B1F3171833F9B"
+    },
+    {
+      "from": "B5A99C3A3A62A1EF",
+      "to": "9C7B674F2973EEC0"
+    },
+    {
+      "from": "B5BBE951DA0D4B19",
+      "to": "95C324C31470DE0C"
+    },
+    {
+      "from": "B5BCE2998697F111",
+      "to": "A85A27C0EE00B5C4"
+    },
+    {
+      "from": "B5DAA8D1C8F96727",
+      "to": "8359C036EB89DC18"
+    },
+    {
+      "from": "B5DAA8D1C8F96727",
+      "to": "9675C9132A59EB72"
+    },
+    {
+      "from": "B5DAA8D1C8F96727",
+      "to": "BC4C4891932BFDC3"
+    },
+    {
+      "from": "B5DAA8D1C8F96727",
+      "to": "BF301A499CB5989E"
+    },
+    {
+      "from": "B600C574DC364ACF",
+      "to": "9DB6CC7F6EC64BC4"
+    },
+    {
+      "from": "B6153F2046B77FB8",
+      "to": "8A4711EEF716EC33"
+    },
+    {
+      "from": "B626AC759387A7EF",
+      "to": "BAA0861A9C3F146E"
+    },
+    {
+      "from": "B64DB0DA9A542B02",
+      "to": "B8164EF6AC1B0796"
+    },
+    {
+      "from": "B6B8C33654AB5D5A",
+      "to": "851BDD4FF266DF1B"
+    },
+    {
+      "from": "B6B8C33654AB5D5A",
+      "to": "A01D4ECBDDCBEA74"
+    },
+    {
+      "from": "B7073653189A6AB2",
+      "to": "9A3290F3906D437D"
+    },
+    {
+      "from": "B718462454CD6D43",
+      "to": "8C477CBE918F96F6"
+    },
+    {
+      "from": "B718462454CD6D43",
+      "to": "9BA1B6AA1AA1EB92"
+    },
+    {
+      "from": "B718462454CD6D43",
+      "to": "A454168BC07AC6F6"
+    },
+    {
+      "from": "B718462454CD6D43",
+      "to": "AFD8A67B8C4C08B0"
+    },
+    {
+      "from": "B747455529E0D98D",
+      "to": "83D72D8426FC093E"
+    },
+    {
+      "from": "B74A0466FD914402",
+      "to": "9A3966014461AC0B"
+    },
+    {
+      "from": "B755C061DAE051C5",
+      "to": "8644F9E2552ADA16"
+    },
+    {
+      "from": "B759BC4982387FB0",
+      "to": "866133D4F7926EB5"
+    },
+    {
+      "from": "B759BC4982387FB0",
+      "to": "875A04C6ED54DF26"
+    },
+    {
+      "from": "B759BC4982387FB0",
+      "to": "9D6987D63779188B"
+    },
+    {
+      "from": "B75DF97580512ACE",
+      "to": "89C32E74A04F7196"
+    },
+    {
+      "from": "B75DF97580512ACE",
+      "to": "89E0157E1D39B37B"
+    },
+    {
+      "from": "B7634409768FD953",
+      "to": "9C7B674F2973EEC0"
+    },
+    {
+      "from": "B7634409768FD953",
+      "to": "9F354CEE891D4767"
+    },
+    {
+      "from": "B79660C49D2C1A74",
+      "to": "8D0B8CFFB7B9688F"
+    },
+    {
+      "from": "B79660C49D2C1A74",
+      "to": "ACD1B4D74A52286E"
+    },
+    {
+      "from": "B7A6CE85AC91DF4B",
+      "to": "8685AA92ABD65344"
+    },
+    {
+      "from": "B7A6CE85AC91DF4B",
+      "to": "AB6BE981A573966E"
+    },
+    {
+      "from": "B7E098274A378F3B",
+      "to": "938FFD169C221DC8"
+    },
+    {
+      "from": "B7F034C699D7BDE4",
+      "to": "AB6B7E01C5686691"
+    },
+    {
+      "from": "B81330E329DE3DF1",
+      "to": "B1A1A0E2BCE1AF37"
+    },
+    {
+      "from": "B8164EF6AC1B0796",
+      "to": "A2EFC08726A04440"
+    },
+    {
+      "from": "B822885D3BC61710",
+      "to": "A749D47998D96B7E"
+    },
+    {
+      "from": "B822885D3BC61710",
+      "to": "B3493D4523F9BB4B"
+    },
+    {
+      "from": "B8411405EAF2DF28",
+      "to": "A834402931029070"
+    },
+    {
+      "from": "B85D0DD91702A1CF",
+      "to": "B388A7FA0187EDF5"
+    },
+    {
+      "from": "B85D0DD91702A1CF",
+      "to": "BA5939A712FEAE89"
+    },
+    {
+      "from": "B85F6BBC41B5CA87",
+      "to": "AFC3502C21C42A87"
+    },
+    {
+      "from": "B877A8F58DAD6C28",
+      "to": "817F63D3A762E1B9"
+    },
+    {
+      "from": "B877A8F58DAD6C28",
+      "to": "864E4657EB932804"
+    },
+    {
+      "from": "B8AEAEF7FAD06B08",
+      "to": "8F4467BFC3761559"
+    },
+    {
+      "from": "B8AEAEF7FAD06B08",
+      "to": "B85D0DD91702A1CF"
+    },
+    {
+      "from": "B8CFF3DDB14B7C60",
+      "to": "87650E9F9A630A31"
+    },
+    {
+      "from": "B8E5D9FF69A4CD25",
+      "to": "9B46F07792E727EB"
+    },
+    {
+      "from": "B8F6C6BA08679235",
+      "to": "91D2B2C4D1AF61C2"
+    },
+    {
+      "from": "B8FDFD71DACF1E8A",
+      "to": "96F19ACAB774A9E9"
+    },
+    {
+      "from": "B9006FBF5ED29A5A",
+      "to": "92AAF6A83CB42F4A"
+    },
+    {
+      "from": "B9006FBF5ED29A5A",
+      "to": "994750AF33EFBC92"
+    },
+    {
+      "from": "B90E649D464DF6DC",
+      "to": "AD1F4E90E449074B"
+    },
+    {
+      "from": "B9162A5F51821070",
+      "to": "87EB532FCC9ABB49"
+    },
+    {
+      "from": "B923E5CA57CB09D7",
+      "to": "86CEA98D360CDE41"
+    },
+    {
+      "from": "B94374ECD457E3F6",
+      "to": "A6CF387A1471A729"
+    },
+    {
+      "from": "B963CB46ABA30A7E",
+      "to": "A71FE75A6D7F509D"
+    },
+    {
+      "from": "B98645362C471154",
+      "to": "8B572A15D57EDE98"
+    },
+    {
+      "from": "B988AA247DE86327",
+      "to": "8853864FC42ABE96"
+    },
+    {
+      "from": "B98A1EB81C72FD01",
+      "to": "9C930103FEFC7D4E"
+    },
+    {
+      "from": "B98EB7625C1717E0",
+      "to": "9684F104E7FA03F3"
+    },
+    {
+      "from": "B9A8B723D0255D65",
+      "to": "87F940CCBABD069C"
+    },
+    {
+      "from": "B9A8B723D0255D65",
+      "to": "8E3CDB2C9EAB2742"
+    },
+    {
+      "from": "B9B76BE8F7309733",
+      "to": "9ECFE47D39F90472"
+    },
+    {
+      "from": "B9FD84D3EC0EF312",
+      "to": "8C94E34719F45A47"
+    },
+    {
+      "from": "BA004962B32CC583",
+      "to": "913265B1A80AB926"
+    },
+    {
+      "from": "BA0BB7279D7AB190",
+      "to": "8C2D5941103F4824"
+    },
+    {
+      "from": "BA1629E13B48DED0",
+      "to": "90BD9107F1D9925B"
+    },
+    {
+      "from": "BA31AB8910CE5D02",
+      "to": "8AA44D1DEF03B639"
+    },
+    {
+      "from": "BA31AB8910CE5D02",
+      "to": "B00A78B6A0EB8B14"
+    },
+    {
+      "from": "BA3C0E49711BE95A",
+      "to": "91BEB312BC51E284"
+    },
+    {
+      "from": "BA55076B2D38B8F4",
+      "to": "87F940CCBABD069C"
+    },
+    {
+      "from": "BA5939A712FEAE89",
+      "to": "82735DCAB2EACE4E"
+    },
+    {
+      "from": "BA6E2A4E49A56B01",
+      "to": "945830A36E8E22EC"
+    },
+    {
+      "from": "BA6E2A4E49A56B01",
+      "to": "ABE5D2024E1580C1"
+    },
+    {
+      "from": "BA7985C09CE173DE",
+      "to": "80DA0E309B663B45"
+    },
+    {
+      "from": "BA7985C09CE173DE",
+      "to": "B153151D51E06B70"
+    },
+    {
+      "from": "BA9FCA36AF0BDEEB",
+      "to": "89E0157E1D39B37B"
+    },
+    {
+      "from": "BA9FCA36AF0BDEEB",
+      "to": "BA7985C09CE173DE"
+    },
+    {
+      "from": "BAA0861A9C3F146E",
+      "to": "960FA2FDDE766B3B"
+    },
+    {
+      "from": "BAA0861A9C3F146E",
+      "to": "A4EDEB8B697A1006"
+    },
+    {
+      "from": "BAA0861A9C3F146E",
+      "to": "B5637721B22A8F27"
+    },
+    {
+      "from": "BABF491C05EEF2A1",
+      "to": "A2BE7DA11F998D0A"
+    },
+    {
+      "from": "BAEA2E1A822B7589",
+      "to": "97546D3876DFCB9F"
+    },
+    {
+      "from": "BAF02F981712573A",
+      "to": "9A1214F8710D5DA6"
+    },
+    {
+      "from": "BAF964EF2F4351F5",
+      "to": "BD45B9B0899229B4"
+    },
+    {
+      "from": "BB2F5F64FBB1F573",
+      "to": "8436A655571D1E9A"
+    },
+    {
+      "from": "BB3EC930162B20E7",
+      "to": "B24FAA272EB35E01"
+    },
+    {
+      "from": "BB78D41C38643BE7",
+      "to": "8A0353BF72922215"
+    },
+    {
+      "from": "BB78D41C38643BE7",
+      "to": "99295A746E66BD8D"
+    },
+    {
+      "from": "BB78D41C38643BE7",
+      "to": "A8B49A75EC086BD9"
+    },
+    {
+      "from": "BB888FDBFEEB6BDC",
+      "to": "AA8B64CAF7398B97"
+    },
+    {
+      "from": "BBFE712DC0E373E5",
+      "to": "9F8F69B382DA8B5F"
+    },
+    {
+      "from": "BC3918DB5AECEBC7",
+      "to": "96E4C1F365355EF2"
+    },
+    {
+      "from": "BC3E9AA3C7FDEF8E",
+      "to": "838A61441A7DC3B9"
+    },
+    {
+      "from": "BC4C4891932BFDC3",
+      "to": "AD4F03355AD934B8"
+    },
+    {
+      "from": "BC757685B58142CF",
+      "to": "B81330E329DE3DF1"
+    },
+    {
+      "from": "BC8F9F380EF22918",
+      "to": "9AAA03E14138EE73"
+    },
+    {
+      "from": "BCB7D2C2C2517A0C",
+      "to": "AE9662864259F245"
+    },
+    {
+      "from": "BCB87C29FE7AB8A5",
+      "to": "B747455529E0D98D"
+    },
+    {
+      "from": "BCBFA427740A3426",
+      "to": "A0215546138AAF19"
+    },
+    {
+      "from": "BD1A1FB31B32B99D",
+      "to": "9FA4AF7125A642F3"
+    },
+    {
+      "from": "BD45B9B0899229B4",
+      "to": "A749D47998D96B7E"
+    },
+    {
+      "from": "BD45B9B0899229B4",
+      "to": "B3493D4523F9BB4B"
+    },
+    {
+      "from": "BD4F67EBAE056023",
+      "to": "90174B72B0D10EC7"
+    },
+    {
+      "from": "BD4F67EBAE056023",
+      "to": "9D0E8993BE224A75"
+    },
+    {
+      "from": "BD59723E4005DFA8",
+      "to": "AF5B381D3887B404"
+    },
+    {
+      "from": "BD59723E4005DFA8",
+      "to": "B1CA813E827B3123"
+    },
+    {
+      "from": "BDBBC978DD22F50E",
+      "to": "86B4F5CFC1B71462"
+    },
+    {
+      "from": "BDBBC978DD22F50E",
+      "to": "A37678A030180735"
+    },
+    {
+      "from": "BE3C5FA66FDF25AF",
+      "to": "B2694216E642CE93"
+    },
+    {
+      "from": "BE43C3DA4AC9B60D",
+      "to": "AFC4F321C39227FF"
+    },
+    {
+      "from": "BE562EA84B4CACC6",
+      "to": "83458382FF4C7AFF"
+    },
+    {
+      "from": "BE562EA84B4CACC6",
+      "to": "B5DAA8D1C8F96727"
+    },
+    {
+      "from": "BE8E152EA08CFEC0",
+      "to": "AB8BA193D598B0A8"
+    },
+    {
+      "from": "BE8E152EA08CFEC0",
+      "to": "BD4F67EBAE056023"
+    },
+    {
+      "from": "BEA82A645AF8E305",
+      "to": "8436A655571D1E9A"
+    },
+    {
+      "from": "BEA82A645AF8E305",
+      "to": "870BBD54BAC225C7"
+    },
+    {
+      "from": "BECE81E59DCE75FB",
+      "to": "85BDC07386BFBC3F"
+    },
+    {
+      "from": "BED4B0B1D13805C5",
+      "to": "BAF964EF2F4351F5"
+    },
+    {
+      "from": "BEDEE3E1EDBB7154",
+      "to": "A57B969E522D8D2E"
+    },
+    {
+      "from": "BEF7829B331D6426",
+      "to": "939EE65C90820C2D"
+    },
+    {
+      "from": "BF25D46119E659C8",
+      "to": "8128ACD415D0EDE6"
+    },
+    {
+      "from": "BF301A499CB5989E",
+      "to": "A5765B7B78F3D8E0"
+    },
+    {
+      "from": "BF301A499CB5989E",
+      "to": "B8E5D9FF69A4CD25"
+    },
+    {
+      "from": "BF307F44967ABAE9",
+      "to": "9AE8C242AA4683BE"
+    },
+    {
+      "from": "BF3C4D9AAB1DEC09",
+      "to": "A1829ED2935D4DA3"
+    },
+    {
+      "from": "BF567BD87BAB9DA7",
+      "to": "89043341FF9A9128"
+    },
+    {
+      "from": "BF567BD87BAB9DA7",
+      "to": "A62AA427ADF8811E"
+    },
+    {
+      "from": "BF5F62806F210529",
+      "to": "85A815ABBF0A9DA6"
+    },
+    {
+      "from": "BF6BC6174D4EBEEA",
+      "to": "88AF532FD389ECEB"
+    },
+    {
+      "from": "BF6BC6174D4EBEEA",
+      "to": "9171D6BB0BDC2370"
+    },
+    {
+      "from": "BF6BC6174D4EBEEA",
+      "to": "9D980188B336A710"
+    },
+    {
+      "from": "BF6BC6174D4EBEEA",
+      "to": "A6A73505D9D65BBA"
+    },
+    {
+      "from": "BF6FDBC9EB6ABBB9",
+      "to": "8C82FED985B20243"
+    },
+    {
+      "from": "BF80958ADB5F9A3A",
+      "to": "8A01B818A71120E5"
+    },
+    {
+      "from": "BFB25574E8F03D3C",
+      "to": "8C4D641B43AEF4AE"
+    },
+    {
+      "from": "BFBE373A7DEC902F",
+      "to": "A1E50AFAF05433A8"
+    },
+    {
+      "from": "BFBEEE7AD8BAB210",
+      "to": "9F6105A4DE8501DF"
+    }
+  ],
+  "nodes": [
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "80577CD7348BDFBE",
+      "optional": true,
+      "title": "Silence beneath the World"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "80A0705EBA9F5E23",
+      "optional": true,
+      "title": "A Smarter Spell Turret"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "80B37FE530981498",
+      "optional": false,
+      "title": "Respect the Stress Limit"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "80DA0E309B663B45",
+      "optional": false,
+      "title": "Bring the Heat"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "811256755221EC5B",
+      "optional": false,
+      "title": "Set the Gem"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8128ACD415D0EDE6",
+      "optional": false,
+      "title": "Warehouse in a Block"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "812A1F8C1F140DE9",
+      "optional": false,
+      "title": "Feed the Factory Fast Enough"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "8160E20156C93D1A",
+      "optional": true,
+      "title": "From Water to Table"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "817056BDD8A2A6FB",
+      "optional": true,
+      "title": "The Hundred-Step Request"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "817F63D3A762E1B9",
+      "optional": false,
+      "title": "Effects Shape the Result"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "81826D4C8CB6D85B",
+      "optional": false,
+      "title": "Source Across Distance"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "818DBA9FBB463763",
+      "optional": false,
+      "title": "Remote Fluid Access"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "819B5CAA1E021C82",
+      "optional": false,
+      "title": "Build a Moving Machine"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "81A6970419C36D8B",
+      "optional": false,
+      "title": "Oxidize Solid Resources"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "81B73D1AC8D8947F",
+      "optional": true,
+      "title": "Emeradic"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "81C22EAE6B41B35C",
+      "optional": false,
+      "title": "A New Kind of Power"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "81D1F635E6908C6C",
+      "optional": true,
+      "title": "The Immersive Completionist"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "81F24691DB5C2E37",
+      "optional": false,
+      "title": "The Actually Additions Manual"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "824885A54969E4D2",
+      "optional": false,
+      "title": "Sides, Slots, and Signals"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "82735DCAB2EACE4E",
+      "optional": false,
+      "title": "Advance Your Studies"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 2,
+      "id": "82845A9ACF0F546A",
+      "optional": true,
+      "title": "The Knowledge Archive"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "8284C6CB2098B3DD",
+      "optional": true,
+      "title": "Build a Gem Archive"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "829B5302AFAC391B",
+      "optional": false,
+      "title": "Favor Better Enchantments"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "82A659FD4883BCD5",
+      "optional": false,
+      "title": "Contain the Reaction"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "82AA2A99586169A0",
+      "optional": false,
+      "title": "Power in a Small Package"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "82AB7FB013899B64",
+      "optional": false,
+      "title": "Put the Data on Display"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "82B22EDE3179697A",
+      "optional": true,
+      "title": "Patterns and Banners"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 3,
+      "id": "831690E1512E7D1B",
+      "optional": true,
+      "title": "Beyond Apotheosis"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "833ADC4D97E9D8C1",
+      "optional": true,
+      "title": "Audit Every Watt"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "83458382FF4C7AFF",
+      "optional": true,
+      "title": "Recover Stored Energy"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8359C036EB89DC18",
+      "optional": false,
+      "title": "More than a Chest"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "837B35340BC9B6CD",
+      "optional": false,
+      "title": "Compact Storage"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "837E8C12F9ABF317",
+      "optional": false,
+      "title": "Wash the Slurry"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 4,
+      "id": "838A61441A7DC3B9",
+      "optional": false,
+      "title": "The Network Core"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "83A148C822911342",
+      "optional": false,
+      "title": "Logic Processor"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "83B027F730A6E9D9",
+      "optional": false,
+      "title": "Chemical Pipelines"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "83D503D2B4892BED",
+      "optional": false,
+      "title": "A Renewable Fuel Cycle"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "83D72D8426FC093E",
+      "optional": false,
+      "title": "A Roll Worth Keeping"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "8424B971E8A5851F",
+      "optional": false,
+      "title": "Partition the Storage"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 2,
+      "id": "8436A655571D1E9A",
+      "optional": true,
+      "title": "Forty-Eight Hours Unattended"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "84714854F94A035D",
+      "optional": false,
+      "title": "Magic Beyond a Single Cast"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "84BBC231B43A64AF",
+      "optional": true,
+      "title": "Precision Masonry"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "84D099EB78C23ACE",
+      "optional": true,
+      "title": "Concentrated Infusion"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "84E163F9D1282016",
+      "optional": false,
+      "title": "The Factory Runs Itself"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "84F25C16E88A2208",
+      "optional": false,
+      "title": "Place on Command"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "84F8DBE12090C2B5",
+      "optional": false,
+      "title": "Better Materials, Better Possibilities"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8507C3CDEEDA58EB",
+      "optional": true,
+      "title": "Storage in Bulk"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 3,
+      "id": "8516910B33D2D6E8",
+      "optional": false,
+      "title": "Build Around a Purpose"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "851BDD4FF266DF1B",
+      "optional": false,
+      "title": "Energy in Your Pocket"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 2,
+      "id": "851CC5CA43E9D9FF",
+      "optional": false,
+      "title": "Magic on the Production Floor"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "851ECDD1B2B0CA97",
+      "optional": false,
+      "title": "Black Gold"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "856930E0995E2C5F",
+      "optional": true,
+      "title": "Configure the MekaSuit"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "85857E736D5FE1B0",
+      "optional": true,
+      "title": "Preserve the Journey"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "8591F80B49E64073",
+      "optional": false,
+      "title": "The Induction Matrix"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "85A4D6A569C114BA",
+      "optional": true,
+      "title": "Cast a Line"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "85A815ABBF0A9DA6",
+      "optional": false,
+      "title": "Put It on the Map"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "85BDC07386BFBC3F",
+      "optional": false,
+      "title": "Light the Way"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "85D0790D6832C7FF",
+      "optional": false,
+      "title": "Precision Engineering"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 2,
+      "id": "86264C02FE0570FE",
+      "optional": false,
+      "title": "Prove the Integrated Build"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "862936BBF1122ABF",
+      "optional": false,
+      "title": "Master of Adventure"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "8644F9E2552ADA16",
+      "optional": false,
+      "title": "Cast and Bore"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "864CE44BCC5D88BB",
+      "optional": false,
+      "title": "Apply Some Pressure"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "864E4657EB932804",
+      "optional": false,
+      "title": "Forms Begin the Spell"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "866133D4F7926EB5",
+      "optional": true,
+      "title": "Separate Heat from Fission"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "8664215185FB1D4C",
+      "optional": true,
+      "title": "A Compass for the Fallen"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "867B5B5FE474C1D7",
+      "optional": true,
+      "title": "Plan the Quantum Network"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8685AA92ABD65344",
+      "optional": true,
+      "title": "Connect Existing Storage"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "869376E5406CA0FD",
+      "optional": false,
+      "title": "Fields of Gold"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "86A7B26CB2896867",
+      "optional": true,
+      "title": "Bring Down the Mythic"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "86B4F5CFC1B71462",
+      "optional": true,
+      "title": "A Proper Wash Station"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "86BCFF9F98D13E0C",
+      "optional": false,
+      "title": "The Worn Notebook"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "86CEA98D360CDE41",
+      "optional": false,
+      "title": "The Grand Railway Showcase"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "870BBD54BAC225C7",
+      "optional": true,
+      "title": "Industry without Borders"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "871AFC185B50EFFF",
+      "optional": false,
+      "title": "Design for Failure"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "871B688E8A006169",
+      "optional": true,
+      "title": "Work Beside Your Familiar"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "87218212BFFDA0F7",
+      "optional": true,
+      "title": "Source from Flame"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "873B5CE7511ED010",
+      "optional": true,
+      "title": "Define the Volume"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "8746AED2E206F76E",
+      "optional": true,
+      "title": "A Fresh Edge"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "8748B6F83EDAC3C2",
+      "optional": false,
+      "title": "Burn Gas, Not Coal"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8759FF9AADA1603E",
+      "optional": true,
+      "title": "Automate Empowering"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "875A04C6ED54DF26",
+      "optional": false,
+      "title": "Buffer the Power Plant"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "87650E9F9A630A31",
+      "optional": false,
+      "title": "Build a Material Reserve"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "87A06407AD84B561",
+      "optional": true,
+      "title": "Industrial Refreshment"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 2,
+      "id": "87ABCB2393238138",
+      "optional": false,
+      "title": "Fire and Stone"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "87C7E3B137AE0764",
+      "optional": true,
+      "title": "Wings of the End"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "87EB532FCC9ABB49",
+      "optional": false,
+      "title": "Improve Without Replacing"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 5,
+      "id": "87F940CCBABD069C",
+      "optional": false,
+      "title": "A Proper Homestead"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "8832AC4306046859",
+      "optional": false,
+      "title": "Controlled Entry"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "884062AB8753FF4E",
+      "optional": true,
+      "title": "Watch the Job"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 2,
+      "id": "8853864FC42ABE96",
+      "optional": false,
+      "title": "A Network Without Bottlenecks"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "8856520543E7071D",
+      "optional": false,
+      "title": "Enter the Brass Age"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "88AC3A0A05D0BC85",
+      "optional": false,
+      "title": "Tune the Machines"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "88AF532FD389ECEB",
+      "optional": true,
+      "title": "A Safe Way Back"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "88B23A62146512E9",
+      "optional": false,
+      "title": "Master of Moving Parts"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "88CB799732AA9690",
+      "optional": true,
+      "title": "Smoke Before Harvest"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "88D76CD65B7EE1DB",
+      "optional": false,
+      "title": "One Power Backbone"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "88D889EA3EEE346A",
+      "optional": false,
+      "title": "The Engineer's Multitool"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "88E1E05A3248427C",
+      "optional": false,
+      "title": "Signals Without Wires"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "88F236C1D5C576E6",
+      "optional": true,
+      "title": "Repair and Reconsider"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "89043341FF9A9128",
+      "optional": false,
+      "title": "A Delicate Touch"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8951405532F11016",
+      "optional": false,
+      "title": "Fill the Gaps"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "896EE43275174350",
+      "optional": false,
+      "title": "Pull Items into the Network"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "89A7F54AAE0A097B",
+      "optional": true,
+      "title": "Arcane Archery"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "89AA12DF45FBA9C1",
+      "optional": false,
+      "title": "Power into AE"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "89C32E74A04F7196",
+      "optional": false,
+      "title": "From Grain to Flour"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "89D61BD0FACFEAE5",
+      "optional": false,
+      "title": "A Grid You Can Read"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "89E0157E1D39B37B",
+      "optional": false,
+      "title": "Crushing in Earnest"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "8A01B818A71120E5",
+      "optional": false,
+      "title": "A Recipe with Prerequisites"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8A0353BF72922215",
+      "optional": true,
+      "title": "Extend the Signal"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 2,
+      "id": "8A4711EEF716EC33",
+      "optional": true,
+      "title": "A Living City"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "8A7050F858CB4070",
+      "optional": true,
+      "title": "An Integrated Arcane Complex"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8A8122457C9D5C8C",
+      "optional": true,
+      "title": "Spatial Engineering"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "8AA44D1DEF03B639",
+      "optional": true,
+      "title": "Board in Style"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "8ADEA45924262360",
+      "optional": true,
+      "title": "Industrial Stockpile"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "8AE6C81C2A6D9A52",
+      "optional": false,
+      "title": "Distill Magical Essence"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "8AF69DF0AC29ED14",
+      "optional": false,
+      "title": "Colors of Power"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "8B15E5401F47D009",
+      "optional": false,
+      "title": "Four Ingots per Ore"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "8B16E20EEE585F4D",
+      "optional": true,
+      "title": "Sustain a Working Ritual Site"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "8B3BBF4905174CBB",
+      "optional": true,
+      "title": "Label Everything"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "8B41FF8ACB9DC9B6",
+      "optional": false,
+      "title": "Take the Controls"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "8B5499824A5D4041",
+      "optional": false,
+      "title": "Prove the Build"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 3,
+      "id": "8B572A15D57EDE98",
+      "optional": true,
+      "title": "Hot Tourist Destinations"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "8B694AD5E1DB9D20",
+      "optional": false,
+      "title": "Store Industrial Power"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "8B8B1B2771D2B338",
+      "optional": false,
+      "title": "Build the Airframe"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "8BD092676AEE266C",
+      "optional": false,
+      "title": "Measure the RPM"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "8C2D5941103F4824",
+      "optional": false,
+      "title": "Prepare for the Night"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "8C38294EFA31CDB6",
+      "optional": false,
+      "title": "Stone Age"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "8C3F41752B2ABC64",
+      "optional": false,
+      "title": "Signs of Civilization"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "8C46AC758BB29EF3",
+      "optional": false,
+      "title": "Apotheosis Mastery"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8C477CBE918F96F6",
+      "optional": true,
+      "title": "Borrowed Wings"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8C479ADAAF24B87F",
+      "optional": false,
+      "title": "Network Access without a Cable"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "8C4D641B43AEF4AE",
+      "optional": false,
+      "title": "Buffer the Grid"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8C4DC095A550DF95",
+      "optional": false,
+      "title": "Remote Power Access"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "8C68E1C4D0216B1F",
+      "optional": false,
+      "title": "Proof Test"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "8C82FED985B20243",
+      "optional": false,
+      "title": "A Doorway of Obsidian"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "8C94E34719F45A47",
+      "optional": true,
+      "title": "An Infusion Workshop"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8D0B8CFFB7B9688F",
+      "optional": false,
+      "title": "Charge on Demand"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "8D301B044AF9999C",
+      "optional": false,
+      "title": "More Than a Name"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "8D80B55827B94A3A",
+      "optional": false,
+      "title": "Refine the Fuel"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "8DE3B7495F932626",
+      "optional": false,
+      "title": "Power Hidden in Equipment"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 0,
+      "id": "8DEA5F756F78C53D",
+      "optional": false,
+      "title": "Welcome to Immersive Adventure Neo"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "8DEDB07833A097EE",
+      "optional": true,
+      "title": "The Archmage's Living Workshop"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "8DFEF4248E9B32CC",
+      "optional": false,
+      "title": "Control the Flow"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "8E0A74745A66AA20",
+      "optional": false,
+      "title": "Two by Two"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8E15D88A6086BB62",
+      "optional": false,
+      "title": "Carry Power, Not Channels"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "8E32A09F810A39EF",
+      "optional": false,
+      "title": "Wash Away the Impurities"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "8E3C693690EE37D1",
+      "optional": false,
+      "title": "Robes of the Arcanist"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "8E3CDB2C9EAB2742",
+      "optional": true,
+      "title": "Timekeeper"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "8EA39B2D6E073CBB",
+      "optional": true,
+      "title": "Follow the Buzz"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "8F0C5A2C102D65FB",
+      "optional": true,
+      "title": "Plan the Ultimate Facility"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "8F3234B1AB40066A",
+      "optional": true,
+      "title": "Roots and Riches"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "8F4467BFC3761559",
+      "optional": false,
+      "title": "Cultivate Magebloom"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8F92A3AF2B513C75",
+      "optional": true,
+      "title": "Watch the Network Breathe"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "8FAEE6B2D3EA77D9",
+      "optional": false,
+      "title": "Compact Transmission"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "8FD313B983CAF86B",
+      "optional": false,
+      "title": "Route the Line"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "8FDFFD522B645DE3",
+      "optional": true,
+      "title": "Drives with a Purpose"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "8FE91F2F3F9C634C",
+      "optional": false,
+      "title": "Frozen Fire"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "90174B72B0D10EC7",
+      "optional": false,
+      "title": "Face an Empowered Foe"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "904F4811ACE99711",
+      "optional": true,
+      "title": "Ruins beneath the Trail"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "905B3D999E4666E2",
+      "optional": false,
+      "title": "Diamatine"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9061F97F7930A854",
+      "optional": true,
+      "title": "Plan for Replacement"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "9069146718797293",
+      "optional": true,
+      "title": "Heavy-Duty Repairs"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "9084EC2BA85315F0",
+      "optional": false,
+      "title": "See the Network Think"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "90BCBA78663F3EB4",
+      "optional": true,
+      "title": "A Living Palette"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "90BD9107F1D9925B",
+      "optional": false,
+      "title": "Raise a Beacon"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "91029C024674F674",
+      "optional": true,
+      "title": "Armor of the Machine"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "91248A7DC19CBBF0",
+      "optional": false,
+      "title": "More Operations per Block"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "912959347E47C6E6",
+      "optional": false,
+      "title": "A Fair Exchange"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "913265B1A80AB926",
+      "optional": false,
+      "title": "Affixes That Work Together"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "913CFE701933EF50",
+      "optional": false,
+      "title": "Teach the Network"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "9171D6BB0BDC2370",
+      "optional": false,
+      "title": "The Right Tool"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "9181615AB112184A",
+      "optional": true,
+      "title": "A Monument to Power"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "9188177C0E124401",
+      "optional": false,
+      "title": "Automate a Machine Recipe"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "91BEB312BC51E284",
+      "optional": true,
+      "title": "Interfaces without Clutter"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "91D2B2C4D1AF61C2",
+      "optional": true,
+      "title": "Form and Function"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "91D6B74576F8EE81",
+      "optional": true,
+      "title": "A Lens for Every Task"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "9210BD151FB630BA",
+      "optional": true,
+      "title": "Structure Hunter"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "9253068A1317AE3E",
+      "optional": false,
+      "title": "A Hotter Wind"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "92645023F57184BF",
+      "optional": false,
+      "title": "Engineer for Failure"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "92A87C3EFC574FF5",
+      "optional": true,
+      "title": "Program a Reliable Spell Turret"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "92AAF6A83CB42F4A",
+      "optional": false,
+      "title": "One Step at a Time"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "92B80EE106A4AD3D",
+      "optional": false,
+      "title": "From Machine to Factory"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "92D0A7158A550163",
+      "optional": false,
+      "title": "Repair and Combine"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "92F436C6D6F38859",
+      "optional": false,
+      "title": "Faster Smelting"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "930EF2D7E4EBCCDC",
+      "optional": true,
+      "title": "Dress for the Arcane"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9330F0731F389E4E",
+      "optional": false,
+      "title": "Return to the Enchanting Table"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "933D829F1B973068",
+      "optional": false,
+      "title": "Armor with a Purpose"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "9341C5AEFC9D2D1B",
+      "optional": false,
+      "title": "Establish a Station"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "938FFD169C221DC8",
+      "optional": true,
+      "title": "A Fully Socketed Set"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "939EE65C90820C2D",
+      "optional": false,
+      "title": "Crystallized Source"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "93BE9D1AC014268C",
+      "optional": false,
+      "title": "Restonia"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "93D5FAFED1968A53",
+      "optional": true,
+      "title": "Catalog of Automation"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "94305CF42338D453",
+      "optional": false,
+      "title": "Keep the Line Safe"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "9447C8637E797451",
+      "optional": false,
+      "title": "Industry Beyond the Main Base"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "94498A2D8B2625C5",
+      "optional": true,
+      "title": "One Network, Any Distance"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "9449E56C6BBF0EE2",
+      "optional": false,
+      "title": "Motion on a Line"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 3,
+      "id": "945830A36E8E22EC",
+      "optional": true,
+      "title": "A World of Biomes"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "945FD127D5024504",
+      "optional": false,
+      "title": "A Cell with a Purpose"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9485CE362D91BCA2",
+      "optional": false,
+      "title": "Never Run Dry"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "949A81D66331C647",
+      "optional": true,
+      "title": "Prepare for Fluids"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "94E8400FFB47E297",
+      "optional": true,
+      "title": "Nothing Goes to Waste"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "94F9BEF9AF0CF3DF",
+      "optional": false,
+      "title": "Build the Bigger Core"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "950D9CBBC78DDBDC",
+      "optional": true,
+      "title": "Maintain the Stockpile"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9523F05B4EFE9BC5",
+      "optional": false,
+      "title": "Capture the Steam"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "95551C6838D7CE57",
+      "optional": false,
+      "title": "Build a Command Center"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "959F9AE5EC4D8446",
+      "optional": true,
+      "title": "Watch the Inventory"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "95C2EB89A951F5E4",
+      "optional": true,
+      "title": "Salvage at Scale"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 2,
+      "id": "95C324C31470DE0C",
+      "optional": false,
+      "title": "Knowledge Preserved"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "95C9180B1493A3D3",
+      "optional": false,
+      "title": "Matter, Energy, and Organization"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "95CA8225930FDF9B",
+      "optional": true,
+      "title": "Fortress of Flame"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "9602F5A255689E6B",
+      "optional": false,
+      "title": "Electric Rotation"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "960FA2FDDE766B3B",
+      "optional": true,
+      "title": "Brilliant Protection"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "96455F6A63FAE23E",
+      "optional": true,
+      "title": "Reconstruct the Story"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9675C9132A59EB72",
+      "optional": false,
+      "title": "Crush the Competition"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9684F104E7FA03F3",
+      "optional": false,
+      "title": "Upgrade without Rebuilding"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "96AE104817B743C0",
+      "optional": true,
+      "title": "Choose a Familiar's Calling"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "96B61AA733F131D0",
+      "optional": true,
+      "title": "Fuel for a Star"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "96D042E647F223E0",
+      "optional": true,
+      "title": "The Grand Warehouse"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "96E4C1F365355EF2",
+      "optional": true,
+      "title": "Beyond the Central Island"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "96E79C9F66877EE1",
+      "optional": false,
+      "title": "Beyond the Main Workshop"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "96F19ACAB774A9E9",
+      "optional": false,
+      "title": "Only What Belongs"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "972C9432897D5019",
+      "optional": false,
+      "title": "Wireless Energy"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "972FC26349EBE4AF",
+      "optional": false,
+      "title": "Wheels for the Railway"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "9732AB556F0ED0A2",
+      "optional": false,
+      "title": "Pressing Matters"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "974906EEAB7C4332",
+      "optional": false,
+      "title": "High-Speed Excavation"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "97546D3876DFCB9F",
+      "optional": true,
+      "title": "The Quantum Architect"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "978223E6BBE7400B",
+      "optional": false,
+      "title": "Take to the Water"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "97845C22D864AB2A",
+      "optional": true,
+      "title": "Master of Matter and Energy"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "97862F9850C98672",
+      "optional": false,
+      "title": "Machines Working Together"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9787BAA31BCDE14E",
+      "optional": false,
+      "title": "Wreck Beneath the Waves"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "978A7B20BB10CB4D",
+      "optional": false,
+      "title": "More Than Eterna"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "97A22F0A1ECD3DB5",
+      "optional": true,
+      "title": "A Proper Trophy Room"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 5,
+      "id": "97D4725AB336EBC5",
+      "optional": true,
+      "title": "Cartographer of Three Worlds"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "97E30FCE87652D0E",
+      "optional": true,
+      "title": "A Chilling Discovery"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "97EC57E5BDA2AA7F",
+      "optional": false,
+      "title": "A New Industrial Age"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "97F2BC13EE31F1EA",
+      "optional": false,
+      "title": "Provide the Ingredients"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "9821586AE623D645",
+      "optional": true,
+      "title": "A Library of Rituals"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "98347CA4FE3C78A5",
+      "optional": false,
+      "title": "Enrich the Output"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "9834B0E8CBA57607",
+      "optional": false,
+      "title": "A New Age of Rotation"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "983E48F2B5BB28FD",
+      "optional": true,
+      "title": "World Tour"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "988B56FD0D24F3FE",
+      "optional": false,
+      "title": "Build the Capacity"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "98D3369343FB9198",
+      "optional": false,
+      "title": "Combustion Engineering"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "98DFF3A902BA08F4",
+      "optional": true,
+      "title": "Plan the Mythic Hunt"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "98FDBE2B335B7BA3",
+      "optional": false,
+      "title": "Teeth in the Machine"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "991EB3049DA99F36",
+      "optional": false,
+      "title": "Route by Rule"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "9928FD826DBF1470",
+      "optional": false,
+      "title": "Purify into Clumps"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "99295A746E66BD8D",
+      "optional": false,
+      "title": "An Organized Digital Base"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "994750AF33EFBC92",
+      "optional": false,
+      "title": "Craft at Factory Scale"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "9952BD09AF554E2A",
+      "optional": true,
+      "title": "Light across the World"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "99905FFF20ABDE63",
+      "optional": true,
+      "title": "One Tool, Every Job"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9993CCA381AF3A7B",
+      "optional": true,
+      "title": "Focus the Beam"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "999E9C1D07A5EA92",
+      "optional": false,
+      "title": "Change the Pace"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "99A4AFB056051713",
+      "optional": true,
+      "title": "Travel by Written Destination"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "99FB31DEFE4DA0C8",
+      "optional": false,
+      "title": "Power from the Sky"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "99FD479647F8A3FE",
+      "optional": true,
+      "title": "The Seventy-Two-Hour Trial"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "99FF75DA7A72BA2A",
+      "optional": false,
+      "title": "Echoes of Another World"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9A11CEDA3D2C13DD",
+      "optional": true,
+      "title": "Brush with History"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "9A1214F8710D5DA6",
+      "optional": false,
+      "title": "Reach Across the Factory"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9A144F8E83E0C63E",
+      "optional": true,
+      "title": "A Dedicated Reconstruction Cell"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9A1BD4CBBC0E9F60",
+      "optional": true,
+      "title": "Mark the Hunting Grounds"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "9A3290F3906D437D",
+      "optional": false,
+      "title": "A Functioning ME Network"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "9A3966014461AC0B",
+      "optional": true,
+      "title": "Magic That Works Without You"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "9AAA03E14138EE73",
+      "optional": false,
+      "title": "A Network within the Network"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "9AE8C242AA4683BE",
+      "optional": false,
+      "title": "Logistics at Any Scale"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 4,
+      "id": "9B1BE51B69AF2691",
+      "optional": false,
+      "title": "Master of Practical Spellcraft"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9B2BF37C23DA9E18",
+      "optional": false,
+      "title": "Break on Command"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9B433E35D77DD943",
+      "optional": false,
+      "title": "A Shared Energy Buffer"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9B46F07792E727EB",
+      "optional": false,
+      "title": "Press the Harvest"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9B56F25D0B4B4DE2",
+      "optional": false,
+      "title": "Beyond the Horizon"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "9B73EAB0B5811EFA",
+      "optional": false,
+      "title": "A Deeper Mana Pool"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9BA1B6AA1AA1EB92",
+      "optional": true,
+      "title": "A Short Step through Space"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "9BC80D9BE4C9EA8E",
+      "optional": false,
+      "title": "A Life Worth Building"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9BD77EA6F9E45F95",
+      "optional": false,
+      "title": "Combine Chemical Streams"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9C724CDA73318AC1",
+      "optional": true,
+      "title": "The Unbroken Trial"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 5,
+      "id": "9C7B674F2973EEC0",
+      "optional": false,
+      "title": "Master of the Underground"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "9C849DAFA126952C",
+      "optional": true,
+      "title": "Entangle the Pair"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9C930103FEFC7D4E",
+      "optional": false,
+      "title": "Crystal Resonance"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9C96567C0A119D02",
+      "optional": false,
+      "title": "Something Actually Different"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 2,
+      "id": "9C9E35668AB129DC",
+      "optional": true,
+      "title": "Deep Woodland Secrets"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "9CAF4D2C0A579875",
+      "optional": false,
+      "title": "Crush and Recycle"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9CC8D4163FD38290",
+      "optional": false,
+      "title": "Split Water into Gases"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "9CD433BE1079EE39",
+      "optional": true,
+      "title": "Ride the Line"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 4,
+      "id": "9D02244C61A804E9",
+      "optional": false,
+      "title": "A Scalable Industrial Processor"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9D0E8993BE224A75",
+      "optional": false,
+      "title": "Climb the Rarity Ladder"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9D3342A10ADB1B73",
+      "optional": false,
+      "title": "X Marks the Spot"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "9D6987D63779188B",
+      "optional": false,
+      "title": "A Controlled Burn"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "9D7059B93201F34D",
+      "optional": true,
+      "title": "Magic with Safeguards"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 5,
+      "id": "9D733452C9DF241A",
+      "optional": false,
+      "title": "Experienced Explorer"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9D8417D8F33B204B",
+      "optional": true,
+      "title": "Expand the Enchanting Archive"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "9D980188B336A710",
+      "optional": false,
+      "title": "Bring More Light"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "9D9C89D1B3C6CB70",
+      "optional": false,
+      "title": "A Proper Library"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "9DA1B33BD57A2209",
+      "optional": false,
+      "title": "Keep the Network Alive"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9DB6CC7F6EC64BC4",
+      "optional": false,
+      "title": "Two Ingots per Ore"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "9DD1825495B8D062",
+      "optional": true,
+      "title": "A Colorful Harvest"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "9DFACB3E1AEF2683",
+      "optional": false,
+      "title": "Connected Construction"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9DFEF90D76F529BB",
+      "optional": false,
+      "title": "Process Nuclear Waste"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "9E3885F64E7BED87",
+      "optional": true,
+      "title": "No More Silent Overflow"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "9E6D0205BFE242C3",
+      "optional": true,
+      "title": "Wax and Wonder"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "9E8C7AC6FEC15513",
+      "optional": true,
+      "title": "A Network of Automated Magic"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "9E8D43336369B20B",
+      "optional": false,
+      "title": "Your First Spellbook"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9EAA6EC52F81D1CC",
+      "optional": false,
+      "title": "Hostile Neighbors"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9EC6CF191778963F",
+      "optional": false,
+      "title": "Embrace Controlled Chaos"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9ECFE47D39F90472",
+      "optional": true,
+      "title": "Empowered Emeradic"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "9ED49A00445BACD3",
+      "optional": false,
+      "title": "Organized Supplies"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "9F183F98D7E341A2",
+      "optional": false,
+      "title": "Reverse the Flow"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "9F354CEE891D4767",
+      "optional": false,
+      "title": "Written Preparation"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "9F513DEAF55705E1",
+      "optional": true,
+      "title": "Deep Energy Reserves"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 3,
+      "id": "9F592D0904AE4109",
+      "optional": true,
+      "title": "Leave the Workshop Running"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 2,
+      "id": "9F6105A4DE8501DF",
+      "optional": false,
+      "title": "Rails with Character"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "9F6BB4DDD86F51E6",
+      "optional": true,
+      "title": "Echoes of the Lost"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "9F6D7A15250EECE6",
+      "optional": false,
+      "title": "A Worthy Opponent"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9F785BFCAA2E2902",
+      "optional": false,
+      "title": "Five Ingots per Ore"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "9F853CBFCF67030B",
+      "optional": false,
+      "title": "An Empty Socket"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "9F89E688118941E3",
+      "optional": false,
+      "title": "Under Control"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "9F8F69B382DA8B5F",
+      "optional": true,
+      "title": "The Grand Ritual Site"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "9FA4AF7125A642F3",
+      "optional": false,
+      "title": "Collect with Precision"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "9FC598DED3EF23F1",
+      "optional": false,
+      "title": "Write a Destination"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "9FC966A646B440CA",
+      "optional": false,
+      "title": "Shape a Battle Spell"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "9FE72E4EB602117C",
+      "optional": false,
+      "title": "Bridge Moving and Stationary"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "9FF5BF98C8C49096",
+      "optional": false,
+      "title": "Build a Multiblock Battery"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "A00EB27C920C4924",
+      "optional": false,
+      "title": "The Modular Miner"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 3,
+      "id": "A01D4ECBDDCBEA74",
+      "optional": false,
+      "title": "Reconstruct Matter"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A0215546138AAF19",
+      "optional": true,
+      "title": "Upstream Supper"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A02F127E1720FF68",
+      "optional": false,
+      "title": "Parallelize the Workshop"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A03D4E1C21DE3FBC",
+      "optional": false,
+      "title": "Transmit the Motion"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "A0471C1EAF3FD8CF",
+      "optional": false,
+      "title": "Perfect a Signature Spell"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "A0481C380E02FEF9",
+      "optional": false,
+      "title": "Compose Your First Spell"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "A0552E09DC8568FF",
+      "optional": false,
+      "title": "Forge a Signature Weapon"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A06FF6166863CE5C",
+      "optional": false,
+      "title": "Memory for the Job"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "A074A1D6D7735B1A",
+      "optional": true,
+      "title": "Secrets in the Vines"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A0790F7890A5BED0",
+      "optional": true,
+      "title": "A Magical Companion"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A084253139E38F70",
+      "optional": true,
+      "title": "A Library of Industry"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "A0A8740984C5FEA9",
+      "optional": true,
+      "title": "Automate the Enchanting Apparatus"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "A0B150555FF7CEE3",
+      "optional": false,
+      "title": "Universal Power Lines"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "A0CD16D3813CFEF0",
+      "optional": false,
+      "title": "Rotation into Electricity"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A0DD2BAC223CB981",
+      "optional": false,
+      "title": "Turn Every Direction"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "A0E70B9748FC06BB",
+      "optional": true,
+      "title": "Empowered Restonia"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A0F32B96F9D2ED42",
+      "optional": false,
+      "title": "Air-Powered Processing"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A0F8E272D1041D95",
+      "optional": false,
+      "title": "Prepare the Ritual"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A10D11CD2F654FBF",
+      "optional": false,
+      "title": "A Sturdy Defense"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "A110FCB74ECB8CB6",
+      "optional": true,
+      "title": "Untouchable"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A1434E90EADA6BF3",
+      "optional": true,
+      "title": "Bottle a Star"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A15B107B8B33255D",
+      "optional": false,
+      "title": "Move between Fluids and Chemicals"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A1829ED2935D4DA3",
+      "optional": false,
+      "title": "Prepare Fissile Fuel"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "A193721445D8B966",
+      "optional": false,
+      "title": "Infuse the Metal"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "A19DF8022965BC42",
+      "optional": false,
+      "title": "Dissolve the Ore"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A1A7BFE2BAA97C02",
+      "optional": false,
+      "title": "Tunnel the Network"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "A1B4DD334A3D3F8D",
+      "optional": false,
+      "title": "Tune the Enchanting Room"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A1C4085EC2E533B9",
+      "optional": false,
+      "title": "Write Your Signature Spell"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 6,
+      "id": "A1C5D5B5DAB4132A",
+      "optional": false,
+      "title": "The Great Convergence"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "A1CA04D34EAED17F",
+      "optional": false,
+      "title": "Ignition"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A1DDFD211EE738AB",
+      "optional": false,
+      "title": "React to Stock Levels"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A1E50AFAF05433A8",
+      "optional": true,
+      "title": "Parallel Assembly"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A26EDD8B6F22030F",
+      "optional": false,
+      "title": "Storage That Scales"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A29EF94E42D59678",
+      "optional": false,
+      "title": "Tanned and Ready"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A2A62C75B51BDB4F",
+      "optional": false,
+      "title": "Encode a Crafting Pattern"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "A2BE7DA11F998D0A",
+      "optional": true,
+      "title": "Defend the Arcane Grounds"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A2D26C98D567D239",
+      "optional": false,
+      "title": "Bulk Factory Storage"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A2E7482F4139D103",
+      "optional": false,
+      "title": "Threaded Enchantments"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "A2EFC08726A04440",
+      "optional": false,
+      "title": "Build Around the Sockets"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "A2F1BA07FC096B52",
+      "optional": false,
+      "title": "First Flight"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A35714AEAFA7479F",
+      "optional": true,
+      "title": "The Chicken or the Egg"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A37678A030180735",
+      "optional": false,
+      "title": "Fast Food"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "A380CF3730F3FD59",
+      "optional": true,
+      "title": "A Million Things"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A38C1BAE1D6F8FA0",
+      "optional": true,
+      "title": "Build the Quantum Ring"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A393484D99BC4641",
+      "optional": false,
+      "title": "Harness the High Winds"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "A3B41B28620BF54B",
+      "optional": false,
+      "title": "A Socketed Loadout"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A4249FA3297C605B",
+      "optional": true,
+      "title": "A Source for Every Situation"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A4430F2F080370F6",
+      "optional": false,
+      "title": "Push Items Where Needed"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "A454168BC07AC6F6",
+      "optional": false,
+      "title": "A Drill for Every Job"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A45762366BF24115",
+      "optional": true,
+      "title": "Define the Structure"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A4783D8F61602502",
+      "optional": false,
+      "title": "Thirty-Two Lanes"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "A4BF60171DB7E683",
+      "optional": false,
+      "title": "An Inventory at a Distance"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A4E7E65996822E1B",
+      "optional": false,
+      "title": "Describe a Machine Process"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A4ECC2D2E7B95A2A",
+      "optional": false,
+      "title": "Renewable Timber"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 3,
+      "id": "A4EDEB8B697A1006",
+      "optional": false,
+      "title": "Power in Words"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A4F5770E8A7FD1EE",
+      "optional": false,
+      "title": "Bottle the Current"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 3,
+      "id": "A4F702BF298458F9",
+      "optional": false,
+      "title": "Actually Equipped"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A5181DF98801BFE6",
+      "optional": true,
+      "title": "Work in Parallel"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A53AF62A74F8E4BF",
+      "optional": false,
+      "title": "A Place to Work"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A54160D4E7775AF1",
+      "optional": true,
+      "title": "Matter under Pressure"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "A5765B7B78F3D8E0",
+      "optional": false,
+      "title": "The Canola Power Loop"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 2,
+      "id": "A57AB0E93C7E7635",
+      "optional": false,
+      "title": "A Faster Mount"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "A57B969E522D8D2E",
+      "optional": true,
+      "title": "Beyond Completion"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "A62AA427ADF8811E",
+      "optional": false,
+      "title": "Fortune on Demand"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 3,
+      "id": "A637EB22B7C77CDA",
+      "optional": false,
+      "title": "A Stable Nuclear Power Station"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 2,
+      "id": "A6808430A8AC05B4",
+      "optional": true,
+      "title": "Power beneath the Waves"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A6A56EBE14B7472B",
+      "optional": false,
+      "title": "Move Items Automatically"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "A6A73505D9D65BBA",
+      "optional": false,
+      "title": "Miner's Best Friend"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 3,
+      "id": "A6CF387A1471A729",
+      "optional": false,
+      "title": "The Archmage's Grimoire"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "A6D5AF54B25B7629",
+      "optional": false,
+      "title": "The Cartographer's Desk"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "A6D9B5F2B234E6F1",
+      "optional": true,
+      "title": "Run the Mythic Gauntlet"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "A6DD3A2275842DF7",
+      "optional": false,
+      "title": "The Electrified Factory"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A6E4CD1B9B30C6A5",
+      "optional": false,
+      "title": "Count the Channels"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A705F3E3BE0DFF82",
+      "optional": false,
+      "title": "A Precision Housing"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "A7100062D34FBA61",
+      "optional": false,
+      "title": "Void Crystal"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 2,
+      "id": "A71A267AFC948FBE",
+      "optional": false,
+      "title": "Engineering the Sky"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "A71FE75A6D7F509D",
+      "optional": false,
+      "title": "The Engineer's Best Friend"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A725DD84901F9A7A",
+      "optional": true,
+      "title": "Separate the Branches"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 3,
+      "id": "A749D47998D96B7E",
+      "optional": true,
+      "title": "The Integrated Mekanism Complex"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "A74C4DB7DB80353C",
+      "optional": true,
+      "title": "Underground Transit"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A74FB9340C09F796",
+      "optional": true,
+      "title": "A Weapon That Casts"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "A758291BA29B5FAF",
+      "optional": false,
+      "title": "Advanced Control"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A77B2B519863BE61",
+      "optional": false,
+      "title": "Imbue the Mundane"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "A78D2A48D0C09BA2",
+      "optional": true,
+      "title": "The Complete Homestead Workshop"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "A79ADBC289CBB991",
+      "optional": false,
+      "title": "Always Keep the Essentials"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "A7A1F49D1D59FD08",
+      "optional": true,
+      "title": "Disaster Drill"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A7E5A37B0B159E08",
+      "optional": true,
+      "title": "Build a Source Reservoir"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "A834402931029070",
+      "optional": true,
+      "title": "Every Socket Has a Job"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "A84B1F3171833F9B",
+      "optional": true,
+      "title": "An Empowered Stockroom"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "A85A27C0EE00B5C4",
+      "optional": true,
+      "title": "Emergency Rations"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 3,
+      "id": "A85C3BDC125C481C",
+      "optional": true,
+      "title": "Restore from a Network Failure"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "A868060874F46240",
+      "optional": true,
+      "title": "Push the Reactor"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A8761577762CB136",
+      "optional": false,
+      "title": "Contain the Waste"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "A88848765A7AEAFD",
+      "optional": false,
+      "title": "Empower the Crystals"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "A88FA86334651685",
+      "optional": false,
+      "title": "Magic for Everyday Work"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A8B49A75EC086BD9",
+      "optional": true,
+      "title": "Secure the Network"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "A8BF8FACEEBD5E95",
+      "optional": true,
+      "title": "The Archmage's Spell Archive"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "A8CBC8CAC1B4EC8A",
+      "optional": false,
+      "title": "Your First Locomotive"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "A8D32456D8AB794F",
+      "optional": false,
+      "title": "Spin It Faster"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "A8F1AA336D2FFBB8",
+      "optional": false,
+      "title": "Cut Above the Rest"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "A90812C36D68D0A7",
+      "optional": false,
+      "title": "Inject for Greater Yield"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "A94F27079A2C04BA",
+      "optional": false,
+      "title": "Gather Wood"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "A957FC8B1FA55040",
+      "optional": true,
+      "title": "Traveling Companions"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "A97629F51D2A1191",
+      "optional": false,
+      "title": "Three Ingots per Ore"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A9A230AEE12A7A79",
+      "optional": true,
+      "title": "Smoke on the Breeze"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "A9A41799F8AA3CA1",
+      "optional": false,
+      "title": "Power from Heat"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 3,
+      "id": "A9C77A0C21EC9A95",
+      "optional": true,
+      "title": "Master of Every Discipline"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "A9E0FCFE85A29061",
+      "optional": false,
+      "title": "Disconnect on Demand"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "A9FC6C72C3E6FC36",
+      "optional": false,
+      "title": "Master of the ME Network"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "AA0D037CCABC1D9D",
+      "optional": false,
+      "title": "The Blue Metal"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "AA8B64CAF7398B97",
+      "optional": false,
+      "title": "Sophisticated Cargo"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "AA9B42E287FDB0C6",
+      "optional": false,
+      "title": "Filtered Logistics"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "AAD8807D22C1BADF",
+      "optional": false,
+      "title": "The Four Presses"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "AB00CE83D702A823",
+      "optional": true,
+      "title": "Remnants of the Piglins"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "AB6B7E01C5686691",
+      "optional": false,
+      "title": "Power from the Fields"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "AB6BE981A573966E",
+      "optional": false,
+      "title": "A Window into Storage"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "AB8BA193D598B0A8",
+      "optional": false,
+      "title": "A Library of Possibilities"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "AB96CC82C83D90D9",
+      "optional": true,
+      "title": "Cities at the Edge"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "AB9C5E88FB1FDAD9",
+      "optional": false,
+      "title": "The Enchanting Apparatus"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "ABA24462997D0B7E",
+      "optional": false,
+      "title": "Press into the Basin"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "ABA318CFB591F5AE",
+      "optional": false,
+      "title": "Thinking in Motion"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 2,
+      "id": "ABE5D2024E1580C1",
+      "optional": true,
+      "title": "Drain the Monument"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "ABE733A6CB5B1624",
+      "optional": true,
+      "title": "Boss Rush"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 6,
+      "id": "AC9F2919C5100A37",
+      "optional": false,
+      "title": "A Working Processing Line"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "ACA23C8218E75173",
+      "optional": false,
+      "title": "Master of Automation"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "ACD1B4D74A52286E",
+      "optional": false,
+      "title": "Fluix Formation"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "ACE9D78DD7767BE3",
+      "optional": false,
+      "title": "Endgame Arsenal"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "ACF91C42BFB38EFC",
+      "optional": false,
+      "title": "A Garden Underground"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "AD1F4E90E449074B",
+      "optional": false,
+      "title": "Harness the Current"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "AD2CCB825545CE30",
+      "optional": false,
+      "title": "Industrial Steel"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "AD3B35FE7F3B413A",
+      "optional": true,
+      "title": "Store a Room"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "AD4F03355AD934B8",
+      "optional": false,
+      "title": "A Powered Processing Line"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "AD8973AE02566CBB",
+      "optional": false,
+      "title": "Buried in Sand"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 3,
+      "id": "AD9BC27565B1BF45",
+      "optional": false,
+      "title": "Prepare the Empowerer"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "ADA3FFB7E07964E5",
+      "optional": false,
+      "title": "Conductive Metal"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "ADA932A5750A959A",
+      "optional": true,
+      "title": "The Megafactory"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "ADAB9C6863C362CF",
+      "optional": false,
+      "title": "One Face, Many Inventories"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "ADBC773F4E498B89",
+      "optional": false,
+      "title": "The Alloy That Starts It All"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "ADF01D28576E9C4A",
+      "optional": true,
+      "title": "A Mechanical Companion"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "AE097681990BD3FE",
+      "optional": true,
+      "title": "Detect Passing Trains"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "AE1010D11B1F94A0",
+      "optional": false,
+      "title": "Palis"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "AE484099900614BD",
+      "optional": true,
+      "title": "Hero of the Village"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "AE789AF2A07613DF",
+      "optional": true,
+      "title": "A Legendary Loadout"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "AE9662864259F245",
+      "optional": false,
+      "title": "Precision Motor Control"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "AE9D39429B5A2836",
+      "optional": true,
+      "title": "A Grid-Sized Battery"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "AEA58432C60A98F6",
+      "optional": false,
+      "title": "The Network Crafts for You"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "AEC5D374610E1741",
+      "optional": true,
+      "title": "Take It Vertical"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "AEDA82FCA6CD8E34",
+      "optional": false,
+      "title": "Craft from the Network"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "AF0DE77EEB143D10",
+      "optional": true,
+      "title": "Into the Nether Wilds"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "AF3477333CA5AF26",
+      "optional": false,
+      "title": "Stock What Machines Need"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "AF36A22B610743C5",
+      "optional": true,
+      "title": "Restart from Darkness"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "AF500466035EE361",
+      "optional": true,
+      "title": "Bottled Sunshine"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "AF519C86336AC5AB",
+      "optional": true,
+      "title": "Fields of Orange"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "AF5B381D3887B404",
+      "optional": true,
+      "title": "Weapon of Legend"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "AF9D2635BF0B5622",
+      "optional": false,
+      "title": "Modify the Formula"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 2,
+      "id": "AFC1DB6AD2C604D6",
+      "optional": false,
+      "title": "The End, Revisited"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "AFC2753344996824",
+      "optional": false,
+      "title": "Crafting on Demand"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "AFC3502C21C42A87",
+      "optional": false,
+      "title": "Adventure Awaits"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 3,
+      "id": "AFC4F321C39227FF",
+      "optional": false,
+      "title": "From Base to Industrial City"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "AFD8A67B8C4C08B0",
+      "optional": false,
+      "title": "Reach the Player"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "AFE7F2B93837D38E",
+      "optional": false,
+      "title": "Propulsion Online"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "B00A78B6A0EB8B14",
+      "optional": false,
+      "title": "Automated Freight"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B0321D75604FA303",
+      "optional": false,
+      "title": "Bring the CPU Online"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "B032FFB2DD08F812",
+      "optional": false,
+      "title": "Iron Veins"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B0617CFEB4A3B624",
+      "optional": false,
+      "title": "Reusable Cell Housing"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B06F8EAD9707BD81",
+      "optional": false,
+      "title": "A Stronger Current"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B077DD429E9F183A",
+      "optional": false,
+      "title": "Beyond Vanilla Limits"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "B07B0186EE6AB982",
+      "optional": false,
+      "title": "Keep Your Distance"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B0925ADA471A16B8",
+      "optional": false,
+      "title": "Store the Chemicals"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "B0E60583E8751C2B",
+      "optional": false,
+      "title": "Build a Crafting CPU"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B0F5257B504A882F",
+      "optional": false,
+      "title": "Hold It Together"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "B11FE991121198E4",
+      "optional": true,
+      "title": "Prepare a Second Build"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B139531EE751B64E",
+      "optional": false,
+      "title": "Recover Between Casts"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B153151D51E06B70",
+      "optional": true,
+      "title": "The Business End"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "B161A0B71156120C",
+      "optional": false,
+      "title": "Industrial Reserve"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B17468A4DE681B0F",
+      "optional": true,
+      "title": "Radioactive Logistics"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "B17B174DF8E6BDDD",
+      "optional": false,
+      "title": "Components of Fission"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B1A1A0E2BCE1AF37",
+      "optional": true,
+      "title": "A Diversified Grid"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "B1A21DB8939C58B5",
+      "optional": true,
+      "title": "A Distant View"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "B1B931A3B6524919",
+      "optional": true,
+      "title": "A Reliable Staple"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B1CA30C820C4D545",
+      "optional": true,
+      "title": "Route around Failure"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B1CA813E827B3123",
+      "optional": true,
+      "title": "Armor of Legend"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B1EF07988A5F1190",
+      "optional": false,
+      "title": "Raise the Ceiling"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B222F5BBAD6F6DA7",
+      "optional": true,
+      "title": "Route Source with Purpose"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B231D67823C2E307",
+      "optional": true,
+      "title": "Reserve Power"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B24FAA272EB35E01",
+      "optional": false,
+      "title": "Thirty-Two Channels Through One Line"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B2694216E642CE93",
+      "optional": true,
+      "title": "Power Where It Matters"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B276D1086BC4DB24",
+      "optional": false,
+      "title": "Crystallize the Product"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "B27AD0513ED20FBB",
+      "optional": false,
+      "title": "Power for the Worst Day"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "B2A477502A56E8CF",
+      "optional": true,
+      "title": "Fragments of the Past"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B2AE9BD6755DFEFF",
+      "optional": false,
+      "title": "Basic Control"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B2E09813AD2B53D8",
+      "optional": false,
+      "title": "Infuse Beyond Ordinary Crafting"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "B31A1C414CFF62F7",
+      "optional": false,
+      "title": "Open Water"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B32361D3EED7D5C8",
+      "optional": true,
+      "title": "The Actually Advanced Workshop"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "B3493D4523F9BB4B",
+      "optional": true,
+      "title": "A Strategic Antimatter Reserve"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B35C447EF716A33F",
+      "optional": false,
+      "title": "Certus Quartz"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B36280571FBB2132",
+      "optional": true,
+      "title": "Plan the Expanded Workshop"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "B36A1645844D78E6",
+      "optional": false,
+      "title": "Link with Light"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "B36ADC8892444351",
+      "optional": false,
+      "title": "A Spark of Possibility"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B37459E5008A1A4E",
+      "optional": false,
+      "title": "Automated Crafting Table"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "B37D400F8CFF7A5D",
+      "optional": false,
+      "title": "Endless Water"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B388A7FA0187EDF5",
+      "optional": false,
+      "title": "A Pedestal for Magic"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B38BD8C9CA5A9D96",
+      "optional": false,
+      "title": "Black Quartz"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B3AF9416579B3DF4",
+      "optional": false,
+      "title": "Lay the First Rails"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B3B54EEABCCBFA4F",
+      "optional": true,
+      "title": "Plan the Archmage's Workshop"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "B3C43E0ADE7AA8AC",
+      "optional": false,
+      "title": "Prepare Ore for Washing"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B3EA453F3158E134",
+      "optional": false,
+      "title": "A Home for Storage Cells"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "B3FDA8B852F1471F",
+      "optional": false,
+      "title": "Suit Up"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "B402E30F194D520F",
+      "optional": false,
+      "title": "A Place to Craft"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B40FCC69A643CC90",
+      "optional": false,
+      "title": "Printed Silicon"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B41F5908E8D84A9D",
+      "optional": false,
+      "title": "Cut to Shape"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B42C4B0DA4320CA2",
+      "optional": false,
+      "title": "Twice the Throughput"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B4318579C5EF37E5",
+      "optional": false,
+      "title": "Collect the Flow"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B44C03A2E84281B7",
+      "optional": false,
+      "title": "Calculation Processor"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "B44D6A57904F26ED",
+      "optional": false,
+      "title": "Carry the Current"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B453BB06FD7DF238",
+      "optional": true,
+      "title": "Light the Artificial Sun"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "B46E9F1208FEB20C",
+      "optional": true,
+      "title": "Center of Town"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B484583659A21C16",
+      "optional": false,
+      "title": "Process in Batches"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B484AB12056ECD8F",
+      "optional": false,
+      "title": "Preserve the Best Enchantments"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 2,
+      "id": "B492D2FF61985422",
+      "optional": false,
+      "title": "Industry Takes Flight"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "B4B67154F5A491A6",
+      "optional": false,
+      "title": "Assemble the Battery"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B4D85603A05195C0",
+      "optional": false,
+      "title": "Enori"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B4F6B55D67DF1A5A",
+      "optional": false,
+      "title": "Instructions Await"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B4F7B9CBC9ADD1C4",
+      "optional": false,
+      "title": "Keep Things Moving"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "B51B772F4775297A",
+      "optional": false,
+      "title": "A Connected Railway"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B52D8835DA07488B",
+      "optional": true,
+      "title": "Powered Equipment Trial"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 3,
+      "id": "B555077192EAE77B",
+      "optional": false,
+      "title": "Ready for Mechanical Processing"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "B5637721B22A8F27",
+      "optional": false,
+      "title": "A Cut Above"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B56824684E876134",
+      "optional": true,
+      "title": "Empowered Diamatine"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "B5A99C3A3A62A1EF",
+      "optional": false,
+      "title": "Refined Copper"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "B5BBE951DA0D4B19",
+      "optional": false,
+      "title": "Paper Trail"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "B5BCE2998697F111",
+      "optional": false,
+      "title": "All That Glitters"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 6,
+      "id": "B5DAA8D1C8F96727",
+      "optional": false,
+      "title": "A Reconstructed Workshop"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B600C574DC364ACF",
+      "optional": false,
+      "title": "Smelting without Fuel"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "B6153F2046B77FB8",
+      "optional": true,
+      "title": "Treasury of Rarities"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "B626AC759387A7EF",
+      "optional": false,
+      "title": "The Deep Dark Stone"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B64DB0DA9A542B02",
+      "optional": false,
+      "title": "Gems Worth Keeping"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B6B8C33654AB5D5A",
+      "optional": false,
+      "title": "Power from Solid Fuel"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B7073653189A6AB2",
+      "optional": false,
+      "title": "Your First Digital Storage"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 4,
+      "id": "B718462454CD6D43",
+      "optional": false,
+      "title": "An Actually Automated Workshop"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "B747455529E0D98D",
+      "optional": false,
+      "title": "Rewrite the Affixes"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B74A0466FD914402",
+      "optional": true,
+      "title": "Essences in Reserve"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "B755C061DAE051C5",
+      "optional": false,
+      "title": "Heavy Engineering"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B759BC4982387FB0",
+      "optional": false,
+      "title": "Turn Steam into Power"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B75DF97580512ACE",
+      "optional": false,
+      "title": "Grinding Gears"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "B7634409768FD953",
+      "optional": false,
+      "title": "Blue Knowledge"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B79660C49D2C1A74",
+      "optional": false,
+      "title": "A Charged Discovery"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "B7A6CE85AC91DF4B",
+      "optional": false,
+      "title": "Connect the Network"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B7E098274A378F3B",
+      "optional": true,
+      "title": "Roll for a Purpose"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B7F034C699D7BDE4",
+      "optional": false,
+      "title": "Refine the Oil"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B81330E329DE3DF1",
+      "optional": true,
+      "title": "Scale the Canola Loop"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B8164EF6AC1B0796",
+      "optional": false,
+      "title": "Refine the Gem"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "B822885D3BC61710",
+      "optional": true,
+      "title": "Sustained Fusion"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B8411405EAF2DF28",
+      "optional": true,
+      "title": "Refine the Best"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B85D0DD91702A1CF",
+      "optional": false,
+      "title": "Guide the Flow"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "B85F6BBC41B5CA87",
+      "optional": false,
+      "title": "Acquire Hardware"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B877A8F58DAD6C28",
+      "optional": false,
+      "title": "Write Magic into Form"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "B8AEAEF7FAD06B08",
+      "optional": false,
+      "title": "Source from Growth"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B8CFF3DDB14B7C60",
+      "optional": false,
+      "title": "Nothing Powerful Goes to Waste"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B8E5D9FF69A4CD25",
+      "optional": false,
+      "title": "A Crop with Potential"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "B8F6C6BA08679235",
+      "optional": true,
+      "title": "Public Transit"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B8FDFD71DACF1E8A",
+      "optional": false,
+      "title": "Let Gravity Help"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "B9006FBF5ED29A5A",
+      "optional": false,
+      "title": "A Mechanical Hand"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B90E649D464DF6DC",
+      "optional": false,
+      "title": "Power by Hand"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B9162A5F51821070",
+      "optional": false,
+      "title": "Enchant with a Plan"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "B923E5CA57CB09D7",
+      "optional": false,
+      "title": "A Specialist Train"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "B94374ECD457E3F6",
+      "optional": false,
+      "title": "Move Like a Mage"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "B963CB46ABA30A7E",
+      "optional": false,
+      "title": "Pondering Possibilities"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "B98645362C471154",
+      "optional": true,
+      "title": "Across the Lava Sea"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 2,
+      "id": "B988AA247DE86327",
+      "optional": false,
+      "title": "A Factory That Runs Unattended"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "B98A1EB81C72FD01",
+      "optional": false,
+      "title": "Stone from Stone"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 4,
+      "id": "B98EB7625C1717E0",
+      "optional": false,
+      "title": "Ready for Factory Tiers"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 2,
+      "id": "B9A8B723D0255D65",
+      "optional": false,
+      "title": "Never Truly Lost"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "B9B76BE8F7309733",
+      "optional": true,
+      "title": "Empowered Palis"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "B9FD84D3EC0EF312",
+      "optional": true,
+      "title": "Build Multiple Shelf Profiles"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "BA004962B32CC583",
+      "optional": false,
+      "title": "Reforge with Intent"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "dependencies": 1,
+      "id": "BA0BB7279D7AB190",
+      "optional": false,
+      "title": "Secure a Meal"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "BA1629E13B48DED0",
+      "optional": false,
+      "title": "Contain the Wither"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "BA31AB8910CE5D02",
+      "optional": false,
+      "title": "Give the Train a Plan"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BA3C0E49711BE95A",
+      "optional": true,
+      "title": "The Remote Workshop Annex"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "BA55076B2D38B8F4",
+      "optional": false,
+      "title": "Daily Bread"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 4,
+      "id": "BA5939A712FEAE89",
+      "optional": false,
+      "title": "An Arcane Workshop"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "BA6E2A4E49A56B01",
+      "optional": true,
+      "title": "Guardians of the Deep"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "BA7985C09CE173DE",
+      "optional": false,
+      "title": "Stir Things Up"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "BA9FCA36AF0BDEEB",
+      "optional": false,
+      "title": "Flatten the Metal"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 2,
+      "id": "BAA0861A9C3F146E",
+      "optional": false,
+      "title": "Diamonds!"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "BABF491C05EEF2A1",
+      "optional": true,
+      "title": "Power a Remote Magical Outpost"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "BAEA2E1A822B7589",
+      "optional": true,
+      "title": "Industry beyond the Horizon"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 2,
+      "id": "BAF02F981712573A",
+      "optional": false,
+      "title": "Split and Sort"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "BAF964EF2F4351F5",
+      "optional": true,
+      "title": "The Supercritical Phase Shifter"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "BB2F5F64FBB1F573",
+      "optional": true,
+      "title": "Black-Start Test"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "BB3EC930162B20E7",
+      "optional": false,
+      "title": "Copy the Link"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "BB78D41C38643BE7",
+      "optional": false,
+      "title": "Storage in Your Hand"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "BB888FDBFEEB6BDC",
+      "optional": false,
+      "title": "Networked Contraptions"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "BBFE712DC0E373E5",
+      "optional": true,
+      "title": "Archmage's Arsenal"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "BC3918DB5AECEBC7",
+      "optional": true,
+      "title": "Eyes toward the Stronghold"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "BC3E9AA3C7FDEF8E",
+      "optional": false,
+      "title": "Engineering Processor"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BC4C4891932BFDC3",
+      "optional": false,
+      "title": "Smelting on Demand"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BC757685B58142CF",
+      "optional": true,
+      "title": "Power from the Sun"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "BC7AE56054D3232E",
+      "optional": true,
+      "title": "A Home for the Hive"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "BC8F9F380EF22918",
+      "optional": false,
+      "title": "Produce Only What Is Needed"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "BCB7D2C2C2517A0C",
+      "optional": false,
+      "title": "Better Motors"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "BCB87C29FE7AB8A5",
+      "optional": false,
+      "title": "Read Before Replacing"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "BCBFA427740A3426",
+      "optional": true,
+      "title": "The Daily Catch"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "BD1A1FB31B32B99D",
+      "optional": false,
+      "title": "Gather from Afar"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "BD2503BE14791311",
+      "optional": true,
+      "title": "Faster and Smarter Buses"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "BD45B9B0899229B4",
+      "optional": true,
+      "title": "Matter's Opposite"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 1,
+      "id": "BD4F67EBAE056023",
+      "optional": false,
+      "title": "Hunt for Greater Power"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "BD59723E4005DFA8",
+      "optional": true,
+      "title": "Enchant the Keeper"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "BDBBC978DD22F50E",
+      "optional": false,
+      "title": "Gather Around the Fire"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BE3C5FA66FDF25AF",
+      "optional": true,
+      "title": "A Laser Relay Backbone"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 1,
+      "id": "BE43C3DA4AC9B60D",
+      "optional": false,
+      "title": "Reactor Reliability Trial"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "BE4CC733C50E4459",
+      "optional": true,
+      "title": "Slices for Everyone"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 2,
+      "id": "BE562EA84B4CACC6",
+      "optional": false,
+      "title": "Charge Items"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 2,
+      "id": "BE82448FFE736673",
+      "optional": true,
+      "title": "Clear the Dark Halls"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "dependencies": 2,
+      "id": "BE8E152EA08CFEC0",
+      "optional": false,
+      "title": "The First Apotheosis"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependencies": 1,
+      "id": "BEA82A645AF8E305",
+      "optional": true,
+      "title": "Continuous Production"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependencies": 1,
+      "id": "BECE81E59DCE75FB",
+      "optional": false,
+      "title": "Fuel from the Forest"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 2,
+      "id": "BED4B0B1D13805C5",
+      "optional": true,
+      "title": "Shape the SPS"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "dependencies": 2,
+      "id": "BEDEE3E1EDBB7154",
+      "optional": false,
+      "title": "Immersive Adventure Complete"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 1,
+      "id": "BEF7829B331D6426",
+      "optional": false,
+      "title": "Trees Touched by Magic"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BF25D46119E659C8",
+      "optional": false,
+      "title": "Expand the Buffer"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BF301A499CB5989E",
+      "optional": false,
+      "title": "Fields without Footsteps"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependencies": 1,
+      "id": "BF307F44967ABAE9",
+      "optional": true,
+      "title": "A Factory Dashboard"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "BF3C4D9AAB1DEC09",
+      "optional": false,
+      "title": "Respect Radiation"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependencies": 1,
+      "id": "BF567BD87BAB9DA7",
+      "optional": false,
+      "title": "Clear a Wider Tunnel"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependencies": 1,
+      "id": "BF5F62806F210529",
+      "optional": false,
+      "title": "Find Your Way Home"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "BF6BC6174D4EBEEA",
+      "optional": false,
+      "title": "Beneath the Surface"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependencies": 1,
+      "id": "BF6FDBC9EB6ABBB9",
+      "optional": false,
+      "title": "Strike a Spark"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 2,
+      "id": "BF80958ADB5F9A3A",
+      "optional": false,
+      "title": "Request the First Autocraft"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependencies": 1,
+      "id": "BFB25574E8F03D3C",
+      "optional": false,
+      "title": "Portable Charge"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependencies": 1,
+      "id": "BFBE373A7DEC902F",
+      "optional": true,
+      "title": "A Larger Crafting Brain"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 1,
+      "id": "BFBEEE7AD8BAB210",
+      "optional": false,
+      "title": "The Engine House"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependencies": 2,
+      "id": "BFD04978194CCFF9",
+      "optional": true,
+      "title": "Magic on Command"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependencies": 4,
+      "id": "BFE0DB70C9572947",
+      "optional": false,
+      "title": "Master of Expanded Engineering"
+    }
+  ]
+}

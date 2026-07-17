@@ -7,6 +7,7 @@ from content import create_project
 from generator.audit import audit_project
 from generator.build import build
 from generator.dependency_audit import audit_dependencies
+from generator.dependency_graph import build_dependency_graph
 from generator.parser import FTBQuestParser
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.release_check import run_release_check
@@ -46,6 +47,17 @@ def create_parser() -> argparse.ArgumentParser:
     dependency.add_argument(
         "--strict", action="store_true",
         help="Return a non-zero exit code when progression defects are detected.",
+    )
+    graph = subparsers.add_parser(
+        "dependency-graph",
+        help="Export the authored quest progression graph as Graphviz DOT or JSON.",
+    )
+    graph.add_argument(
+        "--format", choices=("dot", "json"), default="dot",
+        help="Select Graphviz DOT or machine-readable JSON output.",
+    )
+    graph.add_argument(
+        "--output", type=Path, help="Write the graph to a file instead of standard output."
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -165,6 +177,16 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if report.is_clean or not args.strict else 1
+
+    if args.command == "dependency-graph":
+        graph = build_dependency_graph(create_project())
+        rendered = graph.format_json() if args.format == "json" else graph.format_dot()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0
 
     if args.command == "registry-audit":
         audit = audit_registry(create_project(), args.sources)
