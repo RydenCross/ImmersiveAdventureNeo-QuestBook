@@ -1,90 +1,126 @@
 from __future__ import annotations
 
-from pathlib import Path
+from dataclasses import dataclass
+import re
 from typing import Any
-from uuid import UUID
-
-from generator.snbt import loads
-from model import Chapter, Dependency, Difficulty, Position, Project, Quest, Reward, RewardType, Task, TaskType
 
 
-def ftb_id_to_uuid(ftb_id: str) -> UUID:
-    return UUID(int=int(ftb_id, 16))
+class SNBTParseError(ValueError):
+    pass
 
 
-class FTBQuestParser:
-    def load(self, root: str | Path) -> Project:
-        root_path = Path(root)
-        quests_root = root_path / "quests" if (root_path / "quests").is_dir() else root_path
-        data = self._read(quests_root / "data.snbt")
-        language = self._read(quests_root / "lang" / f"{data.get('fallback_locale', 'en_us')}.snbt")
-        project = Project(
-            name="Immersive Adventure Neo",
-            version=str(data.get("version", "unknown")),
-            language={str(k): str(v) for k, v in language.items()},
-        )
-        for chapter_file in sorted((quests_root / "chapters").glob("*.snbt")):
-            project.add_chapter(self._chapter(self._read(chapter_file), project.language))
-        return project
+@dataclass(slots=True)
+class Token:
+    kind: str
+    value: str
+    pos: int
+
+
+_TOKEN_RE = re.compile(
+    r'''\s*(?:(?P<string>"(?:\\.|[^"\\])*")|(?P<number>[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?[bBsSlLfFdD]?)|(?P<ident>[A-Za-z0-9_+\-./]+)|(?P<punct>[{}\[\],;:]))'''
+)
+
+
+def tokenize(text: str) -> list[Token]:
+    tokens: list[Token] = []
+    pos = 0
+    while pos < len(text):
+        match = _TOKEN_RE.match(text, pos)
+        if not match:
+            if text[pos:].strip() == "":
+                break
+            raise SNBTParseError(f"Unexpected character at offset {pos}: {text[pos:pos+20]!r}")
+        kind = next(name for name, value in match.groupdict().items() if value is not None)
+        tokens.append(Token(kind, match.group(kind), pos))
+        pos = match.end()
+    return tokens
+
+
+class SNBTParser:
+    def __init__(self, text: str):
+        self.tokens = tokenize(text)
+        self.index = 0
+
+    def parse(self) -> Any:
+        value = self._value()
+        if self.index != len(self.tokens):
+            token = self.tokens[self.index]
+            raise SNBTParseError(f"Unexpected token {token.value!r} at offset {token.pos}")
+        return value
+
+    def _peek(self, value: str | None = None) -> Token | None:
+        if self.index >= len(self.tokens):
+            return None
+        token = self.tokens[self.index]
+        return token if value is None or token.value == value else None
+
+    def _take(self, value: str | None = None) -> Token:
+        token = self._peek(value)
+        if token is None:
+            expected = value or "token"
+            actual = self.tokens[self.index].value if self.index < len(self.tokens) else "EOF"
+            raise SNBTParseError(f"Expected {expected}, got {actual}")
+        self.index += 1
+        return token
+
+    def _value(self) -> Any:
+        token = self._peek()
+        if token is None:
+            raise SNBTParseError("Unexpected end of input")
+        if token.value == "{":
+            return self._compound()
+        if token.value == "[":
+            return self._list_or_array()
+        self.index += 1
+        if token.kind == "string":
+            return bytes(token.value[1:-1], "utf-8").decode("unicode_escape")
+        if token.kind == "number":
+            return self._number(token.value)
+        if token.value == "true":
+            return True
+        if token.value == "false":
+            return False
+        return token.value
+
+    def _key(self) -> str:
+        token = self._take()
+        if token.kind == "string":
+            return bytes(token.value[1:-1], "utf-8").decode("unicode_escape")
+        return token.value
+
+    def _compound(self) -> dict[str, Any]:
+        self._take("{")
+        result: dict[str, Any] = {}
+        while not self._peek("}"):
+            key = self._key()
+            self._take(":")
+            result[key] = self._value()
+            if self._peek(","):
+                self._take(",")
+        self._take("}")
+        return result
+
+    def _list_or_array(self) -> list[Any]:
+        self._take("[")
+        if self._peek() and self._peek().kind == "ident" and self._peek().value in {"B", "I", "L"}:
+            self._take()
+            self._take(";")
+        result: list[Any] = []
+        while not self._peek("]"):
+            result.append(self._value())
+            if self._peek(","):
+                self._take(",")
+        self._take("]")
+        return result
 
     @staticmethod
-    def _read(path: Path) -> dict[str, Any]:
-        if not path.exists():
-            return {}
-        parsed = loads(path.read_text(encoding="utf-8"))
-        if not isinstance(parsed, dict):
-            raise ValueError(f"Expected compound root in {path}")
-        return parsed
+    def _number(value: str) -> int | float:
+        suffix = value[-1].lower() if value[-1].isalpha() else ""
+        core = value[:-1] if suffix else value
+        if suffix in {"f", "d"} or "." in core or "e" in core.lower():
+            return float(core)
+        return int(core)
 
-    def _chapter(self, raw: dict[str, Any], lang: dict[str, str]) -> Chapter:
-        ftb_id = str(raw["id"])
-        chapter = Chapter(
-            id=str(raw.get("filename", ftb_id.lower())),
-            uuid=ftb_id_to_uuid(ftb_id),
-            title=lang.get(f"chapter.{ftb_id}.title", str(raw.get("filename", ftb_id))),
-            icon=str(raw.get("icon", "minecraft:book")),
-            group=str(raw.get("group", "")) or None,
-            description=lang.get(f"chapter.{ftb_id}.subtitle", ""),
-            ftb_id=ftb_id,
-            raw_data=raw,
-        )
-        for quest_raw in raw.get("quests", []):
-            chapter.add_quest(self._quest(quest_raw, lang))
-        return chapter
 
-    def _quest(self, raw: dict[str, Any], lang: dict[str, str]) -> Quest:
-        ftb_id = str(raw["id"])
-        dependencies = [Dependency(str(parent)) for parent in raw.get("dependencies", [])]
-        tasks = [self._task(task) for task in raw.get("tasks", [])]
-        rewards = [self._reward(reward) for reward in raw.get("rewards", [])]
-        return Quest(
-            id=ftb_id,
-            uuid=ftb_id_to_uuid(ftb_id),
-            title=lang.get(f"quest.{ftb_id}.title", ftb_id),
-            description=lang.get(f"quest.{ftb_id}.subtitle", ""),
-            icon=str(raw.get("icon", "minecraft:paper")),
-            tasks=tasks,
-            rewards=rewards,
-            dependencies=dependencies,
-            position=Position(float(raw.get("x", 0.0)), float(raw.get("y", 0.0))),
-            difficulty=Difficulty.NORMAL,
-            hidden=bool(raw.get("hide", False)),
-            repeatable=bool(raw.get("repeatable", False)),
-            optional=bool(raw.get("optional", False)),
-            ftb_id=ftb_id,
-            raw_data=raw,
-        )
-
-    @staticmethod
-    def _task(raw: dict[str, Any]) -> Task:
-        task_type_raw = str(raw.get("type", "custom"))
-        task_type = TaskType(task_type_raw) if task_type_raw in TaskType._value2member_map_ else TaskType.CUSTOM
-        ftb_id = str(raw.get("id", ""))
-        return Task(id=ftb_id, type=task_type, data={k: v for k, v in raw.items() if k not in {"id", "type"}}, raw_data=raw)
-
-    @staticmethod
-    def _reward(raw: dict[str, Any]) -> Reward:
-        reward_type_raw = str(raw.get("type", "custom"))
-        reward_type = RewardType(reward_type_raw) if reward_type_raw in RewardType._value2member_map_ else RewardType.CUSTOM
-        ftb_id = str(raw.get("id", ""))
-        return Reward(id=ftb_id, type=reward_type, data={k: v for k, v in raw.items() if k not in {"id", "type"}}, raw_data=raw)
+def loads(text: str) -> Any:
+    return SNBTParser(text).parse()
