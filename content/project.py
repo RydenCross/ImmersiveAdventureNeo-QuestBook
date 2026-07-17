@@ -6,6 +6,7 @@ from content.ae2 import build_ae2
 from content.create import build_create
 from content.mekanism import build_mekanism
 from content.endgame import build_endgame
+from content.challenges import build_challenges
 from model import Project
 
 
@@ -1105,7 +1106,7 @@ def create_project() -> Project:
     apotheosis_complete = build_apotheosis(project, ars_complete)
     ae2_complete = build_ae2(project, apotheosis_complete)
     mekanism_complete = build_mekanism(project, ae2_complete)
-    build_endgame(
+    endgame_complete = build_endgame(
         project,
         create_complete,
         actually_additions_complete,
@@ -1114,4 +1115,5 @@ def create_project() -> Project:
         ae2_complete,
         mekanism_complete,
     )
+    build_challenges(project, endgame_complete)
     return project

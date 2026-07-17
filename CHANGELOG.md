@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Added a 30-quest optional Challenges chapter covering megaprojects, stockpiles, automation, power reliability, magic, bosses, exploration, and completionist goals.
+
 - Added a 24-quest Endgame chapter unifying automation, magic, equipment, storage, logistics, nuclear power, and final mastery objectives.
 
 - Added 20 Mekanism Power and Reactors quests covering renewable generation, induction storage, fission safety, waste handling, turbines, and nuclear power mastery.

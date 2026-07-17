@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 11
-    assert len(project.quests) == 455
+    assert len(project.chapters) == 12
+    assert len(project.quests) == 485
 
 
 def test_quest_ids_are_stable() -> None:
@@ -389,3 +389,33 @@ def test_endgame_combines_infrastructure_and_final_challenges() -> None:
     assert endgame.quests.index(continuous) < endgame.quests.index(city)
     assert endgame.quests.index(city) < endgame.quests.index(dragon)
     assert complete.ftb_id == endgame.quests[-1].ftb_id
+
+
+def test_challenges_unlock_after_endgame_completion() -> None:
+    project = create_project()
+    endgame = project.get_chapter("10_endgame")
+    challenges = project.get_chapter("11_challenges")
+
+    assert endgame is not None
+    assert challenges is not None
+    assert challenges.quests[0].dependencies[0].quest_id == endgame.quests[-1].ftb_id
+    assert len(challenges.quests) == 30
+    assert challenges.quests[-1].title == "The Immersive Completionist"
+    assert all(quest.optional for quest in challenges.quests)
+
+
+def test_challenges_cover_factories_power_adventure_and_building() -> None:
+    project = create_project()
+    challenges = project.get_chapter("11_challenges")
+
+    assert challenges is not None
+    factory = next(q for q in challenges.quests if q.title == "The Megafactory")
+    reactor = next(q for q in challenges.quests if q.title == "Push the Reactor")
+    boss = next(q for q in challenges.quests if q.title == "Boss Rush")
+    city = next(q for q in challenges.quests if q.title == "A Living City")
+    completion = next(q for q in challenges.quests if q.title == "The Immersive Completionist")
+
+    assert challenges.quests.index(factory) < challenges.quests.index(city)
+    assert challenges.quests.index(reactor) < challenges.quests.index(completion)
+    assert challenges.quests.index(boss) < challenges.quests.index(completion)
+    assert completion.ftb_id == challenges.quests[-1].ftb_id
