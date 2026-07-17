@@ -1,6 +1,7 @@
 from generator.builder import ChapterBuilder
 from content.actually_additions import build_actually_additions
 from content.ars_nouveau import build_ars_nouveau
+from content.apotheosis import build_apotheosis
 from content.create import build_create
 from model import Project
 
@@ -1097,5 +1098,6 @@ def create_project() -> Project:
     _build_exploration(project, survival_complete)
     create_complete = build_create(project, mining_complete)
     actually_additions_complete = build_actually_additions(project, create_complete)
-    build_ars_nouveau(project, actually_additions_complete)
+    ars_complete = build_ars_nouveau(project, actually_additions_complete)
+    build_apotheosis(project, ars_complete)
     return project

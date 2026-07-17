@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 7
-    assert len(project.quests) == 264
+    assert len(project.chapters) == 8
+    assert len(project.quests) == 286
 
 
 def test_quest_ids_are_stable() -> None:
@@ -181,3 +181,32 @@ def test_ars_nouveau_spellcraft_follows_foundations() -> None:
     assert ars.quests.index(archmage) < ars.quests.index(complete)
     assert complete.ftb_id == ars.quests[-1].ftb_id
     assert len(ars.quests) == 41
+
+
+def test_apotheosis_depends_on_ars_nouveau_completion() -> None:
+    project = create_project()
+    ars = project.get_chapter("06_ars_nouveau")
+    apotheosis = project.get_chapter("07_apotheosis")
+
+    assert ars is not None
+    assert apotheosis is not None
+    assert apotheosis.quests[0].dependencies[0].quest_id == ars.quests[-1].ftb_id
+    assert len(apotheosis.quests) == 22
+    assert apotheosis.quests[-1].title == "The First Apotheosis"
+
+
+def test_apotheosis_foundations_cover_gear_gems_and_enchanting() -> None:
+    project = create_project()
+    apotheosis = project.get_chapter("07_apotheosis")
+
+    assert apotheosis is not None
+    salvage = next(q for q in apotheosis.quests if q.title == "Nothing Powerful Goes to Waste")
+    reforge = next(q for q in apotheosis.quests if q.title == "Rewrite the Affixes")
+    socket = next(q for q in apotheosis.quests if q.title == "Set the Gem")
+    enchant = next(q for q in apotheosis.quests if q.title == "Beyond Vanilla Limits")
+    complete = next(q for q in apotheosis.quests if q.title == "The First Apotheosis")
+
+    assert apotheosis.quests.index(salvage) < apotheosis.quests.index(reforge)
+    assert apotheosis.quests.index(reforge) < apotheosis.quests.index(socket)
+    assert apotheosis.quests.index(enchant) < apotheosis.quests.index(complete)
+    assert complete.ftb_id == apotheosis.quests[-1].ftb_id
