@@ -6,11 +6,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
@@ -18,47 +16,12 @@ jobs:
           python-version: "3.12"
 
       - run: pip install .[dev]
-
       - run: black --check .
-
       - run: ruff check .
-
       - run: pytest
-
-      - run: python -m generator release-check
-
-      - run: python -m generator release-guard
-
-      - run: python -m generator dependency-audit --strict
-
-      - run: python -m generator progression-metrics --format json --output reports/progression-metrics.json
-
-      - run: python -m generator progression-guard --format json --output reports/progression-guard.json
-
-      - run: python -m generator identity-guard --format json --output reports/identity-guard.json
-
-      - run: python -m generator contract-guard --format json --output reports/contract-guard.json
-
-      - run: python -m generator reward-audit --strict --format json --output reports/reward-audit.json
-
-      - run: python -m generator task-audit --strict --format json --output reports/task-audit.json
-
-      - run: python -m generator chapter-audit --strict --format json --output reports/chapter-audit.json
-
-      - run: python -m generator text-audit --strict --format json --output reports/text-audit.json
-
-      - run: python -m generator determinism-audit --strict --format json --output reports/determinism-audit.json
-
-      - run: python -m generator output-manifest-guard --format json --output reports/output-manifest-guard.json
-
-      - run: python -m generator report-freshness-guard --format json --output reports/report-freshness-guard.json
+      - run: python -m generator quality-gate --format json --output reports/quality-gate.json
 
       - uses: actions/upload-artifact@v4
         with:
           name: release-analysis-reports
-          path: |
-            reports/progression-metrics.json
-            reports/progression-guard.json
-            reports/identity-guard.json
-            reports/contract-guard.json
-            reports/reward-audit.json
+          path: reports/*.json

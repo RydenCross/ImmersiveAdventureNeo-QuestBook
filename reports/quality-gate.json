@@ -1,0 +1,69 @@
+{
+  "checked": 12,
+  "checks": [
+    {
+      "detail": "clean",
+      "name": "release guard",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "dependency audit",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "progression guard",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "identity guard",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "contract guard",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "reward audit",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "task audit",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "chapter audit",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "text audit",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "determinism audit",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "output manifest guard",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report freshness guard",
+      "status": "pass"
+    }
+  ],
+  "failed": 0,
+  "failed_checks": [],
+  "passed": 12,
+  "status": "pass"
+}

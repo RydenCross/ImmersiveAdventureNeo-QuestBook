@@ -1,0 +1,112 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+import json
+from typing import Callable, Mapping
+
+from content import create_project
+from generator.chapter_audit import run_chapter_audit
+from generator.contract_guard import run_contract_guard
+from generator.dependency_audit import audit_dependencies
+from generator.determinism_audit import run_determinism_audit
+from generator.identity_guard import run_identity_guard
+from generator.output_manifest import run_output_manifest_guard
+from generator.progression_guard import run_progression_guard
+from generator.release_guard import run_release_guard
+from generator.report_freshness import run_report_freshness_guard
+from generator.reward_audit import run_reward_audit
+from generator.task_audit import run_task_audit
+from generator.text_audit import run_text_audit
+
+
+@dataclass(frozen=True, slots=True)
+class QualityCheck:
+    name: str
+    passed: bool
+    detail: str
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "name": self.name,
+            "status": "pass" if self.passed else "fail",
+            "detail": self.detail,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class QualityGate:
+    checks: tuple[QualityCheck, ...]
+
+    @property
+    def is_clean(self) -> bool:
+        return all(check.passed for check in self.checks)
+
+    @property
+    def passed_count(self) -> int:
+        return sum(check.passed for check in self.checks)
+
+    @property
+    def failed_checks(self) -> tuple[str, ...]:
+        return tuple(check.name for check in self.checks if not check.passed)
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "status": "pass" if self.is_clean else "fail",
+            "checked": len(self.checks),
+            "passed": self.passed_count,
+            "failed": len(self.failed_checks),
+            "failed_checks": list(self.failed_checks),
+            "checks": [check.to_dict() for check in self.checks],
+        }
+
+    def format_json(self) -> str:
+        return json.dumps(self.to_dict(), indent=2, sort_keys=True)
+
+    def format(self) -> str:
+        lines = [
+            f"Quality gate: {'PASS' if self.is_clean else 'FAIL'}",
+            f"Checks: {len(self.checks)}.",
+            f"Passed: {self.passed_count}.",
+            f"Failed: {len(self.failed_checks)}.",
+        ]
+        lines.extend(
+            f"[{'PASS' if check.passed else 'FAIL'}] {check.name}: {check.detail}"
+            for check in self.checks
+        )
+        return "\n".join(lines)
+
+
+def _default_checks() -> dict[str, Callable[[], object]]:
+    project = create_project()
+    return {
+        "release guard": run_release_guard,
+        "dependency audit": lambda: audit_dependencies(project),
+        "progression guard": run_progression_guard,
+        "identity guard": run_identity_guard,
+        "contract guard": run_contract_guard,
+        "reward audit": run_reward_audit,
+        "task audit": run_task_audit,
+        "chapter audit": run_chapter_audit,
+        "text audit": run_text_audit,
+        "determinism audit": run_determinism_audit,
+        "output manifest guard": run_output_manifest_guard,
+        "report freshness guard": run_report_freshness_guard,
+    }
+
+
+def run_checks(checks: Mapping[str, Callable[[], object]]) -> QualityGate:
+    results: list[QualityCheck] = []
+    for name, runner in checks.items():
+        try:
+            result = runner()
+            passed = bool(getattr(result, "is_clean"))
+            detail = "clean" if passed else "reported defects"
+        except (OSError, TypeError, ValueError) as exc:
+            passed = False
+            detail = f"error: {exc}"
+        results.append(QualityCheck(name=name, passed=passed, detail=detail))
+    return QualityGate(checks=tuple(results))
+
+
+def run_quality_gate() -> QualityGate:
+    return run_checks(_default_checks())

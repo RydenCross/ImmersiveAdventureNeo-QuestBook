@@ -29,6 +29,7 @@ from generator.output_manifest import (
 from generator.parser import FTBQuestParser
 from generator.progression_guard import DEFAULT_BUDGET_PATH, run_progression_guard
 from generator.progression_metrics import analyze_progression
+from generator.quality_gate import run_quality_gate
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
@@ -55,7 +56,9 @@ def create_parser() -> argparse.ArgumentParser:
         default=Path("config/ftbquests/quests"),
         help="Path to config/ftbquests, its quests directory, or a test fixture.",
     )
-    audit = subparsers.add_parser("audit", help="Summarize authored quest content quality and coverage.")
+    audit = subparsers.add_parser(
+        "audit", help="Summarize authored quest content quality and coverage."
+    )
     audit.add_argument(
         "--strict",
         action="store_true",
@@ -66,14 +69,17 @@ def create_parser() -> argparse.ArgumentParser:
         help="Analyze quest progression dependencies and detect structural defects.",
     )
     dependency.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     dependency.add_argument(
         "--output", type=Path, help="Write the report to a file instead of standard output."
     )
     dependency.add_argument(
-        "--strict", action="store_true",
+        "--strict",
+        action="store_true",
         help="Return a non-zero exit code when progression defects are detected.",
     )
     graph = subparsers.add_parser(
@@ -81,7 +87,9 @@ def create_parser() -> argparse.ArgumentParser:
         help="Export the authored quest progression graph as Graphviz DOT or JSON.",
     )
     graph.add_argument(
-        "--format", choices=("dot", "json"), default="dot",
+        "--format",
+        choices=("dot", "json"),
+        default="dot",
         help="Select Graphviz DOT or machine-readable JSON output.",
     )
     graph.add_argument(
@@ -92,7 +100,9 @@ def create_parser() -> argparse.ArgumentParser:
         help="Measure critical-path depth, bottlenecks, and cross-chapter progression routes.",
     )
     metrics.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     metrics.add_argument(
@@ -110,7 +120,9 @@ def create_parser() -> argparse.ArgumentParser:
         help="Progression budget (default: reports/progression-budget.json).",
     )
     progression_guard.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     progression_guard.add_argument(
@@ -121,14 +133,19 @@ def create_parser() -> argparse.ArgumentParser:
         help="Validate reward identifiers, item data, counts, and terminal reward coverage.",
     )
     reward_audit.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     reward_audit.add_argument(
-        "--output", type=Path, help="Write the reward audit report to a file.",
+        "--output",
+        type=Path,
+        help="Write the reward audit report to a file.",
     )
     reward_audit.add_argument(
-        "--strict", action="store_true",
+        "--strict",
+        action="store_true",
         help="Return a non-zero exit code when structural reward defects are detected.",
     )
     task_audit = subparsers.add_parser(
@@ -136,14 +153,19 @@ def create_parser() -> argparse.ArgumentParser:
         help="Validate task identifiers, required data, and quest completion coverage.",
     )
     task_audit.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     task_audit.add_argument(
-        "--output", type=Path, help="Write the task audit report to a file.",
+        "--output",
+        type=Path,
+        help="Write the task audit report to a file.",
     )
     task_audit.add_argument(
-        "--strict", action="store_true",
+        "--strict",
+        action="store_true",
         help="Return a non-zero exit code when structural task defects are detected.",
     )
     chapter_audit = subparsers.add_parser(
@@ -151,14 +173,19 @@ def create_parser() -> argparse.ArgumentParser:
         help="Validate chapter identities, metadata, ordering, and quest coverage.",
     )
     chapter_audit.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     chapter_audit.add_argument(
-        "--output", type=Path, help="Write the chapter audit report to a file.",
+        "--output",
+        type=Path,
+        help="Write the chapter audit report to a file.",
     )
     chapter_audit.add_argument(
-        "--strict", action="store_true",
+        "--strict",
+        action="store_true",
         help="Return a non-zero exit code when structural chapter defects are detected.",
     )
     text_audit = subparsers.add_parser(
@@ -166,14 +193,19 @@ def create_parser() -> argparse.ArgumentParser:
         help="Validate quest and chapter copy for placeholders, malformed formatting, and duplication.",
     )
     text_audit.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     text_audit.add_argument(
-        "--output", type=Path, help="Write the text audit report to a file.",
+        "--output",
+        type=Path,
+        help="Write the text audit report to a file.",
     )
     text_audit.add_argument(
-        "--strict", action="store_true",
+        "--strict",
+        action="store_true",
         help="Return a non-zero exit code when blocking text defects are detected.",
     )
     determinism_audit = subparsers.add_parser(
@@ -181,48 +213,82 @@ def create_parser() -> argparse.ArgumentParser:
         help="Build twice and verify byte-for-byte reproducible generated output.",
     )
     determinism_audit.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     determinism_audit.add_argument(
-        "--output", type=Path, help="Write the determinism audit report to a file.",
+        "--output",
+        type=Path,
+        help="Write the determinism audit report to a file.",
     )
     determinism_audit.add_argument(
-        "--strict", action="store_true",
+        "--strict",
+        action="store_true",
         help="Return a non-zero exit code when generated builds differ.",
+    )
+    quality_gate = subparsers.add_parser(
+        "quality-gate",
+        help="Run every repository-safe release safeguard in one command.",
+    )
+    quality_gate.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    quality_gate.add_argument(
+        "--output",
+        type=Path,
+        help="Write the combined quality report to a file.",
     )
     report_freshness = subparsers.add_parser(
         "report-freshness-guard",
         help="Verify checked-in audit reports match current repository results.",
     )
     report_freshness.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     report_freshness.add_argument(
-        "--output", type=Path, help="Write the freshness report to a file.",
+        "--output",
+        type=Path,
+        help="Write the freshness report to a file.",
     )
     output_guard = subparsers.add_parser(
         "output-manifest-guard",
         help="Compare generated output with the checked-in file manifest.",
     )
     output_guard.add_argument(
-        "baseline", nargs="?", type=Path, default=DEFAULT_OUTPUT_MANIFEST_PATH,
+        "baseline",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_OUTPUT_MANIFEST_PATH,
         help="Output manifest (default: reports/generated-output-manifest.json).",
     )
     output_guard.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     output_guard.add_argument(
-        "--output", type=Path, help="Write the guard report to a file.",
+        "--output",
+        type=Path,
+        help="Write the guard report to a file.",
     )
     output_baseline = subparsers.add_parser(
         "output-manifest",
         help="Safely refresh the checked-in generated output manifest.",
     )
     output_baseline.add_argument(
-        "destination", nargs="?", type=Path, default=DEFAULT_OUTPUT_MANIFEST_PATH,
+        "destination",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_OUTPUT_MANIFEST_PATH,
         help="Manifest destination (default: reports/generated-output-manifest.json).",
     )
     registry = subparsers.add_parser(
@@ -283,15 +349,19 @@ def create_parser() -> argparse.ArgumentParser:
         help="Baseline release report (default: reports/release-baseline.json).",
     )
     guard.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     guard.add_argument(
-        "--output", type=Path,
+        "--output",
+        type=Path,
         help="Write the guard report to a file instead of standard output.",
     )
     guard.add_argument(
-        "--build-output", type=Path,
+        "--build-output",
+        type=Path,
         help="Keep generated FTB Quests files at this destination.",
     )
     baseline = subparsers.add_parser(
@@ -306,7 +376,8 @@ def create_parser() -> argparse.ArgumentParser:
         help="Baseline destination (default: reports/release-baseline.json).",
     )
     baseline.add_argument(
-        "--build-output", type=Path,
+        "--build-output",
+        type=Path,
         help="Keep generated FTB Quests files at this destination.",
     )
     compare = subparsers.add_parser(
@@ -336,22 +407,32 @@ def create_parser() -> argparse.ArgumentParser:
         help="Protect quest task, reward, icon, flag, and difficulty contracts.",
     )
     contract_guard.add_argument(
-        "baseline", nargs="?", type=Path, default=DEFAULT_CONTRACT_BASELINE_PATH,
+        "baseline",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_CONTRACT_BASELINE_PATH,
         help="Contract baseline (default: reports/quest-contract-baseline.json).",
     )
     contract_guard.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     contract_guard.add_argument(
-        "--output", type=Path, help="Write the guard report to a file.",
+        "--output",
+        type=Path,
+        help="Write the guard report to a file.",
     )
     contract_baseline = subparsers.add_parser(
         "contract-baseline",
         help="Refresh the checked-in quest contract baseline.",
     )
     contract_baseline.add_argument(
-        "destination", nargs="?", type=Path, default=DEFAULT_CONTRACT_BASELINE_PATH,
+        "destination",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_CONTRACT_BASELINE_PATH,
         help="Baseline destination (default: reports/quest-contract-baseline.json).",
     )
     identity_guard = subparsers.add_parser(
@@ -359,22 +440,32 @@ def create_parser() -> argparse.ArgumentParser:
         help="Protect checked-in chapter and quest identities against accidental changes.",
     )
     identity_guard.add_argument(
-        "baseline", nargs="?", type=Path, default=DEFAULT_IDENTITY_BASELINE_PATH,
+        "baseline",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_IDENTITY_BASELINE_PATH,
         help="Identity baseline (default: reports/quest-identity-baseline.json).",
     )
     identity_guard.add_argument(
-        "--format", choices=("text", "json"), default="text",
+        "--format",
+        choices=("text", "json"),
+        default="text",
         help="Select human-readable text or machine-readable JSON output.",
     )
     identity_guard.add_argument(
-        "--output", type=Path, help="Write the guard report to a file.",
+        "--output",
+        type=Path,
+        help="Write the guard report to a file.",
     )
     identity_baseline = subparsers.add_parser(
         "identity-baseline",
         help="Refresh the checked-in chapter and quest identity baseline.",
     )
     identity_baseline.add_argument(
-        "destination", nargs="?", type=Path, default=DEFAULT_IDENTITY_BASELINE_PATH,
+        "destination",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_IDENTITY_BASELINE_PATH,
         help="Baseline destination (default: reports/quest-identity-baseline.json).",
     )
     manifest = subparsers.add_parser(
@@ -391,6 +482,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "quality-gate":
+        result = run_quality_gate()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "report-freshness-guard":
         result = run_report_freshness_guard()
         rendered = result.format_json() if args.format == "json" else result.format()

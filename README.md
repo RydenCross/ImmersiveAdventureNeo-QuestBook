@@ -247,3 +247,15 @@ python -m generator report-freshness-guard --format json \
 ```
 
 See [docs/REPORT_FRESHNESS.md](docs/REPORT_FRESHNESS.md).
+
+
+## Unified quality gate
+
+Run every repository-safe release safeguard in one CI-friendly command:
+
+```bash
+python -m generator quality-gate
+python -m generator quality-gate --format json --output reports/quality-gate.json
+```
+
+See [`docs/QUALITY_GATE.md`](docs/QUALITY_GATE.md).

@@ -1,3 +1,12 @@
+# Changelog
+
+## Commit 58 - Unified Quality Gate
+
+- Added `python -m generator quality-gate` to run every repository-safe safeguard.
+- Added combined text and JSON summaries with per-check pass/fail status.
+- Simplified CI to enforce the complete validation suite through one command.
+- Added quality-gate documentation and regression tests.
+
 # Commit 56 - Generated Output Manifest Guard
 
 - Added per-file SHA-256 and byte-size tracking for generated questbook output.
