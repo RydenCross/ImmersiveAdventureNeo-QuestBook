@@ -20,6 +20,7 @@ from generator.identity_guard import (
     refresh_identity_baseline,
     run_identity_guard,
 )
+from generator.report_freshness import run_report_freshness_guard
 from generator.output_manifest import (
     DEFAULT_OUTPUT_MANIFEST_PATH,
     refresh_output_manifest,
@@ -189,6 +190,17 @@ def create_parser() -> argparse.ArgumentParser:
     determinism_audit.add_argument(
         "--strict", action="store_true",
         help="Return a non-zero exit code when generated builds differ.",
+    )
+    report_freshness = subparsers.add_parser(
+        "report-freshness-guard",
+        help="Verify checked-in audit reports match current repository results.",
+    )
+    report_freshness.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    report_freshness.add_argument(
+        "--output", type=Path, help="Write the freshness report to a file.",
     )
     output_guard = subparsers.add_parser(
         "output-manifest-guard",
@@ -379,6 +391,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "report-freshness-guard":
+        result = run_report_freshness_guard()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "output-manifest-guard":
         try:
             result = run_output_manifest_guard(args.baseline)

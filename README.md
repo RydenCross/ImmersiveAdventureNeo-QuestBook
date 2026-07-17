@@ -236,3 +236,14 @@ python -m generator output-manifest reports/generated-output-manifest.json
 ```
 
 See [`docs/OUTPUT_MANIFEST.md`](docs/OUTPUT_MANIFEST.md).
+
+### Report freshness guard
+
+Verify that checked-in audit evidence still matches the current questbook:
+
+```bash
+python -m generator report-freshness-guard --format json \
+  --output reports/report-freshness-guard.json
+```
+
+See [docs/REPORT_FRESHNESS.md](docs/REPORT_FRESHNESS.md).

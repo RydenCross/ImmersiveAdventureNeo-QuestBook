@@ -211,3 +211,8 @@
 
 ## 0.1.0-alpha.1
 - Idea
+## Commit #57 — Report Freshness Guard
+
+- Added `report-freshness-guard` to compare checked-in JSON reports with current audit results.
+- Detects stale, missing, and invalid derived reports.
+- Added CI enforcement and machine-readable freshness reporting.

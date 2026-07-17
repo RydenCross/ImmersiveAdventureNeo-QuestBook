@@ -1,0 +1,21 @@
+{
+  "checked_reports": 12,
+  "fresh_reports": [
+    "chapter-audit.json",
+    "contract-guard.json",
+    "dependency-audit.json",
+    "determinism-audit.json",
+    "identity-guard.json",
+    "output-manifest-guard.json",
+    "progression-guard.json",
+    "progression-metrics.json",
+    "release-guard.json",
+    "reward-audit.json",
+    "task-audit.json",
+    "text-audit.json"
+  ],
+  "invalid_reports": [],
+  "missing_reports": [],
+  "stale_reports": [],
+  "status": "pass"
+}
