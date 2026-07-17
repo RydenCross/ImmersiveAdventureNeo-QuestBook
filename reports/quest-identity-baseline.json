@@ -1,0 +1,4665 @@
+{
+  "chapter_count": 13,
+  "chapters": [
+    {
+      "ftb_id": "A4D278B374B57D7A",
+      "id": "00_welcome",
+      "title": "Welcome"
+    },
+    {
+      "ftb_id": "8CD2092E76CFEED5",
+      "id": "01_survival",
+      "title": "Survival"
+    },
+    {
+      "ftb_id": "9E13F64A9788EF92",
+      "id": "02_mining",
+      "title": "Mining"
+    },
+    {
+      "ftb_id": "874B6C90F1DB0770",
+      "id": "03_exploration",
+      "title": "Exploration"
+    },
+    {
+      "ftb_id": "B597A043AB24F6A2",
+      "id": "04_create",
+      "title": "Create"
+    },
+    {
+      "ftb_id": "B17CD71AB5881324",
+      "id": "05_actually_additions",
+      "title": "Actually Additions"
+    },
+    {
+      "ftb_id": "B7B835E3BD43A0FA",
+      "id": "06_ars_nouveau",
+      "title": "Ars Nouveau"
+    },
+    {
+      "ftb_id": "9B3B5036814E74F3",
+      "id": "07_apotheosis",
+      "title": "Apotheosis"
+    },
+    {
+      "ftb_id": "9625FAEFFC506497",
+      "id": "08_ae2",
+      "title": "Applied Energistics 2"
+    },
+    {
+      "ftb_id": "BB59F37135F1D0A7",
+      "id": "09_mekanism",
+      "title": "Mekanism"
+    },
+    {
+      "ftb_id": "BA2D8158A9BE6D03",
+      "id": "10_endgame",
+      "title": "Endgame"
+    },
+    {
+      "ftb_id": "8DD645A7B24E8193",
+      "id": "11_challenges",
+      "title": "Challenges"
+    },
+    {
+      "ftb_id": "875BBB070A17D88F",
+      "id": "12_create_addons",
+      "title": "Create Addons"
+    }
+  ],
+  "quest_count": 656,
+  "quests": [
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "80577CD7348BDFBE",
+      "id": "80577CD7348BDFBE",
+      "title": "Silence beneath the World",
+      "uuid": "663c6ff5-bcf8-5db6-8057-7cd7348bdfbe"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "80A0705EBA9F5E23",
+      "id": "80A0705EBA9F5E23",
+      "title": "A Smarter Spell Turret",
+      "uuid": "bff39962-b67b-5b3d-80a0-705eba9f5e23"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "80B37FE530981498",
+      "id": "80B37FE530981498",
+      "title": "Respect the Stress Limit",
+      "uuid": "9d21566c-2d5c-5459-80b3-7fe530981498"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "80DA0E309B663B45",
+      "id": "80DA0E309B663B45",
+      "title": "Bring the Heat",
+      "uuid": "8914b4fb-da65-5147-80da-0e309b663b45"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "811256755221EC5B",
+      "id": "811256755221EC5B",
+      "title": "Set the Gem",
+      "uuid": "52833db1-e26b-55e0-8112-56755221ec5b"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8128ACD415D0EDE6",
+      "id": "8128ACD415D0EDE6",
+      "title": "Warehouse in a Block",
+      "uuid": "cf2be5aa-dd04-53f1-8128-acd415d0ede6"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "812A1F8C1F140DE9",
+      "id": "812A1F8C1F140DE9",
+      "title": "Feed the Factory Fast Enough",
+      "uuid": "a6331a3a-31f1-5c84-812a-1f8c1f140de9"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "8160E20156C93D1A",
+      "id": "8160E20156C93D1A",
+      "title": "From Water to Table",
+      "uuid": "85f75dd0-8191-56fe-8160-e20156c93d1a"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "817056BDD8A2A6FB",
+      "id": "817056BDD8A2A6FB",
+      "title": "The Hundred-Step Request",
+      "uuid": "d26a8b1d-2466-5575-8170-56bdd8a2a6fb"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "817F63D3A762E1B9",
+      "id": "817F63D3A762E1B9",
+      "title": "Effects Shape the Result",
+      "uuid": "31c0e6b9-b555-5913-817f-63d3a762e1b9"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "81826D4C8CB6D85B",
+      "id": "81826D4C8CB6D85B",
+      "title": "Source Across Distance",
+      "uuid": "4b89930e-e7ec-5081-8182-6d4c8cb6d85b"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "818DBA9FBB463763",
+      "id": "818DBA9FBB463763",
+      "title": "Remote Fluid Access",
+      "uuid": "910e4bcc-39fd-590c-818d-ba9fbb463763"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "819B5CAA1E021C82",
+      "id": "819B5CAA1E021C82",
+      "title": "Build a Moving Machine",
+      "uuid": "2c8e68c5-9dc5-502b-819b-5caa1e021c82"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "81A6970419C36D8B",
+      "id": "81A6970419C36D8B",
+      "title": "Oxidize Solid Resources",
+      "uuid": "be689fc2-d070-5a5c-81a6-970419c36d8b"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "81B73D1AC8D8947F",
+      "id": "81B73D1AC8D8947F",
+      "title": "Emeradic",
+      "uuid": "247f3867-1d9c-5159-81b7-3d1ac8d8947f"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "81C22EAE6B41B35C",
+      "id": "81C22EAE6B41B35C",
+      "title": "A New Kind of Power",
+      "uuid": "8af618d9-3187-5702-81c2-2eae6b41b35c"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "81D1F635E6908C6C",
+      "id": "81D1F635E6908C6C",
+      "title": "The Immersive Completionist",
+      "uuid": "d26e5c6d-dccb-51b2-81d1-f635e6908c6c"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "81F24691DB5C2E37",
+      "id": "81F24691DB5C2E37",
+      "title": "The Actually Additions Manual",
+      "uuid": "390b178b-0249-57bb-81f2-4691db5c2e37"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "824885A54969E4D2",
+      "id": "824885A54969E4D2",
+      "title": "Sides, Slots, and Signals",
+      "uuid": "43fd45f3-5310-5698-8248-85a54969e4d2"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "82735DCAB2EACE4E",
+      "id": "82735DCAB2EACE4E",
+      "title": "Advance Your Studies",
+      "uuid": "30284a55-50bd-5370-8273-5dcab2eace4e"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "82845A9ACF0F546A",
+      "id": "82845A9ACF0F546A",
+      "title": "The Knowledge Archive",
+      "uuid": "c6178b31-0505-5ab2-8284-5a9acf0f546a"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8284C6CB2098B3DD",
+      "id": "8284C6CB2098B3DD",
+      "title": "Build a Gem Archive",
+      "uuid": "37da209b-3575-540c-8284-c6cb2098b3dd"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "829B5302AFAC391B",
+      "id": "829B5302AFAC391B",
+      "title": "Favor Better Enchantments",
+      "uuid": "91a0b9cb-1827-5fc9-829b-5302afac391b"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "82A659FD4883BCD5",
+      "id": "82A659FD4883BCD5",
+      "title": "Contain the Reaction",
+      "uuid": "0e17422b-c0f0-51ad-82a6-59fd4883bcd5"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "82AA2A99586169A0",
+      "id": "82AA2A99586169A0",
+      "title": "Power in a Small Package",
+      "uuid": "3880908e-bc4d-54d8-82aa-2a99586169a0"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "82AB7FB013899B64",
+      "id": "82AB7FB013899B64",
+      "title": "Put the Data on Display",
+      "uuid": "8ecc2aa1-e806-5da3-82ab-7fb013899b64"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "82B22EDE3179697A",
+      "id": "82B22EDE3179697A",
+      "title": "Patterns and Banners",
+      "uuid": "1ad9199b-912d-50f8-82b2-2ede3179697a"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "831690E1512E7D1B",
+      "id": "831690E1512E7D1B",
+      "title": "Beyond Apotheosis",
+      "uuid": "c22715db-8b0f-5c12-8316-90e1512e7d1b"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "833ADC4D97E9D8C1",
+      "id": "833ADC4D97E9D8C1",
+      "title": "Audit Every Watt",
+      "uuid": "dd738ca2-d68b-5d35-833a-dc4d97e9d8c1"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "83458382FF4C7AFF",
+      "id": "83458382FF4C7AFF",
+      "title": "Recover Stored Energy",
+      "uuid": "5312b92e-cfac-5c65-8345-8382ff4c7aff"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8359C036EB89DC18",
+      "id": "8359C036EB89DC18",
+      "title": "More than a Chest",
+      "uuid": "2b0d09c5-32cf-5f62-8359-c036eb89dc18"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "837B35340BC9B6CD",
+      "id": "837B35340BC9B6CD",
+      "title": "Compact Storage",
+      "uuid": "5fdad719-87d0-5376-837b-35340bc9b6cd"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "837E8C12F9ABF317",
+      "id": "837E8C12F9ABF317",
+      "title": "Wash the Slurry",
+      "uuid": "ff88472c-a2c0-587b-837e-8c12f9abf317"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "838A61441A7DC3B9",
+      "id": "838A61441A7DC3B9",
+      "title": "The Network Core",
+      "uuid": "03458f56-3aaa-592c-838a-61441a7dc3b9"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "83A148C822911342",
+      "id": "83A148C822911342",
+      "title": "Logic Processor",
+      "uuid": "93c9f283-5dc5-5ed6-83a1-48c822911342"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "83B027F730A6E9D9",
+      "id": "83B027F730A6E9D9",
+      "title": "Chemical Pipelines",
+      "uuid": "c1d2dbe7-7132-59d7-83b0-27f730a6e9d9"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "83D503D2B4892BED",
+      "id": "83D503D2B4892BED",
+      "title": "A Renewable Fuel Cycle",
+      "uuid": "d03e937a-a833-5161-83d5-03d2b4892bed"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "83D72D8426FC093E",
+      "id": "83D72D8426FC093E",
+      "title": "A Roll Worth Keeping",
+      "uuid": "917f05b1-8d3b-56e6-83d7-2d8426fc093e"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8424B971E8A5851F",
+      "id": "8424B971E8A5851F",
+      "title": "Partition the Storage",
+      "uuid": "fa81d1be-b163-5a6d-8424-b971e8a5851f"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "8436A655571D1E9A",
+      "id": "8436A655571D1E9A",
+      "title": "Forty-Eight Hours Unattended",
+      "uuid": "817c8383-957b-5cad-8436-a655571d1e9a"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "84714854F94A035D",
+      "id": "84714854F94A035D",
+      "title": "Magic Beyond a Single Cast",
+      "uuid": "e57839aa-4e1e-5936-8471-4854f94a035d"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "84BBC231B43A64AF",
+      "id": "84BBC231B43A64AF",
+      "title": "Precision Masonry",
+      "uuid": "4677e13b-809e-5a16-84bb-c231b43a64af"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "84D099EB78C23ACE",
+      "id": "84D099EB78C23ACE",
+      "title": "Concentrated Infusion",
+      "uuid": "e1d7fe5a-4d5b-5c25-84d0-99eb78c23ace"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "84E163F9D1282016",
+      "id": "84E163F9D1282016",
+      "title": "The Factory Runs Itself",
+      "uuid": "c5cd3355-a4e7-5bc0-84e1-63f9d1282016"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "84F25C16E88A2208",
+      "id": "84F25C16E88A2208",
+      "title": "Place on Command",
+      "uuid": "3d602fde-b1f1-527a-84f2-5c16e88a2208"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "84F8DBE12090C2B5",
+      "id": "84F8DBE12090C2B5",
+      "title": "Better Materials, Better Possibilities",
+      "uuid": "4944f431-a5ad-54bc-84f8-dbe12090c2b5"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8507C3CDEEDA58EB",
+      "id": "8507C3CDEEDA58EB",
+      "title": "Storage in Bulk",
+      "uuid": "49fff3b3-68db-52d5-8507-c3cdeeda58eb"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8516910B33D2D6E8",
+      "id": "8516910B33D2D6E8",
+      "title": "Build Around a Purpose",
+      "uuid": "abad6ae3-432f-51aa-8516-910b33d2d6e8"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "851BDD4FF266DF1B",
+      "id": "851BDD4FF266DF1B",
+      "title": "Energy in Your Pocket",
+      "uuid": "3b6a9eb8-683a-57ba-851b-dd4ff266df1b"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "851CC5CA43E9D9FF",
+      "id": "851CC5CA43E9D9FF",
+      "title": "Magic on the Production Floor",
+      "uuid": "2312c34b-9693-5339-851c-c5ca43e9d9ff"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "851ECDD1B2B0CA97",
+      "id": "851ECDD1B2B0CA97",
+      "title": "Black Gold",
+      "uuid": "eb2f7fd7-ad80-5821-851e-cdd1b2b0ca97"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "856930E0995E2C5F",
+      "id": "856930E0995E2C5F",
+      "title": "Configure the MekaSuit",
+      "uuid": "d9c07250-be38-5f4b-8569-30e0995e2c5f"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "85857E736D5FE1B0",
+      "id": "85857E736D5FE1B0",
+      "title": "Preserve the Journey",
+      "uuid": "bd07cd4f-aa5d-5fda-8585-7e736d5fe1b0"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "8591F80B49E64073",
+      "id": "8591F80B49E64073",
+      "title": "The Induction Matrix",
+      "uuid": "599a2849-4801-51d6-8591-f80b49e64073"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "85A4D6A569C114BA",
+      "id": "85A4D6A569C114BA",
+      "title": "Cast a Line",
+      "uuid": "772f6af6-3558-5672-85a4-d6a569c114ba"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "85A815ABBF0A9DA6",
+      "id": "85A815ABBF0A9DA6",
+      "title": "Put It on the Map",
+      "uuid": "856fc83e-2804-510c-85a8-15abbf0a9da6"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "85BDC07386BFBC3F",
+      "id": "85BDC07386BFBC3F",
+      "title": "Light the Way",
+      "uuid": "8c273905-0971-564a-85bd-c07386bfbc3f"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "85D0790D6832C7FF",
+      "id": "85D0790D6832C7FF",
+      "title": "Precision Engineering",
+      "uuid": "541ba9bd-98ec-5ce8-85d0-790d6832c7ff"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "86264C02FE0570FE",
+      "id": "86264C02FE0570FE",
+      "title": "Prove the Integrated Build",
+      "uuid": "859cdf11-8226-5153-8626-4c02fe0570fe"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "862936BBF1122ABF",
+      "id": "862936BBF1122ABF",
+      "title": "Master of Adventure",
+      "uuid": "3ba1203f-7e56-55ae-8629-36bbf1122abf"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "8644F9E2552ADA16",
+      "id": "8644F9E2552ADA16",
+      "title": "Cast and Bore",
+      "uuid": "0b9f5300-4eab-582a-8644-f9e2552ada16"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "864CE44BCC5D88BB",
+      "id": "864CE44BCC5D88BB",
+      "title": "Apply Some Pressure",
+      "uuid": "264dcd2a-ae47-5cf6-864c-e44bcc5d88bb"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "864E4657EB932804",
+      "id": "864E4657EB932804",
+      "title": "Forms Begin the Spell",
+      "uuid": "70c1bb4a-a48f-5e68-864e-4657eb932804"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "866133D4F7926EB5",
+      "id": "866133D4F7926EB5",
+      "title": "Separate Heat from Fission",
+      "uuid": "55a07d2c-79d0-545f-8661-33d4f7926eb5"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "8664215185FB1D4C",
+      "id": "8664215185FB1D4C",
+      "title": "A Compass for the Fallen",
+      "uuid": "64ed2665-9305-5eac-8664-215185fb1d4c"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "867B5B5FE474C1D7",
+      "id": "867B5B5FE474C1D7",
+      "title": "Plan the Quantum Network",
+      "uuid": "d620a8fa-1554-54a4-867b-5b5fe474c1d7"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8685AA92ABD65344",
+      "id": "8685AA92ABD65344",
+      "title": "Connect Existing Storage",
+      "uuid": "bdd77389-db79-585f-8685-aa92abd65344"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "869376E5406CA0FD",
+      "id": "869376E5406CA0FD",
+      "title": "Fields of Gold",
+      "uuid": "e1e9a264-79f0-5003-8693-76e5406ca0fd"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "86A7B26CB2896867",
+      "id": "86A7B26CB2896867",
+      "title": "Bring Down the Mythic",
+      "uuid": "53d25bd7-a43e-594f-86a7-b26cb2896867"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "86B4F5CFC1B71462",
+      "id": "86B4F5CFC1B71462",
+      "title": "A Proper Wash Station",
+      "uuid": "beb8d620-d021-5718-86b4-f5cfc1b71462"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "86BCFF9F98D13E0C",
+      "id": "86BCFF9F98D13E0C",
+      "title": "The Worn Notebook",
+      "uuid": "fd64ee1b-128d-51e6-86bc-ff9f98d13e0c"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "86CEA98D360CDE41",
+      "id": "86CEA98D360CDE41",
+      "title": "The Grand Railway Showcase",
+      "uuid": "f65befd7-76b3-5d80-86ce-a98d360cde41"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "870BBD54BAC225C7",
+      "id": "870BBD54BAC225C7",
+      "title": "Industry without Borders",
+      "uuid": "3881f083-0407-59b6-870b-bd54bac225c7"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "871AFC185B50EFFF",
+      "id": "871AFC185B50EFFF",
+      "title": "Design for Failure",
+      "uuid": "a74288d1-936b-5aae-871a-fc185b50efff"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "871B688E8A006169",
+      "id": "871B688E8A006169",
+      "title": "Work Beside Your Familiar",
+      "uuid": "1ee0a108-8886-512b-871b-688e8a006169"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "87218212BFFDA0F7",
+      "id": "87218212BFFDA0F7",
+      "title": "Source from Flame",
+      "uuid": "785a6a0a-5b1a-54cd-8721-8212bffda0f7"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "873B5CE7511ED010",
+      "id": "873B5CE7511ED010",
+      "title": "Define the Volume",
+      "uuid": "ca2821a1-7a35-5cb4-873b-5ce7511ed010"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "8746AED2E206F76E",
+      "id": "8746AED2E206F76E",
+      "title": "A Fresh Edge",
+      "uuid": "ee8053c3-2b51-587f-8746-aed2e206f76e"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "8748B6F83EDAC3C2",
+      "id": "8748B6F83EDAC3C2",
+      "title": "Burn Gas, Not Coal",
+      "uuid": "ea1c4348-08c7-5596-8748-b6f83edac3c2"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8759FF9AADA1603E",
+      "id": "8759FF9AADA1603E",
+      "title": "Automate Empowering",
+      "uuid": "ffb0f366-17d7-512f-8759-ff9aada1603e"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "875A04C6ED54DF26",
+      "id": "875A04C6ED54DF26",
+      "title": "Buffer the Power Plant",
+      "uuid": "6c242006-df55-582e-875a-04c6ed54df26"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "87650E9F9A630A31",
+      "id": "87650E9F9A630A31",
+      "title": "Build a Material Reserve",
+      "uuid": "cf1f29ef-b81b-5ef6-8765-0e9f9a630a31"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "87A06407AD84B561",
+      "id": "87A06407AD84B561",
+      "title": "Industrial Refreshment",
+      "uuid": "02391100-d3b1-523c-87a0-6407ad84b561"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "87ABCB2393238138",
+      "id": "87ABCB2393238138",
+      "title": "Fire and Stone",
+      "uuid": "23d94f96-5b29-574c-87ab-cb2393238138"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "87C7E3B137AE0764",
+      "id": "87C7E3B137AE0764",
+      "title": "Wings of the End",
+      "uuid": "c4f1e1a8-636c-5ac3-87c7-e3b137ae0764"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "87EB532FCC9ABB49",
+      "id": "87EB532FCC9ABB49",
+      "title": "Improve Without Replacing",
+      "uuid": "ad49db49-9bb3-57ad-87eb-532fcc9abb49"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "87F940CCBABD069C",
+      "id": "87F940CCBABD069C",
+      "title": "A Proper Homestead",
+      "uuid": "700d7695-8adf-5f8e-87f9-40ccbabd069c"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8832AC4306046859",
+      "id": "8832AC4306046859",
+      "title": "Controlled Entry",
+      "uuid": "ead2f0e5-78e2-5f4c-8832-ac4306046859"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "884062AB8753FF4E",
+      "id": "884062AB8753FF4E",
+      "title": "Watch the Job",
+      "uuid": "fd4305de-35b6-5386-8840-62ab8753ff4e"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "8853864FC42ABE96",
+      "id": "8853864FC42ABE96",
+      "title": "A Network Without Bottlenecks",
+      "uuid": "d1ff99c2-4463-5dc4-8853-864fc42abe96"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8856520543E7071D",
+      "id": "8856520543E7071D",
+      "title": "Enter the Brass Age",
+      "uuid": "cb4cd571-58c3-58fe-8856-520543e7071d"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "88AC3A0A05D0BC85",
+      "id": "88AC3A0A05D0BC85",
+      "title": "Tune the Machines",
+      "uuid": "883c1567-aa30-5a6f-88ac-3a0a05d0bc85"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "88AF532FD389ECEB",
+      "id": "88AF532FD389ECEB",
+      "title": "A Safe Way Back",
+      "uuid": "2aeb5331-0f57-51ad-88af-532fd389eceb"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "88B23A62146512E9",
+      "id": "88B23A62146512E9",
+      "title": "Master of Moving Parts",
+      "uuid": "9c23a352-089b-56bd-88b2-3a62146512e9"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "88CB799732AA9690",
+      "id": "88CB799732AA9690",
+      "title": "Smoke Before Harvest",
+      "uuid": "be10bb68-1c5d-5a20-88cb-799732aa9690"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "88D76CD65B7EE1DB",
+      "id": "88D76CD65B7EE1DB",
+      "title": "One Power Backbone",
+      "uuid": "6630c950-2237-5a01-88d7-6cd65b7ee1db"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "88D889EA3EEE346A",
+      "id": "88D889EA3EEE346A",
+      "title": "The Engineer's Multitool",
+      "uuid": "24d5fe15-3e91-5f8b-88d8-89ea3eee346a"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "88E1E05A3248427C",
+      "id": "88E1E05A3248427C",
+      "title": "Signals Without Wires",
+      "uuid": "072abfb7-e2a9-5ca1-88e1-e05a3248427c"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "88F236C1D5C576E6",
+      "id": "88F236C1D5C576E6",
+      "title": "Repair and Reconsider",
+      "uuid": "d601af9d-3d75-5211-88f2-36c1d5c576e6"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "89043341FF9A9128",
+      "id": "89043341FF9A9128",
+      "title": "A Delicate Touch",
+      "uuid": "3379ab65-2894-51d7-8904-3341ff9a9128"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8951405532F11016",
+      "id": "8951405532F11016",
+      "title": "Fill the Gaps",
+      "uuid": "e63a8c8c-d515-5893-8951-405532f11016"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "896EE43275174350",
+      "id": "896EE43275174350",
+      "title": "Pull Items into the Network",
+      "uuid": "ae8cfa2d-99e2-5b22-896e-e43275174350"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "89A7F54AAE0A097B",
+      "id": "89A7F54AAE0A097B",
+      "title": "Arcane Archery",
+      "uuid": "b80c00d8-73f6-52b4-89a7-f54aae0a097b"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "89AA12DF45FBA9C1",
+      "id": "89AA12DF45FBA9C1",
+      "title": "Power into AE",
+      "uuid": "8888c890-fbf2-5ce2-89aa-12df45fba9c1"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "89C32E74A04F7196",
+      "id": "89C32E74A04F7196",
+      "title": "From Grain to Flour",
+      "uuid": "a83c232f-49a8-504d-89c3-2e74a04f7196"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "89D61BD0FACFEAE5",
+      "id": "89D61BD0FACFEAE5",
+      "title": "A Grid You Can Read",
+      "uuid": "899c4b70-917f-50da-89d6-1bd0facfeae5"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "89E0157E1D39B37B",
+      "id": "89E0157E1D39B37B",
+      "title": "Crushing in Earnest",
+      "uuid": "bb778d44-ef96-597a-89e0-157e1d39b37b"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8A01B818A71120E5",
+      "id": "8A01B818A71120E5",
+      "title": "A Recipe with Prerequisites",
+      "uuid": "a83fd47c-e35b-5239-8a01-b818a71120e5"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8A0353BF72922215",
+      "id": "8A0353BF72922215",
+      "title": "Extend the Signal",
+      "uuid": "a10b5ffc-75da-583d-8a03-53bf72922215"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "8A4711EEF716EC33",
+      "id": "8A4711EEF716EC33",
+      "title": "A Living City",
+      "uuid": "da18ff8b-5e74-5ad5-8a47-11eef716ec33"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "8A7050F858CB4070",
+      "id": "8A7050F858CB4070",
+      "title": "An Integrated Arcane Complex",
+      "uuid": "74fbdca5-bc84-548c-8a70-50f858cb4070"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8A8122457C9D5C8C",
+      "id": "8A8122457C9D5C8C",
+      "title": "Spatial Engineering",
+      "uuid": "d3831c72-580c-54bd-8a81-22457c9d5c8c"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8AA44D1DEF03B639",
+      "id": "8AA44D1DEF03B639",
+      "title": "Board in Style",
+      "uuid": "24b28572-da2d-5aae-8aa4-4d1def03b639"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "8ADEA45924262360",
+      "id": "8ADEA45924262360",
+      "title": "Industrial Stockpile",
+      "uuid": "e2a66671-666b-5220-8ade-a45924262360"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "8AE6C81C2A6D9A52",
+      "id": "8AE6C81C2A6D9A52",
+      "title": "Distill Magical Essence",
+      "uuid": "da339fe8-e96e-5e99-8ae6-c81c2a6d9a52"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8AF69DF0AC29ED14",
+      "id": "8AF69DF0AC29ED14",
+      "title": "Colors of Power",
+      "uuid": "32df14c5-162e-5261-8af6-9df0ac29ed14"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "8B15E5401F47D009",
+      "id": "8B15E5401F47D009",
+      "title": "Four Ingots per Ore",
+      "uuid": "586547a6-6307-5913-8b15-e5401f47d009"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "8B16E20EEE585F4D",
+      "id": "8B16E20EEE585F4D",
+      "title": "Sustain a Working Ritual Site",
+      "uuid": "f733c100-9cb2-52f3-8b16-e20eee585f4d"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "8B3BBF4905174CBB",
+      "id": "8B3BBF4905174CBB",
+      "title": "Label Everything",
+      "uuid": "4dfa3354-ac32-5675-8b3b-bf4905174cbb"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8B41FF8ACB9DC9B6",
+      "id": "8B41FF8ACB9DC9B6",
+      "title": "Take the Controls",
+      "uuid": "d2fed737-7fa1-5970-8b41-ff8acb9dc9b6"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8B5499824A5D4041",
+      "id": "8B5499824A5D4041",
+      "title": "Prove the Build",
+      "uuid": "29a18d70-5295-5afe-8b54-99824a5d4041"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "8B572A15D57EDE98",
+      "id": "8B572A15D57EDE98",
+      "title": "Hot Tourist Destinations",
+      "uuid": "94e47742-c2b7-58c8-8b57-2a15d57ede98"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "8B694AD5E1DB9D20",
+      "id": "8B694AD5E1DB9D20",
+      "title": "Store Industrial Power",
+      "uuid": "fb95f0ab-7a5d-5ae7-8b69-4ad5e1db9d20"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "8B8B1B2771D2B338",
+      "id": "8B8B1B2771D2B338",
+      "title": "Build the Airframe",
+      "uuid": "65352cf4-6987-507f-8b8b-1b2771d2b338"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8BD092676AEE266C",
+      "id": "8BD092676AEE266C",
+      "title": "Measure the RPM",
+      "uuid": "842c26fe-a5ba-5aba-8bd0-92676aee266c"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "8C2D5941103F4824",
+      "id": "8C2D5941103F4824",
+      "title": "Prepare for the Night",
+      "uuid": "2e75c94f-f612-52cb-8c2d-5941103f4824"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "8C38294EFA31CDB6",
+      "id": "8C38294EFA31CDB6",
+      "title": "Stone Age",
+      "uuid": "bc5921df-33a6-5517-8c38-294efa31cdb6"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "8C3F41752B2ABC64",
+      "id": "8C3F41752B2ABC64",
+      "title": "Signs of Civilization",
+      "uuid": "86322c1a-8247-5c4b-8c3f-41752b2abc64"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8C46AC758BB29EF3",
+      "id": "8C46AC758BB29EF3",
+      "title": "Apotheosis Mastery",
+      "uuid": "9a40e3d6-a401-5870-8c46-ac758bb29ef3"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8C477CBE918F96F6",
+      "id": "8C477CBE918F96F6",
+      "title": "Borrowed Wings",
+      "uuid": "8b77e03d-6337-5629-8c47-7cbe918f96f6"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8C479ADAAF24B87F",
+      "id": "8C479ADAAF24B87F",
+      "title": "Network Access without a Cable",
+      "uuid": "dd24d1b4-54b8-5f4d-8c47-9adaaf24b87f"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "8C4D641B43AEF4AE",
+      "id": "8C4D641B43AEF4AE",
+      "title": "Buffer the Grid",
+      "uuid": "39012219-e47e-532d-8c4d-641b43aef4ae"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8C4DC095A550DF95",
+      "id": "8C4DC095A550DF95",
+      "title": "Remote Power Access",
+      "uuid": "ffcb8eed-c770-5ce0-8c4d-c095a550df95"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "8C68E1C4D0216B1F",
+      "id": "8C68E1C4D0216B1F",
+      "title": "Proof Test",
+      "uuid": "72e910d1-696b-5818-8c68-e1c4d0216b1f"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "8C82FED985B20243",
+      "id": "8C82FED985B20243",
+      "title": "A Doorway of Obsidian",
+      "uuid": "db9285f3-2e90-5a70-8c82-fed985b20243"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8C94E34719F45A47",
+      "id": "8C94E34719F45A47",
+      "title": "An Infusion Workshop",
+      "uuid": "fe8ace10-0363-583b-8c94-e34719f45a47"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8D0B8CFFB7B9688F",
+      "id": "8D0B8CFFB7B9688F",
+      "title": "Charge on Demand",
+      "uuid": "7c18a718-9f21-5640-8d0b-8cffb7b9688f"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8D301B044AF9999C",
+      "id": "8D301B044AF9999C",
+      "title": "More Than a Name",
+      "uuid": "ea878394-c0d0-5e0c-8d30-1b044af9999c"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "8D80B55827B94A3A",
+      "id": "8D80B55827B94A3A",
+      "title": "Refine the Fuel",
+      "uuid": "7374ae9c-b4ff-5d21-8d80-b55827b94a3a"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "8DE3B7495F932626",
+      "id": "8DE3B7495F932626",
+      "title": "Power Hidden in Equipment",
+      "uuid": "d7ad9ca3-ce63-53b0-8de3-b7495f932626"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "8DEA5F756F78C53D",
+      "id": "8DEA5F756F78C53D",
+      "title": "Welcome to Immersive Adventure Neo",
+      "uuid": "ae2b4551-ade0-5525-8dea-5f756f78c53d"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "8DEDB07833A097EE",
+      "id": "8DEDB07833A097EE",
+      "title": "The Archmage's Living Workshop",
+      "uuid": "af562e7a-2010-5b6a-8ded-b07833a097ee"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "8DFEF4248E9B32CC",
+      "id": "8DFEF4248E9B32CC",
+      "title": "Control the Flow",
+      "uuid": "dd8ac402-4e7e-56f0-8dfe-f4248e9b32cc"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "8E0A74745A66AA20",
+      "id": "8E0A74745A66AA20",
+      "title": "Two by Two",
+      "uuid": "29887b91-835d-56db-8e0a-74745a66aa20"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8E15D88A6086BB62",
+      "id": "8E15D88A6086BB62",
+      "title": "Carry Power, Not Channels",
+      "uuid": "13f0c576-1e7e-5c13-8e15-d88a6086bb62"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8E32A09F810A39EF",
+      "id": "8E32A09F810A39EF",
+      "title": "Wash Away the Impurities",
+      "uuid": "2f67e019-ddb8-5475-8e32-a09f810a39ef"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "8E3C693690EE37D1",
+      "id": "8E3C693690EE37D1",
+      "title": "Robes of the Arcanist",
+      "uuid": "9c26eb4c-7236-5b7f-8e3c-693690ee37d1"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "8E3CDB2C9EAB2742",
+      "id": "8E3CDB2C9EAB2742",
+      "title": "Timekeeper",
+      "uuid": "80fd34a8-57eb-5f48-8e3c-db2c9eab2742"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "8EA39B2D6E073CBB",
+      "id": "8EA39B2D6E073CBB",
+      "title": "Follow the Buzz",
+      "uuid": "a71c9c62-40a0-5164-8ea3-9b2d6e073cbb"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "8F0C5A2C102D65FB",
+      "id": "8F0C5A2C102D65FB",
+      "title": "Plan the Ultimate Facility",
+      "uuid": "ebe4c866-8edd-5c57-8f0c-5a2c102d65fb"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "8F3234B1AB40066A",
+      "id": "8F3234B1AB40066A",
+      "title": "Roots and Riches",
+      "uuid": "b6c959ed-9b26-52ed-8f32-34b1ab40066a"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "8F4467BFC3761559",
+      "id": "8F4467BFC3761559",
+      "title": "Cultivate Magebloom",
+      "uuid": "1ee0bc4d-5b18-5f7f-8f44-67bfc3761559"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8F92A3AF2B513C75",
+      "id": "8F92A3AF2B513C75",
+      "title": "Watch the Network Breathe",
+      "uuid": "c4262e56-5f47-5384-8f92-a3af2b513c75"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "8FAEE6B2D3EA77D9",
+      "id": "8FAEE6B2D3EA77D9",
+      "title": "Compact Transmission",
+      "uuid": "0d8b039d-c9ed-542b-8fae-e6b2d3ea77d9"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "8FD313B983CAF86B",
+      "id": "8FD313B983CAF86B",
+      "title": "Route the Line",
+      "uuid": "e69a39f4-2394-58b3-8fd3-13b983caf86b"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "8FDFFD522B645DE3",
+      "id": "8FDFFD522B645DE3",
+      "title": "Drives with a Purpose",
+      "uuid": "99058301-411c-5d72-8fdf-fd522b645de3"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "8FE91F2F3F9C634C",
+      "id": "8FE91F2F3F9C634C",
+      "title": "Frozen Fire",
+      "uuid": "8234a388-d90f-533b-8fe9-1f2f3f9c634c"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "90174B72B0D10EC7",
+      "id": "90174B72B0D10EC7",
+      "title": "Face an Empowered Foe",
+      "uuid": "675dc2c1-1911-55d4-9017-4b72b0d10ec7"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "904F4811ACE99711",
+      "id": "904F4811ACE99711",
+      "title": "Ruins beneath the Trail",
+      "uuid": "d74d8e3c-5114-5fd9-904f-4811ace99711"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "905B3D999E4666E2",
+      "id": "905B3D999E4666E2",
+      "title": "Diamatine",
+      "uuid": "215fe3c0-ae2e-5871-905b-3d999e4666e2"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9061F97F7930A854",
+      "id": "9061F97F7930A854",
+      "title": "Plan for Replacement",
+      "uuid": "08e3ea0e-8f35-59a3-9061-f97f7930a854"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "9069146718797293",
+      "id": "9069146718797293",
+      "title": "Heavy-Duty Repairs",
+      "uuid": "ebaeaabb-dd60-515c-9069-146718797293"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9084EC2BA85315F0",
+      "id": "9084EC2BA85315F0",
+      "title": "See the Network Think",
+      "uuid": "96f3975f-543c-5744-9084-ec2ba85315f0"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "90BCBA78663F3EB4",
+      "id": "90BCBA78663F3EB4",
+      "title": "A Living Palette",
+      "uuid": "16fcf9c2-7f10-5717-90bc-ba78663f3eb4"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "90BD9107F1D9925B",
+      "id": "90BD9107F1D9925B",
+      "title": "Raise a Beacon",
+      "uuid": "c7735071-ceb3-5108-90bd-9107f1d9925b"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "91029C024674F674",
+      "id": "91029C024674F674",
+      "title": "Armor of the Machine",
+      "uuid": "47c4ff2a-89d7-59af-9102-9c024674f674"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "91248A7DC19CBBF0",
+      "id": "91248A7DC19CBBF0",
+      "title": "More Operations per Block",
+      "uuid": "c9f0f947-5db7-5e83-9124-8a7dc19cbbf0"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "912959347E47C6E6",
+      "id": "912959347E47C6E6",
+      "title": "A Fair Exchange",
+      "uuid": "7afa6062-6f90-54b0-9129-59347e47c6e6"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "913265B1A80AB926",
+      "id": "913265B1A80AB926",
+      "title": "Affixes That Work Together",
+      "uuid": "8b051ab4-dea7-58c9-9132-65b1a80ab926"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "913CFE701933EF50",
+      "id": "913CFE701933EF50",
+      "title": "Teach the Network",
+      "uuid": "db4b45cd-12a3-55f4-913c-fe701933ef50"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "9171D6BB0BDC2370",
+      "id": "9171D6BB0BDC2370",
+      "title": "The Right Tool",
+      "uuid": "a9caba29-adb1-5f72-9171-d6bb0bdc2370"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "9181615AB112184A",
+      "id": "9181615AB112184A",
+      "title": "A Monument to Power",
+      "uuid": "d0a6ff19-d407-5e99-9181-615ab112184a"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9188177C0E124401",
+      "id": "9188177C0E124401",
+      "title": "Automate a Machine Recipe",
+      "uuid": "587fc6b1-a1ab-5ca9-9188-177c0e124401"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "91BEB312BC51E284",
+      "id": "91BEB312BC51E284",
+      "title": "Interfaces without Clutter",
+      "uuid": "45ea753f-1c40-522b-91be-b312bc51e284"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "91D2B2C4D1AF61C2",
+      "id": "91D2B2C4D1AF61C2",
+      "title": "Form and Function",
+      "uuid": "09b9c53e-3555-5ed8-91d2-b2c4d1af61c2"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "91D6B74576F8EE81",
+      "id": "91D6B74576F8EE81",
+      "title": "A Lens for Every Task",
+      "uuid": "99c48c2e-8088-5b61-91d6-b74576f8ee81"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "9210BD151FB630BA",
+      "id": "9210BD151FB630BA",
+      "title": "Structure Hunter",
+      "uuid": "11ddd1da-ac6d-5da1-9210-bd151fb630ba"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "9253068A1317AE3E",
+      "id": "9253068A1317AE3E",
+      "title": "A Hotter Wind",
+      "uuid": "7e4602a7-2882-5a7c-9253-068a1317ae3e"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "92645023F57184BF",
+      "id": "92645023F57184BF",
+      "title": "Engineer for Failure",
+      "uuid": "fe231760-aa7a-54d6-9264-5023f57184bf"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "92A87C3EFC574FF5",
+      "id": "92A87C3EFC574FF5",
+      "title": "Program a Reliable Spell Turret",
+      "uuid": "8c74f978-35c3-590b-92a8-7c3efc574ff5"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "92AAF6A83CB42F4A",
+      "id": "92AAF6A83CB42F4A",
+      "title": "One Step at a Time",
+      "uuid": "d3812c7c-a358-52c2-92aa-f6a83cb42f4a"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "92B80EE106A4AD3D",
+      "id": "92B80EE106A4AD3D",
+      "title": "From Machine to Factory",
+      "uuid": "2f11d65a-b3f4-568e-92b8-0ee106a4ad3d"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "92D0A7158A550163",
+      "id": "92D0A7158A550163",
+      "title": "Repair and Combine",
+      "uuid": "7a23973e-3c90-53ed-92d0-a7158a550163"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "92F436C6D6F38859",
+      "id": "92F436C6D6F38859",
+      "title": "Faster Smelting",
+      "uuid": "16fb7f40-7f00-535a-92f4-36c6d6f38859"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "930EF2D7E4EBCCDC",
+      "id": "930EF2D7E4EBCCDC",
+      "title": "Dress for the Arcane",
+      "uuid": "93f93320-4db0-5812-930e-f2d7e4ebccdc"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9330F0731F389E4E",
+      "id": "9330F0731F389E4E",
+      "title": "Return to the Enchanting Table",
+      "uuid": "555aa741-5faf-5ad2-9330-f0731f389e4e"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "933D829F1B973068",
+      "id": "933D829F1B973068",
+      "title": "Armor with a Purpose",
+      "uuid": "8deb9889-ba6c-5e48-933d-829f1b973068"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "9341C5AEFC9D2D1B",
+      "id": "9341C5AEFC9D2D1B",
+      "title": "Establish a Station",
+      "uuid": "f430ce3c-505d-5412-9341-c5aefc9d2d1b"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "938FFD169C221DC8",
+      "id": "938FFD169C221DC8",
+      "title": "A Fully Socketed Set",
+      "uuid": "ff535c62-d8f6-5d32-938f-fd169c221dc8"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "939EE65C90820C2D",
+      "id": "939EE65C90820C2D",
+      "title": "Crystallized Source",
+      "uuid": "ddd9478f-dce4-5d5f-939e-e65c90820c2d"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "93BE9D1AC014268C",
+      "id": "93BE9D1AC014268C",
+      "title": "Restonia",
+      "uuid": "594a0289-5fd0-5c3c-93be-9d1ac014268c"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "93D5FAFED1968A53",
+      "id": "93D5FAFED1968A53",
+      "title": "Catalog of Automation",
+      "uuid": "2f87cb30-15c1-5d9f-93d5-fafed1968a53"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "94305CF42338D453",
+      "id": "94305CF42338D453",
+      "title": "Keep the Line Safe",
+      "uuid": "12746ea7-bd7d-5bb3-9430-5cf42338d453"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "9447C8637E797451",
+      "id": "9447C8637E797451",
+      "title": "Industry Beyond the Main Base",
+      "uuid": "17ed0186-1f8e-544a-9447-c8637e797451"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "94498A2D8B2625C5",
+      "id": "94498A2D8B2625C5",
+      "title": "One Network, Any Distance",
+      "uuid": "384dc0bd-79dc-54c7-9449-8a2d8b2625c5"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "9449E56C6BBF0EE2",
+      "id": "9449E56C6BBF0EE2",
+      "title": "Motion on a Line",
+      "uuid": "471489be-9312-5535-9449-e56c6bbf0ee2"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "945830A36E8E22EC",
+      "id": "945830A36E8E22EC",
+      "title": "A World of Biomes",
+      "uuid": "b65bb3f8-e5df-5962-9458-30a36e8e22ec"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "945FD127D5024504",
+      "id": "945FD127D5024504",
+      "title": "A Cell with a Purpose",
+      "uuid": "74988acd-e651-5ec6-945f-d127d5024504"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9485CE362D91BCA2",
+      "id": "9485CE362D91BCA2",
+      "title": "Never Run Dry",
+      "uuid": "76f45ff2-d5aa-5169-9485-ce362d91bca2"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "949A81D66331C647",
+      "id": "949A81D66331C647",
+      "title": "Prepare for Fluids",
+      "uuid": "f0de4561-b65f-5d5e-949a-81d66331c647"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "94E8400FFB47E297",
+      "id": "94E8400FFB47E297",
+      "title": "Nothing Goes to Waste",
+      "uuid": "8b83dcd6-a41e-5d3a-94e8-400ffb47e297"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "94F9BEF9AF0CF3DF",
+      "id": "94F9BEF9AF0CF3DF",
+      "title": "Build the Bigger Core",
+      "uuid": "70c53539-1eea-581f-94f9-bef9af0cf3df"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "950D9CBBC78DDBDC",
+      "id": "950D9CBBC78DDBDC",
+      "title": "Maintain the Stockpile",
+      "uuid": "ef30ab2d-d342-5bce-950d-9cbbc78ddbdc"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9523F05B4EFE9BC5",
+      "id": "9523F05B4EFE9BC5",
+      "title": "Capture the Steam",
+      "uuid": "8669c011-fa81-5e6c-9523-f05b4efe9bc5"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "95551C6838D7CE57",
+      "id": "95551C6838D7CE57",
+      "title": "Build a Command Center",
+      "uuid": "dd414232-a709-56f8-9555-1c6838d7ce57"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "959F9AE5EC4D8446",
+      "id": "959F9AE5EC4D8446",
+      "title": "Watch the Inventory",
+      "uuid": "c5be7c91-e08e-5fb7-959f-9ae5ec4d8446"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "95C2EB89A951F5E4",
+      "id": "95C2EB89A951F5E4",
+      "title": "Salvage at Scale",
+      "uuid": "fd361535-00eb-52c7-95c2-eb89a951f5e4"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "95C324C31470DE0C",
+      "id": "95C324C31470DE0C",
+      "title": "Knowledge Preserved",
+      "uuid": "2974b80e-d5f4-51d0-95c3-24c31470de0c"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "95C9180B1493A3D3",
+      "id": "95C9180B1493A3D3",
+      "title": "Matter, Energy, and Organization",
+      "uuid": "38a218ec-c0a9-5db0-95c9-180b1493a3d3"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "95CA8225930FDF9B",
+      "id": "95CA8225930FDF9B",
+      "title": "Fortress of Flame",
+      "uuid": "4392ca23-0233-5da7-95ca-8225930fdf9b"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "9602F5A255689E6B",
+      "id": "9602F5A255689E6B",
+      "title": "Electric Rotation",
+      "uuid": "2ce30d13-e591-5ab3-9602-f5a255689e6b"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "960FA2FDDE766B3B",
+      "id": "960FA2FDDE766B3B",
+      "title": "Brilliant Protection",
+      "uuid": "a0a3d8fa-116a-50d3-960f-a2fdde766b3b"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "96455F6A63FAE23E",
+      "id": "96455F6A63FAE23E",
+      "title": "Reconstruct the Story",
+      "uuid": "95f1b959-75f0-5215-9645-5f6a63fae23e"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9675C9132A59EB72",
+      "id": "9675C9132A59EB72",
+      "title": "Crush the Competition",
+      "uuid": "731dcc1d-6a8e-55da-9675-c9132a59eb72"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9684F104E7FA03F3",
+      "id": "9684F104E7FA03F3",
+      "title": "Upgrade without Rebuilding",
+      "uuid": "33dbfaef-35af-502e-9684-f104e7fa03f3"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "96AE104817B743C0",
+      "id": "96AE104817B743C0",
+      "title": "Choose a Familiar's Calling",
+      "uuid": "d724b3eb-a455-515a-96ae-104817b743c0"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "96B61AA733F131D0",
+      "id": "96B61AA733F131D0",
+      "title": "Fuel for a Star",
+      "uuid": "5e0fd69f-cdeb-5dad-96b6-1aa733f131d0"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "96D042E647F223E0",
+      "id": "96D042E647F223E0",
+      "title": "The Grand Warehouse",
+      "uuid": "0e5f30c4-fa09-595d-96d0-42e647f223e0"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "96E4C1F365355EF2",
+      "id": "96E4C1F365355EF2",
+      "title": "Beyond the Central Island",
+      "uuid": "16af8632-706d-531e-96e4-c1f365355ef2"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "96E79C9F66877EE1",
+      "id": "96E79C9F66877EE1",
+      "title": "Beyond the Main Workshop",
+      "uuid": "8ac6f186-be98-5b5e-96e7-9c9f66877ee1"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "96F19ACAB774A9E9",
+      "id": "96F19ACAB774A9E9",
+      "title": "Only What Belongs",
+      "uuid": "73f26db0-d5e2-5641-96f1-9acab774a9e9"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "972C9432897D5019",
+      "id": "972C9432897D5019",
+      "title": "Wireless Energy",
+      "uuid": "0f905332-e785-5de9-972c-9432897d5019"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "972FC26349EBE4AF",
+      "id": "972FC26349EBE4AF",
+      "title": "Wheels for the Railway",
+      "uuid": "b38d9ad5-4371-5d10-972f-c26349ebe4af"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9732AB556F0ED0A2",
+      "id": "9732AB556F0ED0A2",
+      "title": "Pressing Matters",
+      "uuid": "f5ad0b0c-9e15-5a1c-9732-ab556f0ed0a2"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "974906EEAB7C4332",
+      "id": "974906EEAB7C4332",
+      "title": "High-Speed Excavation",
+      "uuid": "3dbdcc42-39d5-598f-9749-06eeab7c4332"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "97546D3876DFCB9F",
+      "id": "97546D3876DFCB9F",
+      "title": "The Quantum Architect",
+      "uuid": "15095c5d-56db-5d7c-9754-6d3876dfcb9f"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "978223E6BBE7400B",
+      "id": "978223E6BBE7400B",
+      "title": "Take to the Water",
+      "uuid": "c49f4fff-1116-5b2f-9782-23e6bbe7400b"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "97845C22D864AB2A",
+      "id": "97845C22D864AB2A",
+      "title": "Master of Matter and Energy",
+      "uuid": "dc68f5ee-e4ce-5533-9784-5c22d864ab2a"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "97862F9850C98672",
+      "id": "97862F9850C98672",
+      "title": "Machines Working Together",
+      "uuid": "e85d41d2-499a-5499-9786-2f9850c98672"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9787BAA31BCDE14E",
+      "id": "9787BAA31BCDE14E",
+      "title": "Wreck Beneath the Waves",
+      "uuid": "961a8299-2d31-5c19-9787-baa31bcde14e"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "978A7B20BB10CB4D",
+      "id": "978A7B20BB10CB4D",
+      "title": "More Than Eterna",
+      "uuid": "7cd28a71-6218-57ff-978a-7b20bb10cb4d"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "97A22F0A1ECD3DB5",
+      "id": "97A22F0A1ECD3DB5",
+      "title": "A Proper Trophy Room",
+      "uuid": "1aa7d1ed-b1a9-5c32-97a2-2f0a1ecd3db5"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "97D4725AB336EBC5",
+      "id": "97D4725AB336EBC5",
+      "title": "Cartographer of Three Worlds",
+      "uuid": "e9ffab1d-33cd-5091-97d4-725ab336ebc5"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "97E30FCE87652D0E",
+      "id": "97E30FCE87652D0E",
+      "title": "A Chilling Discovery",
+      "uuid": "760a7e9a-cf3f-593f-97e3-0fce87652d0e"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "97EC57E5BDA2AA7F",
+      "id": "97EC57E5BDA2AA7F",
+      "title": "A New Industrial Age",
+      "uuid": "3bb2a369-f8f9-55c0-97ec-57e5bda2aa7f"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "97F2BC13EE31F1EA",
+      "id": "97F2BC13EE31F1EA",
+      "title": "Provide the Ingredients",
+      "uuid": "5dae05e7-50ef-5b0d-97f2-bc13ee31f1ea"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9821586AE623D645",
+      "id": "9821586AE623D645",
+      "title": "A Library of Rituals",
+      "uuid": "5ab46f8f-8ab8-5734-9821-586ae623d645"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "98347CA4FE3C78A5",
+      "id": "98347CA4FE3C78A5",
+      "title": "Enrich the Output",
+      "uuid": "30714dde-4e68-5f55-9834-7ca4fe3c78a5"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "9834B0E8CBA57607",
+      "id": "9834B0E8CBA57607",
+      "title": "A New Age of Rotation",
+      "uuid": "d67d0ab1-ed7b-574f-9834-b0e8cba57607"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "983E48F2B5BB28FD",
+      "id": "983E48F2B5BB28FD",
+      "title": "World Tour",
+      "uuid": "9f543ee8-b5c7-5349-983e-48f2b5bb28fd"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "988B56FD0D24F3FE",
+      "id": "988B56FD0D24F3FE",
+      "title": "Build the Capacity",
+      "uuid": "3640f621-8534-5881-988b-56fd0d24f3fe"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "98D3369343FB9198",
+      "id": "98D3369343FB9198",
+      "title": "Combustion Engineering",
+      "uuid": "9b7b807b-6a58-5548-98d3-369343fb9198"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "98DFF3A902BA08F4",
+      "id": "98DFF3A902BA08F4",
+      "title": "Plan the Mythic Hunt",
+      "uuid": "0fdbe182-42d7-5f99-98df-f3a902ba08f4"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "98FDBE2B335B7BA3",
+      "id": "98FDBE2B335B7BA3",
+      "title": "Teeth in the Machine",
+      "uuid": "00169571-d47d-5ed9-98fd-be2b335b7ba3"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "991EB3049DA99F36",
+      "id": "991EB3049DA99F36",
+      "title": "Route by Rule",
+      "uuid": "0aaa2f1c-9acc-5579-991e-b3049da99f36"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9928FD826DBF1470",
+      "id": "9928FD826DBF1470",
+      "title": "Purify into Clumps",
+      "uuid": "a3203d16-a527-50d2-9928-fd826dbf1470"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "99295A746E66BD8D",
+      "id": "99295A746E66BD8D",
+      "title": "An Organized Digital Base",
+      "uuid": "5db6197c-2966-5def-9929-5a746e66bd8d"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "994750AF33EFBC92",
+      "id": "994750AF33EFBC92",
+      "title": "Craft at Factory Scale",
+      "uuid": "27cdd6e3-d0cb-5ad0-9947-50af33efbc92"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "9952BD09AF554E2A",
+      "id": "9952BD09AF554E2A",
+      "title": "Light across the World",
+      "uuid": "07294f5f-1e88-567c-9952-bd09af554e2a"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "99905FFF20ABDE63",
+      "id": "99905FFF20ABDE63",
+      "title": "One Tool, Every Job",
+      "uuid": "7646e258-a633-5459-9990-5fff20abde63"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9993CCA381AF3A7B",
+      "id": "9993CCA381AF3A7B",
+      "title": "Focus the Beam",
+      "uuid": "bf23d682-26ee-5d2d-9993-cca381af3a7b"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "999E9C1D07A5EA92",
+      "id": "999E9C1D07A5EA92",
+      "title": "Change the Pace",
+      "uuid": "cedf3deb-99bb-5b2a-999e-9c1d07a5ea92"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "99A4AFB056051713",
+      "id": "99A4AFB056051713",
+      "title": "Travel by Written Destination",
+      "uuid": "747fef52-3cc5-5e35-99a4-afb056051713"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "99FB31DEFE4DA0C8",
+      "id": "99FB31DEFE4DA0C8",
+      "title": "Power from the Sky",
+      "uuid": "23714cb8-104e-5d96-99fb-31defe4da0c8"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "99FD479647F8A3FE",
+      "id": "99FD479647F8A3FE",
+      "title": "The Seventy-Two-Hour Trial",
+      "uuid": "e4b870c2-9988-5ec6-99fd-479647f8a3fe"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "99FF75DA7A72BA2A",
+      "id": "99FF75DA7A72BA2A",
+      "title": "Echoes of Another World",
+      "uuid": "aab7bfd5-e36a-5da5-99ff-75da7a72ba2a"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9A11CEDA3D2C13DD",
+      "id": "9A11CEDA3D2C13DD",
+      "title": "Brush with History",
+      "uuid": "3c382aa9-3b27-5d39-9a11-ceda3d2c13dd"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "9A1214F8710D5DA6",
+      "id": "9A1214F8710D5DA6",
+      "title": "Reach Across the Factory",
+      "uuid": "0358d918-59e5-5b69-9a12-14f8710d5da6"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9A144F8E83E0C63E",
+      "id": "9A144F8E83E0C63E",
+      "title": "A Dedicated Reconstruction Cell",
+      "uuid": "05114173-a559-57f0-9a14-4f8e83e0c63e"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9A1BD4CBBC0E9F60",
+      "id": "9A1BD4CBBC0E9F60",
+      "title": "Mark the Hunting Grounds",
+      "uuid": "27d3fe2b-b193-53de-9a1b-d4cbbc0e9f60"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9A3290F3906D437D",
+      "id": "9A3290F3906D437D",
+      "title": "A Functioning ME Network",
+      "uuid": "b5eb04db-fbf6-5b1a-9a32-90f3906d437d"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9A3966014461AC0B",
+      "id": "9A3966014461AC0B",
+      "title": "Magic That Works Without You",
+      "uuid": "ef2a2b19-7544-52ae-9a39-66014461ac0b"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9AAA03E14138EE73",
+      "id": "9AAA03E14138EE73",
+      "title": "A Network within the Network",
+      "uuid": "8d15e732-1438-50b9-9aaa-03e14138ee73"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "9AE8C242AA4683BE",
+      "id": "9AE8C242AA4683BE",
+      "title": "Logistics at Any Scale",
+      "uuid": "18d2f666-d56c-534a-9ae8-c242aa4683be"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9B1BE51B69AF2691",
+      "id": "9B1BE51B69AF2691",
+      "title": "Master of Practical Spellcraft",
+      "uuid": "4c77a429-d211-5a43-9b1b-e51b69af2691"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9B2BF37C23DA9E18",
+      "id": "9B2BF37C23DA9E18",
+      "title": "Break on Command",
+      "uuid": "f08a358f-89f2-550b-9b2b-f37c23da9e18"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9B433E35D77DD943",
+      "id": "9B433E35D77DD943",
+      "title": "A Shared Energy Buffer",
+      "uuid": "73f69203-2880-55aa-9b43-3e35d77dd943"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9B46F07792E727EB",
+      "id": "9B46F07792E727EB",
+      "title": "Press the Harvest",
+      "uuid": "5fa78a3c-f730-5cf5-9b46-f07792e727eb"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9B56F25D0B4B4DE2",
+      "id": "9B56F25D0B4B4DE2",
+      "title": "Beyond the Horizon",
+      "uuid": "2740dbd1-3427-5aff-9b56-f25d0b4b4de2"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9B73EAB0B5811EFA",
+      "id": "9B73EAB0B5811EFA",
+      "title": "A Deeper Mana Pool",
+      "uuid": "301aca4a-938c-56a8-9b73-eab0b5811efa"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9BA1B6AA1AA1EB92",
+      "id": "9BA1B6AA1AA1EB92",
+      "title": "A Short Step through Space",
+      "uuid": "a1569124-a4cd-57f5-9ba1-b6aa1aa1eb92"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "9BC80D9BE4C9EA8E",
+      "id": "9BC80D9BE4C9EA8E",
+      "title": "A Life Worth Building",
+      "uuid": "f1d78a5c-0708-5c80-9bc8-0d9be4c9ea8e"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9BD77EA6F9E45F95",
+      "id": "9BD77EA6F9E45F95",
+      "title": "Combine Chemical Streams",
+      "uuid": "0d8814a2-754f-5897-9bd7-7ea6f9e45f95"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9C724CDA73318AC1",
+      "id": "9C724CDA73318AC1",
+      "title": "The Unbroken Trial",
+      "uuid": "20d83f61-bf8e-5aa6-9c72-4cda73318ac1"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "9C7B674F2973EEC0",
+      "id": "9C7B674F2973EEC0",
+      "title": "Master of the Underground",
+      "uuid": "892d601d-eaee-5f45-9c7b-674f2973eec0"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9C849DAFA126952C",
+      "id": "9C849DAFA126952C",
+      "title": "Entangle the Pair",
+      "uuid": "44e29103-948f-5fb1-9c84-9dafa126952c"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9C930103FEFC7D4E",
+      "id": "9C930103FEFC7D4E",
+      "title": "Crystal Resonance",
+      "uuid": "c7bd03d7-a0e3-5c28-9c93-0103fefc7d4e"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9C96567C0A119D02",
+      "id": "9C96567C0A119D02",
+      "title": "Something Actually Different",
+      "uuid": "45c6f7c2-cad6-54ba-9c96-567c0a119d02"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9C9E35668AB129DC",
+      "id": "9C9E35668AB129DC",
+      "title": "Deep Woodland Secrets",
+      "uuid": "67ac2414-37ab-58f8-9c9e-35668ab129dc"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9CAF4D2C0A579875",
+      "id": "9CAF4D2C0A579875",
+      "title": "Crush and Recycle",
+      "uuid": "3551d08e-668f-59d5-9caf-4d2c0a579875"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9CC8D4163FD38290",
+      "id": "9CC8D4163FD38290",
+      "title": "Split Water into Gases",
+      "uuid": "0daa9a32-b9c9-5400-9cc8-d4163fd38290"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "9CD433BE1079EE39",
+      "id": "9CD433BE1079EE39",
+      "title": "Ride the Line",
+      "uuid": "83382353-6914-5fc9-9cd4-33be1079ee39"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9D02244C61A804E9",
+      "id": "9D02244C61A804E9",
+      "title": "A Scalable Industrial Processor",
+      "uuid": "cc429d5e-4393-5691-9d02-244c61a804e9"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9D0E8993BE224A75",
+      "id": "9D0E8993BE224A75",
+      "title": "Climb the Rarity Ladder",
+      "uuid": "dd44add1-44ab-5b84-9d0e-8993be224a75"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9D3342A10ADB1B73",
+      "id": "9D3342A10ADB1B73",
+      "title": "X Marks the Spot",
+      "uuid": "29cd01da-f10e-5dba-9d33-42a10adb1b73"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9D6987D63779188B",
+      "id": "9D6987D63779188B",
+      "title": "A Controlled Burn",
+      "uuid": "0771b712-d0fb-5d3d-9d69-87d63779188b"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9D7059B93201F34D",
+      "id": "9D7059B93201F34D",
+      "title": "Magic with Safeguards",
+      "uuid": "e238cd03-8163-507c-9d70-59b93201f34d"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9D733452C9DF241A",
+      "id": "9D733452C9DF241A",
+      "title": "Experienced Explorer",
+      "uuid": "c06bd15a-d169-5e9b-9d73-3452c9df241a"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9D8417D8F33B204B",
+      "id": "9D8417D8F33B204B",
+      "title": "Expand the Enchanting Archive",
+      "uuid": "f7f941ad-a86d-5660-9d84-17d8f33b204b"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "9D980188B336A710",
+      "id": "9D980188B336A710",
+      "title": "Bring More Light",
+      "uuid": "f35bd7bd-1033-5c98-9d98-0188b336a710"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "9D9C89D1B3C6CB70",
+      "id": "9D9C89D1B3C6CB70",
+      "title": "A Proper Library",
+      "uuid": "80f025b6-1a01-5038-9d9c-89d1b3c6cb70"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9DA1B33BD57A2209",
+      "id": "9DA1B33BD57A2209",
+      "title": "Keep the Network Alive",
+      "uuid": "1be0a014-e58b-5dd4-9da1-b33bd57a2209"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9DB6CC7F6EC64BC4",
+      "id": "9DB6CC7F6EC64BC4",
+      "title": "Two Ingots per Ore",
+      "uuid": "7dd1180a-f86b-54df-9db6-cc7f6ec64bc4"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "9DD1825495B8D062",
+      "id": "9DD1825495B8D062",
+      "title": "A Colorful Harvest",
+      "uuid": "f6aeed5b-c2d1-5b0f-9dd1-825495b8d062"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "9DFACB3E1AEF2683",
+      "id": "9DFACB3E1AEF2683",
+      "title": "Connected Construction",
+      "uuid": "957f7fe3-d2a4-5d77-9dfa-cb3e1aef2683"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9DFEF90D76F529BB",
+      "id": "9DFEF90D76F529BB",
+      "title": "Process Nuclear Waste",
+      "uuid": "42fa7a91-410b-58dc-9dfe-f90d76f529bb"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "9E3885F64E7BED87",
+      "id": "9E3885F64E7BED87",
+      "title": "No More Silent Overflow",
+      "uuid": "639ca68b-6932-56e9-9e38-85f64e7bed87"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "9E6D0205BFE242C3",
+      "id": "9E6D0205BFE242C3",
+      "title": "Wax and Wonder",
+      "uuid": "6d075ab5-5cb3-518b-9e6d-0205bfe242c3"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9E8C7AC6FEC15513",
+      "id": "9E8C7AC6FEC15513",
+      "title": "A Network of Automated Magic",
+      "uuid": "c051aa6e-d0f5-5259-9e8c-7ac6fec15513"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9E8D43336369B20B",
+      "id": "9E8D43336369B20B",
+      "title": "Your First Spellbook",
+      "uuid": "daad556b-057e-5d5d-9e8d-43336369b20b"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9EAA6EC52F81D1CC",
+      "id": "9EAA6EC52F81D1CC",
+      "title": "Hostile Neighbors",
+      "uuid": "44840bc2-962b-5d48-9eaa-6ec52f81d1cc"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9EC6CF191778963F",
+      "id": "9EC6CF191778963F",
+      "title": "Embrace Controlled Chaos",
+      "uuid": "20c7e5ad-394b-5d8f-9ec6-cf191778963f"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9ECFE47D39F90472",
+      "id": "9ECFE47D39F90472",
+      "title": "Empowered Emeradic",
+      "uuid": "303d7840-4315-58d5-9ecf-e47d39f90472"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "9ED49A00445BACD3",
+      "id": "9ED49A00445BACD3",
+      "title": "Organized Supplies",
+      "uuid": "8f43826d-1a9d-527e-9ed4-9a00445bacd3"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "9F183F98D7E341A2",
+      "id": "9F183F98D7E341A2",
+      "title": "Reverse the Flow",
+      "uuid": "d10c0125-91a2-51f1-9f18-3f98d7e341a2"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "9F354CEE891D4767",
+      "id": "9F354CEE891D4767",
+      "title": "Written Preparation",
+      "uuid": "21c2cfcb-9ceb-5ef3-9f35-4cee891d4767"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "9F513DEAF55705E1",
+      "id": "9F513DEAF55705E1",
+      "title": "Deep Energy Reserves",
+      "uuid": "e860a37d-bbb4-5c1c-9f51-3deaf55705e1"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9F592D0904AE4109",
+      "id": "9F592D0904AE4109",
+      "title": "Leave the Workshop Running",
+      "uuid": "d2fe2527-29ac-5253-9f59-2d0904ae4109"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "9F6105A4DE8501DF",
+      "id": "9F6105A4DE8501DF",
+      "title": "Rails with Character",
+      "uuid": "62463c26-4900-5c00-9f61-05a4de8501df"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "9F6BB4DDD86F51E6",
+      "id": "9F6BB4DDD86F51E6",
+      "title": "Echoes of the Lost",
+      "uuid": "2e23abec-f174-5d29-9f6b-b4ddd86f51e6"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9F6D7A15250EECE6",
+      "id": "9F6D7A15250EECE6",
+      "title": "A Worthy Opponent",
+      "uuid": "4b010352-4fd2-5bfa-9f6d-7a15250eece6"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9F785BFCAA2E2902",
+      "id": "9F785BFCAA2E2902",
+      "title": "Five Ingots per Ore",
+      "uuid": "1c1c5230-43f3-5bce-9f78-5bfcaa2e2902"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "9F853CBFCF67030B",
+      "id": "9F853CBFCF67030B",
+      "title": "An Empty Socket",
+      "uuid": "2b998dc1-529a-5612-9f85-3cbfcf67030b"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "9F89E688118941E3",
+      "id": "9F89E688118941E3",
+      "title": "Under Control",
+      "uuid": "9717c6b7-c488-5f5c-9f89-e688118941e3"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "9F8F69B382DA8B5F",
+      "id": "9F8F69B382DA8B5F",
+      "title": "The Grand Ritual Site",
+      "uuid": "3960932c-5561-548b-9f8f-69b382da8b5f"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "9FA4AF7125A642F3",
+      "id": "9FA4AF7125A642F3",
+      "title": "Collect with Precision",
+      "uuid": "bf11ad76-26ef-51f5-9fa4-af7125a642f3"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9FC598DED3EF23F1",
+      "id": "9FC598DED3EF23F1",
+      "title": "Write a Destination",
+      "uuid": "26b8a056-9afe-5345-9fc5-98ded3ef23f1"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "9FC966A646B440CA",
+      "id": "9FC966A646B440CA",
+      "title": "Shape a Battle Spell",
+      "uuid": "c2d00c64-6288-50f1-9fc9-66a646b440ca"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "9FE72E4EB602117C",
+      "id": "9FE72E4EB602117C",
+      "title": "Bridge Moving and Stationary",
+      "uuid": "c8e5d8d5-ffa8-56cb-9fe7-2e4eb602117c"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "9FF5BF98C8C49096",
+      "id": "9FF5BF98C8C49096",
+      "title": "Build a Multiblock Battery",
+      "uuid": "1b3642e1-9e48-53ae-9ff5-bf98c8c49096"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A00EB27C920C4924",
+      "id": "A00EB27C920C4924",
+      "title": "The Modular Miner",
+      "uuid": "8697b4f3-c59b-5071-a00e-b27c920c4924"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A01D4ECBDDCBEA74",
+      "id": "A01D4ECBDDCBEA74",
+      "title": "Reconstruct Matter",
+      "uuid": "0450bc5e-d717-5d11-a01d-4ecbddcbea74"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A0215546138AAF19",
+      "id": "A0215546138AAF19",
+      "title": "Upstream Supper",
+      "uuid": "6a129591-3e3f-59bd-a021-5546138aaf19"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A02F127E1720FF68",
+      "id": "A02F127E1720FF68",
+      "title": "Parallelize the Workshop",
+      "uuid": "f205db9c-316f-5720-a02f-127e1720ff68"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A03D4E1C21DE3FBC",
+      "id": "A03D4E1C21DE3FBC",
+      "title": "Transmit the Motion",
+      "uuid": "d42db712-ce43-5e7e-a03d-4e1c21de3fbc"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "A0471C1EAF3FD8CF",
+      "id": "A0471C1EAF3FD8CF",
+      "title": "Perfect a Signature Spell",
+      "uuid": "0d9f90a9-2584-5cd6-a047-1c1eaf3fd8cf"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A0481C380E02FEF9",
+      "id": "A0481C380E02FEF9",
+      "title": "Compose Your First Spell",
+      "uuid": "fc7876dc-7fe0-5b21-a048-1c380e02fef9"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A0552E09DC8568FF",
+      "id": "A0552E09DC8568FF",
+      "title": "Forge a Signature Weapon",
+      "uuid": "cba93e4d-44e6-563b-a055-2e09dc8568ff"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A06FF6166863CE5C",
+      "id": "A06FF6166863CE5C",
+      "title": "Memory for the Job",
+      "uuid": "4b037ba8-47f9-5664-a06f-f6166863ce5c"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "A074A1D6D7735B1A",
+      "id": "A074A1D6D7735B1A",
+      "title": "Secrets in the Vines",
+      "uuid": "beb80d61-cafd-57e0-a074-a1d6d7735b1a"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A0790F7890A5BED0",
+      "id": "A0790F7890A5BED0",
+      "title": "A Magical Companion",
+      "uuid": "5c5e507e-7108-5aea-a079-0f7890a5bed0"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A084253139E38F70",
+      "id": "A084253139E38F70",
+      "title": "A Library of Industry",
+      "uuid": "c1679fb8-399c-535e-a084-253139e38f70"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A0A8740984C5FEA9",
+      "id": "A0A8740984C5FEA9",
+      "title": "Automate the Enchanting Apparatus",
+      "uuid": "fbbe5610-1228-53f5-a0a8-740984c5fea9"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A0B150555FF7CEE3",
+      "id": "A0B150555FF7CEE3",
+      "title": "Universal Power Lines",
+      "uuid": "6bdc6056-0b5c-5d60-a0b1-50555ff7cee3"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "A0CD16D3813CFEF0",
+      "id": "A0CD16D3813CFEF0",
+      "title": "Rotation into Electricity",
+      "uuid": "d9afd974-98a0-5e6f-a0cd-16d3813cfef0"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A0DD2BAC223CB981",
+      "id": "A0DD2BAC223CB981",
+      "title": "Turn Every Direction",
+      "uuid": "dee2db77-2205-57c1-a0dd-2bac223cb981"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A0E70B9748FC06BB",
+      "id": "A0E70B9748FC06BB",
+      "title": "Empowered Restonia",
+      "uuid": "619b92b7-e9df-5736-a0e7-0b9748fc06bb"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A0F32B96F9D2ED42",
+      "id": "A0F32B96F9D2ED42",
+      "title": "Air-Powered Processing",
+      "uuid": "d5b70bc5-381e-576d-a0f3-2b96f9d2ed42"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A0F8E272D1041D95",
+      "id": "A0F8E272D1041D95",
+      "title": "Prepare the Ritual",
+      "uuid": "81333784-6b8e-56ad-a0f8-e272d1041d95"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A10D11CD2F654FBF",
+      "id": "A10D11CD2F654FBF",
+      "title": "A Sturdy Defense",
+      "uuid": "6b7a1c43-fb82-5829-a10d-11cd2f654fbf"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "A110FCB74ECB8CB6",
+      "id": "A110FCB74ECB8CB6",
+      "title": "Untouchable",
+      "uuid": "04af3b14-e588-59d3-a110-fcb74ecb8cb6"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A1434E90EADA6BF3",
+      "id": "A1434E90EADA6BF3",
+      "title": "Bottle a Star",
+      "uuid": "e78f689d-a22d-5992-a143-4e90eada6bf3"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A15B107B8B33255D",
+      "id": "A15B107B8B33255D",
+      "title": "Move between Fluids and Chemicals",
+      "uuid": "df5c7210-b9f6-520d-a15b-107b8b33255d"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A1829ED2935D4DA3",
+      "id": "A1829ED2935D4DA3",
+      "title": "Prepare Fissile Fuel",
+      "uuid": "d75b072d-81f5-597c-a182-9ed2935d4da3"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A193721445D8B966",
+      "id": "A193721445D8B966",
+      "title": "Infuse the Metal",
+      "uuid": "07e1d5b1-5ac1-56a4-a193-721445d8b966"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A19DF8022965BC42",
+      "id": "A19DF8022965BC42",
+      "title": "Dissolve the Ore",
+      "uuid": "7c111a7f-6455-5b19-a19d-f8022965bc42"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A1A7BFE2BAA97C02",
+      "id": "A1A7BFE2BAA97C02",
+      "title": "Tunnel the Network",
+      "uuid": "681b0853-569f-50c3-a1a7-bfe2baa97c02"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A1B4DD334A3D3F8D",
+      "id": "A1B4DD334A3D3F8D",
+      "title": "Tune the Enchanting Room",
+      "uuid": "e7516a16-07cd-5eb9-a1b4-dd334a3d3f8d"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A1C4085EC2E533B9",
+      "id": "A1C4085EC2E533B9",
+      "title": "Write Your Signature Spell",
+      "uuid": "bfb9a899-4126-5966-a1c4-085ec2e533b9"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "A1C5D5B5DAB4132A",
+      "id": "A1C5D5B5DAB4132A",
+      "title": "The Great Convergence",
+      "uuid": "55195dcb-3cee-5e39-a1c5-d5b5dab4132a"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "A1CA04D34EAED17F",
+      "id": "A1CA04D34EAED17F",
+      "title": "Ignition",
+      "uuid": "0052184c-9f1a-5223-a1ca-04d34eaed17f"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A1DDFD211EE738AB",
+      "id": "A1DDFD211EE738AB",
+      "title": "React to Stock Levels",
+      "uuid": "073790ce-9a3e-5c56-a1dd-fd211ee738ab"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A1E50AFAF05433A8",
+      "id": "A1E50AFAF05433A8",
+      "title": "Parallel Assembly",
+      "uuid": "3d257e41-9bc7-52a8-a1e5-0afaf05433a8"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A26EDD8B6F22030F",
+      "id": "A26EDD8B6F22030F",
+      "title": "Storage That Scales",
+      "uuid": "d0b55811-7ff8-5f83-a26e-dd8b6f22030f"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A29EF94E42D59678",
+      "id": "A29EF94E42D59678",
+      "title": "Tanned and Ready",
+      "uuid": "3cd9b3d6-fb24-583c-a29e-f94e42d59678"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A2A62C75B51BDB4F",
+      "id": "A2A62C75B51BDB4F",
+      "title": "Encode a Crafting Pattern",
+      "uuid": "dd641653-9a2b-5c4a-a2a6-2c75b51bdb4f"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A2BE7DA11F998D0A",
+      "id": "A2BE7DA11F998D0A",
+      "title": "Defend the Arcane Grounds",
+      "uuid": "d2c44233-d679-52c8-a2be-7da11f998d0a"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A2D26C98D567D239",
+      "id": "A2D26C98D567D239",
+      "title": "Bulk Factory Storage",
+      "uuid": "79da7e06-5369-5ccd-a2d2-6c98d567d239"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A2E7482F4139D103",
+      "id": "A2E7482F4139D103",
+      "title": "Threaded Enchantments",
+      "uuid": "fc6cc44e-e643-5f5d-a2e7-482f4139d103"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A2EFC08726A04440",
+      "id": "A2EFC08726A04440",
+      "title": "Build Around the Sockets",
+      "uuid": "356b11f6-89cb-535c-a2ef-c08726a04440"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "A2F1BA07FC096B52",
+      "id": "A2F1BA07FC096B52",
+      "title": "First Flight",
+      "uuid": "97eac955-d636-5e52-a2f1-ba07fc096b52"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A35714AEAFA7479F",
+      "id": "A35714AEAFA7479F",
+      "title": "The Chicken or the Egg",
+      "uuid": "c479e998-3b15-5672-a357-14aeafa7479f"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A37678A030180735",
+      "id": "A37678A030180735",
+      "title": "Fast Food",
+      "uuid": "c2ce05e0-4be6-568b-a376-78a030180735"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "A380CF3730F3FD59",
+      "id": "A380CF3730F3FD59",
+      "title": "A Million Things",
+      "uuid": "7ff13644-aaeb-5702-a380-cf3730f3fd59"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A38C1BAE1D6F8FA0",
+      "id": "A38C1BAE1D6F8FA0",
+      "title": "Build the Quantum Ring",
+      "uuid": "a1ce439b-eb02-529d-a38c-1bae1d6f8fa0"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A393484D99BC4641",
+      "id": "A393484D99BC4641",
+      "title": "Harness the High Winds",
+      "uuid": "2c397b1c-4bb9-5fe0-a393-484d99bc4641"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A3B41B28620BF54B",
+      "id": "A3B41B28620BF54B",
+      "title": "A Socketed Loadout",
+      "uuid": "27058664-5daf-58c7-a3b4-1b28620bf54b"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A4249FA3297C605B",
+      "id": "A4249FA3297C605B",
+      "title": "A Source for Every Situation",
+      "uuid": "cadacd5e-14c5-5de3-a424-9fa3297c605b"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A4430F2F080370F6",
+      "id": "A4430F2F080370F6",
+      "title": "Push Items Where Needed",
+      "uuid": "ad8b59c3-49c8-5626-a443-0f2f080370f6"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A454168BC07AC6F6",
+      "id": "A454168BC07AC6F6",
+      "title": "A Drill for Every Job",
+      "uuid": "31522b6e-11dc-5669-a454-168bc07ac6f6"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A45762366BF24115",
+      "id": "A45762366BF24115",
+      "title": "Define the Structure",
+      "uuid": "43ca1648-d3e0-55ef-a457-62366bf24115"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A4783D8F61602502",
+      "id": "A4783D8F61602502",
+      "title": "Thirty-Two Lanes",
+      "uuid": "8887e43e-73a2-5516-a478-3d8f61602502"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A4BF60171DB7E683",
+      "id": "A4BF60171DB7E683",
+      "title": "An Inventory at a Distance",
+      "uuid": "2a6c39e8-59e9-5769-a4bf-60171db7e683"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A4E7E65996822E1B",
+      "id": "A4E7E65996822E1B",
+      "title": "Describe a Machine Process",
+      "uuid": "563556bc-4e42-5a02-a4e7-e65996822e1b"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A4ECC2D2E7B95A2A",
+      "id": "A4ECC2D2E7B95A2A",
+      "title": "Renewable Timber",
+      "uuid": "ff9edd54-4d66-5f91-a4ec-c2d2e7b95a2a"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "A4EDEB8B697A1006",
+      "id": "A4EDEB8B697A1006",
+      "title": "Power in Words",
+      "uuid": "7c5dea89-e34b-538f-a4ed-eb8b697a1006"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A4F5770E8A7FD1EE",
+      "id": "A4F5770E8A7FD1EE",
+      "title": "Bottle the Current",
+      "uuid": "a2f9a2e5-6d80-5a9b-a4f5-770e8a7fd1ee"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A4F702BF298458F9",
+      "id": "A4F702BF298458F9",
+      "title": "Actually Equipped",
+      "uuid": "62e9ec33-ff2c-5bad-a4f7-02bf298458f9"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A5181DF98801BFE6",
+      "id": "A5181DF98801BFE6",
+      "title": "Work in Parallel",
+      "uuid": "a8d92d9f-8a4d-5e7e-a518-1df98801bfe6"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A53AF62A74F8E4BF",
+      "id": "A53AF62A74F8E4BF",
+      "title": "A Place to Work",
+      "uuid": "11119211-c3e4-5164-a53a-f62a74f8e4bf"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A54160D4E7775AF1",
+      "id": "A54160D4E7775AF1",
+      "title": "Matter under Pressure",
+      "uuid": "aca4d1de-1f23-552a-a541-60d4e7775af1"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A5765B7B78F3D8E0",
+      "id": "A5765B7B78F3D8E0",
+      "title": "The Canola Power Loop",
+      "uuid": "b9f0955f-ab53-52a9-a576-5b7b78f3d8e0"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "A57AB0E93C7E7635",
+      "id": "A57AB0E93C7E7635",
+      "title": "A Faster Mount",
+      "uuid": "eee8e7f9-1a4f-5616-a57a-b0e93c7e7635"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "A57B969E522D8D2E",
+      "id": "A57B969E522D8D2E",
+      "title": "Beyond Completion",
+      "uuid": "a265d5bf-0bd0-5a5b-a57b-969e522d8d2e"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A62AA427ADF8811E",
+      "id": "A62AA427ADF8811E",
+      "title": "Fortune on Demand",
+      "uuid": "04ff3ca1-206c-525c-a62a-a427adf8811e"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A637EB22B7C77CDA",
+      "id": "A637EB22B7C77CDA",
+      "title": "A Stable Nuclear Power Station",
+      "uuid": "d5424b14-2def-5690-a637-eb22b7c77cda"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "A6808430A8AC05B4",
+      "id": "A6808430A8AC05B4",
+      "title": "Power beneath the Waves",
+      "uuid": "a3abfd4d-dd0c-5531-a680-8430a8ac05b4"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A6A56EBE14B7472B",
+      "id": "A6A56EBE14B7472B",
+      "title": "Move Items Automatically",
+      "uuid": "4374501c-b18f-5e0c-a6a5-6ebe14b7472b"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "A6A73505D9D65BBA",
+      "id": "A6A73505D9D65BBA",
+      "title": "Miner's Best Friend",
+      "uuid": "268113bd-be45-59e5-a6a7-3505d9d65bba"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A6CF387A1471A729",
+      "id": "A6CF387A1471A729",
+      "title": "The Archmage's Grimoire",
+      "uuid": "c66ea535-0d46-5303-a6cf-387a1471a729"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "A6D5AF54B25B7629",
+      "id": "A6D5AF54B25B7629",
+      "title": "The Cartographer's Desk",
+      "uuid": "253a71b2-89d6-5f49-a6d5-af54b25b7629"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A6D9B5F2B234E6F1",
+      "id": "A6D9B5F2B234E6F1",
+      "title": "Run the Mythic Gauntlet",
+      "uuid": "5e85ea14-a4b7-53fa-a6d9-b5f2b234e6f1"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "A6DD3A2275842DF7",
+      "id": "A6DD3A2275842DF7",
+      "title": "The Electrified Factory",
+      "uuid": "065d732e-fb51-5d18-a6dd-3a2275842df7"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A6E4CD1B9B30C6A5",
+      "id": "A6E4CD1B9B30C6A5",
+      "title": "Count the Channels",
+      "uuid": "269d4995-6c79-5cd2-a6e4-cd1b9b30c6a5"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A705F3E3BE0DFF82",
+      "id": "A705F3E3BE0DFF82",
+      "title": "A Precision Housing",
+      "uuid": "5056c2e7-2f76-5d36-a705-f3e3be0dff82"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A7100062D34FBA61",
+      "id": "A7100062D34FBA61",
+      "title": "Void Crystal",
+      "uuid": "e462eb3f-10df-56bc-a710-0062d34fba61"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "A71A267AFC948FBE",
+      "id": "A71A267AFC948FBE",
+      "title": "Engineering the Sky",
+      "uuid": "7dba79b8-1d0f-5f1c-a71a-267afc948fbe"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A71FE75A6D7F509D",
+      "id": "A71FE75A6D7F509D",
+      "title": "The Engineer's Best Friend",
+      "uuid": "4945229e-d204-5aab-a71f-e75a6d7f509d"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A725DD84901F9A7A",
+      "id": "A725DD84901F9A7A",
+      "title": "Separate the Branches",
+      "uuid": "2e4477db-9555-5f9c-a725-dd84901f9a7a"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A749D47998D96B7E",
+      "id": "A749D47998D96B7E",
+      "title": "The Integrated Mekanism Complex",
+      "uuid": "52021ee2-adc4-5d29-a749-d47998d96b7e"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "A74C4DB7DB80353C",
+      "id": "A74C4DB7DB80353C",
+      "title": "Underground Transit",
+      "uuid": "fab880b9-fe1d-510c-a74c-4db7db80353c"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A74FB9340C09F796",
+      "id": "A74FB9340C09F796",
+      "title": "A Weapon That Casts",
+      "uuid": "09a622e2-9de7-50fe-a74f-b9340c09f796"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A758291BA29B5FAF",
+      "id": "A758291BA29B5FAF",
+      "title": "Advanced Control",
+      "uuid": "1d684ee1-33dd-5c94-a758-291ba29b5faf"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A77B2B519863BE61",
+      "id": "A77B2B519863BE61",
+      "title": "Imbue the Mundane",
+      "uuid": "18c2c416-29ae-5221-a77b-2b519863be61"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "A78D2A48D0C09BA2",
+      "id": "A78D2A48D0C09BA2",
+      "title": "The Complete Homestead Workshop",
+      "uuid": "88b7483b-4d90-54ae-a78d-2a48d0c09ba2"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "A79ADBC289CBB991",
+      "id": "A79ADBC289CBB991",
+      "title": "Always Keep the Essentials",
+      "uuid": "a58690f4-f0f3-56e0-a79a-dbc289cbb991"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "A7A1F49D1D59FD08",
+      "id": "A7A1F49D1D59FD08",
+      "title": "Disaster Drill",
+      "uuid": "422dbc7a-b42b-5c4e-a7a1-f49d1d59fd08"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A7E5A37B0B159E08",
+      "id": "A7E5A37B0B159E08",
+      "title": "Build a Source Reservoir",
+      "uuid": "8df6c728-ab7a-5262-a7e5-a37b0b159e08"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A834402931029070",
+      "id": "A834402931029070",
+      "title": "Every Socket Has a Job",
+      "uuid": "798faa13-ffb5-5a46-a834-402931029070"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A84B1F3171833F9B",
+      "id": "A84B1F3171833F9B",
+      "title": "An Empowered Stockroom",
+      "uuid": "b58d8a94-3330-597d-a84b-1f3171833f9b"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "A85A27C0EE00B5C4",
+      "id": "A85A27C0EE00B5C4",
+      "title": "Emergency Rations",
+      "uuid": "a4ea880b-7d58-5734-a85a-27c0ee00b5c4"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A85C3BDC125C481C",
+      "id": "A85C3BDC125C481C",
+      "title": "Restore from a Network Failure",
+      "uuid": "0814edf2-028a-5dc8-a85c-3bdc125c481c"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "A868060874F46240",
+      "id": "A868060874F46240",
+      "title": "Push the Reactor",
+      "uuid": "80659117-e9c1-5fb7-a868-060874f46240"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A8761577762CB136",
+      "id": "A8761577762CB136",
+      "title": "Contain the Waste",
+      "uuid": "f2814f66-0599-50c3-a876-1577762cb136"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A88848765A7AEAFD",
+      "id": "A88848765A7AEAFD",
+      "title": "Empower the Crystals",
+      "uuid": "a1a1b391-3fd2-5144-a888-48765a7aeafd"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A88FA86334651685",
+      "id": "A88FA86334651685",
+      "title": "Magic for Everyday Work",
+      "uuid": "a7ddf3f5-8046-5005-a88f-a86334651685"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A8B49A75EC086BD9",
+      "id": "A8B49A75EC086BD9",
+      "title": "Secure the Network",
+      "uuid": "1fd604c2-2c85-5e1e-a8b4-9a75ec086bd9"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "A8BF8FACEEBD5E95",
+      "id": "A8BF8FACEEBD5E95",
+      "title": "The Archmage's Spell Archive",
+      "uuid": "f8f2d29e-63e1-5ac3-a8bf-8faceebd5e95"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A8CBC8CAC1B4EC8A",
+      "id": "A8CBC8CAC1B4EC8A",
+      "title": "Your First Locomotive",
+      "uuid": "4070bfcf-662b-56af-a8cb-c8cac1b4ec8a"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "A8D32456D8AB794F",
+      "id": "A8D32456D8AB794F",
+      "title": "Spin It Faster",
+      "uuid": "d547cf1c-616c-51fa-a8d3-2456d8ab794f"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "A8F1AA336D2FFBB8",
+      "id": "A8F1AA336D2FFBB8",
+      "title": "Cut Above the Rest",
+      "uuid": "ba565e5d-4e23-513f-a8f1-aa336d2ffbb8"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A90812C36D68D0A7",
+      "id": "A90812C36D68D0A7",
+      "title": "Inject for Greater Yield",
+      "uuid": "9b9e8ba3-1cde-5da3-a908-12c36d68d0a7"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "A94F27079A2C04BA",
+      "id": "A94F27079A2C04BA",
+      "title": "Gather Wood",
+      "uuid": "ce11beb2-ac50-59be-a94f-27079a2c04ba"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "A957FC8B1FA55040",
+      "id": "A957FC8B1FA55040",
+      "title": "Traveling Companions",
+      "uuid": "55f91d17-57d5-5e8e-a957-fc8b1fa55040"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A97629F51D2A1191",
+      "id": "A97629F51D2A1191",
+      "title": "Three Ingots per Ore",
+      "uuid": "6bd5ac6a-d18e-5727-a976-29f51d2a1191"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A9A230AEE12A7A79",
+      "id": "A9A230AEE12A7A79",
+      "title": "Smoke on the Breeze",
+      "uuid": "b2bed552-c58a-5d22-a9a2-30aee12a7a79"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "A9A41799F8AA3CA1",
+      "id": "A9A41799F8AA3CA1",
+      "title": "Power from Heat",
+      "uuid": "f2322d91-e788-5587-a9a4-1799f8aa3ca1"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "A9C77A0C21EC9A95",
+      "id": "A9C77A0C21EC9A95",
+      "title": "Master of Every Discipline",
+      "uuid": "a2bfab4d-c32f-5248-a9c7-7a0c21ec9a95"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "A9E0FCFE85A29061",
+      "id": "A9E0FCFE85A29061",
+      "title": "Disconnect on Demand",
+      "uuid": "f36b2a94-420b-5754-a9e0-fcfe85a29061"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "A9FC6C72C3E6FC36",
+      "id": "A9FC6C72C3E6FC36",
+      "title": "Master of the ME Network",
+      "uuid": "fa13aa38-8f82-5194-a9fc-6c72c3e6fc36"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "AA0D037CCABC1D9D",
+      "id": "AA0D037CCABC1D9D",
+      "title": "The Blue Metal",
+      "uuid": "3d1bf050-7012-536b-aa0d-037ccabc1d9d"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "AA8B64CAF7398B97",
+      "id": "AA8B64CAF7398B97",
+      "title": "Sophisticated Cargo",
+      "uuid": "de135c46-9672-5542-aa8b-64caf7398b97"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "AA9B42E287FDB0C6",
+      "id": "AA9B42E287FDB0C6",
+      "title": "Filtered Logistics",
+      "uuid": "451a6f7f-ea74-58ef-aa9b-42e287fdb0c6"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "AAD8807D22C1BADF",
+      "id": "AAD8807D22C1BADF",
+      "title": "The Four Presses",
+      "uuid": "f3a38321-e7b8-5264-aad8-807d22c1badf"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "AB00CE83D702A823",
+      "id": "AB00CE83D702A823",
+      "title": "Remnants of the Piglins",
+      "uuid": "3a20e95d-3500-5a9d-ab00-ce83d702a823"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "AB6B7E01C5686691",
+      "id": "AB6B7E01C5686691",
+      "title": "Power from the Fields",
+      "uuid": "13eeb0af-7002-5419-ab6b-7e01c5686691"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "AB6BE981A573966E",
+      "id": "AB6BE981A573966E",
+      "title": "A Window into Storage",
+      "uuid": "3987e86a-cc4e-5f0c-ab6b-e981a573966e"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "AB8BA193D598B0A8",
+      "id": "AB8BA193D598B0A8",
+      "title": "A Library of Possibilities",
+      "uuid": "73250b62-e937-5889-ab8b-a193d598b0a8"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "AB96CC82C83D90D9",
+      "id": "AB96CC82C83D90D9",
+      "title": "Cities at the Edge",
+      "uuid": "5ce6f41e-fe8f-5440-ab96-cc82c83d90d9"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "AB9C5E88FB1FDAD9",
+      "id": "AB9C5E88FB1FDAD9",
+      "title": "The Enchanting Apparatus",
+      "uuid": "d94e212f-7e29-5553-ab9c-5e88fb1fdad9"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "ABA24462997D0B7E",
+      "id": "ABA24462997D0B7E",
+      "title": "Press into the Basin",
+      "uuid": "e518b280-cdad-5a33-aba2-4462997d0b7e"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "ABA318CFB591F5AE",
+      "id": "ABA318CFB591F5AE",
+      "title": "Thinking in Motion",
+      "uuid": "b8c53775-08c2-52d8-aba3-18cfb591f5ae"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "ABE5D2024E1580C1",
+      "id": "ABE5D2024E1580C1",
+      "title": "Drain the Monument",
+      "uuid": "0cd0d766-3f03-5f9f-abe5-d2024e1580c1"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "ABE733A6CB5B1624",
+      "id": "ABE733A6CB5B1624",
+      "title": "Boss Rush",
+      "uuid": "61fe4e6a-b686-59d3-abe7-33a6cb5b1624"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "AC9F2919C5100A37",
+      "id": "AC9F2919C5100A37",
+      "title": "A Working Processing Line",
+      "uuid": "e5c6e60e-4237-53bb-ac9f-2919c5100a37"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "ACA23C8218E75173",
+      "id": "ACA23C8218E75173",
+      "title": "Master of Automation",
+      "uuid": "2579f9e1-acf1-5f8d-aca2-3c8218e75173"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "ACD1B4D74A52286E",
+      "id": "ACD1B4D74A52286E",
+      "title": "Fluix Formation",
+      "uuid": "0eb1c90a-be9b-563a-acd1-b4d74a52286e"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "ACE9D78DD7767BE3",
+      "id": "ACE9D78DD7767BE3",
+      "title": "Endgame Arsenal",
+      "uuid": "c172f062-7767-5988-ace9-d78dd7767be3"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "ACF91C42BFB38EFC",
+      "id": "ACF91C42BFB38EFC",
+      "title": "A Garden Underground",
+      "uuid": "d1328e4d-6307-5a94-acf9-1c42bfb38efc"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "AD1F4E90E449074B",
+      "id": "AD1F4E90E449074B",
+      "title": "Harness the Current",
+      "uuid": "69c5a646-ee6d-5b28-ad1f-4e90e449074b"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "AD2CCB825545CE30",
+      "id": "AD2CCB825545CE30",
+      "title": "Industrial Steel",
+      "uuid": "282ff6cf-8c9b-5bd7-ad2c-cb825545ce30"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "AD3B35FE7F3B413A",
+      "id": "AD3B35FE7F3B413A",
+      "title": "Store a Room",
+      "uuid": "0aac2092-95ea-5990-ad3b-35fe7f3b413a"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "AD4F03355AD934B8",
+      "id": "AD4F03355AD934B8",
+      "title": "A Powered Processing Line",
+      "uuid": "211ddc5e-3abf-554e-ad4f-03355ad934b8"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "AD8973AE02566CBB",
+      "id": "AD8973AE02566CBB",
+      "title": "Buried in Sand",
+      "uuid": "326ca7b7-afe9-551d-ad89-73ae02566cbb"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "AD9BC27565B1BF45",
+      "id": "AD9BC27565B1BF45",
+      "title": "Prepare the Empowerer",
+      "uuid": "7a7e0e7c-64b7-549d-ad9b-c27565b1bf45"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "ADA3FFB7E07964E5",
+      "id": "ADA3FFB7E07964E5",
+      "title": "Conductive Metal",
+      "uuid": "5c4ad976-a124-5206-ada3-ffb7e07964e5"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "ADA932A5750A959A",
+      "id": "ADA932A5750A959A",
+      "title": "The Megafactory",
+      "uuid": "7d78da6e-f519-5439-ada9-32a5750a959a"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "ADAB9C6863C362CF",
+      "id": "ADAB9C6863C362CF",
+      "title": "One Face, Many Inventories",
+      "uuid": "336eb55f-fe8b-55da-adab-9c6863c362cf"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "ADBC773F4E498B89",
+      "id": "ADBC773F4E498B89",
+      "title": "The Alloy That Starts It All",
+      "uuid": "7b6fa3c4-c9b3-56dd-adbc-773f4e498b89"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "ADF01D28576E9C4A",
+      "id": "ADF01D28576E9C4A",
+      "title": "A Mechanical Companion",
+      "uuid": "48e2d73e-766a-5bb7-adf0-1d28576e9c4a"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "AE097681990BD3FE",
+      "id": "AE097681990BD3FE",
+      "title": "Detect Passing Trains",
+      "uuid": "8e7cc3ab-0a6d-5c90-ae09-7681990bd3fe"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "AE1010D11B1F94A0",
+      "id": "AE1010D11B1F94A0",
+      "title": "Palis",
+      "uuid": "dcd9760c-49fc-5e2f-ae10-10d11b1f94a0"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "AE484099900614BD",
+      "id": "AE484099900614BD",
+      "title": "Hero of the Village",
+      "uuid": "ca2dd000-7b52-5236-ae48-4099900614bd"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "AE789AF2A07613DF",
+      "id": "AE789AF2A07613DF",
+      "title": "A Legendary Loadout",
+      "uuid": "f106cf7b-6ee9-55fb-ae78-9af2a07613df"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "AE9662864259F245",
+      "id": "AE9662864259F245",
+      "title": "Precision Motor Control",
+      "uuid": "4a61a357-0e7d-5a5a-ae96-62864259f245"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "AE9D39429B5A2836",
+      "id": "AE9D39429B5A2836",
+      "title": "A Grid-Sized Battery",
+      "uuid": "d9607573-01d0-5785-ae9d-39429b5a2836"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "AEA58432C60A98F6",
+      "id": "AEA58432C60A98F6",
+      "title": "The Network Crafts for You",
+      "uuid": "8708caf2-4625-5c2d-aea5-8432c60a98f6"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "AEC5D374610E1741",
+      "id": "AEC5D374610E1741",
+      "title": "Take It Vertical",
+      "uuid": "78dfe577-5770-5fa7-aec5-d374610e1741"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "AEDA82FCA6CD8E34",
+      "id": "AEDA82FCA6CD8E34",
+      "title": "Craft from the Network",
+      "uuid": "1893c49c-245a-5b71-aeda-82fca6cd8e34"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "AF0DE77EEB143D10",
+      "id": "AF0DE77EEB143D10",
+      "title": "Into the Nether Wilds",
+      "uuid": "f7e57555-b70f-58aa-af0d-e77eeb143d10"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "AF3477333CA5AF26",
+      "id": "AF3477333CA5AF26",
+      "title": "Stock What Machines Need",
+      "uuid": "4d0592c4-8a42-5a94-af34-77333ca5af26"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "AF36A22B610743C5",
+      "id": "AF36A22B610743C5",
+      "title": "Restart from Darkness",
+      "uuid": "68a67021-9e81-5fe4-af36-a22b610743c5"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "AF500466035EE361",
+      "id": "AF500466035EE361",
+      "title": "Bottled Sunshine",
+      "uuid": "f7913def-3e63-552c-af50-0466035ee361"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "AF519C86336AC5AB",
+      "id": "AF519C86336AC5AB",
+      "title": "Fields of Orange",
+      "uuid": "d70a1710-0aec-5c87-af51-9c86336ac5ab"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "AF5B381D3887B404",
+      "id": "AF5B381D3887B404",
+      "title": "Weapon of Legend",
+      "uuid": "7792abab-97e3-5eda-af5b-381d3887b404"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "AF9D2635BF0B5622",
+      "id": "AF9D2635BF0B5622",
+      "title": "Modify the Formula",
+      "uuid": "16186c51-21a3-5170-af9d-2635bf0b5622"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "AFC1DB6AD2C604D6",
+      "id": "AFC1DB6AD2C604D6",
+      "title": "The End, Revisited",
+      "uuid": "ac4e2b5d-fe0b-5cff-afc1-db6ad2c604d6"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "AFC2753344996824",
+      "id": "AFC2753344996824",
+      "title": "Crafting on Demand",
+      "uuid": "e9bd9105-e8d7-590d-afc2-753344996824"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "AFC3502C21C42A87",
+      "id": "AFC3502C21C42A87",
+      "title": "Adventure Awaits",
+      "uuid": "d621c5d5-56fa-52ba-afc3-502c21c42a87"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "AFC4F321C39227FF",
+      "id": "AFC4F321C39227FF",
+      "title": "From Base to Industrial City",
+      "uuid": "95faed3b-15b1-5f5e-afc4-f321c39227ff"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "AFD8A67B8C4C08B0",
+      "id": "AFD8A67B8C4C08B0",
+      "title": "Reach the Player",
+      "uuid": "33214b19-31ae-5f84-afd8-a67b8c4c08b0"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "AFE7F2B93837D38E",
+      "id": "AFE7F2B93837D38E",
+      "title": "Propulsion Online",
+      "uuid": "36721134-ef4e-5ee1-afe7-f2b93837d38e"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B00A78B6A0EB8B14",
+      "id": "B00A78B6A0EB8B14",
+      "title": "Automated Freight",
+      "uuid": "254f3db6-0f2f-5f1f-b00a-78b6a0eb8b14"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B0321D75604FA303",
+      "id": "B0321D75604FA303",
+      "title": "Bring the CPU Online",
+      "uuid": "04c690eb-b632-5018-b032-1d75604fa303"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B032FFB2DD08F812",
+      "id": "B032FFB2DD08F812",
+      "title": "Iron Veins",
+      "uuid": "3cd1940e-ed1b-5a8d-b032-ffb2dd08f812"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B0617CFEB4A3B624",
+      "id": "B0617CFEB4A3B624",
+      "title": "Reusable Cell Housing",
+      "uuid": "fe9c0a69-227d-5de2-b061-7cfeb4a3b624"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B06F8EAD9707BD81",
+      "id": "B06F8EAD9707BD81",
+      "title": "A Stronger Current",
+      "uuid": "2131fcbe-af24-5248-b06f-8ead9707bd81"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B077DD429E9F183A",
+      "id": "B077DD429E9F183A",
+      "title": "Beyond Vanilla Limits",
+      "uuid": "2ee3bf6b-7320-5848-b077-dd429e9f183a"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B07B0186EE6AB982",
+      "id": "B07B0186EE6AB982",
+      "title": "Keep Your Distance",
+      "uuid": "1befc86d-2757-5c53-b07b-0186ee6ab982"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B0925ADA471A16B8",
+      "id": "B0925ADA471A16B8",
+      "title": "Store the Chemicals",
+      "uuid": "ae977895-54e9-5d7f-b092-5ada471a16b8"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B0E60583E8751C2B",
+      "id": "B0E60583E8751C2B",
+      "title": "Build a Crafting CPU",
+      "uuid": "2d22586b-0a5c-563a-b0e6-0583e8751c2b"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B0F5257B504A882F",
+      "id": "B0F5257B504A882F",
+      "title": "Hold It Together",
+      "uuid": "dbef45c9-e98a-5a1b-b0f5-257b504a882f"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B11FE991121198E4",
+      "id": "B11FE991121198E4",
+      "title": "Prepare a Second Build",
+      "uuid": "751e6460-b918-51a8-b11f-e991121198e4"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B139531EE751B64E",
+      "id": "B139531EE751B64E",
+      "title": "Recover Between Casts",
+      "uuid": "d4cbd42d-108e-58c5-b139-531ee751b64e"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B153151D51E06B70",
+      "id": "B153151D51E06B70",
+      "title": "The Business End",
+      "uuid": "a9ec4215-3cdc-5b34-b153-151d51e06b70"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B161A0B71156120C",
+      "id": "B161A0B71156120C",
+      "title": "Industrial Reserve",
+      "uuid": "79cb8eab-7429-5a96-b161-a0b71156120c"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B17468A4DE681B0F",
+      "id": "B17468A4DE681B0F",
+      "title": "Radioactive Logistics",
+      "uuid": "2119b995-dee2-54d2-b174-68a4de681b0f"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B17B174DF8E6BDDD",
+      "id": "B17B174DF8E6BDDD",
+      "title": "Components of Fission",
+      "uuid": "86939ad4-3522-54e4-b17b-174df8e6bddd"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B1A1A0E2BCE1AF37",
+      "id": "B1A1A0E2BCE1AF37",
+      "title": "A Diversified Grid",
+      "uuid": "6124491d-7f91-5e96-b1a1-a0e2bce1af37"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "B1A21DB8939C58B5",
+      "id": "B1A21DB8939C58B5",
+      "title": "A Distant View",
+      "uuid": "4145da8d-340c-58dd-b1a2-1db8939c58b5"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B1B931A3B6524919",
+      "id": "B1B931A3B6524919",
+      "title": "A Reliable Staple",
+      "uuid": "2971262b-3e5f-56b0-b1b9-31a3b6524919"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B1CA30C820C4D545",
+      "id": "B1CA30C820C4D545",
+      "title": "Route around Failure",
+      "uuid": "01896f41-dc31-5204-b1ca-30c820c4d545"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B1CA813E827B3123",
+      "id": "B1CA813E827B3123",
+      "title": "Armor of Legend",
+      "uuid": "29a69a42-b8e6-5fa7-b1ca-813e827b3123"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B1EF07988A5F1190",
+      "id": "B1EF07988A5F1190",
+      "title": "Raise the Ceiling",
+      "uuid": "27645d16-fa84-5d04-b1ef-07988a5f1190"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B222F5BBAD6F6DA7",
+      "id": "B222F5BBAD6F6DA7",
+      "title": "Route Source with Purpose",
+      "uuid": "0c101aba-b24a-587d-b222-f5bbad6f6da7"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B231D67823C2E307",
+      "id": "B231D67823C2E307",
+      "title": "Reserve Power",
+      "uuid": "752d9758-0aa3-5d12-b231-d67823c2e307"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B24FAA272EB35E01",
+      "id": "B24FAA272EB35E01",
+      "title": "Thirty-Two Channels Through One Line",
+      "uuid": "1df1262f-970c-56cd-b24f-aa272eb35e01"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B2694216E642CE93",
+      "id": "B2694216E642CE93",
+      "title": "Power Where It Matters",
+      "uuid": "50aa40c0-891f-5efd-b269-4216e642ce93"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B276D1086BC4DB24",
+      "id": "B276D1086BC4DB24",
+      "title": "Crystallize the Product",
+      "uuid": "825b5cbf-d01a-58db-b276-d1086bc4db24"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "B27AD0513ED20FBB",
+      "id": "B27AD0513ED20FBB",
+      "title": "Power for the Worst Day",
+      "uuid": "0c087dbe-7b5f-55b3-b27a-d0513ed20fbb"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "B2A477502A56E8CF",
+      "id": "B2A477502A56E8CF",
+      "title": "Fragments of the Past",
+      "uuid": "7ed873a3-7016-57be-b2a4-77502a56e8cf"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B2AE9BD6755DFEFF",
+      "id": "B2AE9BD6755DFEFF",
+      "title": "Basic Control",
+      "uuid": "0b7fec3d-fbf6-501e-b2ae-9bd6755dfeff"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B2E09813AD2B53D8",
+      "id": "B2E09813AD2B53D8",
+      "title": "Infuse Beyond Ordinary Crafting",
+      "uuid": "b4ae3c1b-9bed-59b8-b2e0-9813ad2b53d8"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "B31A1C414CFF62F7",
+      "id": "B31A1C414CFF62F7",
+      "title": "Open Water",
+      "uuid": "da9ac771-d24e-593e-b31a-1c414cff62f7"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B32361D3EED7D5C8",
+      "id": "B32361D3EED7D5C8",
+      "title": "The Actually Advanced Workshop",
+      "uuid": "57176e0e-4d94-588f-b323-61d3eed7d5c8"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B3493D4523F9BB4B",
+      "id": "B3493D4523F9BB4B",
+      "title": "A Strategic Antimatter Reserve",
+      "uuid": "a7ff5355-0ce6-53de-b349-3d4523f9bb4b"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B35C447EF716A33F",
+      "id": "B35C447EF716A33F",
+      "title": "Certus Quartz",
+      "uuid": "b65c704b-87cf-5f53-b35c-447ef716a33f"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B36280571FBB2132",
+      "id": "B36280571FBB2132",
+      "title": "Plan the Expanded Workshop",
+      "uuid": "0d04605f-d8da-53ae-b362-80571fbb2132"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B36A1645844D78E6",
+      "id": "B36A1645844D78E6",
+      "title": "Link with Light",
+      "uuid": "9c00a499-16b8-51a6-b36a-1645844d78e6"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B36ADC8892444351",
+      "id": "B36ADC8892444351",
+      "title": "A Spark of Possibility",
+      "uuid": "b52be3c0-f88c-5136-b36a-dc8892444351"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B37459E5008A1A4E",
+      "id": "B37459E5008A1A4E",
+      "title": "Automated Crafting Table",
+      "uuid": "c6fef08d-39aa-5537-b374-59e5008a1a4e"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B37D400F8CFF7A5D",
+      "id": "B37D400F8CFF7A5D",
+      "title": "Endless Water",
+      "uuid": "924093a7-aa20-5069-b37d-400f8cff7a5d"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B388A7FA0187EDF5",
+      "id": "B388A7FA0187EDF5",
+      "title": "A Pedestal for Magic",
+      "uuid": "b5e2c25e-5973-58de-b388-a7fa0187edf5"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B38BD8C9CA5A9D96",
+      "id": "B38BD8C9CA5A9D96",
+      "title": "Black Quartz",
+      "uuid": "fe3f6188-19a9-517d-b38b-d8c9ca5a9d96"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B3AF9416579B3DF4",
+      "id": "B3AF9416579B3DF4",
+      "title": "Lay the First Rails",
+      "uuid": "6a81435a-ddf5-5840-b3af-9416579b3df4"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B3B54EEABCCBFA4F",
+      "id": "B3B54EEABCCBFA4F",
+      "title": "Plan the Archmage's Workshop",
+      "uuid": "c2d30293-dffb-5e8b-b3b5-4eeabccbfa4f"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B3C43E0ADE7AA8AC",
+      "id": "B3C43E0ADE7AA8AC",
+      "title": "Prepare Ore for Washing",
+      "uuid": "ed57b47e-f935-5588-b3c4-3e0ade7aa8ac"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B3EA453F3158E134",
+      "id": "B3EA453F3158E134",
+      "title": "A Home for Storage Cells",
+      "uuid": "5df179bc-16f1-5d47-b3ea-453f3158e134"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B3FDA8B852F1471F",
+      "id": "B3FDA8B852F1471F",
+      "title": "Suit Up",
+      "uuid": "a67ed579-bc56-502a-b3fd-a8b852f1471f"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "B402E30F194D520F",
+      "id": "B402E30F194D520F",
+      "title": "A Place to Craft",
+      "uuid": "cd5b6d19-9561-5f5d-b402-e30f194d520f"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B40FCC69A643CC90",
+      "id": "B40FCC69A643CC90",
+      "title": "Printed Silicon",
+      "uuid": "72ce79b7-f806-56d1-b40f-cc69a643cc90"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B41F5908E8D84A9D",
+      "id": "B41F5908E8D84A9D",
+      "title": "Cut to Shape",
+      "uuid": "dd8fae91-9762-51a4-b41f-5908e8d84a9d"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B42C4B0DA4320CA2",
+      "id": "B42C4B0DA4320CA2",
+      "title": "Twice the Throughput",
+      "uuid": "72a96463-5a8c-5cc3-b42c-4b0da4320ca2"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B4318579C5EF37E5",
+      "id": "B4318579C5EF37E5",
+      "title": "Collect the Flow",
+      "uuid": "e9b5d4f9-1399-54bb-b431-8579c5ef37e5"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B44C03A2E84281B7",
+      "id": "B44C03A2E84281B7",
+      "title": "Calculation Processor",
+      "uuid": "a16024cb-302f-59e8-b44c-03a2e84281b7"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B44D6A57904F26ED",
+      "id": "B44D6A57904F26ED",
+      "title": "Carry the Current",
+      "uuid": "b44a6d20-7b9a-5741-b44d-6a57904f26ed"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B453BB06FD7DF238",
+      "id": "B453BB06FD7DF238",
+      "title": "Light the Artificial Sun",
+      "uuid": "4a996e83-941b-58f6-b453-bb06fd7df238"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "B46E9F1208FEB20C",
+      "id": "B46E9F1208FEB20C",
+      "title": "Center of Town",
+      "uuid": "2ba67e86-556f-5891-b46e-9f1208feb20c"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B484583659A21C16",
+      "id": "B484583659A21C16",
+      "title": "Process in Batches",
+      "uuid": "0ddbe550-50d4-5366-b484-583659a21c16"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B484AB12056ECD8F",
+      "id": "B484AB12056ECD8F",
+      "title": "Preserve the Best Enchantments",
+      "uuid": "09a3b7f5-58f2-5d33-b484-ab12056ecd8f"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "B492D2FF61985422",
+      "id": "B492D2FF61985422",
+      "title": "Industry Takes Flight",
+      "uuid": "774f72eb-b03d-5e60-b492-d2ff61985422"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "B4B67154F5A491A6",
+      "id": "B4B67154F5A491A6",
+      "title": "Assemble the Battery",
+      "uuid": "e0fcdc38-84a7-54d2-b4b6-7154f5a491a6"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B4D85603A05195C0",
+      "id": "B4D85603A05195C0",
+      "title": "Enori",
+      "uuid": "32fea309-c575-5d45-b4d8-5603a05195c0"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B4F6B55D67DF1A5A",
+      "id": "B4F6B55D67DF1A5A",
+      "title": "Instructions Await",
+      "uuid": "55ddff5f-fe89-5041-b4f6-b55d67df1a5a"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B4F7B9CBC9ADD1C4",
+      "id": "B4F7B9CBC9ADD1C4",
+      "title": "Keep Things Moving",
+      "uuid": "281c3294-81c2-57ca-b4f7-b9cbc9add1c4"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B51B772F4775297A",
+      "id": "B51B772F4775297A",
+      "title": "A Connected Railway",
+      "uuid": "932ccafd-9ed6-52a1-b51b-772f4775297a"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B52D8835DA07488B",
+      "id": "B52D8835DA07488B",
+      "title": "Powered Equipment Trial",
+      "uuid": "6d3f1a74-d44f-58d3-b52d-8835da07488b"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B555077192EAE77B",
+      "id": "B555077192EAE77B",
+      "title": "Ready for Mechanical Processing",
+      "uuid": "cb4d4ec8-50ee-521a-b555-077192eae77b"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B5637721B22A8F27",
+      "id": "B5637721B22A8F27",
+      "title": "A Cut Above",
+      "uuid": "47490adb-f17f-5223-b563-7721b22a8f27"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B56824684E876134",
+      "id": "B56824684E876134",
+      "title": "Empowered Diamatine",
+      "uuid": "ef4bff1c-32ef-5a25-b568-24684e876134"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B5A99C3A3A62A1EF",
+      "id": "B5A99C3A3A62A1EF",
+      "title": "Refined Copper",
+      "uuid": "1f522b67-cc86-5509-b5a9-9c3a3a62a1ef"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B5BBE951DA0D4B19",
+      "id": "B5BBE951DA0D4B19",
+      "title": "Paper Trail",
+      "uuid": "9bd554a7-80b8-5a51-b5bb-e951da0d4b19"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B5BCE2998697F111",
+      "id": "B5BCE2998697F111",
+      "title": "All That Glitters",
+      "uuid": "48174a0e-f3d7-5a02-b5bc-e2998697f111"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B5DAA8D1C8F96727",
+      "id": "B5DAA8D1C8F96727",
+      "title": "A Reconstructed Workshop",
+      "uuid": "2e9e9d03-a23e-549e-b5da-a8d1c8f96727"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B600C574DC364ACF",
+      "id": "B600C574DC364ACF",
+      "title": "Smelting without Fuel",
+      "uuid": "fff7f245-d4ae-5b39-b600-c574dc364acf"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "B6153F2046B77FB8",
+      "id": "B6153F2046B77FB8",
+      "title": "Treasury of Rarities",
+      "uuid": "611be4e1-daf7-5fa4-b615-3f2046b77fb8"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B626AC759387A7EF",
+      "id": "B626AC759387A7EF",
+      "title": "The Deep Dark Stone",
+      "uuid": "6f6cc2af-90b8-5957-b626-ac759387a7ef"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B64DB0DA9A542B02",
+      "id": "B64DB0DA9A542B02",
+      "title": "Gems Worth Keeping",
+      "uuid": "4c262019-4210-5391-b64d-b0da9a542b02"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B6B8C33654AB5D5A",
+      "id": "B6B8C33654AB5D5A",
+      "title": "Power from Solid Fuel",
+      "uuid": "1fcf7ca4-3ef8-5080-b6b8-c33654ab5d5a"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B7073653189A6AB2",
+      "id": "B7073653189A6AB2",
+      "title": "Your First Digital Storage",
+      "uuid": "1b9e2118-085a-5a37-b707-3653189a6ab2"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B718462454CD6D43",
+      "id": "B718462454CD6D43",
+      "title": "An Actually Automated Workshop",
+      "uuid": "ed0ae23e-df93-5683-b718-462454cd6d43"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B747455529E0D98D",
+      "id": "B747455529E0D98D",
+      "title": "Rewrite the Affixes",
+      "uuid": "b60223d7-dd1d-5014-b747-455529e0d98d"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B74A0466FD914402",
+      "id": "B74A0466FD914402",
+      "title": "Essences in Reserve",
+      "uuid": "832fa747-c9fa-5755-b74a-0466fd914402"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "B755C061DAE051C5",
+      "id": "B755C061DAE051C5",
+      "title": "Heavy Engineering",
+      "uuid": "4a3e0809-2595-5577-b755-c061dae051c5"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B759BC4982387FB0",
+      "id": "B759BC4982387FB0",
+      "title": "Turn Steam into Power",
+      "uuid": "ef928ed2-fec0-5509-b759-bc4982387fb0"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B75DF97580512ACE",
+      "id": "B75DF97580512ACE",
+      "title": "Grinding Gears",
+      "uuid": "6329ca57-c5f9-5761-b75d-f97580512ace"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "B7634409768FD953",
+      "id": "B7634409768FD953",
+      "title": "Blue Knowledge",
+      "uuid": "7bd1dbc6-feaf-5eaa-b763-4409768fd953"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B79660C49D2C1A74",
+      "id": "B79660C49D2C1A74",
+      "title": "A Charged Discovery",
+      "uuid": "bf1de430-960a-54f7-b796-60c49d2c1a74"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "B7A6CE85AC91DF4B",
+      "id": "B7A6CE85AC91DF4B",
+      "title": "Connect the Network",
+      "uuid": "a40f8ba0-6c31-56a4-b7a6-ce85ac91df4b"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B7E098274A378F3B",
+      "id": "B7E098274A378F3B",
+      "title": "Roll for a Purpose",
+      "uuid": "5f550774-c23b-551f-b7e0-98274a378f3b"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B7F034C699D7BDE4",
+      "id": "B7F034C699D7BDE4",
+      "title": "Refine the Oil",
+      "uuid": "b5cec365-38dc-5c33-b7f0-34c699d7bde4"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B81330E329DE3DF1",
+      "id": "B81330E329DE3DF1",
+      "title": "Scale the Canola Loop",
+      "uuid": "88edb78f-82d4-5899-b813-30e329de3df1"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B8164EF6AC1B0796",
+      "id": "B8164EF6AC1B0796",
+      "title": "Refine the Gem",
+      "uuid": "881f6c10-0dc6-5c41-b816-4ef6ac1b0796"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B822885D3BC61710",
+      "id": "B822885D3BC61710",
+      "title": "Sustained Fusion",
+      "uuid": "0d058c5b-e1d5-545a-b822-885d3bc61710"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B8411405EAF2DF28",
+      "id": "B8411405EAF2DF28",
+      "title": "Refine the Best",
+      "uuid": "9a36e923-7d0a-585b-b841-1405eaf2df28"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B85D0DD91702A1CF",
+      "id": "B85D0DD91702A1CF",
+      "title": "Guide the Flow",
+      "uuid": "dab524b9-1508-53e4-b85d-0dd91702a1cf"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "B85F6BBC41B5CA87",
+      "id": "B85F6BBC41B5CA87",
+      "title": "Acquire Hardware",
+      "uuid": "909b7eda-fb8a-55be-b85f-6bbc41b5ca87"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B877A8F58DAD6C28",
+      "id": "B877A8F58DAD6C28",
+      "title": "Write Magic into Form",
+      "uuid": "2a9d2b7d-5785-5ece-b877-a8f58dad6c28"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B8AEAEF7FAD06B08",
+      "id": "B8AEAEF7FAD06B08",
+      "title": "Source from Growth",
+      "uuid": "18373f0a-f226-5bef-b8ae-aef7fad06b08"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B8CFF3DDB14B7C60",
+      "id": "B8CFF3DDB14B7C60",
+      "title": "Nothing Powerful Goes to Waste",
+      "uuid": "73dce640-9a73-5bf6-b8cf-f3ddb14b7c60"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B8E5D9FF69A4CD25",
+      "id": "B8E5D9FF69A4CD25",
+      "title": "A Crop with Potential",
+      "uuid": "03cce757-7f4c-5d1a-b8e5-d9ff69a4cd25"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "B8F6C6BA08679235",
+      "id": "B8F6C6BA08679235",
+      "title": "Public Transit",
+      "uuid": "d303b5b3-c376-599c-b8f6-c6ba08679235"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B8FDFD71DACF1E8A",
+      "id": "B8FDFD71DACF1E8A",
+      "title": "Let Gravity Help",
+      "uuid": "b1d31497-9467-58dd-b8fd-fd71dacf1e8a"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B9006FBF5ED29A5A",
+      "id": "B9006FBF5ED29A5A",
+      "title": "A Mechanical Hand",
+      "uuid": "bbbb4a47-ce35-5f88-b900-6fbf5ed29a5a"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B90E649D464DF6DC",
+      "id": "B90E649D464DF6DC",
+      "title": "Power by Hand",
+      "uuid": "6910eafb-680d-5d0f-b90e-649d464df6dc"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B9162A5F51821070",
+      "id": "B9162A5F51821070",
+      "title": "Enchant with a Plan",
+      "uuid": "487b573b-cf62-536b-b916-2a5f51821070"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "B923E5CA57CB09D7",
+      "id": "B923E5CA57CB09D7",
+      "title": "A Specialist Train",
+      "uuid": "03646a6e-5554-530b-b923-e5ca57cb09d7"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "B94374ECD457E3F6",
+      "id": "B94374ECD457E3F6",
+      "title": "Move Like a Mage",
+      "uuid": "99155435-0701-5f5d-b943-74ecd457e3f6"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "B963CB46ABA30A7E",
+      "id": "B963CB46ABA30A7E",
+      "title": "Pondering Possibilities",
+      "uuid": "d55d5c4e-f3a6-51d3-b963-cb46aba30a7e"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "B98645362C471154",
+      "id": "B98645362C471154",
+      "title": "Across the Lava Sea",
+      "uuid": "1255d840-3995-5636-b986-45362c471154"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "B988AA247DE86327",
+      "id": "B988AA247DE86327",
+      "title": "A Factory That Runs Unattended",
+      "uuid": "12491498-864d-5e78-b988-aa247de86327"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "B98A1EB81C72FD01",
+      "id": "B98A1EB81C72FD01",
+      "title": "Stone from Stone",
+      "uuid": "85f8b308-11af-5f2f-b98a-1eb81c72fd01"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "B98EB7625C1717E0",
+      "id": "B98EB7625C1717E0",
+      "title": "Ready for Factory Tiers",
+      "uuid": "2d243cf5-8e22-5dda-b98e-b7625c1717e0"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "B9A8B723D0255D65",
+      "id": "B9A8B723D0255D65",
+      "title": "Never Truly Lost",
+      "uuid": "928f4675-c7af-5d08-b9a8-b723d0255d65"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "B9B76BE8F7309733",
+      "id": "B9B76BE8F7309733",
+      "title": "Empowered Palis",
+      "uuid": "31bcc890-0335-5324-b9b7-6be8f7309733"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "B9FD84D3EC0EF312",
+      "id": "B9FD84D3EC0EF312",
+      "title": "Build Multiple Shelf Profiles",
+      "uuid": "0645e61e-2a7a-54ab-b9fd-84d3ec0ef312"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "BA004962B32CC583",
+      "id": "BA004962B32CC583",
+      "title": "Reforge with Intent",
+      "uuid": "3c50eee6-3829-5ecb-ba00-4962b32cc583"
+    },
+    {
+      "chapter_id": "00_welcome",
+      "ftb_id": "BA0BB7279D7AB190",
+      "id": "BA0BB7279D7AB190",
+      "title": "Secure a Meal",
+      "uuid": "41889091-545b-5b4e-ba0b-b7279d7ab190"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "BA1629E13B48DED0",
+      "id": "BA1629E13B48DED0",
+      "title": "Contain the Wither",
+      "uuid": "3cdfb38c-84ec-518b-ba16-29e13b48ded0"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "BA31AB8910CE5D02",
+      "id": "BA31AB8910CE5D02",
+      "title": "Give the Train a Plan",
+      "uuid": "ba7e48c5-477c-52e0-ba31-ab8910ce5d02"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BA3C0E49711BE95A",
+      "id": "BA3C0E49711BE95A",
+      "title": "The Remote Workshop Annex",
+      "uuid": "11678eaa-2893-5b66-ba3c-0e49711be95a"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "BA55076B2D38B8F4",
+      "id": "BA55076B2D38B8F4",
+      "title": "Daily Bread",
+      "uuid": "17ce0a65-c162-58aa-ba55-076b2d38b8f4"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "BA5939A712FEAE89",
+      "id": "BA5939A712FEAE89",
+      "title": "An Arcane Workshop",
+      "uuid": "8d4b09db-d254-5183-ba59-39a712feae89"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "BA6E2A4E49A56B01",
+      "id": "BA6E2A4E49A56B01",
+      "title": "Guardians of the Deep",
+      "uuid": "4625403f-309a-592f-ba6e-2a4e49a56b01"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "BA7985C09CE173DE",
+      "id": "BA7985C09CE173DE",
+      "title": "Stir Things Up",
+      "uuid": "dfa3ab07-80bb-5703-ba79-85c09ce173de"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "BA9FCA36AF0BDEEB",
+      "id": "BA9FCA36AF0BDEEB",
+      "title": "Flatten the Metal",
+      "uuid": "bc4c2faa-3285-5ff3-ba9f-ca36af0bdeeb"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "BAA0861A9C3F146E",
+      "id": "BAA0861A9C3F146E",
+      "title": "Diamonds!",
+      "uuid": "e07b2843-a12b-56df-baa0-861a9c3f146e"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "BABF491C05EEF2A1",
+      "id": "BABF491C05EEF2A1",
+      "title": "Power a Remote Magical Outpost",
+      "uuid": "88148594-7121-57a8-babf-491c05eef2a1"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BAEA2E1A822B7589",
+      "id": "BAEA2E1A822B7589",
+      "title": "Industry beyond the Horizon",
+      "uuid": "b3a1ed75-4aac-53d9-baea-2e1a822b7589"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "BAF02F981712573A",
+      "id": "BAF02F981712573A",
+      "title": "Split and Sort",
+      "uuid": "370f55f5-f5c0-556c-baf0-2f981712573a"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "BAF964EF2F4351F5",
+      "id": "BAF964EF2F4351F5",
+      "title": "The Supercritical Phase Shifter",
+      "uuid": "fcecd7ce-6bb3-5547-baf9-64ef2f4351f5"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "BB2F5F64FBB1F573",
+      "id": "BB2F5F64FBB1F573",
+      "title": "Black-Start Test",
+      "uuid": "e2271ecb-52fe-5ab2-bb2f-5f64fbb1f573"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BB3EC930162B20E7",
+      "id": "BB3EC930162B20E7",
+      "title": "Copy the Link",
+      "uuid": "78d49dfc-8fb5-5a9c-bb3e-c930162b20e7"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BB78D41C38643BE7",
+      "id": "BB78D41C38643BE7",
+      "title": "Storage in Your Hand",
+      "uuid": "ac345a6b-6d0b-56c4-bb78-d41c38643be7"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "BB888FDBFEEB6BDC",
+      "id": "BB888FDBFEEB6BDC",
+      "title": "Networked Contraptions",
+      "uuid": "25da2ce1-3fc6-55f6-bb88-8fdbfeeb6bdc"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "BBFE712DC0E373E5",
+      "id": "BBFE712DC0E373E5",
+      "title": "Archmage's Arsenal",
+      "uuid": "b29db32e-83b4-5f07-bbfe-712dc0e373e5"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "BC3918DB5AECEBC7",
+      "id": "BC3918DB5AECEBC7",
+      "title": "Eyes toward the Stronghold",
+      "uuid": "3e0a2d1b-12ce-5003-bc39-18db5aecebc7"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BC3E9AA3C7FDEF8E",
+      "id": "BC3E9AA3C7FDEF8E",
+      "title": "Engineering Processor",
+      "uuid": "aa04a7a5-b10c-5931-bc3e-9aa3c7fdef8e"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BC4C4891932BFDC3",
+      "id": "BC4C4891932BFDC3",
+      "title": "Smelting on Demand",
+      "uuid": "a4ad018a-2360-5531-bc4c-4891932bfdc3"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BC757685B58142CF",
+      "id": "BC757685B58142CF",
+      "title": "Power from the Sun",
+      "uuid": "39bb6fbb-4e73-5dd1-bc75-7685b58142cf"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "BC7AE56054D3232E",
+      "id": "BC7AE56054D3232E",
+      "title": "A Home for the Hive",
+      "uuid": "cc7b90a6-a271-5396-bc7a-e56054d3232e"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BC8F9F380EF22918",
+      "id": "BC8F9F380EF22918",
+      "title": "Produce Only What Is Needed",
+      "uuid": "1e00543c-fb0b-52b5-bc8f-9f380ef22918"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "BCB7D2C2C2517A0C",
+      "id": "BCB7D2C2C2517A0C",
+      "title": "Better Motors",
+      "uuid": "33d0b171-fdb7-5af1-bcb7-d2c2c2517a0c"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "BCB87C29FE7AB8A5",
+      "id": "BCB87C29FE7AB8A5",
+      "title": "Read Before Replacing",
+      "uuid": "8bff7235-2fc8-5b3c-bcb8-7c29fe7ab8a5"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "BCBFA427740A3426",
+      "id": "BCBFA427740A3426",
+      "title": "The Daily Catch",
+      "uuid": "ada2c8f8-7582-5119-bcbf-a427740a3426"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BD1A1FB31B32B99D",
+      "id": "BD1A1FB31B32B99D",
+      "title": "Gather from Afar",
+      "uuid": "de5ce3d3-9674-59f2-bd1a-1fb31b32b99d"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BD2503BE14791311",
+      "id": "BD2503BE14791311",
+      "title": "Faster and Smarter Buses",
+      "uuid": "b9052719-3db5-52a4-bd25-03be14791311"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "BD45B9B0899229B4",
+      "id": "BD45B9B0899229B4",
+      "title": "Matter's Opposite",
+      "uuid": "01eefc73-056d-56f6-bd45-b9b0899229b4"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "BD4F67EBAE056023",
+      "id": "BD4F67EBAE056023",
+      "title": "Hunt for Greater Power",
+      "uuid": "174e4263-e3bc-5a2f-bd4f-67ebae056023"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "BD59723E4005DFA8",
+      "id": "BD59723E4005DFA8",
+      "title": "Enchant the Keeper",
+      "uuid": "5d1e835a-7cb6-5a71-bd59-723e4005dfa8"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "BDBBC978DD22F50E",
+      "id": "BDBBC978DD22F50E",
+      "title": "Gather Around the Fire",
+      "uuid": "767a3135-b86b-51dd-bdbb-c978dd22f50e"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BE3C5FA66FDF25AF",
+      "id": "BE3C5FA66FDF25AF",
+      "title": "A Laser Relay Backbone",
+      "uuid": "6b25293a-91fd-59d9-be3c-5fa66fdf25af"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "BE43C3DA4AC9B60D",
+      "id": "BE43C3DA4AC9B60D",
+      "title": "Reactor Reliability Trial",
+      "uuid": "e62d28ca-b4b3-563a-be43-c3da4ac9b60d"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "BE4CC733C50E4459",
+      "id": "BE4CC733C50E4459",
+      "title": "Slices for Everyone",
+      "uuid": "bcea7466-8c04-5086-be4c-c733c50e4459"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BE562EA84B4CACC6",
+      "id": "BE562EA84B4CACC6",
+      "title": "Charge Items",
+      "uuid": "868d7cda-6474-5efd-be56-2ea84b4cacc6"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "BE82448FFE736673",
+      "id": "BE82448FFE736673",
+      "title": "Clear the Dark Halls",
+      "uuid": "cb51e55f-4c3d-526c-be82-448ffe736673"
+    },
+    {
+      "chapter_id": "07_apotheosis",
+      "ftb_id": "BE8E152EA08CFEC0",
+      "id": "BE8E152EA08CFEC0",
+      "title": "The First Apotheosis",
+      "uuid": "aed1daf9-431b-5aaf-be8e-152ea08cfec0"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "ftb_id": "BEA82A645AF8E305",
+      "id": "BEA82A645AF8E305",
+      "title": "Continuous Production",
+      "uuid": "8495d78f-895c-5b2c-bea8-2a645af8e305"
+    },
+    {
+      "chapter_id": "01_survival",
+      "ftb_id": "BECE81E59DCE75FB",
+      "id": "BECE81E59DCE75FB",
+      "title": "Fuel from the Forest",
+      "uuid": "bef78046-45a9-585e-bece-81e59dce75fb"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "BED4B0B1D13805C5",
+      "id": "BED4B0B1D13805C5",
+      "title": "Shape the SPS",
+      "uuid": "7fcf1fa8-b435-549b-bed4-b0b1d13805c5"
+    },
+    {
+      "chapter_id": "10_endgame",
+      "ftb_id": "BEDEE3E1EDBB7154",
+      "id": "BEDEE3E1EDBB7154",
+      "title": "Immersive Adventure Complete",
+      "uuid": "cbaa75fd-26ce-5ce5-bede-e3e1edbb7154"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "BEF7829B331D6426",
+      "id": "BEF7829B331D6426",
+      "title": "Trees Touched by Magic",
+      "uuid": "e7dba24a-77dd-523f-bef7-829b331d6426"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BF25D46119E659C8",
+      "id": "BF25D46119E659C8",
+      "title": "Expand the Buffer",
+      "uuid": "0725444a-7c2c-5320-bf25-d46119e659c8"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BF301A499CB5989E",
+      "id": "BF301A499CB5989E",
+      "title": "Fields without Footsteps",
+      "uuid": "39742769-b9c8-5c42-bf30-1a499cb5989e"
+    },
+    {
+      "chapter_id": "04_create",
+      "ftb_id": "BF307F44967ABAE9",
+      "id": "BF307F44967ABAE9",
+      "title": "A Factory Dashboard",
+      "uuid": "b02a3bdc-fd26-5905-bf30-7f44967abae9"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "BF3C4D9AAB1DEC09",
+      "id": "BF3C4D9AAB1DEC09",
+      "title": "Respect Radiation",
+      "uuid": "def4c1ca-e5f1-5a95-bf3c-4d9aab1dec09"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "ftb_id": "BF567BD87BAB9DA7",
+      "id": "BF567BD87BAB9DA7",
+      "title": "Clear a Wider Tunnel",
+      "uuid": "56c3b239-477c-573d-bf56-7bd87bab9da7"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "ftb_id": "BF5F62806F210529",
+      "id": "BF5F62806F210529",
+      "title": "Find Your Way Home",
+      "uuid": "8159bb94-bf85-5f0b-bf5f-62806f210529"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "BF6BC6174D4EBEEA",
+      "id": "BF6BC6174D4EBEEA",
+      "title": "Beneath the Surface",
+      "uuid": "ae8c5326-29cc-5255-bf6b-c6174d4ebeea"
+    },
+    {
+      "chapter_id": "02_mining",
+      "ftb_id": "BF6FDBC9EB6ABBB9",
+      "id": "BF6FDBC9EB6ABBB9",
+      "title": "Strike a Spark",
+      "uuid": "8aa5eb96-812c-5697-bf6f-dbc9eb6abbb9"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BF80958ADB5F9A3A",
+      "id": "BF80958ADB5F9A3A",
+      "title": "Request the First Autocraft",
+      "uuid": "23b3922b-a5cd-52db-bf80-958adb5f9a3a"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "ftb_id": "BFB25574E8F03D3C",
+      "id": "BFB25574E8F03D3C",
+      "title": "Portable Charge",
+      "uuid": "3a5f2d5b-0c71-592e-bfb2-5574e8f03d3c"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "ftb_id": "BFBE373A7DEC902F",
+      "id": "BFBE373A7DEC902F",
+      "title": "A Larger Crafting Brain",
+      "uuid": "5b7ab7bf-2403-5de3-bfbe-373a7dec902f"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "BFBEEE7AD8BAB210",
+      "id": "BFBEEE7AD8BAB210",
+      "title": "The Engine House",
+      "uuid": "7b67746e-2e9e-575e-bfbe-ee7ad8bab210"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "ftb_id": "BFD04978194CCFF9",
+      "id": "BFD04978194CCFF9",
+      "title": "Magic on Command",
+      "uuid": "127d6196-298e-5fb1-bfd0-4978194ccff9"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "ftb_id": "BFE0DB70C9572947",
+      "id": "BFE0DB70C9572947",
+      "title": "Master of Expanded Engineering",
+      "uuid": "6244c11c-3a84-526d-bfe0-db70c9572947"
+    }
+  ]
+}

@@ -134,3 +134,20 @@ python -m generator release-baseline reports/release-baseline.json
 ```
 
 See `docs/RELEASE_GUARD.md` for details.
+
+## Quest identity guard
+
+Protect stable chapter and quest identities against accidental removals, renames, UUID changes, or chapter moves:
+
+```bash
+python -m generator identity-guard
+python -m generator identity-guard --format json --output reports/identity-guard.json
+```
+
+After an intentional reviewed identity change, refresh the protected manifest:
+
+```bash
+python -m generator identity-baseline reports/quest-identity-baseline.json
+```
+
+See [`docs/IDENTITY_GUARD.md`](docs/IDENTITY_GUARD.md).

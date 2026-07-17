@@ -8,6 +8,11 @@ from generator.audit import audit_project
 from generator.build import build
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
+from generator.identity_guard import (
+    DEFAULT_IDENTITY_BASELINE_PATH,
+    refresh_identity_baseline,
+    run_identity_guard,
+)
 from generator.parser import FTBQuestParser
 from generator.progression_guard import DEFAULT_BUDGET_PATH, run_progression_guard
 from generator.progression_metrics import analyze_progression
@@ -201,6 +206,29 @@ def create_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Return a non-zero exit code when regressions are detected.",
     )
+    identity_guard = subparsers.add_parser(
+        "identity-guard",
+        help="Protect checked-in chapter and quest identities against accidental changes.",
+    )
+    identity_guard.add_argument(
+        "baseline", nargs="?", type=Path, default=DEFAULT_IDENTITY_BASELINE_PATH,
+        help="Identity baseline (default: reports/quest-identity-baseline.json).",
+    )
+    identity_guard.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    identity_guard.add_argument(
+        "--output", type=Path, help="Write the guard report to a file.",
+    )
+    identity_baseline = subparsers.add_parser(
+        "identity-baseline",
+        help="Refresh the checked-in chapter and quest identity baseline.",
+    )
+    identity_baseline.add_argument(
+        "destination", nargs="?", type=Path, default=DEFAULT_IDENTITY_BASELINE_PATH,
+        help="Baseline destination (default: reports/quest-identity-baseline.json).",
+    )
     manifest = subparsers.add_parser(
         "registry-manifest",
         help="Export every authored item reference grouped by namespace and usage.",
@@ -215,6 +243,28 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "identity-guard":
+        try:
+            result = run_identity_guard(args.baseline)
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "identity-baseline":
+        manifest = refresh_identity_baseline(args.destination)
+        print(
+            f"Quest identity baseline refreshed: {args.destination} "
+            f"({manifest.chapter_count} chapters, {manifest.quest_count} quests)."
+        )
+        return 0
+
     if args.command == "release-check":
         report = run_release_check(args.output)
         rendered = report.format_json() if args.format == "json" else report.format()

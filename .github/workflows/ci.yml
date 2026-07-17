@@ -35,7 +35,12 @@ jobs:
 
       - run: python -m generator progression-guard --format json --output reports/progression-guard.json
 
+      - run: python -m generator identity-guard --format json --output reports/identity-guard.json
+
       - uses: actions/upload-artifact@v4
         with:
-          name: progression-metrics
-          path: reports/progression-metrics.json
+          name: release-analysis-reports
+          path: |
+            reports/progression-metrics.json
+            reports/progression-guard.json
+            reports/identity-guard.json
