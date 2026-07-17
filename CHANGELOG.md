@@ -1,3 +1,11 @@
+## Commit 34 - Apotheosis Expansion
+
+- Added 20 optional Apotheosis quests for mythic hunting, gem refinement, specialized reforging, advanced enchanting, legendary loadouts, and mastery trials.
+- Added `content/apotheosis/mythic_mastery.py`.
+- Preserved **Apotheosis Mastery** as the downstream chapter handoff.
+- Expanded the generated questbook beyond 600 quests.
+- Added expansion documentation and regression coverage.
+
 ## Commit 33 - Ars Nouveau Expansion
 
 - Added 20 optional Ars Nouveau quests for Source infrastructure, rituals, familiars, automated spellcasting, magical transport, and an archmage-scale workshop.

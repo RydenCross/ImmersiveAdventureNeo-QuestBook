@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 596
+    assert len(project.quests) == 616
 
 
 def test_quest_ids_are_stable() -> None:
@@ -242,8 +242,8 @@ def test_apotheosis_depends_on_ars_nouveau_completion() -> None:
     assert apotheosis is not None
     spellcraft = next(q for q in ars.quests if q.title == "Master of Practical Spellcraft")
     assert apotheosis.quests[0].dependencies[0].quest_id == spellcraft.ftb_id
-    assert len(apotheosis.quests) == 42
-    assert apotheosis.quests[-1].title == "Apotheosis Mastery"
+    assert len(apotheosis.quests) == 62
+    assert next(q for q in apotheosis.quests if q.title == "Apotheosis Mastery")
 
 
 def test_apotheosis_foundations_cover_gear_gems_and_enchanting() -> None:
@@ -275,9 +275,24 @@ def test_apotheosis_advanced_progression_follows_foundations() -> None:
 
     assert hunt.dependencies[0].quest_id == foundations.ftb_id
     assert apotheosis.quests.index(infusion) < apotheosis.quests.index(complete)
-    assert complete.ftb_id == apotheosis.quests[-1].ftb_id
-    assert len(apotheosis.quests) == 42
+    assert apotheosis.quests.index(complete) < len(apotheosis.quests) - 1
+    assert len(apotheosis.quests) == 62
 
+
+
+def test_apotheosis_expansion_is_optional_and_follows_mastery() -> None:
+    project = create_project()
+    apotheosis = project.get_chapter("07_apotheosis")
+
+    assert apotheosis is not None
+    mastery = next(q for q in apotheosis.quests if q.title == "Apotheosis Mastery")
+    plan = next(q for q in apotheosis.quests if q.title == "Plan the Mythic Hunt")
+    complete = next(q for q in apotheosis.quests if q.title == "Beyond Apotheosis")
+
+    assert plan.dependencies[0].quest_id == mastery.ftb_id
+    assert apotheosis.quests.index(mastery) < apotheosis.quests.index(complete)
+    assert all(q.optional for q in apotheosis.quests[apotheosis.quests.index(mastery) + 1 :])
+    assert len(apotheosis.quests) == 62
 
 def test_ae2_depends_on_apotheosis_completion() -> None:
     project = create_project()
@@ -286,7 +301,8 @@ def test_ae2_depends_on_apotheosis_completion() -> None:
 
     assert apotheosis is not None
     assert ae2 is not None
-    assert ae2.quests[0].dependencies[0].quest_id == apotheosis.quests[-1].ftb_id
+    mastery = next(q for q in apotheosis.quests if q.title == "Apotheosis Mastery")
+    assert ae2.quests[0].dependencies[0].quest_id == mastery.ftb_id
     assert len(ae2.quests) == 63
     assert ae2.quests[-1].title == "Master of the ME Network"
 
@@ -425,7 +441,11 @@ def test_endgame_depends_on_all_major_mastery_quests() -> None:
             for q in project.get_chapter("06_ars_nouveau").quests
             if q.title == "Master of Practical Spellcraft"
         ),
-        project.get_chapter("07_apotheosis").quests[-1].ftb_id,
+        next(
+            q.ftb_id
+            for q in project.get_chapter("07_apotheosis").quests
+            if q.title == "Apotheosis Mastery"
+        ),
         project.get_chapter("08_ae2").quests[-1].ftb_id,
         project.get_chapter("09_mekanism").quests[-1].ftb_id,
     }
