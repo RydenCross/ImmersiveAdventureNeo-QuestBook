@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 8
-    assert len(project.quests) == 306
+    assert len(project.chapters) == 9
+    assert len(project.quests) == 329
 
 
 def test_quest_ids_are_stable() -> None:
@@ -226,3 +226,32 @@ def test_apotheosis_advanced_progression_follows_foundations() -> None:
     assert apotheosis.quests.index(infusion) < apotheosis.quests.index(complete)
     assert complete.ftb_id == apotheosis.quests[-1].ftb_id
     assert len(apotheosis.quests) == 42
+
+
+def test_ae2_depends_on_apotheosis_completion() -> None:
+    project = create_project()
+    apotheosis = project.get_chapter("07_apotheosis")
+    ae2 = project.get_chapter("08_ae2")
+
+    assert apotheosis is not None
+    assert ae2 is not None
+    assert ae2.quests[0].dependencies[0].quest_id == apotheosis.quests[-1].ftb_id
+    assert len(ae2.quests) == 23
+    assert ae2.quests[-1].title == "A Functioning ME Network"
+
+
+def test_ae2_foundations_cover_processors_power_and_storage() -> None:
+    project = create_project()
+    ae2 = project.get_chapter("08_ae2")
+
+    assert ae2 is not None
+    fluix = next(q for q in ae2.quests if q.title == "Fluix Formation")
+    inscriber = next(q for q in ae2.quests if q.title == "Pressing Matters")
+    controller = next(q for q in ae2.quests if q.title == "The Network Core")
+    drive = next(q for q in ae2.quests if q.title == "A Home for Storage Cells")
+    complete = next(q for q in ae2.quests if q.title == "A Functioning ME Network")
+
+    assert ae2.quests.index(fluix) < ae2.quests.index(inscriber)
+    assert ae2.quests.index(inscriber) < ae2.quests.index(controller)
+    assert ae2.quests.index(controller) < ae2.quests.index(drive)
+    assert complete.ftb_id == ae2.quests[-1].ftb_id

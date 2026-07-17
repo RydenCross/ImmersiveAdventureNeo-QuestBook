@@ -18,6 +18,7 @@ def test_build_generates_playable_core_chapters(tmp_path: Path) -> None:
     assert (quests_root / "chapters" / "05_actually_additions.snbt").is_file()
     assert (quests_root / "chapters" / "06_ars_nouveau.snbt").is_file()
     assert (quests_root / "chapters" / "07_apotheosis.snbt").is_file()
-    assert len(project.chapters) == 8
-    assert len(project.quests) == 306
+    assert (quests_root / "chapters" / "08_ae2.snbt").is_file()
+    assert len(project.chapters) == 9
+    assert len(project.quests) == 329
     assert report.is_valid
