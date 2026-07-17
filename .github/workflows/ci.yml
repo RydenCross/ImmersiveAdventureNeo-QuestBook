@@ -26,3 +26,12 @@ jobs:
       - run: pytest
 
       - run: python -m generator release-check
+
+      - run: python -m generator dependency-audit --strict
+
+      - run: python -m generator progression-metrics --format json --output reports/progression-metrics.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: progression-metrics
+          path: reports/progression-metrics.json

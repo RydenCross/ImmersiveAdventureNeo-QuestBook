@@ -9,6 +9,7 @@ from generator.build import build
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
 from generator.parser import FTBQuestParser
+from generator.progression_metrics import analyze_progression
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
@@ -58,6 +59,17 @@ def create_parser() -> argparse.ArgumentParser:
     )
     graph.add_argument(
         "--output", type=Path, help="Write the graph to a file instead of standard output."
+    )
+    metrics = subparsers.add_parser(
+        "progression-metrics",
+        help="Measure critical-path depth, bottlenecks, and cross-chapter progression routes.",
+    )
+    metrics.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    metrics.add_argument(
+        "--output", type=Path, help="Write the report to a file instead of standard output."
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -181,6 +193,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "dependency-graph":
         graph = build_dependency_graph(create_project())
         rendered = graph.format_json() if args.format == "json" else graph.format_dot()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0
+
+    if args.command == "progression-metrics":
+        try:
+            report = analyze_progression(create_project())
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = report.format_json() if args.format == "json" else report.format()
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(rendered + "\n", encoding="utf-8")

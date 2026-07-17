@@ -1,5 +1,12 @@
 # Changelog
 
+## Commit 47 - Progression Metrics and Bottleneck Analysis
+
+- Added critical-path depth calculation for the authored dependency graph.
+- Added bottleneck detection for quests with four or more direct dependants.
+- Added cross-chapter transition metrics with text and JSON reports.
+- Added CLI, documentation, CI report generation, and regression tests.
+
 ## Commit 45 - Quest Dependency Analyzer
 
 - Added progression graph analysis for cycles, reachability, duplicate dependencies, and chapter entry paths.

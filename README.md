@@ -100,3 +100,14 @@ python -m generator dependency-graph --format json --output reports/dependency-g
 ```
 
 See [`docs/DEPENDENCY_GRAPH.md`](docs/DEPENDENCY_GRAPH.md).
+
+## Progression metrics
+
+Measure critical-path depth, high fan-out bottlenecks, and cross-chapter routes:
+
+```bash
+python -m generator progression-metrics
+python -m generator progression-metrics --format json --output reports/progression-metrics.json
+```
+
+See [`docs/PROGRESSION_METRICS.md`](docs/PROGRESSION_METRICS.md).
