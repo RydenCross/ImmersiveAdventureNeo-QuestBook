@@ -1,5 +1,12 @@
 # Changelog
 
+## Commit 52 - Task Integrity Audit
+
+- Added global task ID uniqueness and task-data validation.
+- Added item count/resource-location and advancement identifier checks.
+- Added strict detection for taskless quests and malformed checkmark/custom tasks.
+- Added CLI, CI report generation, documentation, and regression tests.
+
 ## Commit 51 - Reward Integrity Audit
 
 - Added reward ID uniqueness and reward-data validation.

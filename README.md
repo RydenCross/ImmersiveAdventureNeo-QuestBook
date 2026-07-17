@@ -178,3 +178,14 @@ python -m generator reward-audit --format json --output reports/reward-audit.jso
 ```
 
 See [`docs/REWARD_AUDIT.md`](docs/REWARD_AUDIT.md) for the validation rules.
+
+## Task integrity audit
+
+Validate completion-task IDs, required task data, and task coverage before release:
+
+```bash
+python -m generator task-audit --strict
+python -m generator task-audit --strict --format json --output reports/task-audit.json
+```
+
+See [`docs/TASK_AUDIT.md`](docs/TASK_AUDIT.md) for the validation rules.
