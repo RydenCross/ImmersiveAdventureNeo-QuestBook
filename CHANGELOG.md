@@ -164,3 +164,10 @@
 - Added Graphviz DOT and JSON dependency graph exports.
 - Grouped quest nodes by chapter and marked optional quests visually.
 - Added CLI, documentation, generated reports, and automated tests.
+
+## Commit 50 - Quest Contract Guard
+
+- Added a checked-in quest contract baseline covering icons, difficulty, quest flags, task IDs/types, and reward IDs/types.
+- Added `contract-guard` and `contract-baseline` commands.
+- Allowed normal description edits and newly added quests without failing the guard.
+- Added CI enforcement, documentation, JSON reporting, and regression tests.

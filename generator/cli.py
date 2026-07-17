@@ -8,6 +8,11 @@ from generator.audit import audit_project
 from generator.build import build
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
+from generator.contract_guard import (
+    DEFAULT_CONTRACT_BASELINE_PATH,
+    refresh_contract_baseline,
+    run_contract_guard,
+)
 from generator.identity_guard import (
     DEFAULT_IDENTITY_BASELINE_PATH,
     refresh_identity_baseline,
@@ -206,6 +211,29 @@ def create_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Return a non-zero exit code when regressions are detected.",
     )
+    contract_guard = subparsers.add_parser(
+        "contract-guard",
+        help="Protect quest task, reward, icon, flag, and difficulty contracts.",
+    )
+    contract_guard.add_argument(
+        "baseline", nargs="?", type=Path, default=DEFAULT_CONTRACT_BASELINE_PATH,
+        help="Contract baseline (default: reports/quest-contract-baseline.json).",
+    )
+    contract_guard.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    contract_guard.add_argument(
+        "--output", type=Path, help="Write the guard report to a file.",
+    )
+    contract_baseline = subparsers.add_parser(
+        "contract-baseline",
+        help="Refresh the checked-in quest contract baseline.",
+    )
+    contract_baseline.add_argument(
+        "destination", nargs="?", type=Path, default=DEFAULT_CONTRACT_BASELINE_PATH,
+        help="Baseline destination (default: reports/quest-contract-baseline.json).",
+    )
     identity_guard = subparsers.add_parser(
         "identity-guard",
         help="Protect checked-in chapter and quest identities against accidental changes.",
@@ -243,6 +271,28 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "contract-guard":
+        try:
+            result = run_contract_guard(args.baseline)
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "contract-baseline":
+        manifest = refresh_contract_baseline(args.destination)
+        print(
+            f"Quest contract baseline refreshed: {args.destination} "
+            f"({manifest.quest_count} quests, {manifest.task_count} tasks, "
+            f"{manifest.reward_count} rewards)."
+        )
+        return 0
     if args.command == "identity-guard":
         try:
             result = run_identity_guard(args.baseline)

@@ -151,3 +151,18 @@ python -m generator identity-baseline reports/quest-identity-baseline.json
 ```
 
 See [`docs/IDENTITY_GUARD.md`](docs/IDENTITY_GUARD.md).
+
+## Quest contract guard
+
+Protect gameplay-facing quest contracts from accidental edits while allowing description and localization improvements:
+
+```bash
+python -m generator contract-guard
+python -m generator contract-guard --format json --output reports/contract-guard.json
+```
+
+Refresh the baseline only after an intentional reviewed contract change:
+
+```bash
+python -m generator contract-baseline reports/quest-contract-baseline.json
+```

@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "quests": 656,
+    "rewards": 49,
+    "tasks": 673
+  },
+  "changed_quests": [],
+  "current": {
+    "quests": 656,
+    "rewards": 49,
+    "tasks": 673
+  },
+  "missing_quests": [],
+  "status": "pass"
+}
