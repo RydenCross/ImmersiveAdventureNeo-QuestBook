@@ -7,6 +7,9 @@ from content.actually_additions.machines_resources import (
 from content.actually_additions.tools_utilities import (
     build_actually_additions_tools_utilities,
 )
+from content.actually_additions.advanced_workshop import (
+    build_actually_additions_advanced_workshop,
+)
 
 
 def build_actually_additions(project: Project, create_complete: str) -> str:
@@ -31,7 +34,9 @@ def build_actually_additions(project: Project, create_complete: str) -> str:
     machines_complete = build_actually_additions_machines_resources(
         builder, foundations_complete
     )
-    return build_actually_additions_tools_utilities(builder, machines_complete)
+    utilities_complete = build_actually_additions_tools_utilities(builder, machines_complete)
+    build_actually_additions_advanced_workshop(builder, utilities_complete)
+    return utilities_complete
 
 
 __all__ = ["build_actually_additions"]

@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 556
+    assert len(project.quests) == 576
 
 
 def test_quest_ids_are_stable() -> None:
@@ -127,8 +127,8 @@ def test_actually_additions_depends_on_create_completion() -> None:
     assert create is not None
     assert actually is not None
     assert actually.quests[0].dependencies[0].quest_id == create.quests[-1].ftb_id
-    assert len(actually.quests) == 58
-    assert actually.quests[-1].title == "Actually Equipped"
+    assert len(actually.quests) == 78
+    assert next(q for q in actually.quests if q.title == "Actually Equipped")
 
 
 def test_actually_additions_machines_follow_foundations() -> None:
@@ -142,7 +142,7 @@ def test_actually_additions_machines_follow_foundations() -> None:
 
     assert crusher.dependencies[0].quest_id == foundations.ftb_id
     assert actually.quests.index(complete) < len(actually.quests) - 1
-    assert len(actually.quests) == 58
+    assert len(actually.quests) == 78
 
 
 def test_actually_additions_tools_follow_machines() -> None:
@@ -155,9 +155,24 @@ def test_actually_additions_tools_follow_machines() -> None:
     complete = next(q for q in actually.quests if q.title == "Actually Equipped")
 
     assert drill.dependencies[0].quest_id == machines.ftb_id
-    assert complete.ftb_id == actually.quests[-1].ftb_id
-    assert len(actually.quests) == 58
+    assert actually.quests.index(complete) < len(actually.quests) - 1
+    assert len(actually.quests) == 78
 
+
+
+def test_actually_additions_expansion_is_optional_and_follows_utilities() -> None:
+    project = create_project()
+    actually = project.get_chapter("05_actually_additions")
+
+    assert actually is not None
+    equipped = next(q for q in actually.quests if q.title == "Actually Equipped")
+    plan = next(q for q in actually.quests if q.title == "Plan the Expanded Workshop")
+    mastery = next(q for q in actually.quests if q.title == "The Actually Advanced Workshop")
+
+    assert plan.dependencies[0].quest_id == equipped.ftb_id
+    assert actually.quests.index(equipped) < actually.quests.index(mastery)
+    assert all(q.optional for q in actually.quests[actually.quests.index(equipped) + 1 :])
+    assert len(actually.quests) == 78
 
 def test_ars_nouveau_depends_on_actually_additions_completion() -> None:
     project = create_project()
@@ -166,7 +181,8 @@ def test_ars_nouveau_depends_on_actually_additions_completion() -> None:
 
     assert actually is not None
     assert ars is not None
-    assert ars.quests[0].dependencies[0].quest_id == actually.quests[-1].ftb_id
+    equipped = next(q for q in actually.quests if q.title == "Actually Equipped")
+    assert ars.quests[0].dependencies[0].quest_id == equipped.ftb_id
     assert len(ars.quests) == 41
     assert ars.quests[-1].title == "Master of Practical Spellcraft"
 
@@ -383,7 +399,11 @@ def test_endgame_depends_on_all_major_mastery_quests() -> None:
     first = endgame.quests[0]
     expected = {
         project.get_chapter("04_create").quests[-1].ftb_id,
-        project.get_chapter("05_actually_additions").quests[-1].ftb_id,
+        next(
+            q.ftb_id
+            for q in project.get_chapter("05_actually_additions").quests
+            if q.title == "Actually Equipped"
+        ),
         project.get_chapter("06_ars_nouveau").quests[-1].ftb_id,
         project.get_chapter("07_apotheosis").quests[-1].ftb_id,
         project.get_chapter("08_ae2").quests[-1].ftb_id,

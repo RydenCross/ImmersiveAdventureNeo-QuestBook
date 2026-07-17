@@ -1,3 +1,10 @@
+## Commit 32 - Actually Additions Expansion
+
+- Added 20 optional Actually Additions quests for advanced power, empowered crystals, laser-relay networks, and workshop automation.
+- Added `content/actually_additions/advanced_workshop.py`.
+- Preserved **Actually Equipped** as the downstream chapter handoff.
+- Added expansion documentation and regression coverage.
+
 ## Commit 31 - Exploration Expansion
 
 - Added 20 optional post-mastery Exploration quests.
