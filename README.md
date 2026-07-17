@@ -201,3 +201,8 @@ python -m generator chapter-audit --strict --format json --output reports/chapte
 
 See [`docs/CHAPTER_AUDIT.md`](docs/CHAPTER_AUDIT.md) for the validation rules.
 
+
+
+## Quest text quality audit
+
+Run `python -m generator text-audit --strict` to detect placeholder copy, malformed formatting, duplicated substantive descriptions, and short descriptions that deserve review. See `docs/TEXT_AUDIT.md`.

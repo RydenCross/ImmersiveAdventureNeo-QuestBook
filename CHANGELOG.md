@@ -1,3 +1,8 @@
+## Commit #54 — Quest Text Quality Audit
+
+- Added strict placeholder, formatting, and duplicate-description validation.
+- Added JSON reporting and CI integration.
+
 # Changelog
 
 ## Commit 53 - Chapter Integrity Audit
