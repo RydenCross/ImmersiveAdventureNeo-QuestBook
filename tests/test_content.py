@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 10
-    assert len(project.quests) == 431
+    assert len(project.chapters) == 11
+    assert len(project.quests) == 455
 
 
 def test_quest_ids_are_stable() -> None:
@@ -354,3 +354,38 @@ def test_mekanism_power_and_reactors_follow_advanced_processing() -> None:
     assert mekanism.quests.index(reactor) < mekanism.quests.index(complete)
     assert complete.ftb_id == mekanism.quests[-1].ftb_id
     assert len(mekanism.quests) == 62
+
+
+def test_endgame_depends_on_all_major_mastery_quests() -> None:
+    project = create_project()
+    endgame = project.get_chapter("10_endgame")
+
+    assert endgame is not None
+    first = endgame.quests[0]
+    expected = {
+        project.get_chapter("04_create").quests[-1].ftb_id,
+        project.get_chapter("05_actually_additions").quests[-1].ftb_id,
+        project.get_chapter("06_ars_nouveau").quests[-1].ftb_id,
+        project.get_chapter("07_apotheosis").quests[-1].ftb_id,
+        project.get_chapter("08_ae2").quests[-1].ftb_id,
+        project.get_chapter("09_mekanism").quests[-1].ftb_id,
+    }
+
+    assert {dependency.quest_id for dependency in first.dependencies} == expected
+    assert len(endgame.quests) == 24
+    assert endgame.quests[-1].title == "Immersive Adventure Complete"
+
+
+def test_endgame_combines_infrastructure_and_final_challenges() -> None:
+    project = create_project()
+    endgame = project.get_chapter("10_endgame")
+
+    assert endgame is not None
+    continuous = next(q for q in endgame.quests if q.title == "A Factory That Runs Unattended")
+    city = next(q for q in endgame.quests if q.title == "From Base to Industrial City")
+    dragon = next(q for q in endgame.quests if q.title == "The End, Revisited")
+    complete = next(q for q in endgame.quests if q.title == "Immersive Adventure Complete")
+
+    assert endgame.quests.index(continuous) < endgame.quests.index(city)
+    assert endgame.quests.index(city) < endgame.quests.index(dragon)
+    assert complete.ftb_id == endgame.quests[-1].ftb_id
