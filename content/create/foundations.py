@@ -2,7 +2,7 @@ from generator.builder import ChapterBuilder
 from model import Project
 
 
-def build_create_foundations(project: Project, mining_complete: str) -> str:
+def build_create_foundations(project: Project, mining_complete: str) -> tuple[ChapterBuilder, str]:
     create = ChapterBuilder(
         project,
         slug="04_create",
@@ -285,7 +285,7 @@ def build_create_foundations(project: Project, mining_complete: str) -> str:
         .finish()
     )
 
-    return (
+    complete = (
         create.quest(
             "foundations_complete",
             "Ready for Mechanical Processing",
@@ -302,3 +302,5 @@ def build_create_foundations(project: Project, mining_complete: str) -> str:
         .reward_item("create:cogwheel", 8)
         .finish()
     )
+
+    return create, complete

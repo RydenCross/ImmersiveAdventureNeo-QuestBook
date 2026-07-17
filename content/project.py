@@ -1,5 +1,5 @@
 from generator.builder import ChapterBuilder
-from content.create import build_create_foundations
+from content.create import build_create
 from model import Project
 
 
@@ -1093,5 +1093,5 @@ def create_project() -> Project:
     survival_complete = _build_survival(project, welcome_complete)
     mining_complete = _build_mining(project, survival_complete)
     _build_exploration(project, survival_complete)
-    build_create_foundations(project, mining_complete)
+    build_create(project, mining_complete)
     return project
