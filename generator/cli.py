@@ -9,6 +9,7 @@ from generator.build import build
 from generator.parser import FTBQuestParser
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.release_check import run_release_check
+from generator.release_compare import compare_release_reports, load_release_report
 from generator.validator import ProjectValidator
 
 
@@ -76,6 +77,28 @@ def create_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Write the release report to a file instead of standard output.",
     )
+    compare = subparsers.add_parser(
+        "release-compare",
+        help="Compare two machine-readable release reports and detect regressions.",
+    )
+    compare.add_argument("baseline", type=Path, help="Earlier release-check JSON report.")
+    compare.add_argument("current", type=Path, help="Current release-check JSON report.")
+    compare.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    compare.add_argument(
+        "--output",
+        type=Path,
+        help="Write the comparison report to a file instead of standard output.",
+    )
+    compare.add_argument(
+        "--strict",
+        action="store_true",
+        help="Return a non-zero exit code when regressions are detected.",
+    )
     manifest = subparsers.add_parser(
         "registry-manifest",
         help="Export every authored item reference grouped by namespace and usage.",
@@ -99,6 +122,23 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if report.is_clean else 1
+
+    if args.command == "release-compare":
+        try:
+            comparison = compare_release_reports(
+                load_release_report(args.baseline),
+                load_release_report(args.current),
+            )
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = comparison.format_json() if args.format == "json" else comparison.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if comparison.is_clean or not args.strict else 1
 
     if args.command == "registry-audit":
         audit = audit_registry(create_project(), args.sources)

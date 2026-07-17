@@ -1,3 +1,11 @@
+# Changelog
+
+## Commit 42 - Release Report Comparison
+
+- Added `python -m generator release-compare` for comparing machine-readable release reports.
+- Added strict regression detection for content totals, validation, quality metrics, and authored/generated parity.
+- Added text and JSON comparison reports, file output, documentation, and regression tests.
+
 ## Commit 41 - Machine-Readable Release Reports
 
 - Added JSON output for `release-check`.

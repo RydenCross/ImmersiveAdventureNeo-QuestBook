@@ -65,6 +65,14 @@ python -m generator release-check
 
 This builds the questbook in a temporary directory, reparses and validates the generated SNBT, runs the authored-content audit, and verifies registry-manifest totals. Use `--output <directory>` to keep the generated files. Use `--format json --report-output reports/release-check.json` to create a machine-readable release record.
 
+## Compare release reports
+
+```bash
+python -m generator release-compare reports/baseline.json reports/current.json --strict
+```
+
+This detects new validation or content-quality defects, authored/generated mismatches, and unexpected decreases in questbook or registry-manifest totals. See [`docs/RELEASE_COMPARISON.md`](docs/RELEASE_COMPARISON.md).
+
 ## Test
 
 ```bash
