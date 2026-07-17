@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 3
-    assert len(project.quests) == 64
+    assert len(project.chapters) == 4
+    assert len(project.quests) == 91
 
 
 def test_quest_ids_are_stable() -> None:
@@ -36,3 +36,13 @@ def test_mining_chapter_depends_on_survival_completion() -> None:
     assert survival is not None
     assert mining is not None
     assert mining.quests[0].dependencies[0].quest_id == survival.quests[-1].ftb_id
+
+
+def test_exploration_chapter_depends_on_survival_completion() -> None:
+    project = create_project()
+    survival = project.get_chapter("01_survival")
+    exploration = project.get_chapter("03_exploration")
+
+    assert survival is not None
+    assert exploration is not None
+    assert exploration.quests[0].dependencies[0].quest_id == survival.quests[-1].ftb_id

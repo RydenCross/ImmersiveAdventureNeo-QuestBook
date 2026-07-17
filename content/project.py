@@ -921,9 +921,175 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         "minecraft:diamond", 3
     ).finish()
 
+
+def _build_exploration(project: Project, survival_complete: str) -> str:
+    exploration = ChapterBuilder(
+        project,
+        slug="03_exploration",
+        title="Exploration",
+        icon="minecraft:filled_map",
+        description="Chart the overworld, discover distant structures, and return home with rare treasures.",
+    )
+
+    begin = exploration.quest(
+        "begin", "Beyond the Horizon", "minecraft:filled_map",
+        "Your homestead is secure. Pack supplies, choose a direction, and begin charting the wider world.",
+        0, 0,
+    ).depends_on(survival_complete).checkmark().finish()
+
+    compass = exploration.quest(
+        "compass", "Find Your Way Home", "minecraft:compass",
+        "Carry a compass so long journeys do not permanently separate you from familiar ground.",
+        2, -3,
+    ).depends_on(begin).item("minecraft:compass").finish()
+    map_item = exploration.quest(
+        "map", "Put It on the Map", "minecraft:map",
+        "Craft an empty map and begin recording the terrain around your base.",
+        4, -3,
+    ).depends_on(compass).item("minecraft:map").finish()
+    spyglass = exploration.quest(
+        "spyglass", "A Distant View", "minecraft:spyglass",
+        "Use copper and amethyst to craft a spyglass for scouting terrain and structures from safety.",
+        6, -3,
+        optional=True,
+    ).depends_on(map_item).item("minecraft:spyglass").finish()
+    cartography = exploration.quest(
+        "cartography_table", "The Cartographer's Desk", "minecraft:cartography_table",
+        "Craft a cartography table to copy, expand, and lock maps for a growing expedition archive.",
+        6, -1,
+    ).depends_on(map_item).item("minecraft:cartography_table").finish()
+
+    boat = exploration.quest(
+        "boat", "Take to the Water", "minecraft:oak_boat",
+        "Craft a boat before following rivers and coastlines into unexplored territory.",
+        2, -1,
+    ).depends_on(begin).item("minecraft:oak_boat").finish()
+    ocean = exploration.quest(
+        "ocean", "Open Water", "minecraft:heart_of_the_sea",
+        "Reach an ocean and confirm the discovery after establishing a safe shoreline landing point.",
+        4, 1,
+    ).depends_on(boat).checkmark().finish()
+    shipwreck = exploration.quest(
+        "shipwreck", "Wreck Beneath the Waves", "minecraft:chest",
+        "Locate and explore a shipwreck. Search every compartment before continuing the expedition.",
+        6, 1,
+    ).depends_on(ocean).checkmark().finish()
+    buried_treasure = exploration.quest(
+        "buried_treasure", "X Marks the Spot", "minecraft:heart_of_the_sea",
+        "Follow a buried treasure map and recover a Heart of the Sea from the hidden chest.",
+        8, 1,
+    ).depends_on(shipwreck).item("minecraft:heart_of_the_sea").reward_item("minecraft:emerald", 8).finish()
+    ocean_monument = exploration.quest(
+        "ocean_monument", "Guardians of the Deep", "minecraft:prismarine_bricks",
+        "Discover an ocean monument. Conquering it can wait until you are properly equipped.",
+        10, 1,
+        optional=True,
+    ).depends_on(buried_treasure).checkmark().finish()
+
+    village = exploration.quest(
+        "village", "Signs of Civilization", "minecraft:emerald",
+        "Find a village and secure it as a useful stop along your travel network.",
+        2, 1,
+    ).depends_on(begin).checkmark().finish()
+    trade = exploration.quest(
+        "trade", "A Fair Exchange", "minecraft:emerald",
+        "Complete a trade with a villager and begin learning which professions support your progression.",
+        4, 3,
+    ).depends_on(village).advancement("minecraft:adventure/trade").finish()
+    bell = exploration.quest(
+        "bell", "Center of Town", "minecraft:bell",
+        "Obtain a bell as a trophy or establish one at a settlement of your own.",
+        6, 3,
+        optional=True,
+    ).depends_on(trade).item("minecraft:bell").finish()
+    outpost = exploration.quest(
+        "pillager_outpost", "Hostile Neighbors", "minecraft:crossbow",
+        "Locate a pillager outpost and mark it on your map before deciding whether to attack.",
+        6, 5,
+    ).depends_on(village).checkmark().finish()
+    raid = exploration.quest(
+        "raid", "Hero of the Village", "minecraft:totem_of_undying",
+        "Defend a village from a raid and earn recognition as its hero.",
+        8, 5,
+        optional=True,
+    ).depends_on(outpost).advancement("minecraft:adventure/hero_of_the_village").finish()
+
+    ruined_portal = exploration.quest(
+        "ruined_portal", "Echoes of Another World", "minecraft:crying_obsidian",
+        "Find a ruined portal and inspect the remains for clues, obsidian, and useful loot.",
+        2, 3,
+    ).depends_on(begin).checkmark().finish()
+    desert_temple = exploration.quest(
+        "desert_temple", "Buried in Sand", "minecraft:chiseled_sandstone",
+        "Discover a desert pyramid and carefully disarm the trap beneath its central chamber.",
+        4, 5,
+    ).depends_on(ruined_portal).checkmark().finish()
+    jungle_temple = exploration.quest(
+        "jungle_temple", "Secrets in the Vines", "minecraft:mossy_cobblestone",
+        "Locate a jungle temple and survive its traps to claim the hidden loot.",
+        4, 7,
+        optional=True,
+    ).depends_on(ruined_portal).checkmark().finish()
+    igloo = exploration.quest(
+        "igloo", "A Chilling Discovery", "minecraft:snow_block",
+        "Find an igloo and investigate whether anything unusual lies beneath it.",
+        6, 7,
+        optional=True,
+    ).depends_on(ruined_portal).checkmark().finish()
+
+    lush_cave = exploration.quest(
+        "lush_cave", "A Garden Underground", "minecraft:glow_berries",
+        "Explore a lush cave and collect glow berries from its hanging vines.",
+        8, -3,
+    ).depends_on(spyglass).item("minecraft:glow_berries", 8).finish()
+    dripstone = exploration.quest(
+        "dripstone_cave", "Stone from Stone", "minecraft:pointed_dripstone",
+        "Explore a dripstone cave and gather pointed dripstone for building and renewable lava systems.",
+        10, -3,
+    ).depends_on(lush_cave).item("minecraft:pointed_dripstone", 16).finish()
+    amethyst = exploration.quest(
+        "amethyst_geode", "Crystal Resonance", "minecraft:amethyst_shard",
+        "Locate an amethyst geode and harvest shards without destroying every budding block.",
+        12, -3,
+    ).depends_on(dripstone).item("minecraft:amethyst_shard", 16).finish()
+
+    saddle = exploration.quest(
+        "saddle", "A Faster Mount", "minecraft:saddle",
+        "Recover a saddle from exploration loot and prepare a reliable land mount.",
+        8, 3,
+    ).depends_on(trade, shipwreck).item("minecraft:saddle").finish()
+    lead = exploration.quest(
+        "lead", "Traveling Companions", "minecraft:lead",
+        "Carry leads for moving animals safely between distant settlements and your home base.",
+        10, 3,
+        optional=True,
+    ).depends_on(saddle).item("minecraft:lead", 2).finish()
+    mansion = exploration.quest(
+        "woodland_mansion", "Deep Woodland Secrets", "minecraft:dark_oak_log",
+        "Locate a woodland mansion. Mark the route and return only when prepared for its defenders.",
+        12, 3,
+        optional=True,
+    ).depends_on(cartography, trade).checkmark().finish()
+
+    adventuring_time = exploration.quest(
+        "adventuring_time", "A World of Biomes", "minecraft:grass_block",
+        "Continue exploring until you have visited every biome required by the Adventuring Time advancement.",
+        12, 0,
+        optional=True,
+    ).depends_on(amethyst, mansion, ocean_monument).advancement("minecraft:adventure/adventuring_time").finish()
+
+    return exploration.quest(
+        "experienced_explorer", "Experienced Explorer", "minecraft:recovery_compass",
+        "You have mapped distant lands, traded with settlements, explored natural wonders, and recovered rare treasures.",
+        14, 1,
+    ).depends_on(buried_treasure, trade, desert_temple, amethyst, saddle).checkmark().reward_item(
+        "minecraft:ender_pearl", 8
+    ).finish()
+
 def create_project() -> Project:
     project = Project(name="Immersive Adventure Neo", version="13")
     welcome_complete = _build_welcome(project)
     survival_complete = _build_survival(project, welcome_complete)
     _build_mining(project, survival_complete)
+    _build_exploration(project, survival_complete)
     return project
