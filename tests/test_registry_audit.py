@@ -52,3 +52,37 @@ def test_registry_audit_cli_strict_fails_for_missing_items(tmp_path: Path, capsy
 
     assert main(["registry-audit", str(source), "--strict"]) == 1
     assert "MISSING" in capsys.readouterr().out
+
+
+def test_registry_audit_json_report_is_machine_readable(tmp_path: Path, capsys) -> None:
+    source = tmp_path / "registry.json"
+    source.write_text(json.dumps({"namespaces": ["minecraft"], "items": []}), encoding="utf-8")
+
+    assert main(["registry-audit", str(source), "--format", "json"]) == 0
+    report = json.loads(capsys.readouterr().out)
+
+    assert report["summary"]["missing"] > 0
+    assert report["summary"]["clean"] is False
+    assert report["namespaces"] == ["minecraft"]
+
+
+def test_registry_audit_can_write_report_file(tmp_path: Path, capsys) -> None:
+    source = tmp_path / "registry.json"
+    output = tmp_path / "reports" / "registry.json"
+    source.write_text(json.dumps({"items": ["minecraft:stone"]}), encoding="utf-8")
+
+    assert main(["registry-audit", str(source), "--format", "json", "--output", str(output)]) == 0
+
+    assert capsys.readouterr().out == ""
+    assert json.loads(output.read_text(encoding="utf-8"))["summary"]["references"] > 0
+
+
+def test_registry_manifest_groups_references_by_namespace(tmp_path: Path) -> None:
+    output = tmp_path / "manifest.json"
+
+    assert main(["registry-manifest", "--output", str(output)]) == 0
+    manifest = json.loads(output.read_text(encoding="utf-8"))
+
+    assert manifest["summary"]["references"] > 0
+    assert "minecraft" in manifest["namespaces"]
+    assert "quest_icon" in manifest["namespaces"]["minecraft"]

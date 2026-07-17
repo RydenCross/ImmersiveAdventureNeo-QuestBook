@@ -48,7 +48,14 @@ The audit summarizes chapter and quest totals, optional quests, task and reward 
 python -m generator registry-audit /path/to/instance/mods --strict
 ```
 
-The registry audit checks chapter icons, quest icons, item tasks, and item rewards against mod JAR assets or JSON registry exports. See [`docs/REGISTRY_AUDIT.md`](docs/REGISTRY_AUDIT.md) for supported formats and limitations.
+The registry audit checks chapter icons, quest icons, item tasks, and item rewards against mod JAR assets or JSON registry exports. It supports text or JSON reports and can write directly to a file.
+
+```bash
+python -m generator registry-audit /path/to/instance/mods --format json --output reports/registry.json
+python -m generator registry-manifest --output reports/quest-item-manifest.json
+```
+
+See [`docs/REGISTRY_AUDIT.md`](docs/REGISTRY_AUDIT.md) for supported formats and limitations.
 
 ## Test
 

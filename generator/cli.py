@@ -7,7 +7,7 @@ from content import create_project
 from generator.audit import audit_project
 from generator.build import build
 from generator.parser import FTBQuestParser
-from generator.registry_audit import audit_registry
+from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.validator import ProjectValidator
 
 
@@ -44,6 +44,26 @@ def create_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Return a non-zero exit code when a covered item id is missing.",
     )
+    registry.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    registry.add_argument(
+        "--output",
+        type=Path,
+        help="Write the report to a file instead of standard output.",
+    )
+    manifest = subparsers.add_parser(
+        "registry-manifest",
+        help="Export every authored item reference grouped by namespace and usage.",
+    )
+    manifest.add_argument(
+        "--output",
+        type=Path,
+        help="Write the JSON manifest to a file instead of standard output.",
+    )
     return parser
 
 
@@ -51,8 +71,22 @@ def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
     if args.command == "registry-audit":
         audit = audit_registry(create_project(), args.sources)
-        print(audit.format())
+        report = audit.format_json() if args.format == "json" else audit.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(report + "\n", encoding="utf-8")
+        else:
+            print(report)
         return 0 if audit.is_clean or not args.strict else 1
+
+    if args.command == "registry-manifest":
+        manifest = format_reference_manifest(create_project())
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(manifest + "\n", encoding="utf-8")
+        else:
+            print(manifest)
+        return 0
 
     if args.command == "audit":
         audit = audit_project(create_project())

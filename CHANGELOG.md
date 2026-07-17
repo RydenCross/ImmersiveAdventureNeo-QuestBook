@@ -1,3 +1,11 @@
+## Commit 39 - Registry Reports and Reference Manifest
+
+- Added machine-readable JSON output for `registry-audit`.
+- Added `--output` support for text and JSON audit reports.
+- Added `registry-manifest` for exporting every authored item reference by namespace and usage type.
+- Added report and manifest regression tests.
+- Expanded registry workflow documentation and README examples.
+
 ## Commit 38 - Mod Registry Verification
 
 - Added `python -m generator registry-audit` for verifying authored item references.

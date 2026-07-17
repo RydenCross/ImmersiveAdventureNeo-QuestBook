@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
 from zipfile import BadZipFile, ZipFile
@@ -43,7 +43,7 @@ class RegistryAudit:
         kind_counts = Counter(reference.kind for reference in self.references)
         lines = [
             f"Registry audit: {len(self.references)} reference(s) from "
-            f"{sum(kind_counts.values()) and len(kind_counts)} type(s).",
+            f"{len(kind_counts)} type(s).",
             f"Loaded {len(self.known_items)} item id(s) across "
             f"{len(self.covered_namespaces)} namespace(s) from {len(self.sources)} source(s).",
             f"Verified: {len(self.verified)}.",
@@ -52,7 +52,9 @@ class RegistryAudit:
         ]
         if kind_counts:
             lines.append(
-                "References: " + ", ".join(f"{kind}={count}" for kind, count in sorted(kind_counts.items())) + "."
+                "References: "
+                + ", ".join(f"{kind}={count}" for kind, count in sorted(kind_counts.items()))
+                + "."
             )
         if self.covered_namespaces:
             lines.append("Covered namespaces: " + ", ".join(sorted(self.covered_namespaces)) + ".")
@@ -62,6 +64,58 @@ class RegistryAudit:
                 f"({reference.chapter} / {reference.quest})"
             )
         return "\n".join(lines)
+
+    def to_dict(self) -> dict[str, object]:
+        kind_counts = Counter(reference.kind for reference in self.references)
+        return {
+            "summary": {
+                "references": len(self.references),
+                "unique_item_ids": len({reference.item_id for reference in self.references}),
+                "known_items": len(self.known_items),
+                "covered_namespaces": len(self.covered_namespaces),
+                "verified": len(self.verified),
+                "missing": len(self.missing),
+                "unverifiable": len(self.unverifiable),
+                "clean": self.is_clean,
+            },
+            "reference_kinds": dict(sorted(kind_counts.items())),
+            "namespaces": sorted(self.covered_namespaces),
+            "sources": [str(source) for source in self.sources],
+            "missing": [asdict(reference) for reference in self.missing],
+            "unverifiable": [asdict(reference) for reference in self.unverifiable],
+        }
+
+    def format_json(self) -> str:
+        return json.dumps(self.to_dict(), indent=2, sort_keys=True)
+
+
+def build_reference_manifest(project: Project) -> dict[str, object]:
+    references = tuple(iter_registry_references(project))
+    grouped: dict[str, dict[str, set[str]]] = {}
+    for reference in references:
+        grouped.setdefault(namespace(reference.item_id), {}).setdefault(reference.kind, set()).add(
+            reference.item_id
+        )
+
+    namespaces = {
+        namespace_id: {
+            kind: sorted(item_ids)
+            for kind, item_ids in sorted(kind_groups.items())
+        }
+        for namespace_id, kind_groups in sorted(grouped.items())
+    }
+    return {
+        "summary": {
+            "references": len(references),
+            "unique_item_ids": len({reference.item_id for reference in references}),
+            "namespaces": len(namespaces),
+        },
+        "namespaces": namespaces,
+    }
+
+
+def format_reference_manifest(project: Project) -> str:
+    return json.dumps(build_reference_manifest(project), indent=2, sort_keys=True)
 
 
 def audit_registry(project: Project, sources: Iterable[Path]) -> RegistryAudit:
@@ -159,7 +213,6 @@ def load_archive(path: Path) -> tuple[set[str], set[str]]:
                     items.add(f"{namespace_id}:{relative[:-5]}")
                     namespaces.add(namespace_id)
                 elif parts[2:4] == ["models", "item"] and relative.endswith(".json"):
-                    # Here relative starts with the item path because models/item was consumed.
                     item_path = "/".join(parts[4:])[:-5]
                     if item_path:
                         items.add(f"{namespace_id}:{item_path}")
