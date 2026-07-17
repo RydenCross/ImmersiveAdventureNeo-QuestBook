@@ -5,13 +5,14 @@ from generator.parser import FTBQuestParser
 from generator.validator import ProjectValidator
 
 
-def test_build_generates_playable_welcome_and_survival_chapters(tmp_path: Path) -> None:
+def test_build_generates_playable_core_chapters(tmp_path: Path) -> None:
     quests_root = build(tmp_path / "config" / "ftbquests")
     project = FTBQuestParser().load(quests_root)
     report = ProjectValidator().validate(project)
 
     assert (quests_root / "chapters" / "00_welcome.snbt").is_file()
     assert (quests_root / "chapters" / "01_survival.snbt").is_file()
-    assert len(project.chapters) == 2
-    assert len(project.quests) == 34
+    assert (quests_root / "chapters" / "02_mining.snbt").is_file()
+    assert len(project.chapters) == 3
+    assert len(project.quests) == 64
     assert report.is_valid

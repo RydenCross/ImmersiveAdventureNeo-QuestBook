@@ -150,7 +150,7 @@ def _build_welcome(project: Project) -> str:
     )
 
 
-def _build_survival(project: Project, welcome_complete: str) -> None:
+def _build_survival(project: Project, welcome_complete: str) -> str:
     survival = ChapterBuilder(
         project,
         slug="01_survival",
@@ -488,7 +488,7 @@ def _build_survival(project: Project, welcome_complete: str) -> None:
         .finish()
     )
 
-    survival.quest(
+    return survival.quest(
         "established",
         "A Proper Homestead",
         "minecraft:golden_carrot",
@@ -503,8 +503,427 @@ def _build_survival(project: Project, welcome_complete: str) -> None:
     ).finish()
 
 
+
+
+def _build_mining(project: Project, survival_complete: str) -> None:
+    mining = ChapterBuilder(
+        project,
+        slug="02_mining",
+        title="Mining",
+        icon="minecraft:diamond_pickaxe",
+        description="Descend safely, process valuable ores, and prepare for the Nether.",
+    )
+
+    begin = (
+        mining.quest(
+            "begin",
+            "Beneath the Surface",
+            "minecraft:stone_pickaxe",
+            "Prepare to leave the safety of your homestead and establish a dependable mining operation.",
+            0,
+            0,
+        )
+        .depends_on(survival_complete)
+        .checkmark()
+        .finish()
+    )
+
+    iron_pick = (
+        mining.quest(
+            "iron_pickaxe",
+            "The Right Tool",
+            "minecraft:iron_pickaxe",
+            "Craft an iron pickaxe so valuable ores can be harvested instead of destroyed.",
+            2,
+            -3,
+        )
+        .depends_on(begin)
+        .item("minecraft:iron_pickaxe")
+        .finish()
+    )
+    torches = (
+        mining.quest(
+            "torches",
+            "Bring More Light",
+            "minecraft:torch",
+            "Carry a large supply of torches before exploring deep caves and abandoned tunnels.",
+            2,
+            -1,
+        )
+        .depends_on(begin)
+        .item("minecraft:torch", 64)
+        .finish()
+    )
+    ladders = (
+        mining.quest(
+            "ladders",
+            "A Safe Way Back",
+            "minecraft:ladder",
+            "Keep ladders available for vertical shafts, ravines, and emergency exits.",
+            2,
+            1,
+            optional=True,
+        )
+        .depends_on(begin)
+        .item("minecraft:ladder", 16)
+        .finish()
+    )
+    bucket = (
+        mining.quest(
+            "water_bucket",
+            "Miner's Best Friend",
+            "minecraft:water_bucket",
+            "A water bucket can neutralize lava, descend cliffs, and create an emergency escape route.",
+            2,
+            3,
+        )
+        .depends_on(begin)
+        .item("minecraft:water_bucket")
+        .finish()
+    )
+
+    coal = (
+        mining.quest(
+            "coal",
+            "Black Gold",
+            "minecraft:coal",
+            "Gather coal for dependable fuel and underground lighting.",
+            4,
+            -3,
+        )
+        .depends_on(iron_pick, torches)
+        .item("minecraft:coal", 32)
+        .finish()
+    )
+    raw_iron = (
+        mining.quest(
+            "raw_iron",
+            "Iron Veins",
+            "minecraft:raw_iron",
+            "Mine a useful stockpile of raw iron for tools, armor, rails, and machines.",
+            4,
+            -1,
+        )
+        .depends_on(iron_pick)
+        .item("minecraft:raw_iron", 32)
+        .finish()
+    )
+    copper = (
+        mining.quest(
+            "copper",
+            "Conductive Metal",
+            "minecraft:raw_copper",
+            "Collect copper now; many technology paths will consume it later.",
+            4,
+            1,
+        )
+        .depends_on(iron_pick)
+        .item("minecraft:raw_copper", 32)
+        .finish()
+    )
+    redstone = (
+        mining.quest(
+            "redstone",
+            "A Spark of Possibility",
+            "minecraft:redstone",
+            "Mine redstone dust, the foundation of automation and many modded recipes.",
+            4,
+            3,
+        )
+        .depends_on(iron_pick, bucket)
+        .item("minecraft:redstone", 32)
+        .finish()
+    )
+
+    blast_furnace = (
+        mining.quest(
+            "blast_furnace",
+            "Faster Smelting",
+            "minecraft:blast_furnace",
+            "Craft a blast furnace to process ore products more quickly.",
+            6,
+            -3,
+        )
+        .depends_on(raw_iron)
+        .item("minecraft:blast_furnace")
+        .finish()
+    )
+    iron_stockpile = (
+        mining.quest(
+            "iron_ingots",
+            "Industrial Reserve",
+            "minecraft:iron_ingot",
+            "Smelt enough iron to support larger projects without immediately returning underground.",
+            6,
+            -1,
+        )
+        .depends_on(raw_iron, blast_furnace)
+        .item("minecraft:iron_ingot", 64)
+        .reward_item("minecraft:rail", 32)
+        .finish()
+    )
+    copper_ingots = (
+        mining.quest(
+            "copper_ingots",
+            "Refined Copper",
+            "minecraft:copper_ingot",
+            "Process a reserve of copper for building and future technology chapters.",
+            6,
+            1,
+        )
+        .depends_on(copper, blast_furnace)
+        .item("minecraft:copper_ingot", 32)
+        .finish()
+    )
+    lapis = (
+        mining.quest(
+            "lapis",
+            "Blue Knowledge",
+            "minecraft:lapis_lazuli",
+            "Collect lapis lazuli for enchanting and decorative blocks.",
+            6,
+            3,
+        )
+        .depends_on(redstone)
+        .item("minecraft:lapis_lazuli", 24)
+        .finish()
+    )
+
+    gold = (
+        mining.quest(
+            "gold",
+            "All That Glitters",
+            "minecraft:raw_gold",
+            "Mine raw gold for powered rails, clocks, golden foods, and advanced crafting.",
+            8,
+            -3,
+        )
+        .depends_on(iron_stockpile)
+        .item("minecraft:raw_gold", 16)
+        .finish()
+    )
+    deepslate = (
+        mining.quest(
+            "deepslate",
+            "The Deep Dark Stone",
+            "minecraft:cobbled_deepslate",
+            "Reach the deepslate layers where many valuable ores become more common.",
+            8,
+            -1,
+        )
+        .depends_on(iron_stockpile, torches)
+        .item("minecraft:cobbled_deepslate", 64)
+        .finish()
+    )
+    rails = (
+        mining.quest(
+            "rails",
+            "Underground Transit",
+            "minecraft:rail",
+            "Lay the groundwork for transporting yourself and materials through long tunnels.",
+            8,
+            1,
+            optional=True,
+        )
+        .depends_on(iron_stockpile, redstone)
+        .item("minecraft:rail", 64)
+        .finish()
+    )
+    minecart = (
+        mining.quest(
+            "minecart",
+            "Ride the Line",
+            "minecraft:minecart",
+            "Craft a minecart for moving through your underground network.",
+            10,
+            1,
+            optional=True,
+        )
+        .depends_on(rails)
+        .item("minecraft:minecart")
+        .finish()
+    )
+
+    diamonds = (
+        mining.quest(
+            "diamonds",
+            "Diamonds!",
+            "minecraft:diamond",
+            "Find diamonds and enter the next tier of tools, enchanting, and portal construction.",
+            10,
+            -2,
+        )
+        .depends_on(deepslate, bucket)
+        .advancement("minecraft:story/mine_diamond")
+        .reward_item("minecraft:experience_bottle", 8)
+        .finish()
+    )
+    diamond_pick = (
+        mining.quest(
+            "diamond_pickaxe",
+            "A Cut Above",
+            "minecraft:diamond_pickaxe",
+            "Craft a diamond pickaxe capable of harvesting obsidian.",
+            12,
+            -3,
+        )
+        .depends_on(diamonds)
+        .item("minecraft:diamond_pickaxe")
+        .finish()
+    )
+    diamond_armor = (
+        mining.quest(
+            "diamond_armor",
+            "Brilliant Protection",
+            "minecraft:diamond_chestplate",
+            "Begin upgrading your defenses with a diamond chestplate.",
+            12,
+            -1,
+            optional=True,
+        )
+        .depends_on(diamonds)
+        .item("minecraft:diamond_chestplate")
+        .finish()
+    )
+    obsidian = (
+        mining.quest(
+            "obsidian",
+            "Frozen Fire",
+            "minecraft:obsidian",
+            "Harvest obsidian for enchanting and access to the Nether.",
+            14,
+            -3,
+        )
+        .depends_on(diamond_pick, bucket)
+        .item("minecraft:obsidian", 14)
+        .finish()
+    )
+
+    book = (
+        mining.quest(
+            "book",
+            "Written Preparation",
+            "minecraft:book",
+            "Set aside a book for the enchanting table.",
+            10,
+            3,
+        )
+        .depends_on(lapis)
+        .item("minecraft:book")
+        .finish()
+    )
+    enchanting = (
+        mining.quest(
+            "enchanting_table",
+            "Power in Words",
+            "minecraft:enchanting_table",
+            "Craft an enchanting table to improve tools, weapons, and armor.",
+            16,
+            -1,
+        )
+        .depends_on(obsidian, book, diamonds)
+        .item("minecraft:enchanting_table")
+        .finish()
+    )
+    bookshelves = (
+        mining.quest(
+            "bookshelves",
+            "A Proper Library",
+            "minecraft:bookshelf",
+            "Gather fifteen bookshelves to unlock the enchanting table's full potential.",
+            18,
+            -1,
+        )
+        .depends_on(enchanting)
+        .item("minecraft:bookshelf", 15)
+        .finish()
+    )
+    anvil = (
+        mining.quest(
+            "anvil",
+            "Repair and Combine",
+            "minecraft:anvil",
+            "Craft an anvil for repairing equipment and combining enchanted items.",
+            14,
+            1,
+        )
+        .depends_on(iron_stockpile)
+        .item("minecraft:anvil")
+        .finish()
+    )
+    grindstone = (
+        mining.quest(
+            "grindstone",
+            "A Fresh Edge",
+            "minecraft:grindstone",
+            "Use a grindstone to repair tools and remove unwanted enchantments.",
+            16,
+            1,
+            optional=True,
+        )
+        .depends_on(anvil)
+        .item("minecraft:grindstone")
+        .finish()
+    )
+
+    flint_steel = (
+        mining.quest(
+            "flint_and_steel",
+            "Strike a Spark",
+            "minecraft:flint_and_steel",
+            "Craft flint and steel so your obsidian frame can become a portal.",
+            16,
+            -3,
+        )
+        .depends_on(obsidian)
+        .item("minecraft:flint_and_steel")
+        .finish()
+    )
+    golden_apple = (
+        mining.quest(
+            "golden_apple",
+            "Emergency Rations",
+            "minecraft:golden_apple",
+            "Craft a golden apple before entering more dangerous dimensions and structures.",
+            12,
+            3,
+            optional=True,
+        )
+        .depends_on(gold)
+        .item("minecraft:golden_apple")
+        .finish()
+    )
+    portal = (
+        mining.quest(
+            "nether_portal",
+            "A Doorway of Obsidian",
+            "minecraft:flint_and_steel",
+            "Construct and ignite a Nether portal. Crossing it will begin the next stage of progression.",
+            18,
+            -3,
+        )
+        .depends_on(flint_steel, diamond_armor)
+        .advancement("minecraft:story/enter_the_nether")
+        .finish()
+    )
+
+    mining.quest(
+        "mastery",
+        "Master of the Underground",
+        "minecraft:diamond",
+        (
+            "You have established safe mining practices, secured the major overworld ores, "
+            "and prepared enchanting and Nether infrastructure."
+        ),
+        20,
+        0,
+    ).depends_on(bookshelves, anvil, portal, copper_ingots, lapis).checkmark().reward_item(
+        "minecraft:diamond", 3
+    ).finish()
+
 def create_project() -> Project:
     project = Project(name="Immersive Adventure Neo", version="13")
     welcome_complete = _build_welcome(project)
-    _build_survival(project, welcome_complete)
+    survival_complete = _build_survival(project, welcome_complete)
+    _build_mining(project, survival_complete)
     return project

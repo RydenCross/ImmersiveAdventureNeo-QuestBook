@@ -1,3 +1,9 @@
+## Unreleased
+
+- Added a 30-quest Mining chapter.
+- Added cross-chapter progression from Survival into Mining.
+- Added enchanting, diamond, ore-processing, and Nether-preparation progression.
+
 # Changelog
 
 ## 0.1.0 - 2026-07-16
