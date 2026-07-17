@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 6
-    assert len(project.quests) == 223
+    assert len(project.chapters) == 7
+    assert len(project.quests) == 244
 
 
 def test_quest_ids_are_stable() -> None:
@@ -138,3 +138,30 @@ def test_actually_additions_tools_follow_machines() -> None:
     assert drill.dependencies[0].quest_id == machines.ftb_id
     assert complete.ftb_id == actually.quests[-1].ftb_id
     assert len(actually.quests) == 58
+
+
+def test_ars_nouveau_depends_on_actually_additions_completion() -> None:
+    project = create_project()
+    actually = project.get_chapter("05_actually_additions")
+    ars = project.get_chapter("06_ars_nouveau")
+
+    assert actually is not None
+    assert ars is not None
+    assert ars.quests[0].dependencies[0].quest_id == actually.quests[-1].ftb_id
+    assert len(ars.quests) == 21
+    assert ars.quests[-1].title == "An Arcane Workshop"
+
+
+def test_ars_nouveau_foundations_have_workshop_progression() -> None:
+    project = create_project()
+    ars = project.get_chapter("06_ars_nouveau")
+
+    assert ars is not None
+    spellbook = next(q for q in ars.quests if q.title == "Your First Spellbook")
+    first_spell = next(q for q in ars.quests if q.title == "Compose Your First Spell")
+    apparatus = next(q for q in ars.quests if q.title == "The Enchanting Apparatus")
+    complete = next(q for q in ars.quests if q.title == "An Arcane Workshop")
+
+    assert spellbook.ftb_id in [d.quest_id for d in next(q for q in ars.quests if q.title == "Write Magic into Form").dependencies]
+    assert ars.quests.index(first_spell) < ars.quests.index(apparatus)
+    assert complete.ftb_id == ars.quests[-1].ftb_id
