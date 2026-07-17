@@ -65,6 +65,17 @@ def create_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Keep generated FTB Quests files at this destination instead of using a temporary directory.",
     )
+    release.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    release.add_argument(
+        "--report-output",
+        type=Path,
+        help="Write the release report to a file instead of standard output.",
+    )
     manifest = subparsers.add_parser(
         "registry-manifest",
         help="Export every authored item reference grouped by namespace and usage.",
@@ -81,7 +92,12 @@ def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
     if args.command == "release-check":
         report = run_release_check(args.output)
-        print(report.format())
+        rendered = report.format_json() if args.format == "json" else report.format()
+        if args.report_output:
+            args.report_output.parent.mkdir(parents=True, exist_ok=True)
+            args.report_output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
         return 0 if report.is_clean else 1
 
     if args.command == "registry-audit":

@@ -1,3 +1,10 @@
+## Commit 41 - Machine-Readable Release Reports
+
+- Added JSON output for `release-check`.
+- Added `--report-output` for persistent text or JSON release reports.
+- Added structured pass/fail and verification totals for CI and release tooling.
+- Expanded release-check documentation and regression coverage.
+
 ## Commit 40 - Unified Release Check
 
 - Added `python -m generator release-check`.

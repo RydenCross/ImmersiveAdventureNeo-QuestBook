@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -42,6 +42,15 @@ class ReleaseCheckReport:
                 self.quests != self.generated_quests,
             )
         )
+
+    def to_dict(self) -> dict[str, int | bool | str]:
+        data: dict[str, int | bool | str] = asdict(self)
+        data["status"] = "pass" if self.is_clean else "fail"
+        data["is_clean"] = self.is_clean
+        return data
+
+    def format_json(self) -> str:
+        return json.dumps(self.to_dict(), indent=2, sort_keys=True)
 
     def format(self) -> str:
         status = "PASS" if self.is_clean else "FAIL"
@@ -93,7 +102,7 @@ def run_release_check(output: Path | None = None) -> ReleaseCheckReport:
 
 
 def _check_generated(*, project, audit, authored_validation, manifest_summary, destination: Path) -> ReleaseCheckReport:
-    quests_root = build(destination)
+    quests_root = build(destination, quiet=True)
     generated = FTBQuestParser().load(quests_root)
     generated_validation = ProjectValidator().validate(generated)
     errors = len(authored_validation.errors) + len(generated_validation.errors)

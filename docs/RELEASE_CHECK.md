@@ -25,3 +25,22 @@ python -m generator release-check --output release-output
 ```
 
 Registry verification against actual mod IDs still requires the modpack JARs and remains a separate `registry-audit` step.
+
+## Machine-readable reports
+
+Emit the result as JSON for CI or release tooling:
+
+```bash
+python -m generator release-check --format json
+```
+
+Write the report to a persistent file while optionally retaining generated quests separately:
+
+```bash
+python -m generator release-check \
+  --output release-output \
+  --format json \
+  --report-output reports/release-check.json
+```
+
+The JSON includes the pass/fail status, authored and generated totals, validation counts, content-audit counts, and registry-manifest summary.
