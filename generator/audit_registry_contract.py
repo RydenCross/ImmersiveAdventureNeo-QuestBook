@@ -34,6 +34,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("test inventory contract", "test-inventory-audit", "test-inventory-audit.json"),
     AuditRegistration("report schema contract", "report-schema-audit", "report-schema-audit.json"),
     AuditRegistration("report consistency contract", "report-consistency-audit", "report-consistency-audit.json"),
+    AuditRegistration("report provenance contract", "report-provenance-audit", "report-provenance-audit.json"),
 )
 
 

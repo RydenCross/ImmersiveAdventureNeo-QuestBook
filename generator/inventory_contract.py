@@ -31,6 +31,7 @@ SPECIAL_TEST_FILES = {
     "test inventory contract": "test_test_inventory_contract.py",
     "report schema contract": "test_report_schema_contract.py",
     "report consistency contract": "test_report_consistency_contract.py",
+    "report provenance contract": "test_report_provenance_contract.py",
 }
 
 

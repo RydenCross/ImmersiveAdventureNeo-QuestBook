@@ -16,6 +16,7 @@
     "test_release_reproducibility_audit.py",
     "test_report_consistency_contract.py",
     "test_report_freshness.py",
+    "test_report_provenance_contract.py",
     "test_report_schema_contract.py",
     "test_repository_hygiene.py",
     "test_reward_audit.py",
@@ -25,7 +26,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 22,
+  "registered_audits": 23,
   "status": "pass",
   "unregistered_mappings": []
 }

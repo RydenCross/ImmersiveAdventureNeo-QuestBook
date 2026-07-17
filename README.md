@@ -348,3 +348,15 @@ python -m generator report-consistency-audit
 ```
 
 Validates that report status, defect details, and summary counts agree. See [Report Consistency Contract](docs/REPORT_CONSISTENCY_CONTRACT.md).
+
+
+### Report provenance audit
+
+Trace every tracked report to the CLI command that reproduces it:
+
+```bash
+python -m generator report-provenance-audit
+python -m generator report-provenance-audit --format json --output reports/report-provenance-audit.json
+```
+
+See [docs/REPORT_PROVENANCE_CONTRACT.md](docs/REPORT_PROVENANCE_CONTRACT.md).

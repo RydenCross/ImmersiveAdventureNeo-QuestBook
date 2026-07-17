@@ -1,3 +1,9 @@
+## Commit 69 - Report Provenance Contract
+
+- Added `report-provenance-audit`.
+- Added a machine-readable mapping from each tracked report to its registered generator command.
+- Enforced command, renderer, registry, test, documentation, and quality-gate synchronization.
+
 ## Commit 68 - Report Consistency Contract
 
 - Added `report-consistency-audit`.

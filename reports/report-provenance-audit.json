@@ -1,0 +1,97 @@
+{
+  "missing_commands": [],
+  "missing_renderers": [],
+  "orphan_renderers": [],
+  "provenance": [
+    {
+      "command": "audit-registry-audit",
+      "report": "audit-registry-audit.json"
+    },
+    {
+      "command": "chapter-audit",
+      "report": "chapter-audit.json"
+    },
+    {
+      "command": "cli-audit",
+      "report": "cli-audit.json"
+    },
+    {
+      "command": "contract-guard",
+      "report": "contract-guard.json"
+    },
+    {
+      "command": "dependency-audit",
+      "report": "dependency-audit.json"
+    },
+    {
+      "command": "determinism-audit",
+      "report": "determinism-audit.json"
+    },
+    {
+      "command": "documentation-audit",
+      "report": "documentation-audit.json"
+    },
+    {
+      "command": "identity-guard",
+      "report": "identity-guard.json"
+    },
+    {
+      "command": "output-manifest-guard",
+      "report": "output-manifest-guard.json"
+    },
+    {
+      "command": "packaging-audit",
+      "report": "packaging-audit.json"
+    },
+    {
+      "command": "progression-guard",
+      "report": "progression-guard.json"
+    },
+    {
+      "command": "release-artifact-audit",
+      "report": "release-artifact-audit.json"
+    },
+    {
+      "command": "release-guard",
+      "report": "release-guard.json"
+    },
+    {
+      "command": "release-reproducibility-audit",
+      "report": "release-reproducibility-audit.json"
+    },
+    {
+      "command": "report-consistency-audit",
+      "report": "report-consistency-audit.json"
+    },
+    {
+      "command": "report-provenance-audit",
+      "report": "report-provenance-audit.json"
+    },
+    {
+      "command": "report-schema-audit",
+      "report": "report-schema-audit.json"
+    },
+    {
+      "command": "repository-hygiene-audit",
+      "report": "repository-hygiene-audit.json"
+    },
+    {
+      "command": "reward-audit",
+      "report": "reward-audit.json"
+    },
+    {
+      "command": "task-audit",
+      "report": "task-audit.json"
+    },
+    {
+      "command": "test-inventory-audit",
+      "report": "test-inventory-audit.json"
+    },
+    {
+      "command": "text-audit",
+      "report": "text-audit.json"
+    }
+  ],
+  "status": "pass",
+  "tracked_reports": 22
+}
