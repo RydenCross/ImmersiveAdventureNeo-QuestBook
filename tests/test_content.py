@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 10
-    assert len(project.quests) == 390
+    assert len(project.quests) == 411
 
 
 def test_quest_ids_are_stable() -> None:
@@ -297,8 +297,8 @@ def test_mekanism_depends_on_ae2_completion() -> None:
     assert ae2 is not None
     assert mekanism is not None
     assert mekanism.quests[0].dependencies[0].quest_id == ae2.quests[-1].ftb_id
-    assert len(mekanism.quests) == 21
-    assert mekanism.quests[-1].title == "Ready for Factory Tiers"
+    assert len(mekanism.quests) == 42
+    assert mekanism.quests[-1].title == "A Scalable Industrial Processor"
 
 
 def test_mekanism_foundations_build_a_processing_line() -> None:
@@ -315,4 +315,22 @@ def test_mekanism_foundations_build_a_processing_line() -> None:
     assert mekanism.quests.index(infuser) < mekanism.quests.index(steel)
     assert mekanism.quests.index(steel) < mekanism.quests.index(enrichment)
     assert mekanism.quests.index(enrichment) < mekanism.quests.index(smelter)
-    assert complete.ftb_id == mekanism.quests[-1].ftb_id
+    assert mekanism.quests.index(complete) < len(mekanism.quests) - 1
+
+
+def test_mekanism_factories_and_advanced_processing_follow_foundations() -> None:
+    project = create_project()
+    mekanism = project.get_chapter("09_mekanism")
+
+    assert mekanism is not None
+    foundations = next(q for q in mekanism.quests if q.title == "Ready for Factory Tiers")
+    factory = next(q for q in mekanism.quests if q.title == "From Machine to Factory")
+    triple = next(q for q in mekanism.quests if q.title == "Three Ingots per Ore")
+    five_times = next(q for q in mekanism.quests if q.title == "Five Ingots per Ore")
+    mastery = next(q for q in mekanism.quests if q.title == "A Scalable Industrial Processor")
+
+    assert factory.dependencies[0].quest_id == next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").ftb_id
+    assert next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").dependencies[0].quest_id == foundations.ftb_id
+    assert mekanism.quests.index(triple) < mekanism.quests.index(five_times)
+    assert mastery.ftb_id == mekanism.quests[-1].ftb_id
+    assert len(mekanism.quests) == 42

@@ -2,7 +2,7 @@ from generator.builder import ChapterBuilder
 from model import Project
 
 
-def build_mekanism_foundations(project: Project, ae2_complete: str) -> str:
+def build_mekanism_foundations(project: Project, ae2_complete: str) -> tuple[ChapterBuilder, str]:
     chapter = ChapterBuilder(
         project,
         slug="09_mekanism",
@@ -351,4 +351,4 @@ def build_mekanism_foundations(project: Project, ae2_complete: str) -> str:
         .finish()
     )
 
-    return factory_ready
+    return chapter, factory_ready

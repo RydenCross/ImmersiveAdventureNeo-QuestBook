@@ -1,20 +1,28 @@
 # Mekanism
 
-The Mekanism chapter begins after AE2 and introduces the mod through a practical industrial workshop rather than isolated crafting tasks.
+The Mekanism chapter begins after AE2 and develops from a practical powered workshop into a scalable chemical-processing complex.
 
 ## Foundations
 
-The first section covers:
+The opening section covers:
 
-- Osmium and the Metallurgic Infuser
-- Basic and advanced control circuits
-- Carbon infusion and steel production
-- Heat Generator power
-- Universal Cables and a Basic Energy Cube
-- Enrichment Chamber ore doubling
-- Energized Smelter and Crusher processing
-- Configurator and machine-side configuration
-- Logistical Transporters and early fluid storage
-- Speed and Energy Upgrades
+- Osmium, steel, and control circuits
+- Heat generation, universal cables, and energy storage
+- Metallurgic Infuser production
+- Enrichment, crushing, and powered smelting
+- Item transport, configuration, and machine upgrades
+- A reliable two-times ore-processing line
 
-The final milestone, **Ready for Factory Tiers**, is intended to unlock Mekanism factories and advanced ore processing in the next section.
+## Factories and Advanced Processing
+
+The second section adds:
+
+- Tier installers and multi-operation factories
+- Logistical Sorters and faster transporters
+- Chemical tanks, pressurized tubes, and gas production
+- Purification and three-times ore processing
+- Chemical injection and four-times ore processing
+- Dissolution, washing, crystallization, and five-times ore processing
+- A final scalable industrial-processing milestone
+
+The final milestone, **A Scalable Industrial Processor**, is intended to unlock the next major Mekanism progression section.
