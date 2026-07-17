@@ -283,3 +283,15 @@ python -m generator documentation-audit --format json --output reports/documenta
 ```
 
 See [`docs/DOCUMENTATION_AUDIT.md`](docs/DOCUMENTATION_AUDIT.md).
+
+
+## Repository hygiene audit
+
+Detect caches, build artifacts, secret-like files, and oversized accidental additions:
+
+```bash
+python -m generator repository-hygiene-audit
+python -m generator repository-hygiene-audit --format json --output reports/repository-hygiene-audit.json
+```
+
+See [`docs/REPOSITORY_HYGIENE.md`](docs/REPOSITORY_HYGIENE.md).

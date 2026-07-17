@@ -18,6 +18,7 @@ from generator.packaging_audit import run_packaging_audit
 from generator.progression_guard import run_progression_guard
 from generator.progression_metrics import analyze_progression
 from generator.release_guard import run_release_guard
+from generator.repository_hygiene import run_repository_hygiene_audit
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
@@ -83,6 +84,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "packaging-audit.json": lambda: run_packaging_audit().format_json(),
         "cli-audit.json": lambda: run_cli_audit().format_json(),
         "documentation-audit.json": lambda: run_documentation_audit().format_json(),
+        "repository-hygiene-audit.json": lambda: run_repository_hygiene_audit().format_json(),
     }
 
 

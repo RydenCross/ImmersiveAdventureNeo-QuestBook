@@ -17,6 +17,7 @@ from generator.packaging_audit import run_packaging_audit
 from generator.progression_guard import run_progression_guard
 from generator.release_guard import run_release_guard
 from generator.report_freshness import run_report_freshness_guard
+from generator.repository_hygiene import run_repository_hygiene_audit
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
@@ -97,6 +98,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "packaging audit": run_packaging_audit,
         "CLI contract audit": run_cli_audit,
         "documentation contract audit": run_documentation_audit,
+        "repository hygiene audit": run_repository_hygiene_audit,
     }
 
 

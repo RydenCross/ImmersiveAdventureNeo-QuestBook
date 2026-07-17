@@ -1,3 +1,11 @@
+## Commit #62 — Repository Hygiene Audit
+
+- Added `python -m generator repository-hygiene-audit`.
+- Enforces `.gitignore` coverage for caches, builds, package metadata, environment files, and key material.
+- Detects forbidden build artifacts, secret-like filenames, and oversized accidental files.
+- Removed generated `*.egg-info` metadata from the source archive.
+- Added JSON reporting, documentation, quality-gate integration, freshness checks, and regression tests.
+
 ## Commit #60 — CLI Contract Audit
 - Added a documentation contract audit for command coverage and local Markdown links.
 

@@ -13,3 +13,10 @@ build/
 
 .idea/
 .vscode/
+*.egg-info/
+.coverage
+htmlcov/
+.env
+.env.*
+*.pem
+*.key

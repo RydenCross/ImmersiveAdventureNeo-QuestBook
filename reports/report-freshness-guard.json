@@ -1,5 +1,5 @@
 {
-  "checked_reports": 15,
+  "checked_reports": 16,
   "fresh_reports": [
     "chapter-audit.json",
     "cli-audit.json",
@@ -13,6 +13,7 @@
     "progression-guard.json",
     "progression-metrics.json",
     "release-guard.json",
+    "repository-hygiene-audit.json",
     "reward-audit.json",
     "task-audit.json",
     "text-audit.json"
