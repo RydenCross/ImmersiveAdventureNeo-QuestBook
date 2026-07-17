@@ -1,5 +1,5 @@
 {
-  "command_count": 32,
+  "command_count": 33,
   "commands": [
     "audit",
     "audit-registry-audit",
@@ -32,6 +32,7 @@
     "repository-hygiene-audit",
     "reward-audit",
     "task-audit",
+    "test-inventory-audit",
     "text-audit"
   ],
   "commands_without_help": [],

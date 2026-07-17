@@ -1,0 +1,29 @@
+{
+  "expected_test_files": [
+    "test_audit_registry_contract.py",
+    "test_chapter_audit.py",
+    "test_cli_audit.py",
+    "test_contract_guard.py",
+    "test_dependency_audit.py",
+    "test_determinism_audit.py",
+    "test_documentation_audit.py",
+    "test_identity_guard.py",
+    "test_output_manifest.py",
+    "test_packaging_audit.py",
+    "test_progression_guard.py",
+    "test_release_artifact_audit.py",
+    "test_release_guard.py",
+    "test_release_reproducibility_audit.py",
+    "test_report_freshness.py",
+    "test_repository_hygiene.py",
+    "test_reward_audit.py",
+    "test_task_audit.py",
+    "test_test_inventory_contract.py",
+    "test_text_audit.py"
+  ],
+  "files_without_tests": [],
+  "missing_test_files": [],
+  "registered_audits": 20,
+  "status": "pass",
+  "unregistered_mappings": []
+}

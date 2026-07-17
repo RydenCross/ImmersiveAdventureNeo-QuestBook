@@ -316,3 +316,15 @@ python -m generator audit-registry-audit
 ```
 
 See [docs/AUDIT_REGISTRY_CONTRACT.md](docs/AUDIT_REGISTRY_CONTRACT.md) for details.
+
+
+### Test inventory contract
+
+Verify every registered quality safeguard has direct pytest coverage:
+
+```bash
+python -m generator test-inventory-audit
+python -m generator test-inventory-audit --format json --output reports/test-inventory-audit.json
+```
+
+See [docs/TEST_INVENTORY_CONTRACT.md](docs/TEST_INVENTORY_CONTRACT.md).

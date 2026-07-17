@@ -31,6 +31,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("release artifact audit", "release-artifact-audit", "release-artifact-audit.json"),
     AuditRegistration("release reproducibility audit", "release-reproducibility-audit", "release-reproducibility-audit.json"),
     AuditRegistration("audit registry contract", "audit-registry-audit", "audit-registry-audit.json"),
+    AuditRegistration("test inventory contract", "test-inventory-audit", "test-inventory-audit.json"),
 )
 
 

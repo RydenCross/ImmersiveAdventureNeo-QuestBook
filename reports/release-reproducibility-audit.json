@@ -1,11 +1,11 @@
 {
-  "archive_entries": 200,
+  "archive_entries": 204,
   "changed_entries": [],
-  "first_archive_sha256": "441666e5e22f69e2aab03f32fb60d7c0a68951c9e4039c81e9de69e85b5ed616",
-  "first_tree_sha256": "f527027cb508609624eaee51396566d5b6d818a5a46dc30bca56ba0ce9f70ee4",
+  "first_archive_sha256": "103707e5520c3695cc8b44bc395115e54496da90b9def6d5766e5b0bbd9a7bb9",
+  "first_tree_sha256": "7aeb1641c1fdbe2cd5abbcdd4a066e60394e8170ba8c402920e62e120b16f52c",
   "missing_entries": [],
-  "second_archive_sha256": "441666e5e22f69e2aab03f32fb60d7c0a68951c9e4039c81e9de69e85b5ed616",
-  "second_tree_sha256": "f527027cb508609624eaee51396566d5b6d818a5a46dc30bca56ba0ce9f70ee4",
+  "second_archive_sha256": "103707e5520c3695cc8b44bc395115e54496da90b9def6d5766e5b0bbd9a7bb9",
+  "second_tree_sha256": "7aeb1641c1fdbe2cd5abbcdd4a066e60394e8170ba8c402920e62e120b16f52c",
   "status": "pass",
   "unexpected_entries": []
 }

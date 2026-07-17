@@ -24,6 +24,7 @@ from generator.repository_hygiene import run_repository_hygiene_audit
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
+from generator.inventory_contract import run_test_inventory_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -105,6 +106,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "release artifact audit": run_release_artifact_audit,
         "release reproducibility audit": run_release_reproducibility_audit,
         "audit registry contract": run_audit_registry_contract,
+        "test inventory contract": run_test_inventory_contract,
     }
 
 

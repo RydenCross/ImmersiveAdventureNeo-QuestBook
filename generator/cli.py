@@ -41,6 +41,7 @@ from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
+from generator.inventory_contract import run_test_inventory_contract
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
 from generator.release_guard import (
@@ -276,6 +277,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     audit_registry.add_argument("--format", choices=("text", "json"), default="text")
     audit_registry.add_argument("--output", type=Path)
+    test_inventory = subparsers.add_parser(
+        "test-inventory-audit",
+        help="Verify every registered audit has a dedicated regression test module.",
+    )
+    test_inventory.add_argument("--format", choices=("text", "json"), default="text")
+    test_inventory.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -530,6 +537,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "test-inventory-audit":
+        result = run_test_inventory_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-registry-audit":
         result = run_audit_registry_contract()
         rendered = result.format_json() if args.format == "json" else result.format()

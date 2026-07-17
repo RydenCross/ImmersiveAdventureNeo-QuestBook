@@ -40,6 +40,7 @@ EXPECTED_COMMANDS = (
     "repository-hygiene-audit",
     "reward-audit",
     "task-audit",
+    "test-inventory-audit",
     "text-audit",
 )
 

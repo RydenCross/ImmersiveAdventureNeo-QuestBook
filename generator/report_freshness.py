@@ -25,6 +25,7 @@ from generator.repository_hygiene import run_repository_hygiene_audit
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
+from generator.inventory_contract import run_test_inventory_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -91,6 +92,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
         "release-reproducibility-audit.json": lambda: run_release_reproducibility_audit().format_json(),
         "audit-registry-audit.json": lambda: run_audit_registry_contract().format_json(),
+        "test-inventory-audit.json": lambda: run_test_inventory_contract().format_json(),
     }
 
 

@@ -1,3 +1,8 @@
+## Commit #66 — Test Inventory Contract
+
+- Added a contract ensuring every registered quality-gate safeguard has a dedicated pytest module.
+- Integrated test coverage inventory into the CLI, report freshness guard, documentation, and unified quality gate.
+
 ## Commit #64 — Release Reproducibility Audit
 
 - Added independent release archive comparison by entry name and SHA-256 content digest.

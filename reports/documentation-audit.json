@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 32,
+  "documented_command_count": 33,
   "empty_documents": [],
-  "expected_command_count": 32,
-  "markdown_file_count": 50,
+  "expected_command_count": 33,
+  "markdown_file_count": 51,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -50,6 +50,7 @@
     "docs/SURVIVAL.md",
     "docs/SURVIVAL_EXPANSION.md",
     "docs/TASK_AUDIT.md",
+    "docs/TEST_INVENTORY_CONTRACT.md",
     "docs/TEXT_AUDIT.md",
     "docs/VALIDATION.md",
     "docs/WRITER.md",
