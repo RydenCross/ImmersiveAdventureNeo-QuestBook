@@ -2,7 +2,7 @@ from generator.builder import ChapterBuilder
 from model import Project
 
 
-def build_ars_nouveau_foundations(project: Project, actually_additions_complete: str) -> str:
+def build_ars_nouveau_foundations(project: Project, actually_additions_complete: str) -> tuple[ChapterBuilder, str]:
     chapter = ChapterBuilder(
         project,
         slug="06_ars_nouveau",
@@ -137,10 +137,12 @@ def build_ars_nouveau_foundations(project: Project, actually_additions_complete:
         optional=True,
     ).depends_on(magebloom, essence).item("ars_nouveau:arcanist_robes").finish()
 
-    return chapter.quest(
+    complete = chapter.quest(
         "foundations_complete", "An Arcane Workshop", "ars_nouveau:source_jar",
         "You can generate and store Source, inscribe glyphs, compose spells, and operate the Enchanting Apparatus. Your formal magical studies can now begin.",
         18, 1,
     ).depends_on(first_spell, relay, apparatus, essence).checkmark().reward_item(
         "ars_nouveau:source_gem", 8
     ).finish()
+
+    return chapter, complete

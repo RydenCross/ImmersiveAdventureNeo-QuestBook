@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 7
-    assert len(project.quests) == 244
+    assert len(project.quests) == 264
 
 
 def test_quest_ids_are_stable() -> None:
@@ -148,8 +148,8 @@ def test_ars_nouveau_depends_on_actually_additions_completion() -> None:
     assert actually is not None
     assert ars is not None
     assert ars.quests[0].dependencies[0].quest_id == actually.quests[-1].ftb_id
-    assert len(ars.quests) == 21
-    assert ars.quests[-1].title == "An Arcane Workshop"
+    assert len(ars.quests) == 41
+    assert ars.quests[-1].title == "Master of Practical Spellcraft"
 
 
 def test_ars_nouveau_foundations_have_workshop_progression() -> None:
@@ -164,4 +164,20 @@ def test_ars_nouveau_foundations_have_workshop_progression() -> None:
 
     assert spellbook.ftb_id in [d.quest_id for d in next(q for q in ars.quests if q.title == "Write Magic into Form").dependencies]
     assert ars.quests.index(first_spell) < ars.quests.index(apparatus)
+    assert ars.quests.index(complete) < len(ars.quests) - 1
+
+
+def test_ars_nouveau_spellcraft_follows_foundations() -> None:
+    project = create_project()
+    ars = project.get_chapter("06_ars_nouveau")
+
+    assert ars is not None
+    foundations = next(q for q in ars.quests if q.title == "An Arcane Workshop")
+    apprentice = next(q for q in ars.quests if q.title == "Advance Your Studies")
+    archmage = next(q for q in ars.quests if q.title == "The Archmage's Grimoire")
+    complete = next(q for q in ars.quests if q.title == "Master of Practical Spellcraft")
+
+    assert apprentice.dependencies[0].quest_id == foundations.ftb_id
+    assert ars.quests.index(archmage) < ars.quests.index(complete)
     assert complete.ftb_id == ars.quests[-1].ftb_id
+    assert len(ars.quests) == 41

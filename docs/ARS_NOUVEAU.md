@@ -19,3 +19,9 @@ The first 21 quests cover:
 - Optional spell automation and mage equipment
 
 The milestone **An Arcane Workshop** confirms that the player can generate Source, compose spells, and use the core crafting infrastructure required by later Ars Nouveau progression.
+
+## Spellcraft and Equipment
+
+The second progression section advances players from a functioning workshop into practical mid- and late-tier magic. It covers Apprentice and Archmage spellbooks, mana capacity and regeneration, spell augments, utility/combat/mobility spell design, Arcanist equipment and threads, rituals, familiars, warp infrastructure, spell-linked weapons, and automated spell turrets.
+
+The section ends with **Master of Practical Spellcraft**, which is the chapter's current completion milestone and the intended dependency for the next major mod chapter.
