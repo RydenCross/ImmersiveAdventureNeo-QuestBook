@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 516
+    assert len(project.quests) == 536
 
 
 def test_quest_ids_are_stable() -> None:
@@ -35,7 +35,8 @@ def test_mining_chapter_depends_on_survival_completion() -> None:
 
     assert survival is not None
     assert mining is not None
-    assert mining.quests[0].dependencies[0].quest_id == survival.quests[-1].ftb_id
+    established = next(q for q in survival.quests if q.title == "A Proper Homestead")
+    assert mining.quests[0].dependencies[0].quest_id == established.ftb_id
 
 
 def test_exploration_chapter_depends_on_survival_completion() -> None:
@@ -45,7 +46,8 @@ def test_exploration_chapter_depends_on_survival_completion() -> None:
 
     assert survival is not None
     assert exploration is not None
-    assert exploration.quests[0].dependencies[0].quest_id == survival.quests[-1].ftb_id
+    established = next(q for q in survival.quests if q.title == "A Proper Homestead")
+    assert exploration.quests[0].dependencies[0].quest_id == established.ftb_id
 
 
 def test_create_chapter_depends_on_mining_completion() -> None:

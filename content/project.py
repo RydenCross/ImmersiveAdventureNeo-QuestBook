@@ -497,19 +497,129 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .finish()
     )
 
-    return survival.quest(
+    established = survival.quest(
         "established",
         "A Proper Homestead",
         "minecraft:golden_carrot",
         (
             "Your base now has storage, defense, renewable food, water, lighting, and "
-            "the materials needed for deeper progression."
+            "the materials needed for deeper progression. Optional homestead projects now open."
         ),
         12,
         2,
     ).depends_on(bread, smoker, books, lanterns, compass).checkmark().reward_item(
         "minecraft:golden_carrot", 16
     ).finish()
+
+    # Optional post-homestead expansion: crop diversity.
+    potatoes = survival.quest(
+        "potatoes", "A Reliable Staple", "minecraft:potato",
+        "Grow potatoes as a compact, renewable food crop that can be baked or composted.",
+        14, -5, optional=True,
+    ).depends_on(established).item("minecraft:potato", 32).finish()
+    carrots = survival.quest(
+        "carrots", "Roots and Riches", "minecraft:carrot",
+        "Establish a carrot patch for food, animal breeding, and golden-carrot production.",
+        16, -5, optional=True,
+    ).depends_on(potatoes).item("minecraft:carrot", 32).finish()
+    beetroot = survival.quest(
+        "beetroot", "A Colorful Harvest", "minecraft:beetroot",
+        "Add beetroot to the farm for soup, dye, and a more varied pantry.",
+        18, -5, optional=True,
+    ).depends_on(carrots).item("minecraft:beetroot", 32).finish()
+    pumpkins = survival.quest(
+        "pumpkins", "Fields of Orange", "minecraft:pumpkin",
+        "Cultivate pumpkins for food, lighting, decoration, and future utility recipes.",
+        20, -5, optional=True,
+    ).depends_on(beetroot).item("minecraft:pumpkin", 16).finish()
+    melons = survival.quest(
+        "melons", "Slices for Everyone", "minecraft:melon",
+        "Grow enough melons to prove your farm can support high-volume specialty crops.",
+        22, -5, optional=True,
+    ).depends_on(pumpkins).item("minecraft:melon", 8).finish()
+
+    # Optional post-homestead expansion: fishing and aquatic food.
+    fishing_rod = survival.quest(
+        "fishing_rod", "Cast a Line", "minecraft:fishing_rod",
+        "Craft a fishing rod for renewable food, treasure, and quiet resource gathering.",
+        14, -2, optional=True,
+    ).depends_on(established).item("minecraft:fishing_rod").finish()
+    cod = survival.quest(
+        "cod", "The Daily Catch", "minecraft:cod",
+        "Catch or collect cod for a dependable source of food.",
+        16, -2, optional=True,
+    ).depends_on(fishing_rod).item("minecraft:cod", 16).finish()
+    salmon = survival.quest(
+        "salmon", "Upstream Supper", "minecraft:salmon",
+        "Add salmon to your stores and compare different renewable food sources.",
+        18, -2, optional=True,
+    ).depends_on(cod).item("minecraft:salmon", 16).finish()
+    tropical = survival.quest(
+        "tropical_fish", "A Living Palette", "minecraft:tropical_fish",
+        "Collect a tropical fish as a small trophy from warmer waters.",
+        20, -2, optional=True,
+    ).depends_on(salmon).item("minecraft:tropical_fish").finish()
+    fish_feast = survival.quest(
+        "fish_feast", "From Water to Table", "minecraft:cooked_salmon",
+        "Cook a generous seafood meal and establish fishing as a practical food source.",
+        22, -2, optional=True,
+    ).depends_on(tropical).item("minecraft:cooked_cod", 8).item("minecraft:cooked_salmon", 8).finish()
+
+    # Optional post-homestead expansion: responsible beekeeping.
+    bee_scouting = survival.quest(
+        "bee_scouting", "Follow the Buzz", "minecraft:bee_nest",
+        "Locate bees and observe their nest before building a managed apiary.",
+        14, 1, optional=True,
+    ).depends_on(established).checkmark().finish()
+    bee_safety = survival.quest(
+        "bee_safety", "Smoke Before Harvest", "minecraft:campfire",
+        "Place a campfire beneath a nest or hive so honey can be harvested without angering the colony.",
+        16, 1, optional=True,
+    ).depends_on(bee_scouting).checkmark().finish()
+    honeycomb = survival.quest(
+        "honeycomb", "Wax and Wonder", "minecraft:honeycomb",
+        "Use shears on a full nest or hive to collect honeycomb safely.",
+        18, 1, optional=True,
+    ).depends_on(bee_safety).item("minecraft:honeycomb", 6).finish()
+    honey = survival.quest(
+        "honey_bottles", "Bottled Sunshine", "minecraft:honey_bottle",
+        "Bottle honey for food, poison removal, and crafting.",
+        20, 1, optional=True,
+    ).depends_on(honeycomb).item("minecraft:honey_bottle", 4).finish()
+    apiary = survival.quest(
+        "apiary", "A Home for the Hive", "minecraft:beehive",
+        "Build a managed beehive area with flowers, safe harvesting access, and room to expand.",
+        22, 1, optional=True,
+    ).depends_on(honey).item("minecraft:beehive", 2).finish()
+
+    # Optional post-homestead expansion: a complete vanilla workshop.
+    stonecutter = survival.quest(
+        "stonecutter", "Precision Masonry", "minecraft:stonecutter",
+        "Use a stonecutter to turn masonry materials into exact building components efficiently.",
+        14, 4, optional=True,
+    ).depends_on(established).item("minecraft:stonecutter").finish()
+    loom = survival.quest(
+        "loom", "Patterns and Banners", "minecraft:loom",
+        "Add a loom for decorative banners and a more personalized base.",
+        16, 4, optional=True,
+    ).depends_on(stonecutter).item("minecraft:loom").finish()
+    grindstone = survival.quest(
+        "grindstone", "Repair and Reconsider", "minecraft:grindstone",
+        "Craft a grindstone to repair equipment and remove unwanted non-curse enchantments.",
+        18, 4, optional=True,
+    ).depends_on(loom).item("minecraft:grindstone").finish()
+    anvil = survival.quest(
+        "anvil", "Heavy-Duty Repairs", "minecraft:anvil",
+        "Install an anvil for renaming, repairing, and combining enchanted equipment.",
+        20, 4, optional=True,
+    ).depends_on(grindstone).item("minecraft:anvil").finish()
+    workshop = survival.quest(
+        "vanilla_workshop", "The Complete Homestead Workshop", "minecraft:blast_furnace",
+        "Finish a dedicated utility room containing specialized workstations for everyday survival tasks.",
+        22, 4, optional=True,
+    ).depends_on(anvil).item("minecraft:blast_furnace").item("minecraft:smithing_table").finish()
+
+    return established
 
 
 

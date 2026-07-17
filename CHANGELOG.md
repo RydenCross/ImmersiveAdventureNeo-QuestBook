@@ -1,3 +1,10 @@
+## Commit 30 - Survival Expansion
+
+- Added 20 optional post-homestead Survival quests.
+- Added crop diversity, fishing, beekeeping, and vanilla workshop branches.
+- Preserved Mining and Exploration unlocks at A Proper Homestead.
+- Expanded regression coverage to 536 generated quests.
+
 ## Unreleased
 
 - Added a 30-quest optional Challenges chapter covering megaprojects, stockpiles, automation, power reliability, magic, bosses, exploration, and completionist goals.
