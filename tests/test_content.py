@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 9
-    assert len(project.quests) == 349
+    assert len(project.quests) == 369
 
 
 def test_quest_ids_are_stable() -> None:
@@ -236,8 +236,8 @@ def test_ae2_depends_on_apotheosis_completion() -> None:
     assert apotheosis is not None
     assert ae2 is not None
     assert ae2.quests[0].dependencies[0].quest_id == apotheosis.quests[-1].ftb_id
-    assert len(ae2.quests) == 43
-    assert ae2.quests[-1].title == "The Network Crafts for You"
+    assert len(ae2.quests) == 63
+    assert ae2.quests[-1].title == "Master of the ME Network"
 
 
 def test_ae2_foundations_cover_processors_power_and_storage() -> None:
@@ -269,5 +269,21 @@ def test_ae2_channels_and_autocrafting_follow_foundations() -> None:
 
     assert channels.dependencies[0].quest_id == foundations.ftb_id
     assert ae2.quests.index(first_craft) < ae2.quests.index(complete)
-    assert complete.ftb_id == ae2.quests[-1].ftb_id
-    assert len(ae2.quests) == 43
+    assert ae2.quests.index(complete) < len(ae2.quests) - 1
+    assert len(ae2.quests) == 63
+
+
+def test_ae2_advanced_storage_and_networking_follow_autocrafting() -> None:
+    project = create_project()
+    ae2 = project.get_chapter("08_ae2")
+
+    assert ae2 is not None
+    autocrafting = next(q for q in ae2.quests if q.title == "The Network Crafts for You")
+    larger_cells = next(q for q in ae2.quests if q.title == "Storage That Scales")
+    p2p = next(q for q in ae2.quests if q.title == "Tunnel the Network")
+    mastery = next(q for q in ae2.quests if q.title == "Master of the ME Network")
+
+    assert larger_cells.dependencies[0].quest_id == autocrafting.ftb_id
+    assert ae2.quests.index(larger_cells) < ae2.quests.index(p2p)
+    assert mastery.ftb_id == ae2.quests[-1].ftb_id
+    assert len(ae2.quests) == 63

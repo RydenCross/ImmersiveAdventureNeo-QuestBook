@@ -29,3 +29,16 @@ This chapter intentionally stops before channel expansion, subnetworks, P2P tunn
 - First machine-processing autocraft
 - Multi-step prerequisite crafting
 - Final autocrafting-network milestone
+
+## Advanced Storage and Networking
+
+- 4k and 16k storage progression
+- Cell housings, Cell Workbench, and partitioned cells
+- Import and Export Buses with upgrades
+- Level Emitters and stock-controlled production
+- ME P2P Tunnels and Memory Card linking
+- Dense channel transport through P2P links
+- Isolated subnetworks
+- Wireless Access Point and Wireless Terminal
+- Optional range boosting and network security
+- Final advanced-network mastery milestone
