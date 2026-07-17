@@ -33,6 +33,8 @@ jobs:
 
       - run: python -m generator progression-metrics --format json --output reports/progression-metrics.json
 
+      - run: python -m generator progression-guard --format json --output reports/progression-guard.json
+
       - uses: actions/upload-artifact@v4
         with:
           name: progression-metrics

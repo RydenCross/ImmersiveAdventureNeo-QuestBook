@@ -1,3 +1,9 @@
+## Commit 48 - Progression Complexity Guard
+
+- Added `progression-guard` with checked-in progression complexity limits.
+- Detects quest or dependency count reductions, critical-path growth, excessive bottlenecks, high direct fan-out, and unexpected cross-chapter coupling.
+- Added JSON reporting, documentation, CI enforcement, and regression tests.
+
 ## Commit 44 - Safe Baseline Refresh
 
 - Added `release-baseline` for validated baseline updates.

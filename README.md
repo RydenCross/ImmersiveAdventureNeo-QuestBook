@@ -110,6 +110,13 @@ python -m generator progression-metrics
 python -m generator progression-metrics --format json --output reports/progression-metrics.json
 ```
 
+Protect progression complexity with checked-in limits:
+
+```bash
+python -m generator progression-guard
+python -m generator progression-guard --format json --output reports/progression-guard.json
+```
+
 See [`docs/PROGRESSION_METRICS.md`](docs/PROGRESSION_METRICS.md).
 
 ## Release baseline guard

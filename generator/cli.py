@@ -9,6 +9,7 @@ from generator.build import build
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
 from generator.parser import FTBQuestParser
+from generator.progression_guard import DEFAULT_BUDGET_PATH, run_progression_guard
 from generator.progression_metrics import analyze_progression
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.release_check import run_release_check
@@ -75,6 +76,24 @@ def create_parser() -> argparse.ArgumentParser:
     )
     metrics.add_argument(
         "--output", type=Path, help="Write the report to a file instead of standard output."
+    )
+    progression_guard = subparsers.add_parser(
+        "progression-guard",
+        help="Enforce checked-in progression complexity limits.",
+    )
+    progression_guard.add_argument(
+        "budget",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_BUDGET_PATH,
+        help="Progression budget (default: reports/progression-budget.json).",
+    )
+    progression_guard.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    progression_guard.add_argument(
+        "--output", type=Path, help="Write the guard report to a file instead of standard output."
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -282,6 +301,20 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0
+
+    if args.command == "progression-guard":
+        try:
+            result = run_progression_guard(args.budget)
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
 
     if args.command == "registry-audit":
         audit = audit_registry(create_project(), args.sources)
