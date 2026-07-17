@@ -1,3 +1,10 @@
+## Commit 33 - Ars Nouveau Expansion
+
+- Added 20 optional Ars Nouveau quests for Source infrastructure, rituals, familiars, automated spellcasting, magical transport, and an archmage-scale workshop.
+- Added `content/ars_nouveau/archmage_workshop.py`.
+- Preserved **Master of Practical Spellcraft** as the downstream chapter handoff.
+- Added expansion documentation and regression coverage.
+
 ## Commit 32 - Actually Additions Expansion
 
 - Added 20 optional Actually Additions quests for advanced power, empowered crystals, laser-relay networks, and workshop automation.

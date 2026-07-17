@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 576
+    assert len(project.quests) == 596
 
 
 def test_quest_ids_are_stable() -> None:
@@ -183,8 +183,8 @@ def test_ars_nouveau_depends_on_actually_additions_completion() -> None:
     assert ars is not None
     equipped = next(q for q in actually.quests if q.title == "Actually Equipped")
     assert ars.quests[0].dependencies[0].quest_id == equipped.ftb_id
-    assert len(ars.quests) == 41
-    assert ars.quests[-1].title == "Master of Practical Spellcraft"
+    assert len(ars.quests) == 61
+    assert next(q for q in ars.quests if q.title == "Master of Practical Spellcraft")
 
 
 def test_ars_nouveau_foundations_have_workshop_progression() -> None:
@@ -214,8 +214,23 @@ def test_ars_nouveau_spellcraft_follows_foundations() -> None:
 
     assert apprentice.dependencies[0].quest_id == foundations.ftb_id
     assert ars.quests.index(archmage) < ars.quests.index(complete)
-    assert complete.ftb_id == ars.quests[-1].ftb_id
-    assert len(ars.quests) == 41
+    assert ars.quests.index(complete) < len(ars.quests) - 1
+    assert len(ars.quests) == 61
+
+
+def test_ars_nouveau_expansion_is_optional_and_follows_spellcraft() -> None:
+    project = create_project()
+    ars = project.get_chapter("06_ars_nouveau")
+
+    assert ars is not None
+    spellcraft = next(q for q in ars.quests if q.title == "Master of Practical Spellcraft")
+    plan = next(q for q in ars.quests if q.title == "Plan the Archmage's Workshop")
+    mastery = next(q for q in ars.quests if q.title == "The Archmage's Living Workshop")
+
+    assert plan.dependencies[0].quest_id == spellcraft.ftb_id
+    assert ars.quests.index(spellcraft) < ars.quests.index(mastery)
+    assert all(q.optional for q in ars.quests[ars.quests.index(spellcraft) + 1 :])
+    assert len(ars.quests) == 61
 
 
 def test_apotheosis_depends_on_ars_nouveau_completion() -> None:
@@ -225,7 +240,8 @@ def test_apotheosis_depends_on_ars_nouveau_completion() -> None:
 
     assert ars is not None
     assert apotheosis is not None
-    assert apotheosis.quests[0].dependencies[0].quest_id == ars.quests[-1].ftb_id
+    spellcraft = next(q for q in ars.quests if q.title == "Master of Practical Spellcraft")
+    assert apotheosis.quests[0].dependencies[0].quest_id == spellcraft.ftb_id
     assert len(apotheosis.quests) == 42
     assert apotheosis.quests[-1].title == "Apotheosis Mastery"
 
@@ -404,7 +420,11 @@ def test_endgame_depends_on_all_major_mastery_quests() -> None:
             for q in project.get_chapter("05_actually_additions").quests
             if q.title == "Actually Equipped"
         ),
-        project.get_chapter("06_ars_nouveau").quests[-1].ftb_id,
+        next(
+            q.ftb_id
+            for q in project.get_chapter("06_ars_nouveau").quests
+            if q.title == "Master of Practical Spellcraft"
+        ),
         project.get_chapter("07_apotheosis").quests[-1].ftb_id,
         project.get_chapter("08_ae2").quests[-1].ftb_id,
         project.get_chapter("09_mekanism").quests[-1].ftb_id,
