@@ -1,3 +1,9 @@
+## Commit #59 — Packaging Configuration and Audit
+
+- Fixed explicit setuptools package discovery for `content`, `generator`, and `model`.
+- Added the `immersive-adventure-quests` console command.
+- Added a packaging audit to the unified quality gate.
+
 # Changelog
 
 ## Commit 58 - Unified Quality Gate

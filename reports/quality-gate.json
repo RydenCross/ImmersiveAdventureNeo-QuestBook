@@ -1,5 +1,5 @@
 {
-  "checked": 12,
+  "checked": 13,
   "checks": [
     {
       "detail": "clean",
@@ -60,10 +60,15 @@
       "detail": "clean",
       "name": "report freshness guard",
       "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "packaging audit",
+      "status": "pass"
     }
   ],
   "failed": 0,
   "failed_checks": [],
-  "passed": 12,
+  "passed": 13,
   "status": "pass"
 }

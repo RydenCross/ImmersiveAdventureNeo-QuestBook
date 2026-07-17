@@ -21,6 +21,7 @@ from generator.identity_guard import (
     run_identity_guard,
 )
 from generator.report_freshness import run_report_freshness_guard
+from generator.packaging_audit import run_packaging_audit
 from generator.output_manifest import (
     DEFAULT_OUTPUT_MANIFEST_PATH,
     refresh_output_manifest,
@@ -228,6 +229,12 @@ def create_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Return a non-zero exit code when generated builds differ.",
     )
+    packaging_audit = subparsers.add_parser(
+        "packaging-audit",
+        help="Validate installable package discovery and the console entry point.",
+    )
+    packaging_audit.add_argument("--format", choices=("text", "json"), default="text")
+    packaging_audit.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -482,6 +489,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "packaging-audit":
+        result = run_packaging_audit()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "quality-gate":
         result = run_quality_gate()
         rendered = result.format_json() if args.format == "json" else result.format()

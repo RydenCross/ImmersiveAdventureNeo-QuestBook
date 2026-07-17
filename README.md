@@ -259,3 +259,8 @@ python -m generator quality-gate --format json --output reports/quality-gate.jso
 ```
 
 See [`docs/QUALITY_GATE.md`](docs/QUALITY_GATE.md).
+
+
+## Packaging audit
+
+Run `python -m generator packaging-audit` to verify package discovery and the installed console command.

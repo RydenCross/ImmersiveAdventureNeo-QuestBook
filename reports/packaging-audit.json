@@ -1,0 +1,11 @@
+{
+  "console_script": "generator.cli:main",
+  "errors": [],
+  "package_patterns": [
+    "content*",
+    "generator*",
+    "model*"
+  ],
+  "project_name": "immersive-adventure-neo-questbuilder",
+  "status": "pass"
+}

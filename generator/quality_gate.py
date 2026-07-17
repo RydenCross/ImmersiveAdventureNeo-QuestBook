@@ -11,6 +11,7 @@ from generator.dependency_audit import audit_dependencies
 from generator.determinism_audit import run_determinism_audit
 from generator.identity_guard import run_identity_guard
 from generator.output_manifest import run_output_manifest_guard
+from generator.packaging_audit import run_packaging_audit
 from generator.progression_guard import run_progression_guard
 from generator.release_guard import run_release_guard
 from generator.report_freshness import run_report_freshness_guard
@@ -91,6 +92,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "determinism audit": run_determinism_audit,
         "output manifest guard": run_output_manifest_guard,
         "report freshness guard": run_report_freshness_guard,
+        "packaging audit": run_packaging_audit,
     }
 
 

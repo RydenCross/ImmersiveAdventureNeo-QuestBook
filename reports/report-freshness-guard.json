@@ -1,5 +1,5 @@
 {
-  "checked_reports": 12,
+  "checked_reports": 13,
   "fresh_reports": [
     "chapter-audit.json",
     "contract-guard.json",
@@ -7,6 +7,7 @@
     "determinism-audit.json",
     "identity-guard.json",
     "output-manifest-guard.json",
+    "packaging-audit.json",
     "progression-guard.json",
     "progression-metrics.json",
     "release-guard.json",
