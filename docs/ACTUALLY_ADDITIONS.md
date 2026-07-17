@@ -30,3 +30,16 @@ The next 19 quests cover:
 - Fluid Collector and Fluid Placer utility systems
 
 The milestone **An Actually Automated Workshop** confirms that the player can operate a self-sustaining powered workshop.
+
+## Tools and Utilities
+
+The third progression section adds 18 quests focused on equipment and remote utility systems:
+
+- A rechargeable, augmentable Drill with speed, area, Fortune, and Silk Touch paths
+- Wings of the Bats as an optional mobility objective
+- Player Interface and Phantom remote-access devices
+- Ranged Collector and Item Filter automation
+- Teleport Staff, Handheld Filler, and optional Coffee Machine utility quests
+- The final **Actually Equipped** chapter milestone
+
+This section begins after **An Actually Automated Workshop** and becomes the new completion point for the Actually Additions chapter.

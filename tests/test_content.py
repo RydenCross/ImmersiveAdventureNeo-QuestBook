@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 6
-    assert len(project.quests) == 205
+    assert len(project.quests) == 223
 
 
 def test_quest_ids_are_stable() -> None:
@@ -108,8 +108,8 @@ def test_actually_additions_depends_on_create_completion() -> None:
     assert create is not None
     assert actually is not None
     assert actually.quests[0].dependencies[0].quest_id == create.quests[-1].ftb_id
-    assert len(actually.quests) == 40
-    assert actually.quests[-1].title == "An Actually Automated Workshop"
+    assert len(actually.quests) == 58
+    assert actually.quests[-1].title == "Actually Equipped"
 
 
 def test_actually_additions_machines_follow_foundations() -> None:
@@ -122,5 +122,19 @@ def test_actually_additions_machines_follow_foundations() -> None:
     complete = next(q for q in actually.quests if q.title == "An Actually Automated Workshop")
 
     assert crusher.dependencies[0].quest_id == foundations.ftb_id
+    assert actually.quests.index(complete) < len(actually.quests) - 1
+    assert len(actually.quests) == 58
+
+
+def test_actually_additions_tools_follow_machines() -> None:
+    project = create_project()
+    actually = project.get_chapter("05_actually_additions")
+
+    assert actually is not None
+    machines = next(q for q in actually.quests if q.title == "An Actually Automated Workshop")
+    drill = next(q for q in actually.quests if q.title == "A Drill for Every Job")
+    complete = next(q for q in actually.quests if q.title == "Actually Equipped")
+
+    assert drill.dependencies[0].quest_id == machines.ftb_id
     assert complete.ftb_id == actually.quests[-1].ftb_id
-    assert len(actually.quests) == 40
+    assert len(actually.quests) == 58
