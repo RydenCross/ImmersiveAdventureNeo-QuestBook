@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 6
-    assert len(project.quests) == 186
+    assert len(project.quests) == 205
 
 
 def test_quest_ids_are_stable() -> None:
@@ -108,5 +108,19 @@ def test_actually_additions_depends_on_create_completion() -> None:
     assert create is not None
     assert actually is not None
     assert actually.quests[0].dependencies[0].quest_id == create.quests[-1].ftb_id
-    assert len(actually.quests) == 21
-    assert actually.quests[-1].title == "A Reconstructed Workshop"
+    assert len(actually.quests) == 40
+    assert actually.quests[-1].title == "An Actually Automated Workshop"
+
+
+def test_actually_additions_machines_follow_foundations() -> None:
+    project = create_project()
+    actually = project.get_chapter("05_actually_additions")
+
+    assert actually is not None
+    foundations = next(q for q in actually.quests if q.title == "A Reconstructed Workshop")
+    crusher = next(q for q in actually.quests if q.title == "Crush the Competition")
+    complete = next(q for q in actually.quests if q.title == "An Actually Automated Workshop")
+
+    assert crusher.dependencies[0].quest_id == foundations.ftb_id
+    assert complete.ftb_id == actually.quests[-1].ftb_id
+    assert len(actually.quests) == 40
