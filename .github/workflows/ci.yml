@@ -27,6 +27,8 @@ jobs:
 
       - run: python -m generator release-check
 
+      - run: python -m generator release-guard
+
       - run: python -m generator dependency-audit --strict
 
       - run: python -m generator progression-metrics --format json --output reports/progression-metrics.json

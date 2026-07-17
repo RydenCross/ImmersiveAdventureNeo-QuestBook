@@ -111,3 +111,19 @@ python -m generator progression-metrics --format json --output reports/progressi
 ```
 
 See [`docs/PROGRESSION_METRICS.md`](docs/PROGRESSION_METRICS.md).
+
+## Release baseline guard
+
+Protect release quality and content totals against the checked-in baseline:
+
+```bash
+python -m generator release-guard
+```
+
+After an intentional reviewed change, safely refresh the baseline:
+
+```bash
+python -m generator release-baseline reports/release-baseline.json
+```
+
+See `docs/RELEASE_GUARD.md` for details.

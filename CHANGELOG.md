@@ -1,3 +1,14 @@
+## Commit 44 - Safe Baseline Refresh
+
+- Added `release-baseline` for validated baseline updates.
+- Refuses to overwrite the baseline when the release check fails.
+- Creates missing report directories automatically.
+
+## Commit 43 - Baseline Release Guard
+
+- Added `release-guard` to compare a clean release check with a checked-in baseline.
+- Added `reports/release-baseline.json`, JSON output, tests, documentation, and CI enforcement.
+
 # Changelog
 
 ## Commit 47 - Progression Metrics and Bottleneck Analysis

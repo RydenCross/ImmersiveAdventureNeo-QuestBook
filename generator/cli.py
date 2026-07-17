@@ -13,6 +13,11 @@ from generator.progression_metrics import analyze_progression
 from generator.registry_audit import audit_registry, format_reference_manifest
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
+from generator.release_guard import (
+    DEFAULT_BASELINE_PATH,
+    refresh_release_baseline,
+    run_release_guard,
+)
 from generator.validator import ProjectValidator
 
 
@@ -117,6 +122,44 @@ def create_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Write the release report to a file instead of standard output.",
     )
+    guard = subparsers.add_parser(
+        "release-guard",
+        help="Run release-check and compare it with the protected release baseline.",
+    )
+    guard.add_argument(
+        "baseline",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_BASELINE_PATH,
+        help="Baseline release report (default: reports/release-baseline.json).",
+    )
+    guard.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    guard.add_argument(
+        "--output", type=Path,
+        help="Write the guard report to a file instead of standard output.",
+    )
+    guard.add_argument(
+        "--build-output", type=Path,
+        help="Keep generated FTB Quests files at this destination.",
+    )
+    baseline = subparsers.add_parser(
+        "release-baseline",
+        help="Safely refresh the checked-in release baseline after a clean release-check.",
+    )
+    baseline.add_argument(
+        "destination",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_BASELINE_PATH,
+        help="Baseline destination (default: reports/release-baseline.json).",
+    )
+    baseline.add_argument(
+        "--build-output", type=Path,
+        help="Keep generated FTB Quests files at this destination.",
+    )
     compare = subparsers.add_parser(
         "release-compare",
         help="Compare two machine-readable release reports and detect regressions.",
@@ -162,6 +205,32 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if report.is_clean else 1
+
+    if args.command == "release-guard":
+        try:
+            result = run_release_guard(args.baseline, args.build_output)
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "release-baseline":
+        try:
+            report = refresh_release_baseline(args.destination, args.build_output)
+        except ValueError as exc:
+            print(exc)
+            return 1
+        print(
+            f"Release baseline refreshed: {args.destination} "
+            f"({report.chapters} chapters, {report.quests} quests)."
+        )
+        return 0
 
     if args.command == "release-compare":
         try:
