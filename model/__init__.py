@@ -7,7 +7,4 @@ from model.quest import Quest
 from model.reward import Reward
 from model.task import Task
 
-__all__ = [
-    "Chapter", "Dependency", "Difficulty", "Position", "Project",
-    "Quest", "Reward", "RewardType", "Task", "TaskType",
-]
+__all__ = ["Chapter", "Dependency", "Difficulty", "Position", "Project", "Quest", "Reward", "RewardType", "Task", "TaskType"]
