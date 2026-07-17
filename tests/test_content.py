@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 5
-    assert len(project.quests) == 165
+    assert len(project.chapters) == 6
+    assert len(project.quests) == 186
 
 
 def test_quest_ids_are_stable() -> None:
@@ -98,3 +98,15 @@ def test_create_logistics_and_trains_follow_automation() -> None:
     assert redstone_link.dependencies[0].quest_id == automation.ftb_id
     assert railway.ftb_id == create.quests[-1].ftb_id
     assert len(create.quests) == 74
+
+
+def test_actually_additions_depends_on_create_completion() -> None:
+    project = create_project()
+    create = project.get_chapter("04_create")
+    actually = project.get_chapter("05_actually_additions")
+
+    assert create is not None
+    assert actually is not None
+    assert actually.quests[0].dependencies[0].quest_id == create.quests[-1].ftb_id
+    assert len(actually.quests) == 21
+    assert actually.quests[-1].title == "A Reconstructed Workshop"
