@@ -39,6 +39,8 @@ jobs:
 
       - run: python -m generator contract-guard --format json --output reports/contract-guard.json
 
+      - run: python -m generator reward-audit --strict --format json --output reports/reward-audit.json
+
       - uses: actions/upload-artifact@v4
         with:
           name: release-analysis-reports
@@ -46,3 +48,5 @@ jobs:
             reports/progression-metrics.json
             reports/progression-guard.json
             reports/identity-guard.json
+            reports/contract-guard.json
+            reports/reward-audit.json

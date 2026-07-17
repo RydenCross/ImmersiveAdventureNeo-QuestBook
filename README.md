@@ -166,3 +166,15 @@ Refresh the baseline only after an intentional reviewed contract change:
 ```bash
 python -m generator contract-baseline reports/quest-contract-baseline.json
 ```
+
+
+## Reward integrity audit
+
+Validate reward IDs and definitions before release:
+
+```bash
+python -m generator reward-audit --strict
+python -m generator reward-audit --format json --output reports/reward-audit.json
+```
+
+See [`docs/REWARD_AUDIT.md`](docs/REWARD_AUDIT.md) for the validation rules.

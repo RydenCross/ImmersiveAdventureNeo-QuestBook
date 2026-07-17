@@ -1,8 +1,43 @@
+# Changelog
+
+## Commit 51 - Reward Integrity Audit
+
+- Added reward ID uniqueness and reward-data validation.
+- Added item resource-location and positive-count checks.
+- Added informational reporting for terminal quests without rewards.
+- Added CLI, CI report generation, documentation, and regression tests.
+
+## Commit 50 - Quest Contract Guard
+
+- Added a checked-in quest contract baseline covering icons, difficulty, quest flags, task IDs/types, and reward IDs/types.
+- Added `contract-guard` and `contract-baseline` commands.
+- Allowed normal description edits and newly added quests without failing the guard.
+- Added CI enforcement, documentation, JSON reporting, and regression tests.
+
 ## Commit 48 - Progression Complexity Guard
 
 - Added `progression-guard` with checked-in progression complexity limits.
 - Detects quest or dependency count reductions, critical-path growth, excessive bottlenecks, high direct fan-out, and unexpected cross-chapter coupling.
 - Added JSON reporting, documentation, CI enforcement, and regression tests.
+
+## Commit 47 - Progression Metrics and Bottleneck Analysis
+
+- Added critical-path depth calculation for the authored dependency graph.
+- Added bottleneck detection for quests with four or more direct dependants.
+- Added cross-chapter transition metrics with text and JSON reports.
+- Added CLI, documentation, CI report generation, and regression tests.
+
+## Commit 46 - Progression Graph Export
+
+- Added Graphviz DOT and JSON dependency graph exports.
+- Grouped quest nodes by chapter and marked optional quests visually.
+- Added CLI, documentation, generated reports, and automated tests.
+
+## Commit 45 - Quest Dependency Analyzer
+
+- Added progression graph analysis for cycles, reachability, duplicate dependencies, and chapter entry paths.
+- Added text and JSON `dependency-audit` reports with strict CI behavior.
+- Added dependency-audit tests, documentation, and CI integration.
 
 ## Commit 44 - Safe Baseline Refresh
 
@@ -14,22 +49,6 @@
 
 - Added `release-guard` to compare a clean release check with a checked-in baseline.
 - Added `reports/release-baseline.json`, JSON output, tests, documentation, and CI enforcement.
-
-# Changelog
-
-## Commit 47 - Progression Metrics and Bottleneck Analysis
-
-- Added critical-path depth calculation for the authored dependency graph.
-- Added bottleneck detection for quests with four or more direct dependants.
-- Added cross-chapter transition metrics with text and JSON reports.
-- Added CLI, documentation, CI report generation, and regression tests.
-
-## Commit 45 - Quest Dependency Analyzer
-
-- Added progression graph analysis for cycles, reachability, duplicate dependencies, and chapter entry paths.
-- Added text and JSON `dependency-audit` reports with strict CI behavior.
-- Added dependency-audit tests, documentation, and CI integration.
-
 
 ## Commit 42 - Release Report Comparison
 
@@ -69,6 +88,13 @@
 - Added verified, missing, and unverifiable result categories.
 - Added strict CI-friendly failure behavior for covered but missing item IDs.
 - Added registry audit documentation and regression tests.
+
+## Commit 37 - Content Audit and Documentation Polish
+
+- Added `python -m generator audit` for source-level questbook quality checks.
+- Added strict audit regression tests.
+- Replaced the outdated early-development README with current build, lint, audit, and questbook information.
+- Documented the content-audit workflow.
 
 ## Unreleased
 
@@ -117,6 +143,12 @@
 - Preserved Mining and Exploration unlocks at A Proper Homestead.
 - Expanded regression coverage to 536 generated quests.
 
+## Commit 29 - Create Addons
+
+- Added a 31-quest Create Addons chapter.
+- Covered electrical, diesel, artillery, railway, contraption utility, and aviation expansions.
+- Added regression coverage and addon documentation.
+
 ## Unreleased
 
 - Added a 30-quest optional Challenges chapter covering megaprojects, stockpiles, automation, power reliability, magic, bosses, exploration, and completionist goals.
@@ -146,28 +178,5 @@
 - Expanded generated output to 2 chapters and 34 quests.
 - Added Survival content and build regression tests.
 
-## Commit 29 - Create Addons
-
-- Added a 31-quest Create Addons chapter.
-- Covered electrical, diesel, artillery, railway, contraption utility, and aviation expansions.
-- Added regression coverage and addon documentation.
-
-## Commit 37 - Content Audit and Documentation Polish
-
-- Added `python -m generator audit` for source-level questbook quality checks.
-- Added strict audit regression tests.
-- Replaced the outdated early-development README with current build, lint, audit, and questbook information.
-- Documented the content-audit workflow.
-
-## Commit 46 - Progression Graph Export
-
-- Added Graphviz DOT and JSON dependency graph exports.
-- Grouped quest nodes by chapter and marked optional quests visually.
-- Added CLI, documentation, generated reports, and automated tests.
-
-## Commit 50 - Quest Contract Guard
-
-- Added a checked-in quest contract baseline covering icons, difficulty, quest flags, task IDs/types, and reward IDs/types.
-- Added `contract-guard` and `contract-baseline` commands.
-- Allowed normal description edits and newly added quests without failing the guard.
-- Added CI enforcement, documentation, JSON reporting, and regression tests.
+## 0.1.0-alpha.1
+- Idea
