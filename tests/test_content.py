@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 10
-    assert len(project.quests) == 411
+    assert len(project.quests) == 431
 
 
 def test_quest_ids_are_stable() -> None:
@@ -297,8 +297,8 @@ def test_mekanism_depends_on_ae2_completion() -> None:
     assert ae2 is not None
     assert mekanism is not None
     assert mekanism.quests[0].dependencies[0].quest_id == ae2.quests[-1].ftb_id
-    assert len(mekanism.quests) == 42
-    assert mekanism.quests[-1].title == "A Scalable Industrial Processor"
+    assert len(mekanism.quests) == 62
+    assert mekanism.quests[-1].title == "A Stable Nuclear Power Station"
 
 
 def test_mekanism_foundations_build_a_processing_line() -> None:
@@ -332,5 +332,25 @@ def test_mekanism_factories_and_advanced_processing_follow_foundations() -> None
     assert factory.dependencies[0].quest_id == next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").ftb_id
     assert next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").dependencies[0].quest_id == foundations.ftb_id
     assert mekanism.quests.index(triple) < mekanism.quests.index(five_times)
-    assert mastery.ftb_id == mekanism.quests[-1].ftb_id
-    assert len(mekanism.quests) == 42
+    assert mekanism.quests.index(mastery) < len(mekanism.quests) - 1
+    assert len(mekanism.quests) == 62
+
+
+def test_mekanism_power_and_reactors_follow_advanced_processing() -> None:
+    project = create_project()
+    mekanism = project.get_chapter("09_mekanism")
+
+    assert mekanism is not None
+    processing = next(
+        q for q in mekanism.quests if q.title == "A Scalable Industrial Processor"
+    )
+    wind = next(q for q in mekanism.quests if q.title == "Power from the Sky")
+    reactor = next(q for q in mekanism.quests if q.title == "Contain the Reaction")
+    complete = next(
+        q for q in mekanism.quests if q.title == "A Stable Nuclear Power Station"
+    )
+
+    assert wind.dependencies[0].quest_id == processing.ftb_id
+    assert mekanism.quests.index(reactor) < mekanism.quests.index(complete)
+    assert complete.ftb_id == mekanism.quests[-1].ftb_id
+    assert len(mekanism.quests) == 62

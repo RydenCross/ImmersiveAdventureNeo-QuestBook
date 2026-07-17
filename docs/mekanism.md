@@ -1,6 +1,6 @@
 # Mekanism
 
-The Mekanism chapter begins after AE2 and develops from a practical powered workshop into a scalable chemical-processing complex.
+The Mekanism chapter begins after AE2 and develops from a practical powered workshop into a scalable chemical-processing complex and safe nuclear power station.
 
 ## Foundations
 
@@ -23,6 +23,20 @@ The second section adds:
 - Purification and three-times ore processing
 - Chemical injection and four-times ore processing
 - Dissolution, washing, crystallization, and five-times ore processing
-- A final scalable industrial-processing milestone
+- A scalable industrial-processing milestone
 
-The final milestone, **A Scalable Industrial Processor**, is intended to unlock the next major Mekanism progression section.
+## Power and Reactors
+
+The final section adds:
+
+- Wind and gas-burning generation
+- Renewable ethylene power
+- Advanced energy cubes and induction matrices
+- Radiation protection and fissile-fuel production
+- Fission reactor construction and automatic shutdown systems
+- Radioactive waste containment and polonium processing
+- Industrial turbines and closed-loop coolant handling
+- Optional thermoelectric boiler progression
+- A final stable nuclear power-station milestone
+
+The final milestone, **A Stable Nuclear Power Station**, is intended to unlock the pack's Endgame chapter.
