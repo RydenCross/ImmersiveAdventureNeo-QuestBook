@@ -42,6 +42,14 @@ python -m generator audit --strict
 
 The audit summarizes chapter and quest totals, optional quests, task and reward coverage, empty descriptions, taskless quests, and duplicate titles.
 
+## Verify item IDs against installed mods
+
+```bash
+python -m generator registry-audit /path/to/instance/mods --strict
+```
+
+The registry audit checks chapter icons, quest icons, item tasks, and item rewards against mod JAR assets or JSON registry exports. See [`docs/REGISTRY_AUDIT.md`](docs/REGISTRY_AUDIT.md) for supported formats and limitations.
+
 ## Test
 
 ```bash

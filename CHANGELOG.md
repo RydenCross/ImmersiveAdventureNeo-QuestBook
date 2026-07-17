@@ -1,3 +1,12 @@
+## Commit 38 - Mod Registry Verification
+
+- Added `python -m generator registry-audit` for verifying authored item references.
+- Added JAR/ZIP scanning for Minecraft 1.21 item definitions and traditional item models.
+- Added flexible JSON registry-export support with explicit namespace coverage.
+- Added verified, missing, and unverifiable result categories.
+- Added strict CI-friendly failure behavior for covered but missing item IDs.
+- Added registry audit documentation and regression tests.
+
 ## Unreleased
 
 - Added 20 optional Mekanism endgame quests covering fusion, antimatter, grid-scale storage, MekaSuit equipment, radioactive logistics, and industrial mastery.
