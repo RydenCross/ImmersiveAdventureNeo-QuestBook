@@ -30,6 +30,7 @@ EXPECTED_COMMANDS = (
     "registry-audit",
     "registry-manifest",
     "release-artifact-audit",
+    "release-reproducibility-audit",
     "release-baseline",
     "release-check",
     "release-compare",

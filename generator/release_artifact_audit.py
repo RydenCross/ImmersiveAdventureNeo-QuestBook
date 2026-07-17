@@ -13,6 +13,7 @@ _IGNORED_PARTS = {".git", ".pytest_cache", ".ruff_cache", ".venv", "__pycache__"
 _IGNORED_SUFFIXES = {".pyc", ".pyo"}
 _EXCLUDED_REPORTS = {
     "reports/release-artifact-audit.json",
+    "reports/release-reproducibility-audit.json",
     "reports/quality-gate.json",
     "reports/report-freshness-guard.json",
 }

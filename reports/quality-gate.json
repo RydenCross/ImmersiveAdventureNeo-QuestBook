@@ -1,5 +1,5 @@
 {
-  "checked": 17,
+  "checked": 18,
   "checks": [
     {
       "detail": "clean",
@@ -85,10 +85,15 @@
       "detail": "clean",
       "name": "release artifact audit",
       "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release reproducibility audit",
+      "status": "pass"
     }
   ],
   "failed": 0,
   "failed_checks": [],
-  "passed": 17,
+  "passed": 18,
   "status": "pass"
 }

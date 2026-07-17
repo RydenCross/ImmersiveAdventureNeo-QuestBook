@@ -1,3 +1,8 @@
+## Commit #64 — Release Reproducibility Audit
+
+- Added independent release archive comparison by entry name and SHA-256 content digest.
+- Integrated reproducibility validation into the CLI, quality gate, report freshness guard, and documentation contracts.
+
 ## Commit #63 — Release Artifact Audit
 
 - Added a release archive integrity audit with JSON validation, empty-file detection, generated-output coverage, and forbidden artifact checks.

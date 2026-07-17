@@ -297,3 +297,12 @@ python -m generator release-artifact-audit --format json --output reports/releas
 ```
 
 See [`docs/REPOSITORY_HYGIENE.md`](docs/REPOSITORY_HYGIENE.md).
+
+
+## Release reproducibility audit
+
+```bash
+python -m generator release-reproducibility-audit
+```
+
+Compares two independently created release archives by normalized entry names and SHA-256 content digests.

@@ -19,6 +19,7 @@ from generator.progression_guard import run_progression_guard
 from generator.progression_metrics import analyze_progression
 from generator.release_guard import run_release_guard
 from generator.release_artifact_audit import run_release_artifact_audit
+from generator.release_reproducibility_audit import run_release_reproducibility_audit
 from generator.repository_hygiene import run_repository_hygiene_audit
 from generator.reward_audit import run_reward_audit
 from generator.task_audit import run_task_audit
@@ -87,6 +88,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "documentation-audit.json": lambda: run_documentation_audit().format_json(),
         "repository-hygiene-audit.json": lambda: run_repository_hygiene_audit().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
+        "release-reproducibility-audit.json": lambda: run_release_reproducibility_audit().format_json(),
     }
 
 
