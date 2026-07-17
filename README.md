@@ -328,3 +328,15 @@ python -m generator test-inventory-audit --format json --output reports/test-inv
 ```
 
 See [docs/TEST_INVENTORY_CONTRACT.md](docs/TEST_INVENTORY_CONTRACT.md).
+
+
+### Report schema contract
+
+Validate that every registered audit report is a JSON object with a stable pass/fail status field:
+
+```bash
+python -m generator report-schema-audit
+python -m generator report-schema-audit --format json --output reports/report-schema-audit.json
+```
+
+See [docs/REPORT_SCHEMA_CONTRACT.md](docs/REPORT_SCHEMA_CONTRACT.md).

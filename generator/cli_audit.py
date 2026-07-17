@@ -37,6 +37,7 @@ EXPECTED_COMMANDS = (
     "release-compare",
     "release-guard",
     "report-freshness-guard",
+    "report-schema-audit",
     "repository-hygiene-audit",
     "reward-audit",
     "task-audit",

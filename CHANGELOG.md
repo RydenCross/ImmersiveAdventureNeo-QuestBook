@@ -267,3 +267,10 @@
 
 - Added `audit-registry-audit` to detect partially integrated or duplicate release safeguards.
 - Registered the new audit in the CLI, unified quality gate, report freshness guard, documentation, and checked-in reports.
+
+
+## Commit 67 - Report Schema Contract
+
+- Added `report-schema-audit` to enforce a common machine-readable structure across registered audit reports.
+- Detects missing reports, malformed JSON, non-object payloads, absent status fields, and invalid status values.
+- Integrated the contract into the CLI, audit registry, test inventory, report freshness guard, documentation, and unified quality gate.
