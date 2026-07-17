@@ -57,6 +57,14 @@ python -m generator registry-manifest --output reports/quest-item-manifest.json
 
 See [`docs/REGISTRY_AUDIT.md`](docs/REGISTRY_AUDIT.md) for supported formats and limitations.
 
+## Run the complete release gate
+
+```bash
+python -m generator release-check
+```
+
+This builds the questbook in a temporary directory, reparses and validates the generated SNBT, runs the authored-content audit, and verifies registry-manifest totals. Use `--output <directory>` to keep the generated files.
+
 ## Test
 
 ```bash

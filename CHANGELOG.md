@@ -1,3 +1,12 @@
+## Commit 40 - Unified Release Check
+
+- Added `python -m generator release-check`.
+- Builds, reparses, and validates generated FTB Quests output.
+- Combines graph validation, content-quality auditing, generated count parity, and registry-manifest checks.
+- Added optional persistent output via `--output`.
+- Updated CI to use the unified release gate.
+- Added release-check documentation and regression tests.
+
 ## Commit 39 - Registry Reports and Reference Manifest
 
 - Added machine-readable JSON output for `registry-audit`.
