@@ -1,0 +1,26 @@
+{
+  "chapter_count": 13,
+  "chapter_sizes": {
+    "00_welcome": 9,
+    "01_survival": 45,
+    "02_mining": 30,
+    "03_exploration": 47,
+    "04_create": 74,
+    "05_actually_additions": 78,
+    "06_ars_nouveau": 61,
+    "07_apotheosis": 62,
+    "08_ae2": 83,
+    "09_mekanism": 82,
+    "10_endgame": 24,
+    "11_challenges": 30,
+    "12_create_addons": 31
+  },
+  "duplicate_ftb_ids": [],
+  "duplicate_titles": [],
+  "duplicate_uuids": [],
+  "empty_chapters": [],
+  "invalid_chapters": [],
+  "order_issues": [],
+  "quest_count": 656,
+  "status": "pass"
+}

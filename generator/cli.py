@@ -6,6 +6,7 @@ from pathlib import Path
 from content import create_project
 from generator.audit import audit_project
 from generator.build import build
+from generator.chapter_audit import run_chapter_audit
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
 from generator.contract_guard import (
@@ -136,6 +137,21 @@ def create_parser() -> argparse.ArgumentParser:
     task_audit.add_argument(
         "--strict", action="store_true",
         help="Return a non-zero exit code when structural task defects are detected.",
+    )
+    chapter_audit = subparsers.add_parser(
+        "chapter-audit",
+        help="Validate chapter identities, metadata, ordering, and quest coverage.",
+    )
+    chapter_audit.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    chapter_audit.add_argument(
+        "--output", type=Path, help="Write the chapter audit report to a file.",
+    )
+    chapter_audit.add_argument(
+        "--strict", action="store_true",
+        help="Return a non-zero exit code when structural chapter defects are detected.",
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -460,6 +476,16 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "task-audit":
         result = run_task_audit()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean or not args.strict else 1
+
+    if args.command == "chapter-audit":
+        result = run_chapter_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)

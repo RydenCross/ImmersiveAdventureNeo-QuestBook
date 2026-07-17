@@ -189,3 +189,15 @@ python -m generator task-audit --strict --format json --output reports/task-audi
 ```
 
 See [`docs/TASK_AUDIT.md`](docs/TASK_AUDIT.md) for the validation rules.
+
+## Chapter integrity audit
+
+Validate chapter identities, metadata, ordering, and quest coverage before release:
+
+```bash
+python -m generator chapter-audit --strict
+python -m generator chapter-audit --strict --format json --output reports/chapter-audit.json
+```
+
+See [`docs/CHAPTER_AUDIT.md`](docs/CHAPTER_AUDIT.md) for the validation rules.
+

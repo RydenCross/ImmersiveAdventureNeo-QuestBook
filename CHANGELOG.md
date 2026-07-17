@@ -1,5 +1,12 @@
 # Changelog
 
+## Commit 53 - Chapter Integrity Audit
+
+- Added chapter UUID, FTB ID, title, icon, and description validation.
+- Added ordered `NN_slug` ID and `order_index` consistency checks.
+- Added strict detection for duplicate identities and empty chapters.
+- Added CLI, CI report generation, documentation, and regression tests.
+
 ## Commit 52 - Task Integrity Audit
 
 - Added global task ID uniqueness and task-data validation.
