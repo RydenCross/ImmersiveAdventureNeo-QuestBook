@@ -206,3 +206,15 @@ See [`docs/CHAPTER_AUDIT.md`](docs/CHAPTER_AUDIT.md) for the validation rules.
 ## Quest text quality audit
 
 Run `python -m generator text-audit --strict` to detect placeholder copy, malformed formatting, duplicated substantive descriptions, and short descriptions that deserve review. See `docs/TEXT_AUDIT.md`.
+
+
+## Build determinism audit
+
+Verify that two isolated builds produce exactly the same files and bytes:
+
+```bash
+python -m generator determinism-audit --strict
+python -m generator determinism-audit --strict --format json --output reports/determinism-audit.json
+```
+
+See [`docs/DETERMINISM_AUDIT.md`](docs/DETERMINISM_AUDIT.md).

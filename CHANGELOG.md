@@ -1,3 +1,9 @@
+# Commit 55 - Build Determinism Audit
+
+- Added byte-for-byte comparison of two isolated questbook builds.
+- Added generated-tree SHA-256 reporting and CI enforcement.
+- Added regression tests and determinism documentation.
+
 ## Commit #54 — Quest Text Quality Audit
 
 - Added strict placeholder, formatting, and duplicate-description validation.

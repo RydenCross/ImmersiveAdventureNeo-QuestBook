@@ -9,6 +9,7 @@ from generator.build import build
 from generator.chapter_audit import run_chapter_audit
 from generator.dependency_audit import audit_dependencies
 from generator.dependency_graph import build_dependency_graph
+from generator.determinism_audit import run_determinism_audit
 from generator.contract_guard import (
     DEFAULT_CONTRACT_BASELINE_PATH,
     refresh_contract_baseline,
@@ -168,6 +169,21 @@ def create_parser() -> argparse.ArgumentParser:
     text_audit.add_argument(
         "--strict", action="store_true",
         help="Return a non-zero exit code when blocking text defects are detected.",
+    )
+    determinism_audit = subparsers.add_parser(
+        "determinism-audit",
+        help="Build twice and verify byte-for-byte reproducible generated output.",
+    )
+    determinism_audit.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    determinism_audit.add_argument(
+        "--output", type=Path, help="Write the determinism audit report to a file.",
+    )
+    determinism_audit.add_argument(
+        "--strict", action="store_true",
+        help="Return a non-zero exit code when generated builds differ.",
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -512,6 +528,16 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "text-audit":
         result = run_text_audit()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean or not args.strict else 1
+
+    if args.command == "determinism-audit":
+        result = run_determinism_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
