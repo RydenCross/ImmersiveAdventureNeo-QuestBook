@@ -7,8 +7,8 @@ def test_generated_project_is_valid() -> None:
     report = ProjectValidator().validate(project)
 
     assert report.is_valid
-    assert len(project.chapters) == 9
-    assert len(project.quests) == 369
+    assert len(project.chapters) == 10
+    assert len(project.quests) == 390
 
 
 def test_quest_ids_are_stable() -> None:
@@ -287,3 +287,32 @@ def test_ae2_advanced_storage_and_networking_follow_autocrafting() -> None:
     assert ae2.quests.index(larger_cells) < ae2.quests.index(p2p)
     assert mastery.ftb_id == ae2.quests[-1].ftb_id
     assert len(ae2.quests) == 63
+
+
+def test_mekanism_depends_on_ae2_completion() -> None:
+    project = create_project()
+    ae2 = project.get_chapter("08_ae2")
+    mekanism = project.get_chapter("09_mekanism")
+
+    assert ae2 is not None
+    assert mekanism is not None
+    assert mekanism.quests[0].dependencies[0].quest_id == ae2.quests[-1].ftb_id
+    assert len(mekanism.quests) == 21
+    assert mekanism.quests[-1].title == "Ready for Factory Tiers"
+
+
+def test_mekanism_foundations_build_a_processing_line() -> None:
+    project = create_project()
+    mekanism = project.get_chapter("09_mekanism")
+
+    assert mekanism is not None
+    infuser = next(q for q in mekanism.quests if q.title == "Infuse the Metal")
+    steel = next(q for q in mekanism.quests if q.title == "Industrial Steel")
+    enrichment = next(q for q in mekanism.quests if q.title == "Enrich the Output")
+    smelter = next(q for q in mekanism.quests if q.title == "Smelting without Fuel")
+    complete = next(q for q in mekanism.quests if q.title == "Ready for Factory Tiers")
+
+    assert mekanism.quests.index(infuser) < mekanism.quests.index(steel)
+    assert mekanism.quests.index(steel) < mekanism.quests.index(enrichment)
+    assert mekanism.quests.index(enrichment) < mekanism.quests.index(smelter)
+    assert complete.ftb_id == mekanism.quests[-1].ftb_id

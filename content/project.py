@@ -4,6 +4,7 @@ from content.ars_nouveau import build_ars_nouveau
 from content.apotheosis import build_apotheosis
 from content.ae2 import build_ae2
 from content.create import build_create
+from content.mekanism import build_mekanism
 from model import Project
 
 
@@ -1101,5 +1102,6 @@ def create_project() -> Project:
     actually_additions_complete = build_actually_additions(project, create_complete)
     ars_complete = build_ars_nouveau(project, actually_additions_complete)
     apotheosis_complete = build_apotheosis(project, ars_complete)
-    build_ae2(project, apotheosis_complete)
+    ae2_complete = build_ae2(project, apotheosis_complete)
+    build_mekanism(project, ae2_complete)
     return project
