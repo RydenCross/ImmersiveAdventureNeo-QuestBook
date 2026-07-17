@@ -1,3 +1,7 @@
+## Unreleased
+
+- Added 20 optional Mekanism endgame quests covering fusion, antimatter, grid-scale storage, MekaSuit equipment, radioactive logistics, and industrial mastery.
+
 ## Commit 35 - AE2 Expansion
 
 - Added 20 optional AE2 quests for bulk storage, advanced autocrafting, redundancy, spatial storage, and quantum networking.

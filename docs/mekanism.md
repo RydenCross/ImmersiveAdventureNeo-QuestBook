@@ -40,3 +40,17 @@ The final section adds:
 - A final stable nuclear power-station milestone
 
 The final milestone, **A Stable Nuclear Power Station**, is intended to unlock the pack's Endgame chapter.
+
+## Endgame Mastery (Optional)
+
+The optional post-mastery expansion adds:
+
+- Deuterium, tritium, laser ignition, and sustained fusion power
+- Ultimate-scale induction storage and black-start recovery
+- Protected radioactive-material logistics
+- SPS construction and antimatter production
+- MekaSuit and Meka-Tool module progression
+- Integrated facility monitoring and long-duration reliability trials
+- A final **Master of Matter and Energy** milestone
+
+This branch starts after **A Stable Nuclear Power Station** but does not replace it as the Endgame handoff.

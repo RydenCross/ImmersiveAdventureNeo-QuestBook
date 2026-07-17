@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 636
+    assert len(project.quests) == 656
 
 
 def test_quest_ids_are_stable() -> None:
@@ -380,8 +380,8 @@ def test_mekanism_depends_on_ae2_completion() -> None:
     assert mekanism is not None
     mastery = next(q for q in ae2.quests if q.title == "Master of the ME Network")
     assert mekanism.quests[0].dependencies[0].quest_id == mastery.ftb_id
-    assert len(mekanism.quests) == 62
-    assert mekanism.quests[-1].title == "A Stable Nuclear Power Station"
+    assert len(mekanism.quests) == 82
+    assert next(q for q in mekanism.quests if q.title == "A Stable Nuclear Power Station")
 
 
 def test_mekanism_foundations_build_a_processing_line() -> None:
@@ -416,7 +416,7 @@ def test_mekanism_factories_and_advanced_processing_follow_foundations() -> None
     assert next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").dependencies[0].quest_id == foundations.ftb_id
     assert mekanism.quests.index(triple) < mekanism.quests.index(five_times)
     assert mekanism.quests.index(mastery) < len(mekanism.quests) - 1
-    assert len(mekanism.quests) == 62
+    assert len(mekanism.quests) == 82
 
 
 def test_mekanism_power_and_reactors_follow_advanced_processing() -> None:
@@ -435,8 +435,23 @@ def test_mekanism_power_and_reactors_follow_advanced_processing() -> None:
 
     assert wind.dependencies[0].quest_id == processing.ftb_id
     assert mekanism.quests.index(reactor) < mekanism.quests.index(complete)
-    assert complete.ftb_id == mekanism.quests[-1].ftb_id
-    assert len(mekanism.quests) == 62
+    assert mekanism.quests.index(complete) < len(mekanism.quests) - 1
+    assert len(mekanism.quests) == 82
+
+
+def test_mekanism_endgame_expansion_is_optional_and_follows_reactor_mastery() -> None:
+    project = create_project()
+    mekanism = project.get_chapter("09_mekanism")
+
+    assert mekanism is not None
+    stable = next(q for q in mekanism.quests if q.title == "A Stable Nuclear Power Station")
+    plan = next(q for q in mekanism.quests if q.title == "Plan the Ultimate Facility")
+    mastery = next(q for q in mekanism.quests if q.title == "Master of Matter and Energy")
+
+    assert plan.dependencies[0].quest_id == stable.ftb_id
+    assert mekanism.quests.index(stable) < mekanism.quests.index(mastery)
+    assert all(q.optional for q in mekanism.quests[mekanism.quests.index(stable) + 1 :])
+    assert len(mekanism.quests) == 82
 
 
 def test_endgame_depends_on_all_major_mastery_quests() -> None:
@@ -467,7 +482,11 @@ def test_endgame_depends_on_all_major_mastery_quests() -> None:
             for q in project.get_chapter("08_ae2").quests
             if q.title == "Master of the ME Network"
         ),
-        project.get_chapter("09_mekanism").quests[-1].ftb_id,
+        next(
+            q.ftb_id
+            for q in project.get_chapter("09_mekanism").quests
+            if q.title == "A Stable Nuclear Power Station"
+        ),
     }
 
     assert {dependency.quest_id for dependency in first.dependencies} == expected
