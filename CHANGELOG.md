@@ -1,3 +1,10 @@
+## Commit 31 - Exploration Expansion
+
+- Added 20 optional post-mastery Exploration quests.
+- Added archaeology, Nether, monument, mansion, ancient-city, stronghold, and End-city expeditions.
+- Preserved Experienced Explorer as the chapter completion returned to downstream content.
+- Expanded regression coverage to 556 generated quests.
+
 ## Commit 30 - Survival Expansion
 
 - Added 20 optional post-homestead Survival quests.

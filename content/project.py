@@ -1197,13 +1197,123 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         optional=True,
     ).depends_on(amethyst, mansion, ocean_monument).advancement("minecraft:adventure/adventuring_time").finish()
 
-    return exploration.quest(
+    experienced_explorer = exploration.quest(
         "experienced_explorer", "Experienced Explorer", "minecraft:recovery_compass",
         "You have mapped distant lands, traded with settlements, explored natural wonders, and recovered rare treasures.",
         14, 1,
     ).depends_on(buried_treasure, trade, desert_temple, amethyst, saddle).checkmark().reward_item(
         "minecraft:ender_pearl", 8
     ).finish()
+
+    # Optional post-mastery expeditions. These deepen exploration without changing
+    # the original Survival-to-Exploration progression gate.
+    archaeology = exploration.quest(
+        "archaeology", "Brush with History", "minecraft:brush",
+        "Craft a brush and begin investigating suspicious sand or gravel at archaeological sites.",
+        16, -7, optional=True,
+    ).depends_on(experienced_explorer).item("minecraft:brush").finish()
+    pottery_sherd = exploration.quest(
+        "pottery_sherd", "Fragments of the Past", "minecraft:angler_pottery_sherd",
+        "Recover a pottery sherd while excavating suspicious blocks without destroying the artifact.",
+        18, -7, optional=True,
+    ).depends_on(archaeology).checkmark().finish()
+    decorated_pot = exploration.quest(
+        "decorated_pot", "Reconstruct the Story", "minecraft:decorated_pot",
+        "Assemble a decorated pot from recovered sherds and preserve it in your expedition archive.",
+        20, -7, optional=True,
+    ).depends_on(pottery_sherd).item("minecraft:decorated_pot").finish()
+    trail_ruins = exploration.quest(
+        "trail_ruins", "Ruins beneath the Trail", "minecraft:mud_bricks",
+        "Locate and carefully excavate a trail ruins site, leaving enough of the structure intact to understand it.",
+        22, -7, optional=True,
+    ).depends_on(decorated_pot).checkmark().finish()
+
+    nether_return = exploration.quest(
+        "nether_expedition", "Into the Nether Wilds", "minecraft:netherrack",
+        "Undertake a supplied Nether expedition and establish a marked route back to your portal.",
+        16, -3, optional=True,
+    ).depends_on(experienced_explorer).advancement("minecraft:story/enter_the_nether").finish()
+    fortress = exploration.quest(
+        "nether_fortress", "Fortress of Flame", "minecraft:nether_bricks",
+        "Locate a Nether fortress and secure a safe approach before entering its corridors.",
+        18, -3, optional=True,
+    ).depends_on(nether_return).advancement("minecraft:nether/find_fortress").finish()
+    bastion = exploration.quest(
+        "bastion_remnant", "Remnants of the Piglins", "minecraft:gilded_blackstone",
+        "Discover a bastion remnant and mark its entrances before risking the treasure rooms.",
+        20, -3, optional=True,
+    ).depends_on(nether_return).advancement("minecraft:nether/find_bastion").finish()
+    strider = exploration.quest(
+        "strider_route", "Across the Lava Sea", "minecraft:warped_fungus_on_a_stick",
+        "Ride a strider across a lava sea and establish a practical route through otherwise impassable terrain.",
+        22, -3, optional=True,
+    ).depends_on(nether_return).advancement("minecraft:nether/ride_strider").finish()
+    nether_biomes = exploration.quest(
+        "nether_biomes", "Hot Tourist Destinations", "minecraft:warped_nylium",
+        "Visit every Nether biome and document the resources and hazards unique to each region.",
+        24, -3, optional=True,
+    ).depends_on(fortress, bastion, strider).advancement("minecraft:nether/explore_nether").finish()
+
+    monument_conquest = exploration.quest(
+        "monument_conquest", "Drain the Monument", "minecraft:sea_lantern",
+        "Return to an ocean monument prepared, defeat its elder guardians, and secure the structure.",
+        16, 1, optional=True,
+    ).depends_on(experienced_explorer, ocean_monument).advancement("minecraft:adventure/kill_a_mob").finish()
+    conduit = exploration.quest(
+        "conduit", "Power beneath the Waves", "minecraft:conduit",
+        "Construct and activate a conduit to support long underwater expeditions and monument restoration.",
+        18, 1, optional=True,
+    ).depends_on(monument_conquest, buried_treasure).item("minecraft:conduit").finish()
+    mansion_conquest = exploration.quest(
+        "mansion_conquest", "Clear the Dark Halls", "minecraft:totem_of_undying",
+        "Return to a woodland mansion, defeat its defenders, and recover a Totem of Undying.",
+        16, 5, optional=True,
+    ).depends_on(experienced_explorer, mansion).item("minecraft:totem_of_undying").finish()
+    ancient_city = exploration.quest(
+        "ancient_city", "Silence beneath the World", "minecraft:sculk_catalyst",
+        "Locate an ancient city and enter with a plan that favors silence over combat.",
+        18, 5, optional=True,
+    ).depends_on(experienced_explorer).advancement("minecraft:adventure/avoid_vibration").finish()
+    echo_shard = exploration.quest(
+        "echo_shard", "Echoes of the Lost", "minecraft:echo_shard",
+        "Recover echo shards from an ancient city without awakening more danger than you can escape.",
+        20, 5, optional=True,
+    ).depends_on(ancient_city).item("minecraft:echo_shard", 8).finish()
+    recovery_compass = exploration.quest(
+        "recovery_compass", "A Compass for the Fallen", "minecraft:recovery_compass",
+        "Craft a recovery compass from echo shards as insurance for future high-risk expeditions.",
+        22, 5, optional=True,
+    ).depends_on(echo_shard).item("minecraft:recovery_compass").finish()
+
+    stronghold = exploration.quest(
+        "stronghold", "Eyes toward the Stronghold", "minecraft:ender_eye",
+        "Follow Eyes of Ender to locate a stronghold and establish a secure surface camp above it.",
+        16, 9, optional=True,
+    ).depends_on(experienced_explorer).advancement("minecraft:story/follow_ender_eye").finish()
+    end_gateway = exploration.quest(
+        "end_gateway", "Beyond the Central Island", "minecraft:end_stone_bricks",
+        "Reach the outer End islands through an End gateway and prepare for a long-distance search.",
+        18, 9, optional=True,
+    ).depends_on(stronghold).advancement("minecraft:end/enter_end_gateway").finish()
+    end_city = exploration.quest(
+        "end_city", "Cities at the Edge", "minecraft:purpur_block",
+        "Locate an End city and secure its towers before searching for a ship.",
+        20, 9, optional=True,
+    ).depends_on(end_gateway).advancement("minecraft:end/find_end_city").finish()
+    elytra = exploration.quest(
+        "elytra", "Wings of the End", "minecraft:elytra",
+        "Recover an elytra from an End ship and return it safely to the overworld.",
+        22, 9, optional=True,
+    ).depends_on(end_city).item("minecraft:elytra").finish()
+    dimension_cartographer = exploration.quest(
+        "dimension_cartographer", "Cartographer of Three Worlds", "minecraft:lodestone",
+        "Complete major expeditions in the Overworld, Nether, and End, then connect them with reliable routes and records.",
+        26, 1, optional=True,
+    ).depends_on(trail_ruins, nether_biomes, conduit, recovery_compass, elytra).checkmark().reward_item(
+        "minecraft:experience_bottle", 32
+    ).finish()
+
+    return experienced_explorer
 
 def create_project() -> Project:
     project = Project(name="Immersive Adventure Neo", version="13")

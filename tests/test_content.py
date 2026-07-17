@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 13
-    assert len(project.quests) == 536
+    assert len(project.quests) == 556
 
 
 def test_quest_ids_are_stable() -> None:
@@ -49,6 +49,23 @@ def test_exploration_chapter_depends_on_survival_completion() -> None:
     established = next(q for q in survival.quests if q.title == "A Proper Homestead")
     assert exploration.quests[0].dependencies[0].quest_id == established.ftb_id
 
+
+
+def test_exploration_expansion_follows_experienced_explorer() -> None:
+    project = create_project()
+    exploration = project.get_chapter("03_exploration")
+
+    assert exploration is not None
+    experienced = next(q for q in exploration.quests if q.title == "Experienced Explorer")
+    archaeology = next(q for q in exploration.quests if q.title == "Brush with History")
+    nether = next(q for q in exploration.quests if q.title == "Into the Nether Wilds")
+    mastery = next(q for q in exploration.quests if q.title == "Cartographer of Three Worlds")
+
+    assert archaeology.dependencies[0].quest_id == experienced.ftb_id
+    assert nether.dependencies[0].quest_id == experienced.ftb_id
+    assert exploration.quests.index(experienced) < exploration.quests.index(mastery)
+    assert all(q.optional for q in exploration.quests[exploration.quests.index(experienced) + 1 :])
+    assert len(exploration.quests) == 47
 
 def test_create_chapter_depends_on_mining_completion() -> None:
     project = create_project()
