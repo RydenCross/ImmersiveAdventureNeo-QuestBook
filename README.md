@@ -264,3 +264,12 @@ See [`docs/QUALITY_GATE.md`](docs/QUALITY_GATE.md).
 ## Packaging audit
 
 Run `python -m generator packaging-audit` to verify package discovery and the installed console command.
+
+### CLI contract audit
+
+Use the CLI contract audit to ensure every supported subcommand remains registered, documented with help text, and available through the installed console entry point:
+
+```bash
+python -m generator cli-audit
+python -m generator cli-audit --format json --output reports/cli-audit.json
+```

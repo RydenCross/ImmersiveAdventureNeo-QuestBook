@@ -1,0 +1,2 @@
+[console_scripts]
+immersive-adventure-quests = generator.cli:main

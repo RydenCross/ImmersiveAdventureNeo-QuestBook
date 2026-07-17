@@ -7,6 +7,7 @@ from typing import Callable, Mapping
 
 from content import create_project
 from generator.chapter_audit import run_chapter_audit
+from generator.cli_audit import run_cli_audit
 from generator.contract_guard import run_contract_guard
 from generator.dependency_audit import audit_dependencies
 from generator.determinism_audit import run_determinism_audit
@@ -79,6 +80,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "determinism-audit.json": lambda: run_determinism_audit().format_json(),
         "output-manifest-guard.json": lambda: run_output_manifest_guard().format_json(),
         "packaging-audit.json": lambda: run_packaging_audit().format_json(),
+        "cli-audit.json": lambda: run_cli_audit().format_json(),
     }
 
 

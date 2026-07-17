@@ -6,6 +6,7 @@ from typing import Callable, Mapping
 
 from content import create_project
 from generator.chapter_audit import run_chapter_audit
+from generator.cli_audit import run_cli_audit
 from generator.contract_guard import run_contract_guard
 from generator.dependency_audit import audit_dependencies
 from generator.determinism_audit import run_determinism_audit
@@ -93,6 +94,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "output manifest guard": run_output_manifest_guard,
         "report freshness guard": run_report_freshness_guard,
         "packaging audit": run_packaging_audit,
+        "CLI contract audit": run_cli_audit,
     }
 
 

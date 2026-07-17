@@ -1,3 +1,10 @@
+## Commit #60 — CLI Contract Audit
+
+- Added `python -m generator cli-audit` to protect the documented command surface.
+- Validates all expected subcommands, help text, and the installed console entry point.
+- Added the CLI audit to the unified quality gate and report freshness guard.
+- Added machine-readable reporting, documentation, and regression tests.
+
 ## Commit #59 — Packaging Configuration and Audit
 
 - Fixed explicit setuptools package discovery for `content`, `generator`, and `model`.
