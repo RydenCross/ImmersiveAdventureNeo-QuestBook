@@ -29,6 +29,7 @@ EXPECTED_COMMANDS = (
     "quality-gate",
     "registry-audit",
     "registry-manifest",
+    "release-artifact-audit",
     "release-baseline",
     "release-check",
     "release-compare",

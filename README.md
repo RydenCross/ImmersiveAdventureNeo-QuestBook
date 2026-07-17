@@ -292,6 +292,8 @@ Detect caches, build artifacts, secret-like files, and oversized accidental addi
 ```bash
 python -m generator repository-hygiene-audit
 python -m generator repository-hygiene-audit --format json --output reports/repository-hygiene-audit.json
+python -m generator release-artifact-audit
+python -m generator release-artifact-audit --format json --output reports/release-artifact-audit.json
 ```
 
 See [`docs/REPOSITORY_HYGIENE.md`](docs/REPOSITORY_HYGIENE.md).

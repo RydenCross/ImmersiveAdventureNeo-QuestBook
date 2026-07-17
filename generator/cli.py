@@ -24,6 +24,7 @@ from generator.identity_guard import (
 )
 from generator.report_freshness import run_report_freshness_guard
 from generator.repository_hygiene import run_repository_hygiene_audit
+from generator.release_artifact_audit import run_release_artifact_audit
 from generator.packaging_audit import run_packaging_audit
 from generator.output_manifest import (
     DEFAULT_OUTPUT_MANIFEST_PATH,
@@ -255,6 +256,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     repository_hygiene.add_argument("--format", choices=("text", "json"), default="text")
     repository_hygiene.add_argument("--output", type=Path)
+    release_artifact = subparsers.add_parser(
+        "release-artifact-audit",
+        help="Validate the final repository release archive contents and integrity.",
+    )
+    release_artifact.add_argument("--format", choices=("text", "json"), default="text")
+    release_artifact.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -509,6 +516,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "release-artifact-audit":
+        result = run_release_artifact_audit()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "repository-hygiene-audit":
         result = run_repository_hygiene_audit()
         rendered = result.format_json() if args.format == "json" else result.format()

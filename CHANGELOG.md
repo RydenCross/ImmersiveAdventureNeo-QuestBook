@@ -1,3 +1,8 @@
+## Commit #63 — Release Artifact Audit
+
+- Added a release archive integrity audit with JSON validation, empty-file detection, generated-output coverage, and forbidden artifact checks.
+- Integrated the audit into the unified quality gate and report freshness guard.
+
 ## Commit #62 — Repository Hygiene Audit
 
 - Added `python -m generator repository-hygiene-audit`.
