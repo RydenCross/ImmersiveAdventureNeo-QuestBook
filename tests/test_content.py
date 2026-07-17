@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 5
-    assert len(project.quests) == 145
+    assert len(project.quests) == 165
 
 
 def test_quest_ids_are_stable() -> None:
@@ -56,7 +56,7 @@ def test_create_chapter_depends_on_mining_completion() -> None:
     assert mining is not None
     assert create is not None
     assert create.quests[0].dependencies[0].quest_id == mining.quests[-1].ftb_id
-    assert len(create.quests) == 54
+    assert len(create.quests) == 74
 
 
 def test_create_processing_follows_foundations() -> None:
@@ -82,5 +82,19 @@ def test_create_automation_follows_processing() -> None:
     complete = next(q for q in create.quests if q.title == "The Factory Runs Itself")
 
     assert belt.dependencies[0].quest_id == processing.ftb_id
-    assert complete.ftb_id == create.quests[-1].ftb_id
-    assert len(create.quests) == 54
+    assert create.quests.index(complete) < len(create.quests) - 1
+    assert len(create.quests) == 74
+
+
+def test_create_logistics_and_trains_follow_automation() -> None:
+    project = create_project()
+    create = project.get_chapter("04_create")
+
+    assert create is not None
+    automation = next(q for q in create.quests if q.title == "The Factory Runs Itself")
+    redstone_link = next(q for q in create.quests if q.title == "Signals Without Wires")
+    railway = next(q for q in create.quests if q.title == "Master of Moving Parts")
+
+    assert redstone_link.dependencies[0].quest_id == automation.ftb_id
+    assert railway.ftb_id == create.quests[-1].ftb_id
+    assert len(create.quests) == 74
