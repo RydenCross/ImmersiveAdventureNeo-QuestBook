@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 9
-    assert len(project.quests) == 329
+    assert len(project.quests) == 349
 
 
 def test_quest_ids_are_stable() -> None:
@@ -236,8 +236,8 @@ def test_ae2_depends_on_apotheosis_completion() -> None:
     assert apotheosis is not None
     assert ae2 is not None
     assert ae2.quests[0].dependencies[0].quest_id == apotheosis.quests[-1].ftb_id
-    assert len(ae2.quests) == 23
-    assert ae2.quests[-1].title == "A Functioning ME Network"
+    assert len(ae2.quests) == 43
+    assert ae2.quests[-1].title == "The Network Crafts for You"
 
 
 def test_ae2_foundations_cover_processors_power_and_storage() -> None:
@@ -254,4 +254,20 @@ def test_ae2_foundations_cover_processors_power_and_storage() -> None:
     assert ae2.quests.index(fluix) < ae2.quests.index(inscriber)
     assert ae2.quests.index(inscriber) < ae2.quests.index(controller)
     assert ae2.quests.index(controller) < ae2.quests.index(drive)
+    assert ae2.quests.index(complete) < len(ae2.quests) - 1
+
+
+def test_ae2_channels_and_autocrafting_follow_foundations() -> None:
+    project = create_project()
+    ae2 = project.get_chapter("08_ae2")
+
+    assert ae2 is not None
+    foundations = next(q for q in ae2.quests if q.title == "A Functioning ME Network")
+    channels = next(q for q in ae2.quests if q.title == "Count the Channels")
+    first_craft = next(q for q in ae2.quests if q.title == "Request the First Autocraft")
+    complete = next(q for q in ae2.quests if q.title == "The Network Crafts for You")
+
+    assert channels.dependencies[0].quest_id == foundations.ftb_id
+    assert ae2.quests.index(first_craft) < ae2.quests.index(complete)
     assert complete.ftb_id == ae2.quests[-1].ftb_id
+    assert len(ae2.quests) == 43

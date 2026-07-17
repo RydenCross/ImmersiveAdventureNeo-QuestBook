@@ -2,7 +2,7 @@ from generator.builder import ChapterBuilder
 from model import Project
 
 
-def build_ae2_foundations(project: Project, apotheosis_complete: str) -> str:
+def build_ae2_foundations(project: Project, apotheosis_complete: str) -> tuple[ChapterBuilder, str]:
     chapter = ChapterBuilder(
         project,
         slug="08_ae2",
@@ -341,7 +341,7 @@ def build_ae2_foundations(project: Project, apotheosis_complete: str) -> str:
         .finish()
     )
 
-    return (
+    complete = (
         chapter.quest(
             "first_network",
             "A Functioning ME Network",
@@ -358,3 +358,5 @@ def build_ae2_foundations(project: Project, apotheosis_complete: str) -> str:
         .reward_item("minecraft:redstone", 32)
         .finish()
     )
+
+    return chapter, complete

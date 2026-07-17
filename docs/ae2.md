@@ -15,3 +15,17 @@ The AE2 chapter begins after Apotheosis Mastery and introduces the complete path
 - Final functioning-network milestone
 
 This chapter intentionally stops before channel expansion, subnetworks, P2P tunnels, and autocrafting. Those belong in later AE2 sections.
+
+## Channels and Autocrafting
+
+- Smart and Dense Smart Cable channel planning
+- Cable Anchors and intentional network branching
+- ME Interface and Blank Patterns
+- Pattern Encoding Terminal
+- Crafting and Processing Patterns
+- Pattern Provider and Molecular Assembler
+- Crafting CPU, 1k Crafting Storage, Co-Processing Unit, and Crafting Monitor
+- First crafting-table autocraft
+- First machine-processing autocraft
+- Multi-step prerequisite crafting
+- Final autocrafting-network milestone
