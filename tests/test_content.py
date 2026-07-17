@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 5
-    assert len(project.quests) == 126
+    assert len(project.quests) == 145
 
 
 def test_quest_ids_are_stable() -> None:
@@ -56,7 +56,7 @@ def test_create_chapter_depends_on_mining_completion() -> None:
     assert mining is not None
     assert create is not None
     assert create.quests[0].dependencies[0].quest_id == mining.quests[-1].ftb_id
-    assert len(create.quests) == 35
+    assert len(create.quests) == 54
 
 
 def test_create_processing_follows_foundations() -> None:
@@ -69,4 +69,18 @@ def test_create_processing_follows_foundations() -> None:
     processing = next(q for q in create.quests if q.title == "A Working Processing Line")
 
     assert millstone.dependencies[0].quest_id == foundations.ftb_id
-    assert processing.ftb_id == create.quests[-1].ftb_id
+    assert create.quests.index(processing) < len(create.quests) - 1
+
+
+def test_create_automation_follows_processing() -> None:
+    project = create_project()
+    create = project.get_chapter("04_create")
+
+    assert create is not None
+    processing = next(q for q in create.quests if q.title == "A Working Processing Line")
+    belt = next(q for q in create.quests if q.title == "Keep Things Moving")
+    complete = next(q for q in create.quests if q.title == "The Factory Runs Itself")
+
+    assert belt.dependencies[0].quest_id == processing.ftb_id
+    assert complete.ftb_id == create.quests[-1].ftb_id
+    assert len(create.quests) == 54

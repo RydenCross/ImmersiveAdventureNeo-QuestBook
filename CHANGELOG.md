@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Added 19 Create Automation quests covering belts, funnels, chutes, brass logistics, deployers, mechanical crafting, sequenced assembly, precision mechanisms, arms, and vaults.
 - Added a 30-quest Mining chapter.
 - Added cross-chapter progression from Survival into Mining.
 - Added enchanting, diamond, ore-processing, and Nether-preparation progression.
