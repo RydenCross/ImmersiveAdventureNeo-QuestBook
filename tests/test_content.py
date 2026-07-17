@@ -8,7 +8,7 @@ def test_generated_project_is_valid() -> None:
 
     assert report.is_valid
     assert len(project.chapters) == 8
-    assert len(project.quests) == 286
+    assert len(project.quests) == 306
 
 
 def test_quest_ids_are_stable() -> None:
@@ -191,8 +191,8 @@ def test_apotheosis_depends_on_ars_nouveau_completion() -> None:
     assert ars is not None
     assert apotheosis is not None
     assert apotheosis.quests[0].dependencies[0].quest_id == ars.quests[-1].ftb_id
-    assert len(apotheosis.quests) == 22
-    assert apotheosis.quests[-1].title == "The First Apotheosis"
+    assert len(apotheosis.quests) == 42
+    assert apotheosis.quests[-1].title == "Apotheosis Mastery"
 
 
 def test_apotheosis_foundations_cover_gear_gems_and_enchanting() -> None:
@@ -209,4 +209,20 @@ def test_apotheosis_foundations_cover_gear_gems_and_enchanting() -> None:
     assert apotheosis.quests.index(salvage) < apotheosis.quests.index(reforge)
     assert apotheosis.quests.index(reforge) < apotheosis.quests.index(socket)
     assert apotheosis.quests.index(enchant) < apotheosis.quests.index(complete)
+    assert apotheosis.quests.index(complete) < len(apotheosis.quests) - 1
+
+
+def test_apotheosis_advanced_progression_follows_foundations() -> None:
+    project = create_project()
+    apotheosis = project.get_chapter("07_apotheosis")
+
+    assert apotheosis is not None
+    foundations = next(q for q in apotheosis.quests if q.title == "The First Apotheosis")
+    hunt = next(q for q in apotheosis.quests if q.title == "Hunt for Greater Power")
+    infusion = next(q for q in apotheosis.quests if q.title == "Infuse Beyond Ordinary Crafting")
+    complete = next(q for q in apotheosis.quests if q.title == "Apotheosis Mastery")
+
+    assert hunt.dependencies[0].quest_id == foundations.ftb_id
+    assert apotheosis.quests.index(infusion) < apotheosis.quests.index(complete)
     assert complete.ftb_id == apotheosis.quests[-1].ftb_id
+    assert len(apotheosis.quests) == 42

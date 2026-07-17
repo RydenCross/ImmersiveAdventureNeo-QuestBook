@@ -2,7 +2,7 @@ from generator.builder import ChapterBuilder
 from model import Project
 
 
-def build_apotheosis_foundations(project: Project, ars_complete: str) -> str:
+def build_apotheosis_foundations(project: Project, ars_complete: str) -> tuple[ChapterBuilder, str]:
     chapter = ChapterBuilder(
         project,
         slug="07_apotheosis",
@@ -375,7 +375,7 @@ def build_apotheosis_foundations(project: Project, ars_complete: str) -> str:
         .finish()
     )
 
-    return (
+    complete = (
         chapter.quest(
             "foundations_complete",
             "The First Apotheosis",
@@ -392,3 +392,5 @@ def build_apotheosis_foundations(project: Project, ars_complete: str) -> str:
         .reward_item("minecraft:diamond", 4)
         .finish()
     )
+
+    return chapter, complete
