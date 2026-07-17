@@ -26,6 +26,7 @@ from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
 from generator.inventory_contract import run_test_inventory_contract
 from generator.report_schema_contract import run_report_schema_contract
+from generator.report_consistency_contract import run_report_consistency_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -109,6 +110,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "audit registry contract": run_audit_registry_contract,
         "test inventory contract": run_test_inventory_contract,
         "report schema contract": run_report_schema_contract,
+        "report consistency contract": run_report_consistency_contract,
     }
 
 

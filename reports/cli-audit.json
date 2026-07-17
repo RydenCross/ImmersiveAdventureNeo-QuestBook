@@ -1,5 +1,5 @@
 {
-  "command_count": 34,
+  "command_count": 35,
   "commands": [
     "audit",
     "audit-registry-audit",
@@ -28,6 +28,7 @@
     "release-compare",
     "release-guard",
     "release-reproducibility-audit",
+    "report-consistency-audit",
     "report-freshness-guard",
     "report-schema-audit",
     "repository-hygiene-audit",

@@ -27,6 +27,7 @@ from generator.task_audit import run_task_audit
 from generator.text_audit import run_text_audit
 from generator.inventory_contract import run_test_inventory_contract
 from generator.report_schema_contract import run_report_schema_contract
+from generator.report_consistency_contract import run_report_consistency_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -95,6 +96,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "audit-registry-audit.json": lambda: run_audit_registry_contract().format_json(),
         "test-inventory-audit.json": lambda: run_test_inventory_contract().format_json(),
         "report-schema-audit.json": lambda: run_report_schema_contract().format_json(),
+        "report-consistency-audit.json": lambda: run_report_consistency_contract().format_json(),
     }
 
 

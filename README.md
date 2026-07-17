@@ -340,3 +340,11 @@ python -m generator report-schema-audit --format json --output reports/report-sc
 ```
 
 See [docs/REPORT_SCHEMA_CONTRACT.md](docs/REPORT_SCHEMA_CONTRACT.md).
+
+### Report consistency audit
+
+```bash
+python -m generator report-consistency-audit
+```
+
+Validates that report status, defect details, and summary counts agree. See [Report Consistency Contract](docs/REPORT_CONSISTENCY_CONTRACT.md).

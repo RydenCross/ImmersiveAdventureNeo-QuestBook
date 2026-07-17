@@ -1,3 +1,9 @@
+## Commit 68 - Report Consistency Contract
+
+- Added `report-consistency-audit`.
+- Enforced internal agreement between report status, defect lists, and summary counts.
+- Integrated the contract into the quality gate, audit registry, freshness guard, CLI, tests, and documentation.
+
 ## Commit #66 — Test Inventory Contract
 
 - Added a contract ensuring every registered quality-gate safeguard has a dedicated pytest module.

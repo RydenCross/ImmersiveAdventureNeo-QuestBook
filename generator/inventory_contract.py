@@ -30,6 +30,7 @@ SPECIAL_TEST_FILES = {
     "audit registry contract": "test_audit_registry_contract.py",
     "test inventory contract": "test_test_inventory_contract.py",
     "report schema contract": "test_report_schema_contract.py",
+    "report consistency contract": "test_report_consistency_contract.py",
 }
 
 
