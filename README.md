@@ -218,3 +218,21 @@ python -m generator determinism-audit --strict --format json --output reports/de
 ```
 
 See [`docs/DETERMINISM_AUDIT.md`](docs/DETERMINISM_AUDIT.md).
+
+
+## Generated output manifest guard
+
+Protect the exact generated FTB Quests file set and contents:
+
+```bash
+python -m generator output-manifest-guard
+python -m generator output-manifest-guard --format json --output reports/output-manifest-guard.json
+```
+
+Refresh the checked-in manifest after an intentional deterministic output change:
+
+```bash
+python -m generator output-manifest reports/generated-output-manifest.json
+```
+
+See [`docs/OUTPUT_MANIFEST.md`](docs/OUTPUT_MANIFEST.md).

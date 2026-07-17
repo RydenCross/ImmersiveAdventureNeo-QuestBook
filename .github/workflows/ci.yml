@@ -49,6 +49,8 @@ jobs:
 
       - run: python -m generator determinism-audit --strict --format json --output reports/determinism-audit.json
 
+      - run: python -m generator output-manifest-guard --format json --output reports/output-manifest-guard.json
+
       - uses: actions/upload-artifact@v4
         with:
           name: release-analysis-reports

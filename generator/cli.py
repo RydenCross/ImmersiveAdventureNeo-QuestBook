@@ -20,6 +20,11 @@ from generator.identity_guard import (
     refresh_identity_baseline,
     run_identity_guard,
 )
+from generator.output_manifest import (
+    DEFAULT_OUTPUT_MANIFEST_PATH,
+    refresh_output_manifest,
+    run_output_manifest_guard,
+)
 from generator.parser import FTBQuestParser
 from generator.progression_guard import DEFAULT_BUDGET_PATH, run_progression_guard
 from generator.progression_metrics import analyze_progression
@@ -184,6 +189,29 @@ def create_parser() -> argparse.ArgumentParser:
     determinism_audit.add_argument(
         "--strict", action="store_true",
         help="Return a non-zero exit code when generated builds differ.",
+    )
+    output_guard = subparsers.add_parser(
+        "output-manifest-guard",
+        help="Compare generated output with the checked-in file manifest.",
+    )
+    output_guard.add_argument(
+        "baseline", nargs="?", type=Path, default=DEFAULT_OUTPUT_MANIFEST_PATH,
+        help="Output manifest (default: reports/generated-output-manifest.json).",
+    )
+    output_guard.add_argument(
+        "--format", choices=("text", "json"), default="text",
+        help="Select human-readable text or machine-readable JSON output.",
+    )
+    output_guard.add_argument(
+        "--output", type=Path, help="Write the guard report to a file.",
+    )
+    output_baseline = subparsers.add_parser(
+        "output-manifest",
+        help="Safely refresh the checked-in generated output manifest.",
+    )
+    output_baseline.add_argument(
+        "destination", nargs="?", type=Path, default=DEFAULT_OUTPUT_MANIFEST_PATH,
+        help="Manifest destination (default: reports/generated-output-manifest.json).",
     )
     registry = subparsers.add_parser(
         "registry-audit",
@@ -351,6 +379,32 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "output-manifest-guard":
+        try:
+            result = run_output_manifest_guard(args.baseline)
+        except ValueError as exc:
+            print(exc)
+            return 2
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "output-manifest":
+        try:
+            manifest = refresh_output_manifest(args.destination)
+        except ValueError as exc:
+            print(exc)
+            return 1
+        print(
+            f"Generated output manifest refreshed: {args.destination} "
+            f"({manifest.file_count} files, {manifest.total_bytes} bytes)."
+        )
+        return 0
+
     if args.command == "contract-guard":
         try:
             result = run_contract_guard(args.baseline)

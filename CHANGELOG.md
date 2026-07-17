@@ -1,3 +1,9 @@
+# Commit 56 - Generated Output Manifest Guard
+
+- Added per-file SHA-256 and byte-size tracking for generated questbook output.
+- Added safe manifest refresh gated by the build determinism audit.
+- Added CI enforcement, JSON reporting, documentation, and regression tests.
+
 # Commit 55 - Build Determinism Audit
 
 - Added byte-for-byte comparison of two isolated questbook builds.
