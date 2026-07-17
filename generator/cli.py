@@ -5,6 +5,7 @@ from pathlib import Path
 
 from content import create_project
 from generator.audit import audit_project
+from generator.audit_registry_contract import run_audit_registry_contract
 from generator.build import build
 from generator.chapter_audit import run_chapter_audit
 from generator.cli_audit import run_cli_audit
@@ -269,6 +270,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     release_reproducibility.add_argument("--format", choices=("text", "json"), default="text")
     release_reproducibility.add_argument("--output", type=Path)
+    audit_registry = subparsers.add_parser(
+        "audit-registry-audit",
+        help="Verify every audit is consistently registered across release surfaces.",
+    )
+    audit_registry.add_argument("--format", choices=("text", "json"), default="text")
+    audit_registry.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -523,6 +530,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "audit-registry-audit":
+        result = run_audit_registry_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "release-reproducibility-audit":
         result = run_release_reproducibility_audit()
         rendered = result.format_json() if args.format == "json" else result.format()

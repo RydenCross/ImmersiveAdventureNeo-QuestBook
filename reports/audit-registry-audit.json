@@ -1,0 +1,11 @@
+{
+  "duplicate_commands": [],
+  "duplicate_gate_names": [],
+  "duplicate_reports": [],
+  "missing_commands": [],
+  "missing_gate_checks": [],
+  "missing_reports": [],
+  "registrations": 19,
+  "status": "pass",
+  "unexpected_gate_checks": []
+}

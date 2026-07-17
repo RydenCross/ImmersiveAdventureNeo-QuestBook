@@ -7,6 +7,7 @@ from typing import Callable, Mapping
 
 from content import create_project
 from generator.chapter_audit import run_chapter_audit
+from generator.audit_registry_contract import run_audit_registry_contract
 from generator.cli_audit import run_cli_audit
 from generator.contract_guard import run_contract_guard
 from generator.dependency_audit import audit_dependencies
@@ -89,6 +90,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "repository-hygiene-audit.json": lambda: run_repository_hygiene_audit().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
         "release-reproducibility-audit.json": lambda: run_release_reproducibility_audit().format_json(),
+        "audit-registry-audit.json": lambda: run_audit_registry_contract().format_json(),
     }
 
 

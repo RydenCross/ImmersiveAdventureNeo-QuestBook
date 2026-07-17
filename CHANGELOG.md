@@ -257,3 +257,8 @@
 - Added `report-freshness-guard` to compare checked-in JSON reports with current audit results.
 - Detects stale, missing, and invalid derived reports.
 - Added CI enforcement and machine-readable freshness reporting.
+
+## Commit 65 - Audit Registry Contract
+
+- Added `audit-registry-audit` to detect partially integrated or duplicate release safeguards.
+- Registered the new audit in the CLI, unified quality gate, report freshness guard, documentation, and checked-in reports.

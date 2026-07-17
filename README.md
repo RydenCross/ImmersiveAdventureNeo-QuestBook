@@ -306,3 +306,13 @@ python -m generator release-reproducibility-audit
 ```
 
 Compares two independently created release archives by normalized entry names and SHA-256 content digests.
+
+### Audit registry contract
+
+Verify that every release safeguard is consistently registered across the CLI, unified quality gate, and report freshness inventory:
+
+```bash
+python -m generator audit-registry-audit
+```
+
+See [docs/AUDIT_REGISTRY_CONTRACT.md](docs/AUDIT_REGISTRY_CONTRACT.md) for details.
