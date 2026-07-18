@@ -1,3 +1,9 @@
+## Commit 72 - CLI Exit-Code Contract
+
+- Added pass/fail exit-code verification through the public CLI.
+- Added synthetic failure coverage for non-zero process status.
+- Integrated the contract into the quality gate, report registry, freshness guard, documentation, and tests.
+
 # Changelog
 
 ## Commit 71 - CLI Output Contract

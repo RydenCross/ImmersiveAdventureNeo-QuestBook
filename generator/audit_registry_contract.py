@@ -59,6 +59,7 @@ AUDIT_REGISTRY = (
         "report determinism contract", "report-determinism-audit", "report-determinism-audit.json"
     ),
     AuditRegistration("CLI output contract", "cli-output-audit", "cli-output-audit.json"),
+    AuditRegistration("CLI exit-code contract", "cli-exit-code-audit", "cli-exit-code-audit.json"),
 )
 
 

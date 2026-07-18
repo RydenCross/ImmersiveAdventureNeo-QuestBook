@@ -1,9 +1,10 @@
 {
-  "checked_reports": 24,
+  "checked_reports": 25,
   "deterministic_reports": [
     "audit-registry-audit.json",
     "chapter-audit.json",
     "cli-audit.json",
+    "cli-exit-code-audit.json",
     "cli-output-audit.json",
     "contract-guard.json",
     "dependency-audit.json",

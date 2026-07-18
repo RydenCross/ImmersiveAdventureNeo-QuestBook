@@ -378,3 +378,12 @@ python -m generator cli-output-audit
 ```
 
 Validates JSON output, successful exit codes, and parity between stdout and `--output` for every registered report command.
+
+
+### CLI exit-code contract
+
+```bash
+python -m generator cli-exit-code-audit
+```
+
+Verifies that passing audit JSON returns exit code `0` and failing audit JSON returns a non-zero process status. See [CLI Exit-Code Contract](docs/CLI_EXIT_CODE_CONTRACT.md).

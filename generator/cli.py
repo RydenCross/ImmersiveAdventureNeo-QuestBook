@@ -47,6 +47,7 @@ from generator.report_consistency_contract import run_report_consistency_contrac
 from generator.report_provenance_contract import run_report_provenance_contract
 from generator.report_determinism_contract import run_report_determinism_contract
 from generator.cli_output_contract import run_cli_output_contract
+from generator.cli_exit_code_contract import run_cli_exit_code_contract
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
 from generator.release_guard import (
@@ -318,6 +319,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     cli_output.add_argument("--format", choices=("text", "json"), default="text")
     cli_output.add_argument("--output", type=Path)
+    cli_exit_code = subparsers.add_parser(
+        "cli-exit-code-audit",
+        help="Validate audit command exit codes against JSON pass/fail status.",
+    )
+    cli_exit_code.add_argument("--format", choices=("text", "json"), default="text")
+    cli_exit_code.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -572,6 +579,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "cli-exit-code-audit":
+        result = run_cli_exit_code_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "cli-output-audit":
         result = run_cli_output_contract()
         rendered = result.format_json() if args.format == "json" else result.format()

@@ -16,6 +16,10 @@
       "report": "cli-audit.json"
     },
     {
+      "command": "cli-exit-code-audit",
+      "report": "cli-exit-code-audit.json"
+    },
+    {
       "command": "cli-output-audit",
       "report": "cli-output-audit.json"
     },
@@ -101,5 +105,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 24
+  "tracked_reports": 25
 }

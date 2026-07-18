@@ -1,10 +1,11 @@
 {
-  "command_count": 38,
+  "command_count": 39,
   "commands": [
     "audit",
     "audit-registry-audit",
     "chapter-audit",
     "cli-audit",
+    "cli-exit-code-audit",
     "cli-output-audit",
     "contract-baseline",
     "contract-guard",
