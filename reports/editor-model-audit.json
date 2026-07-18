@@ -1,0 +1,14 @@
+{
+  "blueprint_round_trip": true,
+  "cycle_rejected": true,
+  "dangling_dependency_rejected": true,
+  "deterministic_output": true,
+  "document_generated": true,
+  "ftb_export_compatible": true,
+  "invalid_policy_rejected": true,
+  "json_round_trip": true,
+  "position_edit_recorded": true,
+  "reversible_update": true,
+  "stable_nodes_and_edges": true,
+  "status": "pass"
+}

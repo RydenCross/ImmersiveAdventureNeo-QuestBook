@@ -1,5 +1,5 @@
 {
-  "command_count": 70,
+  "command_count": 72,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -15,6 +15,7 @@
     "dependency-graph",
     "determinism-audit",
     "documentation-audit",
+    "editor-model-audit",
     "ftb-blueprint-exporter-audit",
     "ftb-quest-export",
     "identity-baseline",
@@ -35,6 +36,7 @@
     "quest-blueprint",
     "quest-description-audit",
     "quest-description-plan",
+    "quest-editor-model",
     "quest-reward-plan",
     "questbook-review",
     "questbook-review-audit",

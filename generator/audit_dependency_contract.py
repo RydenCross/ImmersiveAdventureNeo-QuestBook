@@ -44,6 +44,7 @@ AUDIT_DEPENDENCIES.update(
         "FTB blueprint exporter contract": ("quest description contract",),
         "questbook review contract": ("FTB blueprint exporter contract",),
         "reward planner contract": ("questbook review contract", "quest description contract"),
+        "visual editor data model contract": ("reward planner contract", "FTB blueprint exporter contract"),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

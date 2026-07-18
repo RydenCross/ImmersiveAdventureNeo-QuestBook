@@ -81,6 +81,8 @@ from generator.quest_description_generator import (
 )
 from generator.quest_description_contract import run_quest_description_contract
 from generator.reward_planner_contract import run_reward_planner_contract
+from generator.editor_model import generate_editor_model
+from generator.editor_model_contract import run_editor_model_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -533,6 +535,31 @@ def create_parser() -> argparse.ArgumentParser:
     )
     quest_reward_plan.add_argument("--format", choices=("text", "json"), default="text")
     quest_reward_plan.add_argument("--output", type=Path, help="Write the reward plan to a file.")
+    quest_editor_model = subparsers.add_parser(
+        "quest-editor-model",
+        help="Generate a versioned visual-editor document with nodes, edges, and change tracking.",
+    )
+    quest_editor_model.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
+    )
+    quest_editor_model.add_argument(
+        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+    )
+    quest_editor_model.add_argument(
+        "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+    )
+    quest_editor_model.add_argument(
+        "--description-style", choices=DESCRIPTION_STYLES, default="guided",
+        help="Description detail level applied before editor conversion (default: guided).",
+    )
+    quest_editor_model.add_argument(
+        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned",
+        help="Optional generated reward policy stored in the editor document (default: unassigned).",
+    )
+    quest_editor_model.add_argument("--format", choices=("text", "json"), default="text")
+    quest_editor_model.add_argument(
+        "--output", type=Path, help="Write the editor document to a file."
+    )
     ftb_quest_export = subparsers.add_parser(
         "ftb-quest-export",
         help="Generate and export a modpack quest blueprint as an installable FTB Quests SNBT tree.",
@@ -649,6 +676,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     quest_description.add_argument("--format", choices=("text", "json"), default="text")
     quest_description.add_argument("--output", type=Path)
+    editor_model = subparsers.add_parser(
+        "editor-model-audit",
+        help="Validate editor JSON round trips, reversible edits, graph safety, and export compatibility.",
+    )
+    editor_model.add_argument("--format", choices=("text", "json"), default="text")
+    editor_model.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -940,6 +973,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "editor-model-audit":
+        result = run_editor_model_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1001,6 +1043,21 @@ def main(argv: list[str] | None = None) -> int:
             chapter_size=args.chapter_size,
             policy=args.policy,
             description_style=args.description_style,
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-editor-model":
+        result = generate_editor_model(
+            args.path,
+            target_quests=args.target_quests,
+            chapter_size=args.chapter_size,
+            description_style=args.description_style,
+            reward_policy=args.reward_policy,
         )
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:

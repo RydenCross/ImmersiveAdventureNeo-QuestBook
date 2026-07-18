@@ -106,6 +106,30 @@ python -m generator quest-description-audit --format json --output reports/quest
 
 See [`docs/QUEST_DESCRIPTION_GENERATOR.md`](docs/QUEST_DESCRIPTION_GENERATOR.md).
 
+## Visual questbook editor data model
+
+Generate a versioned JSON graph for a future desktop or web editor:
+
+```bash
+python -m generator quest-editor-model /path/to/modpack.mrpack \
+  --target-quests 600 \
+  --description-style guided \
+  --reward-policy conservative \
+  --format json \
+  --output quest-editor-model.json
+```
+
+The editor document separates chapters, quests, and prerequisite edges; preserves source, objective, layout, description, review, and reward data; and supports revisioned reversible operations with structural validation. It converts back into the existing quest blueprint for review and FTB Quests export.
+
+Validate the model with:
+
+```bash
+python -m generator editor-model-audit
+python -m generator editor-model-audit --format json --output reports/editor-model-audit.json
+```
+
+See [`docs/EDITOR_MODEL.md`](docs/EDITOR_MODEL.md).
+
 ## Generated quest reward planning
 
 Assign deterministic reward drafts or explicit no-reward decisions before export:

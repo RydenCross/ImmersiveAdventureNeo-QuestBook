@@ -123,14 +123,18 @@
     "test inventory contract": [
       "audit registry contract"
     ],
-    "text audit": []
+    "text audit": [],
+    "visual editor data model contract": [
+      "reward planner contract",
+      "FTB blueprint exporter contract"
+    ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 41,
+  "dependency_edges": 43,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 49,
+  "registered_audits": 50,
   "status": "pass",
   "unknown_dependencies": []
 }

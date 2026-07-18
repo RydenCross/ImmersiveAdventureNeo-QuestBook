@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 96 - Visual Questbook Editor Data Model
+
+- Added a versioned deterministic JSON graph for chapters, quests, objectives, rewards, positions, and prerequisite edges.
+- Added immutable editor operations with revision tracking, dirty-entity tracking, reversible transactions, and graph validation.
+- Added blueprint round-trip and FTB Quests exporter compatibility for future desktop and web editor interfaces.
+- Added public CLI generation, contract tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 95 - Quest Description and Instruction Generator
 
 - Added deterministic concise, guided, and detailed description generation for scanned quest blueprints.

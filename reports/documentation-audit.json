@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 70,
+  "documented_command_count": 72,
   "empty_documents": [],
-  "expected_command_count": 70,
-  "markdown_file_count": 80,
+  "expected_command_count": 72,
+  "markdown_file_count": 81,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -31,6 +31,7 @@
     "docs/DEPENDENCY_GRAPH.md",
     "docs/DETERMINISM_AUDIT.md",
     "docs/DOCUMENTATION_AUDIT.md",
+    "docs/EDITOR_MODEL.md",
     "docs/ENDGAME.md",
     "docs/EXPLORATION.md",
     "docs/EXPLORATION_EXPANSION.md",

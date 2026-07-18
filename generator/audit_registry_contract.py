@@ -81,6 +81,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("FTB blueprint exporter contract", "ftb-blueprint-exporter-audit", "ftb-blueprint-exporter-audit.json"),
     AuditRegistration("questbook review contract", "questbook-review-audit", "questbook-review-audit.json"),
     AuditRegistration("reward planner contract", "reward-planner-audit", "reward-planner-audit.json"),
+    AuditRegistration("visual editor data model contract", "editor-model-audit", "editor-model-audit.json"),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )
