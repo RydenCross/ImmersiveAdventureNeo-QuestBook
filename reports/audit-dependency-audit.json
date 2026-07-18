@@ -34,6 +34,9 @@
       "packaging audit"
     ],
     "release guard": [],
+    "release package verification contract": [
+      "release report finalization contract"
+    ],
     "release report finalization contract": [
       "report refresh idempotence contract",
       "report refresh order contract"
@@ -81,11 +84,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 25,
+  "dependency_edges": 26,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 34,
+  "registered_audits": 35,
   "status": "pass",
   "unknown_dependencies": []
 }

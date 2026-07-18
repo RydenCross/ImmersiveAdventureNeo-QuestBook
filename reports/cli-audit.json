@@ -1,5 +1,5 @@
 {
-  "command_count": 48,
+  "command_count": 49,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -31,6 +31,7 @@
     "release-check",
     "release-compare",
     "release-guard",
+    "release-package-verification-audit",
     "release-report-finalization-audit",
     "release-reproducibility-audit",
     "report-consistency-audit",

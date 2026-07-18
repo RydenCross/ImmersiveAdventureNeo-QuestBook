@@ -456,4 +456,9 @@ Validate that archive-derived release reports remain the final, stable stage of 
 
 ```bash
 python -m generator release-report-finalization-audit
+python -m generator release-package-verification-audit
 ```
+
+### Release package verification
+
+Run `python -m generator release-package-verification-audit` to independently verify the final ZIP inventory, checksums, reproducibility, and excluded-cache rules.

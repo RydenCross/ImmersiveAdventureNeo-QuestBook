@@ -1,0 +1,11 @@
+{
+  "archive_entries": 265,
+  "archive_sha256": "85f125f9f1f0b15305cf79611f5a94eae5df681ceee78d05d33da3c24cc1bbf3",
+  "artifact_entries_match": true,
+  "artifact_sha256_match": true,
+  "forbidden_entries": [],
+  "reproducibility_entries_match": true,
+  "reproducibility_tree_match": true,
+  "status": "pass",
+  "tree_sha256": "eff6173d314172acd213bc0b7c2f25504637a92dca619780e658c70a92ec602e"
+}

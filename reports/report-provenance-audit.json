@@ -72,6 +72,10 @@
       "report": "release-guard.json"
     },
     {
+      "command": "release-package-verification-audit",
+      "report": "release-package-verification-audit.json"
+    },
+    {
       "command": "release-report-finalization-audit",
       "report": "release-report-finalization-audit.json"
     },
@@ -137,5 +141,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 33
+  "tracked_reports": 34
 }

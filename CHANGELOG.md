@@ -349,3 +349,5 @@
 
 - Added `release-report-finalization-audit` and its tracked JSON report.
 - Enforced final placement and follow-up stability for archive-derived release reports.
+
+- Added a release package verification contract that cross-checks final ZIP inventory, archive and tree checksums, reproducibility, and hygiene exclusions.

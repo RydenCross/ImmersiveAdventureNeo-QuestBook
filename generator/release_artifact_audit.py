@@ -14,6 +14,7 @@ _IGNORED_SUFFIXES = {".pyc", ".pyo"}
 _EXCLUDED_REPORTS = {
     "reports/release-artifact-audit.json",
     "reports/release-reproducibility-audit.json",
+    "reports/release-package-verification-audit.json",
     "reports/quality-gate.json",
     "reports/report-freshness-guard.json",
 }
