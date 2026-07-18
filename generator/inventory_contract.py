@@ -54,6 +54,7 @@ SPECIAL_TEST_FILES = {
     "progression planner contract": "test_progression_planner_contract.py",
     "FTB blueprint exporter contract": "test_ftb_blueprint_exporter_contract.py",
     "questbook review contract": "test_questbook_review_contract.py",
+    "reward planner contract": "test_reward_planner_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

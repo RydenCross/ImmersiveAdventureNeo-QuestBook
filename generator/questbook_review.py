@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import json
 from pathlib import Path
 import re
@@ -13,6 +13,7 @@ from generator.progression_planner import (
     QuestBlueprint,
     generate_quest_blueprint,
 )
+from generator.reward_planner import plan_quest_rewards
 from generator.validator import ProjectValidator
 
 DEFAULT_LOW_CONFIDENCE_THRESHOLD = 0.75
@@ -352,6 +353,43 @@ def review_quest_blueprint(
                 "The progression planner marked this quest for manual review.",
                 chapter.chapter_id, quest.quest_id,
             ))
+        if quest.reward_decision not in {"unassigned", "none", "rewarded"}:
+            findings.append(QuestbookReviewFinding(
+                "error", "INVALID_REWARD_DECISION",
+                f"Reward decision '{quest.reward_decision}' is not supported.",
+                chapter.chapter_id, quest.quest_id,
+            ))
+        if quest.reward_decision == "rewarded" and not quest.rewards:
+            findings.append(QuestbookReviewFinding(
+                "error", "MISSING_REWARD_DEFINITION",
+                "Quest is marked rewarded but contains no reward definition.",
+                chapter.chapter_id, quest.quest_id,
+            ))
+        if quest.reward_decision == "none" and quest.rewards:
+            findings.append(QuestbookReviewFinding(
+                "error", "CONTRADICTORY_REWARD_DECISION",
+                "Quest is marked no-reward but contains reward definitions.",
+                chapter.chapter_id, quest.quest_id,
+            ))
+        for reward in quest.rewards:
+            if reward.reward_type != "item":
+                findings.append(QuestbookReviewFinding(
+                    "error", "UNSUPPORTED_REWARD_TYPE",
+                    f"Reward type '{reward.reward_type}' cannot be exported.",
+                    chapter.chapter_id, quest.quest_id,
+                ))
+            if not _RESOURCE_LOCATION.fullmatch(reward.identifier):
+                findings.append(QuestbookReviewFinding(
+                    "error", "INVALID_REWARD_ID",
+                    f"Reward '{reward.identifier}' is not a namespace:path identifier.",
+                    chapter.chapter_id, quest.quest_id,
+                ))
+            if reward.count < 1:
+                findings.append(QuestbookReviewFinding(
+                    "error", "INVALID_REWARD_COUNT",
+                    "Reward count must be at least one.",
+                    chapter.chapter_id, quest.quest_id,
+                ))
         word_count = len(_WORD.findall(quest.description))
         if word_count < safe_description_words:
             weak_descriptions += 1
@@ -404,7 +442,9 @@ def review_quest_blueprint(
         ))
 
     export_warnings = 0
-    missing_rewards = len(rows)
+    missing_rewards = sum(
+        quest.reward_decision == "unassigned" for _, quest in rows
+    )
     try:
         project = blueprint_to_project(blueprint)
         validation = ProjectValidator().validate(project)
@@ -417,7 +457,6 @@ def review_quest_blueprint(
             findings.append(QuestbookReviewFinding(
                 "warning", "EXPORT_VALIDATION_WARNING", issue.format()
             ))
-        missing_rewards = sum(not quest.rewards for quest in project.quests)
     except (OSError, TypeError, ValueError) as exc:
         findings.append(QuestbookReviewFinding(
             "error", "EXPORT_CONVERSION_FAILED", str(exc)
@@ -462,12 +501,22 @@ def review_modpack_questbook(
     min_description_words: int = DEFAULT_MIN_DESCRIPTION_WORDS,
     max_chapter_quests: int = DEFAULT_MAX_CHAPTER_QUESTS,
     bottleneck_dependents: int = DEFAULT_BOTTLENECK_DEPENDENTS,
+    reward_policy: str = "unassigned",
 ) -> QuestbookReview:
     blueprint = generate_quest_blueprint(
         path,
         target_quests=target_quests,
         chapter_size=chapter_size,
     )
+    if reward_policy != "unassigned":
+        reward_plan = plan_quest_rewards(blueprint, policy=reward_policy)
+        if reward_plan.is_clean:
+            blueprint = reward_plan.blueprint
+        else:
+            blueprint = replace(
+                blueprint,
+                errors=tuple((*blueprint.errors, *reward_plan.errors)),
+            )
     return review_quest_blueprint(
         blueprint,
         low_confidence_threshold=low_confidence_threshold,

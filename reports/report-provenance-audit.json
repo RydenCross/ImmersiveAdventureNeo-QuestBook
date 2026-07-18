@@ -176,6 +176,10 @@
       "report": "reward-audit.json"
     },
     {
+      "command": "reward-planner-audit",
+      "report": "reward-planner-audit.json"
+    },
+    {
       "command": "task-audit",
       "report": "task-audit.json"
     },
@@ -189,5 +193,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 46
+  "tracked_reports": 47
 }

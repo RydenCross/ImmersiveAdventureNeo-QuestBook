@@ -12,12 +12,24 @@ from typing import Iterable
 from generator.ids import UUIDService
 from generator.parser import FTBQuestParser
 from generator.progression_planner import BlueprintQuest, QuestBlueprint, generate_quest_blueprint
+from generator.reward_planner import plan_quest_rewards
 from generator.validator import ProjectValidator
 from generator.writer import FTBQuestWriter
-from model import Chapter, Dependency, Position, Project, Quest, Task, TaskType
+from model import (
+    Chapter,
+    Dependency,
+    Position,
+    Project,
+    Quest,
+    Reward,
+    RewardType,
+    Task,
+    TaskType,
+)
 
 DEFAULT_FTB_QUESTS_VERSION = "13"
 _SAFE_SLUG = re.compile(r"[^a-z0-9_]+")
+_RESOURCE_LOCATION = re.compile(r"^[a-z0-9_.-]+:[a-z0-9_./-]+$")
 
 
 def _slug(value: str) -> str:
@@ -68,6 +80,48 @@ def _task_for(quest: BlueprintQuest, *, task_id: str) -> Task:
         f"unsupported blueprint objective type '{quest.objective.objective_type}' "
         f"for quest {quest.quest_id}"
     )
+
+
+def _rewards_for(quest: BlueprintQuest, *, ids: UUIDService, quest_key: str) -> list[Reward]:
+    if quest.reward_decision not in {"unassigned", "none", "rewarded"}:
+        raise ValueError(
+            f"invalid reward decision '{quest.reward_decision}' for quest {quest.quest_id}"
+        )
+    if quest.reward_decision == "none" and quest.rewards:
+        raise ValueError(f"no-reward quest {quest.quest_id} contains reward definitions")
+    if quest.reward_decision == "rewarded" and not quest.rewards:
+        raise ValueError(f"rewarded quest {quest.quest_id} has no reward definitions")
+
+    rewards: list[Reward] = []
+    for index, reward in enumerate(quest.rewards):
+        if reward.reward_type != "item":
+            raise ValueError(
+                f"unsupported blueprint reward type '{reward.reward_type}' "
+                f"for quest {quest.quest_id}"
+            )
+        if not _RESOURCE_LOCATION.fullmatch(reward.identifier):
+            raise ValueError(
+                f"invalid blueprint reward item '{reward.identifier}' "
+                f"for quest {quest.quest_id}"
+            )
+        if isinstance(reward.count, bool) or not isinstance(reward.count, int) or reward.count < 1:
+            raise ValueError(
+                f"blueprint reward count must be positive for quest {quest.quest_id}"
+            )
+        reward_key = f"{quest_key}/reward/{index}/{reward.identifier}"
+        rewards.append(Reward(
+            id=_ftb_id(ids.reward(quest_key, reward_key).int),
+            type=RewardType.ITEM,
+            data={
+                "item": {"id": reward.identifier, "count": 1},
+                "count": reward.count,
+            },
+            raw_data={
+                "generated_reason": reward.reason,
+                "generated_reward_decision": quest.reward_decision,
+            },
+        ))
+    return rewards
 
 
 def blueprint_to_project(
@@ -138,6 +192,7 @@ def blueprint_to_project(
                 "generated_source_id": blueprint_quest.source_id,
                 "generated_confidence": blueprint_quest.confidence,
                 "generated_review_required": blueprint_quest.review_required,
+                "generated_reward_decision": blueprint_quest.reward_decision,
             }
             model_chapter.add_quest(
                 Quest(
@@ -148,6 +203,7 @@ def blueprint_to_project(
                     description=blueprint_quest.description,
                     icon=_quest_icon(blueprint_quest),
                     tasks=[_task_for(blueprint_quest, task_id=task_id)],
+                    rewards=_rewards_for(blueprint_quest, ids=ids, quest_key=quest_key),
                     dependencies=[
                         Dependency(quest_ids[dependency])
                         for dependency in blueprint_quest.prerequisite_quests
@@ -315,6 +371,7 @@ def export_modpack_questbook(
     *,
     target_quests: int | None = None,
     chapter_size: int = 40,
+    reward_policy: str = "unassigned",
     version: str = DEFAULT_FTB_QUESTS_VERSION,
 ) -> FTBQuestExportResult:
     blueprint = generate_quest_blueprint(
@@ -322,4 +379,21 @@ def export_modpack_questbook(
         target_quests=target_quests,
         chapter_size=chapter_size,
     )
+    if reward_policy != "unassigned":
+        reward_plan = plan_quest_rewards(blueprint, policy=reward_policy)
+        if not reward_plan.is_clean:
+            return FTBQuestExportResult(
+                destination=Path(destination).as_posix(),
+                quests_root="",
+                pack_name=blueprint.pack_name,
+                chapters=0,
+                quests=0,
+                tasks=0,
+                dependency_edges=0,
+                files=(),
+                tree_sha256="",
+                warnings=reward_plan.warnings,
+                errors=reward_plan.errors,
+            )
+        blueprint = reward_plan.blueprint
     return export_quest_blueprint(blueprint, destination, version=version)

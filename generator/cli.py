@@ -74,6 +74,8 @@ from generator.ftb_blueprint_exporter import export_modpack_questbook
 from generator.ftb_blueprint_exporter_contract import run_ftb_blueprint_exporter_contract
 from generator.questbook_review import review_modpack_questbook
 from generator.questbook_review_contract import run_questbook_review_contract
+from generator.reward_planner import REWARD_POLICIES, generate_quest_reward_plan
+from generator.reward_planner_contract import run_reward_planner_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -482,6 +484,25 @@ def create_parser() -> argparse.ArgumentParser:
     )
     quest_blueprint.add_argument("--format", choices=("text", "json"), default="text")
     quest_blueprint.add_argument("--output", type=Path, help="Write the quest blueprint to a file.")
+    quest_reward_plan = subparsers.add_parser(
+        "quest-reward-plan",
+        help="Assign deterministic reward or explicit no-reward decisions to a generated blueprint.",
+    )
+    quest_reward_plan.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
+    )
+    quest_reward_plan.add_argument(
+        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+    )
+    quest_reward_plan.add_argument(
+        "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+    )
+    quest_reward_plan.add_argument(
+        "--policy", choices=REWARD_POLICIES, default="conservative",
+        help="Reward density policy (default: conservative).",
+    )
+    quest_reward_plan.add_argument("--format", choices=("text", "json"), default="text")
+    quest_reward_plan.add_argument("--output", type=Path, help="Write the reward plan to a file.")
     ftb_quest_export = subparsers.add_parser(
         "ftb-quest-export",
         help="Generate and export a modpack quest blueprint as an installable FTB Quests SNBT tree.",
@@ -500,6 +521,10 @@ def create_parser() -> argparse.ArgumentParser:
     )
     ftb_quest_export.add_argument(
         "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+    )
+    ftb_quest_export.add_argument(
+        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned",
+        help="Apply generated reward decisions before export (default: unassigned).",
     )
     ftb_quest_export.add_argument("--format", choices=("text", "json"), default="text")
     ftb_quest_export.add_argument("--output", type=Path, help="Write the export summary to a file.")
@@ -531,6 +556,10 @@ def create_parser() -> argparse.ArgumentParser:
     questbook_review.add_argument(
         "--bottleneck-dependents", type=int, default=8,
         help="Flag quests directly gating at least this many quests (default: 8).",
+    )
+    questbook_review.add_argument(
+        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned",
+        help="Review an automatically rewarded blueprint (default: unassigned).",
     )
     questbook_review.add_argument("--format", choices=("text", "json"), default="text")
     questbook_review.add_argument("--output", type=Path, help="Write the review report to a file.")
@@ -570,6 +599,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     questbook_review_audit.add_argument("--format", choices=("text", "json"), default="text")
     questbook_review_audit.add_argument("--output", type=Path)
+    reward_planner = subparsers.add_parser(
+        "reward-planner-audit",
+        help="Validate reward decisions, policy scaling, review resolution, and FTB export.",
+    )
+    reward_planner.add_argument("--format", choices=("text", "json"), default="text")
+    reward_planner.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -901,12 +936,27 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "quest-reward-plan":
+        result = generate_quest_reward_plan(
+            args.path,
+            target_quests=args.target_quests,
+            chapter_size=args.chapter_size,
+            policy=args.policy,
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "ftb-quest-export":
         result = export_modpack_questbook(
             args.path,
             args.destination,
             target_quests=args.target_quests,
             chapter_size=args.chapter_size,
+            reward_policy=args.reward_policy,
         )
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
@@ -924,6 +974,7 @@ def main(argv: list[str] | None = None) -> int:
             min_description_words=args.min_description_words,
             max_chapter_quests=args.max_chapter_quests,
             bottleneck_dependents=args.bottleneck_dependents,
+            reward_policy=args.reward_policy,
         )
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
@@ -970,6 +1021,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "questbook-review-audit":
         result = run_questbook_review_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "reward-planner-audit":
+        result = run_reward_planner_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

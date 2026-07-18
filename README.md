@@ -83,6 +83,29 @@ python -m generator progression-planner-audit --format json --output reports/pro
 
 See [`docs/PROGRESSION_PLANNER.md`](docs/PROGRESSION_PLANNER.md).
 
+## Generated quest reward planning
+
+Assign deterministic reward drafts or explicit no-reward decisions before export:
+
+```bash
+python -m generator quest-reward-plan /path/to/modpack.mrpack \
+  --target-quests 600 \
+  --policy conservative \
+  --format json \
+  --output quest-reward-plan.json
+```
+
+Policies range from `none` through `generous`. Low-confidence quests are protected from automatic rewards, while every quest receives an explicit decision that the review report can validate.
+
+Validate the planner with:
+
+```bash
+python -m generator reward-planner-audit
+python -m generator reward-planner-audit --format json --output reports/reward-planner-audit.json
+```
+
+See [`docs/REWARD_PLANNER.md`](docs/REWARD_PLANNER.md).
+
 ## FTB Quests SNBT blueprint export
 
 Generate a blueprint and write it directly as an installable FTB Quests v13 tree:
@@ -91,7 +114,8 @@ Generate a blueprint and write it directly as an installable FTB Quests v13 tree
 python -m generator ftb-quest-export /path/to/modpack.mrpack \
   --destination generated/ftbquests \
   --target-quests 600 \
-  --chapter-size 40
+  --chapter-size 40 \
+  --reward-policy conservative
 ```
 
 The exporter converts item and advancement objectives into FTB tasks, assigns stable FTB IDs, preserves prerequisites across chapters, removes stale generated chapter files, reparses the emitted SNBT, and reports a deterministic tree checksum.
@@ -112,6 +136,7 @@ Review a generated blueprint before installing or publishing it:
 ```bash
 python -m generator questbook-review /path/to/modpack.mrpack \
   --target-quests 600 \
+  --reward-policy conservative \
   --format json \
   --output questbook-review.json
 ```

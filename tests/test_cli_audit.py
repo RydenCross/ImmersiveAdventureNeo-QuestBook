@@ -25,4 +25,4 @@ def test_cli_audit_reports_broken_console_script(tmp_path: Path) -> None:
 def test_cli_audit_json_is_machine_readable() -> None:
     rendered = run_cli_audit().format_json()
     assert '"status": "pass"' in rendered
-    assert '"command_count": 66' in rendered
+    assert '"command_count": 68' in rendered

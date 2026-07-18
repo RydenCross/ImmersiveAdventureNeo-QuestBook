@@ -56,3 +56,12 @@ python -m generator questbook-review-audit \
 ```
 
 The contract verifies deterministic output, export validation, weak-description and reward detection, oversized chapters, bottlenecks, dangling dependencies, and invalid threshold handling.
+
+## Review generated reward decisions
+
+```bash
+python -m generator questbook-review /path/to/modpack.mrpack \
+  --reward-policy conservative
+```
+
+This applies the selected reward policy before review, allowing the report to distinguish complete reward decisions from unassigned quests.

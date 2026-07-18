@@ -1,5 +1,5 @@
 {
-  "command_count": 66,
+  "command_count": 68,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -33,6 +33,7 @@
     "progression-planner-audit",
     "quality-gate",
     "quest-blueprint",
+    "quest-reward-plan",
     "questbook-review",
     "questbook-review-audit",
     "registry-audit",
@@ -64,6 +65,7 @@
     "report-write-safety-audit",
     "repository-hygiene-audit",
     "reward-audit",
+    "reward-planner-audit",
     "task-audit",
     "test-inventory-audit",
     "text-audit"

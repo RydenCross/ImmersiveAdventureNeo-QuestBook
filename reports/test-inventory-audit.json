@@ -44,13 +44,14 @@
     "test_report_write_safety_contract.py",
     "test_repository_hygiene.py",
     "test_reward_audit.py",
+    "test_reward_planner_contract.py",
     "test_task_audit.py",
     "test_test_inventory_contract.py",
     "test_text_audit.py"
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 47,
+  "registered_audits": 48,
   "status": "pass",
   "unregistered_mappings": []
 }

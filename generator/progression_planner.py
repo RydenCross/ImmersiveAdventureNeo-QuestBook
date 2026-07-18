@@ -43,6 +43,22 @@ class BlueprintObjective:
 
 
 @dataclass(frozen=True, slots=True)
+class BlueprintReward:
+    reward_type: str
+    identifier: str
+    count: int = 1
+    reason: str = ""
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "type": self.reward_type,
+            "id": self.identifier,
+            "count": self.count,
+            "reason": self.reason,
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class BlueprintQuest:
     quest_id: str
     candidate_id: str
@@ -59,6 +75,8 @@ class BlueprintQuest:
     x: int
     y: int
     review_required: bool
+    reward_decision: str = "unassigned"
+    rewards: tuple[BlueprintReward, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -75,6 +93,8 @@ class BlueprintQuest:
             "score": self.score,
             "position": {"x": self.x, "y": self.y},
             "review_required": self.review_required,
+            "reward_decision": self.reward_decision,
+            "rewards": [reward.to_dict() for reward in self.rewards],
         }
 
 

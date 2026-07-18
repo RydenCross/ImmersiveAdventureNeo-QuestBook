@@ -1,5 +1,5 @@
 {
-  "checked_reports": 46,
+  "checked_reports": 47,
   "deterministic_reports": [
     "audit-dependency-audit.json",
     "audit-performance-audit.json",
@@ -44,6 +44,7 @@
     "report-write-safety-audit.json",
     "repository-hygiene-audit.json",
     "reward-audit.json",
+    "reward-planner-audit.json",
     "task-audit.json",
     "test-inventory-audit.json",
     "text-audit.json"

@@ -37,3 +37,15 @@ python -m generator ftb-blueprint-exporter-audit
 ```
 
 The audit verifies item and advancement task emission, dependency preservation, parser round trips, deterministic output, stale-file removal, and rejection of invalid blueprints.
+
+## Optional generated rewards
+
+Apply a generated reward policy during export:
+
+```bash
+python -m generator ftb-quest-export /path/to/modpack.mrpack \
+  --destination generated/ftbquests \
+  --reward-policy conservative
+```
+
+Supported policies are `none`, `conservative`, `balanced`, and `generous`. The default is `unassigned`.

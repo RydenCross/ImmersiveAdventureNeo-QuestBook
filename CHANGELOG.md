@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 94 - Generated Quest Reward Planner
+
+- Added deterministic `none`, `conservative`, `balanced`, and `generous` reward-decision policies.
+- Added explicit no-reward decisions so the review stage can distinguish intentional omissions from unfinished work.
+- Protected low-confidence quests from automatic rewards and used a portable vanilla utility reward palette.
+- Added FTB item-reward export, CLI integration, contract tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 93 - Generated Questbook Review and Validation Report
 
 - Added a public review command for generated modpack questbooks before publishing.

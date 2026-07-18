@@ -1,0 +1,11 @@
+{
+  "conservative_sparse": true,
+  "decisions_complete": true,
+  "deterministic_output": true,
+  "export_round_trip_valid": true,
+  "invalid_policy_rejected": true,
+  "low_confidence_protected": true,
+  "policy_scaling": true,
+  "review_decisions_resolved": true,
+  "status": "pass"
+}

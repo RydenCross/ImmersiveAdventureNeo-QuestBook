@@ -112,6 +112,9 @@
     ],
     "repository hygiene audit": [],
     "reward audit": [],
+    "reward planner contract": [
+      "questbook review contract"
+    ],
     "task audit": [],
     "test inventory contract": [
       "audit registry contract"
@@ -119,11 +122,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 38,
+  "dependency_edges": 39,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 47,
+  "registered_audits": 48,
   "status": "pass",
   "unknown_dependencies": []
 }
