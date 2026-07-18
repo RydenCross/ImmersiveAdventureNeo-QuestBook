@@ -1,7 +1,8 @@
 {
-  "command_count": 43,
+  "command_count": 44,
   "commands": [
     "audit",
+    "audit-performance-audit",
     "audit-registry-audit",
     "chapter-audit",
     "cli-audit",

@@ -1,5 +1,11 @@
 # Changelog
 
+## Commit 76 - Audit Performance Contract
+
+- Added timing instrumentation and configurable budget validation for the registered audit inventory.
+- Detects missing timings and duplicate audit executions without recursively rerunning the full quality gate.
+- Integrated the contract into the CLI, quality gate, registry, freshness guard, tests, and documentation.
+
 ## Commit 75 - Report Refresh Command and Contract
 
 - Added one-command dependency-safe regeneration for all tracked reports.

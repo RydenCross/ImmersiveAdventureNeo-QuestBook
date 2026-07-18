@@ -6,6 +6,7 @@ from pathlib import Path
 from content import create_project
 from generator.audit import audit_project
 from generator.audit_registry_contract import run_audit_registry_contract
+from generator.audit_performance_contract import run_audit_performance_contract
 from generator.build import build
 from generator.chapter_audit import run_chapter_audit
 from generator.cli_audit import run_cli_audit
@@ -348,6 +349,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     report_refresh_audit.add_argument("--format", choices=("text", "json"), default="text")
     report_refresh_audit.add_argument("--output", type=Path)
+    audit_performance = subparsers.add_parser(
+        "audit-performance-audit",
+        help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
+    )
+    audit_performance.add_argument("--format", choices=("text", "json"), default="text")
+    audit_performance.add_argument("--output", type=Path)
     cli_exit_code = subparsers.add_parser(
         "cli-exit-code-audit",
         help="Validate audit command exit codes against JSON pass/fail status.",
@@ -612,6 +619,15 @@ def main(argv: list[str] | None = None) -> int:
         result = refresh_reports(args.directory)
         rendered = result.format_json() if args.format == "json" else result.format()
         print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "audit-performance-audit":
+        result = run_audit_performance_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
         return 0 if result.is_clean else 1
 
     if args.command == "report-refresh-audit":

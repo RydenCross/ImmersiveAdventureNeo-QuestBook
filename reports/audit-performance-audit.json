@@ -1,0 +1,32 @@
+{
+  "budget_ms": 250.0,
+  "duplicate_executions": [],
+  "missing_timings": [],
+  "over_budget": false,
+  "registered_audits": 30,
+  "slowest_audits": [
+    {
+      "duration_ms": 0.0,
+      "name": "CLI contract audit"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "CLI exit-code contract"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "CLI output contract"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "audit performance contract"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "audit registry contract"
+    }
+  ],
+  "status": "pass",
+  "timed_audits": 30,
+  "total_duration_ms": 0.0
+}

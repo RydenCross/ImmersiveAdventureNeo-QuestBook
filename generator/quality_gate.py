@@ -7,6 +7,7 @@ from typing import Callable, Mapping
 from content import create_project
 from generator.chapter_audit import run_chapter_audit
 from generator.audit_registry_contract import run_audit_registry_contract
+from generator.audit_performance_contract import run_audit_performance_contract
 from generator.cli_audit import run_cli_audit
 from generator.contract_guard import run_contract_guard
 from generator.dependency_audit import audit_dependencies
@@ -125,6 +126,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "report write-safety contract": run_report_write_safety_contract,
         "report refresh order contract": run_report_refresh_order_contract,
         "report refresh contract": run_report_refresh_contract,
+        "audit performance contract": run_audit_performance_contract,
     }
 
 

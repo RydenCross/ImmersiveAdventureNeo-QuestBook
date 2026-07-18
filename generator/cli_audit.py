@@ -10,6 +10,7 @@ DEFAULT_PYPROJECT_PATH = Path("pyproject.toml")
 EXPECTED_CONSOLE_SCRIPT = "generator.cli:main"
 EXPECTED_COMMANDS = (
     "audit",
+    "audit-performance-audit",
     "audit-registry-audit",
     "chapter-audit",
     "cli-audit",

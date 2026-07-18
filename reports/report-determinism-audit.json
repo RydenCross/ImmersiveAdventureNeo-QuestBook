@@ -1,6 +1,7 @@
 {
-  "checked_reports": 28,
+  "checked_reports": 29,
   "deterministic_reports": [
+    "audit-performance-audit.json",
     "audit-registry-audit.json",
     "chapter-audit.json",
     "cli-audit.json",

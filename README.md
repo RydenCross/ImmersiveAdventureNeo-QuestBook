@@ -415,3 +415,15 @@ python -m generator report-refresh --format json
 ```
 
 Validate the command contract with `python -m generator report-refresh-audit`. See [Report Refresh Contract](docs/REPORT_REFRESH_CONTRACT.md).
+
+
+### Audit performance contract
+
+Validate timing instrumentation, one-execution-per-audit coverage, and the configurable instrumentation budget:
+
+```bash
+python -m generator audit-performance-audit
+python -m generator audit-performance-audit --format json --output reports/audit-performance-audit.json
+```
+
+See [Audit Performance Contract](docs/AUDIT_PERFORMANCE_CONTRACT.md).
