@@ -59,6 +59,30 @@ python -m generator modpack-content-scanner-audit --format json --output reports
 
 See [`docs/MODPACK_CONTENT_SCANNER.md`](docs/MODPACK_CONTENT_SCANNER.md).
 
+## Progression planner and quest blueprint
+
+Turn scanned candidates into ordered mod chapters and a reviewable questbook blueprint:
+
+```bash
+python -m generator quest-blueprint /path/to/modpack.mrpack
+python -m generator quest-blueprint /path/to/modpack.mrpack \
+  --target-quests 600 \
+  --chapter-size 40 \
+  --format json \
+  --output quest-blueprint.json
+```
+
+The planner preserves prerequisite closure, balances selection across mods, splits oversized chapters, creates deterministic layout coordinates, records cross-chapter requirements, and flags low-confidence registry-only quests for review. It reports a candidate shortfall rather than inventing unsupported objectives.
+
+Validate the planner with:
+
+```bash
+python -m generator progression-planner-audit
+python -m generator progression-planner-audit --format json --output reports/progression-planner-audit.json
+```
+
+See [`docs/PROGRESSION_PLANNER.md`](docs/PROGRESSION_PLANNER.md).
+
 ## Build
 
 ```bash

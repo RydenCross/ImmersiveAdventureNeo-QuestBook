@@ -68,6 +68,8 @@ from generator.modpack_scanner import scan_modpack
 from generator.modpack_scanner_contract import run_modpack_scanner_contract
 from generator.modpack_content_scanner import scan_modpack_content
 from generator.modpack_content_scanner_contract import run_modpack_content_scanner_contract
+from generator.progression_planner import generate_quest_blueprint
+from generator.progression_planner_contract import run_progression_planner_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -456,6 +458,26 @@ def create_parser() -> argparse.ArgumentParser:
     )
     modpack_content_scan.add_argument("--format", choices=("text", "json"), default="text")
     modpack_content_scan.add_argument("--output", type=Path, help="Write the content profile to a file.")
+    quest_blueprint = subparsers.add_parser(
+        "quest-blueprint",
+        help="Plan scanned quest candidates into ordered mod chapters and a reviewable questbook blueprint.",
+    )
+    quest_blueprint.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
+    )
+    quest_blueprint.add_argument(
+        "--target-quests",
+        type=int,
+        help="Desired quest count (default: pack-profile recommendation).",
+    )
+    quest_blueprint.add_argument(
+        "--chapter-size",
+        type=int,
+        default=40,
+        help="Maximum quests per generated chapter (default: 40).",
+    )
+    quest_blueprint.add_argument("--format", choices=("text", "json"), default="text")
+    quest_blueprint.add_argument("--output", type=Path, help="Write the quest blueprint to a file.")
     mod_compatibility = subparsers.add_parser(
         "mod-compatibility-audit",
         help="Validate the supported Minecraft, NeoForge, and authored mod compatibility matrix.",
@@ -474,6 +496,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     modpack_content_scanner.add_argument("--format", choices=("text", "json"), default="text")
     modpack_content_scanner.add_argument("--output", type=Path)
+    progression_planner = subparsers.add_parser(
+        "progression-planner-audit",
+        help="Validate deterministic chapter planning, dependency closure, limits, and blueprint layout.",
+    )
+    progression_planner.add_argument("--format", choices=("text", "json"), default="text")
+    progression_planner.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -792,6 +820,19 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "quest-blueprint":
+        result = generate_quest_blueprint(
+            args.path,
+            target_quests=args.target_quests,
+            chapter_size=args.chapter_size,
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "modpack-scanner-audit":
         result = run_modpack_scanner_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -803,6 +844,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "modpack-content-scanner-audit":
         result = run_modpack_content_scanner_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "progression-planner-audit":
+        result = run_progression_planner_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

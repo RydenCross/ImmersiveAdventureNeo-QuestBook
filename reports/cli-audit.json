@@ -1,5 +1,5 @@
 {
-  "command_count": 60,
+  "command_count": 62,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -28,7 +28,9 @@
     "packaging-audit",
     "progression-guard",
     "progression-metrics",
+    "progression-planner-audit",
     "quality-gate",
+    "quest-blueprint",
     "registry-audit",
     "registry-manifest",
     "release-archive-compression-audit",

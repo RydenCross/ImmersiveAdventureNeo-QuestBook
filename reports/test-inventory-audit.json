@@ -18,6 +18,7 @@
     "test_output_manifest.py",
     "test_packaging_audit.py",
     "test_progression_guard.py",
+    "test_progression_planner_contract.py",
     "test_release_archive_compression_contract.py",
     "test_release_archive_extraction_safety_contract.py",
     "test_release_archive_metadata_contract.py",
@@ -47,7 +48,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 44,
+  "registered_audits": 45,
   "status": "pass",
   "unregistered_mappings": []
 }

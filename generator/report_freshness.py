@@ -50,6 +50,7 @@ from generator.release_archive_compression_contract import run_release_archive_c
 from generator.mod_compatibility_contract import run_mod_compatibility_contract
 from generator.modpack_scanner_contract import run_modpack_scanner_contract
 from generator.modpack_content_scanner_contract import run_modpack_content_scanner_contract
+from generator.progression_planner_contract import run_progression_planner_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -137,6 +138,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "mod-compatibility-audit.json": lambda: run_mod_compatibility_contract().format_json(),
         "modpack-scanner-audit.json": lambda: run_modpack_scanner_contract().format_json(),
         "modpack-content-scanner-audit.json": lambda: run_modpack_content_scanner_contract().format_json(),
+        "progression-planner-audit.json": lambda: run_progression_planner_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

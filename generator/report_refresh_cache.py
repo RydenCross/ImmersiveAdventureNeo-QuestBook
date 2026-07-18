@@ -37,6 +37,7 @@ _PROJECT_REPORTS = {
     "mod-compatibility-audit.json",
     "modpack-scanner-audit.json",
     "modpack-content-scanner-audit.json",
+    "progression-planner-audit.json",
 }
 _DOCUMENTATION_REPORTS = {"documentation-audit.json"}
 _TEST_REPORTS = {"test-inventory-audit.json"}

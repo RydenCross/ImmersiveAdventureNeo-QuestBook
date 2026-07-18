@@ -36,6 +36,9 @@
     ],
     "packaging audit": [],
     "progression guard": [],
+    "progression planner contract": [
+      "modpack content scanner contract"
+    ],
     "release archive Unicode path contract": [
       "release archive extraction safety contract"
     ],
@@ -110,11 +113,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 35,
+  "dependency_edges": 36,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 44,
+  "registered_audits": 45,
   "status": "pass",
   "unknown_dependencies": []
 }

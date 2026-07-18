@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 91 - Progression Planner and Quest Blueprint Generator
+
+- Added deterministic selection of scanned quest candidates with prerequisite closure and broad per-mod coverage.
+- Added ordered, category-aware mod chapters, chapter splitting, cross-chapter prerequisites, and stable quest layout coordinates.
+- Added configurable quest targets and chapter sizes, shortfall reporting, review-required flags, public CLI output, regression tests, documentation, quality-gate integration, and a tracked planner audit.
+
 ## Commit 90 - Recipe, Advancement, and Registry Scanner
 
 - Added safe extraction of recipes, advancements, item registries, tags, and English item names from modpack JARs and bundled datapacks.
