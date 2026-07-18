@@ -66,6 +66,8 @@ from generator.release_archive_compression_contract import run_release_archive_c
 from generator.mod_compatibility_contract import run_mod_compatibility_contract
 from generator.modpack_scanner import scan_modpack
 from generator.modpack_scanner_contract import run_modpack_scanner_contract
+from generator.modpack_content_scanner import scan_modpack_content
+from generator.modpack_content_scanner_contract import run_modpack_content_scanner_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -440,6 +442,20 @@ def create_parser() -> argparse.ArgumentParser:
     modpack_scan.add_argument("path", type=Path, help="Modpack ZIP/MRPACK, instance folder, or mods directory.")
     modpack_scan.add_argument("--format", choices=("text", "json"), default="text")
     modpack_scan.add_argument("--output", type=Path, help="Write the generated profile to a file.")
+    modpack_content_scan = subparsers.add_parser(
+        "modpack-content-scan",
+        help="Scan recipes, advancements, registries, and tags into progression-ready quest candidates.",
+    )
+    modpack_content_scan.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
+    )
+    modpack_content_scan.add_argument(
+        "--candidate-limit",
+        type=int,
+        help="Maximum generated quest candidates (default: pack-profile recommendation).",
+    )
+    modpack_content_scan.add_argument("--format", choices=("text", "json"), default="text")
+    modpack_content_scan.add_argument("--output", type=Path, help="Write the content profile to a file.")
     mod_compatibility = subparsers.add_parser(
         "mod-compatibility-audit",
         help="Validate the supported Minecraft, NeoForge, and authored mod compatibility matrix.",
@@ -452,6 +468,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     modpack_scanner.add_argument("--format", choices=("text", "json"), default="text")
     modpack_scanner.add_argument("--output", type=Path)
+    modpack_content_scanner = subparsers.add_parser(
+        "modpack-content-scanner-audit",
+        help="Validate recipe, advancement, registry, tag, and quest-candidate extraction.",
+    )
+    modpack_content_scanner.add_argument("--format", choices=("text", "json"), default="text")
+    modpack_content_scanner.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -761,8 +783,26 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "modpack-content-scan":
+        result = scan_modpack_content(args.path, candidate_limit=args.candidate_limit)
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "modpack-scanner-audit":
         result = run_modpack_scanner_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "modpack-content-scanner-audit":
+        result = run_modpack_content_scanner_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

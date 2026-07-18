@@ -75,6 +75,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("release archive compression contract", "release-archive-compression-audit", "release-archive-compression-audit.json"),
     AuditRegistration("mod compatibility contract", "mod-compatibility-audit", "mod-compatibility-audit.json"),
     AuditRegistration("modpack scanner contract", "modpack-scanner-audit", "modpack-scanner-audit.json"),
+    AuditRegistration("modpack content scanner contract", "modpack-content-scanner-audit", "modpack-content-scanner-audit.json"),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

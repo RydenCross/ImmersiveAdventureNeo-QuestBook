@@ -7,7 +7,7 @@ from generator.report_schema_contract import run_report_schema_contract
 def test_repository_report_schemas_are_clean() -> None:
     result = run_report_schema_contract()
     assert result.is_clean
-    assert result.checked_reports == 42
+    assert result.checked_reports == 43
 
 
 def test_schema_contract_detects_missing_and_invalid_reports(tmp_path: Path) -> None:

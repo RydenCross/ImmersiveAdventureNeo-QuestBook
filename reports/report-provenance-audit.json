@@ -56,6 +56,10 @@
       "report": "mod-compatibility-audit.json"
     },
     {
+      "command": "modpack-content-scanner-audit",
+      "report": "modpack-content-scanner-audit.json"
+    },
+    {
       "command": "modpack-scanner-audit",
       "report": "modpack-scanner-audit.json"
     },
@@ -173,5 +177,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 42
+  "tracked_reports": 43
 }

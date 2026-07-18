@@ -36,6 +36,29 @@ python -m generator modpack-scanner-audit --format json --output reports/modpack
 
 See [`docs/MODPACK_SCANNER.md`](docs/MODPACK_SCANNER.md).
 
+## Recipe, advancement, and registry scanner
+
+Turn a scanned pack into progression-ready quest candidates without launching Minecraft:
+
+```bash
+python -m generator modpack-content-scan /path/to/modpack.mrpack
+python -m generator modpack-content-scan /path/to/instance \
+  --candidate-limit 600 \
+  --format json \
+  --output quest-candidates.json
+```
+
+The scanner reads recipes, advancements, item registries, tags, and English names from mod JARs and bundled datapacks. It creates deterministic candidate titles, objectives, prerequisite edges, confidence scores, and broad per-mod coverage.
+
+Validate the content scanner with:
+
+```bash
+python -m generator modpack-content-scanner-audit
+python -m generator modpack-content-scanner-audit --format json --output reports/modpack-content-scanner-audit.json
+```
+
+See [`docs/MODPACK_CONTENT_SCANNER.md`](docs/MODPACK_CONTENT_SCANNER.md).
+
 ## Build
 
 ```bash

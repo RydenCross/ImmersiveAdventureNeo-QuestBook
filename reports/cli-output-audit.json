@@ -1,10 +1,10 @@
 {
-  "commands_checked": 41,
+  "commands_checked": 42,
   "invalid_json": [],
   "missing_json_format": [],
   "missing_output_option": [],
   "nonzero_exit_codes": [],
   "output_mismatches": [],
-  "renderers_checked": 41,
+  "renderers_checked": 42,
   "status": "pass"
 }

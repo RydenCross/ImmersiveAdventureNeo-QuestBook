@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 90 - Recipe, Advancement, and Registry Scanner
+
+- Added safe extraction of recipes, advancements, item registries, tags, and English item names from modpack JARs and bundled datapacks.
+- Added deterministic quest candidates with objectives, source provenance, confidence scores, mod-balanced selection, and acyclic prerequisite edges.
+- Added candidate-budget controls, malformed-JSON isolation, public CLI commands, documentation, regression fixtures, quality-gate integration, and a tracked scanner audit report.
+
 ## Commit 89 - Modpack Scanner and Pack Profile Generator
 
 - Added safe offline scanning for Modrinth, CurseForge, Prism, server-pack, instance, and plain mods-directory inputs.

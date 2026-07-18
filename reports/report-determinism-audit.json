@@ -1,5 +1,5 @@
 {
-  "checked_reports": 42,
+  "checked_reports": 43,
   "deterministic_reports": [
     "audit-dependency-audit.json",
     "audit-performance-audit.json",
@@ -14,6 +14,7 @@
     "documentation-audit.json",
     "identity-guard.json",
     "mod-compatibility-audit.json",
+    "modpack-content-scanner-audit.json",
     "modpack-scanner-audit.json",
     "output-manifest-guard.json",
     "packaging-audit.json",
