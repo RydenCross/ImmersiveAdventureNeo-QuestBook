@@ -474,3 +474,12 @@ python -m generator release-manifest-audit --format json --output reports/releas
 python -m generator release-archive-metadata-audit
 python -m generator release-archive-metadata-audit --format json --output reports/release-archive-metadata-audit.json
 ```
+
+### Release archive extraction safety
+
+```bash
+python -m generator release-archive-extraction-safety-audit
+python -m generator release-archive-extraction-safety-audit --format json --output reports/release-archive-extraction-safety-audit.json
+```
+
+Validates extraction-safe paths, normalized and case-folded uniqueness, and rejects links or special files.

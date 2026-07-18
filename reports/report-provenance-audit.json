@@ -64,6 +64,10 @@
       "report": "progression-guard.json"
     },
     {
+      "command": "release-archive-extraction-safety-audit",
+      "report": "release-archive-extraction-safety-audit.json"
+    },
+    {
       "command": "release-archive-metadata-audit",
       "report": "release-archive-metadata-audit.json"
     },
@@ -149,5 +153,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 36
+  "tracked_reports": 37
 }

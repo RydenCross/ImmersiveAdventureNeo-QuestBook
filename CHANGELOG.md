@@ -1,4 +1,5 @@
 ## Commit 82 - Release Manifest Contract
+- Added a release archive extraction safety contract for traversal, collision, symlink, and special-file defenses.
 
 - Added a release archive metadata contract that canonicalizes and verifies ZIP timestamps, permissions, compression, path safety, encryption flags, and entry ordering.
 - Added a deterministic per-file release manifest with path, byte size, and SHA-256.

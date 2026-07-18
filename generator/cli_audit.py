@@ -52,6 +52,7 @@ EXPECTED_COMMANDS = (
     "release-package-verification-audit",
     "release-manifest-audit",
     "release-archive-metadata-audit",
+    "release-archive-extraction-safety-audit",
     "report-refresh-order-audit",
     "report-write-safety-audit",
     "report-schema-audit",
