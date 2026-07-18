@@ -3,7 +3,7 @@
   "duplicate_executions": [],
   "missing_timings": [],
   "over_budget": false,
-  "registered_audits": 51,
+  "registered_audits": 52,
   "slowest_audits": [
     {
       "duration_ms": 0.0,
@@ -27,6 +27,6 @@
     }
   ],
   "status": "pass",
-  "timed_audits": 51,
+  "timed_audits": 52,
   "total_duration_ms": 0.0
 }

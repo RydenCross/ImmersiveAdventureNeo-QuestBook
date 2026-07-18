@@ -73,3 +73,7 @@ python -m generator editor-service-audit \
 ```
 
 The contract verifies session generation, validated edits, undo/redo history, save/open round trips, workspace confinement, loopback-only binding, HTTP routing, deterministic documents, and FTB Quests export.
+
+## Browser modpack import
+
+`POST /api/v1/import` accepts a streamed `.zip` or `.mrpack` body. Supply the percent-encoded original filename in `X-File-Name`; optional query parameters are `target_quests`, `chapter_size`, `description_style`, and `reward_policy`. Uploads are limited to 1 GiB, written inside `<workspace>/imports`, named with a SHA-256 prefix, and scanned without executing mod code.

@@ -1,16 +1,20 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
+from hashlib import sha256
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
 import json
+import os
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 from threading import RLock
-from typing import Mapping
-from urllib.parse import urlparse
+from typing import BinaryIO, Mapping
+from urllib.parse import parse_qs, unquote, urlparse
 import webbrowser
 
 from generator.editor_model import (
+    EDITOR_SCHEMA_VERSION,
     EditorDocument,
     EditorOperation,
     apply_editor_operation,
@@ -18,6 +22,7 @@ from generator.editor_model import (
     generate_editor_model,
     validate_editor_document,
 )
+from generator.editor_ui import EDITOR_HTML
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
 from generator.output_writer import atomic_write_text
 from generator.quest_description_generator import DESCRIPTION_STYLES
@@ -30,6 +35,9 @@ DEFAULT_EDITOR_WORKSPACE = Path(".quest-editor")
 DEFAULT_EDITOR_DOCUMENT = Path("quest-editor-model.json")
 DEFAULT_EDITOR_EXPORT = Path("generated/ftbquests")
 MAX_REQUEST_BYTES = 1_048_576
+MAX_UPLOAD_BYTES = 1_073_741_824
+IMPORT_EXTENSIONS = (".mrpack", ".zip")
+UPLOAD_CHUNK_BYTES = 1_048_576
 
 
 def _is_loopback_host(host: str) -> bool:
@@ -39,6 +47,29 @@ def _is_loopback_host(host: str) -> bool:
         return ipaddress.ip_address(host).is_loopback
     except ValueError:
         return False
+
+
+def _validated_import_name(filename: str) -> str:
+    name = unquote(filename).strip()
+    if not name or name in {".", ".."}:
+        raise ValueError("uploaded modpack filename is required")
+    if Path(name).name != name or "/" in name or "\\" in name:
+        raise ValueError("uploaded modpack filename must not contain path components")
+    if any(ord(character) < 32 for character in name):
+        raise ValueError("uploaded modpack filename contains control characters")
+    if Path(name).suffix.casefold() not in IMPORT_EXTENSIONS:
+        raise ValueError("uploaded modpack must be a .zip or .mrpack file")
+    return name
+
+
+def _integer_option(values: Mapping[str, list[str]], name: str, default: int | None) -> int | None:
+    raw = values.get(name, ())
+    if not raw or raw[0] == "":
+        return default
+    value = int(raw[0])
+    if value <= 0:
+        raise ValueError(f"{name} must be positive")
+    return value
 
 
 def _load_editor_document(path: Path) -> EditorDocument:
@@ -85,6 +116,30 @@ class EditorSession:
         self._undo: list[EditorDocument] = []
         self._redo: list[EditorDocument] = []
         self._lock = RLock()
+
+    @classmethod
+    def empty(
+        cls,
+        *,
+        workspace: Path = DEFAULT_EDITOR_WORKSPACE,
+    ) -> EditorSession:
+        return cls(
+            EditorDocument(
+                schema_version=EDITOR_SCHEMA_VERSION,
+                revision=0,
+                source_path="",
+                source_format="empty",
+                pack_name="Untitled modpack",
+                minecraft_version="",
+                loader="",
+                requested_quests=0,
+                available_candidates=0,
+                chapters=(),
+                quests=(),
+                edges=(),
+            ),
+            workspace=workspace,
+        )
 
     @classmethod
     def from_source(
@@ -282,6 +337,92 @@ class EditorSession:
                 "document": self.document.to_dict(),
             }
 
+    def import_modpack(
+        self,
+        filename: str,
+        stream: BinaryIO,
+        content_length: int,
+        *,
+        target_quests: int | None = None,
+        chapter_size: int = 40,
+        description_style: str = "guided",
+        reward_policy: str = "unassigned",
+    ) -> dict[str, object]:
+        safe_name = _validated_import_name(filename)
+        if content_length <= 0:
+            raise ValueError("uploaded modpack is empty")
+        if content_length > MAX_UPLOAD_BYTES:
+            raise ValueError("uploaded modpack exceeds the editor upload limit")
+        if chapter_size <= 0:
+            raise ValueError("chapter_size must be positive")
+        if target_quests is not None and target_quests <= 0:
+            raise ValueError("target_quests must be positive")
+        if description_style not in DESCRIPTION_STYLES:
+            raise ValueError("unsupported description style")
+        if reward_policy != "unassigned" and reward_policy not in REWARD_POLICIES:
+            raise ValueError("unsupported reward policy")
+
+        import_directory = self._workspace_path("imports")
+        import_directory.mkdir(parents=True, exist_ok=True)
+        digest = sha256()
+        bytes_written = 0
+        temporary_path: Path | None = None
+        try:
+            with NamedTemporaryFile(
+                mode="wb",
+                dir=import_directory,
+                prefix=".upload-",
+                suffix=".part",
+                delete=False,
+            ) as temporary:
+                temporary_path = Path(temporary.name)
+                while True:
+                    chunk = stream.read(min(UPLOAD_CHUNK_BYTES, content_length - bytes_written))
+                    if not chunk:
+                        break
+                    bytes_written += len(chunk)
+                    if bytes_written > content_length or bytes_written > MAX_UPLOAD_BYTES:
+                        raise ValueError("uploaded modpack exceeds the declared or allowed size")
+                    digest.update(chunk)
+                    temporary.write(chunk)
+            if bytes_written != content_length:
+                raise ValueError("uploaded modpack size does not match Content-Length")
+            checksum = digest.hexdigest()
+            destination = import_directory / f"{checksum[:16]}-{safe_name}"
+            if destination.exists():
+                temporary_path.unlink(missing_ok=True)
+            else:
+                os.replace(temporary_path, destination)
+            temporary_path = None
+            document = generate_editor_model(
+                destination,
+                target_quests=target_quests,
+                chapter_size=chapter_size,
+                description_style=description_style,
+                reward_policy=reward_policy,
+            )
+            validation = validate_editor_document(document)
+            if document.errors or validation.errors:
+                errors = tuple(document.errors) + validation.errors
+                destination.unlink(missing_ok=True)
+                raise ValueError("uploaded modpack could not generate a valid editor document: " + "; ".join(errors))
+            with self._lock:
+                self._replace_document(document, reset_history=True)
+                self.document_path = None
+                self.saved_revision = -1
+                return {
+                    "status": "pass",
+                    "filename": safe_name,
+                    "path": destination.relative_to(self.workspace).as_posix(),
+                    "bytes": bytes_written,
+                    "sha256": checksum,
+                    "session": self.status(),
+                    "document": self.document.to_dict(),
+                }
+        finally:
+            if temporary_path is not None:
+                temporary_path.unlink(missing_ok=True)
+
     def export(
         self,
         destination: str | Path = DEFAULT_EDITOR_EXPORT,
@@ -346,80 +487,7 @@ def handle_editor_api(
     return EditorServiceResponse(200, result)
 
 
-_EDITOR_HTML = """<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FTB Quest Maker</title>
-<style>
-:root { color-scheme: dark; font-family: system-ui, sans-serif; }
-body { margin: 0; background: #111827; color: #e5e7eb; }
-header { padding: 16px 24px; background: #1f2937; display: flex; gap: 12px; align-items: center; }
-button { padding: 8px 12px; border: 0; border-radius: 6px; cursor: pointer; }
-main { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 68px); }
-aside { padding: 16px; border-right: 1px solid #374151; overflow: auto; }
-section { padding: 20px; }
-.quest { display: block; width: 100%; margin: 6px 0; text-align: left; background: #374151; color: inherit; }
-label { display: block; margin: 12px 0 4px; }
-input, textarea { width: 100%; box-sizing: border-box; padding: 8px; background: #111827; color: inherit; border: 1px solid #4b5563; }
-textarea { min-height: 180px; }
-#status { margin-left: auto; font-size: 0.9rem; }
-pre { white-space: pre-wrap; color: #fca5a5; }
-</style>
-</head>
-<body>
-<header>
-<strong>FTB Quest Maker</strong>
-<button onclick="undo()">Undo</button><button onclick="redo()">Redo</button>
-<button onclick="saveModel()">Save model</button><button onclick="exportQuestbook()">Export FTB Quests</button>
-<span id="status">Loading…</span>
-</header>
-<main><aside><div id="chapters"></div></aside><section>
-<h2 id="quest-title">Select a quest</h2>
-<div id="editor" hidden>
-<label>Title</label><input id="title">
-<label>Description</label><textarea id="description"></textarea>
-<button onclick="saveQuest()">Apply quest changes</button>
-</div><pre id="error"></pre>
-</section></main>
-<script>
-const api = '/api/v1'; let doc = null; let selected = null;
-async function request(path, options={}) {
-  const response = await fetch(api + path, {headers:{'Content-Type':'application/json'}, ...options});
-  const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Request failed'); return data;
-}
-function showError(error) { document.getElementById('error').textContent = error ? String(error) : ''; }
-async function refresh() {
-  try { doc = await request('/document'); const status = await request('/status'); render();
-    document.getElementById('status').textContent = `${status.quests} quests · revision ${status.revision}${status.has_unsaved_changes ? ' · unsaved' : ''}`;
-  } catch (error) { showError(error); }
-}
-function render() {
-  const root = document.getElementById('chapters'); root.innerHTML = '';
-  for (const chapter of doc.chapters) {
-    const heading = document.createElement('h3'); heading.textContent = chapter.title; root.appendChild(heading);
-    for (const quest of doc.quests.filter(item => item.chapter_id === chapter.id)) {
-      const button = document.createElement('button'); button.className = 'quest'; button.textContent = quest.title;
-      button.onclick = () => selectQuest(quest.id); root.appendChild(button);
-    }
-  }
-  if (selected) selectQuest(selected);
-}
-function selectQuest(id) {
-  const quest = doc.quests.find(item => item.id === id); if (!quest) return; selected = id;
-  document.getElementById('quest-title').textContent = quest.title; document.getElementById('title').value = quest.title;
-  document.getElementById('description').value = quest.description; document.getElementById('editor').hidden = false;
-}
-async function saveQuest() { try { await request('/operations', {method:'POST', body:JSON.stringify({action:'update_quest', target_id:selected, values:{title:document.getElementById('title').value, description:document.getElementById('description').value}})}); showError(); await refresh(); } catch (error) { showError(error); } }
-async function undo() { try { await request('/undo', {method:'POST', body:'{}'}); showError(); await refresh(); } catch (error) { showError(error); } }
-async function redo() { try { await request('/redo', {method:'POST', body:'{}'}); showError(); await refresh(); } catch (error) { showError(error); } }
-async function saveModel() { try { await request('/save', {method:'POST', body:JSON.stringify({path:'quest-editor-model.json'})}); showError(); await refresh(); } catch (error) { showError(error); } }
-async function exportQuestbook() { try { const result = await request('/export', {method:'POST', body:JSON.stringify({destination:'generated/ftbquests'})}); showError(`Exported ${result.summary.quests} quests to ${result.destination}`); } catch (error) { showError(error); } }
-refresh();
-</script>
-</body></html>
-"""
+_EDITOR_HTML = EDITOR_HTML
 
 
 class EditorHTTPServer(ThreadingHTTPServer):
@@ -458,6 +526,28 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
             "application/json; charset=utf-8",
         )
 
+    def _read_import(self) -> dict[str, object]:
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError as exc:
+            raise ValueError("invalid Content-Length") from exc
+        filename = self.headers.get("X-File-Name", "")
+        query = parse_qs(urlparse(self.path).query, keep_blank_values=True)
+        target_quests = _integer_option(query, "target_quests", None)
+        chapter_size = _integer_option(query, "chapter_size", 40)
+        assert chapter_size is not None
+        description_style = query.get("description_style", ["guided"])[0]
+        reward_policy = query.get("reward_policy", ["unassigned"])[0]
+        return self.server.session.import_modpack(
+            filename,
+            self.rfile,
+            length,
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+
     def _read_payload(self) -> Mapping[str, object]:
         try:
             length = int(self.headers.get("Content-Length", "0"))
@@ -479,6 +569,15 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
         self._send_json(handle_editor_api(self.server.session, "GET", self.path))
 
     def do_POST(self) -> None:
+        clean_path = urlparse(self.path).path.rstrip("/") or "/"
+        if clean_path == f"/api/{EDITOR_API_VERSION}/import":
+            try:
+                result = self._read_import()
+            except (OSError, TypeError, UnicodeDecodeError, ValueError) as exc:
+                self._send_json(EditorServiceResponse(400, {"status": "fail", "error": str(exc)}))
+                return
+            self._send_json(EditorServiceResponse(200, result))
+            return
         try:
             payload = self._read_payload()
         except (UnicodeDecodeError, ValueError, json.JSONDecodeError) as exc:
@@ -501,7 +600,7 @@ def create_editor_http_server(
 
 
 def serve_editor(
-    source: Path,
+    source: Path | None = None,
     *,
     workspace: Path = DEFAULT_EDITOR_WORKSPACE,
     host: str = DEFAULT_EDITOR_HOST,
@@ -512,13 +611,17 @@ def serve_editor(
     reward_policy: str = "unassigned",
     open_browser: bool = True,
 ) -> int:
-    session = EditorSession.from_source(
-        source,
-        workspace=workspace,
-        target_quests=target_quests,
-        chapter_size=chapter_size,
-        description_style=description_style,
-        reward_policy=reward_policy,
+    session = (
+        EditorSession.from_source(
+            source,
+            workspace=workspace,
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+        if source is not None
+        else EditorSession.empty(workspace=workspace)
     )
     server = create_editor_http_server(session, host=host, port=port)
     actual_host, actual_port = server.server_address[:2]

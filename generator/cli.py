@@ -90,6 +90,7 @@ from generator.editor_service import (
     serve_editor,
 )
 from generator.editor_service_contract import run_editor_service_contract
+from generator.editor_ui_contract import run_editor_ui_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -573,8 +574,9 @@ def create_parser() -> argparse.ArgumentParser:
     )
     quest_editor_serve.add_argument(
         "path",
+        nargs="?",
         type=Path,
-        help="Modpack archive/folder or an existing editor-model JSON document.",
+        help="Optional modpack archive/folder or editor-model JSON; omit to start with the drop zone.",
     )
     quest_editor_serve.add_argument(
         "--workspace",
@@ -749,6 +751,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     editor_service.add_argument("--format", choices=("text", "json"), default="text")
     editor_service.add_argument("--output", type=Path)
+    editor_ui = subparsers.add_parser(
+        "editor-ui-audit",
+        help="Validate drag-and-drop modpack import and the interactive quest graph canvas.",
+    )
+    editor_ui.add_argument("--format", choices=("text", "json"), default="text")
+    editor_ui.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1051,6 +1059,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "editor-service-audit":
         result = run_editor_service_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "editor-ui-audit":
+        result = run_editor_ui_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

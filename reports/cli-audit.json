@@ -1,5 +1,5 @@
 {
-  "command_count": 74,
+  "command_count": 75,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -17,6 +17,7 @@
     "documentation-audit",
     "editor-model-audit",
     "editor-service-audit",
+    "editor-ui-audit",
     "ftb-blueprint-exporter-audit",
     "ftb-quest-export",
     "identity-baseline",

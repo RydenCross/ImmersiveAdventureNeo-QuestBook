@@ -1,0 +1,12 @@
+{
+  "dependency_linking": true,
+  "deterministic_quest_graph": true,
+  "direct_import": true,
+  "drag_editing": true,
+  "drop_import_interface": true,
+  "empty_start": true,
+  "graph_canvas": true,
+  "http_import": true,
+  "status": "pass",
+  "workspace_confined": true
+}

@@ -151,6 +151,21 @@ python -m generator editor-service-audit
 python -m generator editor-service-audit --format json --output reports/editor-service-audit.json
 ```
 
+## Drag-and-drop import and interactive quest graph
+
+The local editor now accepts CurseForge ZIPs, Modrinth `.mrpack` files, Prism exports, and server-pack archives directly in the browser. Drop a pack onto the import panel or use **Import modpack**, choose the target quest count, chapter size, description style, and reward policy, and the current editor document is replaced with the newly generated graph.
+
+The graph canvas renders prerequisite edges and supports node selection, drag-to-move layout editing, zoom, pan, search, chapter filtering, and validated prerequisite linking. Uploaded files are streamed into the configured workspace, content-addressed by SHA-256, size-limited, and never executed.
+
+Validate the import and canvas contract with:
+
+```bash
+python -m generator editor-ui-audit
+python -m generator editor-ui-audit --format json --output reports/editor-ui-audit.json
+```
+
+See [the interactive editor guide](docs/EDITOR_GRAPH_CANVAS.md).
+
 See [`docs/EDITOR_SERVICE.md`](docs/EDITOR_SERVICE.md).
 
 ## Generated quest reward planning

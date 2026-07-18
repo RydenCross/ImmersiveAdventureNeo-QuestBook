@@ -56,6 +56,10 @@
       "report": "editor-service-audit.json"
     },
     {
+      "command": "editor-ui-audit",
+      "report": "editor-ui-audit.json"
+    },
+    {
       "command": "ftb-blueprint-exporter-audit",
       "report": "ftb-blueprint-exporter-audit.json"
     },
@@ -205,5 +209,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 50
+  "tracked_reports": 51
 }

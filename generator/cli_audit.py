@@ -44,6 +44,7 @@ EXPECTED_COMMANDS = (
     "quest-description-audit",
     "editor-model-audit",
     "editor-service-audit",
+    "editor-ui-audit",
     "quest-editor-serve",
     "output-manifest",
     "output-manifest-guard",

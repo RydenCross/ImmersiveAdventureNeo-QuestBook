@@ -46,6 +46,7 @@ AUDIT_DEPENDENCIES.update(
         "reward planner contract": ("questbook review contract", "quest description contract"),
         "visual editor data model contract": ("reward planner contract", "FTB blueprint exporter contract"),
         "local visual editor service contract": ("visual editor data model contract",),
+        "interactive visual editor UI contract": ("local visual editor service contract",),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

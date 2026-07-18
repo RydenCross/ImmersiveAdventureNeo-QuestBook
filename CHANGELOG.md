@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 98 - Drag-and-Drop Modpack Import and Interactive Quest Graph Canvas
+
+- Added streamed browser import for CurseForge ZIPs, Modrinth `.mrpack` files, Prism exports, and server-pack archives.
+- Added content-addressed, size-limited workspace storage with filename/path validation and no mod-code execution.
+- Replaced the basic quest list with an interactive SVG dependency graph supporting node dragging, zoom, pan, search, chapter filtering, selection, and prerequisite linking.
+- Added HTTP and direct-import regression tests, UI contract documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 97 - Local Visual Editor Service and API
 
 - Added a dependency-free localhost browser editor backed by the versioned editor data model.
