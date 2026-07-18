@@ -32,6 +32,7 @@ SPECIAL_TEST_FILES = {
     "report schema contract": "test_report_schema_contract.py",
     "report consistency contract": "test_report_consistency_contract.py",
     "report provenance contract": "test_report_provenance_contract.py",
+    "report determinism contract": "test_report_determinism_contract.py",
 }
 
 

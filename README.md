@@ -360,3 +360,13 @@ python -m generator report-provenance-audit --format json --output reports/repor
 ```
 
 See [docs/REPORT_PROVENANCE_CONTRACT.md](docs/REPORT_PROVENANCE_CONTRACT.md).
+
+### Report determinism audit
+
+Verify that registered audit reports render identically from an unchanged repository state:
+
+```bash
+python -m generator report-determinism-audit
+```
+
+See [Report Determinism Contract](docs/REPORT_DETERMINISM_CONTRACT.md).

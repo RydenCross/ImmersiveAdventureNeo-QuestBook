@@ -64,6 +64,10 @@
       "report": "report-consistency-audit.json"
     },
     {
+      "command": "report-determinism-audit",
+      "report": "report-determinism-audit.json"
+    },
+    {
       "command": "report-provenance-audit",
       "report": "report-provenance-audit.json"
     },
@@ -93,5 +97,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 22
+  "tracked_reports": 23
 }

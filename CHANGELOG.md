@@ -286,3 +286,9 @@
 - Added `report-schema-audit` to enforce a common machine-readable structure across registered audit reports.
 - Detects missing reports, malformed JSON, non-object payloads, absent status fields, and invalid status values.
 - Integrated the contract into the CLI, audit registry, test inventory, report freshness guard, documentation, and unified quality gate.
+
+## Commit 70 - Report Determinism Contract
+
+- Added `report-determinism-audit` to compare repeated JSON report renders.
+- Registered the contract with the CLI, quality gate, freshness guard, test inventory, and audit registry.
+- Added regression tests and machine-readable report output.

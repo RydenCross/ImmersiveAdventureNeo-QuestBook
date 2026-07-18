@@ -38,6 +38,7 @@ EXPECTED_COMMANDS = (
     "release-guard",
     "report-freshness-guard",
     "report-consistency-audit",
+    "report-determinism-audit",
     "report-provenance-audit",
     "report-schema-audit",
     "repository-hygiene-audit",

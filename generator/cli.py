@@ -45,6 +45,7 @@ from generator.inventory_contract import run_test_inventory_contract
 from generator.report_schema_contract import run_report_schema_contract
 from generator.report_consistency_contract import run_report_consistency_contract
 from generator.report_provenance_contract import run_report_provenance_contract
+from generator.report_determinism_contract import run_report_determinism_contract
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
 from generator.release_guard import (
@@ -304,6 +305,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     report_provenance.add_argument("--format", choices=("text", "json"), default="text")
     report_provenance.add_argument("--output", type=Path)
+    report_determinism = subparsers.add_parser(
+        "report-determinism-audit",
+        help="Verify repeated audit report renders produce identical JSON payloads.",
+    )
+    report_determinism.add_argument("--format", choices=("text", "json"), default="text")
+    report_determinism.add_argument("--output", type=Path)
     quality_gate = subparsers.add_parser(
         "quality-gate",
         help="Run every repository-safe release safeguard in one command.",
@@ -558,6 +565,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "report-determinism-audit":
+        result = run_report_determinism_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(rendered + "\n", encoding="utf-8")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "report-provenance-audit":
         result = run_report_provenance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
