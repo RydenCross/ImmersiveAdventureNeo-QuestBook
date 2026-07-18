@@ -363,3 +363,9 @@
 - Enforced final placement and follow-up stability for archive-derived release reports.
 
 - Added a release package verification contract that cross-checks final ZIP inventory, archive and tree checksums, reproducibility, and hygiene exclusions.
+
+
+## Commit 86 - Release Archive Compression Contract
+
+- Added deterministic release ZIP compression-method, size-budget, and compression-savings validation.
+- Integrated the contract into the quality gate, audit registry, dependency graph, CLI, freshness workflow, documentation, and test inventory.

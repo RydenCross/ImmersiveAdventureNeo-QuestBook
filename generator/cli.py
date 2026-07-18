@@ -61,6 +61,7 @@ from generator.release_manifest_contract import run_release_manifest_contract
 from generator.release_archive_metadata_contract import run_release_archive_metadata_contract
 from generator.release_archive_extraction_safety_contract import run_release_archive_extraction_safety_contract
 from generator.release_archive_unicode_path_contract import run_release_archive_unicode_path_contract
+from generator.release_archive_compression_contract import run_release_archive_compression_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -406,6 +407,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     release_archive_unicode_path.add_argument("--format", choices=("text", "json"), default="text")
     release_archive_unicode_path.add_argument("--output", type=Path)
+    release_archive_compression = subparsers.add_parser(
+        "release-archive-compression-audit",
+        help="Validate release ZIP compression methods, savings, and size budgets.",
+    )
+    release_archive_compression.add_argument("--format", choices=("text", "json"), default="text")
+    release_archive_compression.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -695,6 +702,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "release-archive-compression-audit":
+        result = run_release_archive_compression_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

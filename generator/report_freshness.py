@@ -45,6 +45,7 @@ from generator.release_manifest_contract import run_release_manifest_contract
 from generator.release_archive_metadata_contract import run_release_archive_metadata_contract
 from generator.release_archive_extraction_safety_contract import run_release_archive_extraction_safety_contract
 from generator.release_archive_unicode_path_contract import run_release_archive_unicode_path_contract
+from generator.release_archive_compression_contract import run_release_archive_compression_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -127,6 +128,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "release-archive-metadata-audit.json": lambda: run_release_archive_metadata_contract().format_json(),
         "release-archive-extraction-safety-audit.json": lambda: run_release_archive_extraction_safety_contract().format_json(),
         "release-archive-unicode-path-audit.json": lambda: run_release_archive_unicode_path_contract().format_json(),
+        "release-archive-compression-audit.json": lambda: run_release_archive_compression_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

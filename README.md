@@ -482,6 +482,8 @@ python -m generator release-archive-extraction-safety-audit
 python -m generator release-archive-extraction-safety-audit --format json --output reports/release-archive-extraction-safety-audit.json
 python -m generator release-archive-unicode-path-audit
 python -m generator release-archive-unicode-path-audit --format json --output reports/release-archive-unicode-path-audit.json
+python -m generator release-archive-compression-audit
+python -m generator release-archive-compression-audit --format json --output reports/release-archive-compression-audit.json
 ```
 
 Validates extraction-safe paths, normalized and case-folded uniqueness, and rejects links or special files.
