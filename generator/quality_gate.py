@@ -29,6 +29,7 @@ from generator.report_schema_contract import run_report_schema_contract
 from generator.report_consistency_contract import run_report_consistency_contract
 from generator.report_provenance_contract import run_report_provenance_contract
 from generator.report_determinism_contract import run_report_determinism_contract
+from generator.cli_output_contract import run_cli_output_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -115,6 +116,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "report consistency contract": run_report_consistency_contract,
         "report provenance contract": run_report_provenance_contract,
         "report determinism contract": run_report_determinism_contract,
+        "CLI output contract": run_cli_output_contract,
     }
 
 

@@ -16,6 +16,10 @@
       "report": "cli-audit.json"
     },
     {
+      "command": "cli-output-audit",
+      "report": "cli-output-audit.json"
+    },
+    {
       "command": "contract-guard",
       "report": "contract-guard.json"
     },
@@ -97,5 +101,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 23
+  "tracked_reports": 24
 }

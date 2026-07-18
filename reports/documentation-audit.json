@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 37,
+  "documented_command_count": 38,
   "empty_documents": [],
-  "expected_command_count": 37,
-  "markdown_file_count": 55,
+  "expected_command_count": 38,
+  "markdown_file_count": 56,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -17,6 +17,7 @@
     "docs/CHALLENGES.md",
     "docs/CHAPTER_AUDIT.md",
     "docs/CLI_AUDIT.md",
+    "docs/CLI_OUTPUT_CONTRACT.md",
     "docs/CONTENT.md",
     "docs/CONTENT_AUDIT.md",
     "docs/CONTRACT_GUARD.md",

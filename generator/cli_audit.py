@@ -13,6 +13,7 @@ EXPECTED_COMMANDS = (
     "audit-registry-audit",
     "chapter-audit",
     "cli-audit",
+    "cli-output-audit",
     "contract-baseline",
     "contract-guard",
     "dependency-audit",

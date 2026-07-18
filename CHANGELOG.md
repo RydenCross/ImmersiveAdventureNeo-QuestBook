@@ -1,3 +1,16 @@
+# Changelog
+
+## Commit 71 - CLI Output Contract
+
+- Added a contract for audit-command JSON, exit codes, and output-file parity.
+- Integrated it into the quality gate, registry, test inventory, freshness guard, and documentation.
+
+## Commit 70 - Report Determinism Contract
+
+- Added `report-determinism-audit` to compare repeated JSON report renders.
+- Registered the contract with the CLI, quality gate, freshness guard, test inventory, and audit registry.
+- Added regression tests and machine-readable report output.
+
 ## Commit 69 - Report Provenance Contract
 
 - Added `report-provenance-audit`.
@@ -10,10 +23,21 @@
 - Enforced internal agreement between report status, defect lists, and summary counts.
 - Integrated the contract into the quality gate, audit registry, freshness guard, CLI, tests, and documentation.
 
+## Commit 67 - Report Schema Contract
+
+- Added `report-schema-audit` to enforce a common machine-readable structure across registered audit reports.
+- Detects missing reports, malformed JSON, non-object payloads, absent status fields, and invalid status values.
+- Integrated the contract into the CLI, audit registry, test inventory, report freshness guard, documentation, and unified quality gate.
+
 ## Commit #66 — Test Inventory Contract
 
 - Added a contract ensuring every registered quality-gate safeguard has a dedicated pytest module.
 - Integrated test coverage inventory into the CLI, report freshness guard, documentation, and unified quality gate.
+
+## Commit 65 - Audit Registry Contract
+
+- Added `audit-registry-audit` to detect partially integrated or duplicate release safeguards.
+- Registered the new audit in the CLI, unified quality gate, report freshness guard, documentation, and checked-in reports.
 
 ## Commit #64 — Release Reproducibility Audit
 
@@ -47,14 +71,18 @@
 - Added the `immersive-adventure-quests` console command.
 - Added a packaging audit to the unified quality gate.
 
-# Changelog
-
 ## Commit 58 - Unified Quality Gate
 
 - Added `python -m generator quality-gate` to run every repository-safe safeguard.
 - Added combined text and JSON summaries with per-check pass/fail status.
 - Simplified CI to enforce the complete validation suite through one command.
 - Added quality-gate documentation and regression tests.
+
+## Commit #57 — Report Freshness Guard
+
+- Added `report-freshness-guard` to compare checked-in JSON reports with current audit results.
+- Detects stale, missing, and invalid derived reports.
+- Added CI enforcement and machine-readable freshness reporting.
 
 # Commit 56 - Generated Output Manifest Guard
 
@@ -73,7 +101,6 @@
 - Added strict placeholder, formatting, and duplicate-description validation.
 - Added JSON reporting and CI integration.
 
-# Changelog
 
 ## Commit 53 - Chapter Integrity Audit
 
@@ -269,26 +296,4 @@
 
 ## 0.1.0-alpha.1
 - Idea
-## Commit #57 — Report Freshness Guard
 
-- Added `report-freshness-guard` to compare checked-in JSON reports with current audit results.
-- Detects stale, missing, and invalid derived reports.
-- Added CI enforcement and machine-readable freshness reporting.
-
-## Commit 65 - Audit Registry Contract
-
-- Added `audit-registry-audit` to detect partially integrated or duplicate release safeguards.
-- Registered the new audit in the CLI, unified quality gate, report freshness guard, documentation, and checked-in reports.
-
-
-## Commit 67 - Report Schema Contract
-
-- Added `report-schema-audit` to enforce a common machine-readable structure across registered audit reports.
-- Detects missing reports, malformed JSON, non-object payloads, absent status fields, and invalid status values.
-- Integrated the contract into the CLI, audit registry, test inventory, report freshness guard, documentation, and unified quality gate.
-
-## Commit 70 - Report Determinism Contract
-
-- Added `report-determinism-audit` to compare repeated JSON report renders.
-- Registered the contract with the CLI, quality gate, freshness guard, test inventory, and audit registry.
-- Added regression tests and machine-readable report output.

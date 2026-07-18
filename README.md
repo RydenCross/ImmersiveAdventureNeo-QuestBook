@@ -370,3 +370,11 @@ python -m generator report-determinism-audit
 ```
 
 See [Report Determinism Contract](docs/REPORT_DETERMINISM_CONTRACT.md).
+
+### CLI output contract
+
+```bash
+python -m generator cli-output-audit
+```
+
+Validates JSON output, successful exit codes, and parity between stdout and `--output` for every registered report command.

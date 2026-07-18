@@ -3,6 +3,7 @@
     "test_audit_registry_contract.py",
     "test_chapter_audit.py",
     "test_cli_audit.py",
+    "test_cli_output_contract.py",
     "test_contract_guard.py",
     "test_dependency_audit.py",
     "test_determinism_audit.py",
@@ -27,7 +28,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 24,
+  "registered_audits": 25,
   "status": "pass",
   "unregistered_mappings": []
 }

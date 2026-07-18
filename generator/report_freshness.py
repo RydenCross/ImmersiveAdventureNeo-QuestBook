@@ -30,6 +30,7 @@ from generator.report_schema_contract import run_report_schema_contract
 from generator.report_consistency_contract import run_report_consistency_contract
 from generator.report_provenance_contract import run_report_provenance_contract
 from generator.report_determinism_contract import run_report_determinism_contract
+from generator.cli_output_contract import run_cli_output_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -101,6 +102,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "report-consistency-audit.json": lambda: run_report_consistency_contract().format_json(),
         "report-provenance-audit.json": lambda: run_report_provenance_contract().format_json(),
         "report-determinism-audit.json": lambda: run_report_determinism_contract().format_json(),
+        "cli-output-audit.json": lambda: run_cli_output_contract().format_json(),
     }
 
 
