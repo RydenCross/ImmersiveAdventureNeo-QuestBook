@@ -427,3 +427,12 @@ python -m generator audit-performance-audit --format json --output reports/audit
 ```
 
 See [Audit Performance Contract](docs/AUDIT_PERFORMANCE_CONTRACT.md).
+
+### Audit dependency contract
+
+```bash
+python -m generator audit-dependency-audit
+python -m generator audit-dependency-audit --format json --output reports/audit-dependency-audit.json
+```
+
+Validates registered audit dependencies, rejects cycles and unknown prerequisites, and confirms quality-gate and report-refresh ordering is dependency-safe.

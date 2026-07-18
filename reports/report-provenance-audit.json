@@ -4,6 +4,10 @@
   "orphan_renderers": [],
   "provenance": [
     {
+      "command": "audit-dependency-audit",
+      "report": "audit-dependency-audit.json"
+    },
+    {
       "command": "audit-performance-audit",
       "report": "audit-performance-audit.json"
     },
@@ -121,5 +125,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 29
+  "tracked_reports": 30
 }

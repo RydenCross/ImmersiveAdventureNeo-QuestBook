@@ -1,5 +1,6 @@
 {
   "expected_test_files": [
+    "test_audit_dependency_contract.py",
     "test_audit_performance_contract.py",
     "test_audit_registry_contract.py",
     "test_chapter_audit.py",
@@ -33,7 +34,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 30,
+  "registered_audits": 31,
   "status": "pass",
   "unregistered_mappings": []
 }

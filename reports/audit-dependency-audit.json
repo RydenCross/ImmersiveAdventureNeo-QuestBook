@@ -1,0 +1,81 @@
+{
+  "dependencies": {
+    "CLI contract audit": [],
+    "CLI exit-code contract": [
+      "CLI output contract"
+    ],
+    "CLI output contract": [
+      "CLI contract audit",
+      "report schema contract"
+    ],
+    "audit dependency contract": [
+      "audit registry contract",
+      "report refresh order contract"
+    ],
+    "audit performance contract": [
+      "audit registry contract"
+    ],
+    "audit registry contract": [
+      "CLI contract audit"
+    ],
+    "chapter audit": [],
+    "contract guard": [],
+    "dependency audit": [],
+    "determinism audit": [],
+    "documentation contract audit": [],
+    "identity guard": [],
+    "output manifest guard": [
+      "determinism audit"
+    ],
+    "packaging audit": [],
+    "progression guard": [],
+    "release artifact audit": [
+      "repository hygiene audit",
+      "packaging audit"
+    ],
+    "release guard": [],
+    "release reproducibility audit": [
+      "release artifact audit"
+    ],
+    "report consistency contract": [
+      "report schema contract"
+    ],
+    "report determinism contract": [
+      "report provenance contract"
+    ],
+    "report freshness guard": [
+      "output manifest guard"
+    ],
+    "report provenance contract": [
+      "audit registry contract"
+    ],
+    "report refresh contract": [
+      "report refresh order contract",
+      "report write-safety contract"
+    ],
+    "report refresh order contract": [
+      "report provenance contract"
+    ],
+    "report schema contract": [
+      "audit registry contract"
+    ],
+    "report write-safety contract": [
+      "CLI output contract"
+    ],
+    "repository hygiene audit": [],
+    "reward audit": [],
+    "task audit": [],
+    "test inventory contract": [
+      "audit registry contract"
+    ],
+    "text audit": []
+  },
+  "dependency_cycles": [],
+  "dependency_edges": 21,
+  "gate_order_violations": [],
+  "missing_nodes": [],
+  "refresh_order_violations": [],
+  "registered_audits": 31,
+  "status": "pass",
+  "unknown_dependencies": []
+}
