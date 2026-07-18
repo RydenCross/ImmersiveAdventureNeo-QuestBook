@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-EDITOR_UI_VERSION = "1.0"
+EDITOR_UI_VERSION = "1.1"
 
 EDITOR_HTML = r'''<!doctype html>
 <html lang="en">
@@ -29,6 +29,11 @@ button.active { background: #1d4ed8; border-color: #93c5fd; }
 header { height: 62px; padding: 10px 16px; background: var(--panel-2); display: flex; gap: 8px; align-items: center; border-bottom: 1px solid var(--border); }
 header strong { margin-right: 8px; }
 #status { margin-left: auto; color: var(--muted); font-size: .9rem; }
+#job-panel { display: flex; align-items: center; gap: 7px; min-width: 260px; }
+#job-panel[hidden] { display: none; }
+#job-panel progress { width: 120px; accent-color: var(--accent); }
+#job-message { max-width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #cbd5e1; font-size: .82rem; }
+#job-cancel { padding: 5px 8px; }
 #drop-zone { position: fixed; z-index: 20; inset: 74px 18px auto 18px; border: 2px dashed #4b5563; background: rgba(17,24,39,.94); padding: 14px; text-align: center; border-radius: 10px; color: var(--muted); transition: .15s ease; }
 #drop-zone.dragging { border-color: var(--accent); color: #dbeafe; background: rgba(30,64,175,.35); }
 #drop-zone[hidden] { display: none; }
@@ -79,6 +84,7 @@ textarea { min-height: 150px; resize: vertical; }
 <button id="snapshot-button" onclick="createSnapshot()">Snapshot</button><button id="recover-button" onclick="recoverLatest()">Recover latest</button>
 <button onclick="saveModel()">Save model</button><button onclick="exportQuestbook()">Export FTB Quests</button>
 <span id="status">Loading…</span>
+<div id="job-panel" hidden><progress id="job-progress" max="100" value="0"></progress><span id="job-message"></span><button id="job-cancel">Cancel</button></div>
 </header>
 <div id="drop-zone">
   <strong>Drop a CurseForge ZIP, Modrinth .mrpack, Prism export, or server pack here</strong>
@@ -122,9 +128,10 @@ textarea { min-height: 150px; resize: vertical; }
 </aside>
 </main>
 <script>
-const api = '/api/v1'; const importEndpoint = '/api/v1/import';
+const api = '/api/v1'; const importEndpoint = '/api/v1/import-job';
 let doc = null, selected = null, selectedChapter = '', linkSource = null;
 let selectedQuests = new Set();
+let activeJob = null;
 let zoom = 1, panX = 0, panY = 0, dragging = null, panning = null;
 const NODE_W = 180, NODE_H = 72, GRID_X = 210, GRID_Y = 105, CHAPTER_GAP = 170;
 
@@ -145,25 +152,54 @@ function importOptions() {
   if (target) params.set('target_quests', target);
   return params;
 }
+function sleep(milliseconds) { return new Promise(resolve => setTimeout(resolve, milliseconds)); }
+function renderJob(job) {
+  const panel = document.getElementById('job-panel');
+  panel.hidden = false;
+  document.getElementById('job-progress').value = job.progress || 0;
+  document.getElementById('job-message').textContent = `${job.stage}: ${job.message}`;
+  document.getElementById('job-cancel').disabled = !job.cancellable;
+}
+async function monitorJob(jobId) {
+  activeJob = jobId;
+  while (activeJob === jobId) {
+    const job = await request(`/jobs/${jobId}`);
+    renderJob(job);
+    if (job.state === 'completed') {
+      activeJob = null;
+      document.getElementById('job-panel').hidden = true;
+      selected = null; selectedChapter = ''; linkSource = null; selectedQuests.clear();
+      await refresh(); fitGraph(); document.getElementById('drop-zone').hidden = true;
+      return job;
+    }
+    if (job.state === 'failed') { activeJob = null; throw new Error(job.error || 'Generation failed'); }
+    if (job.state === 'cancelled') { activeJob = null; throw new Error('Generation cancelled'); }
+    await sleep(180);
+  }
+}
+async function cancelActiveJob() {
+  if (!activeJob) return;
+  try { await request(`/jobs/${activeJob}/cancel`, {method:'POST', body:'{}'}); }
+  catch (error) { showError(error); }
+}
 async function importFile(file) {
   if (!file) return;
   const lower = file.name.toLowerCase();
   if (!lower.endsWith('.zip') && !lower.endsWith('.mrpack')) throw new Error('Choose a .zip or .mrpack modpack export.');
+  if (activeJob) throw new Error('A modpack generation job is already running.');
   const drop = document.getElementById('drop-zone');
   drop.hidden = false; drop.classList.add('dragging');
-  document.getElementById('status').textContent = `Importing ${file.name}…`;
+  document.getElementById('status').textContent = `Uploading ${file.name}…`;
   const response = await fetch(`${importEndpoint}?${importOptions()}`, {
     method: 'POST',
     headers: {'Content-Type':'application/octet-stream', 'X-File-Name': encodeURIComponent(file.name)},
     body: file,
   });
-  const data = await response.json();
+  const job = await response.json();
   drop.classList.remove('dragging');
-  if (!response.ok) throw new Error(data.error || 'Import failed');
-  selected = null; selectedChapter = ''; linkSource = null; selectedQuests.clear();
-  await refresh();
-  fitGraph();
-  drop.hidden = true;
+  if (!response.ok) throw new Error(job.error || 'Import failed');
+  showError();
+  await monitorJob(job.id);
 }
 async function refresh() {
   try {
@@ -320,6 +356,7 @@ document.getElementById('bulk-clear-review-button').onclick=()=>setSelectedRevie
 document.getElementById('bulk-chapter').addEventListener('change',event=>moveSelectedToChapter(event.target.value));
 document.getElementById('link-button').onclick=event=>{event.currentTarget.classList.toggle('active');linkSource=null;renderGraph();};
 document.getElementById('import-button').onclick=()=>document.getElementById('file-input').click();
+document.getElementById('job-cancel').onclick=cancelActiveJob;
 document.getElementById('file-input').addEventListener('change',event=>importFile(event.target.files[0]).catch(showError));
 const drop=document.getElementById('drop-zone');
 for(const name of ['dragenter','dragover']) drop.addEventListener(name,event=>{event.preventDefault();drop.classList.add('dragging');});

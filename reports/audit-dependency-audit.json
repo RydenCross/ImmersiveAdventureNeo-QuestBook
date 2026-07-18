@@ -30,6 +30,10 @@
       "editor workspace tools contract",
       "local visual editor service contract"
     ],
+    "editor background jobs contract": [
+      "editor autosave and recovery contract",
+      "interactive visual editor UI contract"
+    ],
     "editor workspace tools contract": [
       "interactive visual editor UI contract"
     ],
@@ -143,11 +147,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 48,
+  "dependency_edges": 50,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 54,
+  "registered_audits": 55,
   "status": "pass",
   "unknown_dependencies": []
 }

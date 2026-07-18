@@ -47,6 +47,7 @@ EXPECTED_COMMANDS = (
     "editor-ui-audit",
     "editor-workspace-audit",
     "editor-recovery-audit",
+    "editor-jobs-audit",
     "quest-editor-serve",
     "output-manifest",
     "output-manifest-guard",

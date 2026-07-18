@@ -1,12 +1,12 @@
 {
   "missing_renderers": [],
-  "ordered_reports": 54,
+  "ordered_reports": 55,
   "probe_failed": [],
   "probe_refreshed": [
     "first.json",
     "second.json"
   ],
-  "renderer_reports": 54,
+  "renderer_reports": 55,
   "status": "pass",
   "unexpected_renderers": []
 }

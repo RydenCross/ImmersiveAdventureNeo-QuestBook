@@ -776,3 +776,26 @@ python -m generator editor-recovery-audit --format json --output reports/editor-
 ```
 
 See [`docs/EDITOR_RECOVERY.md`](docs/EDITOR_RECOVERY.md).
+
+## Background generation jobs and progress
+
+Large modpack imports now run as staged localhost jobs instead of blocking one long browser request. The editor reports pack scanning, content discovery, progression planning, descriptions, rewards, and final graph validation with a monotonic progress bar and cooperative cancellation. The current document is replaced only after the generated graph validates successfully.
+
+The job API is available at:
+
+```text
+GET  /api/v1/jobs
+GET  /api/v1/jobs/{job-id}
+POST /api/v1/jobs/{job-id}/cancel
+POST /api/v1/generate-job
+POST /api/v1/import-job
+```
+
+Validate background generation with:
+
+```bash
+python -m generator editor-jobs-audit
+python -m generator editor-jobs-audit --format json --output reports/editor-jobs-audit.json
+```
+
+See [`docs/EDITOR_BACKGROUND_JOBS.md`](docs/EDITOR_BACKGROUND_JOBS.md).

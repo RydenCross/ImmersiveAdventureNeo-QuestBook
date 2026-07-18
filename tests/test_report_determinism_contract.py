@@ -9,8 +9,8 @@ from generator.report_determinism_contract import (
 def test_repository_reports_are_deterministic() -> None:
     result = run_report_determinism_contract()
     assert result.is_clean
-    assert result.checked_reports == 53
-    assert len(result.deterministic_reports) == 53
+    assert result.checked_reports == 54
+    assert len(result.deterministic_reports) == 54
 
 
 def test_contract_detects_nondeterministic_reports() -> None:

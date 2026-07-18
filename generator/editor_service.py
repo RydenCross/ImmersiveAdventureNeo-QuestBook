@@ -23,6 +23,11 @@ from generator.editor_model import (
     validate_editor_document,
 )
 from generator.editor_ui import EDITOR_HTML
+from generator.editor_jobs import (
+    EditorJobCancelled,
+    EditorJobManager,
+    generate_editor_document_staged,
+)
 from generator.editor_recovery import EditorRecoveryStore
 from generator.editor_workspace import apply_editor_batch, auto_layout_editor_document
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
@@ -116,6 +121,7 @@ class EditorSession:
         self.document_path = document_path.resolve() if document_path else None
         self.saved_revision = saved_revision
         self.recovery = EditorRecoveryStore(self.workspace)
+        self.jobs = EditorJobManager()
         self._undo: list[EditorDocument] = []
         self._redo: list[EditorDocument] = []
         self._lock = RLock()
@@ -211,6 +217,7 @@ class EditorSession:
                 "validation_errors": len(validation.errors),
                 "validation_warnings": len(validation.warnings),
                 "recovery": self.recovery.status(),
+                "active_jobs": self.jobs.list()["active_jobs"],
             }
 
     def document_payload(self) -> dict[str, object]:
@@ -413,30 +420,17 @@ class EditorSession:
                 "document": self.document.to_dict(),
             }
 
-    def import_modpack(
+    def _store_import(
         self,
         filename: str,
         stream: BinaryIO,
         content_length: int,
-        *,
-        target_quests: int | None = None,
-        chapter_size: int = 40,
-        description_style: str = "guided",
-        reward_policy: str = "unassigned",
-    ) -> dict[str, object]:
+    ) -> tuple[str, Path, int, str]:
         safe_name = _validated_import_name(filename)
         if content_length <= 0:
             raise ValueError("uploaded modpack is empty")
         if content_length > MAX_UPLOAD_BYTES:
             raise ValueError("uploaded modpack exceeds the editor upload limit")
-        if chapter_size <= 0:
-            raise ValueError("chapter_size must be positive")
-        if target_quests is not None and target_quests <= 0:
-            raise ValueError("target_quests must be positive")
-        if description_style not in DESCRIPTION_STYLES:
-            raise ValueError("unsupported description style")
-        if reward_policy != "unassigned" and reward_policy not in REWARD_POLICIES:
-            raise ValueError("unsupported reward policy")
 
         import_directory = self._workspace_path("imports")
         import_directory.mkdir(parents=True, exist_ok=True)
@@ -452,7 +446,7 @@ class EditorSession:
                 delete=False,
             ) as temporary:
                 temporary_path = Path(temporary.name)
-                while True:
+                while bytes_written < content_length:
                     chunk = stream.read(min(UPLOAD_CHUNK_BYTES, content_length - bytes_written))
                     if not chunk:
                         break
@@ -470,6 +464,62 @@ class EditorSession:
             else:
                 os.replace(temporary_path, destination)
             temporary_path = None
+            return safe_name, destination, bytes_written, checksum
+        finally:
+            if temporary_path is not None:
+                temporary_path.unlink(missing_ok=True)
+
+    @staticmethod
+    def _validate_generation_options(
+        *,
+        target_quests: int | None,
+        chapter_size: int,
+        description_style: str,
+        reward_policy: str,
+    ) -> None:
+        if chapter_size <= 0:
+            raise ValueError("chapter_size must be positive")
+        if target_quests is not None and target_quests <= 0:
+            raise ValueError("target_quests must be positive")
+        if description_style not in DESCRIPTION_STYLES:
+            raise ValueError("unsupported description style")
+        if reward_policy != "unassigned" and reward_policy not in REWARD_POLICIES:
+            raise ValueError("unsupported reward policy")
+
+    def _commit_generated_document(self, document: EditorDocument, *, reason: str) -> None:
+        validation = validate_editor_document(document)
+        if document.errors or validation.errors:
+            errors = tuple(document.errors) + validation.errors
+            raise ValueError("generated editor document is invalid: " + "; ".join(errors))
+        with self._lock:
+            self._replace_document(document, reset_history=True)
+            self.document_path = None
+            self.saved_revision = -1
+            self._autosave(reason)
+
+    def import_modpack(
+        self,
+        filename: str,
+        stream: BinaryIO,
+        content_length: int,
+        *,
+        target_quests: int | None = None,
+        chapter_size: int = 40,
+        description_style: str = "guided",
+        reward_policy: str = "unassigned",
+    ) -> dict[str, object]:
+        self._validate_generation_options(
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+        safe_name, destination, bytes_written, checksum = self._store_import(
+            filename,
+            stream,
+            content_length,
+        )
+        try:
             document = generate_editor_model(
                 destination,
                 target_quests=target_quests,
@@ -477,28 +527,129 @@ class EditorSession:
                 description_style=description_style,
                 reward_policy=reward_policy,
             )
-            validation = validate_editor_document(document)
-            if document.errors or validation.errors:
-                errors = tuple(document.errors) + validation.errors
-                destination.unlink(missing_ok=True)
-                raise ValueError("uploaded modpack could not generate a valid editor document: " + "; ".join(errors))
-            with self._lock:
-                self._replace_document(document, reset_history=True)
-                self.document_path = None
-                self.saved_revision = -1
-                self._autosave("import")
-                return {
-                    "status": "pass",
-                    "filename": safe_name,
-                    "path": destination.relative_to(self.workspace).as_posix(),
-                    "bytes": bytes_written,
-                    "sha256": checksum,
-                    "session": self.status(),
-                    "document": self.document.to_dict(),
-                }
-        finally:
-            if temporary_path is not None:
-                temporary_path.unlink(missing_ok=True)
+            self._commit_generated_document(document, reason="import")
+        except (OSError, TypeError, ValueError):
+            destination.unlink(missing_ok=True)
+            raise
+        return {
+            "status": "pass",
+            "filename": safe_name,
+            "path": destination.relative_to(self.workspace).as_posix(),
+            "bytes": bytes_written,
+            "sha256": checksum,
+            "session": self.status(),
+            "document": self.document.to_dict(),
+        }
+
+    def _queue_source_generation(
+        self,
+        source: Path,
+        *,
+        kind: str,
+        target_quests: int | None,
+        chapter_size: int,
+        description_style: str,
+        reward_policy: str,
+        reason: str,
+        metadata: Mapping[str, object] | None = None,
+    ) -> dict[str, object]:
+        self._validate_generation_options(
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+        if not source.exists():
+            raise ValueError(f"modpack source does not exist: {source.as_posix()}")
+
+        def runner(progress, cancel_event):
+            document = generate_editor_document_staged(
+                source,
+                target_quests=target_quests,
+                chapter_size=chapter_size,
+                description_style=description_style,
+                reward_policy=reward_policy,
+                progress=progress,
+                cancel_event=cancel_event,
+            )
+            if cancel_event.is_set():
+                raise EditorJobCancelled("editor job was cancelled")
+            self._commit_generated_document(document, reason=reason)
+            result = {
+                "source": source.relative_to(self.workspace).as_posix()
+                if source.is_relative_to(self.workspace)
+                else source.as_posix(),
+                "session": self.status(),
+            }
+            if metadata:
+                result.update(dict(metadata))
+            return result
+
+        return self.jobs.submit(kind, runner)
+
+    def queue_generate(self, payload: Mapping[str, object]) -> dict[str, object]:
+        source_value = str(payload.get("path", ""))
+        if not source_value:
+            raise ValueError("path is required")
+        source = self._workspace_path(source_value)
+        target_value = payload.get("target_quests")
+        target_quests = int(target_value) if target_value is not None else None
+        return self._queue_source_generation(
+            source,
+            kind="generate",
+            target_quests=target_quests,
+            chapter_size=int(payload.get("chapter_size", 40)),
+            description_style=str(payload.get("description_style", "guided")),
+            reward_policy=str(payload.get("reward_policy", "unassigned")),
+            reason="background-generate",
+        )
+
+    def queue_import_modpack(
+        self,
+        filename: str,
+        stream: BinaryIO,
+        content_length: int,
+        *,
+        target_quests: int | None = None,
+        chapter_size: int = 40,
+        description_style: str = "guided",
+        reward_policy: str = "unassigned",
+    ) -> dict[str, object]:
+        self._validate_generation_options(
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+        safe_name, destination, bytes_written, checksum = self._store_import(
+            filename,
+            stream,
+            content_length,
+        )
+        return self._queue_source_generation(
+            destination,
+            kind="import",
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+            reason="background-import",
+            metadata={
+                "filename": safe_name,
+                "path": destination.relative_to(self.workspace).as_posix(),
+                "bytes": bytes_written,
+                "sha256": checksum,
+            },
+        )
+
+    def jobs_payload(self) -> dict[str, object]:
+        return self.jobs.list()
+
+    def job_payload(self, job_id: str) -> dict[str, object]:
+        return self.jobs.status(job_id)
+
+    def cancel_job(self, job_id: str) -> dict[str, object]:
+        return self.jobs.cancel(job_id)
 
     def recovery_payload(self) -> dict[str, object]:
         with self._lock:
@@ -579,7 +730,20 @@ def handle_editor_api(
     clean_path = urlparse(path).path.rstrip("/") or "/"
     body = payload or {}
     try:
-        if method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/status":
+        job_prefix = f"/api/{EDITOR_API_VERSION}/jobs/"
+        if method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/jobs":
+            result = session.jobs_payload()
+        elif method == "GET" and clean_path.startswith(job_prefix):
+            job_id = clean_path[len(job_prefix):]
+            if not job_id or "/" in job_id:
+                raise ValueError("invalid editor job identifier")
+            result = session.job_payload(job_id)
+        elif method == "POST" and clean_path.startswith(job_prefix) and clean_path.endswith("/cancel"):
+            job_id = clean_path[len(job_prefix):-len("/cancel")].rstrip("/")
+            if not job_id or "/" in job_id:
+                raise ValueError("invalid editor job identifier")
+            result = session.cancel_job(job_id)
+        elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/status":
             result = session.status()
         elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/document":
             result = session.document_payload()
@@ -609,6 +773,8 @@ def handle_editor_api(
             result = session.open(str(body.get("path", "")))
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/generate":
             result = session.generate(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/generate-job":
+            return EditorServiceResponse(202, session.queue_generate(body))
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/export":
             result = session.export(
                 str(body.get("destination", DEFAULT_EDITOR_EXPORT)),
@@ -685,6 +851,28 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
             reward_policy=reward_policy,
         )
 
+    def _read_import_job(self) -> dict[str, object]:
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError as exc:
+            raise ValueError("invalid Content-Length") from exc
+        filename = self.headers.get("X-File-Name", "")
+        query = parse_qs(urlparse(self.path).query, keep_blank_values=True)
+        target_quests = _integer_option(query, "target_quests", None)
+        chapter_size = _integer_option(query, "chapter_size", 40)
+        assert chapter_size is not None
+        description_style = query.get("description_style", ["guided"])[0]
+        reward_policy = query.get("reward_policy", ["unassigned"])[0]
+        return self.server.session.queue_import_modpack(
+            filename,
+            self.rfile,
+            length,
+            target_quests=target_quests,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+
     def _read_payload(self) -> Mapping[str, object]:
         try:
             length = int(self.headers.get("Content-Length", "0"))
@@ -707,6 +895,14 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         clean_path = urlparse(self.path).path.rstrip("/") or "/"
+        if clean_path == f"/api/{EDITOR_API_VERSION}/import-job":
+            try:
+                result = self._read_import_job()
+            except (OSError, TypeError, UnicodeDecodeError, ValueError) as exc:
+                self._send_json(EditorServiceResponse(400, {"status": "fail", "error": str(exc)}))
+                return
+            self._send_json(EditorServiceResponse(202, result))
+            return
         if clean_path == f"/api/{EDITOR_API_VERSION}/import":
             try:
                 result = self._read_import()

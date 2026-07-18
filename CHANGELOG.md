@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 101 - Background Modpack Generation Jobs and Progress API
+
+- Added staged background generation for large modpack imports and workspace sources.
+- Added monotonic progress reporting across scanning, planning, descriptions, rewards, and editor-model validation.
+- Added cooperative cancellation, bounded job history, and failure isolation so active documents are replaced atomically only after successful validation.
+- Added `/api/v1/jobs`, `/api/v1/generate-job`, `/api/v1/import-job`, browser progress/cancel controls, tests, documentation, and a tracked audit report.
+
 
 ## Commit 100 - Autosave, Project Snapshots, and Crash Recovery
 

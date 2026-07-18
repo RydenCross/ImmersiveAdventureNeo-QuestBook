@@ -48,6 +48,10 @@
       "report": "documentation-audit.json"
     },
     {
+      "command": "editor-jobs-audit",
+      "report": "editor-jobs-audit.json"
+    },
+    {
       "command": "editor-model-audit",
       "report": "editor-model-audit.json"
     },
@@ -217,5 +221,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 53
+  "tracked_reports": 54
 }
