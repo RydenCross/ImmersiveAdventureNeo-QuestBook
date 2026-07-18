@@ -5,12 +5,12 @@ import hashlib
 import json
 from pathlib import Path
 
+from generator.quest_description_generator import generate_quest_description_plan
 from generator.progression_planner import (
     BlueprintChapter,
     BlueprintQuest,
     BlueprintReward,
     QuestBlueprint,
-    generate_quest_blueprint,
 )
 
 REWARD_POLICIES = ("none", "conservative", "balanced", "generous")
@@ -255,10 +255,23 @@ def generate_quest_reward_plan(
     target_quests: int | None = None,
     chapter_size: int = 40,
     policy: str = "conservative",
+    description_style: str = "guided",
 ) -> QuestRewardPlan:
-    blueprint = generate_quest_blueprint(
+    description_plan = generate_quest_description_plan(
         source,
         target_quests=target_quests,
         chapter_size=chapter_size,
+        style=description_style,
     )
-    return plan_quest_rewards(blueprint, policy=policy)
+    if not description_plan.is_clean:
+        return QuestRewardPlan(
+            policy=policy,
+            blueprint=description_plan.blueprint,
+            rewarded_quests=0,
+            explicit_no_reward_quests=0,
+            reward_count=0,
+            reward_items=(),
+            warnings=description_plan.warnings,
+            errors=description_plan.errors,
+        )
+    return plan_quest_rewards(description_plan.blueprint, policy=policy)

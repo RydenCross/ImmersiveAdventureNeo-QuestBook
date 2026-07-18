@@ -40,9 +40,10 @@ AUDIT_DEPENDENCIES.update(
         "modpack scanner contract": ("repository hygiene audit",),
         "modpack content scanner contract": ("modpack scanner contract",),
         "progression planner contract": ("modpack content scanner contract",),
-        "FTB blueprint exporter contract": ("progression planner contract",),
+        "quest description contract": ("progression planner contract",),
+        "FTB blueprint exporter contract": ("quest description contract",),
         "questbook review contract": ("FTB blueprint exporter contract",),
-        "reward planner contract": ("questbook review contract",),
+        "reward planner contract": ("questbook review contract", "quest description contract"),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

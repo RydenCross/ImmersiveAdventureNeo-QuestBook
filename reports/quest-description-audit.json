@@ -1,0 +1,13 @@
+{
+  "advancement_guidance_generated": true,
+  "descriptions_generated": true,
+  "deterministic_output": true,
+  "exporter_round_trip": true,
+  "invalid_style_rejected": true,
+  "low_confidence_review_guidance": true,
+  "prerequisites_named": true,
+  "recipe_guidance_generated": true,
+  "status": "pass",
+  "style_scaling": true,
+  "weak_descriptions_resolved": true
+}

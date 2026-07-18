@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 68,
+  "documented_command_count": 70,
   "empty_documents": [],
-  "expected_command_count": 68,
-  "markdown_file_count": 79,
+  "expected_command_count": 70,
+  "markdown_file_count": 80,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -48,6 +48,7 @@
     "docs/PROGRESSION_PLANNER.md",
     "docs/QUALITY_GATE.md",
     "docs/QUESTBOOK_REVIEW.md",
+    "docs/QUEST_DESCRIPTION_GENERATOR.md",
     "docs/REGISTRY_AUDIT.md",
     "docs/RELEASE_ARCHIVE_COMPRESSION_CONTRACT.md",
     "docs/RELEASE_ARCHIVE_EXTRACTION_SAFETY_CONTRACT.md",

@@ -1,5 +1,14 @@
 ## Unreleased
 
+## Commit 95 - Quest Description and Instruction Generator
+
+- Added deterministic concise, guided, and detailed description generation for scanned quest blueprints.
+- Added prerequisite, recipe-input, tagged-input, chapter-entry, and downstream unlock guidance.
+- Added explicit human-review instructions for low-confidence registry-only objectives.
+- Applied guided descriptions to reward planning, FTB export, and generated questbook review by default.
+- Added CLI, contract, documentation, and regression coverage.
+
+
 ## Commit 94 - Generated Quest Reward Planner
 
 - Added deterministic `none`, `conservative`, `balanced`, and `generous` reward-decision policies.

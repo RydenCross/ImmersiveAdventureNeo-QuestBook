@@ -9,7 +9,7 @@
       "report schema contract"
     ],
     "FTB blueprint exporter contract": [
-      "progression planner contract"
+      "quest description contract"
     ],
     "audit dependency contract": [
       "audit registry contract",
@@ -41,6 +41,9 @@
     "progression guard": [],
     "progression planner contract": [
       "modpack content scanner contract"
+    ],
+    "quest description contract": [
+      "progression planner contract"
     ],
     "questbook review contract": [
       "FTB blueprint exporter contract"
@@ -113,7 +116,8 @@
     "repository hygiene audit": [],
     "reward audit": [],
     "reward planner contract": [
-      "questbook review contract"
+      "questbook review contract",
+      "quest description contract"
     ],
     "task audit": [],
     "test inventory contract": [
@@ -122,11 +126,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 39,
+  "dependency_edges": 41,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 48,
+  "registered_audits": 49,
   "status": "pass",
   "unknown_dependencies": []
 }

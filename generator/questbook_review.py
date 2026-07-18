@@ -14,6 +14,7 @@ from generator.progression_planner import (
     generate_quest_blueprint,
 )
 from generator.reward_planner import plan_quest_rewards
+from generator.quest_description_generator import plan_quest_descriptions
 from generator.validator import ProjectValidator
 
 DEFAULT_LOW_CONFIDENCE_THRESHOLD = 0.75
@@ -501,6 +502,7 @@ def review_modpack_questbook(
     min_description_words: int = DEFAULT_MIN_DESCRIPTION_WORDS,
     max_chapter_quests: int = DEFAULT_MAX_CHAPTER_QUESTS,
     bottleneck_dependents: int = DEFAULT_BOTTLENECK_DEPENDENTS,
+    description_style: str = "guided",
     reward_policy: str = "unassigned",
 ) -> QuestbookReview:
     blueprint = generate_quest_blueprint(
@@ -508,6 +510,14 @@ def review_modpack_questbook(
         target_quests=target_quests,
         chapter_size=chapter_size,
     )
+    description_plan = plan_quest_descriptions(blueprint, style=description_style)
+    if description_plan.is_clean:
+        blueprint = description_plan.blueprint
+    else:
+        blueprint = replace(
+            blueprint,
+            errors=tuple((*blueprint.errors, *description_plan.errors)),
+        )
     if reward_policy != "unassigned":
         reward_plan = plan_quest_rewards(blueprint, policy=reward_policy)
         if reward_plan.is_clean:

@@ -83,6 +83,29 @@ python -m generator progression-planner-audit --format json --output reports/pro
 
 See [`docs/PROGRESSION_PLANNER.md`](docs/PROGRESSION_PLANNER.md).
 
+## Quest description and instruction generation
+
+Replace short scanner copy with grounded player-facing instructions before reward planning or export:
+
+```bash
+python -m generator quest-description-plan /path/to/modpack.mrpack \
+  --target-quests 600 \
+  --style guided \
+  --format json \
+  --output quest-description-plan.json
+```
+
+The generator explains item and advancement completion, names prerequisite quests, lists known inputs and accepted tags, describes generated unlocks, and adds explicit review guidance for registry-only objectives. It does not invent unconfirmed machines or processing methods.
+
+Validate the generator with:
+
+```bash
+python -m generator quest-description-audit
+python -m generator quest-description-audit --format json --output reports/quest-description-audit.json
+```
+
+See [`docs/QUEST_DESCRIPTION_GENERATOR.md`](docs/QUEST_DESCRIPTION_GENERATOR.md).
+
 ## Generated quest reward planning
 
 Assign deterministic reward drafts or explicit no-reward decisions before export:
@@ -115,6 +138,7 @@ python -m generator ftb-quest-export /path/to/modpack.mrpack \
   --destination generated/ftbquests \
   --target-quests 600 \
   --chapter-size 40 \
+  --description-style guided \
   --reward-policy conservative
 ```
 
@@ -136,6 +160,7 @@ Review a generated blueprint before installing or publishing it:
 ```bash
 python -m generator questbook-review /path/to/modpack.mrpack \
   --target-quests 600 \
+  --description-style guided \
   --reward-policy conservative \
   --format json \
   --output questbook-review.json

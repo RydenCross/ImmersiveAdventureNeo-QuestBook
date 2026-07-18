@@ -16,10 +16,9 @@ def test_reviews_generated_blueprint_and_flags_editorial_work(tmp_path: Path) ->
     assert not result.publish_ready
     assert result.quests == 4
     assert result.missing_reward_decisions == 4
-    assert result.weak_descriptions == 2
+    assert result.weak_descriptions == 0
     assert {finding.code for finding in result.findings} >= {
         "MISSING_REWARD_DECISIONS",
-        "WEAK_DESCRIPTION",
     }
 
 

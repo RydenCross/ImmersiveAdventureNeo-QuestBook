@@ -52,6 +52,7 @@ SPECIAL_TEST_FILES = {
     "modpack scanner contract": "test_modpack_scanner_contract.py",
     "modpack content scanner contract": "test_modpack_content_scanner_contract.py",
     "progression planner contract": "test_progression_planner_contract.py",
+    "quest description contract": "test_quest_description_contract.py",
     "FTB blueprint exporter contract": "test_ftb_blueprint_exporter_contract.py",
     "questbook review contract": "test_questbook_review_contract.py",
     "reward planner contract": "test_reward_planner_contract.py",
