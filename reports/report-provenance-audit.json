@@ -84,6 +84,10 @@
       "report": "report-schema-audit.json"
     },
     {
+      "command": "report-write-safety-audit",
+      "report": "report-write-safety-audit.json"
+    },
+    {
       "command": "repository-hygiene-audit",
       "report": "repository-hygiene-audit.json"
     },
@@ -105,5 +109,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 25
+  "tracked_reports": 26
 }

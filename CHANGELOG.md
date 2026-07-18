@@ -1,3 +1,11 @@
+# Changelog
+
+## Commit 73 - Report Write-Safety Contract
+
+- Added atomic report-file writes through a shared output helper.
+- Added failure-path checks that preserve existing reports and clean temporary files.
+- Integrated the contract into the CLI, quality gate, registry, freshness guard, tests, and documentation.
+
 ## Commit 72 - CLI Exit-Code Contract
 
 - Added pass/fail exit-code verification through the public CLI.

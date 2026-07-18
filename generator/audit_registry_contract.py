@@ -60,6 +60,7 @@ AUDIT_REGISTRY = (
     ),
     AuditRegistration("CLI output contract", "cli-output-audit", "cli-output-audit.json"),
     AuditRegistration("CLI exit-code contract", "cli-exit-code-audit", "cli-exit-code-audit.json"),
+    AuditRegistration("report write-safety contract", "report-write-safety-audit", "report-write-safety-audit.json"),
 )
 
 

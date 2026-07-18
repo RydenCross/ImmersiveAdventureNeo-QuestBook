@@ -48,6 +48,8 @@ from generator.report_provenance_contract import run_report_provenance_contract
 from generator.report_determinism_contract import run_report_determinism_contract
 from generator.cli_output_contract import run_cli_output_contract
 from generator.cli_exit_code_contract import run_cli_exit_code_contract
+from generator.report_write_safety_contract import run_report_write_safety_contract
+from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
 from generator.release_guard import (
@@ -319,6 +321,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     cli_output.add_argument("--format", choices=("text", "json"), default="text")
     cli_output.add_argument("--output", type=Path)
+    report_write_safety = subparsers.add_parser(
+        "report-write-safety-audit",
+        help="Validate atomic and failure-safe report output writes.",
+    )
+    report_write_safety.add_argument("--format", choices=("text", "json"), default="text")
+    report_write_safety.add_argument("--output", type=Path)
     cli_exit_code = subparsers.add_parser(
         "cli-exit-code-audit",
         help="Validate audit command exit codes against JSON pass/fail status.",
@@ -579,12 +587,20 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "report-write-safety-audit":
+        result = run_report_write_safety_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "cli-exit-code-audit":
         result = run_cli_exit_code_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -593,8 +609,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_cli_output_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -603,8 +618,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_report_determinism_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -613,8 +627,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_report_provenance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -623,8 +636,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_report_consistency_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -633,8 +645,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_report_schema_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -643,8 +654,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_test_inventory_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -653,8 +663,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_audit_registry_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -663,8 +672,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_release_reproducibility_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -673,8 +681,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_release_artifact_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -683,8 +690,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_repository_hygiene_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -693,8 +699,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_documentation_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -703,8 +708,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_cli_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -713,8 +717,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_packaging_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -723,8 +726,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_quality_gate()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -733,8 +735,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_report_freshness_guard()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -747,8 +748,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -773,8 +773,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -795,8 +794,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -813,8 +811,7 @@ def main(argv: list[str] | None = None) -> int:
         report = run_release_check(args.output)
         rendered = report.format_json() if args.format == "json" else report.format()
         if args.report_output:
-            args.report_output.parent.mkdir(parents=True, exist_ok=True)
-            args.report_output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.report_output, rendered + "\n")
         else:
             print(rendered)
         return 0 if report.is_clean else 1
@@ -827,8 +824,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -856,8 +852,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = comparison.format_json() if args.format == "json" else comparison.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if comparison.is_clean or not args.strict else 1
@@ -866,8 +861,7 @@ def main(argv: list[str] | None = None) -> int:
         report = audit_dependencies(create_project())
         rendered = report.format_json() if args.format == "json" else report.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if report.is_clean or not args.strict else 1
@@ -876,8 +870,7 @@ def main(argv: list[str] | None = None) -> int:
         graph = build_dependency_graph(create_project())
         rendered = graph.format_json() if args.format == "json" else graph.format_dot()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0
@@ -890,8 +883,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = report.format_json() if args.format == "json" else report.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0
@@ -904,8 +896,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean else 1
@@ -914,8 +905,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_reward_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean or not args.strict else 1
@@ -924,8 +914,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_task_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean or not args.strict else 1
@@ -934,8 +923,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_chapter_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean or not args.strict else 1
@@ -944,8 +932,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_text_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean or not args.strict else 1
@@ -954,8 +941,7 @@ def main(argv: list[str] | None = None) -> int:
         result = run_determinism_audit()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(rendered + "\n", encoding="utf-8")
+            atomic_write_text(args.output, rendered + "\n")
         else:
             print(rendered)
         return 0 if result.is_clean or not args.strict else 1
@@ -964,8 +950,7 @@ def main(argv: list[str] | None = None) -> int:
         audit = audit_registry(create_project(), args.sources)
         report = audit.format_json() if args.format == "json" else audit.format()
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(report + "\n", encoding="utf-8")
+            atomic_write_text(args.output, report + "\n")
         else:
             print(report)
         return 0 if audit.is_clean or not args.strict else 1
@@ -973,8 +958,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "registry-manifest":
         manifest = format_reference_manifest(create_project())
         if args.output:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(manifest + "\n", encoding="utf-8")
+            atomic_write_text(args.output, manifest + "\n")
         else:
             print(manifest)
         return 0

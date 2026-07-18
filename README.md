@@ -387,3 +387,11 @@ python -m generator cli-exit-code-audit
 ```
 
 Verifies that passing audit JSON returns exit code `0` and failing audit JSON returns a non-zero process status. See [CLI Exit-Code Contract](docs/CLI_EXIT_CODE_CONTRACT.md).
+
+### Report write-safety contract
+
+```bash
+python -m generator report-write-safety-audit
+```
+
+Verifies that audit output files are replaced atomically, failed writes preserve the previous report, and temporary files are cleaned up. See [Report Write-Safety Contract](docs/REPORT_WRITE_SAFETY_CONTRACT.md).

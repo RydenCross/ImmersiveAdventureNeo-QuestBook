@@ -35,6 +35,7 @@ SPECIAL_TEST_FILES = {
     "report determinism contract": "test_report_determinism_contract.py",
     "CLI output contract": "test_cli_output_contract.py",
     "CLI exit-code contract": "test_cli_exit_code_contract.py",
+    "report write-safety contract": "test_report_write_safety_contract.py",
 }
 
 
