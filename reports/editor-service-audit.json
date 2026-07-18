@@ -1,0 +1,12 @@
+{
+  "deterministic_document": true,
+  "export_route": true,
+  "http_round_trip": true,
+  "loopback_only": true,
+  "operation_history": true,
+  "save_open_round_trip": true,
+  "session_generated": true,
+  "status": "pass",
+  "validation_route": true,
+  "workspace_escape_rejected": true
+}

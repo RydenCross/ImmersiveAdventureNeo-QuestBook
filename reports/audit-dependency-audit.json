@@ -27,6 +27,9 @@
     "determinism audit": [],
     "documentation contract audit": [],
     "identity guard": [],
+    "local visual editor service contract": [
+      "visual editor data model contract"
+    ],
     "mod compatibility contract": [],
     "modpack content scanner contract": [
       "modpack scanner contract"
@@ -130,11 +133,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 43,
+  "dependency_edges": 44,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 50,
+  "registered_audits": 51,
   "status": "pass",
   "unknown_dependencies": []
 }

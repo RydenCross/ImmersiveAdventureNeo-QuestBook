@@ -43,6 +43,8 @@ EXPECTED_COMMANDS = (
     "reward-planner-audit",
     "quest-description-audit",
     "editor-model-audit",
+    "editor-service-audit",
+    "quest-editor-serve",
     "output-manifest",
     "output-manifest-guard",
     "packaging-audit",

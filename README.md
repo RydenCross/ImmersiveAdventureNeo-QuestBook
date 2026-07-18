@@ -130,6 +130,29 @@ python -m generator editor-model-audit --format json --output reports/editor-mod
 
 See [`docs/EDITOR_MODEL.md`](docs/EDITOR_MODEL.md).
 
+## Local visual editor service and API
+
+Launch the generated editor model as a local browser application:
+
+```bash
+python -m generator quest-editor-serve /path/to/modpack.mrpack \
+  --workspace .quest-editor \
+  --target-quests 600 \
+  --description-style guided \
+  --reward-policy conservative
+```
+
+The dependency-free service binds only to localhost and provides a built-in quest editor plus versioned JSON endpoints for document inspection, validated graph operations, undo/redo, save/open, validation, regeneration, and FTB Quests export. All API-managed files are confined to the configured workspace.
+
+Validate the service with:
+
+```bash
+python -m generator editor-service-audit
+python -m generator editor-service-audit --format json --output reports/editor-service-audit.json
+```
+
+See [`docs/EDITOR_SERVICE.md`](docs/EDITOR_SERVICE.md).
+
 ## Generated quest reward planning
 
 Assign deterministic reward drafts or explicit no-reward decisions before export:

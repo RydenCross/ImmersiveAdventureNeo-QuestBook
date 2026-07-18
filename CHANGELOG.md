@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 97 - Local Visual Editor Service and API
+
+- Added a dependency-free localhost browser editor backed by the versioned editor data model.
+- Added versioned JSON endpoints for status, document access, validation, graph operations, undo/redo, save/open, regeneration, and FTB Quests export.
+- Added workspace-confined file handling, loopback-only binding, bounded request bodies, and deterministic session behavior.
+- Added CLI, contract tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 96 - Visual Questbook Editor Data Model
 
 - Added a versioned deterministic JSON graph for chapters, quests, objectives, rewards, positions, and prerequisite edges.

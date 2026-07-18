@@ -55,6 +55,7 @@ from generator.ftb_blueprint_exporter_contract import run_ftb_blueprint_exporter
 from generator.questbook_review_contract import run_questbook_review_contract
 from generator.reward_planner_contract import run_reward_planner_contract
 from generator.editor_model_contract import run_editor_model_contract
+from generator.editor_service_contract import run_editor_service_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -165,6 +166,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "questbook review contract": run_questbook_review_contract,
         "reward planner contract": run_reward_planner_contract,
         "visual editor data model contract": run_editor_model_contract,
+        "local visual editor service contract": run_editor_service_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

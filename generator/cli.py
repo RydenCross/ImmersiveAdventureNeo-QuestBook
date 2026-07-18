@@ -83,6 +83,13 @@ from generator.quest_description_contract import run_quest_description_contract
 from generator.reward_planner_contract import run_reward_planner_contract
 from generator.editor_model import generate_editor_model
 from generator.editor_model_contract import run_editor_model_contract
+from generator.editor_service import (
+    DEFAULT_EDITOR_HOST,
+    DEFAULT_EDITOR_PORT,
+    DEFAULT_EDITOR_WORKSPACE,
+    serve_editor,
+)
+from generator.editor_service_contract import run_editor_service_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -560,6 +567,60 @@ def create_parser() -> argparse.ArgumentParser:
     quest_editor_model.add_argument(
         "--output", type=Path, help="Write the editor document to a file."
     )
+    quest_editor_serve = subparsers.add_parser(
+        "quest-editor-serve",
+        help="Launch the local FTB Quest Maker visual editor service and JSON API.",
+    )
+    quest_editor_serve.add_argument(
+        "path",
+        type=Path,
+        help="Modpack archive/folder or an existing editor-model JSON document.",
+    )
+    quest_editor_serve.add_argument(
+        "--workspace",
+        type=Path,
+        default=DEFAULT_EDITOR_WORKSPACE,
+        help="Workspace for saved models and exports (default: .quest-editor).",
+    )
+    quest_editor_serve.add_argument(
+        "--host",
+        default=DEFAULT_EDITOR_HOST,
+        help="Loopback host to bind (default: 127.0.0.1).",
+    )
+    quest_editor_serve.add_argument(
+        "--port",
+        type=int,
+        default=DEFAULT_EDITOR_PORT,
+        help="Local HTTP port (default: 8765; use 0 for an automatic port).",
+    )
+    quest_editor_serve.add_argument(
+        "--target-quests",
+        type=int,
+        help="Desired quest count when generating from a modpack.",
+    )
+    quest_editor_serve.add_argument(
+        "--chapter-size",
+        type=int,
+        default=40,
+        help="Maximum quests per generated chapter (default: 40).",
+    )
+    quest_editor_serve.add_argument(
+        "--description-style",
+        choices=DESCRIPTION_STYLES,
+        default="guided",
+        help="Description detail level used when generating the initial model.",
+    )
+    quest_editor_serve.add_argument(
+        "--reward-policy",
+        choices=("unassigned", *REWARD_POLICIES),
+        default="unassigned",
+        help="Optional reward policy used when generating the initial model.",
+    )
+    quest_editor_serve.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="Do not open the editor URL in the default browser.",
+    )
     ftb_quest_export = subparsers.add_parser(
         "ftb-quest-export",
         help="Generate and export a modpack quest blueprint as an installable FTB Quests SNBT tree.",
@@ -682,6 +743,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     editor_model.add_argument("--format", choices=("text", "json"), default="text")
     editor_model.add_argument("--output", type=Path)
+    editor_service = subparsers.add_parser(
+        "editor-service-audit",
+        help="Validate local editor sessions, API routes, history, file safety, and FTB export.",
+    )
+    editor_service.add_argument("--format", choices=("text", "json"), default="text")
+    editor_service.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -982,6 +1049,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "editor-service-audit":
+        result = run_editor_service_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1065,6 +1141,23 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if result.is_clean else 1
+
+    if args.command == "quest-editor-serve":
+        try:
+            return serve_editor(
+                args.path,
+                workspace=args.workspace,
+                host=args.host,
+                port=args.port,
+                target_quests=args.target_quests,
+                chapter_size=args.chapter_size,
+                description_style=args.description_style,
+                reward_policy=args.reward_policy,
+                open_browser=not args.no_browser,
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Editor service failed: {exc}")
+            return 1
 
     if args.command == "ftb-quest-export":
         result = export_modpack_questbook(

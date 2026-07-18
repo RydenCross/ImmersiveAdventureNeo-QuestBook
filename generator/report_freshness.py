@@ -56,6 +56,7 @@ from generator.ftb_blueprint_exporter_contract import run_ftb_blueprint_exporter
 from generator.questbook_review_contract import run_questbook_review_contract
 from generator.reward_planner_contract import run_reward_planner_contract
 from generator.editor_model_contract import run_editor_model_contract
+from generator.editor_service_contract import run_editor_service_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -149,6 +150,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "questbook-review-audit.json": lambda: run_questbook_review_contract().format_json(),
         "reward-planner-audit.json": lambda: run_reward_planner_contract().format_json(),
         "editor-model-audit.json": lambda: run_editor_model_contract().format_json(),
+        "editor-service-audit.json": lambda: run_editor_service_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

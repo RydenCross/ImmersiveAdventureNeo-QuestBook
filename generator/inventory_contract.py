@@ -57,6 +57,7 @@ SPECIAL_TEST_FILES = {
     "questbook review contract": "test_questbook_review_contract.py",
     "reward planner contract": "test_reward_planner_contract.py",
     "visual editor data model contract": "test_editor_model_contract.py",
+    "local visual editor service contract": "test_editor_service_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }
