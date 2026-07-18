@@ -101,7 +101,9 @@ def run_release_check(output: Path | None = None) -> ReleaseCheckReport:
     )
 
 
-def _check_generated(*, project, audit, authored_validation, manifest_summary, destination: Path) -> ReleaseCheckReport:
+def _check_generated(
+    *, project, audit, authored_validation, manifest_summary, destination: Path
+) -> ReleaseCheckReport:
     quests_root = build(destination, quiet=True)
     generated = FTBQuestParser().load(quests_root)
     generated_validation = ProjectValidator().validate(generated)

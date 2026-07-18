@@ -32,8 +32,15 @@ class ReleaseArtifactAudit:
 
     @property
     def is_clean(self) -> bool:
-        return not any((self.duplicate_entries, self.invalid_json_files, self.empty_files,
-                        self.missing_generated_files, self.forbidden_entries))
+        return not any(
+            (
+                self.duplicate_entries,
+                self.invalid_json_files,
+                self.empty_files,
+                self.missing_generated_files,
+                self.forbidden_entries,
+            )
+        )
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -52,17 +59,19 @@ class ReleaseArtifactAudit:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True)
 
     def format(self) -> str:
-        return "\n".join((
-            f"Release artifact audit: {'PASS' if self.is_clean else 'FAIL'}",
-            f"Archive entries: {self.archive_entries}.",
-            f"Archive bytes: {self.archive_bytes}.",
-            f"Duplicate entries: {len(self.duplicate_entries)}.",
-            f"Invalid JSON files: {len(self.invalid_json_files)}.",
-            f"Empty files: {len(self.empty_files)}.",
-            f"Missing generated files: {len(self.missing_generated_files)}.",
-            f"Forbidden entries: {len(self.forbidden_entries)}.",
-            f"Archive SHA-256: {self.archive_sha256}.",
-        ))
+        return "\n".join(
+            (
+                f"Release artifact audit: {'PASS' if self.is_clean else 'FAIL'}",
+                f"Archive entries: {self.archive_entries}.",
+                f"Archive bytes: {self.archive_bytes}.",
+                f"Duplicate entries: {len(self.duplicate_entries)}.",
+                f"Invalid JSON files: {len(self.invalid_json_files)}.",
+                f"Empty files: {len(self.empty_files)}.",
+                f"Missing generated files: {len(self.missing_generated_files)}.",
+                f"Forbidden entries: {len(self.forbidden_entries)}.",
+                f"Archive SHA-256: {self.archive_sha256}.",
+            )
+        )
 
 
 def _release_files(root: Path) -> tuple[Path, ...]:
@@ -104,7 +113,10 @@ def run_release_artifact_audit(
                 name = info.filename
                 if info.file_size == 0 and name.startswith(("output/", "reports/")):
                     empty.append(name)
-                if any(part in _IGNORED_PARTS or part.endswith(".egg-info") for part in Path(name).parts):
+                if any(
+                    part in _IGNORED_PARTS or part.endswith(".egg-info")
+                    for part in Path(name).parts
+                ):
                     forbidden.append(name)
                 if name.endswith((".pyc", ".pyo")):
                     forbidden.append(name)

@@ -7,7 +7,6 @@ from typing import Any
 
 from model import Chapter, Project, Quest, Reward, Task
 
-
 _SAFE_KEY = re.compile(r"^[A-Za-z0-9_+\-./]+$")
 
 

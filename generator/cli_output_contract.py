@@ -117,9 +117,7 @@ def run_cli_output_contract() -> CliOutputContract:
     with TemporaryDirectory(prefix="cli-output-contract-") as temporary:
         output = Path(temporary) / "report.json"
         with redirect_stdout(StringIO()):
-            file_code = main(
-                [representative, "--format", "json", "--output", str(output)]
-            )
+            file_code = main([representative, "--format", "json", "--output", str(output)])
         if stdout_code != 0 or file_code != 0:
             nonzero.append(representative)
         try:

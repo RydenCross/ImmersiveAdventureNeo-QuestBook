@@ -7,6 +7,7 @@ from model.position import Position
 from model.reward import Reward
 from model.task import Task
 
+
 @dataclass(slots=True)
 class Quest:
     id: str
@@ -27,10 +28,14 @@ class Quest:
     raw_data: dict[str, Any] = field(default_factory=dict, repr=False)
 
     def __post_init__(self) -> None:
-        if not self.id.strip(): raise ValueError("Quest id cannot be empty.")
-        if not self.title.strip(): raise ValueError("Quest title cannot be empty.")
-        if not self.icon.strip(): raise ValueError("Quest icon cannot be empty.")
-        if not isinstance(self.difficulty, Difficulty): self.difficulty = Difficulty(self.difficulty)
+        if not self.id.strip():
+            raise ValueError("Quest id cannot be empty.")
+        if not self.title.strip():
+            raise ValueError("Quest title cannot be empty.")
+        if not self.icon.strip():
+            raise ValueError("Quest icon cannot be empty.")
+        if not isinstance(self.difficulty, Difficulty):
+            self.difficulty = Difficulty(self.difficulty)
 
     def depends_on(self, quest_id: str) -> bool:
         return any(dep.quest_id == quest_id for dep in self.dependencies)

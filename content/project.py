@@ -497,131 +497,315 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .finish()
     )
 
-    established = survival.quest(
-        "established",
-        "A Proper Homestead",
-        "minecraft:golden_carrot",
-        (
-            "Your base now has storage, defense, renewable food, water, lighting, and "
-            "the materials needed for deeper progression. Optional homestead projects now open."
-        ),
-        12,
-        2,
-    ).depends_on(bread, smoker, books, lanterns, compass).checkmark().reward_item(
-        "minecraft:golden_carrot", 16
-    ).finish()
+    established = (
+        survival.quest(
+            "established",
+            "A Proper Homestead",
+            "minecraft:golden_carrot",
+            (
+                "Your base now has storage, defense, renewable food, water, lighting, and "
+                "the materials needed for deeper progression. Optional homestead projects now open."
+            ),
+            12,
+            2,
+        )
+        .depends_on(bread, smoker, books, lanterns, compass)
+        .checkmark()
+        .reward_item("minecraft:golden_carrot", 16)
+        .finish()
+    )
 
     # Optional post-homestead expansion: crop diversity.
-    potatoes = survival.quest(
-        "potatoes", "A Reliable Staple", "minecraft:potato",
-        "Grow potatoes as a compact, renewable food crop that can be baked or composted.",
-        14, -5, optional=True,
-    ).depends_on(established).item("minecraft:potato", 32).finish()
-    carrots = survival.quest(
-        "carrots", "Roots and Riches", "minecraft:carrot",
-        "Establish a carrot patch for food, animal breeding, and golden-carrot production.",
-        16, -5, optional=True,
-    ).depends_on(potatoes).item("minecraft:carrot", 32).finish()
-    beetroot = survival.quest(
-        "beetroot", "A Colorful Harvest", "minecraft:beetroot",
-        "Add beetroot to the farm for soup, dye, and a more varied pantry.",
-        18, -5, optional=True,
-    ).depends_on(carrots).item("minecraft:beetroot", 32).finish()
-    pumpkins = survival.quest(
-        "pumpkins", "Fields of Orange", "minecraft:pumpkin",
-        "Cultivate pumpkins for food, lighting, decoration, and future utility recipes.",
-        20, -5, optional=True,
-    ).depends_on(beetroot).item("minecraft:pumpkin", 16).finish()
-    melons = survival.quest(
-        "melons", "Slices for Everyone", "minecraft:melon",
-        "Grow enough melons to prove your farm can support high-volume specialty crops.",
-        22, -5, optional=True,
-    ).depends_on(pumpkins).item("minecraft:melon", 8).finish()
+    potatoes = (
+        survival.quest(
+            "potatoes",
+            "A Reliable Staple",
+            "minecraft:potato",
+            "Grow potatoes as a compact, renewable food crop that can be baked or composted.",
+            14,
+            -5,
+            optional=True,
+        )
+        .depends_on(established)
+        .item("minecraft:potato", 32)
+        .finish()
+    )
+    carrots = (
+        survival.quest(
+            "carrots",
+            "Roots and Riches",
+            "minecraft:carrot",
+            "Establish a carrot patch for food, animal breeding, and golden-carrot production.",
+            16,
+            -5,
+            optional=True,
+        )
+        .depends_on(potatoes)
+        .item("minecraft:carrot", 32)
+        .finish()
+    )
+    beetroot = (
+        survival.quest(
+            "beetroot",
+            "A Colorful Harvest",
+            "minecraft:beetroot",
+            "Add beetroot to the farm for soup, dye, and a more varied pantry.",
+            18,
+            -5,
+            optional=True,
+        )
+        .depends_on(carrots)
+        .item("minecraft:beetroot", 32)
+        .finish()
+    )
+    pumpkins = (
+        survival.quest(
+            "pumpkins",
+            "Fields of Orange",
+            "minecraft:pumpkin",
+            "Cultivate pumpkins for food, lighting, decoration, and future utility recipes.",
+            20,
+            -5,
+            optional=True,
+        )
+        .depends_on(beetroot)
+        .item("minecraft:pumpkin", 16)
+        .finish()
+    )
+    melons = (
+        survival.quest(
+            "melons",
+            "Slices for Everyone",
+            "minecraft:melon",
+            "Grow enough melons to prove your farm can support high-volume specialty crops.",
+            22,
+            -5,
+            optional=True,
+        )
+        .depends_on(pumpkins)
+        .item("minecraft:melon", 8)
+        .finish()
+    )
 
     # Optional post-homestead expansion: fishing and aquatic food.
-    fishing_rod = survival.quest(
-        "fishing_rod", "Cast a Line", "minecraft:fishing_rod",
-        "Craft a fishing rod for renewable food, treasure, and quiet resource gathering.",
-        14, -2, optional=True,
-    ).depends_on(established).item("minecraft:fishing_rod").finish()
-    cod = survival.quest(
-        "cod", "The Daily Catch", "minecraft:cod",
-        "Catch or collect cod for a dependable source of food.",
-        16, -2, optional=True,
-    ).depends_on(fishing_rod).item("minecraft:cod", 16).finish()
-    salmon = survival.quest(
-        "salmon", "Upstream Supper", "minecraft:salmon",
-        "Add salmon to your stores and compare different renewable food sources.",
-        18, -2, optional=True,
-    ).depends_on(cod).item("minecraft:salmon", 16).finish()
-    tropical = survival.quest(
-        "tropical_fish", "A Living Palette", "minecraft:tropical_fish",
-        "Collect a tropical fish as a small trophy from warmer waters.",
-        20, -2, optional=True,
-    ).depends_on(salmon).item("minecraft:tropical_fish").finish()
-    fish_feast = survival.quest(
-        "fish_feast", "From Water to Table", "minecraft:cooked_salmon",
-        "Cook a generous seafood meal and establish fishing as a practical food source.",
-        22, -2, optional=True,
-    ).depends_on(tropical).item("minecraft:cooked_cod", 8).item("minecraft:cooked_salmon", 8).finish()
+    fishing_rod = (
+        survival.quest(
+            "fishing_rod",
+            "Cast a Line",
+            "minecraft:fishing_rod",
+            "Craft a fishing rod for renewable food, treasure, and quiet resource gathering.",
+            14,
+            -2,
+            optional=True,
+        )
+        .depends_on(established)
+        .item("minecraft:fishing_rod")
+        .finish()
+    )
+    cod = (
+        survival.quest(
+            "cod",
+            "The Daily Catch",
+            "minecraft:cod",
+            "Catch or collect cod for a dependable source of food.",
+            16,
+            -2,
+            optional=True,
+        )
+        .depends_on(fishing_rod)
+        .item("minecraft:cod", 16)
+        .finish()
+    )
+    salmon = (
+        survival.quest(
+            "salmon",
+            "Upstream Supper",
+            "minecraft:salmon",
+            "Add salmon to your stores and compare different renewable food sources.",
+            18,
+            -2,
+            optional=True,
+        )
+        .depends_on(cod)
+        .item("minecraft:salmon", 16)
+        .finish()
+    )
+    tropical = (
+        survival.quest(
+            "tropical_fish",
+            "A Living Palette",
+            "minecraft:tropical_fish",
+            "Collect a tropical fish as a small trophy from warmer waters.",
+            20,
+            -2,
+            optional=True,
+        )
+        .depends_on(salmon)
+        .item("minecraft:tropical_fish")
+        .finish()
+    )
+    fish_feast = (
+        survival.quest(
+            "fish_feast",
+            "From Water to Table",
+            "minecraft:cooked_salmon",
+            "Cook a generous seafood meal and establish fishing as a practical food source.",
+            22,
+            -2,
+            optional=True,
+        )
+        .depends_on(tropical)
+        .item("minecraft:cooked_cod", 8)
+        .item("minecraft:cooked_salmon", 8)
+        .finish()
+    )
 
     # Optional post-homestead expansion: responsible beekeeping.
-    bee_scouting = survival.quest(
-        "bee_scouting", "Follow the Buzz", "minecraft:bee_nest",
-        "Locate bees and observe their nest before building a managed apiary.",
-        14, 1, optional=True,
-    ).depends_on(established).checkmark().finish()
-    bee_safety = survival.quest(
-        "bee_safety", "Smoke Before Harvest", "minecraft:campfire",
-        "Place a campfire beneath a nest or hive so honey can be harvested without angering the colony.",
-        16, 1, optional=True,
-    ).depends_on(bee_scouting).checkmark().finish()
-    honeycomb = survival.quest(
-        "honeycomb", "Wax and Wonder", "minecraft:honeycomb",
-        "Use shears on a full nest or hive to collect honeycomb safely.",
-        18, 1, optional=True,
-    ).depends_on(bee_safety).item("minecraft:honeycomb", 6).finish()
-    honey = survival.quest(
-        "honey_bottles", "Bottled Sunshine", "minecraft:honey_bottle",
-        "Bottle honey for food, poison removal, and crafting.",
-        20, 1, optional=True,
-    ).depends_on(honeycomb).item("minecraft:honey_bottle", 4).finish()
-    apiary = survival.quest(
-        "apiary", "A Home for the Hive", "minecraft:beehive",
-        "Build a managed beehive area with flowers, safe harvesting access, and room to expand.",
-        22, 1, optional=True,
-    ).depends_on(honey).item("minecraft:beehive", 2).finish()
+    bee_scouting = (
+        survival.quest(
+            "bee_scouting",
+            "Follow the Buzz",
+            "minecraft:bee_nest",
+            "Locate bees and observe their nest before building a managed apiary.",
+            14,
+            1,
+            optional=True,
+        )
+        .depends_on(established)
+        .checkmark()
+        .finish()
+    )
+    bee_safety = (
+        survival.quest(
+            "bee_safety",
+            "Smoke Before Harvest",
+            "minecraft:campfire",
+            "Place a campfire beneath a nest or hive so honey can be harvested without angering the colony.",
+            16,
+            1,
+            optional=True,
+        )
+        .depends_on(bee_scouting)
+        .checkmark()
+        .finish()
+    )
+    honeycomb = (
+        survival.quest(
+            "honeycomb",
+            "Wax and Wonder",
+            "minecraft:honeycomb",
+            "Use shears on a full nest or hive to collect honeycomb safely.",
+            18,
+            1,
+            optional=True,
+        )
+        .depends_on(bee_safety)
+        .item("minecraft:honeycomb", 6)
+        .finish()
+    )
+    honey = (
+        survival.quest(
+            "honey_bottles",
+            "Bottled Sunshine",
+            "minecraft:honey_bottle",
+            "Bottle honey for food, poison removal, and crafting.",
+            20,
+            1,
+            optional=True,
+        )
+        .depends_on(honeycomb)
+        .item("minecraft:honey_bottle", 4)
+        .finish()
+    )
+    apiary = (
+        survival.quest(
+            "apiary",
+            "A Home for the Hive",
+            "minecraft:beehive",
+            "Build a managed beehive area with flowers, safe harvesting access, and room to expand.",
+            22,
+            1,
+            optional=True,
+        )
+        .depends_on(honey)
+        .item("minecraft:beehive", 2)
+        .finish()
+    )
 
     # Optional post-homestead expansion: a complete vanilla workshop.
-    stonecutter = survival.quest(
-        "stonecutter", "Precision Masonry", "minecraft:stonecutter",
-        "Use a stonecutter to turn masonry materials into exact building components efficiently.",
-        14, 4, optional=True,
-    ).depends_on(established).item("minecraft:stonecutter").finish()
-    loom = survival.quest(
-        "loom", "Patterns and Banners", "minecraft:loom",
-        "Add a loom for decorative banners and a more personalized base.",
-        16, 4, optional=True,
-    ).depends_on(stonecutter).item("minecraft:loom").finish()
-    grindstone = survival.quest(
-        "grindstone", "Repair and Reconsider", "minecraft:grindstone",
-        "Craft a grindstone to repair equipment and remove unwanted non-curse enchantments.",
-        18, 4, optional=True,
-    ).depends_on(loom).item("minecraft:grindstone").finish()
-    anvil = survival.quest(
-        "anvil", "Heavy-Duty Repairs", "minecraft:anvil",
-        "Install an anvil for renaming, repairing, and combining enchanted equipment.",
-        20, 4, optional=True,
-    ).depends_on(grindstone).item("minecraft:anvil").finish()
-    workshop = survival.quest(
-        "vanilla_workshop", "The Complete Homestead Workshop", "minecraft:blast_furnace",
-        "Finish a dedicated utility room containing specialized workstations for everyday survival tasks.",
-        22, 4, optional=True,
-    ).depends_on(anvil).item("minecraft:blast_furnace").item("minecraft:smithing_table").finish()
+    stonecutter = (
+        survival.quest(
+            "stonecutter",
+            "Precision Masonry",
+            "minecraft:stonecutter",
+            "Use a stonecutter to turn masonry materials into exact building components efficiently.",
+            14,
+            4,
+            optional=True,
+        )
+        .depends_on(established)
+        .item("minecraft:stonecutter")
+        .finish()
+    )
+    loom = (
+        survival.quest(
+            "loom",
+            "Patterns and Banners",
+            "minecraft:loom",
+            "Add a loom for decorative banners and a more personalized base.",
+            16,
+            4,
+            optional=True,
+        )
+        .depends_on(stonecutter)
+        .item("minecraft:loom")
+        .finish()
+    )
+    grindstone = (
+        survival.quest(
+            "grindstone",
+            "Repair and Reconsider",
+            "minecraft:grindstone",
+            "Craft a grindstone to repair equipment and remove unwanted non-curse enchantments.",
+            18,
+            4,
+            optional=True,
+        )
+        .depends_on(loom)
+        .item("minecraft:grindstone")
+        .finish()
+    )
+    anvil = (
+        survival.quest(
+            "anvil",
+            "Heavy-Duty Repairs",
+            "minecraft:anvil",
+            "Install an anvil for renaming, repairing, and combining enchanted equipment.",
+            20,
+            4,
+            optional=True,
+        )
+        .depends_on(grindstone)
+        .item("minecraft:anvil")
+        .finish()
+    )
+    workshop = (
+        survival.quest(
+            "vanilla_workshop",
+            "The Complete Homestead Workshop",
+            "minecraft:blast_furnace",
+            "Finish a dedicated utility room containing specialized workstations for everyday survival tasks.",
+            22,
+            4,
+            optional=True,
+        )
+        .depends_on(anvil)
+        .item("minecraft:blast_furnace")
+        .item("minecraft:smithing_table")
+        .finish()
+    )
 
     return established
-
-
 
 
 def _build_mining(project: Project, survival_complete: str) -> None:
@@ -1026,19 +1210,23 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .finish()
     )
 
-    return mining.quest(
-        "mastery",
-        "Master of the Underground",
-        "minecraft:diamond",
-        (
-            "You have established safe mining practices, secured the major overworld ores, "
-            "and prepared enchanting and Nether infrastructure."
-        ),
-        20,
-        0,
-    ).depends_on(bookshelves, anvil, portal, copper_ingots, lapis).checkmark().reward_item(
-        "minecraft:diamond", 3
-    ).finish()
+    return (
+        mining.quest(
+            "mastery",
+            "Master of the Underground",
+            "minecraft:diamond",
+            (
+                "You have established safe mining practices, secured the major overworld ores, "
+                "and prepared enchanting and Nether infrastructure."
+            ),
+            20,
+            0,
+        )
+        .depends_on(bookshelves, anvil, portal, copper_ingots, lapis)
+        .checkmark()
+        .reward_item("minecraft:diamond", 3)
+        .finish()
+    )
 
 
 def _build_exploration(project: Project, survival_complete: str) -> str:
@@ -1050,270 +1238,666 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         description="Chart the overworld, discover distant structures, and return home with rare treasures.",
     )
 
-    begin = exploration.quest(
-        "begin", "Beyond the Horizon", "minecraft:filled_map",
-        "Your homestead is secure. Pack supplies, choose a direction, and begin charting the wider world.",
-        0, 0,
-    ).depends_on(survival_complete).checkmark().finish()
+    begin = (
+        exploration.quest(
+            "begin",
+            "Beyond the Horizon",
+            "minecraft:filled_map",
+            "Your homestead is secure. Pack supplies, choose a direction, and begin charting the wider world.",
+            0,
+            0,
+        )
+        .depends_on(survival_complete)
+        .checkmark()
+        .finish()
+    )
 
-    compass = exploration.quest(
-        "compass", "Find Your Way Home", "minecraft:compass",
-        "Carry a compass so long journeys do not permanently separate you from familiar ground.",
-        2, -3,
-    ).depends_on(begin).item("minecraft:compass").finish()
-    map_item = exploration.quest(
-        "map", "Put It on the Map", "minecraft:map",
-        "Craft an empty map and begin recording the terrain around your base.",
-        4, -3,
-    ).depends_on(compass).item("minecraft:map").finish()
-    spyglass = exploration.quest(
-        "spyglass", "A Distant View", "minecraft:spyglass",
-        "Use copper and amethyst to craft a spyglass for scouting terrain and structures from safety.",
-        6, -3,
-        optional=True,
-    ).depends_on(map_item).item("minecraft:spyglass").finish()
-    cartography = exploration.quest(
-        "cartography_table", "The Cartographer's Desk", "minecraft:cartography_table",
-        "Craft a cartography table to copy, expand, and lock maps for a growing expedition archive.",
-        6, -1,
-    ).depends_on(map_item).item("minecraft:cartography_table").finish()
+    compass = (
+        exploration.quest(
+            "compass",
+            "Find Your Way Home",
+            "minecraft:compass",
+            "Carry a compass so long journeys do not permanently separate you from familiar ground.",
+            2,
+            -3,
+        )
+        .depends_on(begin)
+        .item("minecraft:compass")
+        .finish()
+    )
+    map_item = (
+        exploration.quest(
+            "map",
+            "Put It on the Map",
+            "minecraft:map",
+            "Craft an empty map and begin recording the terrain around your base.",
+            4,
+            -3,
+        )
+        .depends_on(compass)
+        .item("minecraft:map")
+        .finish()
+    )
+    spyglass = (
+        exploration.quest(
+            "spyglass",
+            "A Distant View",
+            "minecraft:spyglass",
+            "Use copper and amethyst to craft a spyglass for scouting terrain and structures from safety.",
+            6,
+            -3,
+            optional=True,
+        )
+        .depends_on(map_item)
+        .item("minecraft:spyglass")
+        .finish()
+    )
+    cartography = (
+        exploration.quest(
+            "cartography_table",
+            "The Cartographer's Desk",
+            "minecraft:cartography_table",
+            "Craft a cartography table to copy, expand, and lock maps for a growing expedition archive.",
+            6,
+            -1,
+        )
+        .depends_on(map_item)
+        .item("minecraft:cartography_table")
+        .finish()
+    )
 
-    boat = exploration.quest(
-        "boat", "Take to the Water", "minecraft:oak_boat",
-        "Craft a boat before following rivers and coastlines into unexplored territory.",
-        2, -1,
-    ).depends_on(begin).item("minecraft:oak_boat").finish()
-    ocean = exploration.quest(
-        "ocean", "Open Water", "minecraft:heart_of_the_sea",
-        "Reach an ocean and confirm the discovery after establishing a safe shoreline landing point.",
-        4, 1,
-    ).depends_on(boat).checkmark().finish()
-    shipwreck = exploration.quest(
-        "shipwreck", "Wreck Beneath the Waves", "minecraft:chest",
-        "Locate and explore a shipwreck. Search every compartment before continuing the expedition.",
-        6, 1,
-    ).depends_on(ocean).checkmark().finish()
-    buried_treasure = exploration.quest(
-        "buried_treasure", "X Marks the Spot", "minecraft:heart_of_the_sea",
-        "Follow a buried treasure map and recover a Heart of the Sea from the hidden chest.",
-        8, 1,
-    ).depends_on(shipwreck).item("minecraft:heart_of_the_sea").reward_item("minecraft:emerald", 8).finish()
-    ocean_monument = exploration.quest(
-        "ocean_monument", "Guardians of the Deep", "minecraft:prismarine_bricks",
-        "Discover an ocean monument. Conquering it can wait until you are properly equipped.",
-        10, 1,
-        optional=True,
-    ).depends_on(buried_treasure).checkmark().finish()
+    boat = (
+        exploration.quest(
+            "boat",
+            "Take to the Water",
+            "minecraft:oak_boat",
+            "Craft a boat before following rivers and coastlines into unexplored territory.",
+            2,
+            -1,
+        )
+        .depends_on(begin)
+        .item("minecraft:oak_boat")
+        .finish()
+    )
+    ocean = (
+        exploration.quest(
+            "ocean",
+            "Open Water",
+            "minecraft:heart_of_the_sea",
+            "Reach an ocean and confirm the discovery after establishing a safe shoreline landing point.",
+            4,
+            1,
+        )
+        .depends_on(boat)
+        .checkmark()
+        .finish()
+    )
+    shipwreck = (
+        exploration.quest(
+            "shipwreck",
+            "Wreck Beneath the Waves",
+            "minecraft:chest",
+            "Locate and explore a shipwreck. Search every compartment before continuing the expedition.",
+            6,
+            1,
+        )
+        .depends_on(ocean)
+        .checkmark()
+        .finish()
+    )
+    buried_treasure = (
+        exploration.quest(
+            "buried_treasure",
+            "X Marks the Spot",
+            "minecraft:heart_of_the_sea",
+            "Follow a buried treasure map and recover a Heart of the Sea from the hidden chest.",
+            8,
+            1,
+        )
+        .depends_on(shipwreck)
+        .item("minecraft:heart_of_the_sea")
+        .reward_item("minecraft:emerald", 8)
+        .finish()
+    )
+    ocean_monument = (
+        exploration.quest(
+            "ocean_monument",
+            "Guardians of the Deep",
+            "minecraft:prismarine_bricks",
+            "Discover an ocean monument. Conquering it can wait until you are properly equipped.",
+            10,
+            1,
+            optional=True,
+        )
+        .depends_on(buried_treasure)
+        .checkmark()
+        .finish()
+    )
 
-    village = exploration.quest(
-        "village", "Signs of Civilization", "minecraft:emerald",
-        "Find a village and secure it as a useful stop along your travel network.",
-        2, 1,
-    ).depends_on(begin).checkmark().finish()
-    trade = exploration.quest(
-        "trade", "A Fair Exchange", "minecraft:emerald",
-        "Complete a trade with a villager and begin learning which professions support your progression.",
-        4, 3,
-    ).depends_on(village).advancement("minecraft:adventure/trade").finish()
-    bell = exploration.quest(
-        "bell", "Center of Town", "minecraft:bell",
-        "Obtain a bell as a trophy or establish one at a settlement of your own.",
-        6, 3,
-        optional=True,
-    ).depends_on(trade).item("minecraft:bell").finish()
-    outpost = exploration.quest(
-        "pillager_outpost", "Hostile Neighbors", "minecraft:crossbow",
-        "Locate a pillager outpost and mark it on your map before deciding whether to attack.",
-        6, 5,
-    ).depends_on(village).checkmark().finish()
-    raid = exploration.quest(
-        "raid", "Hero of the Village", "minecraft:totem_of_undying",
-        "Defend a village from a raid and earn recognition as its hero.",
-        8, 5,
-        optional=True,
-    ).depends_on(outpost).advancement("minecraft:adventure/hero_of_the_village").finish()
+    village = (
+        exploration.quest(
+            "village",
+            "Signs of Civilization",
+            "minecraft:emerald",
+            "Find a village and secure it as a useful stop along your travel network.",
+            2,
+            1,
+        )
+        .depends_on(begin)
+        .checkmark()
+        .finish()
+    )
+    trade = (
+        exploration.quest(
+            "trade",
+            "A Fair Exchange",
+            "minecraft:emerald",
+            "Complete a trade with a villager and begin learning which professions support your progression.",
+            4,
+            3,
+        )
+        .depends_on(village)
+        .advancement("minecraft:adventure/trade")
+        .finish()
+    )
+    bell = (
+        exploration.quest(
+            "bell",
+            "Center of Town",
+            "minecraft:bell",
+            "Obtain a bell as a trophy or establish one at a settlement of your own.",
+            6,
+            3,
+            optional=True,
+        )
+        .depends_on(trade)
+        .item("minecraft:bell")
+        .finish()
+    )
+    outpost = (
+        exploration.quest(
+            "pillager_outpost",
+            "Hostile Neighbors",
+            "minecraft:crossbow",
+            "Locate a pillager outpost and mark it on your map before deciding whether to attack.",
+            6,
+            5,
+        )
+        .depends_on(village)
+        .checkmark()
+        .finish()
+    )
+    raid = (
+        exploration.quest(
+            "raid",
+            "Hero of the Village",
+            "minecraft:totem_of_undying",
+            "Defend a village from a raid and earn recognition as its hero.",
+            8,
+            5,
+            optional=True,
+        )
+        .depends_on(outpost)
+        .advancement("minecraft:adventure/hero_of_the_village")
+        .finish()
+    )
 
-    ruined_portal = exploration.quest(
-        "ruined_portal", "Echoes of Another World", "minecraft:crying_obsidian",
-        "Find a ruined portal and inspect the remains for clues, obsidian, and useful loot.",
-        2, 3,
-    ).depends_on(begin).checkmark().finish()
-    desert_temple = exploration.quest(
-        "desert_temple", "Buried in Sand", "minecraft:chiseled_sandstone",
-        "Discover a desert pyramid and carefully disarm the trap beneath its central chamber.",
-        4, 5,
-    ).depends_on(ruined_portal).checkmark().finish()
-    jungle_temple = exploration.quest(
-        "jungle_temple", "Secrets in the Vines", "minecraft:mossy_cobblestone",
-        "Locate a jungle temple and survive its traps to claim the hidden loot.",
-        4, 7,
-        optional=True,
-    ).depends_on(ruined_portal).checkmark().finish()
-    igloo = exploration.quest(
-        "igloo", "A Chilling Discovery", "minecraft:snow_block",
-        "Find an igloo and investigate whether anything unusual lies beneath it.",
-        6, 7,
-        optional=True,
-    ).depends_on(ruined_portal).checkmark().finish()
+    ruined_portal = (
+        exploration.quest(
+            "ruined_portal",
+            "Echoes of Another World",
+            "minecraft:crying_obsidian",
+            "Find a ruined portal and inspect the remains for clues, obsidian, and useful loot.",
+            2,
+            3,
+        )
+        .depends_on(begin)
+        .checkmark()
+        .finish()
+    )
+    desert_temple = (
+        exploration.quest(
+            "desert_temple",
+            "Buried in Sand",
+            "minecraft:chiseled_sandstone",
+            "Discover a desert pyramid and carefully disarm the trap beneath its central chamber.",
+            4,
+            5,
+        )
+        .depends_on(ruined_portal)
+        .checkmark()
+        .finish()
+    )
+    jungle_temple = (
+        exploration.quest(
+            "jungle_temple",
+            "Secrets in the Vines",
+            "minecraft:mossy_cobblestone",
+            "Locate a jungle temple and survive its traps to claim the hidden loot.",
+            4,
+            7,
+            optional=True,
+        )
+        .depends_on(ruined_portal)
+        .checkmark()
+        .finish()
+    )
+    igloo = (
+        exploration.quest(
+            "igloo",
+            "A Chilling Discovery",
+            "minecraft:snow_block",
+            "Find an igloo and investigate whether anything unusual lies beneath it.",
+            6,
+            7,
+            optional=True,
+        )
+        .depends_on(ruined_portal)
+        .checkmark()
+        .finish()
+    )
 
-    lush_cave = exploration.quest(
-        "lush_cave", "A Garden Underground", "minecraft:glow_berries",
-        "Explore a lush cave and collect glow berries from its hanging vines.",
-        8, -3,
-    ).depends_on(spyglass).item("minecraft:glow_berries", 8).finish()
-    dripstone = exploration.quest(
-        "dripstone_cave", "Stone from Stone", "minecraft:pointed_dripstone",
-        "Explore a dripstone cave and gather pointed dripstone for building and renewable lava systems.",
-        10, -3,
-    ).depends_on(lush_cave).item("minecraft:pointed_dripstone", 16).finish()
-    amethyst = exploration.quest(
-        "amethyst_geode", "Crystal Resonance", "minecraft:amethyst_shard",
-        "Locate an amethyst geode and harvest shards without destroying every budding block.",
-        12, -3,
-    ).depends_on(dripstone).item("minecraft:amethyst_shard", 16).finish()
+    lush_cave = (
+        exploration.quest(
+            "lush_cave",
+            "A Garden Underground",
+            "minecraft:glow_berries",
+            "Explore a lush cave and collect glow berries from its hanging vines.",
+            8,
+            -3,
+        )
+        .depends_on(spyglass)
+        .item("minecraft:glow_berries", 8)
+        .finish()
+    )
+    dripstone = (
+        exploration.quest(
+            "dripstone_cave",
+            "Stone from Stone",
+            "minecraft:pointed_dripstone",
+            "Explore a dripstone cave and gather pointed dripstone for building and renewable lava systems.",
+            10,
+            -3,
+        )
+        .depends_on(lush_cave)
+        .item("minecraft:pointed_dripstone", 16)
+        .finish()
+    )
+    amethyst = (
+        exploration.quest(
+            "amethyst_geode",
+            "Crystal Resonance",
+            "minecraft:amethyst_shard",
+            "Locate an amethyst geode and harvest shards without destroying every budding block.",
+            12,
+            -3,
+        )
+        .depends_on(dripstone)
+        .item("minecraft:amethyst_shard", 16)
+        .finish()
+    )
 
-    saddle = exploration.quest(
-        "saddle", "A Faster Mount", "minecraft:saddle",
-        "Recover a saddle from exploration loot and prepare a reliable land mount.",
-        8, 3,
-    ).depends_on(trade, shipwreck).item("minecraft:saddle").finish()
-    lead = exploration.quest(
-        "lead", "Traveling Companions", "minecraft:lead",
-        "Carry leads for moving animals safely between distant settlements and your home base.",
-        10, 3,
-        optional=True,
-    ).depends_on(saddle).item("minecraft:lead", 2).finish()
-    mansion = exploration.quest(
-        "woodland_mansion", "Deep Woodland Secrets", "minecraft:dark_oak_log",
-        "Locate a woodland mansion. Mark the route and return only when prepared for its defenders.",
-        12, 3,
-        optional=True,
-    ).depends_on(cartography, trade).checkmark().finish()
+    saddle = (
+        exploration.quest(
+            "saddle",
+            "A Faster Mount",
+            "minecraft:saddle",
+            "Recover a saddle from exploration loot and prepare a reliable land mount.",
+            8,
+            3,
+        )
+        .depends_on(trade, shipwreck)
+        .item("minecraft:saddle")
+        .finish()
+    )
+    lead = (
+        exploration.quest(
+            "lead",
+            "Traveling Companions",
+            "minecraft:lead",
+            "Carry leads for moving animals safely between distant settlements and your home base.",
+            10,
+            3,
+            optional=True,
+        )
+        .depends_on(saddle)
+        .item("minecraft:lead", 2)
+        .finish()
+    )
+    mansion = (
+        exploration.quest(
+            "woodland_mansion",
+            "Deep Woodland Secrets",
+            "minecraft:dark_oak_log",
+            "Locate a woodland mansion. Mark the route and return only when prepared for its defenders.",
+            12,
+            3,
+            optional=True,
+        )
+        .depends_on(cartography, trade)
+        .checkmark()
+        .finish()
+    )
 
-    adventuring_time = exploration.quest(
-        "adventuring_time", "A World of Biomes", "minecraft:grass_block",
-        "Continue exploring until you have visited every biome required by the Adventuring Time advancement.",
-        12, 0,
-        optional=True,
-    ).depends_on(amethyst, mansion, ocean_monument).advancement("minecraft:adventure/adventuring_time").finish()
+    adventuring_time = (
+        exploration.quest(
+            "adventuring_time",
+            "A World of Biomes",
+            "minecraft:grass_block",
+            "Continue exploring until you have visited every biome required by the Adventuring Time advancement.",
+            12,
+            0,
+            optional=True,
+        )
+        .depends_on(amethyst, mansion, ocean_monument)
+        .advancement("minecraft:adventure/adventuring_time")
+        .finish()
+    )
 
-    experienced_explorer = exploration.quest(
-        "experienced_explorer", "Experienced Explorer", "minecraft:recovery_compass",
-        "You have mapped distant lands, traded with settlements, explored natural wonders, and recovered rare treasures.",
-        14, 1,
-    ).depends_on(buried_treasure, trade, desert_temple, amethyst, saddle).checkmark().reward_item(
-        "minecraft:ender_pearl", 8
-    ).finish()
+    experienced_explorer = (
+        exploration.quest(
+            "experienced_explorer",
+            "Experienced Explorer",
+            "minecraft:recovery_compass",
+            "You have mapped distant lands, traded with settlements, explored natural wonders, and recovered rare treasures.",
+            14,
+            1,
+        )
+        .depends_on(buried_treasure, trade, desert_temple, amethyst, saddle)
+        .checkmark()
+        .reward_item("minecraft:ender_pearl", 8)
+        .finish()
+    )
 
     # Optional post-mastery expeditions. These deepen exploration without changing
     # the original Survival-to-Exploration progression gate.
-    archaeology = exploration.quest(
-        "archaeology", "Brush with History", "minecraft:brush",
-        "Craft a brush and begin investigating suspicious sand or gravel at archaeological sites.",
-        16, -7, optional=True,
-    ).depends_on(experienced_explorer).item("minecraft:brush").finish()
-    pottery_sherd = exploration.quest(
-        "pottery_sherd", "Fragments of the Past", "minecraft:angler_pottery_sherd",
-        "Recover a pottery sherd while excavating suspicious blocks without destroying the artifact.",
-        18, -7, optional=True,
-    ).depends_on(archaeology).checkmark().finish()
-    decorated_pot = exploration.quest(
-        "decorated_pot", "Reconstruct the Story", "minecraft:decorated_pot",
-        "Assemble a decorated pot from recovered sherds and preserve it in your expedition archive.",
-        20, -7, optional=True,
-    ).depends_on(pottery_sherd).item("minecraft:decorated_pot").finish()
-    trail_ruins = exploration.quest(
-        "trail_ruins", "Ruins beneath the Trail", "minecraft:mud_bricks",
-        "Locate and carefully excavate a trail ruins site, leaving enough of the structure intact to understand it.",
-        22, -7, optional=True,
-    ).depends_on(decorated_pot).checkmark().finish()
+    archaeology = (
+        exploration.quest(
+            "archaeology",
+            "Brush with History",
+            "minecraft:brush",
+            "Craft a brush and begin investigating suspicious sand or gravel at archaeological sites.",
+            16,
+            -7,
+            optional=True,
+        )
+        .depends_on(experienced_explorer)
+        .item("minecraft:brush")
+        .finish()
+    )
+    pottery_sherd = (
+        exploration.quest(
+            "pottery_sherd",
+            "Fragments of the Past",
+            "minecraft:angler_pottery_sherd",
+            "Recover a pottery sherd while excavating suspicious blocks without destroying the artifact.",
+            18,
+            -7,
+            optional=True,
+        )
+        .depends_on(archaeology)
+        .checkmark()
+        .finish()
+    )
+    decorated_pot = (
+        exploration.quest(
+            "decorated_pot",
+            "Reconstruct the Story",
+            "minecraft:decorated_pot",
+            "Assemble a decorated pot from recovered sherds and preserve it in your expedition archive.",
+            20,
+            -7,
+            optional=True,
+        )
+        .depends_on(pottery_sherd)
+        .item("minecraft:decorated_pot")
+        .finish()
+    )
+    trail_ruins = (
+        exploration.quest(
+            "trail_ruins",
+            "Ruins beneath the Trail",
+            "minecraft:mud_bricks",
+            "Locate and carefully excavate a trail ruins site, leaving enough of the structure intact to understand it.",
+            22,
+            -7,
+            optional=True,
+        )
+        .depends_on(decorated_pot)
+        .checkmark()
+        .finish()
+    )
 
-    nether_return = exploration.quest(
-        "nether_expedition", "Into the Nether Wilds", "minecraft:netherrack",
-        "Undertake a supplied Nether expedition and establish a marked route back to your portal.",
-        16, -3, optional=True,
-    ).depends_on(experienced_explorer).advancement("minecraft:story/enter_the_nether").finish()
-    fortress = exploration.quest(
-        "nether_fortress", "Fortress of Flame", "minecraft:nether_bricks",
-        "Locate a Nether fortress and secure a safe approach before entering its corridors.",
-        18, -3, optional=True,
-    ).depends_on(nether_return).advancement("minecraft:nether/find_fortress").finish()
-    bastion = exploration.quest(
-        "bastion_remnant", "Remnants of the Piglins", "minecraft:gilded_blackstone",
-        "Discover a bastion remnant and mark its entrances before risking the treasure rooms.",
-        20, -3, optional=True,
-    ).depends_on(nether_return).advancement("minecraft:nether/find_bastion").finish()
-    strider = exploration.quest(
-        "strider_route", "Across the Lava Sea", "minecraft:warped_fungus_on_a_stick",
-        "Ride a strider across a lava sea and establish a practical route through otherwise impassable terrain.",
-        22, -3, optional=True,
-    ).depends_on(nether_return).advancement("minecraft:nether/ride_strider").finish()
-    nether_biomes = exploration.quest(
-        "nether_biomes", "Hot Tourist Destinations", "minecraft:warped_nylium",
-        "Visit every Nether biome and document the resources and hazards unique to each region.",
-        24, -3, optional=True,
-    ).depends_on(fortress, bastion, strider).advancement("minecraft:nether/explore_nether").finish()
+    nether_return = (
+        exploration.quest(
+            "nether_expedition",
+            "Into the Nether Wilds",
+            "minecraft:netherrack",
+            "Undertake a supplied Nether expedition and establish a marked route back to your portal.",
+            16,
+            -3,
+            optional=True,
+        )
+        .depends_on(experienced_explorer)
+        .advancement("minecraft:story/enter_the_nether")
+        .finish()
+    )
+    fortress = (
+        exploration.quest(
+            "nether_fortress",
+            "Fortress of Flame",
+            "minecraft:nether_bricks",
+            "Locate a Nether fortress and secure a safe approach before entering its corridors.",
+            18,
+            -3,
+            optional=True,
+        )
+        .depends_on(nether_return)
+        .advancement("minecraft:nether/find_fortress")
+        .finish()
+    )
+    bastion = (
+        exploration.quest(
+            "bastion_remnant",
+            "Remnants of the Piglins",
+            "minecraft:gilded_blackstone",
+            "Discover a bastion remnant and mark its entrances before risking the treasure rooms.",
+            20,
+            -3,
+            optional=True,
+        )
+        .depends_on(nether_return)
+        .advancement("minecraft:nether/find_bastion")
+        .finish()
+    )
+    strider = (
+        exploration.quest(
+            "strider_route",
+            "Across the Lava Sea",
+            "minecraft:warped_fungus_on_a_stick",
+            "Ride a strider across a lava sea and establish a practical route through otherwise impassable terrain.",
+            22,
+            -3,
+            optional=True,
+        )
+        .depends_on(nether_return)
+        .advancement("minecraft:nether/ride_strider")
+        .finish()
+    )
+    nether_biomes = (
+        exploration.quest(
+            "nether_biomes",
+            "Hot Tourist Destinations",
+            "minecraft:warped_nylium",
+            "Visit every Nether biome and document the resources and hazards unique to each region.",
+            24,
+            -3,
+            optional=True,
+        )
+        .depends_on(fortress, bastion, strider)
+        .advancement("minecraft:nether/explore_nether")
+        .finish()
+    )
 
-    monument_conquest = exploration.quest(
-        "monument_conquest", "Drain the Monument", "minecraft:sea_lantern",
-        "Return to an ocean monument prepared, defeat its elder guardians, and secure the structure.",
-        16, 1, optional=True,
-    ).depends_on(experienced_explorer, ocean_monument).advancement("minecraft:adventure/kill_a_mob").finish()
-    conduit = exploration.quest(
-        "conduit", "Power beneath the Waves", "minecraft:conduit",
-        "Construct and activate a conduit to support long underwater expeditions and monument restoration.",
-        18, 1, optional=True,
-    ).depends_on(monument_conquest, buried_treasure).item("minecraft:conduit").finish()
-    mansion_conquest = exploration.quest(
-        "mansion_conquest", "Clear the Dark Halls", "minecraft:totem_of_undying",
-        "Return to a woodland mansion, defeat its defenders, and recover a Totem of Undying.",
-        16, 5, optional=True,
-    ).depends_on(experienced_explorer, mansion).item("minecraft:totem_of_undying").finish()
-    ancient_city = exploration.quest(
-        "ancient_city", "Silence beneath the World", "minecraft:sculk_catalyst",
-        "Locate an ancient city and enter with a plan that favors silence over combat.",
-        18, 5, optional=True,
-    ).depends_on(experienced_explorer).advancement("minecraft:adventure/avoid_vibration").finish()
-    echo_shard = exploration.quest(
-        "echo_shard", "Echoes of the Lost", "minecraft:echo_shard",
-        "Recover echo shards from an ancient city without awakening more danger than you can escape.",
-        20, 5, optional=True,
-    ).depends_on(ancient_city).item("minecraft:echo_shard", 8).finish()
-    recovery_compass = exploration.quest(
-        "recovery_compass", "A Compass for the Fallen", "minecraft:recovery_compass",
-        "Craft a recovery compass from echo shards as insurance for future high-risk expeditions.",
-        22, 5, optional=True,
-    ).depends_on(echo_shard).item("minecraft:recovery_compass").finish()
+    monument_conquest = (
+        exploration.quest(
+            "monument_conquest",
+            "Drain the Monument",
+            "minecraft:sea_lantern",
+            "Return to an ocean monument prepared, defeat its elder guardians, and secure the structure.",
+            16,
+            1,
+            optional=True,
+        )
+        .depends_on(experienced_explorer, ocean_monument)
+        .advancement("minecraft:adventure/kill_a_mob")
+        .finish()
+    )
+    conduit = (
+        exploration.quest(
+            "conduit",
+            "Power beneath the Waves",
+            "minecraft:conduit",
+            "Construct and activate a conduit to support long underwater expeditions and monument restoration.",
+            18,
+            1,
+            optional=True,
+        )
+        .depends_on(monument_conquest, buried_treasure)
+        .item("minecraft:conduit")
+        .finish()
+    )
+    mansion_conquest = (
+        exploration.quest(
+            "mansion_conquest",
+            "Clear the Dark Halls",
+            "minecraft:totem_of_undying",
+            "Return to a woodland mansion, defeat its defenders, and recover a Totem of Undying.",
+            16,
+            5,
+            optional=True,
+        )
+        .depends_on(experienced_explorer, mansion)
+        .item("minecraft:totem_of_undying")
+        .finish()
+    )
+    ancient_city = (
+        exploration.quest(
+            "ancient_city",
+            "Silence beneath the World",
+            "minecraft:sculk_catalyst",
+            "Locate an ancient city and enter with a plan that favors silence over combat.",
+            18,
+            5,
+            optional=True,
+        )
+        .depends_on(experienced_explorer)
+        .advancement("minecraft:adventure/avoid_vibration")
+        .finish()
+    )
+    echo_shard = (
+        exploration.quest(
+            "echo_shard",
+            "Echoes of the Lost",
+            "minecraft:echo_shard",
+            "Recover echo shards from an ancient city without awakening more danger than you can escape.",
+            20,
+            5,
+            optional=True,
+        )
+        .depends_on(ancient_city)
+        .item("minecraft:echo_shard", 8)
+        .finish()
+    )
+    recovery_compass = (
+        exploration.quest(
+            "recovery_compass",
+            "A Compass for the Fallen",
+            "minecraft:recovery_compass",
+            "Craft a recovery compass from echo shards as insurance for future high-risk expeditions.",
+            22,
+            5,
+            optional=True,
+        )
+        .depends_on(echo_shard)
+        .item("minecraft:recovery_compass")
+        .finish()
+    )
 
-    stronghold = exploration.quest(
-        "stronghold", "Eyes toward the Stronghold", "minecraft:ender_eye",
-        "Follow Eyes of Ender to locate a stronghold and establish a secure surface camp above it.",
-        16, 9, optional=True,
-    ).depends_on(experienced_explorer).advancement("minecraft:story/follow_ender_eye").finish()
-    end_gateway = exploration.quest(
-        "end_gateway", "Beyond the Central Island", "minecraft:end_stone_bricks",
-        "Reach the outer End islands through an End gateway and prepare for a long-distance search.",
-        18, 9, optional=True,
-    ).depends_on(stronghold).advancement("minecraft:end/enter_end_gateway").finish()
-    end_city = exploration.quest(
-        "end_city", "Cities at the Edge", "minecraft:purpur_block",
-        "Locate an End city and secure its towers before searching for a ship.",
-        20, 9, optional=True,
-    ).depends_on(end_gateway).advancement("minecraft:end/find_end_city").finish()
-    elytra = exploration.quest(
-        "elytra", "Wings of the End", "minecraft:elytra",
-        "Recover an elytra from an End ship and return it safely to the overworld.",
-        22, 9, optional=True,
-    ).depends_on(end_city).item("minecraft:elytra").finish()
-    dimension_cartographer = exploration.quest(
-        "dimension_cartographer", "Cartographer of Three Worlds", "minecraft:lodestone",
-        "Complete major expeditions in the Overworld, Nether, and End, then connect them with reliable routes and records.",
-        26, 1, optional=True,
-    ).depends_on(trail_ruins, nether_biomes, conduit, recovery_compass, elytra).checkmark().reward_item(
-        "minecraft:experience_bottle", 32
-    ).finish()
+    stronghold = (
+        exploration.quest(
+            "stronghold",
+            "Eyes toward the Stronghold",
+            "minecraft:ender_eye",
+            "Follow Eyes of Ender to locate a stronghold and establish a secure surface camp above it.",
+            16,
+            9,
+            optional=True,
+        )
+        .depends_on(experienced_explorer)
+        .advancement("minecraft:story/follow_ender_eye")
+        .finish()
+    )
+    end_gateway = (
+        exploration.quest(
+            "end_gateway",
+            "Beyond the Central Island",
+            "minecraft:end_stone_bricks",
+            "Reach the outer End islands through an End gateway and prepare for a long-distance search.",
+            18,
+            9,
+            optional=True,
+        )
+        .depends_on(stronghold)
+        .advancement("minecraft:end/enter_end_gateway")
+        .finish()
+    )
+    end_city = (
+        exploration.quest(
+            "end_city",
+            "Cities at the Edge",
+            "minecraft:purpur_block",
+            "Locate an End city and secure its towers before searching for a ship.",
+            20,
+            9,
+            optional=True,
+        )
+        .depends_on(end_gateway)
+        .advancement("minecraft:end/find_end_city")
+        .finish()
+    )
+    elytra = (
+        exploration.quest(
+            "elytra",
+            "Wings of the End",
+            "minecraft:elytra",
+            "Recover an elytra from an End ship and return it safely to the overworld.",
+            22,
+            9,
+            optional=True,
+        )
+        .depends_on(end_city)
+        .item("minecraft:elytra")
+        .finish()
+    )
+    dimension_cartographer = (
+        exploration.quest(
+            "dimension_cartographer",
+            "Cartographer of Three Worlds",
+            "minecraft:lodestone",
+            "Complete major expeditions in the Overworld, Nether, and End, then connect them with reliable routes and records.",
+            26,
+            1,
+            optional=True,
+        )
+        .depends_on(trail_ruins, nether_biomes, conduit, recovery_compass, elytra)
+        .checkmark()
+        .reward_item("minecraft:experience_bottle", 32)
+        .finish()
+    )
 
     return experienced_explorer
+
 
 def create_project() -> Project:
     project = Project(name="Immersive Adventure Neo", version="13")

@@ -22,8 +22,14 @@ class ContentAudit:
         return not (self.empty_descriptions or self.taskless_quests)
 
     def format(self) -> str:
-        task_summary = ", ".join(f"{name}={count}" for name, count in sorted(self.task_types.items())) or "none"
-        reward_summary = ", ".join(f"{name}={count}" for name, count in sorted(self.reward_types.items())) or "none"
+        task_summary = (
+            ", ".join(f"{name}={count}" for name, count in sorted(self.task_types.items()))
+            or "none"
+        )
+        reward_summary = (
+            ", ".join(f"{name}={count}" for name, count in sorted(self.reward_types.items()))
+            or "none"
+        )
         lines = [
             f"Content audit: {self.chapters} chapter(s), {self.quests} quest(s), {self.optional_quests} optional.",
             f"Tasks: {task_summary}.",
@@ -38,7 +44,9 @@ class ContentAudit:
 def audit_project(project: Project) -> ContentAudit:
     title_counts = Counter(quest.title for quest in project.quests)
     task_types = Counter(task.type.value for quest in project.quests for task in quest.tasks)
-    reward_types = Counter(reward.type.value for quest in project.quests for reward in quest.rewards)
+    reward_types = Counter(
+        reward.type.value for quest in project.quests for reward in quest.rewards
+    )
 
     return ContentAudit(
         chapters=len(project.chapters),
@@ -46,7 +54,9 @@ def audit_project(project: Project) -> ContentAudit:
         optional_quests=sum(quest.optional for quest in project.quests),
         task_types=task_types,
         reward_types=reward_types,
-        empty_descriptions=tuple(quest.title for quest in project.quests if not quest.description.strip()),
+        empty_descriptions=tuple(
+            quest.title for quest in project.quests if not quest.description.strip()
+        ),
         taskless_quests=tuple(quest.title for quest in project.quests if not quest.tasks),
         duplicate_titles=tuple(sorted(title for title, count in title_counts.items() if count > 1)),
     )

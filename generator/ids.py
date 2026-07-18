@@ -2,6 +2,7 @@ from uuid import UUID, uuid5
 
 NAMESPACE = UUID("f59b2f3a-8300-4a7e-a9f4-e888ebc92f54")
 
+
 class UUIDService:
     def project(self, project_name: str) -> UUID:
         return uuid5(NAMESPACE, f"project:{project_name}")

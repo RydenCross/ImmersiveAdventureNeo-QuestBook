@@ -26,7 +26,9 @@ def test_audit_detects_duplicate_task_ids() -> None:
 
 def test_audit_detects_invalid_item_task_data() -> None:
     project = create_project()
-    task = next(task for quest in project.quests for task in quest.tasks if task.type.value == "item")
+    task = next(
+        task for quest in project.quests for task in quest.tasks if task.type.value == "item"
+    )
     task.data["count"] = 0
     result = audit_tasks(project)
     assert not result.is_clean

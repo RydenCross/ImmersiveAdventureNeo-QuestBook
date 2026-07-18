@@ -50,7 +50,6 @@ def test_exploration_chapter_depends_on_survival_completion() -> None:
     assert exploration.quests[0].dependencies[0].quest_id == established.ftb_id
 
 
-
 def test_exploration_expansion_follows_experienced_explorer() -> None:
     project = create_project()
     exploration = project.get_chapter("03_exploration")
@@ -66,6 +65,7 @@ def test_exploration_expansion_follows_experienced_explorer() -> None:
     assert exploration.quests.index(experienced) < exploration.quests.index(mastery)
     assert all(q.optional for q in exploration.quests[exploration.quests.index(experienced) + 1 :])
     assert len(exploration.quests) == 47
+
 
 def test_create_chapter_depends_on_mining_completion() -> None:
     project = create_project()
@@ -159,7 +159,6 @@ def test_actually_additions_tools_follow_machines() -> None:
     assert len(actually.quests) == 78
 
 
-
 def test_actually_additions_expansion_is_optional_and_follows_utilities() -> None:
     project = create_project()
     actually = project.get_chapter("05_actually_additions")
@@ -173,6 +172,7 @@ def test_actually_additions_expansion_is_optional_and_follows_utilities() -> Non
     assert actually.quests.index(equipped) < actually.quests.index(mastery)
     assert all(q.optional for q in actually.quests[actually.quests.index(equipped) + 1 :])
     assert len(actually.quests) == 78
+
 
 def test_ars_nouveau_depends_on_actually_additions_completion() -> None:
     project = create_project()
@@ -197,7 +197,10 @@ def test_ars_nouveau_foundations_have_workshop_progression() -> None:
     apparatus = next(q for q in ars.quests if q.title == "The Enchanting Apparatus")
     complete = next(q for q in ars.quests if q.title == "An Arcane Workshop")
 
-    assert spellbook.ftb_id in [d.quest_id for d in next(q for q in ars.quests if q.title == "Write Magic into Form").dependencies]
+    assert spellbook.ftb_id in [
+        d.quest_id
+        for d in next(q for q in ars.quests if q.title == "Write Magic into Form").dependencies
+    ]
     assert ars.quests.index(first_spell) < ars.quests.index(apparatus)
     assert ars.quests.index(complete) < len(ars.quests) - 1
 
@@ -279,7 +282,6 @@ def test_apotheosis_advanced_progression_follows_foundations() -> None:
     assert len(apotheosis.quests) == 62
 
 
-
 def test_apotheosis_expansion_is_optional_and_follows_mastery() -> None:
     project = create_project()
     apotheosis = project.get_chapter("07_apotheosis")
@@ -293,6 +295,7 @@ def test_apotheosis_expansion_is_optional_and_follows_mastery() -> None:
     assert apotheosis.quests.index(mastery) < apotheosis.quests.index(complete)
     assert all(q.optional for q in apotheosis.quests[apotheosis.quests.index(mastery) + 1 :])
     assert len(apotheosis.quests) == 62
+
 
 def test_ae2_depends_on_apotheosis_completion() -> None:
     project = create_project()
@@ -356,7 +359,6 @@ def test_ae2_advanced_storage_and_networking_follow_autocrafting() -> None:
     assert len(ae2.quests) == 83
 
 
-
 def test_ae2_expansion_is_optional_and_follows_mastery() -> None:
     project = create_project()
     ae2 = project.get_chapter("08_ae2")
@@ -370,6 +372,7 @@ def test_ae2_expansion_is_optional_and_follows_mastery() -> None:
     assert ae2.quests.index(mastery) < ae2.quests.index(quantum)
     assert all(q.optional for q in ae2.quests[ae2.quests.index(mastery) + 1 :])
     assert len(ae2.quests) == 83
+
 
 def test_mekanism_depends_on_ae2_completion() -> None:
     project = create_project()
@@ -412,8 +415,16 @@ def test_mekanism_factories_and_advanced_processing_follow_foundations() -> None
     five_times = next(q for q in mekanism.quests if q.title == "Five Ingots per Ore")
     mastery = next(q for q in mekanism.quests if q.title == "A Scalable Industrial Processor")
 
-    assert factory.dependencies[0].quest_id == next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").ftb_id
-    assert next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").dependencies[0].quest_id == foundations.ftb_id
+    assert (
+        factory.dependencies[0].quest_id
+        == next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding").ftb_id
+    )
+    assert (
+        next(q for q in mekanism.quests if q.title == "Upgrade without Rebuilding")
+        .dependencies[0]
+        .quest_id
+        == foundations.ftb_id
+    )
     assert mekanism.quests.index(triple) < mekanism.quests.index(five_times)
     assert mekanism.quests.index(mastery) < len(mekanism.quests) - 1
     assert len(mekanism.quests) == 82
@@ -424,14 +435,10 @@ def test_mekanism_power_and_reactors_follow_advanced_processing() -> None:
     mekanism = project.get_chapter("09_mekanism")
 
     assert mekanism is not None
-    processing = next(
-        q for q in mekanism.quests if q.title == "A Scalable Industrial Processor"
-    )
+    processing = next(q for q in mekanism.quests if q.title == "A Scalable Industrial Processor")
     wind = next(q for q in mekanism.quests if q.title == "Harness the High Winds")
     reactor = next(q for q in mekanism.quests if q.title == "Contain the Reaction")
-    complete = next(
-        q for q in mekanism.quests if q.title == "A Stable Nuclear Power Station"
-    )
+    complete = next(q for q in mekanism.quests if q.title == "A Stable Nuclear Power Station")
 
     assert wind.dependencies[0].quest_id == processing.ftb_id
     assert mekanism.quests.index(reactor) < mekanism.quests.index(complete)

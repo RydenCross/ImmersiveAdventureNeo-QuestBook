@@ -63,7 +63,9 @@ def analyze_progression(project: Project) -> ProgressionMetricsReport:
 
     depths = _longest_depths(incoming, outgoing)
     maximum_depth = max(depths.values(), default=0)
-    deepest = tuple(sorted(quest_id for quest_id, depth in depths.items() if depth == maximum_depth))
+    deepest = tuple(
+        sorted(quest_id for quest_id, depth in depths.items() if depth == maximum_depth)
+    )
 
     bottlenecks = tuple(
         {
@@ -93,9 +95,7 @@ def analyze_progression(project: Project) -> ProgressionMetricsReport:
     )
 
 
-def _longest_depths(
-    incoming: dict[str, set[str]], outgoing: dict[str, set[str]]
-) -> dict[str, int]:
+def _longest_depths(incoming: dict[str, set[str]], outgoing: dict[str, set[str]]) -> dict[str, int]:
     remaining = {quest_id: len(parents) for quest_id, parents in incoming.items()}
     depths = {quest_id: 1 for quest_id in incoming}
     ready = sorted(quest_id for quest_id, count in remaining.items() if count == 0)

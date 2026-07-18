@@ -48,7 +48,10 @@ def test_empty_quest_is_warning() -> None:
     item = quest("A")
     item.tasks.clear()
     report = ProjectValidator().validate(project_with(item))
-    assert any(issue.code == "EMPTY_QUEST" and issue.severity is Severity.WARNING for issue in report.issues)
+    assert any(
+        issue.code == "EMPTY_QUEST" and issue.severity is Severity.WARNING
+        for issue in report.issues
+    )
 
 
 def test_duplicate_quest_ids_across_chapters_are_rejected() -> None:

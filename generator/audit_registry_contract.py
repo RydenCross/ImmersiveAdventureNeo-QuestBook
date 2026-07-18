@@ -22,20 +22,42 @@ AUDIT_REGISTRY = (
     AuditRegistration("chapter audit", "chapter-audit", "chapter-audit.json"),
     AuditRegistration("text audit", "text-audit", "text-audit.json"),
     AuditRegistration("determinism audit", "determinism-audit", "determinism-audit.json"),
-    AuditRegistration("output manifest guard", "output-manifest-guard", "output-manifest-guard.json"),
+    AuditRegistration(
+        "output manifest guard", "output-manifest-guard", "output-manifest-guard.json"
+    ),
     AuditRegistration("report freshness guard", "report-freshness-guard", None),
     AuditRegistration("packaging audit", "packaging-audit", "packaging-audit.json"),
     AuditRegistration("CLI contract audit", "cli-audit", "cli-audit.json"),
-    AuditRegistration("documentation contract audit", "documentation-audit", "documentation-audit.json"),
-    AuditRegistration("repository hygiene audit", "repository-hygiene-audit", "repository-hygiene-audit.json"),
-    AuditRegistration("release artifact audit", "release-artifact-audit", "release-artifact-audit.json"),
-    AuditRegistration("release reproducibility audit", "release-reproducibility-audit", "release-reproducibility-audit.json"),
-    AuditRegistration("audit registry contract", "audit-registry-audit", "audit-registry-audit.json"),
-    AuditRegistration("test inventory contract", "test-inventory-audit", "test-inventory-audit.json"),
+    AuditRegistration(
+        "documentation contract audit", "documentation-audit", "documentation-audit.json"
+    ),
+    AuditRegistration(
+        "repository hygiene audit", "repository-hygiene-audit", "repository-hygiene-audit.json"
+    ),
+    AuditRegistration(
+        "release artifact audit", "release-artifact-audit", "release-artifact-audit.json"
+    ),
+    AuditRegistration(
+        "release reproducibility audit",
+        "release-reproducibility-audit",
+        "release-reproducibility-audit.json",
+    ),
+    AuditRegistration(
+        "audit registry contract", "audit-registry-audit", "audit-registry-audit.json"
+    ),
+    AuditRegistration(
+        "test inventory contract", "test-inventory-audit", "test-inventory-audit.json"
+    ),
     AuditRegistration("report schema contract", "report-schema-audit", "report-schema-audit.json"),
-    AuditRegistration("report consistency contract", "report-consistency-audit", "report-consistency-audit.json"),
-    AuditRegistration("report provenance contract", "report-provenance-audit", "report-provenance-audit.json"),
-    AuditRegistration("report determinism contract", "report-determinism-audit", "report-determinism-audit.json"),
+    AuditRegistration(
+        "report consistency contract", "report-consistency-audit", "report-consistency-audit.json"
+    ),
+    AuditRegistration(
+        "report provenance contract", "report-provenance-audit", "report-provenance-audit.json"
+    ),
+    AuditRegistration(
+        "report determinism contract", "report-determinism-audit", "report-determinism-audit.json"
+    ),
     AuditRegistration("CLI output contract", "cli-output-audit", "cli-output-audit.json"),
 )
 
@@ -53,9 +75,17 @@ class AuditRegistryContract:
 
     @property
     def is_clean(self) -> bool:
-        return not any((self.missing_gate_checks, self.unexpected_gate_checks, self.missing_commands,
-                        self.missing_reports, self.duplicate_gate_names, self.duplicate_commands,
-                        self.duplicate_reports))
+        return not any(
+            (
+                self.missing_gate_checks,
+                self.unexpected_gate_checks,
+                self.missing_commands,
+                self.missing_reports,
+                self.duplicate_gate_names,
+                self.duplicate_commands,
+                self.duplicate_reports,
+            )
+        )
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -83,10 +113,15 @@ class AuditRegistryContract:
             f"Missing reports: {len(self.missing_reports)}.",
             f"Duplicate identifiers: {len(self.duplicate_gate_names) + len(self.duplicate_commands) + len(self.duplicate_reports)}.",
         ]
-        for label, values in (("Missing gate", self.missing_gate_checks), ("Unexpected gate", self.unexpected_gate_checks),
-                              ("Missing command", self.missing_commands), ("Missing report", self.missing_reports),
-                              ("Duplicate gate", self.duplicate_gate_names), ("Duplicate command", self.duplicate_commands),
-                              ("Duplicate report", self.duplicate_reports)):
+        for label, values in (
+            ("Missing gate", self.missing_gate_checks),
+            ("Unexpected gate", self.unexpected_gate_checks),
+            ("Missing command", self.missing_commands),
+            ("Missing report", self.missing_reports),
+            ("Duplicate gate", self.duplicate_gate_names),
+            ("Duplicate command", self.duplicate_commands),
+            ("Duplicate report", self.duplicate_reports),
+        ):
             lines.extend(f"{label}: {value}" for value in values)
         return "\n".join(lines)
 

@@ -30,9 +30,7 @@ class RegistryAudit:
     @property
     def verified(self) -> tuple[RegistryReference, ...]:
         return tuple(
-            reference
-            for reference in self.references
-            if reference.item_id in self.known_items
+            reference for reference in self.references if reference.item_id in self.known_items
         )
 
     @property
@@ -98,10 +96,7 @@ def build_reference_manifest(project: Project) -> dict[str, object]:
         )
 
     namespaces = {
-        namespace_id: {
-            kind: sorted(item_ids)
-            for kind, item_ids in sorted(kind_groups.items())
-        }
+        namespace_id: {kind: sorted(item_ids) for kind, item_ids in sorted(kind_groups.items())}
         for namespace_id, kind_groups in sorted(grouped.items())
     }
     return {

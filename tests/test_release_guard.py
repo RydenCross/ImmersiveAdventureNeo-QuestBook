@@ -30,7 +30,9 @@ def clean_report(**overrides) -> ReleaseCheckReport:
 def test_release_guard_passes_against_matching_baseline(tmp_path, monkeypatch) -> None:
     baseline = tmp_path / "release-baseline.json"
     baseline.write_text(clean_report().format_json(), encoding="utf-8")
-    monkeypatch.setattr("generator.release_guard.run_release_check", lambda output=None: clean_report())
+    monkeypatch.setattr(
+        "generator.release_guard.run_release_check", lambda output=None: clean_report()
+    )
 
     result = run_release_guard(baseline)
 
@@ -54,7 +56,9 @@ def test_release_guard_detects_regression(tmp_path, monkeypatch) -> None:
 
 def test_baseline_refresh_creates_parent_directories(tmp_path, monkeypatch) -> None:
     destination = tmp_path / "nested" / "release-baseline.json"
-    monkeypatch.setattr("generator.release_guard.run_release_check", lambda output=None: clean_report())
+    monkeypatch.setattr(
+        "generator.release_guard.run_release_check", lambda output=None: clean_report()
+    )
 
     report = refresh_release_baseline(destination)
 
@@ -79,7 +83,9 @@ def test_release_guard_cli_writes_json(tmp_path, monkeypatch) -> None:
     baseline = tmp_path / "release-baseline.json"
     output = tmp_path / "release-guard.json"
     baseline.write_text(clean_report().format_json(), encoding="utf-8")
-    monkeypatch.setattr("generator.release_guard.run_release_check", lambda output=None: clean_report())
+    monkeypatch.setattr(
+        "generator.release_guard.run_release_check", lambda output=None: clean_report()
+    )
 
     result = main(["release-guard", str(baseline), "--format", "json", "--output", str(output)])
 

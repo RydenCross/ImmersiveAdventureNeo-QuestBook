@@ -8,9 +8,21 @@ from generator.audit_registry_contract import AUDIT_REGISTRY
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 DEFECT_PREFIXES = (
-    "missing_", "invalid_", "duplicate_", "unexpected_", "stale_",
-    "changed_", "empty_", "forbidden_", "oversized_", "unresolved_",
-    "orphan_", "cycle_", "broken_", "mismatched_", "failed_",
+    "missing_",
+    "invalid_",
+    "duplicate_",
+    "unexpected_",
+    "stale_",
+    "changed_",
+    "empty_",
+    "forbidden_",
+    "oversized_",
+    "unresolved_",
+    "orphan_",
+    "cycle_",
+    "broken_",
+    "mismatched_",
+    "failed_",
 )
 
 
@@ -48,8 +60,11 @@ class ReportConsistencyContract:
 
 
 def _defect_lists(payload: dict[str, object]) -> list[list[object]]:
-    return [value for key, value in payload.items()
-            if isinstance(value, list) and key.startswith(DEFECT_PREFIXES)]
+    return [
+        value
+        for key, value in payload.items()
+        if isinstance(value, list) and key.startswith(DEFECT_PREFIXES)
+    ]
 
 
 def _count_mismatches(payload: dict[str, object]) -> bool:

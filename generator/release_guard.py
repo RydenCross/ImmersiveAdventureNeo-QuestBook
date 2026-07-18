@@ -4,8 +4,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from generator.release_check import ReleaseCheckReport, run_release_check
-from generator.release_compare import ReleaseComparison, compare_release_reports, load_release_report
-
+from generator.release_compare import (
+    ReleaseComparison,
+    compare_release_reports,
+    load_release_report,
+)
 
 DEFAULT_BASELINE_PATH = Path("reports/release-baseline.json")
 

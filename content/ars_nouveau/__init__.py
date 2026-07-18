@@ -6,12 +6,8 @@ from content.ars_nouveau.spellcraft_equipment import build_ars_nouveau_spellcraf
 
 
 def build_ars_nouveau(project: Project, actually_additions_complete: str) -> str:
-    ars, foundations_complete = build_ars_nouveau_foundations(
-        project, actually_additions_complete
-    )
-    spellcraft_complete = build_ars_nouveau_spellcraft_equipment(
-        ars, foundations_complete
-    )
+    ars, foundations_complete = build_ars_nouveau_foundations(project, actually_additions_complete)
+    spellcraft_complete = build_ars_nouveau_spellcraft_equipment(ars, foundations_complete)
     build_ars_nouveau_archmage_workshop(ars, spellcraft_complete)
     return spellcraft_complete
 

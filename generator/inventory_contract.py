@@ -47,7 +47,9 @@ class TestInventoryContract:
 
     @property
     def is_clean(self) -> bool:
-        return not any((self.missing_test_files, self.files_without_tests, self.unregistered_mappings))
+        return not any(
+            (self.missing_test_files, self.files_without_tests, self.unregistered_mappings)
+        )
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -77,9 +79,13 @@ class TestInventoryContract:
         return "\n".join(lines)
 
 
-def run_test_inventory_contract(test_directory: Path = DEFAULT_TEST_DIRECTORY) -> TestInventoryContract:
+def run_test_inventory_contract(
+    test_directory: Path = DEFAULT_TEST_DIRECTORY,
+) -> TestInventoryContract:
     gate_names = tuple(item.gate_name for item in AUDIT_REGISTRY)
-    expected = tuple(sorted(SPECIAL_TEST_FILES[name] for name in gate_names if name in SPECIAL_TEST_FILES))
+    expected = tuple(
+        sorted(SPECIAL_TEST_FILES[name] for name in gate_names if name in SPECIAL_TEST_FILES)
+    )
     unregistered = tuple(sorted(set(gate_names) - set(SPECIAL_TEST_FILES)))
     missing: list[str] = []
     empty: list[str] = []

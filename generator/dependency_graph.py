@@ -20,8 +20,8 @@ class DependencyGraph:
 
     def format_dot(self) -> str:
         lines = [
-            'digraph quest_progression {',
-            '  rankdir=LR;',
+            "digraph quest_progression {",
+            "  rankdir=LR;",
             '  graph [compound=true, fontname="Helvetica"];',
             '  node [shape=box, fontname="Helvetica"];',
             '  edge [fontname="Helvetica"];',
@@ -38,10 +38,10 @@ class DependencyGraph:
                 if node["optional"]:
                     attrs.append('style="dashed"')
                 lines.append(f'    "{_escape(str(node["id"]))}" [{", ".join(attrs)}];')
-            lines.append('  }')
+            lines.append("  }")
         for edge in self.edges:
             lines.append(f'  "{_escape(edge["from"])}" -> "{_escape(edge["to"])}";')
-        lines.append('}')
+        lines.append("}")
         return "\n".join(lines)
 
 
@@ -52,13 +52,15 @@ def build_dependency_graph(project: Project) -> DependencyGraph:
     for chapter in project.chapters:
         chapters.append({"id": chapter.id, "title": chapter.title, "quests": len(chapter.quests)})
         for quest in chapter.quests:
-            nodes.append({
-                "id": quest.id,
-                "title": quest.title,
-                "chapter_id": chapter.id,
-                "optional": quest.optional,
-                "dependencies": len(quest.dependencies),
-            })
+            nodes.append(
+                {
+                    "id": quest.id,
+                    "title": quest.title,
+                    "chapter_id": chapter.id,
+                    "optional": quest.optional,
+                    "dependencies": len(quest.dependencies),
+                }
+            )
             for dependency in quest.dependencies:
                 edges.append({"from": dependency.quest_id, "to": quest.id})
     return DependencyGraph(
@@ -69,4 +71,4 @@ def build_dependency_graph(project: Project) -> DependencyGraph:
 
 
 def _escape(value: str) -> str:
-    return value.replace('\\', '\\\\').replace('"', '\\"')
+    return value.replace("\\", "\\\\").replace('"', '\\"')

@@ -54,12 +54,22 @@ class ProjectValidator:
         for chapter in project.chapters:
             location = f"chapter:{chapter.id}"
             if chapter.id in chapter_ids:
-                issues.append(self._error("DUPLICATE_CHAPTER_ID", f"Duplicate chapter id '{chapter.id}'.", location))
+                issues.append(
+                    self._error(
+                        "DUPLICATE_CHAPTER_ID", f"Duplicate chapter id '{chapter.id}'.", location
+                    )
+                )
             chapter_ids.add(chapter.id)
 
             if chapter.ftb_id:
                 if chapter.ftb_id in chapter_ftb_ids:
-                    issues.append(self._error("DUPLICATE_CHAPTER_FTB_ID", f"Duplicate chapter FTB id '{chapter.ftb_id}'.", location))
+                    issues.append(
+                        self._error(
+                            "DUPLICATE_CHAPTER_FTB_ID",
+                            f"Duplicate chapter FTB id '{chapter.ftb_id}'.",
+                            location,
+                        )
+                    )
                 chapter_ftb_ids.add(chapter.ftb_id)
 
             self._validate_resource(chapter.icon, "chapter icon", location, issues)
@@ -93,7 +103,9 @@ class ProjectValidator:
                             )
                         )
                     if dependency.quest_id == quest.id:
-                        issues.append(self._error("SELF_DEPENDENCY", "Quest depends on itself.", location))
+                        issues.append(
+                            self._error("SELF_DEPENDENCY", "Quest depends on itself.", location)
+                        )
 
         issues.extend(self._find_cycles(project, known_quests))
         return ValidationReport(tuple(issues))
@@ -102,7 +114,11 @@ class ProjectValidator:
         self._validate_resource(quest.icon, "quest icon", location, issues)
 
         if not isfinite(quest.position.x) or not isfinite(quest.position.y):
-            issues.append(self._error("INVALID_POSITION", "Quest coordinates must be finite numbers.", location))
+            issues.append(
+                self._error(
+                    "INVALID_POSITION", "Quest coordinates must be finite numbers.", location
+                )
+            )
 
         if not quest.tasks:
             issues.append(self._warning("EMPTY_QUEST", "Quest has no tasks.", location))
@@ -111,7 +127,9 @@ class ProjectValidator:
         self._duplicate_child_ids(quest.rewards, "reward", location, issues)
 
     @staticmethod
-    def _duplicate_child_ids(children, kind: str, location: str, issues: list[ValidationIssue]) -> None:
+    def _duplicate_child_ids(
+        children, kind: str, location: str, issues: list[ValidationIssue]
+    ) -> None:
         seen: set[str] = set()
         for child in children:
             if child.id in seen:
@@ -126,7 +144,9 @@ class ProjectValidator:
             seen.add(child.id)
 
     @staticmethod
-    def _validate_resource(value: str, label: str, location: str, issues: list[ValidationIssue]) -> None:
+    def _validate_resource(
+        value: str, label: str, location: str, issues: list[ValidationIssue]
+    ) -> None:
         if not _RESOURCE_LOCATION.fullmatch(value):
             issues.append(
                 ValidationIssue(

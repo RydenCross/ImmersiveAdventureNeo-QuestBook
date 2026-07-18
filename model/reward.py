@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Any
 from model.enums import RewardType
 
+
 @dataclass(slots=True)
 class Reward:
     id: str

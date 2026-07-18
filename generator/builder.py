@@ -48,9 +48,7 @@ class QuestBuilder:
         return self
 
     def item(self, item_id: str, count: int = 1) -> "QuestBuilder":
-        self.tasks.append(
-            self._task(TaskType.ITEM, item={"id": item_id, "count": 1}, count=count)
-        )
+        self.tasks.append(self._task(TaskType.ITEM, item={"id": item_id, "count": 1}, count=count))
         return self
 
     def advancement(self, advancement_id: str) -> "QuestBuilder":

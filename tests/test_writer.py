@@ -4,7 +4,6 @@ from generator.parser import FTBQuestParser
 from generator.snbt import loads
 from generator.writer import FTBQuestWriter, dumps
 
-
 FIXTURE = Path(__file__).parent / "fixtures" / "ftbquests"
 
 
@@ -46,5 +45,7 @@ def test_parser_writer_parser_round_trip(tmp_path: Path) -> None:
         assert after.ftb_id == before.ftb_id
         assert after.position == before.position
         assert [task.type for task in after.tasks] == [task.type for task in before.tasks]
-        assert [reward.type for reward in after.rewards] == [reward.type for reward in before.rewards]
+        assert [reward.type for reward in after.rewards] == [
+            reward.type for reward in before.rewards
+        ]
         assert after.dependencies == before.dependencies

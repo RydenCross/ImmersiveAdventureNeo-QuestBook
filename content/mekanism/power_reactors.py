@@ -1,9 +1,7 @@
 from generator.builder import ChapterBuilder
 
 
-def build_mekanism_power_reactors(
-    chapter: ChapterBuilder, processing_complete: str
-) -> str:
+def build_mekanism_power_reactors(chapter: ChapterBuilder, processing_complete: str) -> str:
     wind = (
         chapter.quest(
             "wind_generator",

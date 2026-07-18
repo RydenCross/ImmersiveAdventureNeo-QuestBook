@@ -12,7 +12,9 @@ def test_repository_release_artifact_is_clean() -> None:
 
 def test_audit_detects_invalid_json_and_empty_files(tmp_path: Path) -> None:
     (tmp_path / "reports").mkdir()
-    (tmp_path / "reports/generated-output-manifest.json").write_text('{"files": {}}', encoding="utf-8")
+    (tmp_path / "reports/generated-output-manifest.json").write_text(
+        '{"files": {}}', encoding="utf-8"
+    )
     (tmp_path / "broken.json").write_text("{", encoding="utf-8")
     (tmp_path / "reports/empty.txt").write_bytes(b"")
     result = run_release_artifact_audit(tmp_path)
@@ -22,7 +24,9 @@ def test_audit_detects_invalid_json_and_empty_files(tmp_path: Path) -> None:
 
 def test_audit_detects_forbidden_entries(tmp_path: Path) -> None:
     (tmp_path / "reports").mkdir()
-    (tmp_path / "reports/generated-output-manifest.json").write_text('{"files": {}}', encoding="utf-8")
+    (tmp_path / "reports/generated-output-manifest.json").write_text(
+        '{"files": {}}', encoding="utf-8"
+    )
     cache = tmp_path / "package.egg-info"
     cache.mkdir()
     (cache / "PKG-INFO").write_text("metadata", encoding="utf-8")

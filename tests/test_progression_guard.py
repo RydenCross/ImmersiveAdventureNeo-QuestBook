@@ -47,12 +47,18 @@ def test_cli_fails_when_budget_is_exceeded(tmp_path) -> None:
     budget = load_progression_budget()
     strict_budget = replace(budget, maximum_depth=budget.maximum_depth - 1)
     path = tmp_path / "budget.json"
-    path.write_text(json.dumps(strict_budget.__dict__ if hasattr(strict_budget, '__dict__') else {
-        "minimum_quests": strict_budget.minimum_quests,
-        "minimum_dependencies": strict_budget.minimum_dependencies,
-        "maximum_depth": strict_budget.maximum_depth,
-        "maximum_bottlenecks": strict_budget.maximum_bottlenecks,
-        "maximum_direct_dependants": strict_budget.maximum_direct_dependants,
-        "maximum_chapter_transitions": strict_budget.maximum_chapter_transitions,
-    }))
+    path.write_text(
+        json.dumps(
+            strict_budget.__dict__
+            if hasattr(strict_budget, "__dict__")
+            else {
+                "minimum_quests": strict_budget.minimum_quests,
+                "minimum_dependencies": strict_budget.minimum_dependencies,
+                "maximum_depth": strict_budget.maximum_depth,
+                "maximum_bottlenecks": strict_budget.maximum_bottlenecks,
+                "maximum_direct_dependants": strict_budget.maximum_direct_dependants,
+                "maximum_chapter_transitions": strict_budget.maximum_chapter_transitions,
+            }
+        )
+    )
     assert main(["progression-guard", str(path)]) == 1

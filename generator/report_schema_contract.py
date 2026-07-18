@@ -21,13 +21,15 @@ class ReportSchemaContract:
 
     @property
     def is_clean(self) -> bool:
-        return not any((
-            self.missing_reports,
-            self.invalid_json,
-            self.non_object_reports,
-            self.missing_status,
-            self.invalid_status,
-        ))
+        return not any(
+            (
+                self.missing_reports,
+                self.invalid_json,
+                self.non_object_reports,
+                self.missing_status,
+                self.invalid_status,
+            )
+        )
 
     def to_dict(self) -> dict[str, object]:
         return {

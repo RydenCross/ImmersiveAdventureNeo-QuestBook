@@ -1,9 +1,7 @@
 from generator.builder import ChapterBuilder
 
 
-def build_ae2_channels_autocrafting(
-    chapter: ChapterBuilder, foundations_complete: str
-) -> str:
+def build_ae2_channels_autocrafting(chapter: ChapterBuilder, foundations_complete: str) -> str:
     channels = (
         chapter.quest(
             "channels",

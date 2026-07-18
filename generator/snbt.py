@@ -17,7 +17,7 @@ class Token:
 
 
 _TOKEN_RE = re.compile(
-    r'''\s*(?:(?P<string>"(?:\\.|[^"\\])*")|(?P<number>[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?[bBsSlLfFdD]?)|(?P<ident>[A-Za-z0-9_+\-./]+)|(?P<punct>[{}\[\],;:]))'''
+    r"""\s*(?:(?P<string>"(?:\\.|[^"\\])*")|(?P<number>[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?[bBsSlLfFdD]?)|(?P<ident>[A-Za-z0-9_+\-./]+)|(?P<punct>[{}\[\],;:]))"""
 )
 
 

@@ -93,9 +93,7 @@ def guard_progression(
     metrics: ProgressionMetricsReport, budget: ProgressionBudget
 ) -> ProgressionGuardResult:
     violations: list[str] = []
-    maximum_fan_out = max(
-        (int(item["dependants"]) for item in metrics.bottlenecks), default=0
-    )
+    maximum_fan_out = max((int(item["dependants"]) for item in metrics.bottlenecks), default=0)
 
     if metrics.quests < budget.minimum_quests:
         violations.append(
@@ -108,8 +106,7 @@ def guard_progression(
         )
     if metrics.maximum_depth > budget.maximum_depth:
         violations.append(
-            f"Critical path grew to {metrics.maximum_depth}; maximum is "
-            f"{budget.maximum_depth}."
+            f"Critical path grew to {metrics.maximum_depth}; maximum is " f"{budget.maximum_depth}."
         )
     if len(metrics.bottlenecks) > budget.maximum_bottlenecks:
         violations.append(

@@ -40,9 +40,10 @@ class TaskAudit:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True)
 
     def format(self) -> str:
-        task_summary = ", ".join(
-            f"{name}={count}" for name, count in sorted(self.task_types.items())
-        ) or "none"
+        task_summary = (
+            ", ".join(f"{name}={count}" for name, count in sorted(self.task_types.items()))
+            or "none"
+        )
         lines = [
             f"Task integrity audit: {'PASS' if self.is_clean else 'FAIL'}",
             f"Tasks: {self.task_count} across {self.tasked_quests} quest(s).",

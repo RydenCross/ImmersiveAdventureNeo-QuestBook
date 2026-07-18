@@ -8,7 +8,9 @@ import re
 from content import create_project
 from model import Project
 
-_PLACEHOLDER = re.compile(r"\b(?:todo|tbd|fixme|lorem ipsum|placeholder|coming soon)\b", re.IGNORECASE)
+_PLACEHOLDER = re.compile(
+    r"\b(?:todo|tbd|fixme|lorem ipsum|placeholder|coming soon)\b", re.IGNORECASE
+)
 _BAD_WHITESPACE = re.compile(r"[ \t]+\n|\n[ \t]+|[ \t]{2,}")
 
 
@@ -76,7 +78,10 @@ def audit_text(project: Project) -> TextAudit:
     descriptions: defaultdict[str, list[str]] = defaultdict(list)
 
     for chapter in project.chapters:
-        fields = ((f"chapter {chapter.id} title", chapter.title), (f"chapter {chapter.id} description", chapter.description))
+        fields = (
+            (f"chapter {chapter.id} title", chapter.title),
+            (f"chapter {chapter.id} description", chapter.description),
+        )
         for label, text in fields:
             if _PLACEHOLDER.search(text):
                 placeholders.append(label)

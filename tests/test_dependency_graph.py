@@ -20,9 +20,9 @@ def test_graph_json_contains_chapter_and_optional_metadata() -> None:
 
 def test_graph_dot_contains_clusters_and_edges() -> None:
     dot = build_dependency_graph(create_project()).format_dot()
-    assert 'digraph quest_progression' in dot
+    assert "digraph quest_progression" in dot
     assert 'subgraph "cluster_00_welcome"' in dot
-    assert '->' in dot
+    assert "->" in dot
 
 
 def test_cli_writes_dot_and_json(tmp_path) -> None:

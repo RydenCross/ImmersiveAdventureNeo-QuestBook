@@ -96,7 +96,11 @@ def compare_release_archives(first: Path, second: Path) -> ReleaseReproducibilit
     first_names = set(first_entries)
     second_names = set(second_entries)
     changed = tuple(
-        sorted(name for name in first_names & second_names if first_entries[name] != second_entries[name])
+        sorted(
+            name
+            for name in first_names & second_names
+            if first_entries[name] != second_entries[name]
+        )
     )
     return ReleaseReproducibilityAudit(
         archive_entries=len(first_entries),

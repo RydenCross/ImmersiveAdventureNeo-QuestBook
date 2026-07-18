@@ -23,8 +23,7 @@ class ReportProvenanceContract:
             "status": "pass" if self.is_clean else "fail",
             "tracked_reports": self.tracked_reports,
             "provenance": [
-                {"report": report, "command": command}
-                for report, command in self.provenance
+                {"report": report, "command": command} for report, command in self.provenance
             ],
             "missing_commands": list(self.missing_commands),
             "missing_renderers": list(self.missing_renderers),
@@ -42,7 +41,9 @@ class ReportProvenanceContract:
             f"Missing renderers: {len(self.missing_renderers)}.",
             f"Orphan renderers: {len(self.orphan_renderers)}.",
         ]
-        lines.extend(f"{report}: python -m generator {command}" for report, command in self.provenance)
+        lines.extend(
+            f"{report}: python -m generator {command}" for report, command in self.provenance
+        )
         lines.extend(f"Missing command: {name}" for name in self.missing_commands)
         lines.extend(f"Missing renderer: {name}" for name in self.missing_renderers)
         lines.extend(f"Orphan renderer: {name}" for name in self.orphan_renderers)
@@ -63,7 +64,11 @@ def run_report_provenance_contract() -> ReportProvenanceContract:
     return ReportProvenanceContract(
         tracked_reports=len(provenance),
         provenance=provenance,
-        missing_commands=tuple(sorted(item.command for item in registrations if item.command not in commands)),
+        missing_commands=tuple(
+            sorted(item.command for item in registrations if item.command not in commands)
+        ),
         missing_renderers=tuple(sorted(registered_reports - renderers)),
-        orphan_renderers=tuple(sorted(renderers - registered_reports - {"progression-metrics.json"})),
+        orphan_renderers=tuple(
+            sorted(renderers - registered_reports - {"progression-metrics.json"})
+        ),
     )

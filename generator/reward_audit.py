@@ -40,9 +40,10 @@ class RewardAudit:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True)
 
     def format(self) -> str:
-        reward_summary = ", ".join(
-            f"{name}={count}" for name, count in sorted(self.reward_types.items())
-        ) or "none"
+        reward_summary = (
+            ", ".join(f"{name}={count}" for name, count in sorted(self.reward_types.items()))
+            or "none"
+        )
         lines = [
             f"Reward integrity audit: {'PASS' if self.is_clean else 'FAIL'}",
             f"Rewards: {self.reward_count} across {self.rewarded_quests} quest(s).",
@@ -76,9 +77,7 @@ def audit_rewards(project: Project) -> RewardAudit:
     rewarded_quests = 0
 
     dependants: Counter[str] = Counter(
-        dependency.quest_id
-        for quest in project.quests
-        for dependency in quest.dependencies
+        dependency.quest_id for quest in project.quests for dependency in quest.dependencies
     )
 
     for quest in project.quests:
@@ -103,9 +102,7 @@ def audit_rewards(project: Project) -> RewardAudit:
     )
     rewardless_terminal = tuple(
         sorted(
-            quest.id
-            for quest in project.quests
-            if dependants[quest.id] == 0 and not quest.rewards
+            quest.id for quest in project.quests if dependants[quest.id] == 0 and not quest.rewards
         )
     )
 

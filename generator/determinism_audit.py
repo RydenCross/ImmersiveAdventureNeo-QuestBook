@@ -88,9 +88,10 @@ def compare_generated_trees(first: Path, second: Path) -> DeterminismAudit:
 
 
 def run_determinism_audit() -> DeterminismAudit:
-    with TemporaryDirectory(prefix="quest-build-a-") as first_tmp, TemporaryDirectory(
-        prefix="quest-build-b-"
-    ) as second_tmp:
+    with (
+        TemporaryDirectory(prefix="quest-build-a-") as first_tmp,
+        TemporaryDirectory(prefix="quest-build-b-") as second_tmp,
+    ):
         first = build(Path(first_tmp), quiet=True)
         second = build(Path(second_tmp), quiet=True)
         return compare_generated_trees(first, second)

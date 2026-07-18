@@ -28,12 +28,11 @@ def build_actually_additions(project: Project, create_complete: str) -> str:
     builder.icon = chapter.icon
     builder.description = chapter.description
     from generator.ids import UUIDService
+
     builder.ids = UUIDService()
     builder.chapter = chapter
 
-    machines_complete = build_actually_additions_machines_resources(
-        builder, foundations_complete
-    )
+    machines_complete = build_actually_additions_machines_resources(builder, foundations_complete)
     utilities_complete = build_actually_additions_tools_utilities(builder, machines_complete)
     build_actually_additions_advanced_workshop(builder, utilities_complete)
     return utilities_complete
