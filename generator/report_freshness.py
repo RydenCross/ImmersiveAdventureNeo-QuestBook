@@ -41,6 +41,7 @@ from generator.report_refresh_convergence_contract import run_report_refresh_con
 from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
 from generator.release_report_finalization_contract import run_release_report_finalization_contract
 from generator.release_package_verification_contract import run_release_package_verification_contract
+from generator.release_manifest_contract import run_release_manifest_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -119,6 +120,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "report-refresh-idempotence-audit.json": lambda: run_report_refresh_idempotence_contract().format_json(),
         "release-report-finalization-audit.json": lambda: run_release_report_finalization_contract().format_json(),
         "release-package-verification-audit.json": lambda: run_release_package_verification_contract().format_json(),
+        "release-manifest-audit.json": lambda: run_release_manifest_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

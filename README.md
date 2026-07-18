@@ -462,3 +462,13 @@ python -m generator release-package-verification-audit
 ### Release package verification
 
 Run `python -m generator release-package-verification-audit` to independently verify the final ZIP inventory, checksums, reproducibility, and excluded-cache rules.
+
+
+## Release manifest audit
+
+Generate and verify a per-file manifest for the deterministic release package:
+
+```bash
+python -m generator release-manifest-audit
+python -m generator release-manifest-audit --format json --output reports/release-manifest-audit.json
+```

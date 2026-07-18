@@ -34,6 +34,7 @@
       "packaging audit"
     ],
     "release guard": [],
+    "release manifest contract": [],
     "release package verification contract": [
       "release report finalization contract"
     ],
@@ -88,7 +89,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 35,
+  "registered_audits": 36,
   "status": "pass",
   "unknown_dependencies": []
 }

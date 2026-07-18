@@ -1,3 +1,9 @@
+## Commit 82 - Release Manifest Contract
+
+- Added a deterministic per-file release manifest with path, byte size, and SHA-256.
+- Added independent ZIP-to-manifest verification for missing, unexpected, resized, or changed entries.
+- Excluded the generated manifest status report from its own release payload.
+
 # Changelog
 
 ## Commit 76 - Audit Performance Contract
