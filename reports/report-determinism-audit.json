@@ -1,5 +1,5 @@
 {
-  "checked_reports": 40,
+  "checked_reports": 41,
   "deterministic_reports": [
     "audit-dependency-audit.json",
     "audit-performance-audit.json",
@@ -31,6 +31,7 @@
     "report-consistency-audit.json",
     "report-provenance-audit.json",
     "report-refresh-audit.json",
+    "report-refresh-cache-audit.json",
     "report-refresh-convergence-audit.json",
     "report-refresh-idempotence-audit.json",
     "report-refresh-order-audit.json",

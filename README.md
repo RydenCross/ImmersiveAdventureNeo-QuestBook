@@ -237,6 +237,24 @@ python -m generator output-manifest reports/generated-output-manifest.json
 
 See [`docs/OUTPUT_MANIFEST.md`](docs/OUTPUT_MANIFEST.md).
 
+## Incremental report refresh
+
+Regenerate tracked reports while skipping renderers whose source inputs and checked-in outputs are unchanged:
+
+```bash
+python -m generator report-refresh --incremental
+python -m generator report-refresh --incremental --cache reports/.report-refresh-cache.json --format json
+```
+
+Validate cache population, selective invalidation, tamper recovery, and corrupt-cache recovery:
+
+```bash
+python -m generator report-refresh-cache-audit
+python -m generator report-refresh-cache-audit --format json --output reports/report-refresh-cache-audit.json
+```
+
+See [`docs/REPORT_REFRESH_CACHE_CONTRACT.md`](docs/REPORT_REFRESH_CACHE_CONTRACT.md).
+
 ### Report freshness guard
 
 Verify that checked-in audit evidence still matches the current questbook:

@@ -6,6 +6,13 @@ from pathlib import Path
 from typing import Callable, Mapping, Sequence
 
 from generator.output_writer import atomic_write_text
+from generator.report_refresh_cache import (
+    DEFAULT_CACHE_FILENAME,
+    default_fingerprints,
+    file_digest,
+    load_cache,
+    write_cache,
+)
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 DEFAULT_MAX_PASSES = 4
@@ -19,6 +26,12 @@ class ReportRefresh:
     passes: int
     converged: bool
     changed_reports_last_pass: tuple[str, ...]
+    rendered_reports: tuple[str, ...] = ()
+    skipped_reports: tuple[str, ...] = ()
+    cache_used: bool = False
+    cache_hits: int = 0
+    cache_misses: int = 0
+    cache_rebuilt: bool = False
 
     @property
     def is_clean(self) -> bool:
@@ -37,6 +50,12 @@ class ReportRefresh:
             "passes": self.passes,
             "converged": self.converged,
             "changed_reports_last_pass": list(self.changed_reports_last_pass),
+            "rendered_reports": list(self.rendered_reports),
+            "skipped_reports": list(self.skipped_reports),
+            "cache_used": self.cache_used,
+            "cache_hits": self.cache_hits,
+            "cache_misses": self.cache_misses,
+            "cache_rebuilt": self.cache_rebuilt,
         }
 
     def format_json(self) -> str:
@@ -51,6 +70,16 @@ class ReportRefresh:
             f"Passes: {self.passes}.",
             f"Converged: {'yes' if self.converged else 'no'}.",
         ]
+        if self.cache_used:
+            lines.extend(
+                (
+                    f"Rendered reports: {len(self.rendered_reports)}.",
+                    f"Skipped reports: {len(self.skipped_reports)}.",
+                    f"Cache hits: {self.cache_hits}.",
+                    f"Cache misses: {self.cache_misses}.",
+                    f"Cache rebuilt: {'yes' if self.cache_rebuilt else 'no'}.",
+                )
+            )
         lines.extend(f"Failed: {name}" for name in self.failed_reports)
         lines.extend(f"Still changing: {name}" for name in self.changed_reports_last_pass)
         return "\n".join(lines)
@@ -62,6 +91,10 @@ def refresh_reports(
     renderers: Mapping[str, Callable[[], str]] | None = None,
     order: Sequence[str] | None = None,
     max_passes: int = DEFAULT_MAX_PASSES,
+    incremental: bool = False,
+    cache_path: Path | None = None,
+    fingerprints: Mapping[str, Callable[[], str]] | None = None,
+    root: Path = Path("."),
 ) -> ReportRefresh:
     if max_passes < 1:
         raise ValueError("max_passes must be at least 1")
@@ -71,9 +104,35 @@ def refresh_reports(
         renderers = _default_renderers()
     selected_order = tuple(order) if order is not None else tuple(renderers)
     report_directory.mkdir(parents=True, exist_ok=True)
+
+    selected_cache_path = cache_path or (report_directory / DEFAULT_CACHE_FILENAME)
+    cache_entries: dict[str, dict[str, str]] = {}
+    cache_valid = False
+    cache_rebuilt = False
+    selected_fingerprints = fingerprints
+    if incremental:
+        cache_entries, cache_valid = load_cache(selected_cache_path, order=selected_order)
+        cache_rebuilt = selected_cache_path.exists() and not cache_valid
+        if selected_fingerprints is None:
+            selected_fingerprints = default_fingerprints(
+                selected_order,
+                root=root,
+                report_directory=report_directory,
+                cache_path=selected_cache_path,
+            )
+        missing_fingerprints = tuple(name for name in selected_order if name not in selected_fingerprints)
+        if missing_fingerprints:
+            raise ValueError(
+                "missing incremental fingerprints for: " + ", ".join(missing_fingerprints)
+            )
+
     refreshed: list[str] = []
     failed: list[str] = []
     changed_last_pass: tuple[str, ...] = ()
+    rendered_seen: list[str] = []
+    skipped_seen: list[str] = []
+    cache_hits = 0
+    cache_misses = 0
 
     for pass_number in range(1, max_passes + 1):
         changed: list[str] = []
@@ -83,22 +142,63 @@ def refresh_reports(
             if renderer is None:
                 failed_this_pass.append(name)
                 continue
+
+            path = report_directory / name
+            input_digest: str | None = None
+            if incremental and selected_fingerprints is not None:
+                try:
+                    input_digest = str(selected_fingerprints[name]())
+                except (OSError, TypeError, ValueError):
+                    failed_this_pass.append(name)
+                    continue
+                existing_digest = file_digest(path)
+                entry = cache_entries.get(name)
+                if (
+                    cache_valid
+                    and entry is not None
+                    and entry.get("input_digest") == input_digest
+                    and existing_digest is not None
+                    and entry.get("output_digest") == existing_digest
+                ):
+                    try:
+                        json.loads(path.read_text(encoding="utf-8"))
+                    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+                        pass
+                    else:
+                        cache_hits += 1
+                        if name not in skipped_seen:
+                            skipped_seen.append(name)
+                        if name not in refreshed:
+                            refreshed.append(name)
+                        continue
+                cache_misses += 1
+
             try:
                 rendered = renderer()
                 json.loads(rendered)
                 normalized = rendered.rstrip() + "\n"
-                path = report_directory / name
                 existing = path.read_text(encoding="utf-8") if path.is_file() else None
                 if existing != normalized:
                     atomic_write_text(path, normalized)
                     changed.append(name)
+                if incremental and input_digest is not None:
+                    cache_entries[name] = {
+                        "input_digest": input_digest,
+                        "output_digest": file_digest(path) or "",
+                    }
             except (OSError, TypeError, ValueError, json.JSONDecodeError):
                 failed_this_pass.append(name)
                 continue
+            if name not in rendered_seen:
+                rendered_seen.append(name)
             if name not in refreshed:
                 refreshed.append(name)
+
         failed = failed_this_pass
         changed_last_pass = tuple(changed)
+        if incremental:
+            write_cache(selected_cache_path, order=selected_order, entries=cache_entries)
+            cache_valid = True
         if failed:
             return ReportRefresh(
                 requested_reports=len(selected_order),
@@ -107,6 +207,12 @@ def refresh_reports(
                 passes=pass_number,
                 converged=False,
                 changed_reports_last_pass=changed_last_pass,
+                rendered_reports=tuple(rendered_seen),
+                skipped_reports=tuple(skipped_seen),
+                cache_used=incremental,
+                cache_hits=cache_hits,
+                cache_misses=cache_misses,
+                cache_rebuilt=cache_rebuilt,
             )
         if not changed:
             return ReportRefresh(
@@ -116,6 +222,12 @@ def refresh_reports(
                 passes=pass_number,
                 converged=True,
                 changed_reports_last_pass=(),
+                rendered_reports=tuple(rendered_seen),
+                skipped_reports=tuple(skipped_seen),
+                cache_used=incremental,
+                cache_hits=cache_hits,
+                cache_misses=cache_misses,
+                cache_rebuilt=cache_rebuilt,
             )
 
     return ReportRefresh(
@@ -125,4 +237,10 @@ def refresh_reports(
         passes=max_passes,
         converged=False,
         changed_reports_last_pass=changed_last_pass,
+        rendered_reports=tuple(rendered_seen),
+        skipped_reports=tuple(skipped_seen),
+        cache_used=incremental,
+        cache_hits=cache_hits,
+        cache_misses=cache_misses,
+        cache_rebuilt=cache_rebuilt,
     )

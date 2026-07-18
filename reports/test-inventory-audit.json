@@ -30,6 +30,7 @@
     "test_report_determinism_contract.py",
     "test_report_freshness.py",
     "test_report_provenance_contract.py",
+    "test_report_refresh_cache_contract.py",
     "test_report_refresh_contract.py",
     "test_report_refresh_convergence_contract.py",
     "test_report_refresh_idempotence_contract.py",
@@ -44,7 +45,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 41,
+  "registered_audits": 42,
   "status": "pass",
   "unregistered_mappings": []
 }

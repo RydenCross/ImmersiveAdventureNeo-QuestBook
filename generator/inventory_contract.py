@@ -40,6 +40,7 @@ SPECIAL_TEST_FILES = {
     "report refresh contract": "test_report_refresh_contract.py",
     "report refresh convergence contract": "test_report_refresh_convergence_contract.py",
     "report refresh idempotence contract": "test_report_refresh_idempotence_contract.py",
+    "report refresh cache contract": "test_report_refresh_cache_contract.py",
     "release report finalization contract": "test_release_report_finalization_contract.py",
     "release package verification contract": "test_release_package_verification_contract.py",
     "release manifest contract": "test_release_manifest_contract.py",

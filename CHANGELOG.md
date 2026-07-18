@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 88 - Incremental Report Refresh Cache
+
+- Added an opt-in content-addressed cache for dependency-safe report regeneration.
+- Added selective renderer invalidation, output-tamper detection, corrupt-cache recovery, and atomic cache writes.
+- Added CLI flags, a dedicated cache contract, regression tests, documentation, quality-gate integration, and a tracked report.
+
 ## Commit 87 - Mod Compatibility Matrix
 
 - Added a checked-in Minecraft 1.21.1 / NeoForge 21.1.x compatibility policy.
@@ -260,6 +266,12 @@
 
 ## Unreleased
 
+## Commit 88 - Incremental Report Refresh Cache
+
+- Added an opt-in content-addressed cache for dependency-safe report regeneration.
+- Added selective renderer invalidation, output-tamper detection, corrupt-cache recovery, and atomic cache writes.
+- Added CLI flags, a dedicated cache contract, regression tests, documentation, quality-gate integration, and a tracked report.
+
 - Added 20 optional Mekanism endgame quests covering fusion, antimatter, grid-scale storage, MekaSuit equipment, radioactive logistics, and industrial mastery.
 
 ## Commit 35 - AE2 Expansion
@@ -312,6 +324,12 @@
 - Added regression coverage and addon documentation.
 
 ## Unreleased
+
+## Commit 88 - Incremental Report Refresh Cache
+
+- Added an opt-in content-addressed cache for dependency-safe report regeneration.
+- Added selective renderer invalidation, output-tamper detection, corrupt-cache recovery, and atomic cache writes.
+- Added CLI flags, a dedicated cache contract, regression tests, documentation, quality-gate integration, and a tracked report.
 
 - Added a 30-quest optional Challenges chapter covering megaprojects, stockpiles, automation, power reliability, magic, bosses, exploration, and completionist goals.
 

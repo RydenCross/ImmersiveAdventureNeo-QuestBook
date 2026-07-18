@@ -39,6 +39,7 @@ from generator.report_refresh_order_contract import run_report_refresh_order_con
 from generator.report_refresh_contract import run_report_refresh_contract
 from generator.report_refresh_convergence_contract import run_report_refresh_convergence_contract
 from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
+from generator.report_refresh_cache_contract import run_report_refresh_cache_contract
 from generator.release_report_finalization_contract import run_release_report_finalization_contract
 from generator.release_package_verification_contract import run_release_package_verification_contract
 from generator.release_manifest_contract import run_release_manifest_contract
@@ -123,6 +124,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "report-refresh-audit.json": lambda: run_report_refresh_contract().format_json(),
         "report-refresh-convergence-audit.json": lambda: run_report_refresh_convergence_contract().format_json(),
         "report-refresh-idempotence-audit.json": lambda: run_report_refresh_idempotence_contract().format_json(),
+        "report-refresh-cache-audit.json": lambda: run_report_refresh_cache_contract().format_json(),
         "release-report-finalization-audit.json": lambda: run_release_report_finalization_contract().format_json(),
         "release-package-verification-audit.json": lambda: run_release_package_verification_contract().format_json(),
         "release-manifest-audit.json": lambda: run_release_manifest_contract().format_json(),

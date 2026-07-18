@@ -124,6 +124,10 @@
       "report": "report-refresh-audit.json"
     },
     {
+      "command": "report-refresh-cache-audit",
+      "report": "report-refresh-cache-audit.json"
+    },
+    {
       "command": "report-refresh-convergence-audit",
       "report": "report-refresh-convergence-audit.json"
     },
@@ -165,5 +169,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 40
+  "tracked_reports": 41
 }

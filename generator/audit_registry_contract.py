@@ -65,6 +65,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("report refresh contract", "report-refresh-audit", "report-refresh-audit.json"),
     AuditRegistration("report refresh convergence contract", "report-refresh-convergence-audit", "report-refresh-convergence-audit.json"),
     AuditRegistration("report refresh idempotence contract", "report-refresh-idempotence-audit", "report-refresh-idempotence-audit.json"),
+    AuditRegistration("report refresh cache contract", "report-refresh-cache-audit", "report-refresh-cache-audit.json"),
     AuditRegistration("release report finalization contract", "release-report-finalization-audit", "release-report-finalization-audit.json"),
     AuditRegistration("release package verification contract", "release-package-verification-audit", "release-package-verification-audit.json"),
     AuditRegistration("release manifest contract", "release-manifest-audit", "release-manifest-audit.json"),

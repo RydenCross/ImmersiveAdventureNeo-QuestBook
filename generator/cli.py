@@ -55,6 +55,7 @@ from generator.report_refresh_order_contract import run_report_refresh_order_con
 from generator.report_refresh_contract import run_report_refresh_contract
 from generator.report_refresh_convergence_contract import run_report_refresh_convergence_contract
 from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
+from generator.report_refresh_cache_contract import run_report_refresh_cache_contract
 from generator.release_report_finalization_contract import run_release_report_finalization_contract
 from generator.release_package_verification_contract import run_release_package_verification_contract
 from generator.release_manifest_contract import run_release_manifest_contract
@@ -354,6 +355,16 @@ def create_parser() -> argparse.ArgumentParser:
     )
     report_refresh.add_argument("--directory", type=Path, default=Path("reports"))
     report_refresh.add_argument("--format", choices=("text", "json"), default="text")
+    report_refresh.add_argument(
+        "--incremental",
+        action="store_true",
+        help="Skip report renderers whose inputs and checked-in outputs match the refresh cache.",
+    )
+    report_refresh.add_argument(
+        "--cache",
+        type=Path,
+        help="Incremental cache path (default: <directory>/.report-refresh-cache.json).",
+    )
     report_refresh_audit = subparsers.add_parser(
         "report-refresh-audit",
         help="Validate the dependency-safe report refresh command.",
@@ -372,6 +383,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     report_refresh_idempotence.add_argument("--format", choices=("text", "json"), default="text")
     report_refresh_idempotence.add_argument("--output", type=Path)
+    report_refresh_cache = subparsers.add_parser(
+        "report-refresh-cache-audit",
+        help="Validate incremental report refresh cache hits, invalidation, and recovery.",
+    )
+    report_refresh_cache.add_argument("--format", choices=("text", "json"), default="text")
+    report_refresh_cache.add_argument("--output", type=Path)
     release_report_finalization = subparsers.add_parser(
         "release-report-finalization-audit",
         help="Validate final placement and stability of archive-derived release reports.",
@@ -693,7 +710,11 @@ def create_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
     if args.command == "report-refresh":
-        result = refresh_reports(args.directory)
+        result = refresh_reports(
+            args.directory,
+            incremental=args.incremental,
+            cache_path=args.cache,
+        )
         rendered = result.format_json() if args.format == "json" else result.format()
         print(rendered)
         return 0 if result.is_clean else 1
@@ -781,6 +802,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "release-report-finalization-audit":
         result = run_release_report_finalization_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "report-refresh-cache-audit":
+        result = run_report_refresh_cache_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

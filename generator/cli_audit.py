@@ -47,6 +47,7 @@ EXPECTED_COMMANDS = (
     "report-provenance-audit",
     "report-refresh",
     "report-refresh-audit",
+    "report-refresh-cache-audit",
     "report-refresh-convergence-audit",
     "report-refresh-idempotence-audit",
     "release-report-finalization-audit",

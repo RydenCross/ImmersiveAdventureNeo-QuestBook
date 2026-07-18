@@ -20,6 +20,7 @@ _EXCLUDED_REPORTS = {
     "reports/release-archive-compression-audit.json",
     "reports/quality-gate.json",
     "reports/report-freshness-guard.json",
+    "reports/.report-refresh-cache.json",
 }
 
 

@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 55,
+  "documented_command_count": 56,
   "empty_documents": [],
-  "expected_command_count": 55,
-  "markdown_file_count": 72,
+  "expected_command_count": 56,
+  "markdown_file_count": 73,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -60,6 +60,7 @@
     "docs/REPORT_DETERMINISM_CONTRACT.md",
     "docs/REPORT_FRESHNESS.md",
     "docs/REPORT_PROVENANCE_CONTRACT.md",
+    "docs/REPORT_REFRESH_CACHE_CONTRACT.md",
     "docs/REPORT_REFRESH_CONTRACT.md",
     "docs/REPORT_REFRESH_CONVERGENCE_CONTRACT.md",
     "docs/REPORT_REFRESH_IDEMPOTENCE_CONTRACT.md",
