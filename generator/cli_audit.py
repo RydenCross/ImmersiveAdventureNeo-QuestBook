@@ -42,6 +42,7 @@ EXPECTED_COMMANDS = (
     "report-consistency-audit",
     "report-determinism-audit",
     "report-provenance-audit",
+    "report-refresh-order-audit",
     "report-write-safety-audit",
     "report-schema-audit",
     "repository-hygiene-audit",

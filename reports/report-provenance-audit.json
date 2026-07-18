@@ -80,6 +80,10 @@
       "report": "report-provenance-audit.json"
     },
     {
+      "command": "report-refresh-order-audit",
+      "report": "report-refresh-order-audit.json"
+    },
+    {
       "command": "report-schema-audit",
       "report": "report-schema-audit.json"
     },
@@ -109,5 +113,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 26
+  "tracked_reports": 27
 }

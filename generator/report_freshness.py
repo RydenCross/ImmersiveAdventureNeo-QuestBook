@@ -33,6 +33,7 @@ from generator.report_determinism_contract import run_report_determinism_contrac
 from generator.cli_output_contract import run_cli_output_contract
 from generator.cli_exit_code_contract import run_cli_exit_code_contract
 from generator.report_write_safety_contract import run_report_write_safety_contract
+from generator.report_refresh_order_contract import run_report_refresh_order_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -96,8 +97,6 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "cli-audit.json": lambda: run_cli_audit().format_json(),
         "documentation-audit.json": lambda: run_documentation_audit().format_json(),
         "repository-hygiene-audit.json": lambda: run_repository_hygiene_audit().format_json(),
-        "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
-        "release-reproducibility-audit.json": lambda: run_release_reproducibility_audit().format_json(),
         "audit-registry-audit.json": lambda: run_audit_registry_contract().format_json(),
         "test-inventory-audit.json": lambda: run_test_inventory_contract().format_json(),
         "report-schema-audit.json": lambda: run_report_schema_contract().format_json(),
@@ -107,7 +106,15 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "cli-output-audit.json": lambda: run_cli_output_contract().format_json(),
         "cli-exit-code-audit.json": lambda: run_cli_exit_code_contract().format_json(),
         "report-write-safety-audit.json": lambda: run_report_write_safety_contract().format_json(),
+        "report-refresh-order-audit.json": lambda: run_report_refresh_order_contract().format_json(),
+        "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
+        "release-reproducibility-audit.json": lambda: run_release_reproducibility_audit().format_json(),
     }
+
+
+def report_refresh_order() -> tuple[str, ...]:
+    """Return the dependency-safe checked-in report regeneration order."""
+    return tuple(_default_renderers())
 
 
 def compare_report_payloads(

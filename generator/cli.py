@@ -49,6 +49,7 @@ from generator.report_determinism_contract import run_report_determinism_contrac
 from generator.cli_output_contract import run_cli_output_contract
 from generator.cli_exit_code_contract import run_cli_exit_code_contract
 from generator.report_write_safety_contract import run_report_write_safety_contract
+from generator.report_refresh_order_contract import run_report_refresh_order_contract
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
 from generator.release_compare import compare_release_reports, load_release_report
@@ -327,6 +328,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     report_write_safety.add_argument("--format", choices=("text", "json"), default="text")
     report_write_safety.add_argument("--output", type=Path)
+    report_refresh_order = subparsers.add_parser(
+        "report-refresh-order-audit",
+        help="Validate dependency-safe report regeneration order.",
+    )
+    report_refresh_order.add_argument("--format", choices=("text", "json"), default="text")
+    report_refresh_order.add_argument("--output", type=Path)
     cli_exit_code = subparsers.add_parser(
         "cli-exit-code-audit",
         help="Validate audit command exit codes against JSON pass/fail status.",
@@ -587,6 +594,15 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = create_parser().parse_args(argv)
+    if args.command == "report-refresh-order-audit":
+        result = run_report_refresh_order_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "report-write-safety-audit":
         result = run_report_write_safety_contract()
         rendered = result.format_json() if args.format == "json" else result.format()

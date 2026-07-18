@@ -32,6 +32,7 @@ from generator.report_determinism_contract import run_report_determinism_contrac
 from generator.cli_output_contract import run_cli_output_contract
 from generator.cli_exit_code_contract import run_cli_exit_code_contract
 from generator.report_write_safety_contract import run_report_write_safety_contract
+from generator.report_refresh_order_contract import run_report_refresh_order_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -121,6 +122,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "CLI output contract": run_cli_output_contract,
         "CLI exit-code contract": run_cli_exit_code_contract,
         "report write-safety contract": run_report_write_safety_contract,
+        "report refresh order contract": run_report_refresh_order_contract,
     }
 
 

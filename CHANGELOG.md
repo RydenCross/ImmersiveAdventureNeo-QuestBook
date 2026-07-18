@@ -311,3 +311,9 @@
 ## 0.1.0-alpha.1
 - Idea
 
+
+## Commit 74 - Report Refresh Order Contract
+
+- Added a dependency-safe report refresh order contract.
+- Required archive-derived reports to render after all other checked-in reports.
+- Added CLI, quality-gate, freshness, registry, test, and documentation coverage.

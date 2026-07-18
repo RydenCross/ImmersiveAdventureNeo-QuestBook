@@ -395,3 +395,11 @@ python -m generator report-write-safety-audit
 ```
 
 Verifies that audit output files are replaced atomically, failed writes preserve the previous report, and temporary files are cleaned up. See [Report Write-Safety Contract](docs/REPORT_WRITE_SAFETY_CONTRACT.md).
+
+### Report refresh order audit
+
+Validate that checked-in audit reports have a unique dependency-safe regeneration order and that archive-derived reports are rendered last:
+
+```bash
+python -m generator report-refresh-order-audit
+```
