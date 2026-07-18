@@ -23,3 +23,7 @@ htmlcov/
 
 # Local incremental report refresh cache
 reports/.report-refresh-cache.json
+# Local visual editor workspace and recovery state
+.quest-editor/
+.recovery/
+

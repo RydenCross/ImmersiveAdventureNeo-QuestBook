@@ -60,6 +60,7 @@ SPECIAL_TEST_FILES = {
     "local visual editor service contract": "test_editor_service_contract.py",
     "interactive visual editor UI contract": "test_editor_ui_contract.py",
     "editor workspace tools contract": "test_editor_workspace_contract.py",
+    "editor autosave and recovery contract": "test_editor_recovery_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

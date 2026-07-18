@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 76,
+  "documented_command_count": 77,
   "empty_documents": [],
-  "expected_command_count": 76,
-  "markdown_file_count": 84,
+  "expected_command_count": 77,
+  "markdown_file_count": 85,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -33,6 +33,7 @@
     "docs/DOCUMENTATION_AUDIT.md",
     "docs/EDITOR_GRAPH_CANVAS.md",
     "docs/EDITOR_MODEL.md",
+    "docs/EDITOR_RECOVERY.md",
     "docs/EDITOR_SERVICE.md",
     "docs/EDITOR_WORKSPACE_TOOLS.md",
     "docs/ENDGAME.md",

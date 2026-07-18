@@ -26,6 +26,10 @@
     "dependency audit": [],
     "determinism audit": [],
     "documentation contract audit": [],
+    "editor autosave and recovery contract": [
+      "editor workspace tools contract",
+      "local visual editor service contract"
+    ],
     "editor workspace tools contract": [
       "interactive visual editor UI contract"
     ],
@@ -139,11 +143,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 46,
+  "dependency_edges": 48,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 53,
+  "registered_audits": 54,
   "status": "pass",
   "unknown_dependencies": []
 }

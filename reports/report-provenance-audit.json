@@ -52,6 +52,10 @@
       "report": "editor-model-audit.json"
     },
     {
+      "command": "editor-recovery-audit",
+      "report": "editor-recovery-audit.json"
+    },
+    {
       "command": "editor-service-audit",
       "report": "editor-service-audit.json"
     },
@@ -213,5 +217,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 52
+  "tracked_reports": 53
 }

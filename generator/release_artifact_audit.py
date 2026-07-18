@@ -9,7 +9,15 @@ import zipfile
 
 DEFAULT_ROOT = Path(".")
 DEFAULT_MANIFEST_PATH = Path("reports/generated-output-manifest.json")
-_IGNORED_PARTS = {".git", ".pytest_cache", ".ruff_cache", ".venv", "__pycache__"}
+_IGNORED_PARTS = {
+    ".git",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    ".quest-editor",
+    ".recovery",
+    "__pycache__",
+}
 _IGNORED_SUFFIXES = {".pyc", ".pyo"}
 _EXCLUDED_REPORTS = {
     "reports/release-artifact-audit.json",

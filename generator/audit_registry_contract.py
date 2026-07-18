@@ -85,6 +85,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("local visual editor service contract", "editor-service-audit", "editor-service-audit.json"),
     AuditRegistration("interactive visual editor UI contract", "editor-ui-audit", "editor-ui-audit.json"),
     AuditRegistration("editor workspace tools contract", "editor-workspace-audit", "editor-workspace-audit.json"),
+    AuditRegistration("editor autosave and recovery contract", "editor-recovery-audit", "editor-recovery-audit.json"),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

@@ -4,7 +4,7 @@ from generator.audit_registry_contract import AUDIT_REGISTRY, run_audit_registry
 def test_audit_registry_contract_is_clean() -> None:
     result = run_audit_registry_contract()
     assert result.is_clean
-    assert result.registrations == 53
+    assert result.registrations == 54
 
 
 def test_audit_registry_identifiers_are_unique() -> None:

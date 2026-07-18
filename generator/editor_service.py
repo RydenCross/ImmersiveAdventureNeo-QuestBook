@@ -23,6 +23,7 @@ from generator.editor_model import (
     validate_editor_document,
 )
 from generator.editor_ui import EDITOR_HTML
+from generator.editor_recovery import EditorRecoveryStore
 from generator.editor_workspace import apply_editor_batch, auto_layout_editor_document
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
 from generator.output_writer import atomic_write_text
@@ -114,6 +115,7 @@ class EditorSession:
         self.document = document
         self.document_path = document_path.resolve() if document_path else None
         self.saved_revision = saved_revision
+        self.recovery = EditorRecoveryStore(self.workspace)
         self._undo: list[EditorDocument] = []
         self._redo: list[EditorDocument] = []
         self._lock = RLock()
@@ -184,6 +186,9 @@ class EditorSession:
             self._undo.clear()
             self._redo.clear()
 
+    def _autosave(self, reason: str) -> None:
+        self.recovery.autosave(self.document, reason=reason)
+
     def status(self) -> dict[str, object]:
         with self._lock:
             validation = validate_editor_document(self.document)
@@ -205,6 +210,7 @@ class EditorSession:
                 "dependency_edges": len(self.document.edges),
                 "validation_errors": len(validation.errors),
                 "validation_warnings": len(validation.warnings),
+                "recovery": self.recovery.status(),
             }
 
     def document_payload(self) -> dict[str, object]:
@@ -229,6 +235,7 @@ class EditorSession:
             self._undo.append(transaction.before)
             self._replace_document(transaction.after)
             self._redo.clear()
+            self._autosave(f"operation:{operation.action}")
             return {
                 "status": "pass",
                 "operation": operation.to_dict(),
@@ -261,6 +268,7 @@ class EditorSession:
             self._undo.append(transaction.before)
             self._replace_document(transaction.after)
             self._redo.clear()
+            self._autosave("batch-operations")
             return {
                 "status": "pass",
                 "operations": [operation.to_dict() for operation in operations],
@@ -287,6 +295,7 @@ class EditorSession:
                 self._undo.append(self.document)
                 self._replace_document(result.document)
                 self._redo.clear()
+                self._autosave("auto-layout")
             return {
                 "status": "pass",
                 "changed": result.changed,
@@ -304,6 +313,7 @@ class EditorSession:
             previous = self._undo.pop()
             self._redo.append(self.document)
             self._replace_document(previous)
+            self._autosave("undo")
             return {
                 "status": "pass",
                 "action": "undo",
@@ -318,6 +328,7 @@ class EditorSession:
             following = self._redo.pop()
             self._undo.append(self.document)
             self._replace_document(following)
+            self._autosave("redo")
             return {
                 "status": "pass",
                 "action": "redo",
@@ -339,6 +350,7 @@ class EditorSession:
             self._replace_document(cleaned)
             self.document_path = path
             self.saved_revision = cleaned.revision
+            self.recovery.clear_autosave()
             return {
                 "status": "pass",
                 "path": path.as_posix(),
@@ -356,6 +368,7 @@ class EditorSession:
             self._replace_document(document, reset_history=True)
             self.document_path = path
             self.saved_revision = document.revision
+            self.recovery.clear_autosave()
             return {
                 "status": "pass",
                 "path": path.as_posix(),
@@ -392,6 +405,7 @@ class EditorSession:
             self._replace_document(document, reset_history=True)
             self.document_path = None
             self.saved_revision = -1
+            self._autosave("generate")
             return {
                 "status": "pass",
                 "source": source.as_posix(),
@@ -472,6 +486,7 @@ class EditorSession:
                 self._replace_document(document, reset_history=True)
                 self.document_path = None
                 self.saved_revision = -1
+                self._autosave("import")
                 return {
                     "status": "pass",
                     "filename": safe_name,
@@ -484,6 +499,54 @@ class EditorSession:
         finally:
             if temporary_path is not None:
                 temporary_path.unlink(missing_ok=True)
+
+    def recovery_payload(self) -> dict[str, object]:
+        with self._lock:
+            return self.recovery.status()
+
+    def create_snapshot(self, payload: Mapping[str, object] | None = None) -> dict[str, object]:
+        body = payload or {}
+        reason = str(body.get("reason", "manual"))
+        with self._lock:
+            record = self.recovery.create_snapshot(self.document, reason=reason)
+            return {
+                "status": "pass",
+                "snapshot": record.metadata(relative_to=self.workspace),
+                "recovery": self.recovery.status(),
+            }
+
+    def recover(self, payload: Mapping[str, object] | None = None) -> dict[str, object]:
+        body = payload or {}
+        snapshot = str(body.get("snapshot", "")).strip()
+        with self._lock:
+            if self.document.dirty_entities:
+                self.recovery.create_snapshot(self.document, reason="before-restore")
+            record = (
+                self.recovery.load_snapshot(snapshot)
+                if snapshot
+                else self.recovery.load_autosave()
+            )
+            self._replace_document(record.document, reset_history=True)
+            self.document_path = None
+            self.saved_revision = -1
+            self._autosave("restored")
+            return {
+                "status": "pass",
+                "restored": record.metadata(relative_to=self.workspace),
+                "session": self.status(),
+                "document": self.document.to_dict(),
+            }
+
+    def discard_recovery(self, payload: Mapping[str, object] | None = None) -> dict[str, object]:
+        body = payload or {}
+        keep_snapshots = bool(body.get("keep_snapshots", True))
+        with self._lock:
+            self.recovery.discard(keep_snapshots=keep_snapshots)
+            return {
+                "status": "pass",
+                "keep_snapshots": keep_snapshots,
+                "recovery": self.recovery.status(),
+            }
 
     def export(
         self,
@@ -522,6 +585,8 @@ def handle_editor_api(
             result = session.document_payload()
         elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/validation":
             result = session.validation_payload()
+        elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/recovery":
+            result = session.recovery_payload()
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/operations":
             result = session.apply(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/batch-operations":
@@ -532,6 +597,12 @@ def handle_editor_api(
             result = session.undo()
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/redo":
             result = session.redo()
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/snapshot":
+            result = session.create_snapshot(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/recover":
+            result = session.recover(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/discard-recovery":
+            result = session.discard_recovery(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/save":
             result = session.save(body.get("path") if "path" in body else None)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/open":

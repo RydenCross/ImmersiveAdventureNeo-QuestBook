@@ -1,5 +1,14 @@
 ## Unreleased
 
+
+## Commit 100 - Autosave, Project Snapshots, and Crash Recovery
+
+- Added atomic editor autosave after every accepted document mutation.
+- Added bounded, content-addressed project snapshots with checksum validation.
+- Added recovery, snapshot, and discard endpoints to the local editor API.
+- Added browser controls for manual snapshots and latest-autosave recovery.
+- Added corruption, workspace-confinement, and save-clears-autosave coverage.
+
 ## Commit 99 - Graph Auto-Layout and Bulk Editing Workspace
 
 - Added deterministic topological graph auto-layout with chapter scoping, stable coordinates, and collision prevention.

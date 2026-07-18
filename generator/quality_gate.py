@@ -58,6 +58,7 @@ from generator.editor_model_contract import run_editor_model_contract
 from generator.editor_service_contract import run_editor_service_contract
 from generator.editor_ui_contract import run_editor_ui_contract
 from generator.editor_workspace_contract import run_editor_workspace_contract
+from generator.editor_recovery_contract import run_editor_recovery_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -171,6 +172,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "local visual editor service contract": run_editor_service_contract,
         "interactive visual editor UI contract": run_editor_ui_contract,
         "editor workspace tools contract": run_editor_workspace_contract,
+        "editor autosave and recovery contract": run_editor_recovery_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

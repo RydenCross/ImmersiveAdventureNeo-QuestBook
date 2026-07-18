@@ -13,6 +13,8 @@ _REQUIRED_GITIGNORE_PATTERNS = (
     ".pytest_cache/",
     ".ruff_cache/",
     ".venv/",
+    ".quest-editor/",
+    ".recovery/",
     "output/",
     "dist/",
     "build/",
@@ -27,6 +29,8 @@ _IGNORED_DIRECTORY_NAMES = {
     ".pytest_cache",
     ".ruff_cache",
     ".venv",
+    ".quest-editor",
+    ".recovery",
     "__pycache__",
 }
 

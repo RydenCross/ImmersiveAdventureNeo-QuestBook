@@ -48,6 +48,7 @@ AUDIT_DEPENDENCIES.update(
         "local visual editor service contract": ("visual editor data model contract",),
         "interactive visual editor UI contract": ("local visual editor service contract",),
         "editor workspace tools contract": ("interactive visual editor UI contract",),
+        "editor autosave and recovery contract": ("editor workspace tools contract", "local visual editor service contract"),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

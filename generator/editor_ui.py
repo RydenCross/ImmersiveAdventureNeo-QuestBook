@@ -76,6 +76,7 @@ textarea { min-height: 150px; resize: vertical; }
 <button id="import-button">Import modpack</button>
 <input id="file-input" type="file" accept=".mrpack,.zip" hidden>
 <button onclick="undo()">Undo</button><button onclick="redo()">Redo</button>
+<button id="snapshot-button" onclick="createSnapshot()">Snapshot</button><button id="recover-button" onclick="recoverLatest()">Recover latest</button>
 <button onclick="saveModel()">Save model</button><button onclick="exportQuestbook()">Export FTB Quests</button>
 <span id="status">Loading…</span>
 </header>
@@ -169,7 +170,9 @@ async function refresh() {
     doc = await request('/document');
     const status = await request('/status');
     renderNavigator(); renderGraph(); renderInspector();
-    document.getElementById('status').textContent = `${status.quests} quests · ${status.dependency_edges} links · revision ${status.revision}${status.has_unsaved_changes ? ' · unsaved' : ''}`;
+    const recovery = status.recovery || {};
+    const autosave = recovery.autosave_available ? ` · autosaved r${recovery.autosave.revision}` : '';
+    document.getElementById('status').textContent = `${status.quests} quests · ${status.dependency_edges} links · revision ${status.revision}${status.has_unsaved_changes ? ' · unsaved' : ''}${autosave}`;
   } catch (error) { showError(error); }
 }
 function visibleQuests() {
@@ -300,6 +303,8 @@ async function saveQuest(){try{await request('/operations',{method:'POST',body:J
 async function createDependency(prerequisite, dependent){try{await request('/operations',{method:'POST',body:JSON.stringify({action:'set_dependency',target_id:dependent,values:{prerequisite_id:prerequisite,enabled:true}})});showError();await refresh();}catch(error){showError(error);}}
 async function undo(){try{await request('/undo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
 async function redo(){try{await request('/redo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
+async function createSnapshot(){try{const result=await request('/snapshot',{method:'POST',body:JSON.stringify({reason:'manual browser checkpoint'})});showError(`Snapshot saved: ${result.snapshot.path}`);await refresh();}catch(error){showError(error);}}
+async function recoverLatest(){try{const recovery=await request('/recovery');if(!recovery.autosave_available)throw new Error('No autosave recovery document is available.');if(!confirm(`Restore autosave revision ${recovery.autosave.revision}? Current unsaved state will be checkpointed first.`))return;await request('/recover',{method:'POST',body:'{}'});showError('Recovered latest autosave.');selected=null;selectedQuests.clear();await refresh();fitGraph();}catch(error){showError(error);}}
 async function saveModel(){try{await request('/save',{method:'POST',body:JSON.stringify({path:'quest-editor-model.json'})});showError();await refresh();}catch(error){showError(error);}}
 async function exportQuestbook(){try{const result=await request('/export',{method:'POST',body:JSON.stringify({destination:'generated/ftbquests'})});showError(`Exported ${result.summary.quests} quests to ${result.destination}`);}catch(error){showError(error);}}
 

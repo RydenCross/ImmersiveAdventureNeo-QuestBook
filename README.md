@@ -752,3 +752,27 @@ python -m generator release-archive-compression-audit --format json --output rep
 ```
 
 Validates extraction-safe paths, normalized and case-folded uniqueness, and rejects links or special files.
+
+## Autosave, snapshots, and crash recovery
+
+The local editor automatically writes the current unsaved document after every accepted edit, bulk operation, layout change, undo, redo, generation, or import. Recovery files remain confined to the editor workspace and use atomic replacement so an interrupted write never exposes a partial JSON document.
+
+Use **Snapshot** in the browser to create a named revision checkpoint and **Recover latest** to restore the current autosave. Saving the project clears the active autosave while preserving manual snapshots. Snapshot history is bounded to avoid unlimited workspace growth.
+
+The recovery API is available at:
+
+```text
+GET  /api/v1/recovery
+POST /api/v1/snapshot
+POST /api/v1/recover
+POST /api/v1/discard-recovery
+```
+
+Validate recovery behavior with:
+
+```bash
+python -m generator editor-recovery-audit
+python -m generator editor-recovery-audit --format json --output reports/editor-recovery-audit.json
+```
+
+See [`docs/EDITOR_RECOVERY.md`](docs/EDITOR_RECOVERY.md).

@@ -1,5 +1,5 @@
 {
-  "command_count": 76,
+  "command_count": 77,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -16,6 +16,7 @@
     "determinism-audit",
     "documentation-audit",
     "editor-model-audit",
+    "editor-recovery-audit",
     "editor-service-audit",
     "editor-ui-audit",
     "editor-workspace-audit",
