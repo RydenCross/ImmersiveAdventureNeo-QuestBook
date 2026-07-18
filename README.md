@@ -448,3 +448,12 @@ Verify that an already-converged report refresh completes in one pass without re
 ```bash
 python -m generator report-refresh-idempotence-audit
 ```
+
+
+### Release report finalization
+
+Validate that archive-derived release reports remain the final, stable stage of report regeneration:
+
+```bash
+python -m generator release-report-finalization-audit
+```

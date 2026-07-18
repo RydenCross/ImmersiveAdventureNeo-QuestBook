@@ -343,3 +343,9 @@
 - Added `report-refresh-idempotence-audit` and its tracked JSON report.
 - Proves that a converged report refresh completes in one pass without changing report contents or modification times.
 - Integrated the contract into the quality gate, audit registry, dependency graph, CLI contracts, documentation, freshness checks, and test inventory.
+
+
+## Commit 80 - Release Report Finalization Contract
+
+- Added `release-report-finalization-audit` and its tracked JSON report.
+- Enforced final placement and follow-up stability for archive-derived release reports.

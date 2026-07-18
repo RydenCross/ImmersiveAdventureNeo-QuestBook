@@ -72,6 +72,10 @@
       "report": "release-guard.json"
     },
     {
+      "command": "release-report-finalization-audit",
+      "report": "release-report-finalization-audit.json"
+    },
+    {
       "command": "release-reproducibility-audit",
       "report": "release-reproducibility-audit.json"
     },
@@ -133,5 +137,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 32
+  "tracked_reports": 33
 }

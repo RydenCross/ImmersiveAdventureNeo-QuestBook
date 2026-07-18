@@ -34,6 +34,10 @@
       "packaging audit"
     ],
     "release guard": [],
+    "release report finalization contract": [
+      "report refresh idempotence contract",
+      "report refresh order contract"
+    ],
     "release reproducibility audit": [
       "release artifact audit"
     ],
@@ -77,11 +81,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 23,
+  "dependency_edges": 25,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 33,
+  "registered_audits": 34,
   "status": "pass",
   "unknown_dependencies": []
 }

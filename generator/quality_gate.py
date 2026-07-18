@@ -38,6 +38,7 @@ from generator.report_refresh_order_contract import run_report_refresh_order_con
 from generator.report_refresh_contract import run_report_refresh_contract
 from generator.report_refresh_convergence_contract import run_report_refresh_convergence_contract
 from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
+from generator.release_report_finalization_contract import run_release_report_finalization_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -131,6 +132,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "report refresh contract": run_report_refresh_contract,
         "report refresh convergence contract": run_report_refresh_convergence_contract,
         "report refresh idempotence contract": run_report_refresh_idempotence_contract,
+        "release report finalization contract": run_release_report_finalization_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

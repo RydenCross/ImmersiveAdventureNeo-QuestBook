@@ -17,6 +17,7 @@
     "test_progression_guard.py",
     "test_release_artifact_audit.py",
     "test_release_guard.py",
+    "test_release_report_finalization_contract.py",
     "test_release_reproducibility_audit.py",
     "test_report_consistency_contract.py",
     "test_report_determinism_contract.py",
@@ -36,7 +37,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 33,
+  "registered_audits": 34,
   "status": "pass",
   "unregistered_mappings": []
 }

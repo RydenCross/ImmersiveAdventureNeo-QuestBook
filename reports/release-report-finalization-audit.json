@@ -1,0 +1,17 @@
+{
+  "archive_reports": [
+    "release-artifact-audit.json",
+    "release-reproducibility-audit.json"
+  ],
+  "archive_reports_not_final": [],
+  "final_archive_reports_changed": [],
+  "final_archive_reports_stable": [
+    "release-artifact-audit.json",
+    "release-reproducibility-audit.json"
+  ],
+  "missing_archive_reports": [],
+  "refresh_clean": true,
+  "refresh_converged": true,
+  "reports": 34,
+  "status": "pass"
+}
