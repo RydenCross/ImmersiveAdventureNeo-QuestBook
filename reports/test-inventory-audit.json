@@ -24,6 +24,7 @@
     "test_report_provenance_contract.py",
     "test_report_refresh_contract.py",
     "test_report_refresh_convergence_contract.py",
+    "test_report_refresh_idempotence_contract.py",
     "test_report_refresh_order_contract.py",
     "test_report_schema_contract.py",
     "test_report_write_safety_contract.py",
@@ -35,7 +36,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 32,
+  "registered_audits": 33,
   "status": "pass",
   "unregistered_mappings": []
 }

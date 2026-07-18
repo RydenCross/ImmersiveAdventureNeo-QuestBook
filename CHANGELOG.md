@@ -337,3 +337,9 @@
 - Made one report-refresh invocation iterate until no tracked report changes.
 - Added configurable non-convergence protection and pass diagnostics.
 - Added CLI, quality-gate, registry, freshness, dependency, documentation, and regression coverage.
+
+## Commit 79 — Report Refresh Idempotence Contract
+
+- Added `report-refresh-idempotence-audit` and its tracked JSON report.
+- Proves that a converged report refresh completes in one pass without changing report contents or modification times.
+- Integrated the contract into the quality gate, audit registry, dependency graph, CLI contracts, documentation, freshness checks, and test inventory.

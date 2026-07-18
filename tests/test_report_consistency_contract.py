@@ -14,7 +14,7 @@ def _write_reports(directory: Path, payload: dict[str, object]) -> None:
 def test_repository_report_consistency_is_clean() -> None:
     result = run_report_consistency_contract()
     assert result.is_clean
-    assert result.checked_reports == 30
+    assert result.checked_reports == 31
 
 
 def test_contract_detects_pass_report_with_defects(tmp_path: Path) -> None:

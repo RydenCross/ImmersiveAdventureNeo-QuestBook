@@ -440,3 +440,11 @@ Validates registered audit dependencies, rejects cycles and unknown prerequisite
 ## Report refresh convergence
 
 `python -m generator report-refresh` now repeats dependency-safe regeneration until the complete report set reaches a fixed point. Validate this behavior with `python -m generator report-refresh-convergence-audit`. See [Report Refresh Convergence Contract](docs/REPORT_REFRESH_CONVERGENCE_CONTRACT.md).
+
+### Report refresh idempotence
+
+Verify that an already-converged report refresh completes in one pass without rewriting files:
+
+```bash
+python -m generator report-refresh-idempotence-audit
+```

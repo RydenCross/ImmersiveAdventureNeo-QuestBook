@@ -39,6 +39,7 @@ SPECIAL_TEST_FILES = {
     "report refresh order contract": "test_report_refresh_order_contract.py",
     "report refresh contract": "test_report_refresh_contract.py",
     "report refresh convergence contract": "test_report_refresh_convergence_contract.py",
+    "report refresh idempotence contract": "test_report_refresh_idempotence_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

@@ -1,0 +1,11 @@
+{
+  "files_changed": [],
+  "files_unchanged": [
+    "alpha.json",
+    "beta.json"
+  ],
+  "first_refresh_clean": true,
+  "second_refresh_clean": true,
+  "second_refresh_passes": 1,
+  "status": "pass"
+}

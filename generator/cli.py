@@ -54,6 +54,7 @@ from generator.report_write_safety_contract import run_report_write_safety_contr
 from generator.report_refresh_order_contract import run_report_refresh_order_contract
 from generator.report_refresh_contract import run_report_refresh_contract
 from generator.report_refresh_convergence_contract import run_report_refresh_convergence_contract
+from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -357,6 +358,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     report_refresh_convergence.add_argument("--format", choices=("text", "json"), default="text")
     report_refresh_convergence.add_argument("--output", type=Path)
+    report_refresh_idempotence = subparsers.add_parser(
+        "report-refresh-idempotence-audit",
+        help="Validate that a converged report refresh performs no further writes.",
+    )
+    report_refresh_idempotence.add_argument("--format", choices=("text", "json"), default="text")
+    report_refresh_idempotence.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -646,6 +653,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "report-refresh-idempotence-audit":
+        result = run_report_refresh_idempotence_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

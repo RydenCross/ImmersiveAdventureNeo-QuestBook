@@ -56,6 +56,9 @@
     "report refresh convergence contract": [
       "report refresh contract"
     ],
+    "report refresh idempotence contract": [
+      "report refresh convergence contract"
+    ],
     "report refresh order contract": [
       "report provenance contract"
     ],
@@ -74,11 +77,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 22,
+  "dependency_edges": 23,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 32,
+  "registered_audits": 33,
   "status": "pass",
   "unknown_dependencies": []
 }

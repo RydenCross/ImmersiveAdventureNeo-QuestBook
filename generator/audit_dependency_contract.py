@@ -28,6 +28,7 @@ AUDIT_DEPENDENCIES.update(
         "report refresh order contract": ("report provenance contract",),
         "report refresh contract": ("report refresh order contract", "report write-safety contract"),
         "report refresh convergence contract": ("report refresh contract",),
+        "report refresh idempotence contract": ("report refresh convergence contract",),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

@@ -96,6 +96,10 @@
       "report": "report-refresh-convergence-audit.json"
     },
     {
+      "command": "report-refresh-idempotence-audit",
+      "report": "report-refresh-idempotence-audit.json"
+    },
+    {
       "command": "report-refresh-order-audit",
       "report": "report-refresh-order-audit.json"
     },
@@ -129,5 +133,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 31
+  "tracked_reports": 32
 }
