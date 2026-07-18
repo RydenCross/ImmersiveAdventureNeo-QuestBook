@@ -51,6 +51,7 @@ from generator.modpack_scanner_contract import run_modpack_scanner_contract
 from generator.modpack_content_scanner_contract import run_modpack_content_scanner_contract
 from generator.progression_planner_contract import run_progression_planner_contract
 from generator.ftb_blueprint_exporter_contract import run_ftb_blueprint_exporter_contract
+from generator.questbook_review_contract import run_questbook_review_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -157,6 +158,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "modpack content scanner contract": run_modpack_content_scanner_contract,
         "progression planner contract": run_progression_planner_contract,
         "FTB blueprint exporter contract": run_ftb_blueprint_exporter_contract,
+        "questbook review contract": run_questbook_review_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

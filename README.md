@@ -105,6 +105,28 @@ python -m generator ftb-blueprint-exporter-audit --format json --output reports/
 
 See [`docs/FTB_BLUEPRINT_EXPORTER.md`](docs/FTB_BLUEPRINT_EXPORTER.md).
 
+## Generated questbook review
+
+Review a generated blueprint before installing or publishing it:
+
+```bash
+python -m generator questbook-review /path/to/modpack.mrpack \
+  --target-quests 600 \
+  --format json \
+  --output questbook-review.json
+```
+
+The report identifies blocking dependency or objective defects and surfaces editorial work such as low-confidence quests, weak descriptions, missing reward decisions, oversized chapters, duplicate objectives, progression bottlenecks, and target shortfalls. A clean report may still require review; `publish_ready` is only true when no warnings or review items remain.
+
+Validate the reviewer with:
+
+```bash
+python -m generator questbook-review-audit
+python -m generator questbook-review-audit --format json --output reports/questbook-review-audit.json
+```
+
+See [`docs/QUESTBOOK_REVIEW.md`](docs/QUESTBOOK_REVIEW.md).
+
 ## Build
 
 ```bash

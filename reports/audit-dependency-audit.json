@@ -42,6 +42,9 @@
     "progression planner contract": [
       "modpack content scanner contract"
     ],
+    "questbook review contract": [
+      "FTB blueprint exporter contract"
+    ],
     "release archive Unicode path contract": [
       "release archive extraction safety contract"
     ],
@@ -116,11 +119,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 37,
+  "dependency_edges": 38,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 46,
+  "registered_audits": 47,
   "status": "pass",
   "unknown_dependencies": []
 }

@@ -1,5 +1,5 @@
 {
-  "checked_reports": 45,
+  "checked_reports": 46,
   "deterministic_reports": [
     "audit-dependency-audit.json",
     "audit-performance-audit.json",
@@ -22,6 +22,7 @@
     "progression-guard.json",
     "progression-metrics.json",
     "progression-planner-audit.json",
+    "questbook-review-audit.json",
     "release-archive-compression-audit.json",
     "release-archive-extraction-safety-audit.json",
     "release-archive-metadata-audit.json",

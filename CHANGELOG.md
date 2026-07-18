@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 93 - Generated Questbook Review and Validation Report
+
+- Added a public review command for generated modpack questbooks before publishing.
+- Added structural checks for dependencies, cycles, objectives, duplicate goals, and export conversion.
+- Added editorial findings for low-confidence quests, weak descriptions, reward decisions, oversized chapters, target shortfalls, and progression bottlenecks.
+- Added deterministic JSON output, contract tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 92 - FTB Quests SNBT Blueprint Exporter
 
 - Added deterministic conversion from generated quest blueprints into installable FTB Quests v13 SNBT directory trees.

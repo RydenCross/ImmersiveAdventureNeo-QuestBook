@@ -72,6 +72,8 @@ from generator.progression_planner import generate_quest_blueprint
 from generator.progression_planner_contract import run_progression_planner_contract
 from generator.ftb_blueprint_exporter import export_modpack_questbook
 from generator.ftb_blueprint_exporter_contract import run_ftb_blueprint_exporter_contract
+from generator.questbook_review import review_modpack_questbook
+from generator.questbook_review_contract import run_questbook_review_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -501,6 +503,37 @@ def create_parser() -> argparse.ArgumentParser:
     )
     ftb_quest_export.add_argument("--format", choices=("text", "json"), default="text")
     ftb_quest_export.add_argument("--output", type=Path, help="Write the export summary to a file.")
+    questbook_review = subparsers.add_parser(
+        "questbook-review",
+        help="Generate an editorial and structural review report for a generated questbook.",
+    )
+    questbook_review.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
+    )
+    questbook_review.add_argument(
+        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+    )
+    questbook_review.add_argument(
+        "--chapter-size", type=int, default=40, help="Planner chapter size (default: 40)."
+    )
+    questbook_review.add_argument(
+        "--low-confidence-threshold", type=float, default=0.75,
+        help="Flag quests below this confidence score (default: 0.75).",
+    )
+    questbook_review.add_argument(
+        "--min-description-words", type=int, default=6,
+        help="Minimum recommended description length (default: 6 words).",
+    )
+    questbook_review.add_argument(
+        "--max-chapter-quests", type=int, default=50,
+        help="Flag chapters above this size (default: 50).",
+    )
+    questbook_review.add_argument(
+        "--bottleneck-dependents", type=int, default=8,
+        help="Flag quests directly gating at least this many quests (default: 8).",
+    )
+    questbook_review.add_argument("--format", choices=("text", "json"), default="text")
+    questbook_review.add_argument("--output", type=Path, help="Write the review report to a file.")
     mod_compatibility = subparsers.add_parser(
         "mod-compatibility-audit",
         help="Validate the supported Minecraft, NeoForge, and authored mod compatibility matrix.",
@@ -531,6 +564,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     ftb_blueprint_exporter.add_argument("--format", choices=("text", "json"), default="text")
     ftb_blueprint_exporter.add_argument("--output", type=Path)
+    questbook_review_audit = subparsers.add_parser(
+        "questbook-review-audit",
+        help="Validate generated questbook editorial, reward, chapter-size, and graph review checks.",
+    )
+    questbook_review_audit.add_argument("--format", choices=("text", "json"), default="text")
+    questbook_review_audit.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -876,6 +915,23 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "questbook-review":
+        result = review_modpack_questbook(
+            args.path,
+            target_quests=args.target_quests,
+            chapter_size=args.chapter_size,
+            low_confidence_threshold=args.low_confidence_threshold,
+            min_description_words=args.min_description_words,
+            max_chapter_quests=args.max_chapter_quests,
+            bottleneck_dependents=args.bottleneck_dependents,
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "modpack-scanner-audit":
         result = run_modpack_scanner_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -905,6 +961,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "ftb-blueprint-exporter-audit":
         result = run_ftb_blueprint_exporter_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "questbook-review-audit":
+        result = run_questbook_review_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

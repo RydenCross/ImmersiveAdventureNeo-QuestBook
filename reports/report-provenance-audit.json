@@ -84,6 +84,10 @@
       "report": "progression-planner-audit.json"
     },
     {
+      "command": "questbook-review-audit",
+      "report": "questbook-review-audit.json"
+    },
+    {
       "command": "release-archive-compression-audit",
       "report": "release-archive-compression-audit.json"
     },
@@ -185,5 +189,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 45
+  "tracked_reports": 46
 }
