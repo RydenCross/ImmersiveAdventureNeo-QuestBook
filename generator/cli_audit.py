@@ -33,6 +33,8 @@ EXPECTED_COMMANDS = (
     "modpack-scanner-audit",
     "modpack-content-scanner-audit",
     "progression-planner-audit",
+    "ftb-quest-export",
+    "ftb-blueprint-exporter-audit",
     "output-manifest",
     "output-manifest-guard",
     "packaging-audit",

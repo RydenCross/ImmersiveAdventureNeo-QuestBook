@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 92 - FTB Quests SNBT Blueprint Exporter
+
+- Added deterministic conversion from generated quest blueprints into installable FTB Quests v13 SNBT directory trees.
+- Added stable FTB IDs, item and advancement task conversion, cross-chapter dependency preservation, localized text, stale-file cleanup, parser round-trip validation, and tree checksums.
+- Added public export CLI, exporter contract, regression tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 91 - Progression Planner and Quest Blueprint Generator
 
 - Added deterministic selection of scanned quest candidates with prerequisite closure and broad per-mod coverage.

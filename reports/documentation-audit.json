@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 62,
+  "documented_command_count": 64,
   "empty_documents": [],
-  "expected_command_count": 62,
-  "markdown_file_count": 76,
+  "expected_command_count": 64,
+  "markdown_file_count": 77,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -34,6 +34,7 @@
     "docs/ENDGAME.md",
     "docs/EXPLORATION.md",
     "docs/EXPLORATION_EXPANSION.md",
+    "docs/FTB_BLUEPRINT_EXPORTER.md",
     "docs/IDENTITY_GUARD.md",
     "docs/MINING.md",
     "docs/MODPACK_CONTENT_SCANNER.md",

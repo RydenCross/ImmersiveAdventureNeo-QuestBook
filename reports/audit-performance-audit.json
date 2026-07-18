@@ -3,7 +3,7 @@
   "duplicate_executions": [],
   "missing_timings": [],
   "over_budget": false,
-  "registered_audits": 45,
+  "registered_audits": 46,
   "slowest_audits": [
     {
       "duration_ms": 0.0,
@@ -19,14 +19,14 @@
     },
     {
       "duration_ms": 0.0,
-      "name": "audit dependency contract"
+      "name": "FTB blueprint exporter contract"
     },
     {
       "duration_ms": 0.0,
-      "name": "audit performance contract"
+      "name": "audit dependency contract"
     }
   ],
   "status": "pass",
-  "timed_audits": 45,
+  "timed_audits": 46,
   "total_duration_ms": 0.0
 }

@@ -83,6 +83,28 @@ python -m generator progression-planner-audit --format json --output reports/pro
 
 See [`docs/PROGRESSION_PLANNER.md`](docs/PROGRESSION_PLANNER.md).
 
+## FTB Quests SNBT blueprint export
+
+Generate a blueprint and write it directly as an installable FTB Quests v13 tree:
+
+```bash
+python -m generator ftb-quest-export /path/to/modpack.mrpack \
+  --destination generated/ftbquests \
+  --target-quests 600 \
+  --chapter-size 40
+```
+
+The exporter converts item and advancement objectives into FTB tasks, assigns stable FTB IDs, preserves prerequisites across chapters, removes stale generated chapter files, reparses the emitted SNBT, and reports a deterministic tree checksum.
+
+Validate the exporter with:
+
+```bash
+python -m generator ftb-blueprint-exporter-audit
+python -m generator ftb-blueprint-exporter-audit --format json --output reports/ftb-blueprint-exporter-audit.json
+```
+
+See [`docs/FTB_BLUEPRINT_EXPORTER.md`](docs/FTB_BLUEPRINT_EXPORTER.md).
+
 ## Build
 
 ```bash

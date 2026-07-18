@@ -1,0 +1,12 @@
+{
+  "advancement_tasks_exported": true,
+  "dependencies_preserved": true,
+  "deterministic_tree": true,
+  "export_generated": true,
+  "invalid_blueprint_rejected": true,
+  "item_tasks_exported": true,
+  "quest_count_preserved": true,
+  "round_trip_valid": true,
+  "stale_files_removed": true,
+  "status": "pass"
+}

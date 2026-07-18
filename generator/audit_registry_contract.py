@@ -77,6 +77,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("modpack scanner contract", "modpack-scanner-audit", "modpack-scanner-audit.json"),
     AuditRegistration("modpack content scanner contract", "modpack-content-scanner-audit", "modpack-content-scanner-audit.json"),
     AuditRegistration("progression planner contract", "progression-planner-audit", "progression-planner-audit.json"),
+    AuditRegistration("FTB blueprint exporter contract", "ftb-blueprint-exporter-audit", "ftb-blueprint-exporter-audit.json"),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

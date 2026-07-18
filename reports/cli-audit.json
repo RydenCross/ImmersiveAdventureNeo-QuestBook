@@ -1,5 +1,5 @@
 {
-  "command_count": 62,
+  "command_count": 64,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -15,6 +15,8 @@
     "dependency-graph",
     "determinism-audit",
     "documentation-audit",
+    "ftb-blueprint-exporter-audit",
+    "ftb-quest-export",
     "identity-baseline",
     "identity-guard",
     "lint",

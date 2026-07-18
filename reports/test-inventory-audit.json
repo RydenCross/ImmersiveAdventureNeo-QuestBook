@@ -11,6 +11,7 @@
     "test_dependency_audit.py",
     "test_determinism_audit.py",
     "test_documentation_audit.py",
+    "test_ftb_blueprint_exporter_contract.py",
     "test_identity_guard.py",
     "test_mod_compatibility_contract.py",
     "test_modpack_content_scanner_contract.py",
@@ -48,7 +49,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 45,
+  "registered_audits": 46,
   "status": "pass",
   "unregistered_mappings": []
 }

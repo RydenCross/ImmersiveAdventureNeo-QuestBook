@@ -48,6 +48,10 @@
       "report": "documentation-audit.json"
     },
     {
+      "command": "ftb-blueprint-exporter-audit",
+      "report": "ftb-blueprint-exporter-audit.json"
+    },
+    {
       "command": "identity-guard",
       "report": "identity-guard.json"
     },
@@ -181,5 +185,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 44
+  "tracked_reports": 45
 }
