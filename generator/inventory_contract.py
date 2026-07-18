@@ -38,6 +38,7 @@ SPECIAL_TEST_FILES = {
     "report write-safety contract": "test_report_write_safety_contract.py",
     "report refresh order contract": "test_report_refresh_order_contract.py",
     "report refresh contract": "test_report_refresh_contract.py",
+    "report refresh convergence contract": "test_report_refresh_convergence_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

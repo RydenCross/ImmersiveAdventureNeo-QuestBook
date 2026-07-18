@@ -1,0 +1,8 @@
+{
+  "converged_probe_clean": true,
+  "converged_probe_passes": 3,
+  "invalid_max_passes_rejected": true,
+  "status": "pass",
+  "unstable_probe_passes": 2,
+  "unstable_probe_rejected": true
+}

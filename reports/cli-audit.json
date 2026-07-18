@@ -1,5 +1,5 @@
 {
-  "command_count": 45,
+  "command_count": 46,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -38,6 +38,7 @@
     "report-provenance-audit",
     "report-refresh",
     "report-refresh-audit",
+    "report-refresh-convergence-audit",
     "report-refresh-order-audit",
     "report-schema-audit",
     "report-write-safety-audit",

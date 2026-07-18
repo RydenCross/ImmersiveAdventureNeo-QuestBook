@@ -92,6 +92,10 @@
       "report": "report-refresh-audit.json"
     },
     {
+      "command": "report-refresh-convergence-audit",
+      "report": "report-refresh-convergence-audit.json"
+    },
+    {
       "command": "report-refresh-order-audit",
       "report": "report-refresh-order-audit.json"
     },
@@ -125,5 +129,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 30
+  "tracked_reports": 31
 }

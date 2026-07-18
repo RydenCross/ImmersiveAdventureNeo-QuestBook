@@ -331,3 +331,9 @@
 - Required archive-derived reports to render after all other checked-in reports.
 - Added CLI, quality-gate, freshness, registry, test, and documentation coverage.
 
+
+## Commit 78 - Report Refresh Convergence Contract
+
+- Made one report-refresh invocation iterate until no tracked report changes.
+- Added configurable non-convergence protection and pass diagnostics.
+- Added CLI, quality-gate, registry, freshness, dependency, documentation, and regression coverage.

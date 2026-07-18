@@ -436,3 +436,7 @@ python -m generator audit-dependency-audit --format json --output reports/audit-
 ```
 
 Validates registered audit dependencies, rejects cycles and unknown prerequisites, and confirms quality-gate and report-refresh ordering is dependency-safe.
+
+## Report refresh convergence
+
+`python -m generator report-refresh` now repeats dependency-safe regeneration until the complete report set reaches a fixed point. Validate this behavior with `python -m generator report-refresh-convergence-audit`. See [Report Refresh Convergence Contract](docs/REPORT_REFRESH_CONVERGENCE_CONTRACT.md).

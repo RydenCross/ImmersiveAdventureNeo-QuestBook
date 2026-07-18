@@ -63,6 +63,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("report write-safety contract", "report-write-safety-audit", "report-write-safety-audit.json"),
     AuditRegistration("report refresh order contract", "report-refresh-order-audit", "report-refresh-order-audit.json"),
     AuditRegistration("report refresh contract", "report-refresh-audit", "report-refresh-audit.json"),
+    AuditRegistration("report refresh convergence contract", "report-refresh-convergence-audit", "report-refresh-convergence-audit.json"),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

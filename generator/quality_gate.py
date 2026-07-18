@@ -36,6 +36,7 @@ from generator.cli_exit_code_contract import run_cli_exit_code_contract
 from generator.report_write_safety_contract import run_report_write_safety_contract
 from generator.report_refresh_order_contract import run_report_refresh_order_contract
 from generator.report_refresh_contract import run_report_refresh_contract
+from generator.report_refresh_convergence_contract import run_report_refresh_convergence_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -127,6 +128,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "report write-safety contract": run_report_write_safety_contract,
         "report refresh order contract": run_report_refresh_order_contract,
         "report refresh contract": run_report_refresh_contract,
+        "report refresh convergence contract": run_report_refresh_convergence_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

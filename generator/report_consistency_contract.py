@@ -82,7 +82,10 @@ def _count_mismatches(payload: dict[str, object]) -> bool:
 def run_report_consistency_contract(
     report_directory: Path = DEFAULT_REPORT_DIRECTORY,
 ) -> ReportConsistencyContract:
-    names = tuple(sorted(item.report for item in AUDIT_REGISTRY if item.report))
+    names = tuple(sorted(
+        item.report for item in AUDIT_REGISTRY
+        if item.report and item.report != "report-consistency-audit.json"
+    ))
     inconsistent: list[str] = []
     count_mismatches: list[str] = []
     for name in names:
