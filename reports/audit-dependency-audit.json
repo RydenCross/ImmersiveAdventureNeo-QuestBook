@@ -29,6 +29,9 @@
     ],
     "packaging audit": [],
     "progression guard": [],
+    "release archive Unicode path contract": [
+      "release archive extraction safety contract"
+    ],
     "release archive extraction safety contract": [
       "release archive metadata contract"
     ],
@@ -93,11 +96,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 29,
+  "dependency_edges": 30,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 38,
+  "registered_audits": 39,
   "status": "pass",
   "unknown_dependencies": []
 }

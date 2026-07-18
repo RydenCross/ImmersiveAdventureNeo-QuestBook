@@ -34,6 +34,7 @@ AUDIT_DEPENDENCIES.update(
         "release manifest contract": ("release package verification contract",),
         "release archive metadata contract": ("release manifest contract",),
         "release archive extraction safety contract": ("release archive metadata contract",),
+        "release archive Unicode path contract": ("release archive extraction safety contract",),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

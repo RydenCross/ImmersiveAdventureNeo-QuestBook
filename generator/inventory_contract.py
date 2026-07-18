@@ -45,6 +45,7 @@ SPECIAL_TEST_FILES = {
     "release manifest contract": "test_release_manifest_contract.py",
     "release archive metadata contract": "test_release_archive_metadata_contract.py",
     "release archive extraction safety contract": "test_release_archive_extraction_safety_contract.py",
+    "release archive Unicode path contract": "test_release_archive_unicode_path_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

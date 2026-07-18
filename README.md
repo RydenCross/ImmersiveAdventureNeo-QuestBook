@@ -480,6 +480,8 @@ python -m generator release-archive-metadata-audit --format json --output report
 ```bash
 python -m generator release-archive-extraction-safety-audit
 python -m generator release-archive-extraction-safety-audit --format json --output reports/release-archive-extraction-safety-audit.json
+python -m generator release-archive-unicode-path-audit
+python -m generator release-archive-unicode-path-audit --format json --output reports/release-archive-unicode-path-audit.json
 ```
 
 Validates extraction-safe paths, normalized and case-folded uniqueness, and rejects links or special files.

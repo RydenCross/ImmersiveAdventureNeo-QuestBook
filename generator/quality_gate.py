@@ -43,6 +43,7 @@ from generator.release_package_verification_contract import run_release_package_
 from generator.release_manifest_contract import run_release_manifest_contract
 from generator.release_archive_metadata_contract import run_release_archive_metadata_contract
 from generator.release_archive_extraction_safety_contract import run_release_archive_extraction_safety_contract
+from generator.release_archive_unicode_path_contract import run_release_archive_unicode_path_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -141,6 +142,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "release manifest contract": run_release_manifest_contract,
         "release archive metadata contract": run_release_archive_metadata_contract,
         "release archive extraction safety contract": run_release_archive_extraction_safety_contract,
+        "release archive Unicode path contract": run_release_archive_unicode_path_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

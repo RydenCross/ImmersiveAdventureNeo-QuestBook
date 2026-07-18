@@ -72,6 +72,10 @@
       "report": "release-archive-metadata-audit.json"
     },
     {
+      "command": "release-archive-unicode-path-audit",
+      "report": "release-archive-unicode-path-audit.json"
+    },
+    {
       "command": "release-artifact-audit",
       "report": "release-artifact-audit.json"
     },
@@ -153,5 +157,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 37
+  "tracked_reports": 38
 }

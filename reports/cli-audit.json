@@ -1,5 +1,5 @@
 {
-  "command_count": 52,
+  "command_count": 53,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -28,6 +28,7 @@
     "registry-manifest",
     "release-archive-extraction-safety-audit",
     "release-archive-metadata-audit",
+    "release-archive-unicode-path-audit",
     "release-artifact-audit",
     "release-baseline",
     "release-check",

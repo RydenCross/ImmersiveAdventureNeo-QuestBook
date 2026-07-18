@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add release archive Unicode path contract for normalization, confusable, control-character, bidi, and portability checks.
+
 ## Commit 82 - Release Manifest Contract
 - Added a release archive extraction safety contract for traversal, collision, symlink, and special-file defenses.
 
