@@ -91,6 +91,7 @@ from generator.editor_service import (
 )
 from generator.editor_service_contract import run_editor_service_contract
 from generator.editor_ui_contract import run_editor_ui_contract
+from generator.editor_workspace_contract import run_editor_workspace_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -757,6 +758,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     editor_ui.add_argument("--format", choices=("text", "json"), default="text")
     editor_ui.add_argument("--output", type=Path)
+    editor_workspace = subparsers.add_parser(
+        "editor-workspace-audit",
+        help="Validate deterministic graph auto-layout and atomic bulk editor operations.",
+    )
+    editor_workspace.add_argument("--format", choices=("text", "json"), default="text")
+    editor_workspace.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1068,6 +1075,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "editor-ui-audit":
         result = run_editor_ui_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "editor-workspace-audit":
+        result = run_editor_workspace_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

@@ -166,6 +166,19 @@ python -m generator editor-ui-audit --format json --output reports/editor-ui-aud
 
 See [the interactive editor guide](docs/EDITOR_GRAPH_CANVAS.md).
 
+## Graph auto-layout and bulk editing
+
+Large generated questbooks can now be reorganized without editing one node at a time. Use **Auto layout** to place prerequisites before dependent quests with deterministic collision-free coordinates. Ctrl/Command/Shift-select multiple quests to flag or clear manual review in bulk, or move the selection into another chapter as one atomic undoable transaction.
+
+Validate the workspace tools with:
+
+```bash
+python -m generator editor-workspace-audit
+python -m generator editor-workspace-audit --format json --output reports/editor-workspace-audit.json
+```
+
+See [`docs/EDITOR_WORKSPACE_TOOLS.md`](docs/EDITOR_WORKSPACE_TOOLS.md).
+
 See [`docs/EDITOR_SERVICE.md`](docs/EDITOR_SERVICE.md).
 
 ## Generated quest reward planning

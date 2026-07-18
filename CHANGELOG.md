@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 99 - Graph Auto-Layout and Bulk Editing Workspace
+
+- Added deterministic topological graph auto-layout with chapter scoping, stable coordinates, and collision prevention.
+- Added atomic bulk quest operations with rollback-on-error and single-step undo/redo history.
+- Added multi-selection controls for review flags and chapter movement in the browser editor.
+- Added `/api/v1/auto-layout` and `/api/v1/batch-operations`, regression tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 98 - Drag-and-Drop Modpack Import and Interactive Quest Graph Canvas
 
 - Added streamed browser import for CurseForge ZIPs, Modrinth `.mrpack` files, Prism exports, and server-pack archives.

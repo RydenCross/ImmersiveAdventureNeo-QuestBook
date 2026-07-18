@@ -23,6 +23,7 @@ from generator.editor_model import (
     validate_editor_document,
 )
 from generator.editor_ui import EDITOR_HTML
+from generator.editor_workspace import apply_editor_batch, auto_layout_editor_document
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
 from generator.output_writer import atomic_write_text
 from generator.quest_description_generator import DESCRIPTION_STYLES
@@ -231,6 +232,67 @@ class EditorSession:
             return {
                 "status": "pass",
                 "operation": operation.to_dict(),
+                "session": self.status(),
+                "document": self.document.to_dict(),
+            }
+
+    def apply_batch(self, payload: Mapping[str, object]) -> dict[str, object]:
+        raw_operations = payload.get("operations", ())
+        if not isinstance(raw_operations, list):
+            raise ValueError("operations must be an array")
+        operations: list[EditorOperation] = []
+        for index, raw in enumerate(raw_operations):
+            if not isinstance(raw, Mapping):
+                raise ValueError(f"operation {index + 1} must be an object")
+            values = raw.get("values", {})
+            if not isinstance(values, Mapping):
+                raise ValueError(f"operation {index + 1} values must be an object")
+            operations.append(
+                EditorOperation.create(
+                    str(raw.get("action", "")),
+                    str(raw.get("target_id", "")),
+                    **dict(values),
+                )
+            )
+        with self._lock:
+            transaction = apply_editor_batch(self.document, operations)
+            if not transaction.is_clean:
+                raise ValueError("editor batch rejected: " + "; ".join(transaction.errors))
+            self._undo.append(transaction.before)
+            self._replace_document(transaction.after)
+            self._redo.clear()
+            return {
+                "status": "pass",
+                "operations": [operation.to_dict() for operation in operations],
+                "operation_count": len(operations),
+                "session": self.status(),
+                "document": self.document.to_dict(),
+            }
+
+    def auto_layout(self, payload: Mapping[str, object]) -> dict[str, object]:
+        chapter_value = payload.get("chapter_id")
+        chapter_id = str(chapter_value) if chapter_value not in {None, ""} else None
+        horizontal_spacing = int(payload.get("horizontal_spacing", 1))
+        vertical_spacing = int(payload.get("vertical_spacing", 1))
+        with self._lock:
+            result = auto_layout_editor_document(
+                self.document,
+                chapter_id=chapter_id,
+                horizontal_spacing=horizontal_spacing,
+                vertical_spacing=vertical_spacing,
+            )
+            if not result.is_clean:
+                raise ValueError("editor auto-layout failed: " + "; ".join(result.errors))
+            if result.changed:
+                self._undo.append(self.document)
+                self._replace_document(result.document)
+                self._redo.clear()
+            return {
+                "status": "pass",
+                "changed": result.changed,
+                "changed_quests": list(result.changed_quests),
+                "laid_out_chapters": list(result.laid_out_chapters),
+                "depth_levels": result.depth_levels,
                 "session": self.status(),
                 "document": self.document.to_dict(),
             }
@@ -462,6 +524,10 @@ def handle_editor_api(
             result = session.validation_payload()
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/operations":
             result = session.apply(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/batch-operations":
+            result = session.apply_batch(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/auto-layout":
+            result = session.auto_layout(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/undo":
             result = session.undo()
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/redo":

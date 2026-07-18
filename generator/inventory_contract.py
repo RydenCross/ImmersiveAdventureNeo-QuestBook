@@ -59,6 +59,7 @@ SPECIAL_TEST_FILES = {
     "visual editor data model contract": "test_editor_model_contract.py",
     "local visual editor service contract": "test_editor_service_contract.py",
     "interactive visual editor UI contract": "test_editor_ui_contract.py",
+    "editor workspace tools contract": "test_editor_workspace_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

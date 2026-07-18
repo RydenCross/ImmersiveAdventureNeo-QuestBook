@@ -26,6 +26,9 @@
     "dependency audit": [],
     "determinism audit": [],
     "documentation contract audit": [],
+    "editor workspace tools contract": [
+      "interactive visual editor UI contract"
+    ],
     "identity guard": [],
     "interactive visual editor UI contract": [
       "local visual editor service contract"
@@ -136,11 +139,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 45,
+  "dependency_edges": 46,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 52,
+  "registered_audits": 53,
   "status": "pass",
   "unknown_dependencies": []
 }

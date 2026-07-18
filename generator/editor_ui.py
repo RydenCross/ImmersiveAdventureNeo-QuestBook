@@ -43,6 +43,7 @@ aside { background: var(--panel); overflow: auto; }
 #graph .node text { fill: #e5e7eb; pointer-events: none; font-size: 13px; }
 #graph .node .sub { fill: #9ca3af; font-size: 10px; }
 #graph .node.selected rect { stroke: var(--accent); stroke-width: 3; }
+#graph .node.multi-selected rect { stroke: #34d399; stroke-width: 3; }
 #graph .node.link-source rect { stroke: var(--accent-2); stroke-dasharray: 6 4; }
 #graph .node.review rect { stroke: #f59e0b; }
 #graph .chapter-label { fill: #94a3b8; font-size: 14px; font-weight: 700; }
@@ -51,7 +52,7 @@ aside { background: var(--panel); overflow: auto; }
 .toolbar input, .toolbar select { background: rgba(17,24,39,.94); color: inherit; border: 1px solid var(--border); border-radius: 6px; padding: 8px; }
 .toolbar input { min-width: 220px; }
 .toolbar .spacer { flex: 1; }
-#zoom-label { color: var(--muted); background: rgba(17,24,39,.8); padding: 6px 8px; border-radius: 6px; }
+#zoom-label, #selection-label { color: var(--muted); background: rgba(17,24,39,.8); padding: 6px 8px; border-radius: 6px; }
 .chapter { width: 100%; text-align: left; margin: 3px 0; background: transparent; }
 .chapter.selected { background: #1e3a5f; }
 .quest-list { margin: 8px 0 18px; }
@@ -94,8 +95,12 @@ textarea { min-height: 150px; resize: vertical; }
     <input id="search" type="search" placeholder="Search quests…">
     <select id="chapter-filter"><option value="">All chapters</option></select>
     <button id="link-button" title="Choose prerequisite, then dependent quest">Link prerequisite</button>
+    <button id="auto-layout-button">Auto layout</button>
+    <select id="bulk-chapter"><option value="">Move selected…</option></select>
+    <button id="bulk-review-button">Flag review</button>
+    <button id="bulk-clear-review-button">Clear review</button>
     <button id="fit-button">Fit graph</button>
-    <span class="spacer"></span><span id="zoom-label">100%</span>
+    <span class="spacer"></span><span id="selection-label">0 selected</span><span id="zoom-label">100%</span>
   </div>
   <svg id="graph" aria-label="Interactive quest dependency graph">
     <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"></path></marker></defs>
@@ -118,6 +123,7 @@ textarea { min-height: 150px; resize: vertical; }
 <script>
 const api = '/api/v1'; const importEndpoint = '/api/v1/import';
 let doc = null, selected = null, selectedChapter = '', linkSource = null;
+let selectedQuests = new Set();
 let zoom = 1, panX = 0, panY = 0, dragging = null, panning = null;
 const NODE_W = 180, NODE_H = 72, GRID_X = 210, GRID_Y = 105, CHAPTER_GAP = 170;
 
@@ -153,7 +159,7 @@ async function importFile(file) {
   const data = await response.json();
   drop.classList.remove('dragging');
   if (!response.ok) throw new Error(data.error || 'Import failed');
-  selected = null; selectedChapter = ''; linkSource = null;
+  selected = null; selectedChapter = ''; linkSource = null; selectedQuests.clear();
   await refresh();
   fitGraph();
   drop.hidden = true;
@@ -175,18 +181,21 @@ function visibleQuests() {
 function renderNavigator() {
   const root = document.getElementById('chapters'); root.innerHTML = '';
   const filter = document.getElementById('chapter-filter'); const old = filter.value; filter.innerHTML = '<option value="">All chapters</option>';
+  const bulkChapter = document.getElementById('bulk-chapter'); const oldBulk = bulkChapter.value; bulkChapter.innerHTML = '<option value="">Move selected…</option>';
   for (const chapter of doc.chapters) {
     const option = document.createElement('option'); option.value = chapter.id; option.textContent = chapter.title; filter.appendChild(option);
+    const bulkOption = document.createElement('option'); bulkOption.value = chapter.id; bulkOption.textContent = `Move to ${chapter.title}`; bulkChapter.appendChild(bulkOption);
     const chapterButton = document.createElement('button'); chapterButton.className = `chapter${selectedChapter === chapter.id ? ' selected' : ''}`; chapterButton.textContent = chapter.title;
     chapterButton.onclick = () => { selectedChapter = selectedChapter === chapter.id ? '' : chapter.id; filter.value = selectedChapter; renderNavigator(); renderGraph(); };
     root.appendChild(chapterButton);
     const list = document.createElement('div'); list.className = 'quest-list';
     for (const quest of doc.quests.filter(item => item.chapter_id === chapter.id).sort((a,b)=>a.order-b.order)) {
-      const button = document.createElement('button'); button.textContent = quest.title; button.onclick = () => selectQuest(quest.id); list.appendChild(button);
+      const button = document.createElement('button'); button.textContent = quest.title; button.onclick = event => selectQuest(quest.id, event.ctrlKey || event.metaKey || event.shiftKey); list.appendChild(button);
     }
     root.appendChild(list);
   }
-  filter.value = old || selectedChapter;
+  filter.value = old || selectedChapter; bulkChapter.value = oldBulk;
+  updateSelectionLabel();
 }
 function graphPoint(quest) {
   const chapterIndex = Math.max(0, doc.chapters.findIndex(c => c.id === quest.chapter_id));
@@ -208,24 +217,24 @@ function renderGraph() {
   for (const quest of quests) {
     const point = graphPoint(quest), chapter = doc.chapters.find(c=>c.id===quest.chapter_id);
     if (chapter && !chapterLabels.has(chapter.id)) { const label = svg('text',{class:'chapter-label',x:30,y:point.y-28}); label.textContent=chapter.title; nodeRoot.appendChild(label); chapterLabels.add(chapter.id); }
-    const group = svg('g', {class:`node${quest.id===selected?' selected':''}${quest.id===linkSource?' link-source':''}${quest.review_required?' review':''}`, transform:`translate(${point.x},${point.y})`, 'data-id':quest.id, tabindex:'0'});
+    const group = svg('g', {class:`node${quest.id===selected?' selected':''}${selectedQuests.has(quest.id)?' multi-selected':''}${quest.id===linkSource?' link-source':''}${quest.review_required?' review':''}`, transform:`translate(${point.x},${point.y})`, 'data-id':quest.id, tabindex:'0'});
     group.appendChild(svg('rect',{width:NODE_W,height:NODE_H}));
     const title = svg('text',{x:12,y:25}); title.textContent = quest.title.length > 24 ? quest.title.slice(0,23)+'…' : quest.title; group.appendChild(title);
     const sub = svg('text',{class:'sub',x:12,y:47}); sub.textContent = `${quest.objective.type}: ${quest.objective.id}`.slice(0,34); group.appendChild(sub);
     group.addEventListener('pointerdown', event => startNodeDrag(event, quest));
-    group.addEventListener('click', event => { if (!dragging || !dragging.moved) handleNodeClick(quest.id); event.stopPropagation(); });
+    group.addEventListener('click', event => { if (!dragging || !dragging.moved) handleNodeClick(quest.id, event); event.stopPropagation(); });
     nodeRoot.appendChild(group);
   }
   document.getElementById('empty').hidden = quests.length > 0;
   applyViewport();
 }
-function handleNodeClick(id) {
+function handleNodeClick(id, event) {
   if (document.getElementById('link-button').classList.contains('active')) {
     if (!linkSource) { linkSource = id; renderGraph(); return; }
     if (linkSource === id) { linkSource = null; renderGraph(); return; }
     createDependency(linkSource, id); linkSource = null; return;
   }
-  selectQuest(id);
+  selectQuest(id, event.ctrlKey || event.metaKey || event.shiftKey);
 }
 function startNodeDrag(event, quest) {
   if (event.button !== 0) return;
@@ -250,7 +259,37 @@ async function endPointer(event) {
 }
 function applyViewport(){ document.getElementById('viewport').setAttribute('transform',`translate(${panX},${panY}) scale(${zoom})`); document.getElementById('zoom-label').textContent=`${Math.round(zoom*100)}%`; }
 function fitGraph(){ zoom=1; panX=0; panY=0; applyViewport(); }
-function selectQuest(id) { selected=id; renderGraph(); renderInspector(); }
+function updateSelectionLabel(){ document.getElementById('selection-label').textContent=`${selectedQuests.size} selected`; }
+function selectQuest(id, additive=false) {
+  if (additive) {
+    if (selectedQuests.has(id)) selectedQuests.delete(id); else selectedQuests.add(id);
+  } else {
+    selectedQuests.clear(); selectedQuests.add(id);
+  }
+  selected=id; updateSelectionLabel(); renderGraph(); renderInspector();
+}
+function selectedQuestIds(){ return [...selectedQuests].filter(id=>doc && doc.quests.some(q=>q.id===id)).sort(); }
+async function runBatch(operations){
+  if(!operations.length) throw new Error('Select at least one quest.');
+  const result=await request('/batch-operations',{method:'POST',body:JSON.stringify({operations})});
+  await refresh(); return result;
+}
+async function setSelectedReview(value){
+  try { const operations=selectedQuestIds().map(id=>({action:'update_quest',target_id:id,values:{review_required:value}})); await runBatch(operations); showError(); } catch(error){showError(error);}
+}
+async function moveSelectedToChapter(chapterId){
+  if(!chapterId) return;
+  try {
+    const ids=selectedQuestIds(); if(!ids.length) throw new Error('Select at least one quest.');
+    const existing=doc.quests.filter(q=>q.chapter_id===chapterId && !selectedQuests.has(q.id));
+    let nextOrder=existing.reduce((value,q)=>Math.max(value,q.order+1),0);
+    const operations=ids.map((id,index)=>{const q=doc.quests.find(item=>item.id===id);return {action:'move_quest',target_id:id,values:{chapter_id:chapterId,order:nextOrder+index,x:q.position.x,y:q.position.y}};});
+    await runBatch(operations); document.getElementById('bulk-chapter').value=''; showError();
+  } catch(error){showError(error);}
+}
+async function autoLayout(){
+  try { await request('/auto-layout',{method:'POST',body:JSON.stringify({chapter_id:selectedChapter||null})}); showError(); await refresh(); fitGraph(); } catch(error){showError(error);}
+}
 function renderInspector() {
   const quest = doc && doc.quests.find(item=>item.id===selected); const editor=document.getElementById('editor');
   if(!quest){editor.hidden=true;document.getElementById('quest-title').textContent='Select a quest';return;}
@@ -270,6 +309,10 @@ graph.addEventListener('pointerdown', event=>{if(event.target===graph || event.t
 graph.addEventListener('wheel', event=>{event.preventDefault();zoom=Math.max(.35,Math.min(2.5,zoom*(event.deltaY<0?1.1:.9)));applyViewport();},{passive:false});
 document.getElementById('search').addEventListener('input',renderGraph); document.getElementById('chapter-filter').addEventListener('change',event=>{selectedChapter=event.target.value;renderGraph();});
 document.getElementById('fit-button').onclick=fitGraph;
+document.getElementById('auto-layout-button').onclick=autoLayout;
+document.getElementById('bulk-review-button').onclick=()=>setSelectedReview(true);
+document.getElementById('bulk-clear-review-button').onclick=()=>setSelectedReview(false);
+document.getElementById('bulk-chapter').addEventListener('change',event=>moveSelectedToChapter(event.target.value));
 document.getElementById('link-button').onclick=event=>{event.currentTarget.classList.toggle('active');linkSource=null;renderGraph();};
 document.getElementById('import-button').onclick=()=>document.getElementById('file-input').click();
 document.getElementById('file-input').addEventListener('change',event=>importFile(event.target.files[0]).catch(showError));

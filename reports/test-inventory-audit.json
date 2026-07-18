@@ -14,6 +14,7 @@
     "test_editor_model_contract.py",
     "test_editor_service_contract.py",
     "test_editor_ui_contract.py",
+    "test_editor_workspace_contract.py",
     "test_ftb_blueprint_exporter_contract.py",
     "test_identity_guard.py",
     "test_mod_compatibility_contract.py",
@@ -55,7 +56,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 52,
+  "registered_audits": 53,
   "status": "pass",
   "unregistered_mappings": []
 }

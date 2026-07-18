@@ -58,6 +58,7 @@ from generator.reward_planner_contract import run_reward_planner_contract
 from generator.editor_model_contract import run_editor_model_contract
 from generator.editor_service_contract import run_editor_service_contract
 from generator.editor_ui_contract import run_editor_ui_contract
+from generator.editor_workspace_contract import run_editor_workspace_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -153,6 +154,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "editor-model-audit.json": lambda: run_editor_model_contract().format_json(),
         "editor-service-audit.json": lambda: run_editor_service_contract().format_json(),
         "editor-ui-audit.json": lambda: run_editor_ui_contract().format_json(),
+        "editor-workspace-audit.json": lambda: run_editor_workspace_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
