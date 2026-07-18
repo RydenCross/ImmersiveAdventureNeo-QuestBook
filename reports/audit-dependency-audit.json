@@ -29,12 +29,17 @@
     ],
     "packaging audit": [],
     "progression guard": [],
+    "release archive metadata contract": [
+      "release manifest contract"
+    ],
     "release artifact audit": [
       "repository hygiene audit",
       "packaging audit"
     ],
     "release guard": [],
-    "release manifest contract": [],
+    "release manifest contract": [
+      "release package verification contract"
+    ],
     "release package verification contract": [
       "release report finalization contract"
     ],
@@ -85,11 +90,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 26,
+  "dependency_edges": 28,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 36,
+  "registered_audits": 37,
   "status": "pass",
   "unknown_dependencies": []
 }

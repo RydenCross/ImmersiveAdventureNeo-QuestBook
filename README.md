@@ -471,4 +471,6 @@ Generate and verify a per-file manifest for the deterministic release package:
 ```bash
 python -m generator release-manifest-audit
 python -m generator release-manifest-audit --format json --output reports/release-manifest-audit.json
+python -m generator release-archive-metadata-audit
+python -m generator release-archive-metadata-audit --format json --output reports/release-archive-metadata-audit.json
 ```

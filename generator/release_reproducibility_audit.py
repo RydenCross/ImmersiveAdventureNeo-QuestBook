@@ -7,7 +7,7 @@ from pathlib import Path
 import tempfile
 import zipfile
 
-from generator.release_artifact_audit import DEFAULT_ROOT, _release_files
+from generator.release_artifact_audit import DEFAULT_ROOT, _write_release_archive
 
 
 @dataclass(frozen=True, slots=True)
@@ -56,10 +56,7 @@ class ReleaseReproducibilityAudit:
 
 
 def _build_archive(root: Path, destination: Path) -> tuple[str, dict[str, str], str]:
-    files = _release_files(root)
-    with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-        for path in files:
-            archive.write(path, path.relative_to(root).as_posix())
+    _write_release_archive(root, destination)
 
     archive_digest = hashlib.sha256(destination.read_bytes()).hexdigest()
     entry_digests: dict[str, str] = {}

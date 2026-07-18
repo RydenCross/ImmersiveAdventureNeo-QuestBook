@@ -68,6 +68,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("release report finalization contract", "release-report-finalization-audit", "release-report-finalization-audit.json"),
     AuditRegistration("release package verification contract", "release-package-verification-audit", "release-package-verification-audit.json"),
     AuditRegistration("release manifest contract", "release-manifest-audit", "release-manifest-audit.json"),
+    AuditRegistration("release archive metadata contract", "release-archive-metadata-audit", "release-archive-metadata-audit.json"),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

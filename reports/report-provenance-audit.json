@@ -64,6 +64,10 @@
       "report": "progression-guard.json"
     },
     {
+      "command": "release-archive-metadata-audit",
+      "report": "release-archive-metadata-audit.json"
+    },
+    {
       "command": "release-artifact-audit",
       "report": "release-artifact-audit.json"
     },
@@ -145,5 +149,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 35
+  "tracked_reports": 36
 }

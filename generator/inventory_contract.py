@@ -43,6 +43,7 @@ SPECIAL_TEST_FILES = {
     "release report finalization contract": "test_release_report_finalization_contract.py",
     "release package verification contract": "test_release_package_verification_contract.py",
     "release manifest contract": "test_release_manifest_contract.py",
+    "release archive metadata contract": "test_release_archive_metadata_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

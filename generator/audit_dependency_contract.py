@@ -31,6 +31,8 @@ AUDIT_DEPENDENCIES.update(
         "report refresh idempotence contract": ("report refresh convergence contract",),
         "release report finalization contract": ("report refresh idempotence contract", "report refresh order contract"),
         "release package verification contract": ("release report finalization contract",),
+        "release manifest contract": ("release package verification contract",),
+        "release archive metadata contract": ("release manifest contract",),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

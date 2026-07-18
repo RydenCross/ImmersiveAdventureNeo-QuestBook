@@ -16,6 +16,7 @@ _EXCLUDED_REPORTS = {
     "reports/release-reproducibility-audit.json",
     "reports/release-package-verification-audit.json",
     "reports/release-manifest-audit.json",
+    "reports/release-archive-metadata-audit.json",
     "reports/quality-gate.json",
     "reports/report-freshness-guard.json",
 }
@@ -92,17 +93,27 @@ def _release_files(root: Path) -> tuple[Path, ...]:
     return tuple(files)
 
 
+
+def _write_release_archive(root: Path, destination: Path) -> tuple[Path, ...]:
+    files = _release_files(root)
+    with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for path in files:
+            name = path.relative_to(root).as_posix()
+            info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+            info.create_system = 3
+            info.external_attr = 0o100644 << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            archive.writestr(info, path.read_bytes())
+    return files
+
 def run_release_artifact_audit(
     root: Path = DEFAULT_ROOT,
     manifest_path: Path = DEFAULT_MANIFEST_PATH,
 ) -> ReleaseArtifactAudit:
     root = root.resolve()
-    files = _release_files(root)
     with tempfile.TemporaryDirectory() as temp_dir:
         archive_path = Path(temp_dir) / "release.zip"
-        with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-            for path in files:
-                archive.write(path, path.relative_to(root).as_posix())
+        files = _write_release_archive(root, archive_path)
         archive_bytes = archive_path.read_bytes()
         digest = hashlib.sha256(archive_bytes).hexdigest()
         with zipfile.ZipFile(archive_path) as archive:
