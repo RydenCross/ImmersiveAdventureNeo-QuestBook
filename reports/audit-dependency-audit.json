@@ -24,6 +24,7 @@
     "determinism audit": [],
     "documentation contract audit": [],
     "identity guard": [],
+    "mod compatibility contract": [],
     "output manifest guard": [
       "determinism audit"
     ],
@@ -103,7 +104,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 40,
+  "registered_audits": 41,
   "status": "pass",
   "unknown_dependencies": []
 }

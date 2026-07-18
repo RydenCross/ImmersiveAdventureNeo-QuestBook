@@ -1,0 +1,79 @@
+{
+  "declared_mods": 6,
+  "deprecated_mods": [],
+  "duplicate_content_modules": [],
+  "duplicate_mod_ids": [],
+  "experimental_mods": [],
+  "invalid_entries": [],
+  "invalid_incompatibilities": [],
+  "matrix": [
+    {
+      "content_module": "actually_additions",
+      "display_name": "Actually Additions",
+      "mod_id": "actuallyadditions",
+      "requirement": "required",
+      "status": "supported",
+      "version_policy": "pack-managed"
+    },
+    {
+      "content_module": "apotheosis",
+      "display_name": "Apotheosis",
+      "mod_id": "apotheosis",
+      "requirement": "required",
+      "status": "supported",
+      "version_policy": "pack-managed"
+    },
+    {
+      "content_module": "ae2",
+      "display_name": "Applied Energistics 2",
+      "mod_id": "ae2",
+      "requirement": "required",
+      "status": "supported",
+      "version_policy": "pack-managed"
+    },
+    {
+      "content_module": "ars_nouveau",
+      "display_name": "Ars Nouveau",
+      "mod_id": "ars_nouveau",
+      "requirement": "required",
+      "status": "supported",
+      "version_policy": "pack-managed"
+    },
+    {
+      "content_module": "create",
+      "display_name": "Create",
+      "mod_id": "create",
+      "requirement": "required",
+      "status": "supported",
+      "version_policy": "pack-managed"
+    },
+    {
+      "content_module": "mekanism",
+      "display_name": "Mekanism",
+      "mod_id": "mekanism",
+      "requirement": "required",
+      "status": "supported",
+      "version_policy": "pack-managed"
+    }
+  ],
+  "missing_content_modules": [],
+  "platform": {
+    "loader": "NeoForge",
+    "loader_version": "21.1.x",
+    "minecraft": [
+      "1.21.1"
+    ],
+    "quest_format": "FTB Quests v13"
+  },
+  "status": "pass",
+  "supported_mods": [
+    "actuallyadditions",
+    "ae2",
+    "apotheosis",
+    "ars_nouveau",
+    "create",
+    "mekanism"
+  ],
+  "unknown_content_modules": [],
+  "unsupported_mods": []
+}

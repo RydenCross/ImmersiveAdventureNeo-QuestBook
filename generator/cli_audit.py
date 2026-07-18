@@ -26,6 +26,7 @@ EXPECTED_COMMANDS = (
     "identity-baseline",
     "identity-guard",
     "lint",
+    "mod-compatibility-audit",
     "output-manifest",
     "output-manifest-guard",
     "packaging-audit",

@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 87 - Mod Compatibility Matrix
+
+- Added a checked-in Minecraft 1.21.1 / NeoForge 21.1.x compatibility policy.
+- Added matrix validation for all authored mod content modules, unique IDs, support states, and incompatibility declarations.
+- Added CLI, report, documentation, quality-gate, and regression-test integration.
+
+
 - Add release archive Unicode path contract for normalization, confusable, control-character, bidi, and portability checks.
 
 ## Commit 82 - Release Manifest Contract

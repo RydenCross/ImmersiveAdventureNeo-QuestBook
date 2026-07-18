@@ -428,6 +428,17 @@ python -m generator audit-performance-audit --format json --output reports/audit
 
 See [Audit Performance Contract](docs/AUDIT_PERFORMANCE_CONTRACT.md).
 
+### Mod compatibility matrix
+
+Validate the supported Minecraft/NeoForge platform and ensure every authored mod chapter is represented in the compatibility policy:
+
+```bash
+python -m generator mod-compatibility-audit
+python -m generator mod-compatibility-audit --format json --output reports/mod-compatibility-audit.json
+```
+
+See [Mod Compatibility Matrix](docs/MOD_COMPATIBILITY.md). Exact mod build pins remain pack-managed; this repository validates integration coverage and compatibility status.
+
 ### Audit dependency contract
 
 ```bash

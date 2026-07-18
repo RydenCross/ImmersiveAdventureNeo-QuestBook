@@ -52,6 +52,10 @@
       "report": "identity-guard.json"
     },
     {
+      "command": "mod-compatibility-audit",
+      "report": "mod-compatibility-audit.json"
+    },
+    {
       "command": "output-manifest-guard",
       "report": "output-manifest-guard.json"
     },
@@ -161,5 +165,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 39
+  "tracked_reports": 40
 }

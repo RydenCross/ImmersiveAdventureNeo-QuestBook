@@ -17,6 +17,7 @@ _EXCLUDED_REPORTS = {
     "reports/release-package-verification-audit.json",
     "reports/release-manifest-audit.json",
     "reports/release-archive-metadata-audit.json",
+    "reports/release-archive-compression-audit.json",
     "reports/quality-gate.json",
     "reports/report-freshness-guard.json",
 }

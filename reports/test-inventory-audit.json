@@ -12,6 +12,7 @@
     "test_determinism_audit.py",
     "test_documentation_audit.py",
     "test_identity_guard.py",
+    "test_mod_compatibility_contract.py",
     "test_output_manifest.py",
     "test_packaging_audit.py",
     "test_progression_guard.py",
@@ -43,7 +44,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 40,
+  "registered_audits": 41,
   "status": "pass",
   "unregistered_mappings": []
 }
