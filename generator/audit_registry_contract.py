@@ -62,6 +62,7 @@ AUDIT_REGISTRY = (
     AuditRegistration("CLI exit-code contract", "cli-exit-code-audit", "cli-exit-code-audit.json"),
     AuditRegistration("report write-safety contract", "report-write-safety-audit", "report-write-safety-audit.json"),
     AuditRegistration("report refresh order contract", "report-refresh-order-audit", "report-refresh-order-audit.json"),
+    AuditRegistration("report refresh contract", "report-refresh-audit", "report-refresh-audit.json"),
 )
 
 

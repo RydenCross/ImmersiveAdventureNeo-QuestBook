@@ -37,6 +37,7 @@ SPECIAL_TEST_FILES = {
     "CLI exit-code contract": "test_cli_exit_code_contract.py",
     "report write-safety contract": "test_report_write_safety_contract.py",
     "report refresh order contract": "test_report_refresh_order_contract.py",
+    "report refresh contract": "test_report_refresh_contract.py",
 }
 
 

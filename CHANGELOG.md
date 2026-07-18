@@ -1,5 +1,12 @@
 # Changelog
 
+## Commit 75 - Report Refresh Command and Contract
+
+- Added one-command dependency-safe regeneration for all tracked reports.
+- Added atomic JSON validation and a companion report refresh contract.
+- Integrated the contract into the CLI, quality gate, registry, freshness guard, tests, and documentation.
+
+
 ## Commit 73 - Report Write-Safety Contract
 
 - Added atomic report-file writes through a shared output helper.

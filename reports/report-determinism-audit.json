@@ -1,5 +1,5 @@
 {
-  "checked_reports": 27,
+  "checked_reports": 28,
   "deterministic_reports": [
     "audit-registry-audit.json",
     "chapter-audit.json",
@@ -20,6 +20,7 @@
     "release-reproducibility-audit.json",
     "report-consistency-audit.json",
     "report-provenance-audit.json",
+    "report-refresh-audit.json",
     "report-refresh-order-audit.json",
     "report-schema-audit.json",
     "report-write-safety-audit.json",

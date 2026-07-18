@@ -34,6 +34,7 @@ from generator.cli_output_contract import run_cli_output_contract
 from generator.cli_exit_code_contract import run_cli_exit_code_contract
 from generator.report_write_safety_contract import run_report_write_safety_contract
 from generator.report_refresh_order_contract import run_report_refresh_order_contract
+from generator.report_refresh_contract import run_report_refresh_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -107,6 +108,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "cli-exit-code-audit.json": lambda: run_cli_exit_code_contract().format_json(),
         "report-write-safety-audit.json": lambda: run_report_write_safety_contract().format_json(),
         "report-refresh-order-audit.json": lambda: run_report_refresh_order_contract().format_json(),
+        "report-refresh-audit.json": lambda: run_report_refresh_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),
         "release-reproducibility-audit.json": lambda: run_release_reproducibility_audit().format_json(),
     }

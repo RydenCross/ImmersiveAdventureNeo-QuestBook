@@ -403,3 +403,15 @@ Validate that checked-in audit reports have a unique dependency-safe regeneratio
 ```bash
 python -m generator report-refresh-order-audit
 ```
+
+
+### Report refresh command
+
+Regenerate every tracked report in dependency-safe order with one command:
+
+```bash
+python -m generator report-refresh
+python -m generator report-refresh --format json
+```
+
+Validate the command contract with `python -m generator report-refresh-audit`. See [Report Refresh Contract](docs/REPORT_REFRESH_CONTRACT.md).
