@@ -4,8 +4,8 @@ from generator.audit_performance_contract import run_audit_performance_contract
 def test_repository_audit_performance_contract_is_clean() -> None:
     result = run_audit_performance_contract()
     assert result.is_clean
-    assert result.registered_audits == 42
-    assert result.timed_audits == 42
+    assert result.registered_audits == 43
+    assert result.timed_audits == 43
     assert result.duplicate_executions == ()
 
 

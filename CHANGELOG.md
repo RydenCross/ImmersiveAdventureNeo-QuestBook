@@ -1,19 +1,39 @@
 ## Unreleased
 
+## Commit 89 - Modpack Scanner and Pack Profile Generator
+
+- Added safe offline scanning for Modrinth, CurseForge, Prism, server-pack, instance, and plain mods-directory inputs.
+- Added NeoForge/Forge, Fabric, Quilt, legacy metadata, and manifest-only JAR inspection without executing mod code.
+- Added normalized pack profiles with platform detection, mod classification, unresolved-reference reporting, quest weights, and recommended quest ranges.
+- Added public CLI, deterministic scanner contract, regression fixtures, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 88 - Incremental Report Refresh Cache
 
 - Added an opt-in content-addressed cache for dependency-safe report regeneration.
 - Added selective renderer invalidation, output-tamper detection, corrupt-cache recovery, and atomic cache writes.
 - Added CLI flags, a dedicated cache contract, regression tests, documentation, quality-gate integration, and a tracked report.
 
+- Added a 30-quest optional Challenges chapter covering megaprojects, stockpiles, automation, power reliability, magic, bosses, exploration, and completionist goals.
+
+- Added a 24-quest Endgame chapter unifying automation, magic, equipment, storage, logistics, nuclear power, and final mastery objectives.
+
+- Added 20 Mekanism Power and Reactors quests covering renewable generation, induction storage, fission safety, waste handling, turbines, and nuclear power mastery.
+- Added 19 Create Automation quests covering belts, funnels, chutes, brass logistics, deployers, mechanical crafting, sequenced assembly, precision mechanisms, arms, and vaults.
+- Added a 30-quest Mining chapter.
+- Added cross-chapter progression from Survival into Mining.
+- Added enchanting, diamond, ore-processing, and Nether-preparation progression.
+
 ## Commit 87 - Mod Compatibility Matrix
 
 - Added a checked-in Minecraft 1.21.1 / NeoForge 21.1.x compatibility policy.
 - Added matrix validation for all authored mod content modules, unique IDs, support states, and incompatibility declarations.
 - Added CLI, report, documentation, quality-gate, and regression-test integration.
-
-
 - Add release archive Unicode path contract for normalization, confusable, control-character, bidi, and portability checks.
+
+## Commit 86 - Release Archive Compression Contract
+
+- Added deterministic release ZIP compression-method, size-budget, and compression-savings validation.
+- Integrated the contract into the quality gate, audit registry, dependency graph, CLI, freshness workflow, documentation, and test inventory.
 
 ## Commit 82 - Release Manifest Contract
 - Added a release archive extraction safety contract for traversal, collision, symlink, and special-file defenses.
@@ -23,7 +43,24 @@
 - Added independent ZIP-to-manifest verification for missing, unexpected, resized, or changed entries.
 - Excluded the generated manifest status report from its own release payload.
 
-# Changelog
+## Commit 80 - Release Report Finalization Contract
+
+- Added `release-report-finalization-audit` and its tracked JSON report.
+- Enforced final placement and follow-up stability for archive-derived release reports.
+
+- Added a release package verification contract that cross-checks final ZIP inventory, archive and tree checksums, reproducibility, and hygiene exclusions.
+
+## Commit 79 — Report Refresh Idempotence Contract
+
+- Added `report-refresh-idempotence-audit` and its tracked JSON report.
+- Proves that a converged report refresh completes in one pass without changing report contents or modification times.
+- Integrated the contract into the quality gate, audit registry, dependency graph, CLI contracts, documentation, freshness checks, and test inventory.
+
+## Commit 78 - Report Refresh Convergence Contract
+
+- Made one report-refresh invocation iterate until no tracked report changes.
+- Added configurable non-convergence protection and pass diagnostics.
+- Added CLI, quality-gate, registry, freshness, dependency, documentation, and regression coverage.
 
 ## Commit 76 - Audit Performance Contract
 
@@ -37,6 +74,11 @@
 - Added atomic JSON validation and a companion report refresh contract.
 - Integrated the contract into the CLI, quality gate, registry, freshness guard, tests, and documentation.
 
+## Commit 74 - Report Refresh Order Contract
+
+- Added a dependency-safe report refresh order contract.
+- Required archive-derived reports to render after all other checked-in reports.
+- Added CLI, quality-gate, freshness, registry, test, and documentation coverage.
 
 ## Commit 73 - Report Write-Safety Contract
 
@@ -49,8 +91,6 @@
 - Added pass/fail exit-code verification through the public CLI.
 - Added synthetic failure coverage for non-zero process status.
 - Integrated the contract into the quality gate, report registry, freshness guard, documentation, and tests.
-
-# Changelog
 
 ## Commit 71 - CLI Output Contract
 
@@ -264,16 +304,6 @@
 - Replaced the outdated early-development README with current build, lint, audit, and questbook information.
 - Documented the content-audit workflow.
 
-## Unreleased
-
-## Commit 88 - Incremental Report Refresh Cache
-
-- Added an opt-in content-addressed cache for dependency-safe report regeneration.
-- Added selective renderer invalidation, output-tamper detection, corrupt-cache recovery, and atomic cache writes.
-- Added CLI flags, a dedicated cache contract, regression tests, documentation, quality-gate integration, and a tracked report.
-
-- Added 20 optional Mekanism endgame quests covering fusion, antimatter, grid-scale storage, MekaSuit equipment, radioactive logistics, and industrial mastery.
-
 ## Commit 35 - AE2 Expansion
 
 - Added 20 optional AE2 quests for bulk storage, advanced autocrafting, redundancy, spatial storage, and quantum networking.
@@ -325,24 +355,6 @@
 
 ## Unreleased
 
-## Commit 88 - Incremental Report Refresh Cache
-
-- Added an opt-in content-addressed cache for dependency-safe report regeneration.
-- Added selective renderer invalidation, output-tamper detection, corrupt-cache recovery, and atomic cache writes.
-- Added CLI flags, a dedicated cache contract, regression tests, documentation, quality-gate integration, and a tracked report.
-
-- Added a 30-quest optional Challenges chapter covering megaprojects, stockpiles, automation, power reliability, magic, bosses, exploration, and completionist goals.
-
-- Added a 24-quest Endgame chapter unifying automation, magic, equipment, storage, logistics, nuclear power, and final mastery objectives.
-
-- Added 20 Mekanism Power and Reactors quests covering renewable generation, induction storage, fission safety, waste handling, turbines, and nuclear power mastery.
-- Added 19 Create Automation quests covering belts, funnels, chutes, brass logistics, deployers, mechanical crafting, sequenced assembly, precision mechanisms, arms, and vaults.
-- Added a 30-quest Mining chapter.
-- Added cross-chapter progression from Survival into Mining.
-- Added enchanting, diamond, ore-processing, and Nether-preparation progression.
-
-# Changelog
-
 ## 0.1.0 - 2026-07-16
 
 - Added the repository structure.
@@ -360,37 +372,3 @@
 
 ## 0.1.0-alpha.1
 - Idea
-
-
-## Commit 74 - Report Refresh Order Contract
-
-- Added a dependency-safe report refresh order contract.
-- Required archive-derived reports to render after all other checked-in reports.
-- Added CLI, quality-gate, freshness, registry, test, and documentation coverage.
-
-
-## Commit 78 - Report Refresh Convergence Contract
-
-- Made one report-refresh invocation iterate until no tracked report changes.
-- Added configurable non-convergence protection and pass diagnostics.
-- Added CLI, quality-gate, registry, freshness, dependency, documentation, and regression coverage.
-
-## Commit 79 — Report Refresh Idempotence Contract
-
-- Added `report-refresh-idempotence-audit` and its tracked JSON report.
-- Proves that a converged report refresh completes in one pass without changing report contents or modification times.
-- Integrated the contract into the quality gate, audit registry, dependency graph, CLI contracts, documentation, freshness checks, and test inventory.
-
-
-## Commit 80 - Release Report Finalization Contract
-
-- Added `release-report-finalization-audit` and its tracked JSON report.
-- Enforced final placement and follow-up stability for archive-derived release reports.
-
-- Added a release package verification contract that cross-checks final ZIP inventory, archive and tree checksums, reproducibility, and hygiene exclusions.
-
-
-## Commit 86 - Release Archive Compression Contract
-
-- Added deterministic release ZIP compression-method, size-budget, and compression-savings validation.
-- Integrated the contract into the quality gate, audit registry, dependency graph, CLI, freshness workflow, documentation, and test inventory.

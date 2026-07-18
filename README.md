@@ -16,6 +16,26 @@ A deterministic Python authoring toolkit and generated FTB Quests v13 questbook 
 - Mekanism
 - Endgame and Challenges
 
+## Modpack scanner and pack profile
+
+Scan a Modrinth, CurseForge, Prism, server-pack, instance, or plain `mods` input without executing mod code:
+
+```bash
+python -m generator modpack-scan /path/to/modpack.mrpack
+python -m generator modpack-scan /path/to/instance --format json --output pack-profile.json
+```
+
+The profile records the Minecraft/loader versions, normalized mod inventory, content-versus-library classification, gameplay categories, unresolved remote references, and a recommended quest-count range for the future generic quest generator.
+
+Validate the scanner itself with:
+
+```bash
+python -m generator modpack-scanner-audit
+python -m generator modpack-scanner-audit --format json --output reports/modpack-scanner-audit.json
+```
+
+See [`docs/MODPACK_SCANNER.md`](docs/MODPACK_SCANNER.md).
+
 ## Build
 
 ```bash

@@ -64,6 +64,8 @@ from generator.release_archive_extraction_safety_contract import run_release_arc
 from generator.release_archive_unicode_path_contract import run_release_archive_unicode_path_contract
 from generator.release_archive_compression_contract import run_release_archive_compression_contract
 from generator.mod_compatibility_contract import run_mod_compatibility_contract
+from generator.modpack_scanner import scan_modpack
+from generator.modpack_scanner_contract import run_modpack_scanner_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -431,12 +433,25 @@ def create_parser() -> argparse.ArgumentParser:
     )
     release_archive_compression.add_argument("--format", choices=("text", "json"), default="text")
     release_archive_compression.add_argument("--output", type=Path)
+    modpack_scan = subparsers.add_parser(
+        "modpack-scan",
+        help="Inspect a modpack archive, instance, or mods directory and generate a normalized pack profile.",
+    )
+    modpack_scan.add_argument("path", type=Path, help="Modpack ZIP/MRPACK, instance folder, or mods directory.")
+    modpack_scan.add_argument("--format", choices=("text", "json"), default="text")
+    modpack_scan.add_argument("--output", type=Path, help="Write the generated profile to a file.")
     mod_compatibility = subparsers.add_parser(
         "mod-compatibility-audit",
         help="Validate the supported Minecraft, NeoForge, and authored mod compatibility matrix.",
     )
     mod_compatibility.add_argument("--format", choices=("text", "json"), default="text")
     mod_compatibility.add_argument("--output", type=Path)
+    modpack_scanner = subparsers.add_parser(
+        "modpack-scanner-audit",
+        help="Validate supported modpack formats, JAR metadata inspection, and profile generation.",
+    )
+    modpack_scanner.add_argument("--format", choices=("text", "json"), default="text")
+    modpack_scanner.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -730,6 +745,24 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "modpack-scan":
+        result = scan_modpack(args.path)
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "modpack-scanner-audit":
+        result = run_modpack_scanner_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

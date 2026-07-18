@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 56,
+  "documented_command_count": 58,
   "empty_documents": [],
-  "expected_command_count": 56,
-  "markdown_file_count": 73,
+  "expected_command_count": 58,
+  "markdown_file_count": 74,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -36,6 +36,7 @@
     "docs/EXPLORATION_EXPANSION.md",
     "docs/IDENTITY_GUARD.md",
     "docs/MINING.md",
+    "docs/MODPACK_SCANNER.md",
     "docs/MOD_COMPATIBILITY.md",
     "docs/OUTPUT_MANIFEST.md",
     "docs/PACKAGING_AUDIT.md",

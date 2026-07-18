@@ -35,6 +35,7 @@ _PROJECT_REPORTS = {
     "determinism-audit.json",
     "output-manifest-guard.json",
     "mod-compatibility-audit.json",
+    "modpack-scanner-audit.json",
 }
 _DOCUMENTATION_REPORTS = {"documentation-audit.json"}
 _TEST_REPORTS = {"test-inventory-audit.json"}

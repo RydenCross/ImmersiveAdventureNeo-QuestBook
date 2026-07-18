@@ -56,6 +56,10 @@
       "report": "mod-compatibility-audit.json"
     },
     {
+      "command": "modpack-scanner-audit",
+      "report": "modpack-scanner-audit.json"
+    },
+    {
       "command": "output-manifest-guard",
       "report": "output-manifest-guard.json"
     },
@@ -169,5 +173,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 41
+  "tracked_reports": 42
 }

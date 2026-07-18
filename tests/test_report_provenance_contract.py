@@ -6,7 +6,7 @@ from generator.report_provenance_contract import run_report_provenance_contract
 def test_repository_report_provenance_is_clean() -> None:
     result = run_report_provenance_contract()
     assert result.is_clean
-    assert result.tracked_reports == 41
+    assert result.tracked_reports == 42
     assert ("release-artifact-audit.json", "release-artifact-audit") in result.provenance
 
 

@@ -25,6 +25,9 @@
     "documentation contract audit": [],
     "identity guard": [],
     "mod compatibility contract": [],
+    "modpack scanner contract": [
+      "repository hygiene audit"
+    ],
     "output manifest guard": [
       "determinism audit"
     ],
@@ -104,11 +107,11 @@
     "text audit": []
   },
   "dependency_cycles": [],
-  "dependency_edges": 33,
+  "dependency_edges": 34,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 42,
+  "registered_audits": 43,
   "status": "pass",
   "unknown_dependencies": []
 }

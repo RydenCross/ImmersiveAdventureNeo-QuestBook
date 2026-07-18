@@ -49,6 +49,7 @@ SPECIAL_TEST_FILES = {
     "release archive Unicode path contract": "test_release_archive_unicode_path_contract.py",
     "release archive compression contract": "test_release_archive_compression_contract.py",
     "mod compatibility contract": "test_mod_compatibility_contract.py",
+    "modpack scanner contract": "test_modpack_scanner_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

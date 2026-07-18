@@ -27,6 +27,8 @@ EXPECTED_COMMANDS = (
     "identity-guard",
     "lint",
     "mod-compatibility-audit",
+    "modpack-scan",
+    "modpack-scanner-audit",
     "output-manifest",
     "output-manifest-guard",
     "packaging-audit",

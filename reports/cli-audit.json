@@ -1,5 +1,5 @@
 {
-  "command_count": 56,
+  "command_count": 58,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -19,6 +19,8 @@
     "identity-guard",
     "lint",
     "mod-compatibility-audit",
+    "modpack-scan",
+    "modpack-scanner-audit",
     "output-manifest",
     "output-manifest-guard",
     "packaging-audit",
