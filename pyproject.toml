@@ -18,6 +18,9 @@ dev = [
     "ruff",
     "black",
 ]
+desktop = [
+    "pyinstaller",
+]
 
 [tool.black]
 line-length = 100

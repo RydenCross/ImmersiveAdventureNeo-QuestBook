@@ -6,6 +6,14 @@ import subprocess
 import sys
 from typing import Callable, Iterable
 
+from generator.desktop_setup import (
+    DEFAULT_PREFERENCES_PATH,
+    DesktopPreferences,
+    complete_first_run_setup,
+    load_desktop_preferences,
+    save_desktop_preferences,
+    update_last_instance,
+)
 from generator.instance_discovery import (
     DiscoveredInstance,
     InstanceDiscoveryResult,
@@ -79,18 +87,29 @@ def _instance_label(instance: DiscoveredInstance) -> str:
     return f"{instance.name} — {version} / {loader}"
 
 
+def _saved_search_roots(preferences: DesktopPreferences) -> tuple[InstanceSearchRoot, ...]:
+    return tuple(
+        InstanceSearchRoot("Saved", Path(path)) for path in preferences.search_roots
+    )
+
+
 def launch_desktop(
     *,
-    workspace_root: Path = DEFAULT_LAUNCHER_WORKSPACE,
+    workspace_root: Path | None = None,
     search_roots: Iterable[InstanceSearchRoot | tuple[str, Path] | Path] | None = None,
-    open_browser: bool = True,
+    open_browser: bool | None = None,
     discovery: InstanceDiscoveryResult | None = None,
+    preferences_path: Path = DEFAULT_PREFERENCES_PATH,
+    force_first_run: bool = False,
 ) -> int:
     try:
         import tkinter as tk
         from tkinter import filedialog, messagebox, ttk
     except ImportError as exc:  # pragma: no cover - depends on Python distribution
         raise RuntimeError("the desktop launcher requires Python's tkinter module") from exc
+
+    preference_load = load_desktop_preferences(preferences_path)
+    preferences = preference_load.preferences
 
     try:
         root = tk.Tk()
@@ -100,8 +119,133 @@ def launch_desktop(
     root.title("FTB Quest Maker")
     root.geometry("980x560")
     root.minsize(760, 420)
-    workspace_root = Path(workspace_root).expanduser()
-    current_result = discovery or discover_modpack_instances(search_roots)
+
+    def preferences_dialog(*, first_run: bool) -> DesktopPreferences | None:
+        result: DesktopPreferences | None = None
+        dialog = tk.Toplevel(root)
+        dialog.title("FTB Quest Maker — First-run setup" if first_run else "Preferences")
+        dialog.transient(root)
+        dialog.grab_set()
+        dialog.resizable(True, False)
+
+        frame = ttk.Frame(dialog, padding=16)
+        frame.pack(fill="both", expand=True)
+        ttk.Label(
+            frame,
+            text=(
+                "Choose where projects are stored and which extra launcher folders are scanned."
+            ),
+            wraplength=620,
+        ).grid(row=0, column=0, columnspan=3, sticky="w", pady=(0, 12))
+
+        workspace_var = tk.StringVar(value=preferences.workspace_root)
+        browser_var = tk.BooleanVar(value=preferences.open_browser)
+        max_var = tk.StringVar(value=str(preferences.max_instances))
+        roots = list(preferences.search_roots)
+
+        ttk.Label(frame, text="Workspace").grid(row=1, column=0, sticky="w")
+        workspace_entry = ttk.Entry(frame, textvariable=workspace_var, width=64)
+        workspace_entry.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(2, 8))
+
+        def choose_workspace() -> None:
+            selected = filedialog.askdirectory(
+                title="Choose the FTB Quest Maker workspace",
+                parent=dialog,
+            )
+            if selected:
+                workspace_var.set(selected)
+
+        ttk.Button(frame, text="Browse…", command=choose_workspace).grid(
+            row=2, column=2, padx=(8, 0), pady=(2, 8)
+        )
+
+        ttk.Label(frame, text="Additional launcher or instance roots").grid(
+            row=3, column=0, columnspan=3, sticky="w"
+        )
+        roots_box = tk.Listbox(frame, height=5, width=72)
+        roots_box.grid(row=4, column=0, columnspan=2, sticky="ew", pady=(2, 8))
+        for item in roots:
+            roots_box.insert("end", item)
+
+        def add_root() -> None:
+            selected = filedialog.askdirectory(
+                title="Choose a launcher or instance directory",
+                parent=dialog,
+            )
+            if selected and selected not in roots:
+                roots.append(selected)
+                roots_box.insert("end", selected)
+
+        def remove_root() -> None:
+            indices = tuple(int(item) for item in roots_box.curselection())
+            for index in reversed(indices):
+                roots.pop(index)
+                roots_box.delete(index)
+
+        root_buttons = ttk.Frame(frame)
+        root_buttons.grid(row=4, column=2, sticky="n", padx=(8, 0), pady=(2, 8))
+        ttk.Button(root_buttons, text="Add…", command=add_root).pack(fill="x")
+        ttk.Button(root_buttons, text="Remove", command=remove_root).pack(
+            fill="x", pady=(6, 0)
+        )
+
+        ttk.Checkbutton(
+            frame,
+            text="Open the browser automatically when an editor starts",
+            variable=browser_var,
+        ).grid(row=5, column=0, columnspan=3, sticky="w", pady=(2, 8))
+        ttk.Label(frame, text="Maximum discovered instances").grid(
+            row=6, column=0, sticky="w"
+        )
+        ttk.Entry(frame, textvariable=max_var, width=10).grid(
+            row=6, column=1, sticky="w", pady=(2, 8)
+        )
+
+        actions = ttk.Frame(frame)
+        actions.grid(row=7, column=0, columnspan=3, sticky="e", pady=(12, 0))
+
+        def save() -> None:
+            nonlocal result
+            try:
+                setup = complete_first_run_setup(
+                    preferences_path=preferences_path,
+                    workspace_root=Path(workspace_var.get()),
+                    search_roots=(Path(item) for item in roots),
+                    open_browser=browser_var.get(),
+                    max_instances=int(max_var.get()),
+                )
+            except (OSError, TypeError, ValueError) as exc:
+                messagebox.showerror("Invalid preferences", str(exc), parent=dialog)
+                return
+            result = setup.preferences
+            dialog.destroy()
+
+        ttk.Button(actions, text="Cancel", command=dialog.destroy).pack(side="right")
+        ttk.Button(actions, text="Save", command=save).pack(side="right", padx=(0, 8))
+        dialog.protocol("WM_DELETE_WINDOW", dialog.destroy)
+        dialog.wait_window()
+        return result
+
+    if force_first_run or not preferences.first_run_complete:
+        updated = preferences_dialog(first_run=True)
+        if updated is None:
+            root.destroy()
+            return 0
+        preferences = updated
+
+    configured_workspace = (
+        Path(workspace_root).expanduser()
+        if workspace_root is not None
+        else Path(preferences.workspace_root)
+    )
+    configured_roots = (
+        search_roots if search_roots is not None else _saved_search_roots(preferences)
+    )
+    configured_browser = preferences.open_browser if open_browser is None else open_browser
+    current_result = discovery or discover_modpack_instances(
+        configured_roots,
+        max_instances=preferences.max_instances,
+    )
     instance_by_id: dict[str, DiscoveredInstance] = {}
 
     header = ttk.Frame(root, padding=12)
@@ -172,27 +316,53 @@ def launch_desktop(
         status_var.set(
             f"{len(result.instances)} instance{'s' if len(result.instances) != 1 else ''} found"
         )
-        if result.instances:
+        preferred = preferences.last_instance_id
+        if preferred and preferred in instance_by_id:
+            tree.selection_set(preferred)
+        elif result.instances:
             tree.selection_set(result.instances[0].instance_id)
 
     def refresh() -> None:
         try:
-            render(discover_modpack_instances(search_roots))
+            render(
+                discover_modpack_instances(
+                    configured_roots,
+                    max_instances=preferences.max_instances,
+                )
+            )
         except (OSError, ValueError) as exc:
             messagebox.showerror("Discovery failed", str(exc), parent=root)
 
     def launch(instance: DiscoveredInstance | None) -> None:
+        nonlocal preferences
         try:
             process = start_editor_process(
                 instance,
-                workspace_root=workspace_root,
-                open_browser=open_browser,
+                workspace_root=configured_workspace,
+                open_browser=configured_browser,
             )
+            if instance is not None:
+                preferences = update_last_instance(
+                    preferences,
+                    instance.instance_id,
+                    path=preferences_path,
+                )
         except OSError as exc:
             messagebox.showerror("Editor launch failed", str(exc), parent=root)
             return
         label = _instance_label(instance) if instance else "an empty project"
         status_var.set(f"Started editor for {label} (PID {process.pid})")
+
+    def edit_preferences() -> None:
+        nonlocal preferences, configured_workspace, configured_roots, configured_browser
+        updated = preferences_dialog(first_run=False)
+        if updated is None:
+            return
+        preferences = updated
+        configured_workspace = Path(preferences.workspace_root)
+        configured_roots = _saved_search_roots(preferences)
+        configured_browser = preferences.open_browser
+        refresh()
 
     def add_folder() -> None:
         selected = filedialog.askdirectory(title="Choose a Minecraft instance folder", parent=root)
@@ -255,7 +425,10 @@ def launch_desktop(
 
     ttk.Button(footer, text="Refresh", command=refresh).pack(side="left")
     ttk.Button(footer, text="Add folder…", command=add_folder).pack(side="left", padx=6)
-    ttk.Button(footer, text="Install project…", command=install_bundle).pack(side="left")
+    ttk.Button(footer, text="Preferences…", command=edit_preferences).pack(side="left")
+    ttk.Button(footer, text="Install project…", command=install_bundle).pack(
+        side="left", padx=6
+    )
     ttk.Button(footer, text="Open empty editor", command=lambda: launch(None)).pack(
         side="right"
     )
@@ -267,5 +440,7 @@ def launch_desktop(
     tree.bind("<Double-1>", lambda _event: launch(selected_instance()))
 
     render(current_result)
+    if preference_load.warnings:
+        status_var.set(preference_load.warnings[0])
     root.mainloop()
     return 0

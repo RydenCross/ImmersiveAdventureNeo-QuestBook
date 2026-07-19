@@ -102,8 +102,18 @@ from generator.project_bundle import (
 )
 from generator.project_bundle_contract import run_project_bundle_contract
 from generator.instance_discovery import InstanceSearchRoot, discover_modpack_instances
-from generator.desktop_launcher import DEFAULT_LAUNCHER_WORKSPACE, launch_desktop
+from generator.desktop_launcher import launch_desktop
 from generator.desktop_launcher_contract import run_desktop_launcher_contract
+from generator.desktop_setup import (
+    DEFAULT_APPLICATION_ROOT,
+    DEFAULT_PREFERENCES_PATH,
+    complete_first_run_setup,
+)
+from generator.native_distribution import (
+    DEFAULT_DISTRIBUTION_DIRECTORY,
+    build_native_distribution,
+)
+from generator.native_distribution_contract import run_native_distribution_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -644,8 +654,14 @@ def create_parser() -> argparse.ArgumentParser:
     quest_maker_launch.add_argument(
         "--workspace",
         type=Path,
-        default=DEFAULT_LAUNCHER_WORKSPACE,
-        help="Root directory for per-instance editor workspaces.",
+        default=None,
+        help="Override the saved root directory for per-instance editor workspaces.",
+    )
+    quest_maker_launch.add_argument(
+        "--preferences",
+        type=Path,
+        default=DEFAULT_PREFERENCES_PATH,
+        help="Desktop preferences file used by first-run setup.",
     )
     quest_maker_launch.add_argument(
         "--root",
@@ -659,6 +675,39 @@ def create_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Start selected editor services without opening a browser automatically.",
     )
+    quest_maker_launch.add_argument(
+        "--reset-setup",
+        action="store_true",
+        help="Show the first-run setup dialog again before discovery.",
+    )
+    quest_maker_setup = subparsers.add_parser(
+        "quest-maker-setup",
+        help="Complete first-run desktop setup and persist launcher preferences.",
+    )
+    quest_maker_setup.add_argument(
+        "--preferences", type=Path, default=DEFAULT_PREFERENCES_PATH
+    )
+    quest_maker_setup.add_argument(
+        "--workspace", type=Path, default=DEFAULT_APPLICATION_ROOT
+    )
+    quest_maker_setup.add_argument("--root", action="append", type=Path, default=[])
+    quest_maker_setup.add_argument("--no-browser", action="store_true")
+    quest_maker_setup.add_argument("--max-instances", type=int, default=500)
+    quest_maker_setup.add_argument("--format", choices=("text", "json"), default="text")
+    quest_maker_setup.add_argument("--output", type=Path)
+    native_build = subparsers.add_parser(
+        "quest-maker-native-build",
+        help="Build or inspect the standalone Windows/Linux desktop distribution plan.",
+    )
+    native_build.add_argument(
+        "--platform", choices=("auto", "windows", "linux"), default="auto"
+    )
+    native_build.add_argument(
+        "--destination", type=Path, default=DEFAULT_DISTRIBUTION_DIRECTORY
+    )
+    native_build.add_argument("--dry-run", action="store_true")
+    native_build.add_argument("--format", choices=("text", "json"), default="text")
+    native_build.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -878,6 +927,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     desktop_launcher.add_argument("--format", choices=("text", "json"), default="text")
     desktop_launcher.add_argument("--output", type=Path)
+    native_distribution = subparsers.add_parser(
+        "native-distribution-audit",
+        help="Validate first-run preferences and standalone Windows/Linux build recipes.",
+    )
+    native_distribution.add_argument("--format", choices=("text", "json"), default="text")
+    native_distribution.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1241,6 +1296,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "native-distribution-audit":
+        result = run_native_distribution_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1274,11 +1338,45 @@ def main(argv: list[str] | None = None) -> int:
             return launch_desktop(
                 workspace_root=args.workspace,
                 search_roots=roots,
-                open_browser=not args.no_browser,
+                open_browser=False if args.no_browser else None,
+                preferences_path=args.preferences,
+                force_first_run=args.reset_setup,
             )
         except (OSError, RuntimeError, ValueError) as exc:
             print(f"Desktop launcher failed: {exc}")
             return 1
+
+    if args.command == "quest-maker-setup":
+        try:
+            result = complete_first_run_setup(
+                preferences_path=args.preferences,
+                workspace_root=args.workspace,
+                search_roots=args.root,
+                open_browser=not args.no_browser,
+                max_instances=args.max_instances,
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Desktop setup failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-native-build":
+        result = build_native_distribution(
+            args.platform,
+            destination=args.destination,
+            dry_run=args.dry_run,
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
 
     if args.command == "modpack-scan":
         result = scan_modpack(args.path)

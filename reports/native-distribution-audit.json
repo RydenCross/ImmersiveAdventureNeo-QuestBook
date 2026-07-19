@@ -1,0 +1,13 @@
+{
+  "build_recipes_present": true,
+  "corrupt_preferences_recovered": true,
+  "cross_build_rejected": true,
+  "deterministic_build_plan": true,
+  "dry_run_supported": true,
+  "first_run_setup": true,
+  "launcher_preferences_integrated": true,
+  "packaged_entrypoint": true,
+  "platform_specific_executables": true,
+  "preferences_round_trip": true,
+  "status": "pass"
+}

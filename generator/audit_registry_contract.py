@@ -93,6 +93,11 @@ AUDIT_REGISTRY = (
         "desktop-launcher-audit",
         "desktop-launcher-audit.json",
     ),
+    AuditRegistration(
+        "native desktop distribution and first-run setup contract",
+        "native-distribution-audit",
+        "native-distribution-audit.json",
+    ),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

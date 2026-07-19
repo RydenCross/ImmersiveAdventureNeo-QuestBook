@@ -96,6 +96,10 @@
       "report": "modpack-scanner-audit.json"
     },
     {
+      "command": "native-distribution-audit",
+      "report": "native-distribution-audit.json"
+    },
+    {
       "command": "output-manifest-guard",
       "report": "output-manifest-guard.json"
     },
@@ -229,5 +233,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 56
+  "tracked_reports": 57
 }

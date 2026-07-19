@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=FTB Quest Maker
+Comment=Generate and edit FTB Quests questbooks for modpacks
+Exec=FTBQuestMaker
+Terminal=false
+Categories=Game;Development;

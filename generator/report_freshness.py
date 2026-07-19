@@ -63,6 +63,7 @@ from generator.editor_recovery_contract import run_editor_recovery_contract
 from generator.editor_jobs_contract import run_editor_jobs_contract
 from generator.project_bundle_contract import run_project_bundle_contract
 from generator.desktop_launcher_contract import run_desktop_launcher_contract
+from generator.native_distribution_contract import run_native_distribution_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -163,6 +164,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "editor-jobs-audit.json": lambda: run_editor_jobs_contract().format_json(),
         "project-bundle-audit.json": lambda: run_project_bundle_contract().format_json(),
         "desktop-launcher-audit.json": lambda: run_desktop_launcher_contract().format_json(),
+        "native-distribution-audit.json": lambda: run_native_distribution_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

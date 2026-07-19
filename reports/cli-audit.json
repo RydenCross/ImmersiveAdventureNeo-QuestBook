@@ -1,5 +1,5 @@
 {
-  "command_count": 85,
+  "command_count": 88,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -32,6 +32,7 @@
     "modpack-content-scanner-audit",
     "modpack-scan",
     "modpack-scanner-audit",
+    "native-distribution-audit",
     "output-manifest",
     "output-manifest-guard",
     "packaging-audit",
@@ -47,6 +48,8 @@
     "quest-editor-serve",
     "quest-instance-discover",
     "quest-maker-launch",
+    "quest-maker-native-build",
+    "quest-maker-setup",
     "quest-project-bundle",
     "quest-project-inspect",
     "quest-project-install",

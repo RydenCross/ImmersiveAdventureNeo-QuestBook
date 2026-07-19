@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Added persistent first-run desktop preferences for workspace location, custom discovery roots, browser behavior, discovery limits, and last-instance selection.
+- Added standalone Windows/Linux PyInstaller build plans, a windowed desktop entrypoint, target-specific build scripts, and Linux desktop metadata.
+- Added `quest-maker-setup`, `quest-maker-native-build`, setup/preferences UI controls, tests, documentation, quality-gate integration, and a tracked native-distribution audit.
+
 ## Commit 103 - Desktop Launcher and Automatic Modpack Instance Discovery
 
 - Added dependency-free desktop launcher controls for opening the visual editor and installing portable projects without typed instance paths.

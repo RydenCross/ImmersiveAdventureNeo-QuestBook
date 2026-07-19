@@ -55,6 +55,9 @@
     "modpack scanner contract": [
       "repository hygiene audit"
     ],
+    "native desktop distribution and first-run setup contract": [
+      "desktop launcher and instance discovery contract"
+    ],
     "output manifest guard": [
       "determinism audit"
     ],
@@ -155,11 +158,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 54,
+  "dependency_edges": 55,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 57,
+  "registered_audits": 58,
   "status": "pass",
   "unknown_dependencies": []
 }

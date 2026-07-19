@@ -156,6 +156,32 @@ python -m generator desktop-launcher-audit --format json --output reports/deskto
 
 See [`docs/DESKTOP_LAUNCHER_AND_INSTANCE_DISCOVERY.md`](docs/DESKTOP_LAUNCHER_AND_INSTANCE_DISCOVERY.md).
 
+## Native desktop distribution and first-run setup
+
+Complete persistent setup from the command line or use the first-run graphical wizard:
+
+```bash
+python -m generator quest-maker-setup --workspace ~/.ftb-quest-maker
+python -m generator quest-maker-launch --reset-setup
+```
+
+Inspect or build standalone Windows/Linux desktop distributions:
+
+```bash
+python -m generator quest-maker-native-build --platform windows --dry-run
+python -m generator quest-maker-native-build --platform linux --dry-run
+python -m generator quest-maker-native-build --platform auto
+```
+
+The packaged `FTBQuestMaker` entrypoint opens the desktop launcher directly. Preferences are written atomically, invalid settings recover safely, the last opened instance is remembered, and native builds are restricted to their target operating system. See `docs/NATIVE_DESKTOP_DISTRIBUTION.md` for build recipes and first-run behavior.
+
+Validate the setup and packaging surface:
+
+```bash
+python -m generator native-distribution-audit
+python -m generator native-distribution-audit --format json --output reports/native-distribution-audit.json
+```
+
 ## Local visual editor service and API
 
 Launch the generated editor model as a local browser application:

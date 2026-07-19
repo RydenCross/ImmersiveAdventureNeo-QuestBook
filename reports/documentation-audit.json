@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 85,
+  "documented_command_count": 88,
   "empty_documents": [],
-  "expected_command_count": 85,
-  "markdown_file_count": 88,
+  "expected_command_count": 88,
+  "markdown_file_count": 89,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -47,6 +47,7 @@
     "docs/MODPACK_CONTENT_SCANNER.md",
     "docs/MODPACK_SCANNER.md",
     "docs/MOD_COMPATIBILITY.md",
+    "docs/NATIVE_DESKTOP_DISTRIBUTION.md",
     "docs/OUTPUT_MANIFEST.md",
     "docs/PACKAGING_AUDIT.md",
     "docs/PARSER.md",
