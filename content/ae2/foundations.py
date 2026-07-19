@@ -76,7 +76,7 @@ def build_ae2_foundations(project: Project, apotheosis_complete: str) -> tuple[C
         .finish()
     )
 
-    charger = (
+    (
         chapter.quest(
             "charger",
             "Charge on Demand",
@@ -323,7 +323,7 @@ def build_ae2_foundations(project: Project, apotheosis_complete: str) -> tuple[C
         .finish()
     )
 
-    interface = (
+    (
         chapter.quest(
             "storage_bus",
             "Connect Existing Storage",

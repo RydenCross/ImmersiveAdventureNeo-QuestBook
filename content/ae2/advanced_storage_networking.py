@@ -114,7 +114,7 @@ def build_ae2_advanced_storage_networking(
         .finish()
     )
 
-    bus_upgrades = (
+    (
         chapter.quest(
             "bus_upgrades",
             "Faster and Smarter Buses",
@@ -259,7 +259,7 @@ def build_ae2_advanced_storage_networking(
         .finish()
     )
 
-    wireless_range = (
+    (
         chapter.quest(
             "wireless_range",
             "Extend the Signal",
@@ -274,7 +274,7 @@ def build_ae2_advanced_storage_networking(
         .finish()
     )
 
-    security_terminal = (
+    (
         chapter.quest(
             "security_terminal",
             "Secure the Network",

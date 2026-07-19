@@ -57,11 +57,17 @@ from generator.report_refresh_convergence_contract import run_report_refresh_con
 from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
 from generator.report_refresh_cache_contract import run_report_refresh_cache_contract
 from generator.release_report_finalization_contract import run_release_report_finalization_contract
-from generator.release_package_verification_contract import run_release_package_verification_contract
+from generator.release_package_verification_contract import (
+    run_release_package_verification_contract,
+)
 from generator.release_manifest_contract import run_release_manifest_contract
 from generator.release_archive_metadata_contract import run_release_archive_metadata_contract
-from generator.release_archive_extraction_safety_contract import run_release_archive_extraction_safety_contract
-from generator.release_archive_unicode_path_contract import run_release_archive_unicode_path_contract
+from generator.release_archive_extraction_safety_contract import (
+    run_release_archive_extraction_safety_contract,
+)
+from generator.release_archive_unicode_path_contract import (
+    run_release_archive_unicode_path_contract,
+)
 from generator.release_archive_compression_contract import run_release_archive_compression_contract
 from generator.mod_compatibility_contract import run_mod_compatibility_contract
 from generator.modpack_scanner import scan_modpack
@@ -126,6 +132,15 @@ from generator.desktop_packages import (
     write_update_metadata,
 )
 from generator.desktop_packages_contract import run_desktop_packages_contract
+from generator.application_updates import (
+    DEFAULT_ARTIFACT_LIMIT_BYTES,
+    DEFAULT_METADATA_LIMIT_BYTES,
+    DEFAULT_UPDATE_STAGE_DIRECTORY,
+    DEFAULT_UPDATE_TIMEOUT_SECONDS,
+    check_for_application_update,
+    stage_application_update,
+)
+from generator.application_updates_contract import run_application_updates_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -479,7 +494,9 @@ def create_parser() -> argparse.ArgumentParser:
         "release-archive-extraction-safety-audit",
         help="Validate ZIP extraction paths, collisions, links, and special-file safety.",
     )
-    release_archive_extraction_safety.add_argument("--format", choices=("text", "json"), default="text")
+    release_archive_extraction_safety.add_argument(
+        "--format", choices=("text", "json"), default="text"
+    )
     release_archive_extraction_safety.add_argument("--output", type=Path)
     release_archive_unicode_path = subparsers.add_parser(
         "release-archive-unicode-path-audit",
@@ -497,7 +514,9 @@ def create_parser() -> argparse.ArgumentParser:
         "modpack-scan",
         help="Inspect a modpack archive, instance, or mods directory and generate a normalized pack profile.",
     )
-    modpack_scan.add_argument("path", type=Path, help="Modpack ZIP/MRPACK, instance folder, or mods directory.")
+    modpack_scan.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, or mods directory."
+    )
     modpack_scan.add_argument("--format", choices=("text", "json"), default="text")
     modpack_scan.add_argument("--output", type=Path, help="Write the generated profile to a file.")
     modpack_content_scan = subparsers.add_parser(
@@ -513,7 +532,9 @@ def create_parser() -> argparse.ArgumentParser:
         help="Maximum generated quest candidates (default: pack-profile recommendation).",
     )
     modpack_content_scan.add_argument("--format", choices=("text", "json"), default="text")
-    modpack_content_scan.add_argument("--output", type=Path, help="Write the content profile to a file.")
+    modpack_content_scan.add_argument(
+        "--output", type=Path, help="Write the content profile to a file."
+    )
     quest_blueprint = subparsers.add_parser(
         "quest-blueprint",
         help="Plan scanned quest candidates into ordered mod chapters and a reviewable questbook blueprint.",
@@ -542,13 +563,20 @@ def create_parser() -> argparse.ArgumentParser:
         "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
     )
     quest_description_plan.add_argument(
-        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+        "--target-quests",
+        type=int,
+        help="Desired quest count (default: pack-profile recommendation).",
     )
     quest_description_plan.add_argument(
-        "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+        "--chapter-size",
+        type=int,
+        default=40,
+        help="Maximum quests per generated chapter (default: 40).",
     )
     quest_description_plan.add_argument(
-        "--style", choices=DESCRIPTION_STYLES, default="guided",
+        "--style",
+        choices=DESCRIPTION_STYLES,
+        default="guided",
         help="Description detail level (default: guided).",
     )
     quest_description_plan.add_argument("--format", choices=("text", "json"), default="text")
@@ -563,17 +591,26 @@ def create_parser() -> argparse.ArgumentParser:
         "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
     )
     quest_reward_plan.add_argument(
-        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+        "--target-quests",
+        type=int,
+        help="Desired quest count (default: pack-profile recommendation).",
     )
     quest_reward_plan.add_argument(
-        "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+        "--chapter-size",
+        type=int,
+        default=40,
+        help="Maximum quests per generated chapter (default: 40).",
     )
     quest_reward_plan.add_argument(
-        "--policy", choices=REWARD_POLICIES, default="conservative",
+        "--policy",
+        choices=REWARD_POLICIES,
+        default="conservative",
         help="Reward density policy (default: conservative).",
     )
     quest_reward_plan.add_argument(
-        "--description-style", choices=DESCRIPTION_STYLES, default="guided",
+        "--description-style",
+        choices=DESCRIPTION_STYLES,
+        default="guided",
         help="Description detail level applied before reward planning (default: guided).",
     )
     quest_reward_plan.add_argument("--format", choices=("text", "json"), default="text")
@@ -586,17 +623,26 @@ def create_parser() -> argparse.ArgumentParser:
         "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
     )
     quest_editor_model.add_argument(
-        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+        "--target-quests",
+        type=int,
+        help="Desired quest count (default: pack-profile recommendation).",
     )
     quest_editor_model.add_argument(
-        "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+        "--chapter-size",
+        type=int,
+        default=40,
+        help="Maximum quests per generated chapter (default: 40).",
     )
     quest_editor_model.add_argument(
-        "--description-style", choices=DESCRIPTION_STYLES, default="guided",
+        "--description-style",
+        choices=DESCRIPTION_STYLES,
+        default="guided",
         help="Description detail level applied before editor conversion (default: guided).",
     )
     quest_editor_model.add_argument(
-        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned",
+        "--reward-policy",
+        choices=("unassigned", *REWARD_POLICIES),
+        default="unassigned",
         help="Optional generated reward policy stored in the editor document (default: unassigned).",
     )
     quest_editor_model.add_argument("--format", choices=("text", "json"), default="text")
@@ -611,7 +657,9 @@ def create_parser() -> argparse.ArgumentParser:
         "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
     )
     quest_project_bundle.add_argument(
-        "--destination", type=Path, default=Path(f"project{BUNDLE_EXTENSION}"),
+        "--destination",
+        type=Path,
+        default=Path(f"project{BUNDLE_EXTENSION}"),
         help=f"Portable project destination (default: project{BUNDLE_EXTENSION}).",
     )
     quest_project_bundle.add_argument("--target-quests", type=int)
@@ -696,12 +744,8 @@ def create_parser() -> argparse.ArgumentParser:
         "quest-maker-setup",
         help="Complete first-run desktop setup and persist launcher preferences.",
     )
-    quest_maker_setup.add_argument(
-        "--preferences", type=Path, default=DEFAULT_PREFERENCES_PATH
-    )
-    quest_maker_setup.add_argument(
-        "--workspace", type=Path, default=DEFAULT_APPLICATION_ROOT
-    )
+    quest_maker_setup.add_argument("--preferences", type=Path, default=DEFAULT_PREFERENCES_PATH)
+    quest_maker_setup.add_argument("--workspace", type=Path, default=DEFAULT_APPLICATION_ROOT)
     quest_maker_setup.add_argument("--root", action="append", type=Path, default=[])
     quest_maker_setup.add_argument("--no-browser", action="store_true")
     quest_maker_setup.add_argument("--max-instances", type=int, default=500)
@@ -711,12 +755,8 @@ def create_parser() -> argparse.ArgumentParser:
         "quest-maker-native-build",
         help="Build or inspect the standalone Windows/Linux desktop distribution plan.",
     )
-    native_build.add_argument(
-        "--platform", choices=("auto", "windows", "linux"), default="auto"
-    )
-    native_build.add_argument(
-        "--destination", type=Path, default=DEFAULT_DISTRIBUTION_DIRECTORY
-    )
+    native_build.add_argument("--platform", choices=("auto", "windows", "linux"), default="auto")
+    native_build.add_argument("--destination", type=Path, default=DEFAULT_DISTRIBUTION_DIRECTORY)
     native_build.add_argument("--dry-run", action="store_true")
     native_build.add_argument("--format", choices=("text", "json"), default="text")
     native_build.add_argument("--output", type=Path)
@@ -738,9 +778,7 @@ def create_parser() -> argparse.ArgumentParser:
         help="Generate deterministic application update metadata for desktop packages.",
     )
     update_metadata.add_argument("--version", required=True)
-    update_metadata.add_argument(
-        "--channel", choices=SUPPORTED_UPDATE_CHANNELS, default="stable"
-    )
+    update_metadata.add_argument("--channel", choices=SUPPORTED_UPDATE_CHANNELS, default="stable")
     update_metadata.add_argument(
         "--artifact",
         action="append",
@@ -748,9 +786,7 @@ def create_parser() -> argparse.ArgumentParser:
         help="Package artifact as platform=path, or a .exe/.AppImage path.",
     )
     update_metadata.add_argument("--base-url", default="")
-    update_metadata.add_argument(
-        "--destination", type=Path, default=DEFAULT_UPDATE_METADATA_PATH
-    )
+    update_metadata.add_argument("--destination", type=Path, default=DEFAULT_UPDATE_METADATA_PATH)
     update_metadata.add_argument("--signing-key", type=Path)
     update_metadata.add_argument("--key-id", default="local")
     update_metadata.add_argument("--format", choices=("text", "json"), default="text")
@@ -764,6 +800,42 @@ def create_parser() -> argparse.ArgumentParser:
     update_verify.add_argument("--signing-key", type=Path)
     update_verify.add_argument("--format", choices=("text", "json"), default="text")
     update_verify.add_argument("--output", type=Path)
+    update_check = subparsers.add_parser(
+        "quest-maker-update-check",
+        help="Check local or HTTPS metadata for a newer verified desktop release.",
+    )
+    update_check.add_argument("source", help="Local metadata path or HTTPS metadata URL.")
+    update_check.add_argument("--current-version", required=True)
+    update_check.add_argument("--channel", choices=SUPPORTED_UPDATE_CHANNELS, default="stable")
+    update_check.add_argument("--platform", choices=("auto", "windows", "linux"), default="auto")
+    update_check.add_argument("--signing-key", type=Path)
+    update_check.add_argument("--require-signature", action="store_true")
+    update_check.add_argument(
+        "--max-metadata-bytes", type=int, default=DEFAULT_METADATA_LIMIT_BYTES
+    )
+    update_check.add_argument("--timeout", type=float, default=DEFAULT_UPDATE_TIMEOUT_SECONDS)
+    update_check.add_argument("--format", choices=("text", "json"), default="text")
+    update_check.add_argument("--output", type=Path)
+    update_stage = subparsers.add_parser(
+        "quest-maker-update-stage",
+        help="Check, download, checksum, and atomically stage a desktop update.",
+    )
+    update_stage.add_argument("source", help="Local metadata path or HTTPS metadata URL.")
+    update_stage.add_argument("--current-version", required=True)
+    update_stage.add_argument("--channel", choices=SUPPORTED_UPDATE_CHANNELS, default="stable")
+    update_stage.add_argument("--platform", choices=("auto", "windows", "linux"), default="auto")
+    update_stage.add_argument("--signing-key", type=Path)
+    update_stage.add_argument("--require-signature", action="store_true")
+    update_stage.add_argument("--destination", type=Path, default=DEFAULT_UPDATE_STAGE_DIRECTORY)
+    update_stage.add_argument(
+        "--max-metadata-bytes", type=int, default=DEFAULT_METADATA_LIMIT_BYTES
+    )
+    update_stage.add_argument(
+        "--max-artifact-bytes", type=int, default=DEFAULT_ARTIFACT_LIMIT_BYTES
+    )
+    update_stage.add_argument("--timeout", type=float, default=DEFAULT_UPDATE_TIMEOUT_SECONDS)
+    update_stage.add_argument("--format", choices=("text", "json"), default="text")
+    update_stage.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -833,17 +905,26 @@ def create_parser() -> argparse.ArgumentParser:
         help="Destination config/ftbquests directory (default: generated/ftbquests).",
     )
     ftb_quest_export.add_argument(
-        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+        "--target-quests",
+        type=int,
+        help="Desired quest count (default: pack-profile recommendation).",
     )
     ftb_quest_export.add_argument(
-        "--chapter-size", type=int, default=40, help="Maximum quests per generated chapter (default: 40)."
+        "--chapter-size",
+        type=int,
+        default=40,
+        help="Maximum quests per generated chapter (default: 40).",
     )
     ftb_quest_export.add_argument(
-        "--description-style", choices=DESCRIPTION_STYLES, default="guided",
+        "--description-style",
+        choices=DESCRIPTION_STYLES,
+        default="guided",
         help="Description detail level applied before export (default: guided).",
     )
     ftb_quest_export.add_argument(
-        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned",
+        "--reward-policy",
+        choices=("unassigned", *REWARD_POLICIES),
+        default="unassigned",
         help="Apply generated reward decisions before export (default: unassigned).",
     )
     ftb_quest_export.add_argument("--format", choices=("text", "json"), default="text")
@@ -856,33 +937,47 @@ def create_parser() -> argparse.ArgumentParser:
         "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
     )
     questbook_review.add_argument(
-        "--target-quests", type=int, help="Desired quest count (default: pack-profile recommendation)."
+        "--target-quests",
+        type=int,
+        help="Desired quest count (default: pack-profile recommendation).",
     )
     questbook_review.add_argument(
         "--chapter-size", type=int, default=40, help="Planner chapter size (default: 40)."
     )
     questbook_review.add_argument(
-        "--low-confidence-threshold", type=float, default=0.75,
+        "--low-confidence-threshold",
+        type=float,
+        default=0.75,
         help="Flag quests below this confidence score (default: 0.75).",
     )
     questbook_review.add_argument(
-        "--min-description-words", type=int, default=6,
+        "--min-description-words",
+        type=int,
+        default=6,
         help="Minimum recommended description length (default: 6 words).",
     )
     questbook_review.add_argument(
-        "--max-chapter-quests", type=int, default=50,
+        "--max-chapter-quests",
+        type=int,
+        default=50,
         help="Flag chapters above this size (default: 50).",
     )
     questbook_review.add_argument(
-        "--bottleneck-dependents", type=int, default=8,
+        "--bottleneck-dependents",
+        type=int,
+        default=8,
         help="Flag quests directly gating at least this many quests (default: 8).",
     )
     questbook_review.add_argument(
-        "--description-style", choices=DESCRIPTION_STYLES, default="guided",
+        "--description-style",
+        choices=DESCRIPTION_STYLES,
+        default="guided",
         help="Description detail level applied before review (default: guided).",
     )
     questbook_review.add_argument(
-        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned",
+        "--reward-policy",
+        choices=("unassigned", *REWARD_POLICIES),
+        default="unassigned",
         help="Review an automatically rewarded blueprint (default: unassigned).",
     )
     questbook_review.add_argument("--format", choices=("text", "json"), default="text")
@@ -995,6 +1090,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     desktop_packages.add_argument("--format", choices=("text", "json"), default="text")
     desktop_packages.add_argument("--output", type=Path)
+    application_updates = subparsers.add_parser(
+        "application-update-client-audit",
+        help="Validate secure update checks, downloads, checksums, and staging.",
+    )
+    application_updates.add_argument("--format", choices=("text", "json"), default="text")
+    application_updates.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1376,6 +1477,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "application-update-client-audit":
+        result = run_application_updates_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1387,9 +1497,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "quest-instance-discover":
         roots = (
-            tuple(InstanceSearchRoot("Custom", path) for path in args.root)
-            if args.root
-            else None
+            tuple(InstanceSearchRoot("Custom", path) for path in args.root) if args.root else None
         )
         result = discover_modpack_instances(roots, max_instances=args.max_instances)
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1401,9 +1509,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "quest-maker-launch":
         roots = (
-            tuple(InstanceSearchRoot("Custom", path) for path in args.root)
-            if args.root
-            else None
+            tuple(InstanceSearchRoot("Custom", path) for path in args.root) if args.root else None
         )
         try:
             return launch_desktop(
@@ -1501,6 +1607,58 @@ def main(argv: list[str] | None = None) -> int:
             )
         except (OSError, TypeError, ValueError) as exc:
             print(f"Update metadata verification failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-update-check":
+        try:
+            signing_key = args.signing_key.read_bytes() if args.signing_key else None
+            result = check_for_application_update(
+                args.source,
+                args.current_version,
+                channel=args.channel,
+                platform=args.platform,
+                signing_key=signing_key,
+                require_signature=args.require_signature,
+                max_metadata_bytes=args.max_metadata_bytes,
+                timeout=args.timeout,
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Application update check failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-update-stage":
+        try:
+            signing_key = args.signing_key.read_bytes() if args.signing_key else None
+            check = check_for_application_update(
+                args.source,
+                args.current_version,
+                channel=args.channel,
+                platform=args.platform,
+                signing_key=signing_key,
+                require_signature=args.require_signature,
+                max_metadata_bytes=args.max_metadata_bytes,
+                timeout=args.timeout,
+            )
+            result = stage_application_update(
+                check,
+                destination=args.destination,
+                max_artifact_bytes=args.max_artifact_bytes,
+                timeout=args.timeout,
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Application update staging failed: {exc}")
             return 1
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:

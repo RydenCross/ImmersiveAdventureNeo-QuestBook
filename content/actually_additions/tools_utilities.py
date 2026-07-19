@@ -104,7 +104,7 @@ def build_actually_additions_tools_utilities(
         .finish()
     )
 
-    wings = (
+    (
         chapter.quest(
             "wings_of_the_bats",
             "Borrowed Wings",
@@ -232,7 +232,7 @@ def build_actually_additions_tools_utilities(
         .finish()
     )
 
-    coffee_machine = (
+    (
         chapter.quest(
             "coffee_machine",
             "Industrial Refreshment",

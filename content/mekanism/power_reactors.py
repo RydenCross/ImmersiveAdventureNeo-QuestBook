@@ -36,7 +36,7 @@ def build_mekanism_power_reactors(chapter: ChapterBuilder, processing_complete: 
         .finish()
     )
 
-    ethylene = (
+    (
         chapter.quest(
             "ethylene_power",
             "A Renewable Fuel Cycle",
@@ -257,7 +257,7 @@ def build_mekanism_power_reactors(chapter: ChapterBuilder, processing_complete: 
         .finish()
     )
 
-    boiler = (
+    (
         chapter.quest(
             "thermoelectric_boiler",
             "Separate Heat from Fission",

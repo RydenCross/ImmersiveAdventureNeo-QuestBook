@@ -1,5 +1,5 @@
 {
-  "checked": 18,
+  "checked": 60,
   "checks": [
     {
       "detail": "clean",
@@ -90,10 +90,220 @@
       "detail": "clean",
       "name": "release reproducibility audit",
       "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "audit registry contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "test inventory contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report schema contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report consistency contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report provenance contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report determinism contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "CLI output contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "CLI exit-code contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report write-safety contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report refresh order contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report refresh contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report refresh convergence contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report refresh idempotence contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "report refresh cache contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release report finalization contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release package verification contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release manifest contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release archive metadata contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release archive extraction safety contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release archive Unicode path contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "release archive compression contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "mod compatibility contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "modpack scanner contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "modpack content scanner contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "progression planner contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "quest description contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "FTB blueprint exporter contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "questbook review contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "reward planner contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "visual editor data model contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "local visual editor service contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "interactive visual editor UI contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "editor workspace tools contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "editor autosave and recovery contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "editor background jobs contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "portable project bundle contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "desktop launcher and instance discovery contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "native desktop distribution and first-run setup contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "desktop installers and update metadata contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "secure application update client contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "audit performance contract",
+      "status": "pass"
+    },
+    {
+      "detail": "clean",
+      "name": "audit dependency contract",
+      "status": "pass"
     }
   ],
   "failed": 0,
   "failed_checks": [],
-  "passed": 18,
+  "passed": 60,
   "status": "pass"
 }

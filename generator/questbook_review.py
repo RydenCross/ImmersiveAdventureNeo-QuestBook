@@ -4,7 +4,6 @@ from dataclasses import dataclass, replace
 import json
 from pathlib import Path
 import re
-from typing import Iterable
 
 from generator.ftb_blueprint_exporter import blueprint_to_project
 from generator.progression_planner import (
@@ -152,11 +151,7 @@ class QuestbookReview:
 
 
 def _flatten(blueprint: QuestBlueprint) -> tuple[tuple[BlueprintChapter, BlueprintQuest], ...]:
-    return tuple(
-        (chapter, quest)
-        for chapter in blueprint.chapters
-        for quest in chapter.quests
-    )
+    return tuple((chapter, quest) for chapter in blueprint.chapters for quest in chapter.quests)
 
 
 def _dependency_cycles(graph: dict[str, tuple[str, ...]]) -> tuple[tuple[str, ...], ...]:
@@ -199,9 +194,14 @@ def _depths(graph: dict[str, tuple[str, ...]]) -> dict[str, int]:
             break
         for node in ready:
             original = graph.get(node, ())
-            depths[node] = 0 if not original else 1 + max(
-                (depths.get(dependency, 0) for dependency in original if dependency in graph),
-                default=-1,
+            depths[node] = (
+                0
+                if not original
+                else 1
+                + max(
+                    (depths.get(dependency, 0) for dependency in original if dependency in graph),
+                    default=-1,
+                )
             )
             remaining.pop(node)
             for dependencies in remaining.values():
@@ -229,25 +229,37 @@ def review_quest_blueprint(
 ) -> QuestbookReview:
     findings: list[QuestbookReviewFinding] = []
     if not 0.0 <= low_confidence_threshold <= 1.0:
-        findings.append(QuestbookReviewFinding(
-            "error", "INVALID_LOW_CONFIDENCE_THRESHOLD",
-            "Low-confidence threshold must be between 0 and 1.",
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "INVALID_LOW_CONFIDENCE_THRESHOLD",
+                "Low-confidence threshold must be between 0 and 1.",
+            )
+        )
     if min_description_words < 1:
-        findings.append(QuestbookReviewFinding(
-            "error", "INVALID_DESCRIPTION_LIMIT",
-            "Minimum description words must be at least 1.",
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "INVALID_DESCRIPTION_LIMIT",
+                "Minimum description words must be at least 1.",
+            )
+        )
     if max_chapter_quests < 1:
-        findings.append(QuestbookReviewFinding(
-            "error", "INVALID_CHAPTER_LIMIT",
-            "Maximum chapter quests must be at least 1.",
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "INVALID_CHAPTER_LIMIT",
+                "Maximum chapter quests must be at least 1.",
+            )
+        )
     if bottleneck_dependents < 1:
-        findings.append(QuestbookReviewFinding(
-            "error", "INVALID_BOTTLENECK_LIMIT",
-            "Bottleneck dependent threshold must be at least 1.",
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "INVALID_BOTTLENECK_LIMIT",
+                "Bottleneck dependent threshold must be at least 1.",
+            )
+        )
 
     safe_confidence = min(1.0, max(0.0, low_confidence_threshold))
     safe_description_words = max(1, min_description_words)
@@ -255,8 +267,7 @@ def review_quest_blueprint(
     safe_bottleneck = max(1, bottleneck_dependents)
 
     findings.extend(
-        QuestbookReviewFinding("error", "BLUEPRINT_ERROR", message)
-        for message in blueprint.errors
+        QuestbookReviewFinding("error", "BLUEPRINT_ERROR", message) for message in blueprint.errors
     )
     findings.extend(
         QuestbookReviewFinding("warning", "BLUEPRINT_WARNING", message)
@@ -265,9 +276,11 @@ def review_quest_blueprint(
 
     rows = _flatten(blueprint)
     if not rows:
-        findings.append(QuestbookReviewFinding(
-            "error", "EMPTY_BLUEPRINT", "The generated blueprint contains no quests."
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error", "EMPTY_BLUEPRINT", "The generated blueprint contains no quests."
+            )
+        )
 
     quest_ids = [quest.quest_id for _, quest in rows]
     known_ids = set(quest_ids)
@@ -275,33 +288,42 @@ def review_quest_blueprint(
         identifier for identifier in quest_ids if quest_ids.count(identifier) > 1
     }
     for quest_id in sorted(duplicate_quest_ids):
-        findings.append(QuestbookReviewFinding(
-            "error", "DUPLICATE_QUEST_ID", f"Quest ID '{quest_id}' appears more than once.",
-            quest_id=quest_id,
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "DUPLICATE_QUEST_ID",
+                f"Quest ID '{quest_id}' appears more than once.",
+                quest_id=quest_id,
+            )
+        )
 
-    graph = {
-        quest.quest_id: tuple(quest.prerequisite_quests)
-        for _, quest in rows
-    }
-    dangling = sorted({
-        dependency
-        for _, quest in rows
-        for dependency in quest.prerequisite_quests
-        if dependency not in known_ids
-    })
+    graph = {quest.quest_id: tuple(quest.prerequisite_quests) for _, quest in rows}
+    dangling = sorted(
+        {
+            dependency
+            for _, quest in rows
+            for dependency in quest.prerequisite_quests
+            if dependency not in known_ids
+        }
+    )
     for dependency in dangling:
-        findings.append(QuestbookReviewFinding(
-            "error", "DANGLING_DEPENDENCY",
-            f"Prerequisite quest '{dependency}' does not exist.",
-            quest_id=dependency,
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "DANGLING_DEPENDENCY",
+                f"Prerequisite quest '{dependency}' does not exist.",
+                quest_id=dependency,
+            )
+        )
     for cycle in _dependency_cycles(graph):
-        findings.append(QuestbookReviewFinding(
-            "error", "DEPENDENCY_CYCLE",
-            "Dependency cycle detected: " + " -> ".join((*cycle, cycle[0])),
-            quest_id=cycle[0],
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "error",
+                "DEPENDENCY_CYCLE",
+                "Dependency cycle detected: " + " -> ".join((*cycle, cycle[0])),
+                quest_id=cycle[0],
+            )
+        )
 
     dependents: dict[str, int] = {identifier: 0 for identifier in known_ids}
     for dependencies in graph.values():
@@ -318,109 +340,168 @@ def review_quest_blueprint(
         objective_key = (quest.objective.objective_type, quest.objective.identifier)
         objective_owners.setdefault(objective_key, []).append(quest.quest_id)
         if quest.objective.objective_type not in _SUPPORTED_OBJECTIVES:
-            findings.append(QuestbookReviewFinding(
-                "error", "UNSUPPORTED_OBJECTIVE",
-                f"Objective type '{quest.objective.objective_type}' cannot be exported.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "UNSUPPORTED_OBJECTIVE",
+                    f"Objective type '{quest.objective.objective_type}' cannot be exported.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if not _RESOURCE_LOCATION.fullmatch(quest.objective.identifier):
-            findings.append(QuestbookReviewFinding(
-                "error", "INVALID_OBJECTIVE_ID",
-                f"Objective '{quest.objective.identifier}' is not a namespace:path identifier.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "INVALID_OBJECTIVE_ID",
+                    f"Objective '{quest.objective.identifier}' is not a namespace:path identifier.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if quest.objective.count < 1:
-            findings.append(QuestbookReviewFinding(
-                "error", "INVALID_OBJECTIVE_COUNT", "Objective count must be at least one.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "INVALID_OBJECTIVE_COUNT",
+                    "Objective count must be at least one.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if not quest.source_kind or not quest.source_id:
-            findings.append(QuestbookReviewFinding(
-                "error", "MISSING_SOURCE_PROVENANCE",
-                "Generated quest is missing source provenance.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "MISSING_SOURCE_PROVENANCE",
+                    "Generated quest is missing source provenance.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if quest.confidence < safe_confidence:
             low_confidence += 1
-            findings.append(QuestbookReviewFinding(
-                "review", "LOW_CONFIDENCE_QUEST",
-                f"Confidence {quest.confidence:.2f} is below {safe_confidence:.2f}.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "review",
+                    "LOW_CONFIDENCE_QUEST",
+                    f"Confidence {quest.confidence:.2f} is below {safe_confidence:.2f}.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if quest.review_required:
             manual_review += 1
-            findings.append(QuestbookReviewFinding(
-                "review", "MANUAL_REVIEW_REQUIRED",
-                "The progression planner marked this quest for manual review.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "review",
+                    "MANUAL_REVIEW_REQUIRED",
+                    "The progression planner marked this quest for manual review.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if quest.reward_decision not in {"unassigned", "none", "rewarded"}:
-            findings.append(QuestbookReviewFinding(
-                "error", "INVALID_REWARD_DECISION",
-                f"Reward decision '{quest.reward_decision}' is not supported.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "INVALID_REWARD_DECISION",
+                    f"Reward decision '{quest.reward_decision}' is not supported.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if quest.reward_decision == "rewarded" and not quest.rewards:
-            findings.append(QuestbookReviewFinding(
-                "error", "MISSING_REWARD_DEFINITION",
-                "Quest is marked rewarded but contains no reward definition.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "MISSING_REWARD_DEFINITION",
+                    "Quest is marked rewarded but contains no reward definition.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         if quest.reward_decision == "none" and quest.rewards:
-            findings.append(QuestbookReviewFinding(
-                "error", "CONTRADICTORY_REWARD_DECISION",
-                "Quest is marked no-reward but contains reward definitions.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "error",
+                    "CONTRADICTORY_REWARD_DECISION",
+                    "Quest is marked no-reward but contains reward definitions.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
         for reward in quest.rewards:
             if reward.reward_type != "item":
-                findings.append(QuestbookReviewFinding(
-                    "error", "UNSUPPORTED_REWARD_TYPE",
-                    f"Reward type '{reward.reward_type}' cannot be exported.",
-                    chapter.chapter_id, quest.quest_id,
-                ))
+                findings.append(
+                    QuestbookReviewFinding(
+                        "error",
+                        "UNSUPPORTED_REWARD_TYPE",
+                        f"Reward type '{reward.reward_type}' cannot be exported.",
+                        chapter.chapter_id,
+                        quest.quest_id,
+                    )
+                )
             if not _RESOURCE_LOCATION.fullmatch(reward.identifier):
-                findings.append(QuestbookReviewFinding(
-                    "error", "INVALID_REWARD_ID",
-                    f"Reward '{reward.identifier}' is not a namespace:path identifier.",
-                    chapter.chapter_id, quest.quest_id,
-                ))
+                findings.append(
+                    QuestbookReviewFinding(
+                        "error",
+                        "INVALID_REWARD_ID",
+                        f"Reward '{reward.identifier}' is not a namespace:path identifier.",
+                        chapter.chapter_id,
+                        quest.quest_id,
+                    )
+                )
             if reward.count < 1:
-                findings.append(QuestbookReviewFinding(
-                    "error", "INVALID_REWARD_COUNT",
-                    "Reward count must be at least one.",
-                    chapter.chapter_id, quest.quest_id,
-                ))
+                findings.append(
+                    QuestbookReviewFinding(
+                        "error",
+                        "INVALID_REWARD_COUNT",
+                        "Reward count must be at least one.",
+                        chapter.chapter_id,
+                        quest.quest_id,
+                    )
+                )
         word_count = len(_WORD.findall(quest.description))
         if word_count < safe_description_words:
             weak_descriptions += 1
-            findings.append(QuestbookReviewFinding(
-                "review", "WEAK_DESCRIPTION",
-                f"Description has {word_count} words; "
-                f"at least {safe_description_words} are recommended.",
-                chapter.chapter_id, quest.quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "review",
+                    "WEAK_DESCRIPTION",
+                    f"Description has {word_count} words; "
+                    f"at least {safe_description_words} are recommended.",
+                    chapter.chapter_id,
+                    quest.quest_id,
+                )
+            )
 
     duplicate_objectives = 0
     for (objective_type, identifier), owners in sorted(objective_owners.items()):
         if len(owners) < 2:
             continue
         duplicate_objectives += 1
-        findings.append(QuestbookReviewFinding(
-            "warning", "DUPLICATE_OBJECTIVE",
-            f"{objective_type} objective '{identifier}' is used by {len(owners)} quests: "
-            + ", ".join(sorted(owners)),
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "warning",
+                "DUPLICATE_OBJECTIVE",
+                f"{objective_type} objective '{identifier}' is used by {len(owners)} quests: "
+                + ", ".join(sorted(owners)),
+            )
+        )
 
     oversized_chapters = 0
     for chapter in blueprint.chapters:
         if len(chapter.quests) > safe_chapter_quests:
             oversized_chapters += 1
-            findings.append(QuestbookReviewFinding(
-                "warning", "OVERSIZED_CHAPTER",
-                f"Chapter contains {len(chapter.quests)} quests; limit is {safe_chapter_quests}.",
-                chapter_id=chapter.chapter_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "warning",
+                    "OVERSIZED_CHAPTER",
+                    f"Chapter contains {len(chapter.quests)} quests; limit is {safe_chapter_quests}.",
+                    chapter_id=chapter.chapter_id,
+                )
+            )
 
     bottlenecks = 0
     for quest_id, count in sorted(dependents.items()):
@@ -430,45 +511,51 @@ def review_quest_blueprint(
                 (chapter.chapter_id for chapter, quest in rows if quest.quest_id == quest_id),
                 None,
             )
-            findings.append(QuestbookReviewFinding(
-                "warning", "PROGRESSION_BOTTLENECK",
-                f"Quest directly gates {count} later quests; threshold is {safe_bottleneck}.",
-                chapter_id, quest_id,
-            ))
+            findings.append(
+                QuestbookReviewFinding(
+                    "warning",
+                    "PROGRESSION_BOTTLENECK",
+                    f"Quest directly gates {count} later quests; threshold is {safe_bottleneck}.",
+                    chapter_id,
+                    quest_id,
+                )
+            )
 
     if blueprint.shortfall:
-        findings.append(QuestbookReviewFinding(
-            "warning", "QUEST_TARGET_SHORTFALL",
-            f"Blueprint is {blueprint.shortfall} quests below the requested target.",
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "warning",
+                "QUEST_TARGET_SHORTFALL",
+                f"Blueprint is {blueprint.shortfall} quests below the requested target.",
+            )
+        )
 
     export_warnings = 0
-    missing_rewards = sum(
-        quest.reward_decision == "unassigned" for _, quest in rows
-    )
+    missing_rewards = sum(quest.reward_decision == "unassigned" for _, quest in rows)
     try:
         project = blueprint_to_project(blueprint)
         validation = ProjectValidator().validate(project)
         export_warnings = len(validation.warnings)
         for issue in validation.errors:
-            findings.append(QuestbookReviewFinding(
-                "error", "EXPORT_VALIDATION_ERROR", issue.format()
-            ))
+            findings.append(
+                QuestbookReviewFinding("error", "EXPORT_VALIDATION_ERROR", issue.format())
+            )
         for issue in validation.warnings:
-            findings.append(QuestbookReviewFinding(
-                "warning", "EXPORT_VALIDATION_WARNING", issue.format()
-            ))
+            findings.append(
+                QuestbookReviewFinding("warning", "EXPORT_VALIDATION_WARNING", issue.format())
+            )
     except (OSError, TypeError, ValueError) as exc:
-        findings.append(QuestbookReviewFinding(
-            "error", "EXPORT_CONVERSION_FAILED", str(exc)
-        ))
+        findings.append(QuestbookReviewFinding("error", "EXPORT_CONVERSION_FAILED", str(exc)))
 
     if missing_rewards:
-        findings.append(QuestbookReviewFinding(
-            "review", "MISSING_REWARD_DECISIONS",
-            f"{missing_rewards} quests have no reward decision. "
-            "Confirm intentional no-reward quests or add rewards.",
-        ))
+        findings.append(
+            QuestbookReviewFinding(
+                "review",
+                "MISSING_REWARD_DECISIONS",
+                f"{missing_rewards} quests have no reward decision. "
+                "Confirm intentional no-reward quests or add rewards.",
+            )
+        )
 
     roots = sum(not graph.get(identifier) for identifier in graph)
     leaves = sum(dependents.get(identifier, 0) == 0 for identifier in graph)

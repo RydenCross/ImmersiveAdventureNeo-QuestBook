@@ -112,7 +112,7 @@ def build_actually_additions_foundations(project: Project, create_complete: str)
         .finish()
     )
 
-    lens = (
+    (
         chapter.quest(
             "lens",
             "Focus the Beam",
@@ -254,7 +254,7 @@ def build_actually_additions_foundations(project: Project, create_complete: str)
         .finish()
     )
 
-    enervator = (
+    (
         chapter.quest(
             "enervator",
             "Recover Stored Energy",

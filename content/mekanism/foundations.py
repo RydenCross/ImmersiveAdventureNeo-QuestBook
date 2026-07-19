@@ -107,7 +107,7 @@ def build_mekanism_foundations(project: Project, ae2_complete: str) -> tuple[Cha
         .finish()
     )
 
-    enriched_redstone = (
+    (
         chapter.quest(
             "enriched_redstone",
             "Concentrated Infusion",
@@ -283,7 +283,7 @@ def build_mekanism_foundations(project: Project, ae2_complete: str) -> tuple[Cha
         .finish()
     )
 
-    tank = (
+    (
         chapter.quest(
             "basic_fluid_tank",
             "Prepare for Fluids",

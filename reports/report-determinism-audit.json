@@ -1,6 +1,7 @@
 {
-  "checked_reports": 58,
+  "checked_reports": 59,
   "deterministic_reports": [
+    "application-update-client-audit.json",
     "audit-dependency-audit.json",
     "audit-performance-audit.json",
     "audit-registry-audit.json",

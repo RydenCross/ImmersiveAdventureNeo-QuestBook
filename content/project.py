@@ -307,7 +307,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .advancement("minecraft:husbandry/breed_an_animal")
         .finish()
     )
-    eggs = (
+    (
         survival.quest(
             "eggs",
             "The Chicken or the Egg",
@@ -348,7 +348,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .item("minecraft:smoker")
         .finish()
     )
-    cauldron = (
+    (
         survival.quest(
             "cauldron",
             "A Proper Wash Station",
@@ -482,7 +482,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .item("minecraft:compass")
         .finish()
     )
-    clock = (
+    (
         survival.quest(
             "clock",
             "Timekeeper",
@@ -572,7 +572,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .item("minecraft:pumpkin", 16)
         .finish()
     )
-    melons = (
+    (
         survival.quest(
             "melons",
             "Slices for Everyone",
@@ -644,7 +644,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .item("minecraft:tropical_fish")
         .finish()
     )
-    fish_feast = (
+    (
         survival.quest(
             "fish_feast",
             "From Water to Table",
@@ -717,7 +717,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .item("minecraft:honey_bottle", 4)
         .finish()
     )
-    apiary = (
+    (
         survival.quest(
             "apiary",
             "A Home for the Hive",
@@ -789,7 +789,7 @@ def _build_survival(project: Project, welcome_complete: str) -> str:
         .item("minecraft:anvil")
         .finish()
     )
-    workshop = (
+    (
         survival.quest(
             "vanilla_workshop",
             "The Complete Homestead Workshop",
@@ -857,7 +857,7 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .item("minecraft:torch", 64)
         .finish()
     )
-    ladders = (
+    (
         mining.quest(
             "ladders",
             "A Safe Way Back",
@@ -885,7 +885,7 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .finish()
     )
 
-    coal = (
+    (
         mining.quest(
             "coal",
             "Black Gold",
@@ -1032,7 +1032,7 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .item("minecraft:rail", 64)
         .finish()
     )
-    minecart = (
+    (
         mining.quest(
             "minecart",
             "Ride the Line",
@@ -1154,7 +1154,7 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .item("minecraft:anvil")
         .finish()
     )
-    grindstone = (
+    (
         mining.quest(
             "grindstone",
             "A Fresh Edge",
@@ -1182,7 +1182,7 @@ def _build_mining(project: Project, survival_complete: str) -> None:
         .item("minecraft:flint_and_steel")
         .finish()
     )
-    golden_apple = (
+    (
         mining.quest(
             "golden_apple",
             "Emergency Rations",
@@ -1400,7 +1400,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .advancement("minecraft:adventure/trade")
         .finish()
     )
-    bell = (
+    (
         exploration.quest(
             "bell",
             "Center of Town",
@@ -1427,7 +1427,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .checkmark()
         .finish()
     )
-    raid = (
+    (
         exploration.quest(
             "raid",
             "Hero of the Village",
@@ -1468,7 +1468,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .checkmark()
         .finish()
     )
-    jungle_temple = (
+    (
         exploration.quest(
             "jungle_temple",
             "Secrets in the Vines",
@@ -1482,7 +1482,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .checkmark()
         .finish()
     )
-    igloo = (
+    (
         exploration.quest(
             "igloo",
             "A Chilling Discovery",
@@ -1550,7 +1550,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .item("minecraft:saddle")
         .finish()
     )
-    lead = (
+    (
         exploration.quest(
             "lead",
             "Traveling Companions",
@@ -1579,7 +1579,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .finish()
     )
 
-    adventuring_time = (
+    (
         exploration.quest(
             "adventuring_time",
             "A World of Biomes",
@@ -1767,7 +1767,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .item("minecraft:conduit")
         .finish()
     )
-    mansion_conquest = (
+    (
         exploration.quest(
             "mansion_conquest",
             "Clear the Dark Halls",
@@ -1880,7 +1880,7 @@ def _build_exploration(project: Project, survival_complete: str) -> str:
         .item("minecraft:elytra")
         .finish()
     )
-    dimension_cartographer = (
+    (
         exploration.quest(
             "dimension_cartographer",
             "Cartographer of Three Worlds",

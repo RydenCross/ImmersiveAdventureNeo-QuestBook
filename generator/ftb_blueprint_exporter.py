@@ -7,7 +7,6 @@ from pathlib import Path
 import re
 import shutil
 from tempfile import TemporaryDirectory
-from typing import Iterable
 
 from generator.ids import UUIDService
 from generator.parser import FTBQuestParser
@@ -106,22 +105,22 @@ def _rewards_for(quest: BlueprintQuest, *, ids: UUIDService, quest_key: str) -> 
                 f"for quest {quest.quest_id}"
             )
         if isinstance(reward.count, bool) or not isinstance(reward.count, int) or reward.count < 1:
-            raise ValueError(
-                f"blueprint reward count must be positive for quest {quest.quest_id}"
-            )
+            raise ValueError(f"blueprint reward count must be positive for quest {quest.quest_id}")
         reward_key = f"{quest_key}/reward/{index}/{reward.identifier}"
-        rewards.append(Reward(
-            id=_ftb_id(ids.reward(quest_key, reward_key).int),
-            type=RewardType.ITEM,
-            data={
-                "item": {"id": reward.identifier, "count": 1},
-                "count": reward.count,
-            },
-            raw_data={
-                "generated_reason": reward.reason,
-                "generated_reward_decision": quest.reward_decision,
-            },
-        ))
+        rewards.append(
+            Reward(
+                id=_ftb_id(ids.reward(quest_key, reward_key).int),
+                type=RewardType.ITEM,
+                data={
+                    "item": {"id": reward.identifier, "count": 1},
+                    "count": reward.count,
+                },
+                raw_data={
+                    "generated_reason": reward.reason,
+                    "generated_reward_decision": quest.reward_decision,
+                },
+            )
+        )
     return rewards
 
 
@@ -226,7 +225,9 @@ def blueprint_to_project(
 
 def _tree_digest(root: Path) -> str:
     digest = hashlib.sha256()
-    for path in sorted((item for item in root.rglob("*") if item.is_file()), key=lambda item: item.as_posix()):
+    for path in sorted(
+        (item for item in root.rglob("*") if item.is_file()), key=lambda item: item.as_posix()
+    ):
         digest.update(path.relative_to(root).as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(path.read_bytes())
@@ -318,7 +319,9 @@ def export_quest_blueprint(
                     "exported SNBT failed round-trip validation: "
                     + "; ".join(issue.format() for issue in validation.errors)
                 )
-            if len(restored.chapters) != len(project.chapters) or len(restored.quests) != len(project.quests):
+            if len(restored.chapters) != len(project.chapters) or len(restored.quests) != len(
+                project.quests
+            ):
                 raise ValueError("exported SNBT round trip changed chapter or quest counts")
             if destination.exists():
                 if destination.is_dir():

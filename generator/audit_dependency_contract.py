@@ -7,14 +7,15 @@ from generator.audit_registry_contract import AUDIT_REGISTRY
 
 # Dependencies are expressed by quality-gate names. Most content audits are roots;
 # framework contracts depend on the registries or surfaces they validate.
-AUDIT_DEPENDENCIES: dict[str, tuple[str, ...]] = {
-    item.gate_name: () for item in AUDIT_REGISTRY
-}
+AUDIT_DEPENDENCIES: dict[str, tuple[str, ...]] = {item.gate_name: () for item in AUDIT_REGISTRY}
 AUDIT_DEPENDENCIES.update(
     {
         "output manifest guard": ("determinism audit",),
         "report freshness guard": ("output manifest guard",),
         "release artifact audit": ("repository hygiene audit", "packaging audit"),
+        "secure application update client contract": (
+            "desktop installers and update metadata contract",
+        ),
         "release reproducibility audit": ("release artifact audit",),
         "audit registry contract": ("CLI contract audit",),
         "test inventory contract": ("audit registry contract",),
@@ -26,11 +27,20 @@ AUDIT_DEPENDENCIES.update(
         "CLI exit-code contract": ("CLI output contract",),
         "report write-safety contract": ("CLI output contract",),
         "report refresh order contract": ("report provenance contract",),
-        "report refresh contract": ("report refresh order contract", "report write-safety contract"),
+        "report refresh contract": (
+            "report refresh order contract",
+            "report write-safety contract",
+        ),
         "report refresh convergence contract": ("report refresh contract",),
         "report refresh idempotence contract": ("report refresh convergence contract",),
-        "report refresh cache contract": ("report refresh convergence contract", "report write-safety contract"),
-        "release report finalization contract": ("report refresh idempotence contract", "report refresh order contract"),
+        "report refresh cache contract": (
+            "report refresh convergence contract",
+            "report write-safety contract",
+        ),
+        "release report finalization contract": (
+            "report refresh idempotence contract",
+            "report refresh order contract",
+        ),
         "release package verification contract": ("release report finalization contract",),
         "release manifest contract": ("release package verification contract",),
         "release archive metadata contract": ("release manifest contract",),
@@ -44,14 +54,29 @@ AUDIT_DEPENDENCIES.update(
         "FTB blueprint exporter contract": ("quest description contract",),
         "questbook review contract": ("FTB blueprint exporter contract",),
         "reward planner contract": ("questbook review contract", "quest description contract"),
-        "visual editor data model contract": ("reward planner contract", "FTB blueprint exporter contract"),
+        "visual editor data model contract": (
+            "reward planner contract",
+            "FTB blueprint exporter contract",
+        ),
         "local visual editor service contract": ("visual editor data model contract",),
         "interactive visual editor UI contract": ("local visual editor service contract",),
         "editor workspace tools contract": ("interactive visual editor UI contract",),
-        "editor autosave and recovery contract": ("editor workspace tools contract", "local visual editor service contract"),
-        "editor background jobs contract": ("editor autosave and recovery contract", "interactive visual editor UI contract"),
-        "portable project bundle contract": ("editor background jobs contract", "FTB blueprint exporter contract"),
-        "desktop launcher and instance discovery contract": ("portable project bundle contract", "local visual editor service contract"),
+        "editor autosave and recovery contract": (
+            "editor workspace tools contract",
+            "local visual editor service contract",
+        ),
+        "editor background jobs contract": (
+            "editor autosave and recovery contract",
+            "interactive visual editor UI contract",
+        ),
+        "portable project bundle contract": (
+            "editor background jobs contract",
+            "FTB blueprint exporter contract",
+        ),
+        "desktop launcher and instance discovery contract": (
+            "portable project bundle contract",
+            "local visual editor service contract",
+        ),
         "native desktop distribution and first-run setup contract": (
             "desktop launcher and instance discovery contract",
         ),
@@ -76,8 +101,15 @@ class AuditDependencyContract:
 
     @property
     def is_clean(self) -> bool:
-        return not any((self.missing_nodes, self.unknown_dependencies, self.dependency_cycles,
-                        self.gate_order_violations, self.refresh_order_violations))
+        return not any(
+            (
+                self.missing_nodes,
+                self.unknown_dependencies,
+                self.dependency_cycles,
+                self.gate_order_violations,
+                self.refresh_order_violations,
+            )
+        )
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -96,21 +128,24 @@ class AuditDependencyContract:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True)
 
     def format(self) -> str:
-        return "\n".join((
-            f"Audit dependency contract: {'PASS' if self.is_clean else 'FAIL'}",
-            f"Registered audits: {self.registered_audits}.",
-            f"Dependency edges: {self.dependency_edges}.",
-            f"Unknown dependencies: {len(self.unknown_dependencies)}.",
-            f"Dependency cycles: {len(self.dependency_cycles)}.",
-            f"Gate order violations: {len(self.gate_order_violations)}.",
-            f"Refresh order violations: {len(self.refresh_order_violations)}.",
-        ))
+        return "\n".join(
+            (
+                f"Audit dependency contract: {'PASS' if self.is_clean else 'FAIL'}",
+                f"Registered audits: {self.registered_audits}.",
+                f"Dependency edges: {self.dependency_edges}.",
+                f"Unknown dependencies: {len(self.unknown_dependencies)}.",
+                f"Dependency cycles: {len(self.dependency_cycles)}.",
+                f"Gate order violations: {len(self.gate_order_violations)}.",
+                f"Refresh order violations: {len(self.refresh_order_violations)}.",
+            )
+        )
 
 
 def _cycles(graph: dict[str, tuple[str, ...]]) -> tuple[str, ...]:
     visiting: set[str] = set()
     visited: set[str] = set()
     found: set[str] = set()
+
     def visit(node: str, path: tuple[str, ...]) -> None:
         if node in visiting:
             start = path.index(node)
@@ -124,6 +159,7 @@ def _cycles(graph: dict[str, tuple[str, ...]]) -> tuple[str, ...]:
                 visit(dependency, path + (dependency,))
         visiting.remove(node)
         visited.add(node)
+
     for node in graph:
         visit(node, (node,))
     return tuple(sorted(found))
@@ -131,12 +167,16 @@ def _cycles(graph: dict[str, tuple[str, ...]]) -> tuple[str, ...]:
 
 def _order_violations(order: tuple[str, ...], graph: dict[str, tuple[str, ...]]) -> tuple[str, ...]:
     positions = {name: index for index, name in enumerate(order)}
-    return tuple(sorted(
-        f"{dependency} -> {name}"
-        for name, dependencies in graph.items()
-        for dependency in dependencies
-        if name in positions and dependency in positions and positions[dependency] > positions[name]
-    ))
+    return tuple(
+        sorted(
+            f"{dependency} -> {name}"
+            for name, dependencies in graph.items()
+            for dependency in dependencies
+            if name in positions
+            and dependency in positions
+            and positions[dependency] > positions[name]
+        )
+    )
 
 
 def run_audit_dependency_contract(
@@ -149,10 +189,14 @@ def run_audit_dependency_contract(
     registered = tuple(item.gate_name for item in AUDIT_REGISTRY)
     registered_set = set(registered)
     missing_nodes = tuple(sorted(registered_set - set(graph)))
-    unknown = tuple(sorted({dep for deps in graph.values() for dep in deps if dep not in registered_set}))
+    unknown = tuple(
+        sorted({dep for deps in graph.values() for dep in deps if dep not in registered_set})
+    )
     gate_order = tuple(_default_checks())
     report_to_gate = {item.report: item.gate_name for item in AUDIT_REGISTRY if item.report}
-    refresh_gate_order = tuple(report_to_gate[name] for name in report_refresh_order() if name in report_to_gate)
+    refresh_gate_order = tuple(
+        report_to_gate[name] for name in report_refresh_order() if name in report_to_gate
+    )
     return AuditDependencyContract(
         registered_audits=len(registered),
         dependency_edges=sum(len(value) for value in graph.values()),

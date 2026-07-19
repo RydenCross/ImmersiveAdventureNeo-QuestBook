@@ -214,6 +214,41 @@ python -m generator desktop-packages-audit --format json --output reports/deskto
 
 See [`docs/DESKTOP_INSTALLERS_AND_UPDATES.md`](docs/DESKTOP_INSTALLERS_AND_UPDATES.md).
 
+## Secure update checks and staged downloads
+
+Check a local or HTTPS release feed without installing anything:
+
+```bash
+python -m generator quest-maker-update-check \
+  https://updates.example.invalid/stable/latest.json \
+  --current-version 1.0.0 \
+  --channel stable \
+  --platform auto
+```
+
+Download only the selected platform artifact, verify its declared size and SHA-256, and move it atomically into the update staging directory:
+
+```bash
+python -m generator quest-maker-update-stage \
+  https://updates.example.invalid/stable/latest.json \
+  --current-version 1.0.0 \
+  --channel stable \
+  --destination ~/.ftb-quest-maker/updates
+```
+
+Remote metadata and artifacts must use HTTPS. Signed feeds can be verified with `--signing-key`, and `--require-signature` rejects unsigned metadata. Staging never executes installers or replaces the running application; it writes a deterministic `pending-update.json` manifest for an explicit later installation step.
+
+Validate the update client with:
+
+```bash
+python -m generator application-update-client-audit
+python -m generator application-update-client-audit \
+  --format json \
+  --output reports/application-update-client-audit.json
+```
+
+See [`docs/APPLICATION_UPDATE_CLIENT.md`](docs/APPLICATION_UPDATE_CLIENT.md).
+
 ## Local visual editor service and API
 
 Launch the generated editor model as a local browser application:

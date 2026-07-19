@@ -1,7 +1,8 @@
 import json
-from pathlib import Path
 
-from generator.release_package_verification_contract import run_release_package_verification_contract
+from generator.release_package_verification_contract import (
+    run_release_package_verification_contract,
+)
 
 
 def test_release_package_verification_contract_is_clean() -> None:

@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 92,
+  "documented_command_count": 95,
   "empty_documents": [],
-  "expected_command_count": 92,
-  "markdown_file_count": 90,
+  "expected_command_count": 95,
+  "markdown_file_count": 91,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -11,6 +11,7 @@
     "docs/AE2_EXPANSION.md",
     "docs/APOTHEOSIS.md",
     "docs/APOTHEOSIS_EXPANSION.md",
+    "docs/APPLICATION_UPDATE_CLIENT.md",
     "docs/ARS_NOUVEAU.md",
     "docs/ARS_NOUVEAU_EXPANSION.md",
     "docs/AUDIT_DEPENDENCY_CONTRACT.md",

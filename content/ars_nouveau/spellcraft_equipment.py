@@ -134,7 +134,7 @@ def build_ars_nouveau_spellcraft_equipment(
         .finish()
     )
 
-    familiar = (
+    (
         chapter.quest(
             "first_familiar",
             "A Magical Companion",
@@ -220,7 +220,7 @@ def build_ars_nouveau_spellcraft_equipment(
         .finish()
     )
 
-    enchanters_bow = (
+    (
         chapter.quest(
             "enchanters_bow",
             "Arcane Archery",
@@ -235,7 +235,7 @@ def build_ars_nouveau_spellcraft_equipment(
         .finish()
     )
 
-    advanced_turret = (
+    (
         chapter.quest(
             "advanced_spell_turret",
             "A Smarter Spell Turret",

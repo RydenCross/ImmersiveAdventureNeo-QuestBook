@@ -50,7 +50,7 @@ def build_ae2_channels_autocrafting(chapter: ChapterBuilder, foundations_complet
         .finish()
     )
 
-    anchors = (
+    (
         chapter.quest(
             "cable_anchors",
             "Separate the Branches",
@@ -215,7 +215,7 @@ def build_ae2_channels_autocrafting(chapter: ChapterBuilder, foundations_complet
         .finish()
     )
 
-    coprocessor = (
+    (
         chapter.quest(
             "crafting_accelerator",
             "Work in Parallel",
@@ -233,7 +233,7 @@ def build_ae2_channels_autocrafting(chapter: ChapterBuilder, foundations_complet
         .finish()
     )
 
-    monitor = (
+    (
         chapter.quest(
             "crafting_monitor",
             "Watch the Job",

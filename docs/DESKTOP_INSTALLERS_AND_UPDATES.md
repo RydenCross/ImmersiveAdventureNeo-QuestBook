@@ -115,3 +115,8 @@ python -m generator desktop-packages-audit \
 ```
 
 The audit verifies deterministic Windows and Linux package plans, platform-specific artifact naming, target-only builds, Linux AppDir staging, deterministic signed update metadata, correct-key verification, wrong-key rejection, tamper detection, and the checked-in package recipes.
+
+## Client-side update checks
+
+Commit 106 consumes this metadata through `quest-maker-update-check` and `quest-maker-update-stage`. The client requires HTTPS for remote sources, verifies metadata signatures when configured, compares semantic versions and channels, and atomically stages only artifacts whose size and SHA-256 match the feed. See [Secure Application Update Client](APPLICATION_UPDATE_CLIENT.md).
+

@@ -60,34 +60,120 @@ AUDIT_REGISTRY = (
     ),
     AuditRegistration("CLI output contract", "cli-output-audit", "cli-output-audit.json"),
     AuditRegistration("CLI exit-code contract", "cli-exit-code-audit", "cli-exit-code-audit.json"),
-    AuditRegistration("report write-safety contract", "report-write-safety-audit", "report-write-safety-audit.json"),
-    AuditRegistration("report refresh order contract", "report-refresh-order-audit", "report-refresh-order-audit.json"),
-    AuditRegistration("report refresh contract", "report-refresh-audit", "report-refresh-audit.json"),
-    AuditRegistration("report refresh convergence contract", "report-refresh-convergence-audit", "report-refresh-convergence-audit.json"),
-    AuditRegistration("report refresh idempotence contract", "report-refresh-idempotence-audit", "report-refresh-idempotence-audit.json"),
-    AuditRegistration("report refresh cache contract", "report-refresh-cache-audit", "report-refresh-cache-audit.json"),
-    AuditRegistration("release report finalization contract", "release-report-finalization-audit", "release-report-finalization-audit.json"),
-    AuditRegistration("release package verification contract", "release-package-verification-audit", "release-package-verification-audit.json"),
-    AuditRegistration("release manifest contract", "release-manifest-audit", "release-manifest-audit.json"),
-    AuditRegistration("release archive metadata contract", "release-archive-metadata-audit", "release-archive-metadata-audit.json"),
-    AuditRegistration("release archive extraction safety contract", "release-archive-extraction-safety-audit", "release-archive-extraction-safety-audit.json"),
-    AuditRegistration("release archive Unicode path contract", "release-archive-unicode-path-audit", "release-archive-unicode-path-audit.json"),
-    AuditRegistration("release archive compression contract", "release-archive-compression-audit", "release-archive-compression-audit.json"),
-    AuditRegistration("mod compatibility contract", "mod-compatibility-audit", "mod-compatibility-audit.json"),
-    AuditRegistration("modpack scanner contract", "modpack-scanner-audit", "modpack-scanner-audit.json"),
-    AuditRegistration("modpack content scanner contract", "modpack-content-scanner-audit", "modpack-content-scanner-audit.json"),
-    AuditRegistration("progression planner contract", "progression-planner-audit", "progression-planner-audit.json"),
-    AuditRegistration("quest description contract", "quest-description-audit", "quest-description-audit.json"),
-    AuditRegistration("FTB blueprint exporter contract", "ftb-blueprint-exporter-audit", "ftb-blueprint-exporter-audit.json"),
-    AuditRegistration("questbook review contract", "questbook-review-audit", "questbook-review-audit.json"),
-    AuditRegistration("reward planner contract", "reward-planner-audit", "reward-planner-audit.json"),
-    AuditRegistration("visual editor data model contract", "editor-model-audit", "editor-model-audit.json"),
-    AuditRegistration("local visual editor service contract", "editor-service-audit", "editor-service-audit.json"),
-    AuditRegistration("interactive visual editor UI contract", "editor-ui-audit", "editor-ui-audit.json"),
-    AuditRegistration("editor workspace tools contract", "editor-workspace-audit", "editor-workspace-audit.json"),
-    AuditRegistration("editor autosave and recovery contract", "editor-recovery-audit", "editor-recovery-audit.json"),
-    AuditRegistration("editor background jobs contract", "editor-jobs-audit", "editor-jobs-audit.json"),
-    AuditRegistration("portable project bundle contract", "project-bundle-audit", "project-bundle-audit.json"),
+    AuditRegistration(
+        "report write-safety contract",
+        "report-write-safety-audit",
+        "report-write-safety-audit.json",
+    ),
+    AuditRegistration(
+        "report refresh order contract",
+        "report-refresh-order-audit",
+        "report-refresh-order-audit.json",
+    ),
+    AuditRegistration(
+        "report refresh contract", "report-refresh-audit", "report-refresh-audit.json"
+    ),
+    AuditRegistration(
+        "report refresh convergence contract",
+        "report-refresh-convergence-audit",
+        "report-refresh-convergence-audit.json",
+    ),
+    AuditRegistration(
+        "report refresh idempotence contract",
+        "report-refresh-idempotence-audit",
+        "report-refresh-idempotence-audit.json",
+    ),
+    AuditRegistration(
+        "report refresh cache contract",
+        "report-refresh-cache-audit",
+        "report-refresh-cache-audit.json",
+    ),
+    AuditRegistration(
+        "release report finalization contract",
+        "release-report-finalization-audit",
+        "release-report-finalization-audit.json",
+    ),
+    AuditRegistration(
+        "release package verification contract",
+        "release-package-verification-audit",
+        "release-package-verification-audit.json",
+    ),
+    AuditRegistration(
+        "release manifest contract", "release-manifest-audit", "release-manifest-audit.json"
+    ),
+    AuditRegistration(
+        "release archive metadata contract",
+        "release-archive-metadata-audit",
+        "release-archive-metadata-audit.json",
+    ),
+    AuditRegistration(
+        "release archive extraction safety contract",
+        "release-archive-extraction-safety-audit",
+        "release-archive-extraction-safety-audit.json",
+    ),
+    AuditRegistration(
+        "release archive Unicode path contract",
+        "release-archive-unicode-path-audit",
+        "release-archive-unicode-path-audit.json",
+    ),
+    AuditRegistration(
+        "release archive compression contract",
+        "release-archive-compression-audit",
+        "release-archive-compression-audit.json",
+    ),
+    AuditRegistration(
+        "mod compatibility contract", "mod-compatibility-audit", "mod-compatibility-audit.json"
+    ),
+    AuditRegistration(
+        "modpack scanner contract", "modpack-scanner-audit", "modpack-scanner-audit.json"
+    ),
+    AuditRegistration(
+        "modpack content scanner contract",
+        "modpack-content-scanner-audit",
+        "modpack-content-scanner-audit.json",
+    ),
+    AuditRegistration(
+        "progression planner contract",
+        "progression-planner-audit",
+        "progression-planner-audit.json",
+    ),
+    AuditRegistration(
+        "quest description contract", "quest-description-audit", "quest-description-audit.json"
+    ),
+    AuditRegistration(
+        "FTB blueprint exporter contract",
+        "ftb-blueprint-exporter-audit",
+        "ftb-blueprint-exporter-audit.json",
+    ),
+    AuditRegistration(
+        "questbook review contract", "questbook-review-audit", "questbook-review-audit.json"
+    ),
+    AuditRegistration(
+        "reward planner contract", "reward-planner-audit", "reward-planner-audit.json"
+    ),
+    AuditRegistration(
+        "visual editor data model contract", "editor-model-audit", "editor-model-audit.json"
+    ),
+    AuditRegistration(
+        "local visual editor service contract", "editor-service-audit", "editor-service-audit.json"
+    ),
+    AuditRegistration(
+        "interactive visual editor UI contract", "editor-ui-audit", "editor-ui-audit.json"
+    ),
+    AuditRegistration(
+        "editor workspace tools contract", "editor-workspace-audit", "editor-workspace-audit.json"
+    ),
+    AuditRegistration(
+        "editor autosave and recovery contract",
+        "editor-recovery-audit",
+        "editor-recovery-audit.json",
+    ),
+    AuditRegistration(
+        "editor background jobs contract", "editor-jobs-audit", "editor-jobs-audit.json"
+    ),
+    AuditRegistration(
+        "portable project bundle contract", "project-bundle-audit", "project-bundle-audit.json"
+    ),
     AuditRegistration(
         "desktop launcher and instance discovery contract",
         "desktop-launcher-audit",
@@ -103,8 +189,17 @@ AUDIT_REGISTRY = (
         "desktop-packages-audit",
         "desktop-packages-audit.json",
     ),
-    AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
-    AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
+    AuditRegistration(
+        "secure application update client contract",
+        "application-update-client-audit",
+        "application-update-client-audit.json",
+    ),
+    AuditRegistration(
+        "audit performance contract", "audit-performance-audit", "audit-performance-audit.json"
+    ),
+    AuditRegistration(
+        "audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"
+    ),
 )
 
 

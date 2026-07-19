@@ -7,7 +7,7 @@ from pathlib import Path
 import platform as platform_module
 import subprocess
 import sys
-from typing import Callable, Sequence
+from typing import Callable
 
 SUPPORTED_NATIVE_PLATFORMS = ("windows", "linux")
 DEFAULT_DISTRIBUTION_DIRECTORY = Path("dist/native")
@@ -51,14 +51,16 @@ class NativeDistributionPlan:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True)
 
     def format(self) -> str:
-        return "\n".join((
-            "Native desktop distribution plan: PASS",
-            f"Platform: {self.platform}.",
-            f"Executable: {self.executable_name}.",
-            f"Destination: {self.destination}.",
-            f"Spec: {self.spec_path}.",
-            "Command: " + " ".join(self.command),
-        ))
+        return "\n".join(
+            (
+                "Native desktop distribution plan: PASS",
+                f"Platform: {self.platform}.",
+                f"Executable: {self.executable_name}.",
+                f"Destination: {self.destination}.",
+                f"Spec: {self.spec_path}.",
+                "Command: " + " ".join(self.command),
+            )
+        )
 
 
 @dataclass(frozen=True, slots=True)

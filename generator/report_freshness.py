@@ -41,11 +41,17 @@ from generator.report_refresh_convergence_contract import run_report_refresh_con
 from generator.report_refresh_idempotence_contract import run_report_refresh_idempotence_contract
 from generator.report_refresh_cache_contract import run_report_refresh_cache_contract
 from generator.release_report_finalization_contract import run_release_report_finalization_contract
-from generator.release_package_verification_contract import run_release_package_verification_contract
+from generator.release_package_verification_contract import (
+    run_release_package_verification_contract,
+)
 from generator.release_manifest_contract import run_release_manifest_contract
 from generator.release_archive_metadata_contract import run_release_archive_metadata_contract
-from generator.release_archive_extraction_safety_contract import run_release_archive_extraction_safety_contract
-from generator.release_archive_unicode_path_contract import run_release_archive_unicode_path_contract
+from generator.release_archive_extraction_safety_contract import (
+    run_release_archive_extraction_safety_contract,
+)
+from generator.release_archive_unicode_path_contract import (
+    run_release_archive_unicode_path_contract,
+)
 from generator.release_archive_compression_contract import run_release_archive_compression_contract
 from generator.mod_compatibility_contract import run_mod_compatibility_contract
 from generator.modpack_scanner_contract import run_modpack_scanner_contract
@@ -65,6 +71,7 @@ from generator.project_bundle_contract import run_project_bundle_contract
 from generator.desktop_launcher_contract import run_desktop_launcher_contract
 from generator.native_distribution_contract import run_native_distribution_contract
 from generator.desktop_packages_contract import run_desktop_packages_contract
+from generator.application_updates_contract import run_application_updates_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -167,6 +174,9 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "desktop-launcher-audit.json": lambda: run_desktop_launcher_contract().format_json(),
         "native-distribution-audit.json": lambda: run_native_distribution_contract().format_json(),
         "desktop-packages-audit.json": lambda: run_desktop_packages_contract().format_json(),
+        "application-update-client-audit.json": (
+            lambda: run_application_updates_contract().format_json()
+        ),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

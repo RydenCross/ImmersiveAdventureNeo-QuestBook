@@ -185,7 +185,7 @@ def build_ars_nouveau_foundations(
         .finish()
     )
 
-    volcanic = (
+    (
         chapter.quest(
             "volcanic_sourcelink",
             "Source from Flame",
@@ -270,7 +270,7 @@ def build_ars_nouveau_foundations(
         .finish()
     )
 
-    spell_turret = (
+    (
         chapter.quest(
             "spell_turret",
             "Magic on Command",
@@ -285,7 +285,7 @@ def build_ars_nouveau_foundations(
         .finish()
     )
 
-    mage_armor = (
+    (
         chapter.quest(
             "mage_armor",
             "Dress for the Arcane",

@@ -1,6 +1,7 @@
 {
-  "command_count": 92,
+  "command_count": 95,
   "commands": [
+    "application-update-client-audit",
     "audit",
     "audit-dependency-audit",
     "audit-performance-audit",
@@ -52,7 +53,9 @@
     "quest-maker-native-build",
     "quest-maker-package-build",
     "quest-maker-setup",
+    "quest-maker-update-check",
     "quest-maker-update-metadata",
+    "quest-maker-update-stage",
     "quest-maker-update-verify",
     "quest-project-bundle",
     "quest-project-inspect",

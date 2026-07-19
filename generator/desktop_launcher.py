@@ -11,7 +11,6 @@ from generator.desktop_setup import (
     DesktopPreferences,
     complete_first_run_setup,
     load_desktop_preferences,
-    save_desktop_preferences,
     update_last_instance,
 )
 from generator.instance_discovery import (
@@ -88,9 +87,7 @@ def _instance_label(instance: DiscoveredInstance) -> str:
 
 
 def _saved_search_roots(preferences: DesktopPreferences) -> tuple[InstanceSearchRoot, ...]:
-    return tuple(
-        InstanceSearchRoot("Saved", Path(path)) for path in preferences.search_roots
-    )
+    return tuple(InstanceSearchRoot("Saved", Path(path)) for path in preferences.search_roots)
 
 
 def launch_desktop(
@@ -132,9 +129,7 @@ def launch_desktop(
         frame.pack(fill="both", expand=True)
         ttk.Label(
             frame,
-            text=(
-                "Choose where projects are stored and which extra launcher folders are scanned."
-            ),
+            text=("Choose where projects are stored and which extra launcher folders are scanned."),
             wraplength=620,
         ).grid(row=0, column=0, columnspan=3, sticky="w", pady=(0, 12))
 
@@ -185,18 +180,14 @@ def launch_desktop(
         root_buttons = ttk.Frame(frame)
         root_buttons.grid(row=4, column=2, sticky="n", padx=(8, 0), pady=(2, 8))
         ttk.Button(root_buttons, text="Add…", command=add_root).pack(fill="x")
-        ttk.Button(root_buttons, text="Remove", command=remove_root).pack(
-            fill="x", pady=(6, 0)
-        )
+        ttk.Button(root_buttons, text="Remove", command=remove_root).pack(fill="x", pady=(6, 0))
 
         ttk.Checkbutton(
             frame,
             text="Open the browser automatically when an editor starts",
             variable=browser_var,
         ).grid(row=5, column=0, columnspan=3, sticky="w", pady=(2, 8))
-        ttk.Label(frame, text="Maximum discovered instances").grid(
-            row=6, column=0, sticky="w"
-        )
+        ttk.Label(frame, text="Maximum discovered instances").grid(row=6, column=0, sticky="w")
         ttk.Entry(frame, textvariable=max_var, width=10).grid(
             row=6, column=1, sticky="w", pady=(2, 8)
         )
@@ -250,9 +241,7 @@ def launch_desktop(
 
     header = ttk.Frame(root, padding=12)
     header.pack(fill="x")
-    ttk.Label(header, text="FTB Quest Maker", font=("TkDefaultFont", 16, "bold")).pack(
-        side="left"
-    )
+    ttk.Label(header, text="FTB Quest Maker", font=("TkDefaultFont", 16, "bold")).pack(side="left")
     status_var = tk.StringVar(value="Discovering Minecraft instances…")
     ttk.Label(header, textvariable=status_var).pack(side="right")
 
@@ -378,8 +367,7 @@ def launch_desktop(
             return
         merged = tuple(
             {
-                item.game_directory: item
-                for item in (*current_result.instances, *result.instances)
+                item.game_directory: item for item in (*current_result.instances, *result.instances)
             }.values()
         )
         render(
@@ -389,9 +377,7 @@ def launch_desktop(
                 instances=tuple(
                     sorted(merged, key=lambda item: (item.name.casefold(), item.game_directory))
                 ),
-                inaccessible_roots=(
-                    current_result.inaccessible_roots + result.inaccessible_roots
-                ),
+                inaccessible_roots=(current_result.inaccessible_roots + result.inaccessible_roots),
             )
         )
 
@@ -426,12 +412,8 @@ def launch_desktop(
     ttk.Button(footer, text="Refresh", command=refresh).pack(side="left")
     ttk.Button(footer, text="Add folder…", command=add_folder).pack(side="left", padx=6)
     ttk.Button(footer, text="Preferences…", command=edit_preferences).pack(side="left")
-    ttk.Button(footer, text="Install project…", command=install_bundle).pack(
-        side="left", padx=6
-    )
-    ttk.Button(footer, text="Open empty editor", command=lambda: launch(None)).pack(
-        side="right"
-    )
+    ttk.Button(footer, text="Install project…", command=install_bundle).pack(side="left", padx=6)
+    ttk.Button(footer, text="Open empty editor", command=lambda: launch(None)).pack(side="right")
     ttk.Button(
         footer,
         text="Open selected instance",

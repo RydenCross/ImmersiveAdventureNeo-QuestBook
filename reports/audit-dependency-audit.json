@@ -150,6 +150,9 @@
       "questbook review contract",
       "quest description contract"
     ],
+    "secure application update client contract": [
+      "desktop installers and update metadata contract"
+    ],
     "task audit": [],
     "test inventory contract": [
       "audit registry contract"
@@ -161,11 +164,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 56,
+  "dependency_edges": 57,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 59,
+  "registered_audits": 60,
   "status": "pass",
   "unknown_dependencies": []
 }
