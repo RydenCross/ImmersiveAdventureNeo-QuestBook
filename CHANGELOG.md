@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 102 - Portable Quest Maker Project Bundles and One-Click Installation
+
+- Added deterministic `.ftbqproj` bundles containing the editor document, source fingerprint, generation settings, and validated FTB Quests export.
+- Added manifest/checksum verification, tamper detection, portable source-path sanitization, and drag-and-drop reopening of shared bundles.
+- Added atomic installation into `config/ftbquests`, platform compatibility checks, dry-run/force controls, and content-addressed backups of existing questbooks.
+- Added CLI commands, local editor API/UI controls, tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 101 - Background Modpack Generation Jobs and Progress API
 
 - Added staged background generation for large modpack imports and workspace sources.

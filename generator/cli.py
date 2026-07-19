@@ -94,6 +94,13 @@ from generator.editor_ui_contract import run_editor_ui_contract
 from generator.editor_workspace_contract import run_editor_workspace_contract
 from generator.editor_recovery_contract import run_editor_recovery_contract
 from generator.editor_jobs_contract import run_editor_jobs_contract
+from generator.project_bundle import (
+    BUNDLE_EXTENSION,
+    create_project_bundle,
+    inspect_project_bundle,
+    install_project_bundle,
+)
+from generator.project_bundle_contract import run_project_bundle_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -571,6 +578,43 @@ def create_parser() -> argparse.ArgumentParser:
     quest_editor_model.add_argument(
         "--output", type=Path, help="Write the editor document to a file."
     )
+    quest_project_bundle = subparsers.add_parser(
+        "quest-project-bundle",
+        help="Generate a portable editor document and FTB Quests export bundle.",
+    )
+    quest_project_bundle.add_argument(
+        "path", type=Path, help="Modpack ZIP/MRPACK, instance folder, mods directory, or mod JAR."
+    )
+    quest_project_bundle.add_argument(
+        "--destination", type=Path, default=Path(f"project{BUNDLE_EXTENSION}"),
+        help=f"Portable project destination (default: project{BUNDLE_EXTENSION}).",
+    )
+    quest_project_bundle.add_argument("--target-quests", type=int)
+    quest_project_bundle.add_argument("--chapter-size", type=int, default=40)
+    quest_project_bundle.add_argument(
+        "--description-style", choices=DESCRIPTION_STYLES, default="guided"
+    )
+    quest_project_bundle.add_argument(
+        "--reward-policy", choices=("unassigned", *REWARD_POLICIES), default="unassigned"
+    )
+    quest_project_bundle.add_argument("--format", choices=("text", "json"), default="text")
+    quest_project_bundle.add_argument("--output", type=Path)
+    quest_project_inspect = subparsers.add_parser(
+        "quest-project-inspect", help="Verify a portable FTB Quest Maker project bundle."
+    )
+    quest_project_inspect.add_argument("bundle", type=Path)
+    quest_project_inspect.add_argument("--format", choices=("text", "json"), default="text")
+    quest_project_inspect.add_argument("--output", type=Path)
+    quest_project_install = subparsers.add_parser(
+        "quest-project-install", help="Install a verified project bundle into a Minecraft instance."
+    )
+    quest_project_install.add_argument("bundle", type=Path)
+    quest_project_install.add_argument("instance", type=Path)
+    quest_project_install.add_argument("--no-backup", action="store_true")
+    quest_project_install.add_argument("--dry-run", action="store_true")
+    quest_project_install.add_argument("--force", action="store_true")
+    quest_project_install.add_argument("--format", choices=("text", "json"), default="text")
+    quest_project_install.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -778,6 +822,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     editor_jobs.add_argument("--format", choices=("text", "json"), default="text")
     editor_jobs.add_argument("--output", type=Path)
+    project_bundle = subparsers.add_parser(
+        "project-bundle-audit",
+        help="Validate portable project bundles, tamper detection, and safe instance installation.",
+    )
+    project_bundle.add_argument("--format", choices=("text", "json"), default="text")
+    project_bundle.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1123,6 +1173,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "project-bundle-audit":
+        result = run_project_bundle_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1199,6 +1258,55 @@ def main(argv: list[str] | None = None) -> int:
             chapter_size=args.chapter_size,
             description_style=args.description_style,
             reward_policy=args.reward_policy,
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-project-bundle":
+        document = generate_editor_model(
+            args.path,
+            target_quests=args.target_quests,
+            chapter_size=args.chapter_size,
+            description_style=args.description_style,
+            reward_policy=args.reward_policy,
+        )
+        result = create_project_bundle(
+            document,
+            args.destination,
+            settings={
+                "target_quests": args.target_quests,
+                "chapter_size": args.chapter_size,
+                "description_style": args.description_style,
+                "reward_policy": args.reward_policy,
+            },
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-project-inspect":
+        result = inspect_project_bundle(args.bundle)
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-project-install":
+        result = install_project_bundle(
+            args.bundle,
+            args.instance,
+            backup=not args.no_backup,
+            dry_run=args.dry_run,
+            force=args.force,
         )
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:

@@ -16,9 +16,10 @@ _IGNORED_PARTS = {
     ".venv",
     ".quest-editor",
     ".recovery",
+    ".quest-maker-backups",
     "__pycache__",
 }
-_IGNORED_SUFFIXES = {".pyc", ".pyo"}
+_IGNORED_SUFFIXES = {".pyc", ".pyo", ".ftbqproj"}
 _EXCLUDED_REPORTS = {
     "reports/release-artifact-audit.json",
     "reports/release-reproducibility-audit.json",

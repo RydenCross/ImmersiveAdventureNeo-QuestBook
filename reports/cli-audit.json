@@ -1,5 +1,5 @@
 {
-  "command_count": 78,
+  "command_count": 82,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -37,12 +37,16 @@
     "progression-guard",
     "progression-metrics",
     "progression-planner-audit",
+    "project-bundle-audit",
     "quality-gate",
     "quest-blueprint",
     "quest-description-audit",
     "quest-description-plan",
     "quest-editor-model",
     "quest-editor-serve",
+    "quest-project-bundle",
+    "quest-project-inspect",
+    "quest-project-install",
     "quest-reward-plan",
     "questbook-review",
     "questbook-review-audit",

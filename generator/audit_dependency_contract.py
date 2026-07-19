@@ -50,6 +50,7 @@ AUDIT_DEPENDENCIES.update(
         "editor workspace tools contract": ("interactive visual editor UI contract",),
         "editor autosave and recovery contract": ("editor workspace tools contract", "local visual editor service contract"),
         "editor background jobs contract": ("editor autosave and recovery contract", "interactive visual editor UI contract"),
+        "portable project bundle contract": ("editor background jobs contract", "FTB blueprint exporter contract"),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

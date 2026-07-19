@@ -79,15 +79,15 @@ textarea { min-height: 150px; resize: vertical; }
 <header>
 <strong>FTB Quest Maker</strong>
 <button id="import-button">Import modpack</button>
-<input id="file-input" type="file" accept=".mrpack,.zip" hidden>
+<input id="file-input" type="file" accept=".mrpack,.zip,.ftbqproj" hidden>
 <button onclick="undo()">Undo</button><button onclick="redo()">Redo</button>
 <button id="snapshot-button" onclick="createSnapshot()">Snapshot</button><button id="recover-button" onclick="recoverLatest()">Recover latest</button>
-<button onclick="saveModel()">Save model</button><button onclick="exportQuestbook()">Export FTB Quests</button>
+<button onclick="saveModel()">Save model</button><button id="bundle-button" onclick="saveBundle()">Save project bundle</button><button id="install-button" onclick="installQuestbook()">Install to instance</button><button onclick="exportQuestbook()">Export FTB Quests</button>
 <span id="status">Loading…</span>
 <div id="job-panel" hidden><progress id="job-progress" max="100" value="0"></progress><span id="job-message"></span><button id="job-cancel">Cancel</button></div>
 </header>
 <div id="drop-zone">
-  <strong>Drop a CurseForge ZIP, Modrinth .mrpack, Prism export, or server pack here</strong>
+  <strong>Drop a modpack archive or portable .ftbqproj project here</strong>
   <div class="import-options">
     <label>Target quests <input id="target-quests" type="number" min="1" placeholder="Auto" size="7"></label>
     <label>Chapter size <input id="chapter-size" type="number" min="1" value="40" size="5"></label>
@@ -185,21 +185,28 @@ async function cancelActiveJob() {
 async function importFile(file) {
   if (!file) return;
   const lower = file.name.toLowerCase();
-  if (!lower.endsWith('.zip') && !lower.endsWith('.mrpack')) throw new Error('Choose a .zip or .mrpack modpack export.');
+  const isBundle = lower.endsWith('.ftbqproj');
+  if (!isBundle && !lower.endsWith('.zip') && !lower.endsWith('.mrpack')) throw new Error('Choose a .zip, .mrpack, or .ftbqproj file.');
   if (activeJob) throw new Error('A modpack generation job is already running.');
   const drop = document.getElementById('drop-zone');
   drop.hidden = false; drop.classList.add('dragging');
   document.getElementById('status').textContent = `Uploading ${file.name}…`;
-  const response = await fetch(`${importEndpoint}?${importOptions()}`, {
+  const endpoint = isBundle ? `${api}/project-bundle-import` : `${importEndpoint}?${importOptions()}`;
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: {'Content-Type':'application/octet-stream', 'X-File-Name': encodeURIComponent(file.name)},
     body: file,
   });
-  const job = await response.json();
+  const result = await response.json();
   drop.classList.remove('dragging');
-  if (!response.ok) throw new Error(job.error || 'Import failed');
+  if (!response.ok) throw new Error(result.error || 'Import failed');
   showError();
-  await monitorJob(job.id);
+  if (isBundle) {
+    selected = null; selectedChapter = ''; linkSource = null; selectedQuests.clear();
+    await refresh(); fitGraph(); drop.hidden = true;
+  } else {
+    await monitorJob(result.id);
+  }
 }
 async function refresh() {
   try {
@@ -342,6 +349,15 @@ async function redo(){try{await request('/redo',{method:'POST',body:'{}'});showE
 async function createSnapshot(){try{const result=await request('/snapshot',{method:'POST',body:JSON.stringify({reason:'manual browser checkpoint'})});showError(`Snapshot saved: ${result.snapshot.path}`);await refresh();}catch(error){showError(error);}}
 async function recoverLatest(){try{const recovery=await request('/recovery');if(!recovery.autosave_available)throw new Error('No autosave recovery document is available.');if(!confirm(`Restore autosave revision ${recovery.autosave.revision}? Current unsaved state will be checkpointed first.`))return;await request('/recover',{method:'POST',body:'{}'});showError('Recovered latest autosave.');selected=null;selectedQuests.clear();await refresh();fitGraph();}catch(error){showError(error);}}
 async function saveModel(){try{await request('/save',{method:'POST',body:JSON.stringify({path:'quest-editor-model.json'})});showError();await refresh();}catch(error){showError(error);}}
+async function saveBundle(){try{const result=await request('/bundle',{method:'POST',body:JSON.stringify({destination:'project.ftbqproj'})});showError(`Saved portable project bundle to ${result.destination}`);}catch(error){showError(error);}}
+async function installQuestbook(){
+  const instance = window.prompt('Minecraft instance folder to install into:');
+  if (!instance) return;
+  try {
+    const result=await request('/install',{method:'POST',body:JSON.stringify({instance,backup:true})});
+    showError(`Installed ${result.installed_files} files to ${result.destination}${result.backup ? ` · backup: ${result.backup}` : ''}`);
+  } catch(error){showError(error);}
+}
 async function exportQuestbook(){try{const result=await request('/export',{method:'POST',body:JSON.stringify({destination:'generated/ftbquests'})});showError(`Exported ${result.summary.quests} quests to ${result.destination}`);}catch(error){showError(error);}}
 
 const graph=document.getElementById('graph');

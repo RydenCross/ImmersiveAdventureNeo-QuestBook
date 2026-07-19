@@ -1,0 +1,11 @@
+{
+  "api_routes": true,
+  "backup_preservation": true,
+  "deterministic_bundle": true,
+  "document_round_trip": true,
+  "safe_installation": true,
+  "status": "pass",
+  "tamper_detection": true,
+  "verified_manifest": true,
+  "visual_controls": true
+}

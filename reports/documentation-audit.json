@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 78,
+  "documented_command_count": 82,
   "empty_documents": [],
-  "expected_command_count": 78,
-  "markdown_file_count": 86,
+  "expected_command_count": 82,
+  "markdown_file_count": 87,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -52,6 +52,7 @@
     "docs/PROGRESSION_GUARD.md",
     "docs/PROGRESSION_METRICS.md",
     "docs/PROGRESSION_PLANNER.md",
+    "docs/PROJECT_BUNDLES_AND_INSTALLATION.md",
     "docs/QUALITY_GATE.md",
     "docs/QUESTBOOK_REVIEW.md",
     "docs/QUEST_DESCRIPTION_GENERATOR.md",

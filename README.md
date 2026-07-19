@@ -799,3 +799,28 @@ python -m generator editor-jobs-audit --format json --output reports/editor-jobs
 ```
 
 See [`docs/EDITOR_BACKGROUND_JOBS.md`](docs/EDITOR_BACKGROUND_JOBS.md).
+
+
+## Portable project bundles and one-click installation
+
+Save the generated editor project, source fingerprint, generation settings, and validated FTB Quests export in one shareable file:
+
+```bash
+python -m generator quest-project-bundle /path/to/modpack.mrpack \
+  --destination shared.ftbqproj \
+  --target-quests 600 \
+  --reward-policy conservative
+python -m generator quest-project-inspect shared.ftbqproj
+python -m generator quest-project-install shared.ftbqproj /path/to/minecraft-instance
+```
+
+The installer verifies bundle checksums and SNBT, checks detected Minecraft/loader compatibility, installs atomically into `config/ftbquests`, and preserves the previous questbook in `.quest-maker-backups/`. The browser editor can reopen a shared `.ftbqproj` through its drop zone and exposes matching bundle and install controls.
+
+Validate this workflow with:
+
+```bash
+python -m generator project-bundle-audit
+python -m generator project-bundle-audit --format json --output reports/project-bundle-audit.json
+```
+
+See [`docs/PROJECT_BUNDLES_AND_INSTALLATION.md`](docs/PROJECT_BUNDLES_AND_INSTALLATION.md).

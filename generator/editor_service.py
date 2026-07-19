@@ -32,6 +32,13 @@ from generator.editor_recovery import EditorRecoveryStore
 from generator.editor_workspace import apply_editor_batch, auto_layout_editor_document
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
 from generator.output_writer import atomic_write_text
+from generator.project_bundle import (
+    BUNDLE_EXTENSION,
+    MAX_BUNDLE_BYTES,
+    create_project_bundle,
+    install_project_bundle,
+    load_project_bundle,
+)
 from generator.quest_description_generator import DESCRIPTION_STYLES
 from generator.reward_planner import REWARD_POLICIES
 
@@ -66,6 +73,19 @@ def _validated_import_name(filename: str) -> str:
         raise ValueError("uploaded modpack filename contains control characters")
     if Path(name).suffix.casefold() not in IMPORT_EXTENSIONS:
         raise ValueError("uploaded modpack must be a .zip or .mrpack file")
+    return name
+
+
+def _validated_bundle_name(filename: str) -> str:
+    name = unquote(filename).strip()
+    if not name or name in {".", ".."}:
+        raise ValueError("project bundle filename is required")
+    if Path(name).name != name or "/" in name or "\\" in name:
+        raise ValueError("project bundle filename must not contain path components")
+    if any(ord(character) < 32 for character in name):
+        raise ValueError("project bundle filename contains control characters")
+    if Path(name).suffix.casefold() != BUNDLE_EXTENSION:
+        raise ValueError(f"project bundle must use the {BUNDLE_EXTENSION} extension")
     return name
 
 
@@ -469,6 +489,70 @@ class EditorSession:
             if temporary_path is not None:
                 temporary_path.unlink(missing_ok=True)
 
+    def import_project_bundle(
+        self,
+        filename: str,
+        stream: BinaryIO,
+        content_length: int,
+    ) -> dict[str, object]:
+        safe_name = _validated_bundle_name(filename)
+        if content_length <= 0:
+            raise ValueError("uploaded project bundle is empty")
+        if content_length > MAX_BUNDLE_BYTES:
+            raise ValueError("uploaded project bundle exceeds the editor limit")
+        project_directory = self._workspace_path("projects")
+        project_directory.mkdir(parents=True, exist_ok=True)
+        digest = sha256()
+        bytes_written = 0
+        temporary_path: Path | None = None
+        try:
+            with NamedTemporaryFile(
+                mode="wb",
+                dir=project_directory,
+                prefix=".bundle-",
+                suffix=".part",
+                delete=False,
+            ) as temporary:
+                temporary_path = Path(temporary.name)
+                while bytes_written < content_length:
+                    chunk = stream.read(min(UPLOAD_CHUNK_BYTES, content_length - bytes_written))
+                    if not chunk:
+                        break
+                    bytes_written += len(chunk)
+                    if bytes_written > content_length or bytes_written > MAX_BUNDLE_BYTES:
+                        raise ValueError("uploaded project bundle exceeds the declared or allowed size")
+                    digest.update(chunk)
+                    temporary.write(chunk)
+            if bytes_written != content_length:
+                raise ValueError("uploaded project bundle size does not match Content-Length")
+            checksum = digest.hexdigest()
+            destination = project_directory / f"{checksum[:16]}-{safe_name}"
+            if destination.exists():
+                temporary_path.unlink(missing_ok=True)
+            else:
+                os.replace(temporary_path, destination)
+            temporary_path = None
+            document, inspection = load_project_bundle(destination)
+            with self._lock:
+                self._replace_document(document, reset_history=True)
+                self.document_path = None
+                self.saved_revision = -1
+                self._autosave("bundle-import")
+            return {
+                "status": "pass",
+                "filename": safe_name,
+                "path": destination.relative_to(self.workspace).as_posix(),
+                "bytes": bytes_written,
+                "sha256": checksum,
+                "bundle": inspection.to_dict(),
+                "session": self.status(),
+                "document": self.document.to_dict(),
+            }
+        except (OSError, TypeError, ValueError):
+            if temporary_path is not None:
+                temporary_path.unlink(missing_ok=True)
+            raise
+
     @staticmethod
     def _validate_generation_options(
         *,
@@ -699,6 +783,68 @@ class EditorSession:
                 "recovery": self.recovery.status(),
             }
 
+    def create_bundle(self, payload: Mapping[str, object] | None = None) -> dict[str, object]:
+        body = payload or {}
+        destination = str(body.get("destination", f"project{BUNDLE_EXTENSION}"))
+        path = self._workspace_path(destination)
+        settings = body.get("settings", {})
+        if not isinstance(settings, Mapping):
+            raise ValueError("bundle settings must be an object")
+        with self._lock:
+            result = create_project_bundle(
+                self.document,
+                path,
+                settings=dict(settings),
+                version=str(body.get("version", DEFAULT_FTB_QUESTS_VERSION)),
+            )
+            if not result.is_clean:
+                raise ValueError("project bundle creation failed: " + "; ".join(result.errors))
+            return result.to_dict()
+
+    def open_bundle(self, payload: Mapping[str, object]) -> dict[str, object]:
+        path = self._workspace_path(str(payload.get("path", "")))
+        document, inspection = load_project_bundle(path)
+        with self._lock:
+            self._replace_document(document, reset_history=True)
+            self.document_path = None
+            self.saved_revision = -1
+            self._autosave("open-bundle")
+            return {
+                "status": "pass",
+                "bundle": inspection.to_dict(),
+                "session": self.status(),
+                "document": self.document.to_dict(),
+            }
+
+    def install_bundle(self, payload: Mapping[str, object]) -> dict[str, object]:
+        instance_value = str(payload.get("instance", "")).strip()
+        if not instance_value:
+            raise ValueError("instance path is required")
+        bundle_value = str(payload.get("bundle", "")).strip()
+        if bundle_value:
+            bundle = self._workspace_path(bundle_value)
+        else:
+            bundle = self._workspace_path(f"bundles/current{BUNDLE_EXTENSION}")
+            with self._lock:
+                result = create_project_bundle(
+                    self.document,
+                    bundle,
+                    settings={"source": "editor-session"},
+                    version=str(payload.get("version", DEFAULT_FTB_QUESTS_VERSION)),
+                )
+                if not result.is_clean:
+                    raise ValueError("project bundle creation failed: " + "; ".join(result.errors))
+        result = install_project_bundle(
+            bundle,
+            Path(instance_value),
+            backup=bool(payload.get("backup", True)),
+            dry_run=bool(payload.get("dry_run", False)),
+            force=bool(payload.get("force", False)),
+        )
+        if not result.is_clean:
+            raise ValueError("project installation failed: " + "; ".join(result.errors))
+        return result.to_dict()
+
     def export(
         self,
         destination: str | Path = DEFAULT_EDITOR_EXPORT,
@@ -775,6 +921,12 @@ def handle_editor_api(
             result = session.generate(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/generate-job":
             return EditorServiceResponse(202, session.queue_generate(body))
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/bundle":
+            result = session.create_bundle(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/open-bundle":
+            result = session.open_bundle(body)
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/install":
+            result = session.install_bundle(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/export":
             result = session.export(
                 str(body.get("destination", DEFAULT_EDITOR_EXPORT)),
@@ -828,6 +980,14 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
             (response.format_json() + "\n").encode("utf-8"),
             "application/json; charset=utf-8",
         )
+
+    def _read_bundle_import(self) -> dict[str, object]:
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError as exc:
+            raise ValueError("invalid Content-Length") from exc
+        filename = self.headers.get("X-File-Name", "")
+        return self.server.session.import_project_bundle(filename, self.rfile, length)
 
     def _read_import(self) -> dict[str, object]:
         try:
@@ -895,6 +1055,14 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         clean_path = urlparse(self.path).path.rstrip("/") or "/"
+        if clean_path == f"/api/{EDITOR_API_VERSION}/project-bundle-import":
+            try:
+                result = self._read_bundle_import()
+            except (OSError, TypeError, UnicodeDecodeError, ValueError) as exc:
+                self._send_json(EditorServiceResponse(400, {"status": "fail", "error": str(exc)}))
+                return
+            self._send_json(EditorServiceResponse(200, result))
+            return
         if clean_path == f"/api/{EDITOR_API_VERSION}/import-job":
             try:
                 result = self._read_import_job()

@@ -60,6 +60,7 @@ from generator.editor_ui_contract import run_editor_ui_contract
 from generator.editor_workspace_contract import run_editor_workspace_contract
 from generator.editor_recovery_contract import run_editor_recovery_contract
 from generator.editor_jobs_contract import run_editor_jobs_contract
+from generator.project_bundle_contract import run_project_bundle_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -175,6 +176,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "editor workspace tools contract": run_editor_workspace_contract,
         "editor autosave and recovery contract": run_editor_recovery_contract,
         "editor background jobs contract": run_editor_jobs_contract,
+        "portable project bundle contract": run_project_bundle_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }

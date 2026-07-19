@@ -27,3 +27,7 @@ reports/.report-refresh-cache.json
 .quest-editor/
 .recovery/
 
+
+# Portable Quest Maker bundles and local installation backups
+*.ftbqproj
+.quest-maker-backups/

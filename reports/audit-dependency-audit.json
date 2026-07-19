@@ -55,6 +55,10 @@
       "determinism audit"
     ],
     "packaging audit": [],
+    "portable project bundle contract": [
+      "editor background jobs contract",
+      "FTB blueprint exporter contract"
+    ],
     "progression guard": [],
     "progression planner contract": [
       "modpack content scanner contract"
@@ -147,11 +151,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 50,
+  "dependency_edges": 52,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 55,
+  "registered_audits": 56,
   "status": "pass",
   "unknown_dependencies": []
 }

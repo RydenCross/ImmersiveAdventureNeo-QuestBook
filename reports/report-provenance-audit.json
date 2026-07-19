@@ -108,6 +108,10 @@
       "report": "progression-planner-audit.json"
     },
     {
+      "command": "project-bundle-audit",
+      "report": "project-bundle-audit.json"
+    },
+    {
       "command": "quest-description-audit",
       "report": "quest-description-audit.json"
     },
@@ -221,5 +225,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 54
+  "tracked_reports": 55
 }
