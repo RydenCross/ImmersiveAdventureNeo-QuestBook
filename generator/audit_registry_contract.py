@@ -200,6 +200,11 @@ AUDIT_REGISTRY = (
         "update-application-audit.json",
     ),
     AuditRegistration(
+        "GitHub release publishing contract",
+        "github-release-publishing-audit",
+        "github-release-publishing-audit.json",
+    ),
+    AuditRegistration(
         "audit performance contract", "audit-performance-audit", "audit-performance-audit.json"
     ),
     AuditRegistration(

@@ -70,6 +70,7 @@ SPECIAL_TEST_FILES = {
     "desktop installers and update metadata contract": ("test_desktop_packages_contract.py"),
     "secure application update client contract": ("test_application_updates_contract.py"),
     "verified update apply and rollback contract": ("test_update_application.py"),
+    "GitHub release publishing contract": "test_github_release_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

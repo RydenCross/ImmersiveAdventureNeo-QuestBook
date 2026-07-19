@@ -1,5 +1,5 @@
 {
-  "checked_reports": 60,
+  "checked_reports": 61,
   "deterministic_reports": [
     "application-update-client-audit.json",
     "audit-dependency-audit.json",
@@ -22,6 +22,7 @@
     "editor-ui-audit.json",
     "editor-workspace-audit.json",
     "ftb-blueprint-exporter-audit.json",
+    "github-release-publishing-audit.json",
     "identity-guard.json",
     "mod-compatibility-audit.json",
     "modpack-content-scanner-audit.json",

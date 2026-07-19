@@ -1,0 +1,9 @@
+{
+  "assets_verified": true,
+  "deterministic_plan": true,
+  "dry_run_safe": true,
+  "explicit_publish_verified": true,
+  "status": "pass",
+  "unsafe_inputs_rejected": true,
+  "workflow_present": true
+}

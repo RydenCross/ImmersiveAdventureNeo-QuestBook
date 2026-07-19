@@ -1,5 +1,5 @@
 {
-  "command_count": 98,
+  "command_count": 101,
   "commands": [
     "application-update-client-audit",
     "audit",
@@ -26,6 +26,7 @@
     "editor-workspace-audit",
     "ftb-blueprint-exporter-audit",
     "ftb-quest-export",
+    "github-release-publishing-audit",
     "identity-baseline",
     "identity-guard",
     "lint",
@@ -49,6 +50,8 @@
     "quest-editor-model",
     "quest-editor-serve",
     "quest-instance-discover",
+    "quest-maker-github-release-plan",
+    "quest-maker-github-release-publish",
     "quest-maker-launch",
     "quest-maker-native-build",
     "quest-maker-package-build",

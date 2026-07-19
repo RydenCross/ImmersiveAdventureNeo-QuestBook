@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 108 - GitHub Release Publishing and Update Feed Automation
+
+- Added deterministic checksum-backed GitHub Release plans and explicit `gh` publishing gates.
+- Added target-host GitHub Actions packaging, update metadata generation, artifact upload, and release publication.
+- Added CLI commands, documentation, tests, audit registration, report freshness, and quality-gate integration.
+
 ## Commit 107 - Verified Update Apply, Rollback, and Recovery
 
 - Added revalidation of pending update manifests and staged artifacts immediately before apply.
@@ -478,6 +484,12 @@
 - Added regression coverage and addon documentation.
 
 ## Unreleased
+
+## Commit 108 - GitHub Release Publishing and Update Feed Automation
+
+- Added deterministic checksum-backed GitHub Release plans and explicit `gh` publishing gates.
+- Added target-host GitHub Actions packaging, update metadata generation, artifact upload, and release publication.
+- Added CLI commands, documentation, tests, audit registration, report freshness, and quality-gate integration.
 
 ## 0.1.0 - 2026-07-16
 

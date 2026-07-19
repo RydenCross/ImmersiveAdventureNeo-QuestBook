@@ -73,6 +73,7 @@ from generator.native_distribution_contract import run_native_distribution_contr
 from generator.desktop_packages_contract import run_desktop_packages_contract
 from generator.application_updates_contract import run_application_updates_contract
 from generator.update_application_contract import run_update_application_contract
+from generator.github_release_contract import run_github_release_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -179,6 +180,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
             lambda: run_application_updates_contract().format_json()
         ),
         "update-application-audit.json": lambda: run_update_application_contract().format_json(),
+        "github-release-publishing-audit.json": lambda: run_github_release_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

@@ -143,6 +143,8 @@ from generator.application_updates import (
 from generator.application_updates_contract import run_application_updates_contract
 from generator.update_application import apply_staged_update, rollback_applied_update
 from generator.update_application_contract import run_update_application_contract
+from generator.github_release import create_github_release_plan, publish_github_release
+from generator.github_release_contract import run_github_release_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -855,6 +857,31 @@ def create_parser() -> argparse.ArgumentParser:
     update_rollback.add_argument("--execute", action="store_true")
     update_rollback.add_argument("--format", choices=("text", "json"), default="text")
     update_rollback.add_argument("--output", type=Path)
+    github_release_plan = subparsers.add_parser(
+        "quest-maker-github-release-plan",
+        help="Create a deterministic, checksum-backed GitHub Release publishing plan.",
+    )
+    github_release_plan.add_argument("--repository", required=True)
+    github_release_plan.add_argument("--tag", required=True)
+    github_release_plan.add_argument("--title")
+    github_release_plan.add_argument("--notes", type=Path, required=True)
+    github_release_plan.add_argument("--asset", action="append", type=Path, required=True)
+    github_release_plan.add_argument("--prerelease", action="store_true")
+    github_release_plan.add_argument("--draft", action="store_true")
+    github_release_plan.add_argument("--output", type=Path)
+    github_release_publish = subparsers.add_parser(
+        "quest-maker-github-release-publish",
+        help="Publish a verified GitHub Release plan through the authenticated gh CLI.",
+    )
+    github_release_publish.add_argument("--repository", required=True)
+    github_release_publish.add_argument("--tag", required=True)
+    github_release_publish.add_argument("--title")
+    github_release_publish.add_argument("--notes", type=Path, required=True)
+    github_release_publish.add_argument("--asset", action="append", type=Path, required=True)
+    github_release_publish.add_argument("--prerelease", action="store_true")
+    github_release_publish.add_argument("--draft", action="store_true")
+    github_release_publish.add_argument("--execute", action="store_true")
+    github_release_publish.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -1121,6 +1148,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     update_application.add_argument("--format", choices=("text", "json"), default="text")
     update_application.add_argument("--output", type=Path)
+    github_release = subparsers.add_parser(
+        "github-release-publishing-audit",
+        help="Validate deterministic GitHub release plans, asset checksums, and workflow automation.",
+    )
+    github_release.add_argument("--format", choices=("text", "json"), default="text")
+    github_release.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1511,6 +1544,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "github-release-publishing-audit":
+        result = run_github_release_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "application-update-client-audit":
         result = run_application_updates_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1686,6 +1728,27 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "quest-maker-update-rollback":
         result = rollback_applied_update(args.manifest, execute=args.execute)
         rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command in ("quest-maker-github-release-plan", "quest-maker-github-release-publish"):
+        try:
+            plan = create_github_release_plan(
+                args.repository, args.tag, args.asset, notes_file=args.notes,
+                title=args.title, prerelease=args.prerelease, draft=args.draft,
+            )
+            result = (
+                publish_github_release(plan, execute=args.execute)
+                if args.command == "quest-maker-github-release-publish"
+                else plan
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"GitHub release publishing failed: {exc}")
+            return 1
+        rendered = result.format_json()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")
         else:

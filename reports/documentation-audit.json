@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 98,
+  "documented_command_count": 101,
   "empty_documents": [],
-  "expected_command_count": 98,
-  "markdown_file_count": 92,
+  "expected_command_count": 101,
+  "markdown_file_count": 93,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -44,6 +44,7 @@
     "docs/EXPLORATION.md",
     "docs/EXPLORATION_EXPANSION.md",
     "docs/FTB_BLUEPRINT_EXPORTER.md",
+    "docs/GITHUB_RELEASE_PUBLISHING.md",
     "docs/IDENTITY_GUARD.md",
     "docs/MINING.md",
     "docs/MODPACK_CONTENT_SCANNER.md",

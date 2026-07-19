@@ -948,3 +948,8 @@ See [`docs/PROJECT_BUNDLES_AND_INSTALLATION.md`](docs/PROJECT_BUNDLES_AND_INSTAL
 ## Verified update apply and rollback
 
 See [`docs/UPDATE_APPLY_AND_ROLLBACK.md`](docs/UPDATE_APPLY_AND_ROLLBACK.md). Mutating apply and rollback operations require `--execute`; dry runs are the default.
+
+
+## GitHub release publishing
+
+See [GitHub Release Publishing](docs/GITHUB_RELEASE_PUBLISHING.md). Create a safe plan with `quest-maker-github-release-plan`, then publish explicitly with `quest-maker-github-release-publish --execute`.

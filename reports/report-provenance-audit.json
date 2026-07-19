@@ -88,6 +88,10 @@
       "report": "ftb-blueprint-exporter-audit.json"
     },
     {
+      "command": "github-release-publishing-audit",
+      "report": "github-release-publishing-audit.json"
+    },
+    {
       "command": "identity-guard",
       "report": "identity-guard.json"
     },
@@ -245,5 +249,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 60
+  "tracked_reports": 61
 }

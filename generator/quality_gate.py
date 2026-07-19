@@ -72,6 +72,7 @@ from generator.native_distribution_contract import run_native_distribution_contr
 from generator.desktop_packages_contract import run_desktop_packages_contract
 from generator.application_updates_contract import run_application_updates_contract
 from generator.update_application_contract import run_update_application_contract
+from generator.github_release_contract import run_github_release_contract
 
 
 @dataclass(frozen=True, slots=True)
@@ -195,6 +196,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "desktop installers and update metadata contract": run_desktop_packages_contract,
         "secure application update client contract": run_application_updates_contract,
         "verified update apply and rollback contract": run_update_application_contract,
+        "GitHub release publishing contract": run_github_release_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,
     }
