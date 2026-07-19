@@ -67,6 +67,9 @@ SPECIAL_TEST_FILES = {
     "native desktop distribution and first-run setup contract": (
         "test_native_distribution_contract.py"
     ),
+    "desktop installers and update metadata contract": (
+        "test_desktop_packages_contract.py"
+    ),
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

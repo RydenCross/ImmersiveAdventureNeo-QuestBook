@@ -182,6 +182,38 @@ python -m generator native-distribution-audit
 python -m generator native-distribution-audit --format json --output reports/native-distribution-audit.json
 ```
 
+## Desktop installers and application updates
+
+Turn the target-specific native binary into a Windows installer or Linux AppImage:
+
+```bash
+python -m generator quest-maker-package-build --platform windows --version 1.0.0 --dry-run
+python -m generator quest-maker-package-build --platform linux --version 1.0.0 --dry-run
+```
+
+Generate deterministic update metadata and verify its package checksums:
+
+```bash
+python -m generator quest-maker-update-metadata \
+  --version 1.0.0 \
+  --channel stable \
+  --artifact windows=dist/packages/FTBQuestMaker-1.0.0-Setup.exe \
+  --artifact linux=dist/packages/FTBQuestMaker-1.0.0-x86_64.AppImage \
+  --destination dist/updates/latest.json
+python -m generator quest-maker-update-verify \
+  dist/updates/latest.json \
+  --artifact-directory dist/packages
+```
+
+Optional HMAC-SHA256 authentication is supported through a local `--signing-key`; release keys are never stored in the repository. Validate the installer, AppImage, metadata, signature, and tamper-detection surface with:
+
+```bash
+python -m generator desktop-packages-audit
+python -m generator desktop-packages-audit --format json --output reports/desktop-packages-audit.json
+```
+
+See [`docs/DESKTOP_INSTALLERS_AND_UPDATES.md`](docs/DESKTOP_INSTALLERS_AND_UPDATES.md).
+
 ## Local visual editor service and API
 
 Launch the generated editor model as a local browser application:

@@ -1,5 +1,5 @@
 {
-  "command_count": 88,
+  "command_count": 92,
   "commands": [
     "audit",
     "audit-dependency-audit",
@@ -14,6 +14,7 @@
     "dependency-audit",
     "dependency-graph",
     "desktop-launcher-audit",
+    "desktop-packages-audit",
     "determinism-audit",
     "documentation-audit",
     "editor-jobs-audit",
@@ -49,7 +50,10 @@
     "quest-instance-discover",
     "quest-maker-launch",
     "quest-maker-native-build",
+    "quest-maker-package-build",
     "quest-maker-setup",
+    "quest-maker-update-metadata",
+    "quest-maker-update-verify",
     "quest-project-bundle",
     "quest-project-inspect",
     "quest-project-install",

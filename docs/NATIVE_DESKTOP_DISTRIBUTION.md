@@ -91,3 +91,7 @@ python -m generator native-distribution-audit \
 ```
 
 The audit verifies preference persistence, corrupt-file recovery, deterministic Windows/Linux build plans, target-specific executable names, cross-build rejection, standalone entrypoint wiring, helper build recipes, and launcher integration.
+
+## Installer and AppImage packaging
+
+After the native binary is built, continue with `quest-maker-package-build` and the update-feed commands documented in [`DESKTOP_INSTALLERS_AND_UPDATES.md`](DESKTOP_INSTALLERS_AND_UPDATES.md).

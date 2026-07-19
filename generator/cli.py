@@ -114,6 +114,18 @@ from generator.native_distribution import (
     build_native_distribution,
 )
 from generator.native_distribution_contract import run_native_distribution_contract
+from generator.desktop_packages import (
+    DEFAULT_NATIVE_DIRECTORY as DEFAULT_PACKAGE_NATIVE_DIRECTORY,
+    DEFAULT_PACKAGE_DIRECTORY,
+    DEFAULT_UPDATE_METADATA_PATH,
+    SUPPORTED_UPDATE_CHANNELS,
+    build_desktop_package,
+    create_update_metadata,
+    parse_artifact_specs,
+    verify_update_metadata,
+    write_update_metadata,
+)
+from generator.desktop_packages_contract import run_desktop_packages_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -708,6 +720,50 @@ def create_parser() -> argparse.ArgumentParser:
     native_build.add_argument("--dry-run", action="store_true")
     native_build.add_argument("--format", choices=("text", "json"), default="text")
     native_build.add_argument("--output", type=Path)
+    package_build = subparsers.add_parser(
+        "quest-maker-package-build",
+        help="Build or inspect a Windows installer or Linux AppImage package plan.",
+    )
+    package_build.add_argument("--platform", choices=("windows", "linux"), required=True)
+    package_build.add_argument("--version", required=True)
+    package_build.add_argument(
+        "--native-directory", type=Path, default=DEFAULT_PACKAGE_NATIVE_DIRECTORY
+    )
+    package_build.add_argument("--destination", type=Path, default=DEFAULT_PACKAGE_DIRECTORY)
+    package_build.add_argument("--dry-run", action="store_true")
+    package_build.add_argument("--format", choices=("text", "json"), default="text")
+    package_build.add_argument("--output", type=Path)
+    update_metadata = subparsers.add_parser(
+        "quest-maker-update-metadata",
+        help="Generate deterministic application update metadata for desktop packages.",
+    )
+    update_metadata.add_argument("--version", required=True)
+    update_metadata.add_argument(
+        "--channel", choices=SUPPORTED_UPDATE_CHANNELS, default="stable"
+    )
+    update_metadata.add_argument(
+        "--artifact",
+        action="append",
+        required=True,
+        help="Package artifact as platform=path, or a .exe/.AppImage path.",
+    )
+    update_metadata.add_argument("--base-url", default="")
+    update_metadata.add_argument(
+        "--destination", type=Path, default=DEFAULT_UPDATE_METADATA_PATH
+    )
+    update_metadata.add_argument("--signing-key", type=Path)
+    update_metadata.add_argument("--key-id", default="local")
+    update_metadata.add_argument("--format", choices=("text", "json"), default="text")
+    update_metadata.add_argument("--output", type=Path)
+    update_verify = subparsers.add_parser(
+        "quest-maker-update-verify",
+        help="Verify desktop update metadata, signatures, and local package checksums.",
+    )
+    update_verify.add_argument("metadata", type=Path)
+    update_verify.add_argument("--artifact-directory", type=Path)
+    update_verify.add_argument("--signing-key", type=Path)
+    update_verify.add_argument("--format", choices=("text", "json"), default="text")
+    update_verify.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -933,6 +989,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     native_distribution.add_argument("--format", choices=("text", "json"), default="text")
     native_distribution.add_argument("--output", type=Path)
+    desktop_packages = subparsers.add_parser(
+        "desktop-packages-audit",
+        help="Validate installer/AppImage plans and application update metadata.",
+    )
+    desktop_packages.add_argument("--format", choices=("text", "json"), default="text")
+    desktop_packages.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1305,6 +1367,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "desktop-packages-audit":
+        result = run_desktop_packages_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1371,6 +1442,66 @@ def main(argv: list[str] | None = None) -> int:
             destination=args.destination,
             dry_run=args.dry_run,
         )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-package-build":
+        try:
+            result = build_desktop_package(
+                args.platform,
+                args.version,
+                native_directory=args.native_directory,
+                destination=args.destination,
+                dry_run=args.dry_run,
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Desktop package build failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-update-metadata":
+        try:
+            artifacts = parse_artifact_specs(args.artifact)
+            signing_key = args.signing_key.read_bytes() if args.signing_key else None
+            metadata = create_update_metadata(
+                args.version,
+                args.channel,
+                artifacts,
+                base_url=args.base_url,
+                signing_key=signing_key,
+                key_id=args.key_id,
+            )
+            result = write_update_metadata(metadata, args.destination)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Update metadata generation failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-update-verify":
+        try:
+            signing_key = args.signing_key.read_bytes() if args.signing_key else None
+            result = verify_update_metadata(
+                args.metadata,
+                artifact_directory=args.artifact_directory,
+                signing_key=signing_key,
+            )
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Update metadata verification failed: {exc}")
+            return 1
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

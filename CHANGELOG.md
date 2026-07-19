@@ -1,5 +1,15 @@
 ## Unreleased
 
+- Added deterministic Windows installer and Linux AppImage build plans above the native PyInstaller binaries.
+- Added canonical application update metadata with per-artifact SHA-256/size records, stable/beta/nightly channels, and optional HMAC-SHA256 authentication.
+- Added package/update CLI commands, Inno Setup and AppImage recipes, verification tests, documentation, quality-gate integration, and a tracked desktop-packages audit.
+
+## Commit 105 - Windows Installer, Linux AppImage, and Application Update Metadata
+
+- Added target-specific packaging plans for Inno Setup installers and AppImage artifacts.
+- Added deterministic update feed generation, signature verification, local package checksum verification, and tamper rejection.
+- Added `quest-maker-package-build`, `quest-maker-update-metadata`, `quest-maker-update-verify`, and `desktop-packages-audit`.
+
 - Added persistent first-run desktop preferences for workspace location, custom discovery roots, browser behavior, discovery limits, and last-instance selection.
 - Added standalone Windows/Linux PyInstaller build plans, a windowed desktop entrypoint, target-specific build scripts, and Linux desktop metadata.
 - Added `quest-maker-setup`, `quest-maker-native-build`, setup/preferences UI controls, tests, documentation, quality-gate integration, and a tracked native-distribution audit.

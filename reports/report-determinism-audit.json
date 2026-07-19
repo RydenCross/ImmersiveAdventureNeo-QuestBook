@@ -1,5 +1,5 @@
 {
-  "checked_reports": 57,
+  "checked_reports": 58,
   "deterministic_reports": [
     "audit-dependency-audit.json",
     "audit-performance-audit.json",
@@ -11,6 +11,7 @@
     "contract-guard.json",
     "dependency-audit.json",
     "desktop-launcher-audit.json",
+    "desktop-packages-audit.json",
     "determinism-audit.json",
     "documentation-audit.json",
     "editor-jobs-audit.json",

@@ -24,6 +24,9 @@
     "chapter audit": [],
     "contract guard": [],
     "dependency audit": [],
+    "desktop installers and update metadata contract": [
+      "native desktop distribution and first-run setup contract"
+    ],
     "desktop launcher and instance discovery contract": [
       "portable project bundle contract",
       "local visual editor service contract"
@@ -158,11 +161,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 55,
+  "dependency_edges": 56,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 58,
+  "registered_audits": 59,
   "status": "pass",
   "unknown_dependencies": []
 }

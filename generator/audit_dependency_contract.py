@@ -55,6 +55,9 @@ AUDIT_DEPENDENCIES.update(
         "native desktop distribution and first-run setup contract": (
             "desktop launcher and instance discovery contract",
         ),
+        "desktop installers and update metadata contract": (
+            "native desktop distribution and first-run setup contract",
+        ),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

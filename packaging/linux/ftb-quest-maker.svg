@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="FTB Quest Maker">
+  <rect width="256" height="256" rx="48" fill="#20242b"/>
+  <path d="M58 62h140v28H88v32h92v28H88v44H58z" fill="#f2f5f7"/>
+  <circle cx="184" cy="181" r="34" fill="#7fd38d"/>
+  <path d="m168 181 11 11 22-25" fill="none" stroke="#20242b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

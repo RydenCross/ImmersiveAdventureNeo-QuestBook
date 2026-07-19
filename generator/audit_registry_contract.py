@@ -98,6 +98,11 @@ AUDIT_REGISTRY = (
         "native-distribution-audit",
         "native-distribution-audit.json",
     ),
+    AuditRegistration(
+        "desktop installers and update metadata contract",
+        "desktop-packages-audit",
+        "desktop-packages-audit.json",
+    ),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )
