@@ -24,6 +24,10 @@
     "chapter audit": [],
     "contract guard": [],
     "dependency audit": [],
+    "desktop launcher and instance discovery contract": [
+      "portable project bundle contract",
+      "local visual editor service contract"
+    ],
     "determinism audit": [],
     "documentation contract audit": [],
     "editor autosave and recovery contract": [
@@ -151,11 +155,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 52,
+  "dependency_edges": 54,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 56,
+  "registered_audits": 57,
   "status": "pass",
   "unknown_dependencies": []
 }

@@ -130,6 +130,32 @@ python -m generator editor-model-audit --format json --output reports/editor-mod
 
 See [`docs/EDITOR_MODEL.md`](docs/EDITOR_MODEL.md).
 
+## Desktop launcher and automatic instance discovery
+
+Open the visual application without manually starting the localhost service or typing an instance path:
+
+```bash
+python -m generator quest-maker-launch
+```
+
+The launcher automatically discovers Minecraft Launcher, CurseForge, Prism Launcher, MultiMC, Modrinth App, ATLauncher, and GDLauncher instances. It shows detected Minecraft/loader metadata, mod counts, and existing FTB Quests installations; selected instances can be opened in the editor or receive a verified `.ftbqproj` installation directly.
+
+List the same instances from the command line:
+
+```bash
+python -m generator quest-instance-discover
+python -m generator quest-instance-discover --format json --output instances.json
+```
+
+Validate launcher discovery with:
+
+```bash
+python -m generator desktop-launcher-audit
+python -m generator desktop-launcher-audit --format json --output reports/desktop-launcher-audit.json
+```
+
+See [`docs/DESKTOP_LAUNCHER_AND_INSTANCE_DISCOVERY.md`](docs/DESKTOP_LAUNCHER_AND_INSTANCE_DISCOVERY.md).
+
 ## Local visual editor service and API
 
 Launch the generated editor model as a local browser application:

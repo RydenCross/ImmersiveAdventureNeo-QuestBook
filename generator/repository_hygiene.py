@@ -16,6 +16,7 @@ _REQUIRED_GITIGNORE_PATTERNS = (
     ".quest-editor/",
     ".recovery/",
     ".quest-maker-backups/",
+    ".ftb-quest-maker/",
     "*.ftbqproj",
     "output/",
     "dist/",
@@ -34,6 +35,7 @@ _IGNORED_DIRECTORY_NAMES = {
     ".quest-editor",
     ".recovery",
     ".quest-maker-backups",
+    ".ftb-quest-maker",
     "__pycache__",
 }
 

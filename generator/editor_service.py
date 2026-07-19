@@ -31,6 +31,7 @@ from generator.editor_jobs import (
 from generator.editor_recovery import EditorRecoveryStore
 from generator.editor_workspace import apply_editor_batch, auto_layout_editor_document
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
+from generator.instance_discovery import discover_modpack_instances
 from generator.output_writer import atomic_write_text
 from generator.project_bundle import (
     BUNDLE_EXTENSION,
@@ -239,6 +240,9 @@ class EditorSession:
                 "recovery": self.recovery.status(),
                 "active_jobs": self.jobs.list()["active_jobs"],
             }
+
+    def instances_payload(self) -> dict[str, object]:
+        return discover_modpack_instances().to_dict()
 
     def document_payload(self) -> dict[str, object]:
         with self._lock:
@@ -891,6 +895,8 @@ def handle_editor_api(
             result = session.cancel_job(job_id)
         elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/status":
             result = session.status()
+        elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/instances":
+            result = session.instances_payload()
         elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/document":
             result = session.document_payload()
         elif method == "GET" and clean_path == f"/api/{EDITOR_API_VERSION}/validation":

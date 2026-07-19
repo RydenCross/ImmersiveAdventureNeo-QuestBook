@@ -17,6 +17,7 @@ _IGNORED_PARTS = {
     ".quest-editor",
     ".recovery",
     ".quest-maker-backups",
+    ".ftb-quest-maker",
     "__pycache__",
 }
 _IGNORED_SUFFIXES = {".pyc", ".pyo", ".ftbqproj"}

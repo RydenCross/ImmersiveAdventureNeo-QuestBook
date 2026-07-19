@@ -31,3 +31,6 @@ reports/.report-refresh-cache.json
 # Portable Quest Maker bundles and local installation backups
 *.ftbqproj
 .quest-maker-backups/
+
+# Desktop launcher per-instance workspaces
+.ftb-quest-maker/

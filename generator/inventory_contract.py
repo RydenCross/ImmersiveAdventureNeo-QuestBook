@@ -63,6 +63,7 @@ SPECIAL_TEST_FILES = {
     "editor autosave and recovery contract": "test_editor_recovery_contract.py",
     "editor background jobs contract": "test_editor_jobs_contract.py",
     "portable project bundle contract": "test_project_bundle_contract.py",
+    "desktop launcher and instance discovery contract": "test_desktop_launcher_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }

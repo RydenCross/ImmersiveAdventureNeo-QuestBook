@@ -88,6 +88,11 @@ AUDIT_REGISTRY = (
     AuditRegistration("editor autosave and recovery contract", "editor-recovery-audit", "editor-recovery-audit.json"),
     AuditRegistration("editor background jobs contract", "editor-jobs-audit", "editor-jobs-audit.json"),
     AuditRegistration("portable project bundle contract", "project-bundle-audit", "project-bundle-audit.json"),
+    AuditRegistration(
+        "desktop launcher and instance discovery contract",
+        "desktop-launcher-audit",
+        "desktop-launcher-audit.json",
+    ),
     AuditRegistration("audit performance contract", "audit-performance-audit", "audit-performance-audit.json"),
     AuditRegistration("audit dependency contract", "audit-dependency-audit", "audit-dependency-audit.json"),
 )

@@ -101,6 +101,9 @@ from generator.project_bundle import (
     install_project_bundle,
 )
 from generator.project_bundle_contract import run_project_bundle_contract
+from generator.instance_discovery import InstanceSearchRoot, discover_modpack_instances
+from generator.desktop_launcher import DEFAULT_LAUNCHER_WORKSPACE, launch_desktop
+from generator.desktop_launcher_contract import run_desktop_launcher_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -615,6 +618,47 @@ def create_parser() -> argparse.ArgumentParser:
     quest_project_install.add_argument("--force", action="store_true")
     quest_project_install.add_argument("--format", choices=("text", "json"), default="text")
     quest_project_install.add_argument("--output", type=Path)
+    quest_instance_discover = subparsers.add_parser(
+        "quest-instance-discover",
+        help="Discover supported local Minecraft and modpack launcher instances.",
+    )
+    quest_instance_discover.add_argument(
+        "--root",
+        action="append",
+        type=Path,
+        default=[],
+        help="Search a custom launcher or instance directory; may be repeated.",
+    )
+    quest_instance_discover.add_argument(
+        "--max-instances",
+        type=int,
+        default=500,
+        help="Maximum discovered instances to return (default: 500).",
+    )
+    quest_instance_discover.add_argument("--format", choices=("text", "json"), default="text")
+    quest_instance_discover.add_argument("--output", type=Path)
+    quest_maker_launch = subparsers.add_parser(
+        "quest-maker-launch",
+        help="Open the desktop launcher and automatically discover modpack instances.",
+    )
+    quest_maker_launch.add_argument(
+        "--workspace",
+        type=Path,
+        default=DEFAULT_LAUNCHER_WORKSPACE,
+        help="Root directory for per-instance editor workspaces.",
+    )
+    quest_maker_launch.add_argument(
+        "--root",
+        action="append",
+        type=Path,
+        default=[],
+        help="Search a custom launcher or instance directory; may be repeated.",
+    )
+    quest_maker_launch.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="Start selected editor services without opening a browser automatically.",
+    )
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -828,6 +872,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     project_bundle.add_argument("--format", choices=("text", "json"), default="text")
     project_bundle.add_argument("--output", type=Path)
+    desktop_launcher = subparsers.add_parser(
+        "desktop-launcher-audit",
+        help="Validate launcher discovery, metadata parsing, editor launch plans, and instance selection.",
+    )
+    desktop_launcher.add_argument("--format", choices=("text", "json"), default="text")
+    desktop_launcher.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1182,6 +1232,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "desktop-launcher-audit":
+        result = run_desktop_launcher_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "audit-performance-audit":
         result = run_audit_performance_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1190,6 +1249,36 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if result.is_clean else 1
+
+    if args.command == "quest-instance-discover":
+        roots = (
+            tuple(InstanceSearchRoot("Custom", path) for path in args.root)
+            if args.root
+            else None
+        )
+        result = discover_modpack_instances(roots, max_instances=args.max_instances)
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0
+
+    if args.command == "quest-maker-launch":
+        roots = (
+            tuple(InstanceSearchRoot("Custom", path) for path in args.root)
+            if args.root
+            else None
+        )
+        try:
+            return launch_desktop(
+                workspace_root=args.workspace,
+                search_roots=roots,
+                open_browser=not args.no_browser,
+            )
+        except (OSError, RuntimeError, ValueError) as exc:
+            print(f"Desktop launcher failed: {exc}")
+            return 1
 
     if args.command == "modpack-scan":
         result = scan_modpack(args.path)

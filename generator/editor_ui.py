@@ -351,10 +351,16 @@ async function recoverLatest(){try{const recovery=await request('/recovery');if(
 async function saveModel(){try{await request('/save',{method:'POST',body:JSON.stringify({path:'quest-editor-model.json'})});showError();await refresh();}catch(error){showError(error);}}
 async function saveBundle(){try{const result=await request('/bundle',{method:'POST',body:JSON.stringify({destination:'project.ftbqproj'})});showError(`Saved portable project bundle to ${result.destination}`);}catch(error){showError(error);}}
 async function installQuestbook(){
-  const instance = window.prompt('Minecraft instance folder to install into:');
-  if (!instance) return;
   try {
-    const result=await request('/install',{method:'POST',body:JSON.stringify({instance,backup:true})});
+    const discovery = await request('/instances');
+    const instances = discovery.instances || [];
+    if (!instances.length) throw new Error('No supported Minecraft instances were discovered. Use the desktop launcher to add a custom instance folder.');
+    const choices = instances.map((item,index)=>`${index+1}. ${item.name} [${item.launcher}] · ${item.minecraft_version||'unknown'} · ${item.game_directory}`).join('\n');
+    const selected = window.prompt(`Choose the discovered instance number:\n\n${choices}`, '1');
+    if (!selected) return;
+    const index = Number(selected) - 1;
+    if (!Number.isInteger(index) || !instances[index]) throw new Error('Choose a valid instance number.');
+    const result=await request('/install',{method:'POST',body:JSON.stringify({instance:instances[index].game_directory,backup:true})});
     showError(`Installed ${result.installed_files} files to ${result.destination}${result.backup ? ` · backup: ${result.backup}` : ''}`);
   } catch(error){showError(error);}
 }

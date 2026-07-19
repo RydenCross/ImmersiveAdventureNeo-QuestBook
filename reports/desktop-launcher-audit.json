@@ -1,0 +1,11 @@
+{
+  "browser_instance_selection": true,
+  "common_launchers_discovered": true,
+  "deterministic_discovery": true,
+  "duplicate_instances_removed": true,
+  "empty_directories_ignored": true,
+  "instance_api_route": true,
+  "metadata_detected": true,
+  "safe_editor_command": true,
+  "status": "pass"
+}

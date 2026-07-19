@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 82,
+  "documented_command_count": 85,
   "empty_documents": [],
-  "expected_command_count": 82,
-  "markdown_file_count": 87,
+  "expected_command_count": 85,
+  "markdown_file_count": 88,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -29,6 +29,7 @@
     "docs/CREATE_ADDONS.md",
     "docs/DEPENDENCY_AUDIT.md",
     "docs/DEPENDENCY_GRAPH.md",
+    "docs/DESKTOP_LAUNCHER_AND_INSTANCE_DISCOVERY.md",
     "docs/DETERMINISM_AUDIT.md",
     "docs/DOCUMENTATION_AUDIT.md",
     "docs/EDITOR_BACKGROUND_JOBS.md",

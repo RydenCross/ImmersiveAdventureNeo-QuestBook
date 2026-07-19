@@ -40,6 +40,10 @@
       "report": "dependency-audit.json"
     },
     {
+      "command": "desktop-launcher-audit",
+      "report": "desktop-launcher-audit.json"
+    },
+    {
       "command": "determinism-audit",
       "report": "determinism-audit.json"
     },
@@ -225,5 +229,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 55
+  "tracked_reports": 56
 }

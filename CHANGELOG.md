@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 103 - Desktop Launcher and Automatic Modpack Instance Discovery
+
+- Added dependency-free desktop launcher controls for opening the visual editor and installing portable projects without typed instance paths.
+- Added automatic discovery for Minecraft Launcher, CurseForge, Prism Launcher, MultiMC, Modrinth App, ATLauncher, and GDLauncher instances.
+- Added deterministic metadata parsing for pack names, Minecraft versions, loaders, mod counts, game directories, and existing FTB Quests installations.
+- Added `/api/v1/instances`, browser-side discovered-instance installation selection, CLI discovery, tests, documentation, quality-gate integration, and a tracked audit report.
+
 ## Commit 102 - Portable Quest Maker Project Bundles and One-Click Installation
 
 - Added deterministic `.ftbqproj` bundles containing the editor document, source fingerprint, generation settings, and validated FTB Quests export.
