@@ -195,6 +195,11 @@ AUDIT_REGISTRY = (
         "application-update-client-audit.json",
     ),
     AuditRegistration(
+        "verified update apply and rollback contract",
+        "update-application-audit",
+        "update-application-audit.json",
+    ),
+    AuditRegistration(
         "audit performance contract", "audit-performance-audit", "audit-performance-audit.json"
     ),
     AuditRegistration(

@@ -141,6 +141,8 @@ from generator.application_updates import (
     stage_application_update,
 )
 from generator.application_updates_contract import run_application_updates_contract
+from generator.update_application import apply_staged_update, rollback_applied_update
+from generator.update_application_contract import run_update_application_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -836,6 +838,23 @@ def create_parser() -> argparse.ArgumentParser:
     update_stage.add_argument("--timeout", type=float, default=DEFAULT_UPDATE_TIMEOUT_SECONDS)
     update_stage.add_argument("--format", choices=("text", "json"), default="text")
     update_stage.add_argument("--output", type=Path)
+    update_apply = subparsers.add_parser(
+        "quest-maker-update-apply",
+        help="Verify and apply a staged desktop update, or print a safe dry-run plan.",
+    )
+    update_apply.add_argument("manifest", type=Path)
+    update_apply.add_argument("--current-executable", type=Path)
+    update_apply.add_argument("--execute", action="store_true")
+    update_apply.add_argument("--format", choices=("text", "json"), default="text")
+    update_apply.add_argument("--output", type=Path)
+    update_rollback = subparsers.add_parser(
+        "quest-maker-update-rollback",
+        help="Restore a Linux AppImage from a verified rollback manifest.",
+    )
+    update_rollback.add_argument("manifest", type=Path)
+    update_rollback.add_argument("--execute", action="store_true")
+    update_rollback.add_argument("--format", choices=("text", "json"), default="text")
+    update_rollback.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -1096,6 +1115,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     application_updates.add_argument("--format", choices=("text", "json"), default="text")
     application_updates.add_argument("--output", type=Path)
+    update_application = subparsers.add_parser(
+        "update-application-audit",
+        help="Validate verified update apply, rollback, and recovery behavior.",
+    )
+    update_application.add_argument("--format", choices=("text", "json"), default="text")
+    update_application.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1477,6 +1502,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "update-application-audit":
+        result = run_update_application_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "application-update-client-audit":
         result = run_application_updates_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1631,6 +1665,26 @@ def main(argv: list[str] | None = None) -> int:
         except (OSError, TypeError, ValueError) as exc:
             print(f"Application update check failed: {exc}")
             return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-update-apply":
+        result = apply_staged_update(
+            args.manifest, current_executable=args.current_executable, execute=args.execute
+        )
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-update-rollback":
+        result = rollback_applied_update(args.manifest, execute=args.execute)
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

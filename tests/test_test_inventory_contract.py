@@ -6,8 +6,8 @@ from generator.inventory_contract import run_test_inventory_contract
 def test_repository_test_inventory_is_clean() -> None:
     result = run_test_inventory_contract()
     assert result.is_clean
-    assert result.registered_audits == 60
-    assert len(result.expected_test_files) == 60
+    assert result.registered_audits == 61
+    assert len(result.expected_test_files) == 61
 
 
 def test_inventory_reports_missing_test_file(tmp_path: Path) -> None:

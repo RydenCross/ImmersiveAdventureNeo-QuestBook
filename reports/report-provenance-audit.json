@@ -238,8 +238,12 @@
     {
       "command": "text-audit",
       "report": "text-audit.json"
+    },
+    {
+      "command": "update-application-audit",
+      "report": "update-application-audit.json"
     }
   ],
   "status": "pass",
-  "tracked_reports": 59
+  "tracked_reports": 60
 }

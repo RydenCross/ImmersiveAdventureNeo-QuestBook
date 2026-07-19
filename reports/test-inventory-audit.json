@@ -59,11 +59,12 @@
     "test_reward_planner_contract.py",
     "test_task_audit.py",
     "test_test_inventory_contract.py",
-    "test_text_audit.py"
+    "test_text_audit.py",
+    "test_update_application.py"
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 60,
+  "registered_audits": 61,
   "status": "pass",
   "unregistered_mappings": []
 }

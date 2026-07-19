@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 107 - Verified Update Apply, Rollback, and Recovery
+
+- Added revalidation of pending update manifests and staged artifacts immediately before apply.
+- Added atomic Linux AppImage replacement with rollback backups and deterministic recovery manifests.
+- Added verified Windows installer handoff, explicit execution gates, safe dry-run plans, CLI commands, tests, documentation, and audit integration.
+
 ## Commit 106 - Secure Update Client and Staged Downloads
 
 - Added local/HTTPS update checks with semantic-version ordering, stable/beta/nightly channel policy, target-platform selection, bounded metadata reads, and optional signed-metadata enforcement.

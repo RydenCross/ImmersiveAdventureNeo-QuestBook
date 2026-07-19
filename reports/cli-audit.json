@@ -1,5 +1,5 @@
 {
-  "command_count": 95,
+  "command_count": 98,
   "commands": [
     "application-update-client-audit",
     "audit",
@@ -53,8 +53,10 @@
     "quest-maker-native-build",
     "quest-maker-package-build",
     "quest-maker-setup",
+    "quest-maker-update-apply",
     "quest-maker-update-check",
     "quest-maker-update-metadata",
+    "quest-maker-update-rollback",
     "quest-maker-update-stage",
     "quest-maker-update-verify",
     "quest-project-bundle",
@@ -95,7 +97,8 @@
     "reward-planner-audit",
     "task-audit",
     "test-inventory-audit",
-    "text-audit"
+    "text-audit",
+    "update-application-audit"
   ],
   "commands_without_help": [],
   "console_script": "generator.cli:main",

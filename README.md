@@ -943,3 +943,8 @@ python -m generator project-bundle-audit --format json --output reports/project-
 ```
 
 See [`docs/PROJECT_BUNDLES_AND_INSTALLATION.md`](docs/PROJECT_BUNDLES_AND_INSTALLATION.md).
+
+
+## Verified update apply and rollback
+
+See [`docs/UPDATE_APPLY_AND_ROLLBACK.md`](docs/UPDATE_APPLY_AND_ROLLBACK.md). Mutating apply and rollback operations require `--execute`; dry runs are the default.

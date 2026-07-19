@@ -40,4 +40,4 @@ def test_quality_gate_text_lists_each_check() -> None:
 def test_repository_quality_gate_is_clean() -> None:
     result = run_quality_gate()
     assert result.is_clean
-    assert len(result.checks) == 60
+    assert len(result.checks) == 61

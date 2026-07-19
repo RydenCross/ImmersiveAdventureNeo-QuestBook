@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 95,
+  "documented_command_count": 98,
   "empty_documents": [],
-  "expected_command_count": 95,
-  "markdown_file_count": 91,
+  "expected_command_count": 98,
+  "markdown_file_count": 92,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -92,6 +92,7 @@
     "docs/TASK_AUDIT.md",
     "docs/TEST_INVENTORY_CONTRACT.md",
     "docs/TEXT_AUDIT.md",
+    "docs/UPDATE_APPLY_AND_ROLLBACK.md",
     "docs/VALIDATION.md",
     "docs/WRITER.md",
     "docs/ae2.md",

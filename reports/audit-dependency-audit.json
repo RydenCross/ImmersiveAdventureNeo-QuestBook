@@ -158,6 +158,7 @@
       "audit registry contract"
     ],
     "text audit": [],
+    "verified update apply and rollback contract": [],
     "visual editor data model contract": [
       "reward planner contract",
       "FTB blueprint exporter contract"
@@ -168,7 +169,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 60,
+  "registered_audits": 61,
   "status": "pass",
   "unknown_dependencies": []
 }

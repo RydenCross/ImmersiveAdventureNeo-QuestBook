@@ -1,0 +1,8 @@
+{
+  "dry_run_safe": true,
+  "linux_apply_verified": true,
+  "rollback_verified": true,
+  "status": "pass",
+  "tamper_rejected": true,
+  "windows_handoff_verified": true
+}
