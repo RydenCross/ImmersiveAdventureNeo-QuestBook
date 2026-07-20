@@ -184,6 +184,10 @@
       "report": "release-reproducibility-audit.json"
     },
     {
+      "command": "release-signing-audit",
+      "report": "release-signing-audit.json"
+    },
+    {
       "command": "report-consistency-audit",
       "report": "report-consistency-audit.json"
     },
@@ -253,5 +257,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 62
+  "tracked_reports": 63
 }

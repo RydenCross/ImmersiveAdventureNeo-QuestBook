@@ -75,6 +75,7 @@ from generator.application_updates_contract import run_application_updates_contr
 from generator.update_application_contract import run_update_application_contract
 from generator.github_release_contract import run_github_release_contract
 from generator.release_attestation_contract import run_release_attestation_contract
+from generator.release_signing_contract import run_release_signing_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
 
@@ -183,6 +184,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "update-application-audit.json": lambda: run_update_application_contract().format_json(),
         "github-release-publishing-audit.json": lambda: run_github_release_contract().format_json(),
         "release-attestation-audit.json": lambda: run_release_attestation_contract().format_json(),
+        "release-signing-audit.json": lambda: run_release_signing_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),
         "release-artifact-audit.json": lambda: run_release_artifact_audit().format_json(),

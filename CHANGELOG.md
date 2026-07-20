@@ -514,3 +514,10 @@
 
 ## 0.1.0-alpha.1
 - Idea
+
+## Commit 110 - Keyless Release Signing and Attestation Verification
+
+- Added deterministic SHA-256 release manifests and strict local verification.
+- Added safe GitHub attestation verification plans with explicit execution.
+- Added keyless `actions/attest@v4` release workflow integration using OIDC.
+- Added release-signing audit, tests, documentation, quality-gate integration, and tracked reporting.

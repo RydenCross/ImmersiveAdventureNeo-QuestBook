@@ -958,3 +958,7 @@ See [GitHub Release Publishing](docs/GITHUB_RELEASE_PUBLISHING.md). Create a saf
 ## Release supply-chain metadata
 
 Generate deterministic CycloneDX SBOM and SLSA provenance documents with `quest-maker-release-sbom` and `quest-maker-release-provenance`. See [Release SBOM and provenance](docs/RELEASE_SBOM_AND_PROVENANCE.md).
+
+## Keyless release signing and verification
+
+Release workflows now generate deterministic `SHA256SUMS` and GitHub artifact attestations using short-lived OIDC credentials. Consumers can create or execute verification plans with `quest-maker-release-verify-attestations`. See [Keyless release signing](docs/KEYLESS_RELEASE_SIGNING.md).

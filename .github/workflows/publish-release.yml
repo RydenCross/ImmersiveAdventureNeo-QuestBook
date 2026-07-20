@@ -13,6 +13,8 @@ on:
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   publish:
@@ -66,6 +68,21 @@ jobs:
             --workflow .github/workflows/publish-release.yml \
             $(find release-assets -type f \( -name '*.exe' -o -name '*.AppImage' \) -printf '%p\n' | sed 's/^/--artifact /') \
             --output release-assets/ftb-quest-maker-provenance.intoto.jsonl
+      - name: Generate release checksums
+        run: |
+          python -m generator quest-maker-release-checksums \
+            $(find release-assets -type f -printf '%p\n' | sed 's/^/--artifact /') \
+            --output release-assets/SHA256SUMS
+      - name: Generate keyless GitHub artifact attestations
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            release-assets/*.exe
+            release-assets/*.AppImage
+            release-assets/update.json
+            release-assets/SHA256SUMS
+            release-assets/*.cdx.json
+            release-assets/*.intoto.jsonl
       - name: Publish verified assets
         env:
           GH_TOKEN: ${{ github.token }}

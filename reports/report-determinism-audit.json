@@ -1,5 +1,5 @@
 {
-  "checked_reports": 62,
+  "checked_reports": 63,
   "deterministic_reports": [
     "application-update-client-audit.json",
     "audit-dependency-audit.json",
@@ -47,6 +47,7 @@
     "release-package-verification-audit.json",
     "release-report-finalization-audit.json",
     "release-reproducibility-audit.json",
+    "release-signing-audit.json",
     "report-consistency-audit.json",
     "report-provenance-audit.json",
     "report-refresh-audit.json",

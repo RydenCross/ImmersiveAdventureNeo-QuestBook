@@ -147,6 +147,12 @@ from generator.github_release import create_github_release_plan, publish_github_
 from generator.github_release_contract import run_github_release_contract
 from generator.release_attestation import create_cyclonedx_sbom, create_slsa_provenance, write_json_document
 from generator.release_attestation_contract import run_release_attestation_contract
+from generator.release_signing import (
+    create_attestation_verification_plan,
+    verify_github_attestations,
+    write_checksum_manifest,
+)
+from generator.release_signing_contract import run_release_signing_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -901,6 +907,20 @@ def create_parser() -> argparse.ArgumentParser:
     release_provenance.add_argument("--workflow", default=".github/workflows/publish-release.yml")
     release_provenance.add_argument("--artifact", action="append", type=Path, required=True)
     release_provenance.add_argument("--output", type=Path, required=True)
+    release_checksums = subparsers.add_parser(
+        "quest-maker-release-checksums",
+        help="Generate a deterministic SHA-256 manifest for release artifacts.",
+    )
+    release_checksums.add_argument("--artifact", action="append", type=Path, required=True)
+    release_checksums.add_argument("--output", type=Path, required=True)
+    release_verify = subparsers.add_parser(
+        "quest-maker-release-verify-attestations",
+        help="Plan or execute GitHub artifact-attestation verification.",
+    )
+    release_verify.add_argument("--repository", required=True)
+    release_verify.add_argument("--artifact", action="append", type=Path, required=True)
+    release_verify.add_argument("--execute", action="store_true")
+    release_verify.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -1179,6 +1199,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     release_attestation.add_argument("--format", choices=("text", "json"), default="text")
     release_attestation.add_argument("--output", type=Path)
+    release_signing = subparsers.add_parser(
+        "release-signing-audit",
+        help="Validate deterministic checksums and keyless GitHub attestation verification.",
+    )
+    release_signing.add_argument("--format", choices=("text", "json"), default="text")
+    release_signing.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1578,6 +1604,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "release-signing-audit":
+        result = run_release_signing_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "github-release-publishing-audit":
         result = run_github_release_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1814,6 +1849,30 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Release provenance generation failed: {exc}")
             return 1
         print(output)
+        return 0
+
+    if args.command == "quest-maker-release-checksums":
+        try:
+            output = write_checksum_manifest(args.output, args.artifact)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Release checksum generation failed: {exc}")
+            return 1
+        print(output)
+        return 0
+
+    if args.command == "quest-maker-release-verify-attestations":
+        try:
+            plan = verify_github_attestations(
+                args.artifact, repository=args.repository, execute=args.execute
+            )
+        except (OSError, TypeError, ValueError, RuntimeError) as exc:
+            print(f"Release attestation verification failed: {exc}")
+            return 1
+        rendered = plan.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
         return 0
 
     if args.command == "quest-maker-update-stage":

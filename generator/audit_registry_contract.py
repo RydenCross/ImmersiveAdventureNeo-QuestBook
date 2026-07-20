@@ -210,6 +210,11 @@ AUDIT_REGISTRY = (
         "release-attestation-audit.json",
     ),
     AuditRegistration(
+        "keyless release signing and verification contract",
+        "release-signing-audit",
+        "release-signing-audit.json",
+    ),
+    AuditRegistration(
         "audit performance contract", "audit-performance-audit", "audit-performance-audit.json"
     ),
     AuditRegistration(

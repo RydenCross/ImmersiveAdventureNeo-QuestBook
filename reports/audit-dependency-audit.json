@@ -49,6 +49,10 @@
     "interactive visual editor UI contract": [
       "local visual editor service contract"
     ],
+    "keyless release signing and verification contract": [
+      "release SBOM and provenance contract",
+      "GitHub release publishing contract"
+    ],
     "local visual editor service contract": [
       "visual editor data model contract"
     ],
@@ -167,11 +171,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 57,
+  "dependency_edges": 59,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 63,
+  "registered_audits": 64,
   "status": "pass",
   "unknown_dependencies": []
 }

@@ -83,6 +83,7 @@ AUDIT_DEPENDENCIES.update(
         "desktop installers and update metadata contract": (
             "native desktop distribution and first-run setup contract",
         ),
+        "keyless release signing and verification contract": ("release SBOM and provenance contract", "GitHub release publishing contract"),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }
