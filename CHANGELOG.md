@@ -1,3 +1,10 @@
+## Commit 130 - Release Version Identity Binding
+
+- Derived a normalized semantic release version from the required `v`-prefixed Git tag.
+- Fixed update-metadata generation so `v1.2.3` tags no longer violate the package metadata version contract.
+- Bound update metadata and CycloneDX application metadata to the exact normalized release version before publication.
+- Added workflow-contract and release-validation regression coverage for cross-version metadata substitution.
+
 ## Commit 129 - Fail-Closed Release Metadata Schema Validation
 
 - Made CycloneDX, SLSA provenance, and update metadata parsing fail closed for malformed JSON structures.

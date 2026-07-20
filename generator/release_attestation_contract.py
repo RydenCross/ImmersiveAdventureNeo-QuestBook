@@ -23,6 +23,7 @@ class ReleaseAttestationContract:
     unsafe_inputs_rejected: bool
     workflow_integrated: bool
     verified_source_revision_bound: bool
+    release_version_bound: bool
 
     @property
     def is_clean(self) -> bool:
@@ -73,5 +74,13 @@ def run_release_attestation_contract() -> ReleaseAttestationContract:
                 and "printf '%s\\n' \"RELEASE_SOURCE_SHA=$RELEASE_SOURCE_SHA\" >> \"$GITHUB_ENV\"" in workflow
                 and '--revision "$RELEASE_SOURCE_SHA"' in workflow
                 and '${{ github.sha }}' not in workflow
+            ),
+            release_version_bound=(
+                'RELEASE_VERSION="${{ inputs.tag }}"' in workflow
+                and 'RELEASE_VERSION="${RELEASE_VERSION#v}"' in workflow
+                and '"RELEASE_VERSION=$RELEASE_VERSION"' in workflow
+                and '--version "$RELEASE_VERSION"' in workflow
+                and '--expected-version "$RELEASE_VERSION"' in workflow
+                and '--version "${{ inputs.tag }}"' not in workflow
             ),
         )

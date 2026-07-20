@@ -3,7 +3,7 @@
   "documented_command_count": 117,
   "empty_documents": [],
   "expected_command_count": 117,
-  "markdown_file_count": 112,
+  "markdown_file_count": 113,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -91,6 +91,7 @@
     "docs/RELEASE_REPRODUCIBILITY_AUDIT.md",
     "docs/RELEASE_SBOM_AND_PROVENANCE.md",
     "docs/RELEASE_SOURCE_INTEGRITY.md",
+    "docs/RELEASE_VERSION_IDENTITY_BINDING.md",
     "docs/REPORT_CONSISTENCY_CONTRACT.md",
     "docs/REPORT_DETERMINISM_CONTRACT.md",
     "docs/REPORT_FRESHNESS.md",

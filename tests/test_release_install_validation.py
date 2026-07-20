@@ -45,7 +45,7 @@ def _fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
         ],
     }), encoding="utf-8")
     sbom = assets / "ftb-quest-maker-sbom.cdx.json"
-    sbom.write_text(json.dumps(create_cyclonedx_sbom([exe, app], version="v1.2.3")), encoding="utf-8")
+    sbom.write_text(json.dumps(create_cyclonedx_sbom([exe, app], version="1.2.3")), encoding="utf-8")
     provenance = assets / "ftb-quest-maker-provenance.intoto.jsonl"
     provenance.write_text(json.dumps(create_slsa_provenance(
         [exe, app], repository="https://github.com/example/project", revision="a" * 40,
@@ -359,3 +359,37 @@ def test_rejects_malformed_nested_sbom_and_provenance_collections(tmp_path: Path
     assert any("SBOM hashes must be an array" in error for error in result.errors)
     assert any("resolvedDependencies must be an array" in error for error in result.errors)
     assert any("provenance metadata must be an object" in error for error in result.errors)
+
+
+def test_binds_update_and_sbom_versions_to_expected_release(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    result = validate_release_installers(
+        assets,
+        checksums,
+        update,
+        expected_version="1.2.3",
+    )
+    assert result.is_clean
+
+
+def test_rejects_cross_version_update_and_sbom_metadata(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    update_payload = json.loads(update.read_text(encoding="utf-8"))
+    update_payload["version"] = "9.9.9"
+    update.write_text(json.dumps(update_payload), encoding="utf-8")
+
+    sbom = next(assets.glob("*.cdx.json"))
+    sbom_payload = json.loads(sbom.read_text(encoding="utf-8"))
+    sbom_payload["metadata"]["component"]["version"] = "9.9.9"
+    sbom.write_text(json.dumps(sbom_payload), encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(
+        assets,
+        checksums,
+        update,
+        expected_version="1.2.3",
+    )
+    assert not result.is_clean
+    assert any("SBOM application version" in error for error in result.errors)
+    assert any("update metadata version" in error for error in result.errors)

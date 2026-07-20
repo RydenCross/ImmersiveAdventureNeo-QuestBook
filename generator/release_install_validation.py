@@ -72,7 +72,7 @@ def _canonical_sha256(value: object) -> str | None:
     return value
 
 
-def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
+def _validate_sbom(path: Path, installers: list[Path], *, expected_version: str | None = None) -> tuple[str, ...]:
     errors: list[str] = []
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -82,6 +82,16 @@ def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
         return ("CycloneDX SBOM root must be an object",)
     if payload.get("bomFormat") != "CycloneDX":
         errors.append("SBOM bomFormat must be CycloneDX")
+    metadata = payload.get("metadata")
+    if not isinstance(metadata, dict):
+        metadata = {}
+        errors.append("SBOM metadata must be an object")
+    application = metadata.get("component")
+    if not isinstance(application, dict):
+        application = {}
+        errors.append("SBOM metadata component must be an object")
+    if expected_version is not None and application.get("version") != expected_version:
+        errors.append("SBOM application version does not match expected release version")
     components = payload.get("components")
     if not isinstance(components, list):
         return tuple(errors + ["SBOM components must be an array"])
@@ -251,6 +261,7 @@ def validate_release_installers(
     expected_revision: str | None = None,
     expected_repository: str | None = None,
     expected_workflow: str = ".github/workflows/publish-release.yml",
+    expected_version: str | None = None,
 ) -> ReleaseInstallValidation:
     assets = assets.resolve()
     checksums = checksums.resolve()
@@ -349,7 +360,7 @@ def validate_release_installers(
 
     selected = windows[:1] + linux[:1]
     if len(sboms) == 1 and len(selected) == 2:
-        errors.extend(_validate_sbom(sboms[0], selected))
+        errors.extend(_validate_sbom(sboms[0], selected, expected_version=expected_version))
     if len(provenance) == 1 and len(selected) == 2:
         errors.extend(_validate_provenance(
             provenance[0], selected, revision=expected_revision,
@@ -375,6 +386,8 @@ def validate_release_installers(
     update_verification = verify_update_metadata(
         update_metadata, artifact_directory=assets
     )
+    if expected_version is not None and update_verification.version != expected_version:
+        errors.append("update metadata version does not match expected release version")
     errors.extend(f"invalid update metadata: {error}" for error in update_verification.errors)
     errors.extend(
         f"update metadata is missing artifact {name}"
@@ -412,11 +425,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--expected-revision")
     parser.add_argument("--expected-repository")
     parser.add_argument("--expected-workflow", default=".github/workflows/publish-release.yml")
+    parser.add_argument("--expected-version")
     args = parser.parse_args(argv)
     result = validate_release_installers(
         args.assets, args.checksums, args.update, minimum_bytes=args.minimum_bytes,
         expected_revision=args.expected_revision, expected_repository=args.expected_repository,
-        expected_workflow=args.expected_workflow
+        expected_workflow=args.expected_workflow, expected_version=args.expected_version
     )
     print(result.format_json())
     return 0 if result.is_clean else 1
