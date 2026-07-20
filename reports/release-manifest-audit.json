@@ -1,6 +1,6 @@
 {
   "archive_entries": 484,
-  "archive_sha256": "c4bf33521c4697def14ce0e57913fe7587de9b415332c96bc445144e7c8b16e9",
+  "archive_sha256": "e039b35912581013ec17cc4f2748e35459c44272fb44360d857dedd252783f29",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -969,9 +969,9 @@
       "sha256": "b6f2acf25277067609ac1a790688aaebeec59ff985269986e01159e5eedf5af6"
     },
     {
-      "bytes": 39240,
+      "bytes": 44534,
       "path": "generator/editor_model.py",
-      "sha256": "155c5791f104d51d5bc4586d55a01efb5b15b43900d69116efa4d3c1f78b8813"
+      "sha256": "76eb51f9db489cf464c275dd4bcf3fdb482c277983fe029dc9c6be816270b7ee"
     },
     {
       "bytes": 7913,
@@ -999,9 +999,9 @@
       "sha256": "bd43036aa1aeb58b99948a1bf27088a0e1707544fe5c7c2757877e1f1e8e29ab"
     },
     {
-      "bytes": 38011,
+      "bytes": 40124,
       "path": "generator/editor_ui.py",
-      "sha256": "da8d055c67d5c25a9b15b3fef4616b6fa98a05e87ddf8e5d677fa7b29c1daa32"
+      "sha256": "b6c811954551cfe61e54b50b6cd63049b23d346cafb38dd6ab2d34b1cc7d3ca2"
     },
     {
       "bytes": 6596,
@@ -2014,9 +2014,9 @@
       "sha256": "c36e4cc2733547767bb779077bb5d029c9f227035f536feb81f9af99b8ea907c"
     },
     {
-      "bytes": 7070,
+      "bytes": 9232,
       "path": "tests/test_editor_model.py",
-      "sha256": "bf816de35ed3229e67de9a148789c8baccdaf411de89f7fbdd108813f2773f9b"
+      "sha256": "5fc2be500fa4cc6e63ace560b1532a9d08384fedc6fdfddda4971c4096535150"
     },
     {
       "bytes": 206,
@@ -2427,6 +2427,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "b11ee048f2cdedabf7a3a7ceb81f467c420000a7f16e8e51094416bee239bdbf",
+  "tree_sha256": "f4a1ae06859044b0219e69e90e62011a11d4971890c25a52df5f048908cc2c80",
   "unexpected_entries": []
 }

@@ -113,6 +113,7 @@ textarea { min-height: 150px; resize: vertical; }
   <div class="toolbar">
     <input id="search" type="search" placeholder="Search quests…">
     <select id="chapter-filter"><option value="">All chapters</option></select>
+    <button id="new-quest-button">New quest</button>
     <button id="link-button" title="Choose prerequisite, then dependent quest">Link prerequisite</button>
     <button id="auto-layout-button">Auto layout</button>
     <select id="bulk-chapter"><option value="">Move selected…</option></select>
@@ -144,6 +145,8 @@ textarea { min-height: 150px; resize: vertical; }
     <label>Rewards</label><div id="reward-list"></div><button id="add-reward" type="button">Add reward</button>
     <div class="meta">Reward types may be item, xp, command, or loot. Item IDs use namespace:path.</div>
     <button onclick="saveQuest()">Apply quest changes</button>
+    <button id="duplicate-quest" type="button">Duplicate quest</button>
+    <button id="delete-quest" type="button">Delete quest</button>
     <button id="regenerate-quest" type="button">Regenerate quest</button>
     <button id="regenerate-chapter" type="button">Regenerate chapter</button>
     <label><input id="preserve-manual" type="checkbox" checked style="width:auto"> Preserve my manual edits</label>
@@ -397,6 +400,10 @@ async function regenerateSelection(scope){
   } catch(error){showError(error);}
 }
 async function saveQuest(){try{const rewardDecision=document.getElementById('reward-decision').value;const rewards=rewardDecision==='rewarded'?readRewards():[];const objective={type:document.getElementById('objective-type').value,id:document.getElementById('objective-id').value.trim(),count:Number(document.getElementById('objective-count').value||1)};await request('/operations',{method:'POST',body:JSON.stringify({action:'update_quest',target_id:selected,values:{title:document.getElementById('title').value,description:document.getElementById('description').value,objective,difficulty:document.getElementById('quest-difficulty').value,optional:document.getElementById('quest-optional').checked,hidden:document.getElementById('quest-hidden').checked,review_required:document.getElementById('review-required').checked,reward_decision:rewardDecision,rewards}})});showError();await refresh();}catch(error){showError(error);}}
+function newQuestId(prefix='manual'){const random=(globalThis.crypto&&crypto.randomUUID)?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`;return `${prefix}-${random}`;}
+async function createQuest(){try{if(!doc||!doc.chapters.length)throw new Error('Create a chapter before adding quests.');const chapterId=selectedChapter||doc.chapters[0].id;const id=newQuestId();await request('/operations',{method:'POST',body:JSON.stringify({action:'create_quest',target_id:id,values:{chapter_id:chapterId,title:'New Quest',description:'Describe this quest.',objective:{type:'item',id:'minecraft:stone',count:1}}})});selected=id;selectedQuests=new Set([id]);showError('Created a new editable quest.');await refresh();showInspector();}catch(error){showError(error);}}
+async function duplicateQuest(){try{if(!selected)throw new Error('Select a quest first.');const id=newQuestId('copy');await request('/operations',{method:'POST',body:JSON.stringify({action:'duplicate_quest',target_id:selected,values:{new_id:id}})});selected=id;selectedQuests=new Set([id]);showError('Duplicated the selected quest.');await refresh();showInspector();}catch(error){showError(error);}}
+async function deleteQuest(){try{if(!selected)throw new Error('Select a quest first.');const quest=doc.quests.find(q=>q.id===selected);if(!confirm(`Delete "${quest?quest.title:'this quest'}"? Incoming and outgoing dependency links will also be removed.`))return;await request('/operations',{method:'POST',body:JSON.stringify({action:'delete_quest',target_id:selected,values:{}})});selected=null;selectedQuests.clear();showError('Deleted the quest and repaired its dependency links.');await refresh();showInspector();}catch(error){showError(error);}}
 async function createDependency(prerequisite, dependent){try{await request('/operations',{method:'POST',body:JSON.stringify({action:'set_dependency',target_id:dependent,values:{prerequisite_id:prerequisite,enabled:true}})});showError();await refresh();}catch(error){showError(error);}}
 async function undo(){try{await request('/undo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
 async function redo(){try{await request('/redo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
@@ -426,6 +433,7 @@ graph.addEventListener('pointerdown', event=>{if(event.target===graph || event.t
 graph.addEventListener('wheel', event=>{event.preventDefault();zoom=Math.max(.35,Math.min(2.5,zoom*(event.deltaY<0?1.1:.9)));applyViewport();},{passive:false});
 document.getElementById('search').addEventListener('input',renderGraph); document.getElementById('chapter-filter').addEventListener('change',event=>{selectedChapter=event.target.value;renderGraph();});
 document.getElementById('fit-button').onclick=fitGraph;
+document.getElementById('new-quest-button').onclick=createQuest;
 document.getElementById('auto-layout-button').onclick=autoLayout;
 document.getElementById('bulk-review-button').onclick=()=>setSelectedReview(true);
 document.getElementById('bulk-clear-review-button').onclick=()=>setSelectedReview(false);
@@ -433,6 +441,8 @@ document.getElementById('bulk-chapter').addEventListener('change',event=>moveSel
 document.getElementById('link-button').onclick=event=>{event.currentTarget.classList.toggle('active');linkSource=null;renderGraph();};
 document.getElementById('import-button').onclick=()=>document.getElementById('file-input').click();
 document.getElementById('job-cancel').onclick=cancelActiveJob;
+document.getElementById('duplicate-quest').onclick=duplicateQuest;
+document.getElementById('delete-quest').onclick=deleteQuest;
 document.getElementById('regenerate-quest').onclick=()=>regenerateSelection('quest');
 document.getElementById('regenerate-chapter').onclick=()=>regenerateSelection('chapter');
 document.getElementById('add-reward').onclick=()=>addReward();

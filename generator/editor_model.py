@@ -19,7 +19,7 @@ EDITOR_SCHEMA_VERSION = "1.0"
 EDITOR_REWARD_DECISIONS = ("unassigned", "none", "rewarded")
 EDITOR_DIFFICULTIES = ("trivial", "easy", "normal", "hard", "expert", "endgame")
 EDITOR_OBJECTIVE_TYPES = ("item", "advancement")
-EDITOR_OPERATION_TYPES = ("update_chapter", "update_quest", "move_quest", "set_dependency")
+EDITOR_OPERATION_TYPES = ("update_chapter", "update_quest", "move_quest", "set_dependency", "create_quest", "duplicate_quest", "delete_quest")
 
 
 @dataclass(frozen=True, slots=True)
@@ -754,7 +754,80 @@ def apply_editor_operation(
     updated = document
     changed_fields: tuple[str, ...] = ()
 
-    if operation.action == "update_chapter":
+    if operation.action == "create_quest":
+        chapter_id = str(values.get("chapter_id", ""))
+        if chapter_id not in {chapter.chapter_id for chapter in document.chapters}:
+            return EditorTransaction(document, document, operation, (f"unknown chapter: {chapter_id}",))
+        if not operation.target_id.strip():
+            return EditorTransaction(document, document, operation, ("quest id is required",))
+        if operation.target_id in {quest.quest_id for quest in document.quests}:
+            return EditorTransaction(document, document, operation, (f"duplicate quest id: {operation.target_id}",))
+        allowed = {"chapter_id", "title", "description", "objective", "difficulty", "optional", "hidden", "x", "y"}
+        unknown = sorted(set(values) - allowed)
+        if unknown:
+            return EditorTransaction(document, document, operation, (f"unsupported create fields: {', '.join(unknown)}",))
+        objective_value = values.get("objective", {"type": "item", "id": "minecraft:stone", "count": 1})
+        if not isinstance(objective_value, Mapping):
+            return EditorTransaction(document, document, operation, ("quest objective must be an object",))
+        try:
+            objective = EditorObjective.from_dict(objective_value)
+        except (TypeError, ValueError) as exc:
+            return EditorTransaction(document, document, operation, (f"invalid quest objective: {exc}",))
+        if objective.objective_type not in EDITOR_OBJECTIVE_TYPES or not objective.identifier.strip() or objective.count < 1:
+            return EditorTransaction(document, document, operation, ("new quest requires a valid objective",))
+        difficulty = str(values.get("difficulty", "normal"))
+        if difficulty not in EDITOR_DIFFICULTIES:
+            return EditorTransaction(document, document, operation, ("unsupported quest difficulty",))
+        siblings = [quest for quest in document.quests if quest.chapter_id == chapter_id]
+        order = max((quest.order for quest in siblings), default=-1) + 1
+        quest = EditorQuest(
+            quest_id=operation.target_id,
+            chapter_id=chapter_id,
+            candidate_id=f"manual:{operation.target_id}",
+            order=order,
+            title=str(values.get("title", "New Quest")).strip() or "New Quest",
+            description=str(values.get("description", "Describe this quest.")),
+            objective=objective,
+            prerequisite_items=(), prerequisite_tags=(), source_kind="manual", source_id=operation.target_id,
+            confidence=1.0, score=0, x=int(values.get("x", order)), y=int(values.get("y", 0)),
+            review_required=True, reward_decision="unassigned", rewards=(), difficulty=difficulty,
+            hidden=bool(values.get("hidden", False)), optional=bool(values.get("optional", False)),
+        )
+        changed_fields = ("quest",)
+        updated = _record_change(document, action=operation.action, target_id=operation.target_id,
+            changed_fields=changed_fields, quests=document.quests + (quest,))
+
+    elif operation.action == "duplicate_quest":
+        source = next((quest for quest in document.quests if quest.quest_id == operation.target_id), None)
+        if source is None:
+            return EditorTransaction(document, document, operation, (f"unknown quest: {operation.target_id}",))
+        new_id = str(values.get("new_id", "")).strip()
+        if not new_id:
+            return EditorTransaction(document, document, operation, ("new_id is required",))
+        if new_id in {quest.quest_id for quest in document.quests}:
+            return EditorTransaction(document, document, operation, (f"duplicate quest id: {new_id}",))
+        siblings = [quest for quest in document.quests if quest.chapter_id == source.chapter_id]
+        order = max((quest.order for quest in siblings), default=-1) + 1
+        duplicate = replace(source, quest_id=new_id, candidate_id=f"manual:{new_id}", order=order,
+            title=f"{source.title} Copy", source_kind="manual", source_id=new_id, x=source.x + 1,
+            review_required=True)
+        changed_fields = ("quest",)
+        updated = _record_change(document, action=operation.action, target_id=new_id,
+            changed_fields=changed_fields, quests=document.quests + (duplicate,))
+
+    elif operation.action == "delete_quest":
+        if values:
+            return EditorTransaction(document, document, operation, ("delete quest does not accept values",))
+        if operation.target_id not in {quest.quest_id for quest in document.quests}:
+            return EditorTransaction(document, document, operation, (f"unknown quest: {operation.target_id}",))
+        quests = tuple(quest for quest in document.quests if quest.quest_id != operation.target_id)
+        # Removing the quest also removes every incoming and outgoing dependency edge, preventing dangling links.
+        edges = tuple(edge for edge in document.edges if operation.target_id not in {edge.prerequisite_quest, edge.dependent_quest})
+        changed_fields = ("quest", "dependency_edges")
+        updated = _record_change(document, action=operation.action, target_id=operation.target_id,
+            changed_fields=changed_fields, quests=quests, edges=edges)
+
+    elif operation.action == "update_chapter":
         allowed = {"title", "category", "order"}
         unknown = sorted(set(values) - allowed)
         if unknown:

@@ -1,3 +1,11 @@
+# Commit 138 - Visual Quest Creation, Duplication, and Safe Deletion
+
+- Added New Quest creation directly from the visual editor toolbar.
+- Added one-click duplication of the selected quest with independent identity and layout placement.
+- Added safe quest deletion with automatic cleanup of incoming and outgoing dependency links.
+- Integrated all three actions with validation, revision history, autosave, undo, and redo.
+- Added focused regression tests for manual quest creation, duplication, dependency repair, and reversibility.
+
 # Commit 137 - Selective Quest Regeneration and Manual-Edit Protection
 
 - Added quest- and chapter-scoped regeneration from the original offline modpack source.

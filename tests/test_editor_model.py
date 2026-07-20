@@ -201,3 +201,65 @@ def test_editor_rejects_invalid_objective_and_difficulty(tmp_path: Path) -> None
     )
     assert not invalid_difficulty.is_clean
     assert any("unsupported quest difficulty" in error for error in invalid_difficulty.errors)
+
+
+def test_editor_creates_and_duplicates_manual_quests(tmp_path: Path) -> None:
+    document = _document(tmp_path)
+    chapter = document.chapters[0]
+    created = apply_editor_operation(
+        document,
+        EditorOperation.create(
+            "create_quest",
+            "manual:new-quest",
+            chapter_id=chapter.chapter_id,
+            title="A New Challenge",
+            description="Complete the new objective.",
+            objective={"type": "item", "id": "minecraft:emerald", "count": 4},
+            difficulty="hard",
+            optional=True,
+        ),
+    )
+    assert created.is_clean
+    quest = next(item for item in created.after.quests if item.quest_id == "manual:new-quest")
+    assert quest.source_kind == "manual"
+    assert quest.objective.identifier == "minecraft:emerald"
+    assert quest.optional is True
+
+    duplicated = apply_editor_operation(
+        created.after,
+        EditorOperation.create(
+            "duplicate_quest",
+            quest.quest_id,
+            new_id="manual:copied-quest",
+        ),
+    )
+    assert duplicated.is_clean
+    copy = next(item for item in duplicated.after.quests if item.quest_id == "manual:copied-quest")
+    assert copy.title == "A New Challenge Copy"
+    assert copy.objective == quest.objective
+    assert copy.x == quest.x + 1
+    assert duplicated.undo() == created.after
+
+
+def test_editor_delete_quest_repairs_dependencies(tmp_path: Path) -> None:
+    document = _document(tmp_path)
+    edge = document.edges[0]
+    target = edge.prerequisite_quest
+    related_edges = tuple(
+        item for item in document.edges
+        if target in {item.prerequisite_quest, item.dependent_quest}
+    )
+    assert related_edges
+
+    deleted = apply_editor_operation(
+        document,
+        EditorOperation.create("delete_quest", target),
+    )
+    assert deleted.is_clean
+    assert target not in {quest.quest_id for quest in deleted.after.quests}
+    assert all(
+        target not in {item.prerequisite_quest, item.dependent_quest}
+        for item in deleted.after.edges
+    )
+    assert validate_editor_document(deleted.after).is_clean
+    assert deleted.undo() == document
