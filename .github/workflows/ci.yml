@@ -23,6 +23,7 @@ jobs:
         run: python -m generator repository-security-audit --format json
       - name: Verify hash-pinned dependency lock
         run: python -m generator dependency-lock-audit --format json
+          python -m generator dependency-license-audit --format json
       - name: Audit Python dependencies
         run: |
           python -m generator quest-maker-dependency-inventory --output dependency-inventory.json

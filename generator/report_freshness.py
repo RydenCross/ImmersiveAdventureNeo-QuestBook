@@ -78,6 +78,7 @@ from generator.release_attestation_contract import run_release_attestation_contr
 from generator.release_signing_contract import run_release_signing_contract
 from generator.dependency_security_contract import run_dependency_security_contract
 from generator.dependency_lock_contract import run_dependency_lock_contract
+from generator.dependency_license_contract import run_dependency_license_contract
 from generator.repository_security_contract import run_repository_security_contract
 
 DEFAULT_REPORT_DIRECTORY = Path("reports")
@@ -190,6 +191,7 @@ def _default_renderers() -> dict[str, Callable[[], str]]:
         "release-signing-audit.json": lambda: run_release_signing_contract().format_json(),
         "dependency-security-audit.json": lambda: run_dependency_security_contract().format_json(),
         "dependency-lock-audit.json": lambda: run_dependency_lock_contract().format_json(),
+        "dependency-license-audit.json": lambda: run_dependency_license_contract().format_json(),
         "repository-security-audit.json": lambda: run_repository_security_contract().format_json(),
         "audit-performance-audit.json": lambda: run_audit_performance_contract().format_json(),
         "audit-dependency-audit.json": lambda: run_audit_dependency_contract().format_json(),

@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 115,
+  "documented_command_count": 117,
   "empty_documents": [],
-  "expected_command_count": 115,
-  "markdown_file_count": 99,
+  "expected_command_count": 117,
+  "markdown_file_count": 100,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -30,6 +30,7 @@
     "docs/CREATE_ADDONS.md",
     "docs/DEPENDENCY_AUDIT.md",
     "docs/DEPENDENCY_GRAPH.md",
+    "docs/DEPENDENCY_LICENSE_POLICY.md",
     "docs/DEPENDENCY_VULNERABILITY_POLICY.md",
     "docs/DESKTOP_INSTALLERS_AND_UPDATES.md",
     "docs/DESKTOP_LAUNCHER_AND_INSTANCE_DISCOVERY.md",

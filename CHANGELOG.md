@@ -1,3 +1,9 @@
+## Commit 115 - Dependency License Inventory and Distribution Policy
+
+- Added deterministic SPDX-style license inventory for all locked dependencies.
+- Added allow/deny policy enforcement with explicit reviewed exceptions.
+- Added CI validation, CLI commands, documentation, tests, and tracked audit reporting.
+
 ## Unreleased
 
 ## Commit 114 - Locked Dependencies and Hash-Verified Environment Reproduction

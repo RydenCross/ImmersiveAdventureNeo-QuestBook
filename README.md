@@ -978,3 +978,7 @@ Scan tracked text files for high-confidence credential formats and validate leas
 ## Locked dependency environment
 
 See [Locked Dependencies and Hash-Verified Reproduction](docs/LOCKED_DEPENDENCIES.md). Validate the repository lock with `python -m generator dependency-lock-audit --format json`, create a manifest with `quest-maker-lock-manifest`, or print the hardened install plan with `quest-maker-lock-plan`.
+
+## Dependency license policy
+
+See [`docs/DEPENDENCY_LICENSE_POLICY.md`](docs/DEPENDENCY_LICENSE_POLICY.md) for license inventory and distribution-policy commands.

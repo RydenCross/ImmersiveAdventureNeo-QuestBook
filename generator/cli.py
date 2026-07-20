@@ -160,6 +160,8 @@ from generator.dependency_security import (
 from generator.dependency_security_contract import run_dependency_security_contract
 from generator.dependency_lock import parse_hashed_lock, reproducible_install_plan, write_lock_manifest
 from generator.dependency_lock_contract import run_dependency_lock_contract
+from generator.dependency_license import evaluate_dependency_licenses, write_license_inventory
+from generator.dependency_license_contract import run_dependency_license_contract
 from generator.repository_security import run_repository_security_policy
 from generator.repository_security_contract import run_repository_security_contract
 from generator.report_refresh import refresh_reports
@@ -1259,6 +1261,19 @@ def create_parser() -> argparse.ArgumentParser:
     )
     dependency_lock.add_argument("--format", choices=("text", "json"), default="text")
     dependency_lock.add_argument("--output", type=Path)
+    dependency_license = subparsers.add_parser(
+        "dependency-license-audit",
+        help="Validate dependency license inventory and distribution policy.",
+    )
+    dependency_license.add_argument("--format", choices=("text", "json"), default="text")
+    dependency_license.add_argument("--output", type=Path)
+    license_inventory = subparsers.add_parser(
+        "quest-maker-license-inventory",
+        help="Write the deterministic dependency license inventory.",
+    )
+    license_inventory.add_argument("--lock", type=Path, default=Path("requirements-ci.lock"))
+    license_inventory.add_argument("--policy", type=Path, default=Path("dependency-licenses.json"))
+    license_inventory.add_argument("--output", type=Path, required=True)
     repository_security = subparsers.add_parser(
         "repository-security-audit",
         help="Validate repository secret scanning and GitHub Actions permissions.",
@@ -1657,6 +1672,20 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "release-attestation-audit":
         result = run_release_attestation_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-license-inventory":
+        output = write_license_inventory(args.lock, args.policy, args.output)
+        print(output)
+        return 0
+
+    if args.command == "dependency-license-audit":
+        result = run_dependency_license_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
         if args.output:
             atomic_write_text(args.output, rendered + "\n")

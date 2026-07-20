@@ -1,0 +1,11 @@
+{
+  "atomic_write": true,
+  "ci_integrated": true,
+  "complete_inventory": true,
+  "denied_license_rejected": true,
+  "deterministic_output": true,
+  "invalid_exception_rejected": true,
+  "repository_policy_clean": true,
+  "reviewed_exception_supported": true,
+  "status": "pass"
+}

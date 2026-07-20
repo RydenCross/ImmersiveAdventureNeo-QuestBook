@@ -44,6 +44,10 @@
       "report": "dependency-audit.json"
     },
     {
+      "command": "dependency-license-audit",
+      "report": "dependency-license-audit.json"
+    },
+    {
       "command": "dependency-lock-audit",
       "report": "dependency-lock-audit.json"
     },
@@ -269,5 +273,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 66
+  "tracked_reports": 67
 }

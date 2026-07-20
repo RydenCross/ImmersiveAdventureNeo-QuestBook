@@ -25,6 +25,7 @@
     "chapter audit": [],
     "contract guard": [],
     "dependency audit": [],
+    "dependency license inventory and distribution policy contract": [],
     "dependency vulnerability policy and CI scanning contract": [
       "keyless release signing and verification contract"
     ],
@@ -180,7 +181,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 67,
+  "registered_audits": 68,
   "status": "pass",
   "unknown_dependencies": []
 }
