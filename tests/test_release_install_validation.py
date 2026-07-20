@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from generator.release_install_validation import validate_release_installers
+from generator.release_attestation import create_cyclonedx_sbom, create_slsa_provenance
 
 
 def _digest(path: Path) -> str:
@@ -25,9 +26,12 @@ def _fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
         "linux": {"filename": app.name, "sha256": _digest(app)},
     }), encoding="utf-8")
     sbom = assets / "ftb-quest-maker-sbom.cdx.json"
-    sbom.write_text("{}", encoding="utf-8")
+    sbom.write_text(json.dumps(create_cyclonedx_sbom([exe, app], version="v1.2.3")), encoding="utf-8")
     provenance = assets / "ftb-quest-maker-provenance.intoto.jsonl"
-    provenance.write_text("{}", encoding="utf-8")
+    provenance.write_text(json.dumps(create_slsa_provenance(
+        [exe, app], repository="https://github.com/example/project", revision="a" * 40,
+        workflow=".github/workflows/publish-release.yml"
+    )) + "\n", encoding="utf-8")
     checksums = assets / "SHA256SUMS"
     checksums.write_text("".join(
         f"{_digest(path)}  {path.name}\n"
@@ -142,3 +146,38 @@ def test_rejects_tampered_update_metadata_even_when_json_is_valid(tmp_path: Path
     result = validate_release_installers(assets, checksums, update)
     assert not result.is_clean
     assert any("checksum mismatch for update.json" in error for error in result.errors)
+
+
+def test_rejects_semantically_unbound_sbom_and_provenance(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    exe = next(assets.glob("*.exe"))
+    sbom = next(assets.glob("*.cdx.json"))
+    payload = json.loads(sbom.read_text(encoding="utf-8"))
+    for component in payload["components"]:
+        if component.get("name") == exe.name:
+            component["hashes"][0]["content"] = "0" * 64
+    sbom.write_text(json.dumps(payload), encoding="utf-8")
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    provenance_payload = json.loads(provenance.read_text(encoding="utf-8"))
+    provenance_payload["predicate"]["buildDefinition"]["externalParameters"]["ref"] = "b" * 40
+    provenance.write_text(json.dumps(provenance_payload) + "\n", encoding="utf-8")
+    checksums.write_text("".join(
+        f"{_digest(path)}  {path.name}\n"
+        for path in sorted((next(assets.glob("*.exe")), next(assets.glob("*.AppImage")), update, sbom, provenance), key=lambda item: item.name)
+    ), encoding="utf-8")
+    result = validate_release_installers(
+        assets, checksums, update, expected_revision="a" * 40,
+        expected_repository="https://github.com/example/project"
+    )
+    assert not result.is_clean
+    assert any("SBOM does not bind SHA-256" in error for error in result.errors)
+    assert any("source revision" in error for error in result.errors)
+
+
+def test_accepts_semantically_bound_release_metadata(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    result = validate_release_installers(
+        assets, checksums, update, expected_revision="a" * 40,
+        expected_repository="https://github.com/example/project"
+    )
+    assert result.is_clean

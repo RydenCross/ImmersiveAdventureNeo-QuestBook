@@ -1,3 +1,10 @@
+## Commit 126 - Release Metadata Semantic Binding
+
+- Added semantic CycloneDX SBOM validation for exact installer filename and SHA-256 coverage.
+- Added in-toto/SLSA provenance validation for exact installer subjects and digests.
+- Bound provenance repository, workflow, external source revision, and resolved Git dependency to the verified release source.
+- Added release workflow enforcement, documentation, and regression coverage.
+
 ## Commit 125 - Complete Release Asset Checksum Verification
 
 - Recomputed and verified SHA-256 digests for every staged release asset except the checksum manifest itself.

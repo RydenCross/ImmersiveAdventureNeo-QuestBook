@@ -59,12 +59,83 @@ def _read_checksums(path: Path) -> dict[str, str]:
     return result
 
 
+
+def _artifact_digest_map(paths: list[Path]) -> dict[str, str]:
+    return {path.name: _sha256(path) for path in paths}
+
+
+def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
+    errors: list[str] = []
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return (f"invalid CycloneDX SBOM: {exc}",)
+    if payload.get("bomFormat") != "CycloneDX":
+        errors.append("SBOM bomFormat must be CycloneDX")
+    expected = _artifact_digest_map(installers)
+    actual: dict[str, str] = {}
+    for row in payload.get("components", []):
+        if not isinstance(row, dict) or row.get("type") != "file" or not isinstance(row.get("name"), str):
+            continue
+        for digest in row.get("hashes", []):
+            if isinstance(digest, dict) and digest.get("alg") == "SHA-256" and isinstance(digest.get("content"), str):
+                actual[row["name"]] = digest["content"]
+    for name, digest in sorted(expected.items()):
+        if actual.get(name) != digest:
+            errors.append(f"SBOM does not bind SHA-256 for {name}")
+    for name in sorted(set(actual) - set(expected)):
+        errors.append(f"SBOM references unexpected file component {name}")
+    return tuple(errors)
+
+
+def _validate_provenance(path: Path, installers: list[Path], *, revision: str | None, repository: str | None, workflow: str) -> tuple[str, ...]:
+    errors: list[str] = []
+    try:
+        lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        if len(lines) != 1:
+            raise ValueError("expected exactly one JSON statement")
+        payload = json.loads(lines[0])
+    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
+        return (f"invalid provenance statement: {exc}",)
+    if payload.get("_type") != "https://in-toto.io/Statement/v1":
+        errors.append("provenance statement has invalid in-toto type")
+    if payload.get("predicateType") != "https://slsa.dev/provenance/v1":
+        errors.append("provenance statement has invalid SLSA predicate type")
+    expected = _artifact_digest_map(installers)
+    actual: dict[str, str] = {}
+    for row in payload.get("subject", []):
+        if isinstance(row, dict) and isinstance(row.get("name"), str):
+            digest = row.get("digest")
+            if isinstance(digest, dict) and isinstance(digest.get("sha256"), str):
+                actual[row["name"]] = digest["sha256"]
+    for name, digest in sorted(expected.items()):
+        if actual.get(name) != digest:
+            errors.append(f"provenance does not bind SHA-256 for {name}")
+    for name in sorted(set(actual) - set(expected)):
+        errors.append(f"provenance references unexpected subject {name}")
+    build = payload.get("predicate", {}).get("buildDefinition", {}) if isinstance(payload.get("predicate"), dict) else {}
+    params = build.get("externalParameters", {}) if isinstance(build, dict) else {}
+    if revision is not None:
+        if params.get("ref") != revision:
+            errors.append("provenance source revision does not match verified release source")
+        deps = build.get("resolvedDependencies", []) if isinstance(build, dict) else []
+        if not any(isinstance(d, dict) and isinstance(d.get("digest"), dict) and d["digest"].get("gitCommit") == revision for d in deps):
+            errors.append("provenance resolved dependency does not bind verified release source")
+    if repository is not None and params.get("repository") != repository:
+        errors.append("provenance repository does not match expected repository")
+    if params.get("workflow") != workflow:
+        errors.append("provenance workflow does not match release workflow")
+    return tuple(errors)
+
 def validate_release_installers(
     assets: Path,
     checksums: Path,
     update_metadata: Path,
     *,
     minimum_bytes: int = 4096,
+    expected_revision: str | None = None,
+    expected_repository: str | None = None,
+    expected_workflow: str = ".github/workflows/publish-release.yml",
 ) -> ReleaseInstallValidation:
     assets = assets.resolve()
     checksums = checksums.resolve()
@@ -162,6 +233,13 @@ def validate_release_installers(
             verified.append(path.name)
 
     selected = windows[:1] + linux[:1]
+    if len(sboms) == 1 and len(selected) == 2:
+        errors.extend(_validate_sbom(sboms[0], selected))
+    if len(provenance) == 1 and len(selected) == 2:
+        errors.extend(_validate_provenance(
+            provenance[0], selected, revision=expected_revision,
+            repository=expected_repository, workflow=expected_workflow,
+        ))
     for path in selected:
         try:
             size = path.stat().st_size
@@ -205,9 +283,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--checksums", type=Path, required=True)
     parser.add_argument("--update", type=Path, required=True)
     parser.add_argument("--minimum-bytes", type=int, default=4096)
+    parser.add_argument("--expected-revision")
+    parser.add_argument("--expected-repository")
+    parser.add_argument("--expected-workflow", default=".github/workflows/publish-release.yml")
     args = parser.parse_args(argv)
     result = validate_release_installers(
-        args.assets, args.checksums, args.update, minimum_bytes=args.minimum_bytes
+        args.assets, args.checksums, args.update, minimum_bytes=args.minimum_bytes,
+        expected_revision=args.expected_revision, expected_repository=args.expected_repository,
+        expected_workflow=args.expected_workflow
     )
     print(result.format_json())
     return 0 if result.is_clean else 1

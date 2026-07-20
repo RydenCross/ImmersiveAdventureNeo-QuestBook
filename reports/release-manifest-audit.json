@@ -1,6 +1,6 @@
 {
-  "archive_entries": 474,
-  "archive_sha256": "cc4f820bd4c2fe76e9081f5728ffa59030bcaacd69fee459773077b7683ee79f",
+  "archive_entries": 476,
+  "archive_sha256": "090705c599788d5f3a6d40873cfb816c8d3307fccbd19f09ff5177c758a47191",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -14,9 +14,9 @@
       "sha256": "50f2a966ad6ca032dfe6fd6ff3280bb7e281d0190b1fd8f533795254d6fb1534"
     },
     {
-      "bytes": 5533,
+      "bytes": 5671,
       "path": ".github/workflows/publish-release.yml",
-      "sha256": "4859e063ab210645d54011a7a6022790e24f8b56f120042df730f9238a65e8da"
+      "sha256": "f58fc7b0e2d7e859cb95a471ed3eec316e0e4303567fdad8d939b3abf11582ad"
     },
     {
       "bytes": 464,
@@ -24,9 +24,14 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 36595,
+      "bytes": 37031,
       "path": "CHANGELOG.md",
-      "sha256": "97c31eefe48be09564fd38eac77c1374d36c8db82b4bae83eaaf8ccc9f223818"
+      "sha256": "499c06874306499be17bd36cf9d253a8da67c86167bdf4571dd0e4cddaf95099"
+    },
+    {
+      "bytes": 167,
+      "path": "ImmersiveAdventureNeo-QuestBook-Commit125-Complete-Release-Asset-Checksum-Verification.zip.sha256",
+      "sha256": "5024ec6d61cf33a1af12a36515e118e536434a971fe7521be1a657d7f87e6e94"
     },
     {
       "bytes": 532,
@@ -587,6 +592,11 @@
       "bytes": 643,
       "path": "docs/RELEASE_MANIFEST_CONTRACT.md",
       "sha256": "c9755fdf6bd3c515b799dc90a3d6d178fe91647a489f4330378546988598dd16"
+    },
+    {
+      "bytes": 1329,
+      "path": "docs/RELEASE_METADATA_SEMANTIC_BINDING.md",
+      "sha256": "41c483da37a5b0ac9ff5275b191bc99c40fd0f4187b79487f3fbf88d23c2297c"
     },
     {
       "bytes": 556,
@@ -1184,9 +1194,9 @@
       "sha256": "4ec73c00f348ffd1dbc3bf59aeb93b6fa0822a3ccd3d6d488195d8a9e97b728a"
     },
     {
-      "bytes": 8543,
+      "bytes": 13184,
       "path": "generator/release_install_validation.py",
-      "sha256": "ecbfbda4fdce778607977bec4acc251782dcd75aba5deb51884b48f23f8c5865"
+      "sha256": "8e72dc1306288005d6c5c3fdfce205873d4e6637ebd4022460f2dbbd4a4b297d"
     },
     {
       "bytes": 4390,
@@ -1544,9 +1554,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 4133,
+      "bytes": 4182,
       "path": "reports/documentation-audit.json",
-      "sha256": "0d7b0564b9719e20a2f4d8c802f5be458ff0e84e5553c9d9f3fde143233d530a"
+      "sha256": "e8266ded192957588a5e2f88e50608db720ad306d35a659e7d5fe6a4c6ee9571"
     },
     {
       "bytes": 245,
@@ -1676,12 +1686,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "46cdeca5208fc51099c92dd616b50ffc7354cc53161cc830c2fecb746ae6d4aa"
+      "sha256": "377d3ea10d6914c99347b88607354f3f7a0fca81699b0105f1e22c0316fce648"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "9f8f955d40a07e044548e27832e0cf3e9caea758f683290f83c519f4b1957c62"
+      "sha256": "9449cc3f0a64aa270c1acb8eb6003307c1bf02c70c24405faecf095df61a84a8"
     },
     {
       "bytes": 297,
@@ -1761,7 +1771,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "727c832b454220759fe842cf5ed0029d5ed40ceb1ce0ab212b533fe6a8ba2d70"
+      "sha256": "0ff5e1a3493808c6049d23f0dc0d82dd04a820976baa64d8377020c61b310b89"
     },
     {
       "bytes": 349,
@@ -2209,9 +2219,9 @@
       "sha256": "35b6eb0778485ade1ba4c266ac8ed8dbcf39f75d405f43586776ab055082e946"
     },
     {
-      "bytes": 6168,
+      "bytes": 8229,
       "path": "tests/test_release_install_validation.py",
-      "sha256": "7e637b04bfdad70d0852f831d20377eeff81c69417aafe2b7b675e45ad8b6159"
+      "sha256": "380961b307c277e7b4ac145f177e46b6110f3c4d81828c23bec31ea94c083716"
     },
     {
       "bytes": 1483,
@@ -2377,6 +2387,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "ec4a6326ec72bd26f418775d777d9811e5bdc5587b5143940ceaded67cd15bc8",
+  "tree_sha256": "3f18a3cd5f6aced75c7a0294072d39b100e095bc7b2962ad5e3aa73ef6589551",
   "unexpected_entries": []
 }

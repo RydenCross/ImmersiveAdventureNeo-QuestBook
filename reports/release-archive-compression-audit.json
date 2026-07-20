@@ -1,12 +1,12 @@
 {
   "archive_budget_exceeded": false,
-  "archive_bytes": 666998,
-  "archive_entries": 474,
-  "compressed_bytes": 600900,
+  "archive_bytes": 669707,
+  "archive_entries": 476,
+  "compressed_bytes": 603181,
   "oversized_entries": [],
   "savings_budget_missed": false,
-  "savings_ratio": 0.752041,
+  "savings_ratio": 0.752003,
   "status": "pass",
   "stored_entries": [],
-  "uncompressed_bytes": 2423388
+  "uncompressed_bytes": 2432209
 }
