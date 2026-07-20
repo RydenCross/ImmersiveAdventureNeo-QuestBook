@@ -76,6 +76,7 @@ from generator.github_release_contract import run_github_release_contract
 from generator.release_attestation_contract import run_release_attestation_contract
 from generator.release_signing_contract import run_release_signing_contract
 from generator.dependency_security_contract import run_dependency_security_contract
+from generator.dependency_lock_contract import run_dependency_lock_contract
 from generator.repository_security_contract import run_repository_security_contract
 
 
@@ -204,6 +205,7 @@ def _default_checks() -> dict[str, Callable[[], object]]:
         "release SBOM and provenance contract": run_release_attestation_contract,
         "keyless release signing and verification contract": run_release_signing_contract,
         "dependency vulnerability policy and CI scanning contract": run_dependency_security_contract,
+        "locked dependency and hash verification contract": run_dependency_lock_contract,
         "repository secret scanning and workflow permission contract": run_repository_security_contract,
         "audit performance contract": run_audit_performance_contract,
         "audit dependency contract": run_audit_dependency_contract,

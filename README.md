@@ -973,3 +973,8 @@ Generate a deterministic dependency inventory and enforce `pip-audit` JSON findi
 Scan tracked text files for high-confidence credential formats and validate least-privilege GitHub Actions permissions with `quest-maker-secret-scan` and `repository-security-audit`. See [Repository Secret Scanning and Workflow Permission Policy](docs/REPOSITORY_SECRET_SCANNING.md).
 
 - [Immutable CI dependencies](docs/IMMUTABLE_CI_DEPENDENCIES.md)
+
+
+## Locked dependency environment
+
+See [Locked Dependencies and Hash-Verified Reproduction](docs/LOCKED_DEPENDENCIES.md). Validate the repository lock with `python -m generator dependency-lock-audit --format json`, create a manifest with `quest-maker-lock-manifest`, or print the hardened install plan with `quest-maker-lock-plan`.

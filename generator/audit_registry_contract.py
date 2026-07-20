@@ -220,6 +220,11 @@ AUDIT_REGISTRY = (
         "dependency-security-audit.json",
     ),
     AuditRegistration(
+        "locked dependency and hash verification contract",
+        "dependency-lock-audit",
+        "dependency-lock-audit.json",
+    ),
+    AuditRegistration(
         "repository secret scanning and workflow permission contract",
         "repository-security-audit",
         "repository-security-audit.json",

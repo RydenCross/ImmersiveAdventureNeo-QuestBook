@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 112,
+  "documented_command_count": 115,
   "empty_documents": [],
-  "expected_command_count": 112,
-  "markdown_file_count": 98,
+  "expected_command_count": 115,
+  "markdown_file_count": 99,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -49,6 +49,7 @@
     "docs/IDENTITY_GUARD.md",
     "docs/IMMUTABLE_CI_DEPENDENCIES.md",
     "docs/KEYLESS_RELEASE_SIGNING.md",
+    "docs/LOCKED_DEPENDENCIES.md",
     "docs/MINING.md",
     "docs/MODPACK_CONTENT_SCANNER.md",
     "docs/MODPACK_SCANNER.md",

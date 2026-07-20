@@ -1,5 +1,12 @@
 ## Unreleased
 
+## Commit 114 - Locked Dependencies and Hash-Verified Environment Reproduction
+
+- Added exact, hash-constrained CI dependency locking and deterministic lock manifests.
+- Added hardened reproducible install plans using pip hash enforcement, no dependency resolution, and binary-only artifacts.
+- Added CI validation, CLI commands, tests, documentation, tracked reports, and quality-gate integration.
+
+
 ## Commit 113 - Immutable CI Dependencies and Automated Action Updates
 
 - Pinned every external GitHub Action to a full 40-character commit SHA.

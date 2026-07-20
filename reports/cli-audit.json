@@ -1,5 +1,5 @@
 {
-  "command_count": 112,
+  "command_count": 115,
   "commands": [
     "application-update-client-audit",
     "audit",
@@ -14,6 +14,7 @@
     "contract-guard",
     "dependency-audit",
     "dependency-graph",
+    "dependency-lock-audit",
     "dependency-security-audit",
     "desktop-launcher-audit",
     "desktop-packages-audit",
@@ -55,6 +56,8 @@
     "quest-maker-github-release-plan",
     "quest-maker-github-release-publish",
     "quest-maker-launch",
+    "quest-maker-lock-manifest",
+    "quest-maker-lock-plan",
     "quest-maker-native-build",
     "quest-maker-package-build",
     "quest-maker-release-checksums",

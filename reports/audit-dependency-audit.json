@@ -59,6 +59,7 @@
     "local visual editor service contract": [
       "visual editor data model contract"
     ],
+    "locked dependency and hash verification contract": [],
     "mod compatibility contract": [],
     "modpack content scanner contract": [
       "modpack scanner contract"
@@ -179,7 +180,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 66,
+  "registered_audits": 67,
   "status": "pass",
   "unknown_dependencies": []
 }

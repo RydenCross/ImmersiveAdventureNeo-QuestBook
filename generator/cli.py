@@ -158,6 +158,8 @@ from generator.dependency_security import (
     write_dependency_inventory,
 )
 from generator.dependency_security_contract import run_dependency_security_contract
+from generator.dependency_lock import parse_hashed_lock, reproducible_install_plan, write_lock_manifest
+from generator.dependency_lock_contract import run_dependency_lock_contract
 from generator.repository_security import run_repository_security_policy
 from generator.repository_security_contract import run_repository_security_contract
 from generator.report_refresh import refresh_reports
@@ -942,6 +944,17 @@ def create_parser() -> argparse.ArgumentParser:
     vulnerability_policy.add_argument("--ignore", action="append", default=[])
     vulnerability_policy.add_argument("--format", choices=("text", "json"), default="text")
     vulnerability_policy.add_argument("--output", type=Path)
+    lock_manifest = subparsers.add_parser(
+        "quest-maker-lock-manifest",
+        help="Validate a hash-pinned dependency lock and write its deterministic manifest.",
+    )
+    lock_manifest.add_argument("--lock", type=Path, default=Path("requirements-ci.lock"))
+    lock_manifest.add_argument("--output", type=Path, required=True)
+    lock_plan = subparsers.add_parser(
+        "quest-maker-lock-plan",
+        help="Print the hardened pip install plan for a hash-pinned dependency lock.",
+    )
+    lock_plan.add_argument("--lock", type=Path, default=Path("requirements-ci.lock"))
     secret_scan = subparsers.add_parser(
         "quest-maker-secret-scan",
         help="Scan repository text files for high-confidence credential formats.",
@@ -1240,6 +1253,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     dependency_security.add_argument("--format", choices=("text", "json"), default="text")
     dependency_security.add_argument("--output", type=Path)
+    dependency_lock = subparsers.add_parser(
+        "dependency-lock-audit",
+        help="Validate exact dependency pins, artifact hashes, and reproducible install plans.",
+    )
+    dependency_lock.add_argument("--format", choices=("text", "json"), default="text")
+    dependency_lock.add_argument("--output", type=Path)
     repository_security = subparsers.add_parser(
         "repository-security-audit",
         help="Validate repository secret scanning and GitHub Actions permissions.",
@@ -1654,6 +1673,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "dependency-lock-audit":
+        result = run_dependency_lock_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "dependency-security-audit":
         result = run_dependency_security_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1946,6 +1974,24 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-lock-manifest":
+        try:
+            output = write_lock_manifest(args.lock, args.output)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Dependency lock manifest failed: {exc}")
+            return 1
+        print(output)
+        return 0
+
+    if args.command == "quest-maker-lock-plan":
+        try:
+            plan = reproducible_install_plan(args.lock)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Dependency lock plan failed: {exc}")
+            return 1
+        print(" ".join(plan))
+        return 0
 
     if args.command == "quest-maker-dependency-inventory":
         try:
