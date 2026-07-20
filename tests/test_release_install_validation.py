@@ -418,3 +418,21 @@ def test_rejects_forged_sbom_document_and_application_identity(tmp_path: Path) -
     assert any("component type" in error for error in result.errors)
     assert any("application name" in error for error in result.errors)
     assert any("size property" in error for error in result.errors)
+
+
+def test_rejects_unexpected_non_file_sbom_components(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    payload = json.loads(sbom.read_text(encoding="utf-8"))
+    payload["components"].append({
+        "type": "library",
+        "name": "forged-dependency",
+        "version": "9.9.9",
+        "purl": "pkg:pypi/forged-dependency@9.9.9",
+    })
+    sbom.write_text(json.dumps(payload), encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any("unexpected non-file component" in error for error in result.errors)

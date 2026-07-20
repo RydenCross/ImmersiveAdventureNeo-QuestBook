@@ -117,7 +117,11 @@ def _validate_sbom(path: Path, installers: list[Path], *, expected_version: str 
         if not isinstance(row, dict):
             errors.append("SBOM component entries must be objects")
             continue
-        if row.get("type") != "file":
+        component_type = row.get("type")
+        if component_type != "file":
+            errors.append(
+                f"SBOM contains unexpected non-file component type {component_type!r}"
+            )
             continue
         name = row.get("name")
         if not isinstance(name, str) or not name or Path(name).name != name:

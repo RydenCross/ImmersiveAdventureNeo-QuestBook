@@ -1,3 +1,10 @@
+## Commit 132 - Release SBOM Component Scope Enforcement
+
+- Restricted the release CycloneDX `components` array to the exact staged installer file components.
+- Rejected hidden library, framework, container, operating-system, device, unknown, or malformed component declarations.
+- Prevented arbitrary dependency injection into an otherwise checksum-valid release SBOM.
+- Added regression coverage and component-scope documentation.
+
 ## Commit 131 - Release SBOM Document and Application Identity Binding
 
 - Bound CycloneDX spec version, document version, application type, and application name to the release contract.
