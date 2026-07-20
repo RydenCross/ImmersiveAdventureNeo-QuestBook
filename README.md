@@ -970,7 +970,7 @@ Generate a deterministic dependency inventory and enforce `pip-audit` JSON findi
 
 ## Repository secret scanning
 
-Scan tracked text files for high-confidence credential formats and validate least-privilege GitHub Actions permissions with `quest-maker-secret-scan` and `repository-security-audit`. See [Repository Secret Scanning and Workflow Permission Policy](docs/REPOSITORY_SECRET_SCANNING.md).
+Scan tracked text files for high-confidence credential formats and validate least-privilege GitHub Actions permissions with `quest-maker-secret-scan` and `repository-security-audit`. See [Repository Secret Scanning and Workflow Permission Policy](docs/REPOSITORY_SECRET_SCANNING.md). The same audit validates CI command structure and required command coverage; see [CI Workflow Command Integrity](docs/CI_WORKFLOW_COMMAND_INTEGRITY.md).
 
 - [Immutable CI dependencies](docs/IMMUTABLE_CI_DEPENDENCIES.md)
 

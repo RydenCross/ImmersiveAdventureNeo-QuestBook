@@ -4,8 +4,10 @@
   "dependabot_configured": true,
   "exclusions_supported": true,
   "github_token_detected": true,
+  "license_audit_executed": true,
   "private_key_detected": true,
   "repository_clean": true,
   "status": "pass",
+  "workflow_commands_valid": true,
   "workflow_permissions_valid": true
 }

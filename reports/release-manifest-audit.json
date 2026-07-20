@@ -1,6 +1,6 @@
 {
-  "archive_entries": 462,
-  "archive_sha256": "c6f716b147d9d2ccb5a08dcbc655a533fffc77ee087e525df121afd7a9900490",
+  "archive_entries": 464,
+  "archive_sha256": "6bcbc2fc6690259b1558b107085cbb7c8cb7619d5a0edb7b43a0919c40d8bf69",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -9,9 +9,9 @@
       "sha256": "c77531cd8a6bc4ae374fcff2650cd3c4e5f414ec5b5a46ce20ebb7899cfb1490"
     },
     {
-      "bytes": 1391,
+      "bytes": 1410,
       "path": ".github/workflows/ci.yml",
-      "sha256": "6982e5134a36df5df6e4997d8ee6f15a24216fb35ed25d655939c68af0c2d3cb"
+      "sha256": "ba79ae3f53dd1bb0150574b8dba13ab38cbdbf9d56c020adfa7c82a7505aa78d"
     },
     {
       "bytes": 4079,
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 32470,
+      "bytes": 32813,
       "path": "CHANGELOG.md",
-      "sha256": "fbcbc08217c1d9443f7411fbad7efe91dc03d689642679cc5b8593b928fabc8d"
+      "sha256": "2aab0670ca93e2625db5290b39469823a827ad45dd77a2107ecd31ba8a968d00"
     },
     {
       "bytes": 0,
@@ -34,9 +34,9 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "bytes": 35193,
+      "bytes": 35346,
       "path": "README.md",
-      "sha256": "73362f65dd8845fef98356bed851626cd88befcd2e691f95124f2a919cc4f310"
+      "sha256": "7fbefa5fd29a8a372ff1091244848d740afbbf02ad3901289cddc8ef1615a814"
     },
     {
       "bytes": 1275,
@@ -277,6 +277,11 @@
       "bytes": 768,
       "path": "docs/CHAPTER_AUDIT.md",
       "sha256": "660ff62c8e5aed3770988bb622d1bf918df702d3bb24e15fe0cd4ba58b95c98d"
+    },
+    {
+      "bytes": 608,
+      "path": "docs/CI_WORKFLOW_COMMAND_INTEGRITY.md",
+      "sha256": "112e887976762c0b3d0bd56403bedf4467ba0b5673259d02e4c35a3d8dd0d36b"
     },
     {
       "bytes": 722,
@@ -1244,14 +1249,14 @@
       "sha256": "c30572bbb6adb8ac047d75de1b3ff467e4b3a359f5aabb46f60ac82afde69a35"
     },
     {
-      "bytes": 6448,
+      "bytes": 8356,
       "path": "generator/repository_security.py",
-      "sha256": "ce37cb73a14bf4dc8dd3a2bd0276bb6ee5504e610854f6ff328bdc3ba66d1dc4"
+      "sha256": "9747d574737b4acc9fb1dc5cdd7ebebf21ae0dcb7cb1fad02ccba7efb9074780"
     },
     {
-      "bytes": 2436,
+      "bytes": 2672,
       "path": "generator/repository_security_contract.py",
-      "sha256": "e192f304bea3cd3888fe4f1fbbe7ad25423c007370117096fc9e3fce6001e6cf"
+      "sha256": "306925765dd701bfb0c4bc93ea60ed0035c949ecf37727aa4ab4fd247583b1d9"
     },
     {
       "bytes": 4454,
@@ -1494,9 +1499,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 3782,
+      "bytes": 3827,
       "path": "reports/documentation-audit.json",
-      "sha256": "4f50d17ae46976c3a6ed22dc30e57a54e5ed614070ac9211b935a0a5690c6148"
+      "sha256": "c768886eef083ab3ba9e273416470c391636b3623a3b38bdb5b6cf7cdaf1b19f"
     },
     {
       "bytes": 245,
@@ -1626,12 +1631,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "f26c73f44027be63a12d35ed87a6b446103ed9ad5586a5a4b8633f26a85aad85"
+      "sha256": "aa6cf22ecaf58c359a9bec351e6eec08856a03a132567cb43bd8d38425c5da91"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "872771ebdd7e8964d166a8a4a8ecf7bd712a4999102b0b35ca6b6a095755cb5e"
+      "sha256": "bb4bb9219fe15b7231a91e2a271a3a3a04bd1c74a7d8464792cc998a0ffb4b1d"
     },
     {
       "bytes": 255,
@@ -1711,12 +1716,12 @@
     {
       "bytes": 189,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "857add3f194a6564f59cc20c5d7b5831f2051487b5d5b3447f8cf378267503f4"
+      "sha256": "3519177cb316100f74b5d5549a0365512f051fef00bcd809d274f78f32fb88a2"
     },
     {
-      "bytes": 280,
+      "bytes": 349,
       "path": "reports/repository-security-audit.json",
-      "sha256": "2d75ab79fa5b5e5b1321c6123fbf5919339eb2a9c562cdb6a4ae87059ed1b44b"
+      "sha256": "ee0e8bee032887d5973e10e88ed4b751fc46a42a9304f1ce25e0669daa21b252"
     },
     {
       "bytes": 1187,
@@ -1822,6 +1827,11 @@
       "bytes": 1914,
       "path": "tests/test_chapter_audit.py",
       "sha256": "eb1336e385043b724363b93bb8733c120315ad2e35df75d618026432c1094f36"
+    },
+    {
+      "bytes": 912,
+      "path": "tests/test_ci_workflow_command_integrity.py",
+      "sha256": "36fefac03a1df0b8c547f0f53530616073742f061bb698a203b707ff9d48c3c2"
     },
     {
       "bytes": 1028,
@@ -2317,6 +2327,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "350a43b7a37e7e958e38a87bf7596dcf1b6338b4eba5c813335a51833af620d6",
+  "tree_sha256": "087cdb237cc722aba945bafb469ad9775123860a5cd79f08cfb96ec38afd3e54",
   "unexpected_entries": []
 }

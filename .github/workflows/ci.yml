@@ -21,8 +21,9 @@ jobs:
       - run: pip install .[dev,desktop] pip-audit
       - name: Scan repository secrets and workflow permissions
         run: python -m generator repository-security-audit --format json
-      - name: Verify hash-pinned dependency lock
-        run: python -m generator dependency-lock-audit --format json
+      - name: Verify dependency lock and license policy
+        run: |
+          python -m generator dependency-lock-audit --format json
           python -m generator dependency-license-audit --format json
       - name: Audit Python dependencies
         run: |

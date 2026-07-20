@@ -1,3 +1,9 @@
+## Commit 116 - CI Workflow Syntax and Command Integrity
+
+- Fixed the CI dependency-license audit step so both lock and license checks execute in a valid multiline shell block.
+- Added deterministic validation for malformed `run:` continuations and required CI command coverage.
+- Added regression tests and workflow-integrity documentation.
+
 ## Commit 115 - Dependency License Inventory and Distribution Policy
 
 - Added deterministic SPDX-style license inventory for all locked dependencies.

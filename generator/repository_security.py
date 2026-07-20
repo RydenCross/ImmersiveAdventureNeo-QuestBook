@@ -136,9 +136,47 @@ def validate_workflow_permissions(workflow_directory: Path = Path(".github/workf
     return tuple(sorted(errors, key=str.casefold))
 
 
+
+def validate_workflow_commands(workflow_directory: Path = Path(".github/workflows")) -> tuple[str, ...]:
+    """Validate workflow run-step structure and required CI command coverage."""
+    root = workflow_directory.expanduser().resolve()
+    errors: list[str] = []
+    workflows = sorted((*root.glob("*.yml"), *root.glob("*.yaml")), key=lambda item: item.name.casefold())
+    for path in workflows:
+        lines = path.read_text(encoding="utf-8").splitlines()
+        for index, line in enumerate(lines):
+            match = re.match(r"^(\s*)(?:-\s*)?run:\s*(.*)$", line)
+            if not match:
+                continue
+            indent = len(match.group(1))
+            value = match.group(2).strip()
+            if value and value not in {"|", ">", "|-", ">-", "|+", ">+"} and index + 1 < len(lines):
+                following = lines[index + 1]
+                if following.strip() and len(following) - len(following.lstrip()) > indent:
+                    errors.append(
+                        f"{path.name}:{index + 2}: indented command follows a single-line run value; use a block scalar"
+                    )
+        if path.name == "ci.yml":
+            text = "\n".join(lines)
+            required_commands = (
+                "repository-security-audit --format json",
+                "dependency-lock-audit --format json",
+                "dependency-license-audit --format json",
+                "quest-maker-vulnerability-policy",
+                "black --check .",
+                "ruff check .",
+                "pytest",
+                "quality-gate --format json",
+            )
+            for command in required_commands:
+                if command not in text:
+                    errors.append(f"ci.yml: missing required command: {command}")
+    return tuple(sorted(errors, key=str.casefold))
+
 def run_repository_security_policy(
     root: Path = Path("."), *, excluded_paths: Iterable[str] = ()
 ) -> RepositorySecurityResult:
     scanned, findings = scan_repository_secrets(root, excluded_paths=excluded_paths)
-    workflow_errors = validate_workflow_permissions(root / ".github" / "workflows")
+    workflow_root = root / ".github" / "workflows"
+    workflow_errors = (*validate_workflow_permissions(workflow_root), *validate_workflow_commands(workflow_root))
     return RepositorySecurityResult(scanned, findings, workflow_errors)

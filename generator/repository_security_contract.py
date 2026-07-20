@@ -18,6 +18,8 @@ class RepositorySecurityContract:
     ci_integrated: bool
     action_references_pinned: bool
     dependabot_configured: bool
+    workflow_commands_valid: bool
+    license_audit_executed: bool
 
     @property
     def is_clean(self) -> bool:
@@ -51,4 +53,6 @@ def run_repository_security_contract() -> RepositorySecurityContract:
         ci_integrated="repository-security-audit --format json" in workflow,
         action_references_pinned=all("@v" not in item.read_text(encoding="utf-8") for item in Path(".github/workflows").glob("*.y*ml")),
         dependabot_configured=Path(".github/dependabot.yml").is_file(),
+        workflow_commands_valid=not repository.workflow_errors,
+        license_audit_executed="python -m generator dependency-license-audit --format json" in workflow,
     )
