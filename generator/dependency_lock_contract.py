@@ -25,6 +25,8 @@ class DependencyLockContract:
     ci_integrated: bool
     ci_lock_install_enforced: bool
     mutable_ci_install_rejected: bool
+    release_lock_install_enforced: bool
+    mutable_release_install_rejected: bool
 
     @property
     def is_clean(self) -> bool:
@@ -78,6 +80,7 @@ def run_dependency_lock_contract() -> DependencyLockContract:
         output = write_lock_manifest(valid, root / "nested" / "manifest.json")
         plan = reproducible_install_plan(valid)
         workflow = Path(".github/workflows/ci.yml").read_text(encoding="utf-8")
+        release_workflow = Path(".github/workflows/publish-release.yml").read_text(encoding="utf-8")
         return DependencyLockContract(
             repository_lock_valid=parsed.is_clean,
             deterministic_digest=lock_digest(repository_lock) == lock_digest(repository_lock),
@@ -96,4 +99,10 @@ def run_dependency_lock_contract() -> DependencyLockContract:
                 in workflow
             ),
             mutable_ci_install_rejected="pip install .[dev,desktop] pip-audit" not in workflow,
+            release_lock_install_enforced=(
+                "pip install --require-hashes --no-deps --only-binary=:all: -r requirements-ci.lock"
+                in release_workflow
+                and "python -m pip install --no-deps ." in release_workflow
+            ),
+            mutable_release_install_rejected="pip install .[desktop]" not in release_workflow,
         )

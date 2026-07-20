@@ -7,6 +7,8 @@
   "exact_pins_required": true,
   "hashes_required": true,
   "mutable_ci_install_rejected": true,
+  "mutable_release_install_rejected": true,
+  "release_lock_install_enforced": true,
   "repository_lock_valid": true,
   "reproducible_plan_hardened": true,
   "status": "pass"

@@ -989,4 +989,4 @@ This repository includes an explicit project license notice in [`LICENSE`](LICEN
 Third-party mods, names, trademarks, and referenced assets remain governed by their
 respective owners and licenses.
 
-See [CI lockfile enforcement](docs/CI_LOCKFILE_ENFORCEMENT.md).
+See [CI lockfile enforcement](docs/CI_LOCKFILE_ENFORCEMENT.md) and [release lockfile enforcement](docs/RELEASE_LOCKFILE_ENFORCEMENT.md).

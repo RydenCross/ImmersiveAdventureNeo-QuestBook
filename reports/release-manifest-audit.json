@@ -1,6 +1,6 @@
 {
-  "archive_entries": 464,
-  "archive_sha256": "2ad702b1e129e02b9e1537a0882ef4fa720243fbdbea526de4bc61dbd483dcb2",
+  "archive_entries": 465,
+  "archive_sha256": "c34311a8e8017bc5854c1ac73afff11143e70b0a5965ffc53f4dbf08c230e942",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -14,9 +14,9 @@
       "sha256": "50f2a966ad6ca032dfe6fd6ff3280bb7e281d0190b1fd8f533795254d6fb1534"
     },
     {
-      "bytes": 4079,
+      "bytes": 4252,
       "path": ".github/workflows/publish-release.yml",
-      "sha256": "6bbb1328432edee5123992be55e8aabe3b298bdc1549cefdfbe949a61564a8e8"
+      "sha256": "5110628181c5640f1205b921bb22d92953e49478fdb5ee0970917394492c99e7"
     },
     {
       "bytes": 464,
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 33782,
+      "bytes": 34147,
       "path": "CHANGELOG.md",
-      "sha256": "b4f4d2601893f4d0651858c8ca7b00acf2da723f66c1913b91e3e78920495236"
+      "sha256": "9f2dead2e57f52d101d2a3c73772df49763e5c95dcc428a88b0690ea09b52bf2"
     },
     {
       "bytes": 532,
@@ -34,9 +34,9 @@
       "sha256": "5310e50b1af4bc68ca0cc5a6787ba8da581aa8ff5641a30fc1919816a92e96c8"
     },
     {
-      "bytes": 35625,
+      "bytes": 35698,
       "path": "README.md",
-      "sha256": "c8106b307ef50051cbfb0b754c473dcc1ccd4822bc73e5d2dedd4c8e94b3adf1"
+      "sha256": "440fb0ccb10f712a2ad41ae6742881380844275e4b073f3a1aa0c1c0de7c0ba5"
     },
     {
       "bytes": 1275,
@@ -569,6 +569,11 @@
       "sha256": "52e4746cc42d3bc65fe3bea78b2ae3fd8ed0f974eb9c02d885b0710581d7fdcd"
     },
     {
+      "bytes": 695,
+      "path": "docs/RELEASE_LOCKFILE_ENFORCEMENT.md",
+      "sha256": "5479f4c41b6ccebb8935f2f4755cf9e4cb9ee29d4141153d72f5bf2ee51ea6d2"
+    },
+    {
       "bytes": 643,
       "path": "docs/RELEASE_MANIFEST_CONTRACT.md",
       "sha256": "c9755fdf6bd3c515b799dc90a3d6d178fe91647a489f4330378546988598dd16"
@@ -829,9 +834,9 @@
       "sha256": "143cbf965a9298ad989f7d63872a38daa936393d65ca64893511fc79f0544795"
     },
     {
-      "bytes": 3755,
+      "bytes": 4306,
       "path": "generator/dependency_lock_contract.py",
-      "sha256": "25c0d45e4323d5024763ad1f8e67e48e1c532116cf48399750b133886e4d6511"
+      "sha256": "168ce83db5d1eb1cd9c2607a3cdb6eea3be8f01e61bf42a1899ae25ca3680cfc"
     },
     {
       "bytes": 7140,
@@ -1479,9 +1484,9 @@
       "sha256": "0fd2ff0633ca521bca5c4b0a16a48757c0f1dad79cfa01840a2c7fef0d098280"
     },
     {
-      "bytes": 353,
+      "bytes": 438,
       "path": "reports/dependency-lock-audit.json",
-      "sha256": "5de1127cb1d2f9e5fdb9f05f09df4a84dfdee7fe82ad80922e1df421bb6b74ef"
+      "sha256": "89e4fb991a16e089a274166821fdce54916dde59a78491afbf0d035a0d4e4f91"
     },
     {
       "bytes": 295,
@@ -1504,9 +1509,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 3866,
+      "bytes": 3910,
       "path": "reports/documentation-audit.json",
-      "sha256": "cd4a9d7a1bd5fe362f77617084293d84db424cb11ea8b3df9974273d4a43e5e5"
+      "sha256": "9ec0582426ab287c74ad0ae4a37e92f0b230c2dc090faaf680c0fbfa68991dd4"
     },
     {
       "bytes": 245,
@@ -1636,12 +1641,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "aa6cf22ecaf58c359a9bec351e6eec08856a03a132567cb43bd8d38425c5da91"
+      "sha256": "9f14bcdd842a46fba687211f15ab8e23b781228d62736459c1493a4f49fadfc3"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "bb4bb9219fe15b7231a91e2a271a3a3a04bd1c74a7d8464792cc998a0ffb4b1d"
+      "sha256": "8c02470f1c7708e3b36be5c4d1d16b5a987b2000495da8944380aa2891bdd1f3"
     },
     {
       "bytes": 255,
@@ -1721,7 +1726,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "93530a677a597b0227e37bfead37d41a433c91aeb36b3bc6f7dee695de0fb0c3"
+      "sha256": "4209e675e9ea9a681cebd30bb3821bcb4869cbdc32647efc76881eb59b84d848"
     },
     {
       "bytes": 349,
@@ -1879,9 +1884,9 @@
       "sha256": "7306c178dbed11e82c5ab9a9a4aa8c6077d23836fcc9ea38b15fbca79cbcc64d"
     },
     {
-      "bytes": 1649,
+      "bytes": 2053,
       "path": "tests/test_dependency_lock.py",
-      "sha256": "1fc173f1ad73b7d042ba46f7058f5ef4cd7d24df111fd7fc4a2ac5b0378ceeff"
+      "sha256": "24b5a893e4bb62716d27e1ac5c995c7c33b5641eea9213119c2ef93f396a8fa2"
     },
     {
       "bytes": 1425,
@@ -2327,6 +2332,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "01c95d6acd3ea5a97aa03a18ed29b5cb83ffa429ea46c51ac6d8ac6d804fdd2f",
+  "tree_sha256": "1a587abf16e3a3450662447eb6f04cd3a69c81c940b6705f71a87bd152fe0ed1",
   "unexpected_entries": []
 }

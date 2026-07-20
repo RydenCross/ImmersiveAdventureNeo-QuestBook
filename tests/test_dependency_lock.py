@@ -46,3 +46,13 @@ def test_ci_installs_hash_verified_lock():
     ) in workflow
     assert "pip install .[dev,desktop] pip-audit" not in workflow
     assert "python -m pip install --no-deps ." in workflow
+
+
+def test_release_workflow_installs_hash_verified_lock():
+    workflow = Path(".github/workflows/publish-release.yml").read_text(encoding="utf-8")
+    assert (
+        "python -m pip install --require-hashes --no-deps "
+        "--only-binary=:all: -r requirements-ci.lock"
+    ) in workflow
+    assert "python -m pip install --no-deps ." in workflow
+    assert "pip install .[desktop]" not in workflow

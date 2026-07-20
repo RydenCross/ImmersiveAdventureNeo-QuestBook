@@ -1,3 +1,9 @@
+## Commit 119 - Release Workflow Lockfile Enforcement
+
+- Replaced mutable desktop dependency installation in the release workflow with the hash-verified repository lock.
+- Added `--require-hashes`, `--no-deps`, and binary-only release dependency installation.
+- Extended the dependency-lock contract, tests, and documentation to prevent release environment drift.
+
 ## Commit 118 - CI Lockfile Enforcement and Reproducible Test Environments
 
 - Replaced mutable CI dependency resolution with the checked-in hash-verified lock.
