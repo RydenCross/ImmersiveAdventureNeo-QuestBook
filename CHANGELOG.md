@@ -1,5 +1,17 @@
 ## Unreleased
 
+## Commit 111 - Dependency Vulnerability Policy and CI Security Scanning
+
+- Added deterministic inventory generation for runtime, development, and desktop Python dependencies.
+- Added strict machine-readable `pip-audit` policy evaluation with explicit vulnerability-ID exceptions.
+- Added CI security scanning, CLI commands, tests, documentation, tracked reports, and quality-gate registration.
+
+## Commit 110 - Keyless Release Signing and Attestation Verification
+
+- Added deterministic SHA-256 release manifests and strict local artifact verification.
+- Added safe GitHub attestation verification plans and explicit execution gates.
+- Added keyless GitHub Actions artifact attestations, CLI commands, tests, documentation, tracked reports, and quality-gate registration.
+
 ## Commit 109 - SBOM, Build Provenance, and Release Attestation
 
 - Added deterministic CycloneDX SBOM generation for release artifacts and declared Python components.

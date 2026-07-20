@@ -153,6 +153,11 @@ from generator.release_signing import (
     write_checksum_manifest,
 )
 from generator.release_signing_contract import run_release_signing_contract
+from generator.dependency_security import (
+    evaluate_pip_audit_report,
+    write_dependency_inventory,
+)
+from generator.dependency_security_contract import run_dependency_security_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -921,6 +926,20 @@ def create_parser() -> argparse.ArgumentParser:
     release_verify.add_argument("--artifact", action="append", type=Path, required=True)
     release_verify.add_argument("--execute", action="store_true")
     release_verify.add_argument("--output", type=Path)
+    dependency_inventory = subparsers.add_parser(
+        "quest-maker-dependency-inventory",
+        help="Generate a deterministic inventory of declared Python dependencies.",
+    )
+    dependency_inventory.add_argument("--pyproject", type=Path, default=Path("pyproject.toml"))
+    dependency_inventory.add_argument("--output", type=Path, required=True)
+    vulnerability_policy = subparsers.add_parser(
+        "quest-maker-vulnerability-policy",
+        help="Evaluate a machine-readable pip-audit report against the vulnerability policy.",
+    )
+    vulnerability_policy.add_argument("--report", type=Path, required=True)
+    vulnerability_policy.add_argument("--ignore", action="append", default=[])
+    vulnerability_policy.add_argument("--format", choices=("text", "json"), default="text")
+    vulnerability_policy.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -1205,6 +1224,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     release_signing.add_argument("--format", choices=("text", "json"), default="text")
     release_signing.add_argument("--output", type=Path)
+    dependency_security = subparsers.add_parser(
+        "dependency-security-audit",
+        help="Validate dependency inventory, vulnerability policy, and CI security scanning.",
+    )
+    dependency_security.add_argument("--format", choices=("text", "json"), default="text")
+    dependency_security.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1604,6 +1629,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "dependency-security-audit":
+        result = run_dependency_security_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "release-signing-audit":
         result = run_release_signing_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1874,6 +1908,28 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0
+
+    if args.command == "quest-maker-dependency-inventory":
+        try:
+            output = write_dependency_inventory(args.output, args.pyproject)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Dependency inventory generation failed: {exc}")
+            return 1
+        print(output)
+        return 0
+
+    if args.command == "quest-maker-vulnerability-policy":
+        try:
+            result = evaluate_pip_audit_report(args.report, args.ignore)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Dependency vulnerability policy failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
 
     if args.command == "quest-maker-update-stage":
         try:

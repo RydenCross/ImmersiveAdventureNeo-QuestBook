@@ -25,6 +25,9 @@
     "chapter audit": [],
     "contract guard": [],
     "dependency audit": [],
+    "dependency vulnerability policy and CI scanning contract": [
+      "keyless release signing and verification contract"
+    ],
     "desktop installers and update metadata contract": [
       "native desktop distribution and first-run setup contract"
     ],
@@ -171,11 +174,11 @@
     ]
   },
   "dependency_cycles": [],
-  "dependency_edges": 59,
+  "dependency_edges": 60,
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 64,
+  "registered_audits": 65,
   "status": "pass",
   "unknown_dependencies": []
 }

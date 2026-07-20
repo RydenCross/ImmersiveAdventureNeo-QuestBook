@@ -84,6 +84,7 @@ AUDIT_DEPENDENCIES.update(
             "native desktop distribution and first-run setup contract",
         ),
         "keyless release signing and verification contract": ("release SBOM and provenance contract", "GitHub release publishing contract"),
+        "dependency vulnerability policy and CI scanning contract": ("keyless release signing and verification contract",),
         "audit performance contract": ("audit registry contract",),
         "audit dependency contract": ("audit registry contract", "report refresh order contract"),
     }

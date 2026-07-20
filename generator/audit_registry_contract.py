@@ -215,6 +215,11 @@ AUDIT_REGISTRY = (
         "release-signing-audit.json",
     ),
     AuditRegistration(
+        "dependency vulnerability policy and CI scanning contract",
+        "dependency-security-audit",
+        "dependency-security-audit.json",
+    ),
+    AuditRegistration(
         "audit performance contract", "audit-performance-audit", "audit-performance-audit.json"
     ),
     AuditRegistration(

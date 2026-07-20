@@ -15,7 +15,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install .[dev]
+      - run: pip install .[dev,desktop] pip-audit
+      - name: Audit Python dependencies
+        run: |
+          python -m generator quest-maker-dependency-inventory --output dependency-inventory.json
+          pip-audit --format json --output dependency-audit.json || true
+          python -m generator quest-maker-vulnerability-policy --report dependency-audit.json --format json
       - run: black --check .
       - run: ruff check .
       - run: pytest

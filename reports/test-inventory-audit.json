@@ -10,6 +10,7 @@
     "test_cli_output_contract.py",
     "test_contract_guard.py",
     "test_dependency_audit.py",
+    "test_dependency_security_contract.py",
     "test_desktop_launcher_contract.py",
     "test_desktop_packages_contract.py",
     "test_determinism_audit.py",
@@ -67,7 +68,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 64,
+  "registered_audits": 65,
   "status": "pass",
   "unregistered_mappings": []
 }

@@ -962,3 +962,7 @@ Generate deterministic CycloneDX SBOM and SLSA provenance documents with `quest-
 ## Keyless release signing and verification
 
 Release workflows now generate deterministic `SHA256SUMS` and GitHub artifact attestations using short-lived OIDC credentials. Consumers can create or execute verification plans with `quest-maker-release-verify-attestations`. See [Keyless release signing](docs/KEYLESS_RELEASE_SIGNING.md).
+
+## Dependency vulnerability policy
+
+Generate a deterministic dependency inventory and enforce `pip-audit` JSON findings with the commands documented in [Dependency Vulnerability Policy and CI Security Scanning](docs/DEPENDENCY_VULNERABILITY_POLICY.md). CI runs the same policy before the test and quality-gate stages.

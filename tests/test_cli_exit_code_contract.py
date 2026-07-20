@@ -4,7 +4,7 @@ from generator.cli_exit_code_contract import run_cli_exit_code_contract
 def test_cli_exit_code_contract_is_clean() -> None:
     result = run_cli_exit_code_contract()
     assert result.is_clean
-    assert result.commands_checked == 62
+    assert result.commands_checked == 63
 
 
 def test_cli_exit_code_contract_serializes_status() -> None:
