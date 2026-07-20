@@ -144,19 +144,41 @@ def _validate_provenance(path: Path, installers: list[Path], *, revision: str | 
             errors.append(f"provenance does not bind SHA-256 for {name}")
     for name in sorted(set(actual) - set(expected)):
         errors.append(f"provenance references unexpected subject {name}")
-    build = payload.get("predicate", {}).get("buildDefinition", {}) if isinstance(payload.get("predicate"), dict) else {}
+    predicate = payload.get("predicate")
+    build = predicate.get("buildDefinition", {}) if isinstance(predicate, dict) else {}
     params = build.get("externalParameters", {}) if isinstance(build, dict) else {}
+    run_details = predicate.get("runDetails", {}) if isinstance(predicate, dict) else {}
+    builder = run_details.get("builder", {}) if isinstance(run_details, dict) else {}
+    metadata = run_details.get("metadata", {}) if isinstance(run_details, dict) else {}
+
+    if build.get("buildType") != "https://github.com/actions/workflow/v1":
+        errors.append("provenance build type must identify GitHub Actions workflow v1")
+    if builder.get("id") != "https://github.com/actions/runner":
+        errors.append("provenance builder identity does not match GitHub Actions runner")
+
     if revision is not None:
         if params.get("ref") != revision:
             errors.append("provenance source revision does not match verified release source")
-        deps = build.get("resolvedDependencies", []) if isinstance(build, dict) else []
-        matches = [d for d in deps if isinstance(d, dict) and isinstance(d.get("digest"), dict) and d["digest"].get("gitCommit") == revision]
-        if len(matches) != 1:
-            errors.append("provenance must contain exactly one resolved dependency for verified release source")
     if repository is not None and params.get("repository") != repository:
         errors.append("provenance repository does not match expected repository")
     if params.get("workflow") != workflow:
         errors.append("provenance workflow does not match release workflow")
+
+    deps = build.get("resolvedDependencies", []) if isinstance(build, dict) else []
+    if revision is not None and repository is not None:
+        valid_deps = [
+            row for row in deps
+            if isinstance(row, dict)
+            and row.get("uri") == repository
+            and isinstance(row.get("digest"), dict)
+            and row["digest"].get("gitCommit") == revision
+        ]
+        if len(deps) != 1 or len(valid_deps) != 1:
+            errors.append("provenance must contain exactly one repository-bound resolved dependency for verified release source")
+
+        expected_invocation = f"{repository}@{revision}:{workflow}"
+        if metadata.get("invocationId") != expected_invocation:
+            errors.append("provenance invocation identity does not match repository, revision, and workflow")
     return tuple(errors)
 
 def validate_release_installers(

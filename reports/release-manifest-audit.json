@@ -1,6 +1,6 @@
 {
-  "archive_entries": 476,
-  "archive_sha256": "bcb23e2fedc7cd1d67d95d0ce1088edd0519725556826aec22d6a4cb5c0ae8fe",
+  "archive_entries": 477,
+  "archive_sha256": "792a4819221c36e06c55eec97d527e2eab2b426d612729380a06f5ea3ef8969c",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -9,9 +9,9 @@
       "sha256": "c77531cd8a6bc4ae374fcff2650cd3c4e5f414ec5b5a46ce20ebb7899cfb1490"
     },
     {
-      "bytes": 1574,
+      "bytes": 1616,
       "path": ".github/workflows/ci.yml",
-      "sha256": "50f2a966ad6ca032dfe6fd6ff3280bb7e281d0190b1fd8f533795254d6fb1534"
+      "sha256": "4bf64ced4a8b7893465544f12fea38334a6100faa69287656d2db077a341ad10"
     },
     {
       "bytes": 5671,
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 37440,
+      "bytes": 37948,
       "path": "CHANGELOG.md",
-      "sha256": "b6d368d139f68edccceebe4b89b00f4a00a3cbda167a8b5cb7877d80741081d3"
+      "sha256": "07043e3b3ea2786ad0f441090f4b6eb10eec644df126b97966fc647afd547499"
     },
     {
       "bytes": 532,
@@ -602,6 +602,11 @@
       "bytes": 556,
       "path": "docs/RELEASE_PACKAGE_VERIFICATION_CONTRACT.md",
       "sha256": "ac6da898ae81bf29a4d1737d943452d016d2f23580b30529548e82bcad26ecd4"
+    },
+    {
+      "bytes": 831,
+      "path": "docs/RELEASE_PROVENANCE_IDENTITY_BINDING.md",
+      "sha256": "18d0519b8191f3de5389983ba7040988ed89eee7a4fbe65daae205c989155a8e"
     },
     {
       "bytes": 770,
@@ -1194,9 +1199,9 @@
       "sha256": "4ec73c00f348ffd1dbc3bf59aeb93b6fa0822a3ccd3d6d488195d8a9e97b728a"
     },
     {
-      "bytes": 14278,
+      "bytes": 15318,
       "path": "generator/release_install_validation.py",
-      "sha256": "4f606cd6969b0ea41379164ce49446615ca6f37c826119395cfe977fb1bd4e09"
+      "sha256": "670017e27c1da9a83e892dec7c099df5b6a48f7b31cb9523687fb10ba5164c2c"
     },
     {
       "bytes": 4390,
@@ -1554,9 +1559,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 4225,
+      "bytes": 4276,
       "path": "reports/documentation-audit.json",
-      "sha256": "586902df8438d53f5402f77f5acdf041fe8a57a5e0c75ff84af45af5bffd325e"
+      "sha256": "07986952944a71ba014c7b52b9b55ea560b394985c0954928d772ffc9501b9d7"
     },
     {
       "bytes": 245,
@@ -1686,12 +1691,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "377d3ea10d6914c99347b88607354f3f7a0fca81699b0105f1e22c0316fce648"
+      "sha256": "e70d1386abd5130bb723a56b7b830f0a182c306b829487ed9e5aed3a316f8d93"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "9449cc3f0a64aa270c1acb8eb6003307c1bf02c70c24405faecf095df61a84a8"
+      "sha256": "3289b4bcc3122c7ddb134d74192f8c02f21062466ba6bee86c037a50a7504cbf"
     },
     {
       "bytes": 297,
@@ -1771,7 +1776,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "0ff5e1a3493808c6049d23f0dc0d82dd04a820976baa64d8377020c61b310b89"
+      "sha256": "b4d5a54f6a44f5022da2ad56f7f4b97673e3032c2c063b1528a9121cb22b7f83"
     },
     {
       "bytes": 349,
@@ -2219,9 +2224,9 @@
       "sha256": "35b6eb0778485ade1ba4c266ac8ed8dbcf39f75d405f43586776ab055082e946"
     },
     {
-      "bytes": 10566,
+      "bytes": 12669,
       "path": "tests/test_release_install_validation.py",
-      "sha256": "8e738d2e00243a496be5d84d994a8a9dc30d1bd620651b4eec6db93b277c69a3"
+      "sha256": "a0a417489b242759861c53224a2f44ed78f500a1119850906430951356c5c835"
     },
     {
       "bytes": 1483,
@@ -2387,6 +2392,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "9a113bf48121652430f057db0604ebf379088f7b42086e9b72b5ea867899323c",
+  "tree_sha256": "435cb092af086984781954584ca32f96d5146d1bdb7458efe778d719be5b26e2",
   "unexpected_entries": []
 }

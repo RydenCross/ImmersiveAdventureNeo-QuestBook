@@ -1,0 +1,38 @@
+{
+  "dependencies": [
+    {
+      "groups": [
+        "dev"
+      ],
+      "name": "black",
+      "requirement": "black"
+    },
+    {
+      "groups": [
+        "desktop"
+      ],
+      "name": "pyinstaller",
+      "requirement": "pyinstaller"
+    },
+    {
+      "groups": [
+        "dev"
+      ],
+      "name": "pytest",
+      "requirement": "pytest"
+    },
+    {
+      "groups": [
+        "dev"
+      ],
+      "name": "ruff",
+      "requirement": "ruff"
+    }
+  ],
+  "dependency_count": 4,
+  "groups": [
+    "desktop",
+    "dev"
+  ],
+  "schema_version": 1
+}

@@ -1,3 +1,10 @@
+## Commit 128 - Provenance Build and Dependency Identity Binding
+
+- Bound SLSA provenance to the GitHub Actions workflow build type and runner builder identity.
+- Required exactly one resolved dependency whose repository URI and Git commit match the verified release source.
+- Bound the provenance invocation identifier to the expected repository, source revision, and workflow.
+- Added regression coverage for forged builders, build types, dependency URIs, invocation identities, and surplus dependencies.
+
 ## Commit 127 - Release Metadata Uniqueness and Canonical Digest Enforcement
 
 - Rejected duplicate CycloneDX file components and duplicate in-toto subjects.

@@ -228,3 +228,45 @@ def test_rejects_noncanonical_or_multiple_metadata_digests(tmp_path: Path) -> No
     assert not result.is_clean
     assert any("exactly one SHA-256" in error for error in result.errors)
     assert any("non-canonical SHA-256" in error for error in result.errors)
+
+
+def test_rejects_unbound_provenance_dependency_and_run_identity(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    payload = json.loads(provenance.read_text(encoding="utf-8"))
+    build = payload["predicate"]["buildDefinition"]
+    build["resolvedDependencies"][0]["uri"] = "https://github.com/attacker/project"
+    build["buildType"] = "https://example.invalid/build"
+    payload["predicate"]["runDetails"]["builder"]["id"] = "https://example.invalid/builder"
+    payload["predicate"]["runDetails"]["metadata"]["invocationId"] = "forged"
+    provenance.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(
+        assets, checksums, update, expected_revision="a" * 40,
+        expected_repository="https://github.com/example/project"
+    )
+    assert not result.is_clean
+    assert any("repository-bound resolved dependency" in error for error in result.errors)
+    assert any("build type" in error for error in result.errors)
+    assert any("builder identity" in error for error in result.errors)
+    assert any("invocation identity" in error for error in result.errors)
+
+
+def test_rejects_surplus_resolved_provenance_dependencies(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    payload = json.loads(provenance.read_text(encoding="utf-8"))
+    payload["predicate"]["buildDefinition"]["resolvedDependencies"].append({
+        "uri": "https://github.com/example/project",
+        "digest": {"gitCommit": "a" * 40},
+    })
+    provenance.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(
+        assets, checksums, update, expected_revision="a" * 40,
+        expected_repository="https://github.com/example/project"
+    )
+    assert not result.is_clean
+    assert any("exactly one repository-bound resolved dependency" in error for error in result.errors)
