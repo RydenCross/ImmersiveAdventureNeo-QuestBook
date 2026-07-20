@@ -1,0 +1,16 @@
+{
+  "corrupt_cache_rebuilt": true,
+  "default_reports_covered": 68,
+  "first_rendered_reports": 2,
+  "missing_default_fingerprints": [],
+  "second_cache_hits": 2,
+  "selective_rendered_reports": [
+    "a.json"
+  ],
+  "selective_skipped_reports": [
+    "b.json",
+    "a.json"
+  ],
+  "status": "pass",
+  "tampered_report_rebuilt": true
+}

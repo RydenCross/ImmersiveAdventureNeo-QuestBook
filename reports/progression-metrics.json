@@ -1,0 +1,224 @@
+{
+  "bottlenecks": [
+    {
+      "chapter_id": "01_survival",
+      "dependants": 6,
+      "quest_id": "87F940CCBABD069C",
+      "title": "A Proper Homestead"
+    },
+    {
+      "chapter_id": "01_survival",
+      "dependants": 6,
+      "quest_id": "9BC80D9BE4C9EA8E",
+      "title": "A Life Worth Building"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependants": 6,
+      "quest_id": "9D733452C9DF241A",
+      "title": "Experienced Explorer"
+    },
+    {
+      "chapter_id": "11_challenges",
+      "dependants": 5,
+      "quest_id": "A57B969E522D8D2E",
+      "title": "Beyond Completion"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependants": 5,
+      "quest_id": "AD2CCB825545CE30",
+      "title": "Industrial Steel"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependants": 4,
+      "quest_id": "867B5B5FE474C1D7",
+      "title": "Plan the Quantum Network"
+    },
+    {
+      "chapter_id": "09_mekanism",
+      "dependants": 4,
+      "quest_id": "8F0C5A2C102D65FB",
+      "title": "Plan the Ultimate Facility"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependants": 4,
+      "quest_id": "912959347E47C6E6",
+      "title": "A Fair Exchange"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependants": 4,
+      "quest_id": "9171D6BB0BDC2370",
+      "title": "The Right Tool"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependants": 4,
+      "quest_id": "93BE9D1AC014268C",
+      "title": "Restonia"
+    },
+    {
+      "chapter_id": "12_create_addons",
+      "dependants": 4,
+      "quest_id": "96E79C9F66877EE1",
+      "title": "Beyond the Main Workshop"
+    },
+    {
+      "chapter_id": "03_exploration",
+      "dependants": 4,
+      "quest_id": "9B56F25D0B4B4DE2",
+      "title": "Beyond the Horizon"
+    },
+    {
+      "chapter_id": "08_ae2",
+      "dependants": 4,
+      "quest_id": "A26EDD8B6F22030F",
+      "title": "Storage That Scales"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependants": 4,
+      "quest_id": "B161A0B71156120C",
+      "title": "Industrial Reserve"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependants": 4,
+      "quest_id": "B36280571FBB2132",
+      "title": "Plan the Expanded Workshop"
+    },
+    {
+      "chapter_id": "06_ars_nouveau",
+      "dependants": 4,
+      "quest_id": "B3B54EEABCCBFA4F",
+      "title": "Plan the Archmage's Workshop"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependants": 4,
+      "quest_id": "B4F7B9CBC9ADD1C4",
+      "title": "Keep Things Moving"
+    },
+    {
+      "chapter_id": "04_create",
+      "dependants": 4,
+      "quest_id": "B555077192EAE77B",
+      "title": "Ready for Mechanical Processing"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependants": 4,
+      "quest_id": "B5DAA8D1C8F96727",
+      "title": "A Reconstructed Workshop"
+    },
+    {
+      "chapter_id": "05_actually_additions",
+      "dependants": 4,
+      "quest_id": "B718462454CD6D43",
+      "title": "An Actually Automated Workshop"
+    },
+    {
+      "chapter_id": "02_mining",
+      "dependants": 4,
+      "quest_id": "BF6BC6174D4EBEEA",
+      "title": "Beneath the Surface"
+    }
+  ],
+  "chapter_transitions": [
+    {
+      "edges": 1,
+      "from_chapter": "00_welcome",
+      "to_chapter": "01_survival"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "01_survival",
+      "to_chapter": "02_mining"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "01_survival",
+      "to_chapter": "03_exploration"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "02_mining",
+      "to_chapter": "04_create"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "04_create",
+      "to_chapter": "05_actually_additions"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "04_create",
+      "to_chapter": "10_endgame"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "04_create",
+      "to_chapter": "12_create_addons"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "05_actually_additions",
+      "to_chapter": "06_ars_nouveau"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "05_actually_additions",
+      "to_chapter": "10_endgame"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "06_ars_nouveau",
+      "to_chapter": "07_apotheosis"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "06_ars_nouveau",
+      "to_chapter": "10_endgame"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "07_apotheosis",
+      "to_chapter": "08_ae2"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "07_apotheosis",
+      "to_chapter": "10_endgame"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "08_ae2",
+      "to_chapter": "09_mekanism"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "08_ae2",
+      "to_chapter": "10_endgame"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "09_mekanism",
+      "to_chapter": "10_endgame"
+    },
+    {
+      "edges": 1,
+      "from_chapter": "10_endgame",
+      "to_chapter": "11_challenges"
+    }
+  ],
+  "chapters": 13,
+  "deepest_quests": [
+    "81D1F635E6908C6C"
+  ],
+  "dependencies": 867,
+  "maximum_depth": 216,
+  "quests": 656
+}

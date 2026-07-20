@@ -1,0 +1,13 @@
+{
+  "duplicate_task_ids": [],
+  "invalid_tasks": [],
+  "status": "pass",
+  "task_count": 673,
+  "task_types": {
+    "advancement": 21,
+    "checkmark": 295,
+    "item": 357
+  },
+  "tasked_quests": 656,
+  "taskless_quests": []
+}

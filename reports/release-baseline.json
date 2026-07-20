@@ -1,0 +1,17 @@
+{
+  "chapters": 13,
+  "duplicate_titles": 0,
+  "empty_descriptions": 0,
+  "generated_chapters": 13,
+  "generated_quests": 656,
+  "is_clean": true,
+  "manifest_namespaces": 7,
+  "manifest_references": 1075,
+  "manifest_unique_items": 459,
+  "optional_quests": 223,
+  "quests": 656,
+  "status": "pass",
+  "taskless_quests": 0,
+  "validation_errors": 0,
+  "validation_warnings": 0
+}

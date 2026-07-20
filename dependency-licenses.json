@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "allowed_spdx": ["Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "MIT", "PSF-2.0"],
+    "denied_spdx": ["AGPL-3.0-only", "AGPL-3.0-or-later", "GPL-2.0-only", "GPL-2.0-or-later", "GPL-3.0-only", "GPL-3.0-or-later", "SSPL-1.0"]
+  },
+  "packages": {
+    "altgraph": "MIT", "black": "MIT", "click": "BSD-3-Clause", "iniconfig": "MIT",
+    "mypy-extensions": "MIT", "packaging": "Apache-2.0", "pathspec": "MPL-2.0",
+    "platformdirs": "MIT", "pluggy": "MIT", "pygments": "BSD-2-Clause",
+    "pyinstaller": "GPL-2.0-or-later WITH Bootloader-exception", "pyinstaller-hooks-contrib": "Apache-2.0",
+    "pytest": "MIT", "ruff": "MIT", "setuptools": "MIT"
+  },
+  "reviewed_exceptions": {
+    "pathspec": "MPL-2.0 is file-level copyleft and approved for tooling use.",
+    "pyinstaller": "PyInstaller's bootloader exception permits distributing generated executables."
+  }
+}

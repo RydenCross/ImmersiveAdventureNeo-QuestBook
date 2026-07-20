@@ -1,0 +1,10 @@
+{
+  "atomic_document_replacement": true,
+  "background_import": true,
+  "cooperative_cancellation": true,
+  "failure_isolation": true,
+  "job_api_routes": true,
+  "staged_progress": true,
+  "status": "pass",
+  "visual_progress_controls": true
+}

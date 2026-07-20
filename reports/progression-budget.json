@@ -1,0 +1,8 @@
+{
+  "maximum_bottlenecks": 21,
+  "maximum_chapter_transitions": 17,
+  "maximum_depth": 216,
+  "maximum_direct_dependants": 6,
+  "minimum_dependencies": 867,
+  "minimum_quests": 656
+}

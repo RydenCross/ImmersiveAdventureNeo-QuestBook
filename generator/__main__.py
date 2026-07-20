@@ -1,3 +1,3 @@
-from generator.build import build
+from generator.cli import main
 
-build()
+raise SystemExit(main())

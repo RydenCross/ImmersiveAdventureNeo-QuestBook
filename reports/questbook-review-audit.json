@@ -1,0 +1,12 @@
+{
+  "bottleneck_detected": true,
+  "dangling_dependency_rejected": true,
+  "deterministic_output": true,
+  "export_validation_passed": true,
+  "invalid_threshold_rejected": true,
+  "oversized_chapter_detected": true,
+  "review_generated": true,
+  "reward_decisions_detected": true,
+  "status": "pass",
+  "weak_descriptions_detected": true
+}

@@ -1,0 +1,13 @@
+{
+  "cross_build_rejected": true,
+  "deterministic_package_plans": true,
+  "deterministic_update_metadata": true,
+  "dry_run_supported": true,
+  "linux_appdir_staged": true,
+  "packaging_recipes_present": true,
+  "platform_artifact_names": true,
+  "signed_metadata_verified": true,
+  "status": "pass",
+  "tampered_artifact_rejected": true,
+  "wrong_signing_key_rejected": true
+}

@@ -13,3 +13,24 @@ build/
 
 .idea/
 .vscode/
+*.egg-info/
+.coverage
+htmlcov/
+.env
+.env.*
+*.pem
+*.key
+
+# Local incremental report refresh cache
+reports/.report-refresh-cache.json
+# Local visual editor workspace and recovery state
+.quest-editor/
+.recovery/
+
+
+# Portable Quest Maker bundles and local installation backups
+*.ftbqproj
+.quest-maker-backups/
+
+# Desktop launcher per-instance workspaces
+.ftb-quest-maker/

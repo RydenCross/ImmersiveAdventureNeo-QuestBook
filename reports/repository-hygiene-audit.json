@@ -1,0 +1,12 @@
+{
+  "empty_required_files": [],
+  "forbidden_paths": [],
+  "max_file_bytes": 1000000,
+  "missing_gitignore_patterns": [],
+  "missing_required_files": [],
+  "oversized_files": [],
+  "scanned_files": 481,
+  "secret_like_paths": [],
+  "status": "pass",
+  "suspicious_command_outputs": []
+}

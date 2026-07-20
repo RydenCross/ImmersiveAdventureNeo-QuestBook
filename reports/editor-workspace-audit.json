@@ -1,0 +1,11 @@
+{
+  "atomic_bulk_edit": true,
+  "collision_free_layout": true,
+  "dependency_safe_layout": true,
+  "deterministic_layout": true,
+  "failed_batch_rollback": true,
+  "single_step_undo": true,
+  "status": "pass",
+  "visual_bulk_controls": true,
+  "workspace_api_routes": true
+}

@@ -1,0 +1,11 @@
+{
+  "advancements_detected": true,
+  "candidate_budget_respected": true,
+  "corrupt_json_isolated": true,
+  "dependency_chain_detected": true,
+  "jar_code_not_executed": true,
+  "recipes_detected": true,
+  "registries_detected": true,
+  "status": "pass",
+  "tags_detected": true
+}

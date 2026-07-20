@@ -1,0 +1,12 @@
+{
+  "atomic_write_verified": true,
+  "checksum_verification": true,
+  "deterministic_checksums": true,
+  "deterministic_verification_plan": true,
+  "dry_run_safe": true,
+  "execution_failure_detected": true,
+  "status": "pass",
+  "tampering_detected": true,
+  "unsafe_inputs_rejected": true,
+  "workflow_integrated": true
+}

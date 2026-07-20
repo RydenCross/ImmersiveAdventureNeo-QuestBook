@@ -1,0 +1,11 @@
+{
+  "artifact_digests_verified": true,
+  "atomic_writes_verified": true,
+  "deterministic_provenance": true,
+  "deterministic_sbom": true,
+  "status": "pass",
+  "tampering_detected": true,
+  "unsafe_inputs_rejected": true,
+  "verified_source_revision_bound": true,
+  "workflow_integrated": true
+}

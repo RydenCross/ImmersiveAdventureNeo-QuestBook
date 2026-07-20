@@ -1,0 +1,13 @@
+{
+  "chapters": 13,
+  "chapters_without_entry": [],
+  "cycles": [],
+  "dependencies": 867,
+  "duplicate_dependencies": [],
+  "entry_quests": 1,
+  "is_clean": true,
+  "quests": 656,
+  "status": "pass",
+  "terminal_quests": 49,
+  "unreachable_quests": []
+}

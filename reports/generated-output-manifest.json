@@ -1,0 +1,97 @@
+{
+  "file_count": 18,
+  "files": [
+    {
+      "path": "chapter_groups.snbt",
+      "sha256": "e57d8311aec9f524911ed1313cabf138bb7fa5a2d3ba985a00a2a267ff35ef78",
+      "size": 25
+    },
+    {
+      "path": "chapters/00_welcome.snbt",
+      "sha256": "da1eba91a970e3ad867cad215ee7b04b8d056086afe774a06e910aea3b5aa991",
+      "size": 3104
+    },
+    {
+      "path": "chapters/01_survival.snbt",
+      "sha256": "ab58dde14a139a3195a42e7212655fafa83bef90061696217f5962c2958a3efe",
+      "size": 13926
+    },
+    {
+      "path": "chapters/02_mining.snbt",
+      "sha256": "fb621e56924dc2955dc2050b43ba9f88784be7a7e8d15b2817d1c700874761e2",
+      "size": 9331
+    },
+    {
+      "path": "chapters/03_exploration.snbt",
+      "sha256": "11907a783200de18433bf948b45dcb676bee5850cf55cb8abc60c4fcd072170f",
+      "size": 13562
+    },
+    {
+      "path": "chapters/04_create.snbt",
+      "sha256": "c842b583ee0f00a85c98d71a146c3c281b4eb8af9ed88c4d1b9bef3d9e85edb5",
+      "size": 22068
+    },
+    {
+      "path": "chapters/05_actually_additions.snbt",
+      "sha256": "17eac53a6fab4949d84de97c3dce5d31e811ae790b7677618d31f9e9796340a1",
+      "size": 24173
+    },
+    {
+      "path": "chapters/06_ars_nouveau.snbt",
+      "sha256": "bad961a5fa24e0b1022df5d8346c913d8cdf8b6dc82d045983d6be52bddbbb94",
+      "size": 17652
+    },
+    {
+      "path": "chapters/07_apotheosis.snbt",
+      "sha256": "518d27935a820cad07cf6aaa3b21dab221c59fec34c6bf124e36482edf48a241",
+      "size": 15281
+    },
+    {
+      "path": "chapters/08_ae2.snbt",
+      "sha256": "7c6c837bf0334a056722bc5c25f792253d0c0d485eae1985deede83357400ec2",
+      "size": 22749
+    },
+    {
+      "path": "chapters/09_mekanism.snbt",
+      "sha256": "b47669bfd08d777f8052b7055834052da0414de1f42f879801bf357116ae6b47",
+      "size": 22940
+    },
+    {
+      "path": "chapters/10_endgame.snbt",
+      "sha256": "04c1909aa8f8aa50f7f8aa78fdcf3d8f1a68004207beb64a52d402cd593adac6",
+      "size": 5769
+    },
+    {
+      "path": "chapters/11_challenges.snbt",
+      "sha256": "98249409a08385634a9f280a16c977632a8a535ecb6082f1cac3d0582379f5e7",
+      "size": 8494
+    },
+    {
+      "path": "chapters/12_create_addons.snbt",
+      "sha256": "d7b399018c026f5a203a40bcec6dfe09b2ba6c4e31bfa54d514fd7f833e7f871",
+      "size": 6748
+    },
+    {
+      "path": "data.snbt",
+      "sha256": "f7922cf65998d1c3128d9c129e02254db02f9d895a6a685e0b16345fff41ab0d",
+      "size": 142
+    },
+    {
+      "path": "lang/en_us.snbt",
+      "sha256": "f38f5420fedd0120c9e7aecf3a2ba43829e4aab00236a88b506c54ac74e33d63",
+      "size": 139022
+    },
+    {
+      "path": "loot_crates.snbt",
+      "sha256": "1d6faa9e1a76d13f3ab8558a3640158b1f0a54f624a4e37ddc3ef41ed4191058",
+      "size": 4
+    },
+    {
+      "path": "rewards.snbt",
+      "sha256": "1d6faa9e1a76d13f3ab8558a3640158b1f0a54f624a4e37ddc3ef41ed4191058",
+      "size": 4
+    }
+  ],
+  "total_bytes": 324994,
+  "tree_digest": "f58ee60bd74ad91f307abf5a82aec6d8b2f778e633a8513df1f47610a54f2c84"
+}

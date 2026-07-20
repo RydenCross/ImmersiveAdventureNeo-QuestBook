@@ -5,7 +5,18 @@ from typing import Any
 from uuid import UUID
 
 from generator.snbt import loads
-from model import Chapter, Dependency, Difficulty, Position, Project, Quest, Reward, RewardType, Task, TaskType
+from model import (
+    Chapter,
+    Dependency,
+    Difficulty,
+    Position,
+    Project,
+    Quest,
+    Reward,
+    RewardType,
+    Task,
+    TaskType,
+)
 
 
 def ftb_id_to_uuid(ftb_id: str) -> UUID:
@@ -78,13 +89,31 @@ class FTBQuestParser:
     @staticmethod
     def _task(raw: dict[str, Any]) -> Task:
         task_type_raw = str(raw.get("type", "custom"))
-        task_type = TaskType(task_type_raw) if task_type_raw in TaskType._value2member_map_ else TaskType.CUSTOM
+        task_type = (
+            TaskType(task_type_raw)
+            if task_type_raw in TaskType._value2member_map_
+            else TaskType.CUSTOM
+        )
         ftb_id = str(raw.get("id", ""))
-        return Task(id=ftb_id, type=task_type, data={k: v for k, v in raw.items() if k not in {"id", "type"}}, raw_data=raw)
+        return Task(
+            id=ftb_id,
+            type=task_type,
+            data={k: v for k, v in raw.items() if k not in {"id", "type"}},
+            raw_data=raw,
+        )
 
     @staticmethod
     def _reward(raw: dict[str, Any]) -> Reward:
         reward_type_raw = str(raw.get("type", "custom"))
-        reward_type = RewardType(reward_type_raw) if reward_type_raw in RewardType._value2member_map_ else RewardType.CUSTOM
+        reward_type = (
+            RewardType(reward_type_raw)
+            if reward_type_raw in RewardType._value2member_map_
+            else RewardType.CUSTOM
+        )
         ftb_id = str(raw.get("id", ""))
-        return Reward(id=ftb_id, type=reward_type, data={k: v for k, v in raw.items() if k not in {"id", "type"}}, raw_data=raw)
+        return Reward(
+            id=ftb_id,
+            type=reward_type,
+            data={k: v for k, v in raw.items() if k not in {"id", "type"}},
+            raw_data=raw,
+        )

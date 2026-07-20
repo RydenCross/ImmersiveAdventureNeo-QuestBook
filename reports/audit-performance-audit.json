@@ -1,0 +1,32 @@
+{
+  "budget_ms": 250.0,
+  "duplicate_executions": [],
+  "missing_timings": [],
+  "over_budget": false,
+  "registered_audits": 68,
+  "slowest_audits": [
+    {
+      "duration_ms": 0.0,
+      "name": "CLI contract audit"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "CLI exit-code contract"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "CLI output contract"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "FTB blueprint exporter contract"
+    },
+    {
+      "duration_ms": 0.0,
+      "name": "GitHub release publishing contract"
+    }
+  ],
+  "status": "pass",
+  "timed_audits": 68,
+  "total_duration_ms": 0.0
+}

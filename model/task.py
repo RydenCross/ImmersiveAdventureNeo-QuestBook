@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Any
 from model.enums import TaskType
 
+
 @dataclass(slots=True)
 class Task:
     id: str

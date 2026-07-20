@@ -1,0 +1,11 @@
+{
+  "atomic_inventory_write": true,
+  "ci_integrated": true,
+  "clean_report_passes": true,
+  "dependency_groups_preserved": true,
+  "deterministic_inventory": true,
+  "explicit_ignore_supported": true,
+  "malformed_report_rejected": true,
+  "status": "pass",
+  "vulnerability_detected": true
+}

@@ -1,0 +1,14 @@
+{
+  "archive_entries": 474,
+  "canonical_compression": 474,
+  "canonical_permissions": 474,
+  "canonical_timestamps": 474,
+  "compression_mismatches": [],
+  "duplicate_entries": [],
+  "encrypted_entries": [],
+  "ordered_entries": true,
+  "permission_mismatches": [],
+  "status": "pass",
+  "timestamp_mismatches": [],
+  "unsafe_paths": []
+}

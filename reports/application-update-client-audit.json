@@ -1,0 +1,11 @@
+{
+  "channel_policy_enforced": true,
+  "current_release_not_reoffered": true,
+  "insecure_metadata_rejected": true,
+  "semantic_version_ordering": true,
+  "signed_update_detected": true,
+  "staged_download_reused": true,
+  "staged_download_verified": true,
+  "status": "pass",
+  "tampered_download_rejected": true
+}

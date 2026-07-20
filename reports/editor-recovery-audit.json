@@ -1,0 +1,10 @@
+{
+  "autosave_after_edit": true,
+  "bounded_snapshots": true,
+  "corrupt_recovery_rejected": true,
+  "recovery_api_routes": true,
+  "save_clears_autosave": true,
+  "snapshot_round_trip": true,
+  "status": "pass",
+  "visual_recovery_controls": true
+}

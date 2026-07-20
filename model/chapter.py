@@ -3,6 +3,7 @@ from typing import Any
 from uuid import UUID
 from model.quest import Quest
 
+
 @dataclass(slots=True)
 class Chapter:
     id: str
@@ -18,9 +19,12 @@ class Chapter:
     raw_data: dict[str, Any] = field(default_factory=dict, repr=False)
 
     def __post_init__(self) -> None:
-        if not self.id.strip(): raise ValueError("Chapter id cannot be empty.")
-        if not self.title.strip(): raise ValueError("Chapter title cannot be empty.")
-        if not self.icon.strip(): raise ValueError("Chapter icon cannot be empty.")
+        if not self.id.strip():
+            raise ValueError("Chapter id cannot be empty.")
+        if not self.title.strip():
+            raise ValueError("Chapter title cannot be empty.")
+        if not self.icon.strip():
+            raise ValueError("Chapter icon cannot be empty.")
 
     def add_quest(self, quest: Quest) -> None:
         if self.get_quest(quest.id) is not None:

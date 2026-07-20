@@ -1,0 +1,11 @@
+{
+  "archive_bytes": 666998,
+  "archive_entries": 474,
+  "archive_sha256": "cc4f820bd4c2fe76e9081f5728ffa59030bcaacd69fee459773077b7683ee79f",
+  "duplicate_entries": [],
+  "empty_files": [],
+  "forbidden_entries": [],
+  "invalid_json_files": [],
+  "missing_generated_files": [],
+  "status": "pass"
+}

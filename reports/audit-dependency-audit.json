@@ -1,0 +1,187 @@
+{
+  "dependencies": {
+    "CLI contract audit": [],
+    "CLI exit-code contract": [
+      "CLI output contract"
+    ],
+    "CLI output contract": [
+      "CLI contract audit",
+      "report schema contract"
+    ],
+    "FTB blueprint exporter contract": [
+      "quest description contract"
+    ],
+    "GitHub release publishing contract": [],
+    "audit dependency contract": [
+      "audit registry contract",
+      "report refresh order contract"
+    ],
+    "audit performance contract": [
+      "audit registry contract"
+    ],
+    "audit registry contract": [
+      "CLI contract audit"
+    ],
+    "chapter audit": [],
+    "contract guard": [],
+    "dependency audit": [],
+    "dependency license inventory and distribution policy contract": [],
+    "dependency vulnerability policy and CI scanning contract": [
+      "keyless release signing and verification contract"
+    ],
+    "desktop installers and update metadata contract": [
+      "native desktop distribution and first-run setup contract"
+    ],
+    "desktop launcher and instance discovery contract": [
+      "portable project bundle contract",
+      "local visual editor service contract"
+    ],
+    "determinism audit": [],
+    "documentation contract audit": [],
+    "editor autosave and recovery contract": [
+      "editor workspace tools contract",
+      "local visual editor service contract"
+    ],
+    "editor background jobs contract": [
+      "editor autosave and recovery contract",
+      "interactive visual editor UI contract"
+    ],
+    "editor workspace tools contract": [
+      "interactive visual editor UI contract"
+    ],
+    "identity guard": [],
+    "interactive visual editor UI contract": [
+      "local visual editor service contract"
+    ],
+    "keyless release signing and verification contract": [
+      "release SBOM and provenance contract",
+      "GitHub release publishing contract"
+    ],
+    "local visual editor service contract": [
+      "visual editor data model contract"
+    ],
+    "locked dependency and hash verification contract": [],
+    "mod compatibility contract": [],
+    "modpack content scanner contract": [
+      "modpack scanner contract"
+    ],
+    "modpack scanner contract": [
+      "repository hygiene audit"
+    ],
+    "native desktop distribution and first-run setup contract": [
+      "desktop launcher and instance discovery contract"
+    ],
+    "output manifest guard": [
+      "determinism audit"
+    ],
+    "packaging audit": [],
+    "portable project bundle contract": [
+      "editor background jobs contract",
+      "FTB blueprint exporter contract"
+    ],
+    "progression guard": [],
+    "progression planner contract": [
+      "modpack content scanner contract"
+    ],
+    "quest description contract": [
+      "progression planner contract"
+    ],
+    "questbook review contract": [
+      "FTB blueprint exporter contract"
+    ],
+    "release SBOM and provenance contract": [],
+    "release archive Unicode path contract": [
+      "release archive extraction safety contract"
+    ],
+    "release archive compression contract": [
+      "release archive metadata contract"
+    ],
+    "release archive extraction safety contract": [
+      "release archive metadata contract"
+    ],
+    "release archive metadata contract": [
+      "release manifest contract"
+    ],
+    "release artifact audit": [
+      "repository hygiene audit",
+      "packaging audit"
+    ],
+    "release guard": [],
+    "release manifest contract": [
+      "release package verification contract"
+    ],
+    "release package verification contract": [
+      "release report finalization contract"
+    ],
+    "release report finalization contract": [
+      "report refresh idempotence contract",
+      "report refresh order contract"
+    ],
+    "release reproducibility audit": [
+      "release artifact audit"
+    ],
+    "report consistency contract": [
+      "report schema contract"
+    ],
+    "report determinism contract": [
+      "report provenance contract"
+    ],
+    "report freshness guard": [
+      "output manifest guard"
+    ],
+    "report provenance contract": [
+      "audit registry contract"
+    ],
+    "report refresh cache contract": [
+      "report refresh convergence contract",
+      "report write-safety contract"
+    ],
+    "report refresh contract": [
+      "report refresh order contract",
+      "report write-safety contract"
+    ],
+    "report refresh convergence contract": [
+      "report refresh contract"
+    ],
+    "report refresh idempotence contract": [
+      "report refresh convergence contract"
+    ],
+    "report refresh order contract": [
+      "report provenance contract"
+    ],
+    "report schema contract": [
+      "audit registry contract"
+    ],
+    "report write-safety contract": [
+      "CLI output contract"
+    ],
+    "repository hygiene audit": [],
+    "repository secret scanning and workflow permission contract": [],
+    "reward audit": [],
+    "reward planner contract": [
+      "questbook review contract",
+      "quest description contract"
+    ],
+    "secure application update client contract": [
+      "desktop installers and update metadata contract"
+    ],
+    "task audit": [],
+    "test inventory contract": [
+      "audit registry contract"
+    ],
+    "text audit": [],
+    "verified update apply and rollback contract": [],
+    "visual editor data model contract": [
+      "reward planner contract",
+      "FTB blueprint exporter contract"
+    ]
+  },
+  "dependency_cycles": [],
+  "dependency_edges": 60,
+  "gate_order_violations": [],
+  "missing_nodes": [],
+  "refresh_order_violations": [],
+  "registered_audits": 68,
+  "status": "pass",
+  "unknown_dependencies": []
+}

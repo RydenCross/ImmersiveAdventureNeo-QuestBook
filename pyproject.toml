@@ -2,15 +2,25 @@
 name = "immersive-adventure-neo-questbuilder"
 version = "0.1.0"
 description = "Quest Builder for Immersive Adventure Neo"
+license = { file = "LICENSE" }
 requires-python = ">=3.12"
 
 dependencies = []
+
+[project.scripts]
+immersive-adventure-quests = "generator.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["content*", "generator*", "model*"]
 
 [project.optional-dependencies]
 dev = [
     "pytest",
     "ruff",
     "black",
+]
+desktop = [
+    "pyinstaller",
 ]
 
 [tool.black]
