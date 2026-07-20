@@ -39,14 +39,16 @@ class EditorLaunchPlan:
 
 
 def build_editor_launch_plan(
-    instance: DiscoveredInstance | None,
+    instance: DiscoveredInstance | None = None,
     *,
+    source: Path | str | None = None,
     workspace_root: Path = DEFAULT_LAUNCHER_WORKSPACE,
     open_browser: bool = True,
     python_executable: str | None = None,
 ) -> EditorLaunchPlan:
     workspace_root = Path(workspace_root).expanduser()
-    identity = instance.instance_id if instance else "untitled"
+    selected_source = str(source) if source is not None else (instance.game_directory if instance else "")
+    identity = instance.instance_id if instance else (Path(selected_source).stem or "untitled")
     workspace = workspace_root / "workspaces" / identity
     command = [
         python_executable or sys.executable,
@@ -54,25 +56,25 @@ def build_editor_launch_plan(
         "generator",
         "quest-editor-serve",
     ]
-    source = ""
-    if instance is not None:
-        source = instance.game_directory
-        command.append(source)
+    if selected_source:
+        command.append(selected_source)
     command.extend(("--workspace", workspace.as_posix(), "--port", "0"))
     if not open_browser:
         command.append("--no-browser")
-    return EditorLaunchPlan(tuple(command), workspace.as_posix(), source)
+    return EditorLaunchPlan(tuple(command), workspace.as_posix(), selected_source)
 
 
 def start_editor_process(
-    instance: DiscoveredInstance | None,
+    instance: DiscoveredInstance | None = None,
     *,
+    source: Path | str | None = None,
     workspace_root: Path = DEFAULT_LAUNCHER_WORKSPACE,
     open_browser: bool = True,
     popen: Callable[..., subprocess.Popen[bytes]] = subprocess.Popen,
 ) -> subprocess.Popen[bytes]:
     plan = build_editor_launch_plan(
         instance,
+        source=source,
         workspace_root=workspace_root,
         open_browser=open_browser,
     )
@@ -217,12 +219,23 @@ def launch_desktop(
         dialog.wait_window()
         return result
 
-    if force_first_run or not preferences.first_run_complete:
+    if force_first_run:
         updated = preferences_dialog(first_run=True)
         if updated is None:
             root.destroy()
             return 0
         preferences = updated
+    elif not preferences.first_run_complete:
+        try:
+            preferences = complete_first_run_setup(
+                preferences_path=preferences_path,
+                workspace_root=Path(preferences.workspace_root),
+                search_roots=(Path(item) for item in preferences.search_roots),
+                open_browser=True,
+                max_instances=preferences.max_instances,
+            ).preferences
+        except OSError:
+            pass
 
     configured_workspace = (
         Path(workspace_root).expanduser()
@@ -244,6 +257,53 @@ def launch_desktop(
     ttk.Label(header, text="FTB Quest Maker", font=("TkDefaultFont", 16, "bold")).pack(side="left")
     status_var = tk.StringVar(value="Discovering Minecraft instances…")
     ttk.Label(header, textvariable=status_var).pack(side="right")
+
+    hero = ttk.LabelFrame(root, text="Create quests from a modpack", padding=16)
+    hero.pack(fill="x", padx=12, pady=(0, 12))
+    ttk.Label(
+        hero,
+        text="Choose a modpack archive or instance folder. Quest Maker will scan it, generate a quest graph, and open the editor automatically.",
+        wraplength=850,
+    ).pack(anchor="w", pady=(0, 12))
+    hero_actions = ttk.Frame(hero)
+    hero_actions.pack(fill="x")
+
+    def launch_source(source: Path) -> None:
+        nonlocal preferences
+        try:
+            process = start_editor_process(
+                source=source,
+                workspace_root=configured_workspace,
+                open_browser=True,
+            )
+        except OSError as exc:
+            messagebox.showerror("Quest generation failed", str(exc), parent=root)
+            return
+        status_var.set(f"Generating quests from {source.name} (PID {process.pid})")
+
+    def choose_modpack_archive() -> None:
+        selected = filedialog.askopenfilename(
+            title="Choose a modpack ZIP or MRPACK",
+            filetypes=(("Modpack archives", "*.zip *.mrpack"), ("ZIP files", "*.zip"), ("Modrinth packs", "*.mrpack"), ("All files", "*")),
+            parent=root,
+        )
+        if selected:
+            launch_source(Path(selected))
+
+    def choose_modpack_folder() -> None:
+        selected = filedialog.askdirectory(
+            title="Choose a modpack or Minecraft instance folder",
+            parent=root,
+        )
+        if selected:
+            launch_source(Path(selected))
+
+    ttk.Button(hero_actions, text="Import modpack ZIP / MRPACK…", command=choose_modpack_archive).pack(side="left")
+    ttk.Button(hero_actions, text="Import instance folder…", command=choose_modpack_folder).pack(side="left", padx=8)
+    ttk.Button(hero_actions, text="Start an empty quest book", command=lambda: launch(None)).pack(side="right")
+
+    ttk.Separator(root, orient="horizontal").pack(fill="x", padx=12, pady=(0, 10))
+    ttk.Label(root, text="Or open a detected Minecraft instance", padding=(12, 0, 12, 6)).pack(anchor="w")
 
     columns = ("name", "launcher", "minecraft", "loader", "mods", "questbook", "path")
     tree = ttk.Treeview(root, columns=columns, show="headings", selectmode="browse")
@@ -413,7 +473,6 @@ def launch_desktop(
     ttk.Button(footer, text="Add folder…", command=add_folder).pack(side="left", padx=6)
     ttk.Button(footer, text="Preferences…", command=edit_preferences).pack(side="left")
     ttk.Button(footer, text="Install project…", command=install_bundle).pack(side="left", padx=6)
-    ttk.Button(footer, text="Open empty editor", command=lambda: launch(None)).pack(side="right")
     ttk.Button(
         footer,
         text="Open selected instance",

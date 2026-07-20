@@ -138,7 +138,9 @@ Open the visual application without manually starting the localhost service or t
 python -m generator quest-maker-launch
 ```
 
-The launcher automatically discovers Minecraft Launcher, CurseForge, Prism Launcher, MultiMC, Modrinth App, ATLauncher, and GDLauncher instances. It shows detected Minecraft/loader metadata, mod counts, and existing FTB Quests installations; selected instances can be opened in the editor or receive a verified `.ftbqproj` installation directly.
+The launcher now opens on a **Create quests from a modpack** screen. Choose a `.zip`/`.mrpack` archive or a Minecraft instance folder and Quest Maker immediately starts scanning, generates a quest graph, and opens the editor. The detected-instance table remains available as a secondary path for Minecraft Launcher, CurseForge, Prism Launcher, MultiMC, Modrinth App, ATLauncher, and GDLauncher packs.
+
+In a packaged Windows build, dropping a modpack archive or instance folder onto `FTBQuestMaker.exe` also starts generation directly. The frozen executable now correctly dispatches its internal editor-service command instead of recursively reopening the launcher.
 
 List the same instances from the command line:
 
@@ -173,7 +175,7 @@ python -m generator quest-maker-native-build --platform linux --dry-run
 python -m generator quest-maker-native-build --platform auto
 ```
 
-The packaged `FTBQuestMaker` entrypoint opens the desktop launcher directly. Preferences are written atomically, invalid settings recover safely, the last opened instance is remembered, and native builds are restricted to their target operating system. See `docs/NATIVE_DESKTOP_DISTRIBUTION.md` for build recipes and first-run behavior.
+The packaged `FTBQuestMaker` entrypoint opens the desktop launcher directly, accepts a dropped modpack path, and correctly dispatches the editor service from a frozen executable. First launch uses safe defaults automatically so users reach the import screen immediately; preferences remain available for workspace and discovery customization. Native builds are restricted to their target operating system. See `docs/NATIVE_DESKTOP_DISTRIBUTION.md` for build recipes and first-run behavior.
 
 Validate the setup and packaging surface:
 

@@ -1,3 +1,10 @@
+## Commit 133 - Usable Desktop Modpack Import and Frozen-App Dispatch
+
+- Reworked the launcher opening screen around direct modpack archive and instance-folder import.
+- Added one-click quest generation from `.zip`, `.mrpack`, and Minecraft instance folders.
+- Fixed the frozen executable child-command loop that reopened the launcher instead of starting the editor service.
+- Added drag-a-modpack-onto-the-EXE handling and regression coverage for native entrypoint dispatch.
+
 ## Commit 132 - Release SBOM Component Scope Enforcement
 
 - Restricted the release CycloneDX `components` array to the exact staged installer file components.
