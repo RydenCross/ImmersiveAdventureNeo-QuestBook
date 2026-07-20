@@ -144,6 +144,10 @@ textarea { min-height: 150px; resize: vertical; }
     <label>Rewards</label><div id="reward-list"></div><button id="add-reward" type="button">Add reward</button>
     <div class="meta">Reward types may be item, xp, command, or loot. Item IDs use namespace:path.</div>
     <button onclick="saveQuest()">Apply quest changes</button>
+    <button id="regenerate-quest" type="button">Regenerate quest</button>
+    <button id="regenerate-chapter" type="button">Regenerate chapter</button>
+    <label><input id="preserve-manual" type="checkbox" checked style="width:auto"> Preserve my manual edits</label>
+    <div class="meta">Regeneration rescans the original modpack and refreshes generated content. Layout and protected manual fields stay unchanged by default.</div>
   </div>
   <pre id="error"></pre>
 </aside>
@@ -381,6 +385,17 @@ function renderInspector() {
 ${quest.objective.id}
 Position ${quest.position.x}, ${quest.position.y}`;
 }
+async function regenerateSelection(scope){
+  try {
+    if(!selected) throw new Error('Select a quest first.');
+    const quest=doc.quests.find(q=>q.id===selected); if(!quest) throw new Error('Selected quest is unavailable.');
+    const targetId=scope==='chapter'?quest.chapter_id:selected;
+    const label=scope==='chapter'?'this entire chapter':'this quest';
+    if(!confirm(`Regenerate ${label} from the original modpack?`)) return;
+    const result=await request('/regenerate',{method:'POST',body:JSON.stringify({scope,target_id:targetId,preserve_manual:document.getElementById('preserve-manual').checked,chapter_size:Number(document.getElementById('chapter-size').value||40),description_style:document.getElementById('description-style').value,reward_policy:document.getElementById('reward-policy').value})});
+    doc=result.document; showError(`Regenerated ${result.updated_quests} quest${result.updated_quests===1?'':'s'}.`); render(); showInspector();
+  } catch(error){showError(error);}
+}
 async function saveQuest(){try{const rewardDecision=document.getElementById('reward-decision').value;const rewards=rewardDecision==='rewarded'?readRewards():[];const objective={type:document.getElementById('objective-type').value,id:document.getElementById('objective-id').value.trim(),count:Number(document.getElementById('objective-count').value||1)};await request('/operations',{method:'POST',body:JSON.stringify({action:'update_quest',target_id:selected,values:{title:document.getElementById('title').value,description:document.getElementById('description').value,objective,difficulty:document.getElementById('quest-difficulty').value,optional:document.getElementById('quest-optional').checked,hidden:document.getElementById('quest-hidden').checked,review_required:document.getElementById('review-required').checked,reward_decision:rewardDecision,rewards}})});showError();await refresh();}catch(error){showError(error);}}
 async function createDependency(prerequisite, dependent){try{await request('/operations',{method:'POST',body:JSON.stringify({action:'set_dependency',target_id:dependent,values:{prerequisite_id:prerequisite,enabled:true}})});showError();await refresh();}catch(error){showError(error);}}
 async function undo(){try{await request('/undo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
@@ -418,6 +433,8 @@ document.getElementById('bulk-chapter').addEventListener('change',event=>moveSel
 document.getElementById('link-button').onclick=event=>{event.currentTarget.classList.toggle('active');linkSource=null;renderGraph();};
 document.getElementById('import-button').onclick=()=>document.getElementById('file-input').click();
 document.getElementById('job-cancel').onclick=cancelActiveJob;
+document.getElementById('regenerate-quest').onclick=()=>regenerateSelection('quest');
+document.getElementById('regenerate-chapter').onclick=()=>regenerateSelection('chapter');
 document.getElementById('add-reward').onclick=()=>addReward();
 document.getElementById('analysis-density').addEventListener('change',updateAnalysisEstimate);
 document.getElementById('analysis-cancel').onclick=()=>{document.getElementById('analysis-panel').hidden=true;analyzedPack=null;};

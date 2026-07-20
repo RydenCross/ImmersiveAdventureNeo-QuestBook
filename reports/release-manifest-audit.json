@@ -1,6 +1,6 @@
 {
   "archive_entries": 484,
-  "archive_sha256": "4c99cab2ccc1ac221274b17cdb66f2aad1561f27e90ef80c1eb1f1d41eac2953",
+  "archive_sha256": "c4bf33521c4697def14ce0e57913fe7587de9b415332c96bc445144e7c8b16e9",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 42197,
+      "bytes": 42647,
       "path": "CHANGELOG.md",
-      "sha256": "8699dcccce0f020b5fe506fbba41fd9e77a136c0d378478b82312f7750a23b73"
+      "sha256": "5a9147dd6fcf6d30e36ab700b8e71e1b023736cb0c1bbd056a93e3b101c09bb1"
     },
     {
       "bytes": 532,
@@ -989,9 +989,9 @@
       "sha256": "26386692192c38a28f9160eeef8711791ea0ffc8f0515004c160894b173e2b47"
     },
     {
-      "bytes": 49118,
+      "bytes": 54296,
       "path": "generator/editor_service.py",
-      "sha256": "6dab3712c535507f220cd0677f1ecf14d15e07b07bb3e71ae93d5a53952d69c1"
+      "sha256": "cef0384a46d26041e0311cc499c61b66704ee40b996cc09b761e75d1341cf4f7"
     },
     {
       "bytes": 7273,
@@ -999,9 +999,9 @@
       "sha256": "bd43036aa1aeb58b99948a1bf27088a0e1707544fe5c7c2757877e1f1e8e29ab"
     },
     {
-      "bytes": 36405,
+      "bytes": 38011,
       "path": "generator/editor_ui.py",
-      "sha256": "f1e959cada35b28eb9a8093993f7db1f2baf8d146c3ca488e416f54eda1aee7e"
+      "sha256": "da8d055c67d5c25a9b15b3fef4616b6fa98a05e87ddf8e5d677fa7b29c1daa32"
     },
     {
       "bytes": 6596,
@@ -2034,9 +2034,9 @@
       "sha256": "2404134e5bc3a2bf5feac194873d2f862010fc2eaef12b9681348108526bae2f"
     },
     {
-      "bytes": 7202,
+      "bytes": 9144,
       "path": "tests/test_editor_service.py",
-      "sha256": "9602ca79a118dcfebfcafa7a6a96a911060a1c62e59c0d73a089090156abdd23"
+      "sha256": "fc703a50838aa2f9993c44b15b24778d676289a5d017397618a8381d9d22b313"
     },
     {
       "bytes": 277,
@@ -2044,9 +2044,9 @@
       "sha256": "0dedbc5cc6fe1bd778b94a2121bee532140d7e4a845b23cc99860185c93c50e4"
     },
     {
-      "bytes": 4722,
+      "bytes": 4878,
       "path": "tests/test_editor_ui.py",
-      "sha256": "0c53a1236dc8d25034e7835a51a6e4284d155e4602d451dc806e5a4bb2db2e10"
+      "sha256": "981fceaec09a900eb10d471e57afd493b07f495508eaa40d5fdbf45f6818f686"
     },
     {
       "bytes": 457,
@@ -2427,6 +2427,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "50fc3e27d8a2e98478c944ff76c5eaafac97791c335da86425b2c777cd6308d5",
+  "tree_sha256": "b11ee048f2cdedabf7a3a7ceb81f467c420000a7f16e8e51094416bee239bdbf",
   "unexpected_entries": []
 }

@@ -1,3 +1,11 @@
+# Commit 137 - Selective Quest Regeneration and Manual-Edit Protection
+
+- Added quest- and chapter-scoped regeneration from the original offline modpack source.
+- Manual quest fields are protected by default using the editor change history.
+- Preserves graph layout and supports undo, redo, autosave, and validation.
+- Added editor controls for regenerating a selected quest or its chapter.
+- Added focused service, API, and UI regression coverage.
+
 # Changelog
 
 ## Commit 136 - Editable Quest Objectives and Challenge Controls

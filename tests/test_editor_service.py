@@ -207,3 +207,57 @@ def test_http_analyze_endpoint_returns_dashboard_profile(tmp_path: Path) -> None
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
+
+
+def test_selective_regeneration_preserves_manual_quest_fields(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    quest = session.document.quests[0]
+    original_title = quest.title
+    session.apply({
+        "action": "update_quest",
+        "target_id": quest.quest_id,
+        "values": {"title": "My handcrafted title"},
+    })
+
+    preserved = session.regenerate({
+        "scope": "quest",
+        "target_id": quest.quest_id,
+        "preserve_manual": True,
+        "target_quests": 4,
+        "chapter_size": 10,
+        "reward_policy": "conservative",
+    })
+    assert preserved["status"] == "pass"
+    assert next(item for item in session.document.quests if item.quest_id == quest.quest_id).title == "My handcrafted title"
+    assert session.status()["undo_depth"] == 2
+
+    replaced = session.regenerate({
+        "scope": "quest",
+        "target_id": quest.quest_id,
+        "preserve_manual": False,
+        "target_quests": 4,
+        "chapter_size": 10,
+        "reward_policy": "conservative",
+    })
+    assert replaced["updated_quests"] >= 1
+    assert next(item for item in session.document.quests if item.quest_id == quest.quest_id).title == original_title
+
+
+def test_regeneration_api_supports_chapter_scope_and_rejects_unknown_target(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    chapter = session.document.chapters[0]
+    response = handle_editor_api(session, "POST", "/api/v1/regenerate", {
+        "scope": "chapter",
+        "target_id": chapter.chapter_id,
+        "preserve_manual": True,
+        "chapter_size": 10,
+        "reward_policy": "conservative",
+    })
+    assert response.status_code == 200
+    assert response.payload["scope"] == "chapter"
+
+    missing = handle_editor_api(session, "POST", "/api/v1/regenerate", {
+        "scope": "quest", "target_id": "missing"
+    })
+    assert missing.status_code == 400
+    assert "unknown quest" in str(missing.payload["error"])

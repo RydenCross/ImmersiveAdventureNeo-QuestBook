@@ -15,6 +15,7 @@ import webbrowser
 
 from generator.editor_model import (
     EDITOR_SCHEMA_VERSION,
+    EditorChange,
     EditorDocument,
     EditorOperation,
     apply_editor_operation,
@@ -404,6 +405,113 @@ class EditorSession:
             return {
                 "status": "pass",
                 "path": path.as_posix(),
+                "session": self.status(),
+                "document": self.document.to_dict(),
+            }
+
+    def regenerate(self, payload: Mapping[str, object]) -> dict[str, object]:
+        """Regenerate one quest or chapter while preserving manually edited fields."""
+        scope = str(payload.get("scope", "quest"))
+        target_id = str(payload.get("target_id", ""))
+        if scope not in {"quest", "chapter"}:
+            raise ValueError("regeneration scope must be quest or chapter")
+        if not target_id:
+            raise ValueError("target_id is required")
+        preserve_manual = bool(payload.get("preserve_manual", True))
+        description_style = str(payload.get("description_style", "guided"))
+        reward_policy = str(payload.get("reward_policy", "unassigned"))
+        chapter_size = int(payload.get("chapter_size", 40))
+        self._validate_generation_options(
+            target_quests=self.document.requested_quests or None,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+        source = Path(self.document.source_path)
+        if not source.exists():
+            raise ValueError("the original imported modpack is unavailable; import it again before regenerating")
+        regenerated = generate_editor_model(
+            source,
+            target_quests=self.document.requested_quests or None,
+            chapter_size=chapter_size,
+            description_style=description_style,
+            reward_policy=reward_policy,
+        )
+        validation = validate_editor_document(regenerated)
+        if regenerated.errors or validation.errors:
+            raise ValueError("regenerated recommendations are invalid")
+        generated_by_candidate = {quest.candidate_id: quest for quest in regenerated.quests}
+        protected_by_quest: dict[str, set[str]] = {}
+        if preserve_manual:
+            for change in self.document.change_log:
+                if change.action == "update_quest":
+                    protected_by_quest.setdefault(change.target_id, set()).update(change.changed_fields)
+                elif change.action == "move_quest":
+                    protected_by_quest.setdefault(change.target_id, set()).update({"chapter_id", "order", "x", "y"})
+        targets = {
+            quest.quest_id for quest in self.document.quests
+            if (scope == "quest" and quest.quest_id == target_id)
+            or (scope == "chapter" and quest.chapter_id == target_id)
+        }
+        if not targets:
+            raise ValueError(f"unknown {scope}: {target_id}")
+        replaceable = (
+            "title", "description", "objective", "review_required", "reward_decision",
+            "rewards", "difficulty", "hidden", "optional",
+        )
+        updated_quests = []
+        changed = 0
+        skipped = []
+        for current in self.document.quests:
+            if current.quest_id not in targets:
+                updated_quests.append(current)
+                continue
+            recommendation = generated_by_candidate.get(current.candidate_id)
+            if recommendation is None:
+                updated_quests.append(current)
+                skipped.append(current.quest_id)
+                continue
+            protected = protected_by_quest.get(current.quest_id, set())
+            values = {
+                field: getattr(recommendation, field)
+                for field in replaceable if field not in protected
+            }
+            candidate = replace(current, **values)
+            if candidate != current:
+                changed += 1
+            updated_quests.append(candidate)
+        if changed == 0 and skipped:
+            raise ValueError("no matching generated recommendations were available")
+        with self._lock:
+            before = self.document
+            revision = before.revision + 1
+            change = EditorChange(
+                revision=revision,
+                action=f"regenerate_{scope}",
+                target_id=target_id,
+                changed_fields=("generated_fields",),
+            )
+            after = replace(
+                before,
+                revision=revision,
+                quests=tuple(updated_quests),
+                dirty_entities=tuple(sorted(set(before.dirty_entities + tuple(targets)))),
+                change_log=before.change_log + (change,),
+            )
+            validation = validate_editor_document(after)
+            if validation.errors:
+                raise ValueError("regenerated document is invalid: " + "; ".join(validation.errors))
+            self._undo.append(before)
+            self._replace_document(after)
+            self._redo.clear()
+            self._autosave(f"regenerate-{scope}")
+            return {
+                "status": "pass",
+                "scope": scope,
+                "target_id": target_id,
+                "preserve_manual": preserve_manual,
+                "updated_quests": changed,
+                "skipped_quests": skipped,
                 "session": self.status(),
                 "document": self.document.to_dict(),
             }
@@ -947,6 +1055,8 @@ def handle_editor_api(
             result = session.save(body.get("path") if "path" in body else None)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/open":
             result = session.open(str(body.get("path", "")))
+        elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/regenerate":
+            result = session.regenerate(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/generate":
             result = session.generate(body)
         elif method == "POST" and clean_path == f"/api/{EDITOR_API_VERSION}/generate-job":

@@ -124,6 +124,11 @@ def test_editor_html_contains_drop_import_and_interactive_graph() -> None:
         'id="quest-optional"',
         'id="quest-hidden"',
         "objective,difficulty",
+        'id="regenerate-quest"',
+        'id="regenerate-chapter"',
+        'id="preserve-manual"',
+        "regenerateSelection",
+        "'/regenerate'",
     )
     assert all(token in EDITOR_HTML for token in required)
 
