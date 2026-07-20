@@ -1,6 +1,6 @@
 {
   "archive_entries": 484,
-  "archive_sha256": "d92c5ba80c875ce015786bf7edb0b2f0aef75bbb292137e74dc2c7c6e442a856",
+  "archive_sha256": "6130f1ff9bf4395f423bff021f5456324c901aee72771d82ab972c408e0c89ee",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -989,9 +989,9 @@
       "sha256": "26386692192c38a28f9160eeef8711791ea0ffc8f0515004c160894b173e2b47"
     },
     {
-      "bytes": 47353,
+      "bytes": 49118,
       "path": "generator/editor_service.py",
-      "sha256": "6bb4419c34eb3c3cf176bc2a27c17abc65b68127202afb8b9eb2e288d189e3d1"
+      "sha256": "6dab3712c535507f220cd0677f1ecf14d15e07b07bb3e71ae93d5a53952d69c1"
     },
     {
       "bytes": 7273,
@@ -999,9 +999,9 @@
       "sha256": "bd43036aa1aeb58b99948a1bf27088a0e1707544fe5c7c2757877e1f1e8e29ab"
     },
     {
-      "bytes": 29831,
+      "bytes": 34758,
       "path": "generator/editor_ui.py",
-      "sha256": "2d5b291e1ca4b96a17c2040568e85a80a63a0aab246001cbc542c38315be8a77"
+      "sha256": "688c1636fe8c8d579bb0fced5a3de31cf00f37e1ef3e957025c65bf700480d5b"
     },
     {
       "bytes": 6596,
@@ -2034,9 +2034,9 @@
       "sha256": "2404134e5bc3a2bf5feac194873d2f862010fc2eaef12b9681348108526bae2f"
     },
     {
-      "bytes": 5362,
+      "bytes": 7202,
       "path": "tests/test_editor_service.py",
-      "sha256": "be46563b4cd3c7bae07c48692d4e04d92d2c1955f6a08447918d148d546771b5"
+      "sha256": "9602ca79a118dcfebfcafa7a6a96a911060a1c62e59c0d73a089090156abdd23"
     },
     {
       "bytes": 277,
@@ -2044,9 +2044,9 @@
       "sha256": "0dedbc5cc6fe1bd778b94a2121bee532140d7e4a845b23cc99860185c93c50e4"
     },
     {
-      "bytes": 4071,
+      "bytes": 4505,
       "path": "tests/test_editor_ui.py",
-      "sha256": "2b1bd24b44cd476ed62e2c662d969bb12fc5b56b6e7e52b338a69298d740b1ba"
+      "sha256": "343a9e11b785e05ba15b527041b04116a65ab7d6ab494563022dd61a8469a8be"
     },
     {
       "bytes": 457,
@@ -2427,6 +2427,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "f35cba96224804d79c8ef236a0e1c543ae4fc06aabacdbad12698cd974c94c5c",
+  "tree_sha256": "ffac9ac1f4958dd25f7e7a9bb763d109efc7a63904420a50f586ab6502aade16",
   "unexpected_entries": []
 }

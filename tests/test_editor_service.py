@@ -158,3 +158,52 @@ def test_editor_http_server_rejects_non_loopback_binding(tmp_path: Path) -> None
     session = _session(tmp_path)
     with pytest.raises(ValueError, match="loopback"):
         create_editor_http_server(session, host="0.0.0.0", port=0)
+
+
+def test_modpack_analysis_stores_archive_and_returns_profile(tmp_path: Path) -> None:
+    from io import BytesIO
+
+    pack = tmp_path / "analysis.mrpack"
+    _synthetic_pack(pack)
+    data = pack.read_bytes()
+    session = EditorSession.empty(workspace=tmp_path / "workspace")
+
+    result = session.analyze_modpack("Analysis Pack.mrpack", BytesIO(data), len(data))
+
+    assert result["status"] == "pass"
+    assert result["filename"] == "Analysis Pack.mrpack"
+    assert result["profile"]["status"] == "pass"
+    assert result["profile"]["summary"]["mods"] > 0
+    assert result["profile"]["summary"]["recommended_quests"]["target"] > 0
+    assert (session.workspace / str(result["path"])).is_file()
+
+
+def test_http_analyze_endpoint_returns_dashboard_profile(tmp_path: Path) -> None:
+    from urllib.parse import quote
+
+    pack = tmp_path / "analysis-http.mrpack"
+    _synthetic_pack(pack)
+    session = EditorSession.empty(workspace=tmp_path / "workspace")
+    server = create_editor_http_server(session, port=0)
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    host, port = server.server_address[:2]
+    try:
+        request = Request(
+            f"http://{host}:{port}/api/v1/analyze",
+            method="POST",
+            headers={
+                "Content-Type": "application/octet-stream",
+                "X-File-Name": quote("Dashboard Pack.mrpack"),
+            },
+            data=pack.read_bytes(),
+        )
+        with urlopen(request, timeout=10) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        assert response.status == 200
+        assert payload["profile"]["pack"]["minecraft"]
+        assert payload["profile"]["summary"]["category_counts"]
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)

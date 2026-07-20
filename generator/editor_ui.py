@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-EDITOR_UI_VERSION = "1.1"
+EDITOR_UI_VERSION = "1.2"
 
 EDITOR_HTML = r'''<!doctype html>
 <html lang="en">
@@ -37,6 +37,7 @@ header strong { margin-right: 8px; }
 #drop-zone { position: fixed; z-index: 20; inset: 74px 18px auto 18px; border: 2px dashed #4b5563; background: rgba(17,24,39,.94); padding: 14px; text-align: center; border-radius: 10px; color: var(--muted); transition: .15s ease; }
 #drop-zone.dragging { border-color: var(--accent); color: #dbeafe; background: rgba(30,64,175,.35); }
 #drop-zone[hidden] { display: none; }
+#analysis-panel{position:fixed;z-index:30;inset:78px 8vw 6vh;background:#0f172a;border:1px solid var(--border);border-radius:14px;padding:22px;overflow:auto;box-shadow:0 20px 60px #000b}#analysis-panel[hidden]{display:none}.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.analysis-card{background:#111827;border:1px solid #334155;border-radius:10px;padding:14px}.analysis-card h3{margin-top:0}.analysis-list{max-height:220px;overflow:auto}.analysis-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}.category-bar{display:flex;justify-content:space-between;border-bottom:1px solid #263244;padding:5px 0}
 main { display: grid; grid-template-columns: 250px minmax(0,1fr) 330px; height: calc(100vh - 62px); }
 aside { background: var(--panel); overflow: auto; }
 #navigator { border-right: 1px solid var(--border); padding: 14px; }
@@ -95,6 +96,17 @@ textarea { min-height: 150px; resize: vertical; }
     <label>Rewards <select id="reward-policy"><option>unassigned</option><option>none</option><option>conservative</option><option>balanced</option><option>generous</option></select></label>
   </div>
 </div>
+<section id="analysis-panel" hidden>
+  <h2>Modpack analysis</h2><p id="analysis-summary" class="meta"></p>
+  <div class="analysis-grid">
+    <div class="analysis-card"><h3>Pack</h3><div id="analysis-pack"></div></div>
+    <div class="analysis-card"><h3>Gameplay mix</h3><div id="analysis-categories"></div></div>
+    <div class="analysis-card"><h3>Major content mods</h3><div id="analysis-mods" class="analysis-list"></div></div>
+    <div class="analysis-card"><h3>Generation plan</h3><label>Quest density<select id="analysis-density"><option value="compact">Compact</option><option value="standard" selected>Standard</option><option value="large">Large</option><option value="completionist">Completionist</option></select></label><label>Lore style<select id="analysis-lore"><option value="concise">Minimal</option><option value="guided" selected>Guided</option><option value="detailed">Detailed</option></select></label><label>Rewards<select id="analysis-rewards"><option value="unassigned">Decide later</option><option value="conservative">Conservative</option><option value="balanced">Balanced</option><option value="generous">Generous</option></select></label><div id="analysis-estimate" class="meta"></div></div>
+  </div>
+  <div id="analysis-warnings" class="meta"></div>
+  <div class="analysis-actions"><button id="analysis-cancel">Cancel</button><button id="analysis-generate">Generate quest book</button></div>
+</section>
 <main>
 <aside id="navigator"><h3>Chapters</h3><div id="chapters"></div></aside>
 <section id="canvas-wrap">
@@ -134,7 +146,7 @@ textarea { min-height: 150px; resize: vertical; }
 const api = '/api/v1'; const importEndpoint = '/api/v1/import-job';
 let doc = null, selected = null, selectedChapter = '', linkSource = null;
 let selectedQuests = new Set();
-let activeJob = null;
+let activeJob = null; let analyzedPack = null;
 let zoom = 1, panX = 0, panY = 0, dragging = null, panning = null;
 const NODE_W = 180, NODE_H = 72, GRID_X = 210, GRID_Y = 105, CHAPTER_GAP = 170;
 
@@ -194,23 +206,30 @@ async function importFile(file) {
   const drop = document.getElementById('drop-zone');
   drop.hidden = false; drop.classList.add('dragging');
   document.getElementById('status').textContent = `Uploading ${file.name}…`;
-  const endpoint = isBundle ? `${api}/project-bundle-import` : `${importEndpoint}?${importOptions()}`;
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {'Content-Type':'application/octet-stream', 'X-File-Name': encodeURIComponent(file.name)},
-    body: file,
-  });
-  const result = await response.json();
-  drop.classList.remove('dragging');
-  if (!response.ok) throw new Error(result.error || 'Import failed');
-  showError();
-  if (isBundle) {
-    selected = null; selectedChapter = ''; linkSource = null; selectedQuests.clear();
-    await refresh(); fitGraph(); drop.hidden = true;
-  } else {
-    await monitorJob(result.id);
-  }
+  const endpoint = isBundle ? `${api}/project-bundle-import` : `${api}/analyze`;
+  const response = await fetch(endpoint, {method:'POST',headers:{'Content-Type':'application/octet-stream','X-File-Name':encodeURIComponent(file.name)},body:file});
+  const result = await response.json(); drop.classList.remove('dragging');
+  if (!response.ok) throw new Error(result.error || 'Import failed'); showError();
+  if (isBundle) { selected=null;selectedChapter='';linkSource=null;selectedQuests.clear();await refresh();fitGraph();drop.hidden=true; }
+  else { analyzedPack=result; renderAnalysis(result.profile); }
 }
+
+function densityTarget(base, density){const factors={compact:.55,standard:1,large:1.35,completionist:1.7};return Math.max(10,Math.round(base*(factors[density]||1)));}
+function renderAnalysis(profile){
+  const panel=document.getElementById('analysis-panel'); const pack=profile.pack||{}; const summary=profile.summary||{}; const mods=profile.mods||[];
+  document.getElementById('analysis-summary').textContent=`${summary.mods||0} mods detected · ${summary.content_mods||0} gameplay/content mods · analyzed without launching Minecraft`;
+  document.getElementById('analysis-pack').innerHTML=`<strong>${pack.name||'Unknown modpack'}</strong><p>Minecraft ${pack.minecraft||'unknown'}<br>${pack.loader||'Unknown loader'} ${pack.loader_version||''}</p>`;
+  const counts=summary.category_counts||{}; document.getElementById('analysis-categories').innerHTML=Object.entries(counts).filter(([k])=>k!=='library').map(([k,v])=>`<div class="category-bar"><span>${k}</span><strong>${v}</strong></div>`).join('')||'<span class="meta">No gameplay categories detected.</span>';
+  document.getElementById('analysis-mods').innerHTML=mods.filter(m=>!m.library).sort((a,b)=>b.quest_weight-a.quest_weight).slice(0,30).map(m=>`<div><strong>${m.display_name}</strong> <span class="badge">${m.category}</span>${m.resolved?'':' <span class="badge">generic</span>'}</div>`).join('');
+  document.getElementById('analysis-warnings').textContent=(profile.warnings||[]).map(x=>`Warning: ${x}`).join('\n'); updateAnalysisEstimate(); panel.hidden=false;
+}
+function updateAnalysisEstimate(){if(!analyzedPack)return;const base=analyzedPack.profile.summary.recommended_quests.target||25;const density=document.getElementById('analysis-density').value;const target=densityTarget(base,density);document.getElementById('analysis-estimate').textContent=`Estimated ${target} quests across about ${Math.max(1,Math.ceil(target/40))} chapters.`;}
+async function generateAnalyzedPack(){
+  if(!analyzedPack)return; const density=document.getElementById('analysis-density').value; const base=analyzedPack.profile.summary.recommended_quests.target||25; const target=densityTarget(base,density);
+  const result=await request('/generate-job',{method:'POST',body:JSON.stringify({path:analyzedPack.path,target_quests:target,chapter_size:40,description_style:document.getElementById('analysis-lore').value,reward_policy:document.getElementById('analysis-rewards').value})});
+  document.getElementById('analysis-panel').hidden=true; await monitorJob(result.id); analyzedPack=null;
+}
+
 async function refresh() {
   try {
     doc = await request('/document');
@@ -394,6 +413,9 @@ document.getElementById('link-button').onclick=event=>{event.currentTarget.class
 document.getElementById('import-button').onclick=()=>document.getElementById('file-input').click();
 document.getElementById('job-cancel').onclick=cancelActiveJob;
 document.getElementById('add-reward').onclick=()=>addReward();
+document.getElementById('analysis-density').addEventListener('change',updateAnalysisEstimate);
+document.getElementById('analysis-cancel').onclick=()=>{document.getElementById('analysis-panel').hidden=true;analyzedPack=null;};
+document.getElementById('analysis-generate').onclick=()=>generateAnalyzedPack().catch(showError);
 document.getElementById('file-input').addEventListener('change',event=>importFile(event.target.files[0]).catch(showError));
 const drop=document.getElementById('drop-zone');
 for(const name of ['dragenter','dragover']) drop.addEventListener(name,event=>{event.preventDefault();drop.classList.add('dragging');});

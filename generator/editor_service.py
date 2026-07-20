@@ -32,6 +32,7 @@ from generator.editor_recovery import EditorRecoveryStore
 from generator.editor_workspace import apply_editor_batch, auto_layout_editor_document
 from generator.ftb_blueprint_exporter import DEFAULT_FTB_QUESTS_VERSION, export_quest_blueprint
 from generator.instance_discovery import discover_modpack_instances
+from generator.modpack_scanner import scan_modpack
 from generator.output_writer import atomic_write_text
 from generator.project_bundle import (
     BUNDLE_EXTENSION,
@@ -585,6 +586,29 @@ class EditorSession:
             self.saved_revision = -1
             self._autosave(reason)
 
+
+    def analyze_modpack(self, filename: str, stream: BinaryIO, content_length: int) -> dict[str, object]:
+        """Store an uploaded modpack and return a user-facing offline analysis profile."""
+        safe_name, destination, bytes_written, checksum = self._store_import(
+            filename, stream, content_length
+        )
+        try:
+            profile = scan_modpack(destination)
+        except (OSError, TypeError, ValueError):
+            destination.unlink(missing_ok=True)
+            raise
+        if profile.errors:
+            destination.unlink(missing_ok=True)
+            raise ValueError("modpack scan failed: " + "; ".join(profile.errors))
+        return {
+            "status": "pass",
+            "filename": safe_name,
+            "path": destination.relative_to(self.workspace).as_posix(),
+            "bytes": bytes_written,
+            "sha256": checksum,
+            "profile": profile.to_dict(),
+        }
+
     def import_modpack(
         self,
         filename: str,
@@ -1017,6 +1041,14 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
             reward_policy=reward_policy,
         )
 
+    def _read_analyze(self) -> dict[str, object]:
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError as exc:
+            raise ValueError("invalid Content-Length") from exc
+        filename = self.headers.get("X-File-Name", "")
+        return self.server.session.analyze_modpack(filename, self.rfile, length)
+
     def _read_import_job(self) -> dict[str, object]:
         try:
             length = int(self.headers.get("Content-Length", "0"))
@@ -1064,6 +1096,14 @@ class EditorRequestHandler(BaseHTTPRequestHandler):
         if clean_path == f"/api/{EDITOR_API_VERSION}/project-bundle-import":
             try:
                 result = self._read_bundle_import()
+            except (OSError, TypeError, UnicodeDecodeError, ValueError) as exc:
+                self._send_json(EditorServiceResponse(400, {"status": "fail", "error": str(exc)}))
+                return
+            self._send_json(EditorServiceResponse(200, result))
+            return
+        if clean_path == f"/api/{EDITOR_API_VERSION}/analyze":
+            try:
+                result = self._read_analyze()
             except (OSError, TypeError, UnicodeDecodeError, ValueError) as exc:
                 self._send_json(EditorServiceResponse(400, {"status": "fail", "error": str(exc)}))
                 return

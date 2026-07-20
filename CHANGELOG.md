@@ -1,5 +1,14 @@
 # Changelog
 
+## Commit 135 - Modpack Analysis Dashboard and Generation Controls
+
+- Added an offline pre-generation modpack analysis step to the visual editor.
+- Added pack, Minecraft version, loader, mod-count, gameplay-category, major-mod, and warning summaries.
+- Added quest-density, lore-detail, and reward-policy controls before quest generation begins.
+- Added estimated quest and chapter counts derived from the scanned modpack profile.
+- Changed drag-and-drop import to analyze first and generate only after explicit user confirmation.
+- Added service and browser-interface regression coverage for the analysis workflow.
+
 ## Commit 134 - Visual Quest Reward and Loot Editing
 
 - Added reward-mode controls to the visual quest inspector.

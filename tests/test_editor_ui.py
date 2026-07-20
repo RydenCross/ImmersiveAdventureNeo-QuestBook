@@ -119,3 +119,15 @@ def test_editor_html_contains_drop_import_and_interactive_graph() -> None:
         "reward_decision",
     )
     assert all(token in EDITOR_HTML for token in required)
+
+
+def test_editor_ui_exposes_pre_generation_analysis_dashboard() -> None:
+    from generator.editor_ui import EDITOR_HTML
+
+    assert 'id="analysis-panel"' in EDITOR_HTML
+    assert 'Modpack analysis' in EDITOR_HTML
+    assert 'Quest density' in EDITOR_HTML
+    assert 'Lore style' in EDITOR_HTML
+    assert 'Generate quest book' in EDITOR_HTML
+    assert "`${api}/analyze`" in EDITOR_HTML
+    assert "'/generate-job'" in EDITOR_HTML
