@@ -73,7 +73,7 @@ textarea { min-height: 150px; resize: vertical; }
 .import-options label { margin: 0; display: flex; align-items: center; gap: 5px; }
 .import-options input, .import-options select { width: auto; }
 @media (max-width: 1050px) { main { grid-template-columns: 210px minmax(0,1fr); } #inspector { position: fixed; right: 0; top: 62px; bottom: 0; width: 330px; z-index: 8; box-shadow: -8px 0 20px #0008; } }
-</style>
+.reward-row{display:grid;grid-template-columns:90px minmax(120px,1fr) 70px minmax(120px,1fr) auto;gap:6px;margin:6px 0}.reward-row input,.reward-row select{min-width:0}</style>
 </head>
 <body>
 <header>
@@ -122,6 +122,9 @@ textarea { min-height: 150px; resize: vertical; }
     <label>Title</label><input id="title">
     <label>Description</label><textarea id="description"></textarea>
     <label><input id="review-required" type="checkbox" style="width:auto"> Requires manual review</label>
+    <label>Reward mode</label><select id="reward-decision"><option value="unassigned">Unassigned</option><option value="none">No reward</option><option value="rewarded">Custom rewards</option></select>
+    <label>Rewards</label><div id="reward-list"></div><button id="add-reward" type="button">Add reward</button>
+    <div class="meta">Reward types may be item, xp, command, or loot. Item IDs use namespace:path.</div>
     <button onclick="saveQuest()">Apply quest changes</button>
   </div>
   <pre id="error"></pre>
@@ -336,13 +339,24 @@ async function moveSelectedToChapter(chapterId){
 async function autoLayout(){
   try { await request('/auto-layout',{method:'POST',body:JSON.stringify({chapter_id:selectedChapter||null})}); showError(); await refresh(); fitGraph(); } catch(error){showError(error);}
 }
+function rewardRow(reward={type:'item',id:'',count:1,reason:''}) {
+  const row=document.createElement('div'); row.className='reward-row';
+  row.innerHTML='<select class="reward-type"><option>item</option><option>xp</option><option>command</option><option>loot</option></select><input class="reward-id" placeholder="minecraft:diamond"><input class="reward-count" type="number" min="1" value="1"><input class="reward-reason" placeholder="Why this reward?"><button type="button" class="reward-remove">Remove</button>';
+  row.querySelector('.reward-type').value=reward.type||'item'; row.querySelector('.reward-id').value=reward.id||''; row.querySelector('.reward-count').value=reward.count||1; row.querySelector('.reward-reason').value=reward.reason||'';
+  row.querySelector('.reward-remove').onclick=()=>row.remove(); return row;
+}
+function addReward(reward){document.getElementById('reward-list').appendChild(rewardRow(reward));}
+function readRewards(){return [...document.querySelectorAll('.reward-row')].map(row=>({type:row.querySelector('.reward-type').value,id:row.querySelector('.reward-id').value.trim(),count:Number(row.querySelector('.reward-count').value||1),reason:row.querySelector('.reward-reason').value.trim()})).filter(item=>item.id);}
 function renderInspector() {
   const quest = doc && doc.quests.find(item=>item.id===selected); const editor=document.getElementById('editor');
   if(!quest){editor.hidden=true;document.getElementById('quest-title').textContent='Select a quest';return;}
   editor.hidden=false; document.getElementById('quest-title').textContent=quest.title; document.getElementById('title').value=quest.title; document.getElementById('description').value=quest.description; document.getElementById('review-required').checked=quest.review_required;
-  document.getElementById('quest-meta').textContent=`${quest.objective.type} · ${quest.reward_decision}\n${quest.objective.id}\nPosition ${quest.position.x}, ${quest.position.y}`;
+  document.getElementById('reward-decision').value=quest.reward_decision||'unassigned'; const list=document.getElementById('reward-list'); list.innerHTML=''; (quest.rewards||[]).forEach(addReward);
+  document.getElementById('quest-meta').textContent=`${quest.objective.type} · ${quest.reward_decision}
+${quest.objective.id}
+Position ${quest.position.x}, ${quest.position.y}`;
 }
-async function saveQuest(){try{await request('/operations',{method:'POST',body:JSON.stringify({action:'update_quest',target_id:selected,values:{title:document.getElementById('title').value,description:document.getElementById('description').value,review_required:document.getElementById('review-required').checked}})});showError();await refresh();}catch(error){showError(error);}}
+async function saveQuest(){try{const rewardDecision=document.getElementById('reward-decision').value;const rewards=rewardDecision==='rewarded'?readRewards():[];await request('/operations',{method:'POST',body:JSON.stringify({action:'update_quest',target_id:selected,values:{title:document.getElementById('title').value,description:document.getElementById('description').value,review_required:document.getElementById('review-required').checked,reward_decision:rewardDecision,rewards}})});showError();await refresh();}catch(error){showError(error);}}
 async function createDependency(prerequisite, dependent){try{await request('/operations',{method:'POST',body:JSON.stringify({action:'set_dependency',target_id:dependent,values:{prerequisite_id:prerequisite,enabled:true}})});showError();await refresh();}catch(error){showError(error);}}
 async function undo(){try{await request('/undo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
 async function redo(){try{await request('/redo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
@@ -379,6 +393,7 @@ document.getElementById('bulk-chapter').addEventListener('change',event=>moveSel
 document.getElementById('link-button').onclick=event=>{event.currentTarget.classList.toggle('active');linkSource=null;renderGraph();};
 document.getElementById('import-button').onclick=()=>document.getElementById('file-input').click();
 document.getElementById('job-cancel').onclick=cancelActiveJob;
+document.getElementById('add-reward').onclick=()=>addReward();
 document.getElementById('file-input').addEventListener('change',event=>importFile(event.target.files[0]).catch(showError));
 const drop=document.getElementById('drop-zone');
 for(const name of ['dragenter','dragover']) drop.addEventListener(name,event=>{event.preventDefault();drop.classList.add('dragging');});

@@ -112,5 +112,10 @@ def test_editor_html_contains_drop_import_and_interactive_graph() -> None:
         "set_dependency",
         "Link prerequisite",
         "fitGraph",
+        'id="reward-decision"',
+        'id="reward-list"',
+        'id="add-reward"',
+        "readRewards",
+        "reward_decision",
     )
     assert all(token in EDITOR_HTML for token in required)

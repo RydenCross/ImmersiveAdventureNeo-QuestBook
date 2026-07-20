@@ -770,7 +770,7 @@ def apply_editor_operation(
 
     elif operation.action in {"update_quest", "move_quest"}:
         allowed = (
-            {"title", "description", "review_required", "reward_decision"}
+            {"title", "description", "review_required", "reward_decision", "rewards"}
             if operation.action == "update_quest"
             else {"chapter_id", "order", "x", "y"}
         )
@@ -795,8 +795,66 @@ def apply_editor_operation(
                     changes[key] = int(value)
                 elif key == "review_required":
                     changes[key] = bool(value)
+                elif key == "rewards":
+                    if not isinstance(value, (list, tuple)):
+                        return EditorTransaction(
+                            document,
+                            document,
+                            operation,
+                            ("quest rewards must be a list",),
+                        )
+                    parsed_rewards: list[EditorReward] = []
+                    for index, item in enumerate(value):
+                        if not isinstance(item, Mapping):
+                            return EditorTransaction(
+                                document,
+                                document,
+                                operation,
+                                (f"quest reward {index + 1} must be an object",),
+                            )
+                        try:
+                            reward = EditorReward.from_dict(item)
+                        except (TypeError, ValueError) as exc:
+                            return EditorTransaction(
+                                document,
+                                document,
+                                operation,
+                                (f"invalid quest reward {index + 1}: {exc}",),
+                            )
+                        if not reward.reward_type.strip() or not reward.identifier.strip():
+                            return EditorTransaction(
+                                document,
+                                document,
+                                operation,
+                                (f"quest reward {index + 1} requires a type and id",),
+                            )
+                        if reward.count < 1:
+                            return EditorTransaction(
+                                document,
+                                document,
+                                operation,
+                                (f"quest reward {index + 1} count must be at least 1",),
+                            )
+                        parsed_rewards.append(reward)
+                    changes[key] = tuple(parsed_rewards)
                 else:
                     changes[key] = str(value)
+            resulting_decision = str(changes.get("reward_decision", quest.reward_decision))
+            resulting_rewards = changes.get("rewards", quest.rewards)
+            if resulting_decision == "rewarded" and not resulting_rewards:
+                return EditorTransaction(
+                    document,
+                    document,
+                    operation,
+                    ("rewarded quests require at least one reward",),
+                )
+            if resulting_decision != "rewarded" and resulting_rewards:
+                return EditorTransaction(
+                    document,
+                    document,
+                    operation,
+                    ("set reward decision to rewarded before adding rewards",),
+                )
             quests.append(replace(quest, **changes))
         if not found:
             return EditorTransaction(

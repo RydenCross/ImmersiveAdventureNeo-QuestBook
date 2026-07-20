@@ -1,3 +1,14 @@
+# Changelog
+
+## Commit 134 - Visual Quest Reward and Loot Editing
+
+- Added reward-mode controls to the visual quest inspector.
+- Added editable reward rows for item, XP, command, and loot rewards.
+- Added reward identifier, count, and design-reason fields.
+- Wired reward edits through the editor transaction model so undo, redo, revision history, autosave, project bundles, and export preserve them.
+- Added fail-closed validation for malformed rewards, missing identifiers, counts below one, and inconsistent reward decisions.
+- Added focused model and browser-interface regression coverage.
+
 ## Commit 133 - Usable Desktop Modpack Import and Frozen-App Dispatch
 
 - Reworked the launcher opening screen around direct modpack archive and instance-folder import.

@@ -1,6 +1,6 @@
 {
-  "archive_entries": 483,
-  "archive_sha256": "9d8a217077116036b0782a209fda78ab31f6719008bad37f42ef3243d50460f8",
+  "archive_entries": 484,
+  "archive_sha256": "d92c5ba80c875ce015786bf7edb0b2f0aef75bbb292137e74dc2c7c6e442a856",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 40352,
+      "bytes": 40947,
       "path": "CHANGELOG.md",
-      "sha256": "0ebfa6aad44cc19a317b78405e0d0c06525f80b005f618993cdf728ec94759e0"
+      "sha256": "ae3040e75dd33cd71aba48356a3f3d3c90f2ca1fc125aca9717fad0334207aa3"
     },
     {
       "bytes": 532,
@@ -769,6 +769,11 @@
       "sha256": "afc5b6f858b4489611ff149ff94eaee9d25e1e45b9ebf6aad48517834d19df19"
     },
     {
+      "bytes": 831,
+      "path": "docs/VISUAL_REWARD_AND_LOOT_EDITOR.md",
+      "sha256": "8794379fd586931b3d95defade2aa7d13a2e3a5149e315f7e757669abd828f2b"
+    },
+    {
       "bytes": 516,
       "path": "docs/WRITER.md",
       "sha256": "136e4c42a5e001c6a38b172b852bca0b96b5649633ce43e3bb630aa44d059028"
@@ -964,9 +969,9 @@
       "sha256": "b6f2acf25277067609ac1a790688aaebeec59ff985269986e01159e5eedf5af6"
     },
     {
-      "bytes": 33983,
+      "bytes": 36870,
       "path": "generator/editor_model.py",
-      "sha256": "d55f494b351793d843524ac5fa393081fb26a9365138d0a6eeb4448b3dfe416c"
+      "sha256": "5ee06d00dfdc861d29e83fc0219b229c8963e1fcfd6507a7b3108d76db156216"
     },
     {
       "bytes": 7913,
@@ -994,9 +999,9 @@
       "sha256": "bd43036aa1aeb58b99948a1bf27088a0e1707544fe5c7c2757877e1f1e8e29ab"
     },
     {
-      "bytes": 27568,
+      "bytes": 29831,
       "path": "generator/editor_ui.py",
-      "sha256": "6e065967f2933ed93279b16e88c9b20a726f58c1e9f82e1f5448ca103d6134b3"
+      "sha256": "2d5b291e1ca4b96a17c2040568e85a80a63a0aab246001cbc542c38315be8a77"
     },
     {
       "bytes": 6596,
@@ -1584,9 +1589,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 4463,
+      "bytes": 4508,
       "path": "reports/documentation-audit.json",
-      "sha256": "160b7950de069a5050478eb74caed64642f797cc5d15afcbdb16f9a54091874c"
+      "sha256": "cb8dda2637f7aee921ed0f088c15288130b8dac0bc74e1259bf2d001900922d3"
     },
     {
       "bytes": 245,
@@ -1716,12 +1721,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "dc13ede0839f731f01333a7cb821e247763b3ab68018361045aae9473f169c96"
+      "sha256": "fdcf4c5804a1fb197b531cb2baaffe02ba54182fac589e817f0bef7df5678e0b"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "4e45d66e08053fafcccf9a76378d2fcb65a5d28786d5a4caa079db388defde5a"
+      "sha256": "9baf77ed1a07331b647a5f743bcdd912b8aad06d680766c077229d4700c6281c"
     },
     {
       "bytes": 330,
@@ -1801,7 +1806,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "f66cddfe195aca780cc376fdff59438e20810bb9230404a8e49990918e0ff855"
+      "sha256": "98141d21a329a0320d2459a92c740079f9acea1906b71dd1fc0266c5db81fec4"
     },
     {
       "bytes": 349,
@@ -2009,9 +2014,9 @@
       "sha256": "c36e4cc2733547767bb779077bb5d029c9f227035f536feb81f9af99b8ea907c"
     },
     {
-      "bytes": 3263,
+      "bytes": 5092,
       "path": "tests/test_editor_model.py",
-      "sha256": "a098f13c0bf2845d7191c486761c3565830099f841f30fef54183cc71350ca70"
+      "sha256": "922e09d9dc72c294e0bcc468e1c1381eccc8eeb2d9d90a0ea5db504db496899c"
     },
     {
       "bytes": 206,
@@ -2039,9 +2044,9 @@
       "sha256": "0dedbc5cc6fe1bd778b94a2121bee532140d7e4a845b23cc99860185c93c50e4"
     },
     {
-      "bytes": 3934,
+      "bytes": 4071,
       "path": "tests/test_editor_ui.py",
-      "sha256": "7a95e6ef2f2392ac0dfcc28b184f27a58b37965ea1de3099cbc5c13e197cbd48"
+      "sha256": "2b1bd24b44cd476ed62e2c662d969bb12fc5b56b6e7e52b338a69298d740b1ba"
     },
     {
       "bytes": 457,
@@ -2422,6 +2427,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "b927e2e7c4219757010d746587abc20153f318e5fd1b47b3013fe8bef0782b76",
+  "tree_sha256": "f35cba96224804d79c8ef236a0e1c543ae4fc06aabacdbad12698cd974c94c5c",
   "unexpected_entries": []
 }

@@ -91,3 +91,58 @@ def test_editor_rejects_invalid_operation(tmp_path: Path) -> None:
     )
     assert not result.is_clean
     assert result.after == document
+
+
+def test_editor_updates_custom_rewards_with_undo_support(tmp_path: Path) -> None:
+    document = _document(tmp_path)
+    quest = document.quests[0]
+    transaction = apply_editor_operation(
+        document,
+        EditorOperation.create(
+            "update_quest",
+            quest.quest_id,
+            reward_decision="rewarded",
+            rewards=[
+                {
+                    "type": "item",
+                    "id": "minecraft:diamond",
+                    "count": 3,
+                    "reason": "Milestone reward",
+                }
+            ],
+        ),
+    )
+    assert transaction.is_clean
+    updated = next(item for item in transaction.after.quests if item.quest_id == quest.quest_id)
+    assert updated.reward_decision == "rewarded"
+    assert updated.rewards[0].identifier == "minecraft:diamond"
+    assert updated.rewards[0].count == 3
+    assert transaction.undo() == document
+
+
+def test_editor_rejects_invalid_custom_reward_updates(tmp_path: Path) -> None:
+    document = _document(tmp_path)
+    quest = document.quests[0]
+    missing_reward = apply_editor_operation(
+        document,
+        EditorOperation.create(
+            "update_quest",
+            quest.quest_id,
+            reward_decision="rewarded",
+            rewards=[],
+        ),
+    )
+    assert not missing_reward.is_clean
+    assert any("at least one reward" in error for error in missing_reward.errors)
+
+    invalid_count = apply_editor_operation(
+        document,
+        EditorOperation.create(
+            "update_quest",
+            quest.quest_id,
+            reward_decision="rewarded",
+            rewards=[{"type": "item", "id": "minecraft:diamond", "count": 0}],
+        ),
+    )
+    assert not invalid_count.is_clean
+    assert any("count must be at least 1" in error for error in invalid_count.errors)
