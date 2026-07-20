@@ -22,6 +22,7 @@ class ReleaseAttestationContract:
     atomic_writes_verified: bool
     unsafe_inputs_rejected: bool
     workflow_integrated: bool
+    verified_source_revision_bound: bool
 
     @property
     def is_clean(self) -> bool:
@@ -67,4 +68,10 @@ def run_release_attestation_contract() -> ReleaseAttestationContract:
             atomic_writes_verified=output.is_file() and json.loads(output.read_text(encoding="utf-8")) == provenance and not output.with_name(output.name + ".tmp").exists(),
             unsafe_inputs_rejected=rejected,
             workflow_integrated="quest-maker-release-sbom" in workflow and "quest-maker-release-provenance" in workflow,
+            verified_source_revision_bound=(
+                'RELEASE_SOURCE_SHA="$(git rev-parse HEAD)"' in workflow
+                and "printf '%s\\n' \"RELEASE_SOURCE_SHA=$RELEASE_SOURCE_SHA\" >> \"$GITHUB_ENV\"" in workflow
+                and '--revision "$RELEASE_SOURCE_SHA"' in workflow
+                and '${{ github.sha }}' not in workflow
+            ),
         )

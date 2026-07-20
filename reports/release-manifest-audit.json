@@ -1,6 +1,6 @@
 {
-  "archive_entries": 471,
-  "archive_sha256": "6f0d9fc0141712daf10039ec41ba50b4a1322641d8fc04b42faa0d90a86f4ead",
+  "archive_entries": 472,
+  "archive_sha256": "f624851da935ad0358db3c07c0b63fd69f680d6298247dfa5e27a94804803c79",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -14,9 +14,9 @@
       "sha256": "50f2a966ad6ca032dfe6fd6ff3280bb7e281d0190b1fd8f533795254d6fb1534"
     },
     {
-      "bytes": 5265,
+      "bytes": 5533,
       "path": ".github/workflows/publish-release.yml",
-      "sha256": "edd80cd3f5c0402fad7197e93491914ca096e58b26f3f32b70358a1987d06726"
+      "sha256": "4859e063ab210645d54011a7a6022790e24f8b56f120042df730f9238a65e8da"
     },
     {
       "bytes": 464,
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 34866,
+      "bytes": 35268,
       "path": "CHANGELOG.md",
-      "sha256": "90464f2fab7b6ccb1f5c0630861e6696a4bd765a33fbd140f4620b777db6a393"
+      "sha256": "7ff70e35a2bc35ee1872f9c49cf344a4d56620a2a266a3123b7803b0b59d615e"
     },
     {
       "bytes": 532,
@@ -589,6 +589,11 @@
       "sha256": "ac6da898ae81bf29a4d1737d943452d016d2f23580b30529548e82bcad26ecd4"
     },
     {
+      "bytes": 770,
+      "path": "docs/RELEASE_PROVENANCE_SOURCE_BINDING.md",
+      "sha256": "ae2b1e29d14fecbb68e1592a185ee8368f9af485746205555d27e0e0482445ee"
+    },
+    {
       "bytes": 479,
       "path": "docs/RELEASE_REPORT_FINALIZATION_CONTRACT.md",
       "sha256": "30ab3b13d61083b463cc8a605d021e8de9509ea4f85f6e90284df1878857b3bc"
@@ -1149,9 +1154,9 @@
       "sha256": "4adfb55655cb0a63bb05d7e13ea07624954dd1fb296c71e662ebe94e017ddb8d"
     },
     {
-      "bytes": 3312,
+      "bytes": 3720,
       "path": "generator/release_attestation_contract.py",
-      "sha256": "c7dc014ab778653eeeb521add8347eeb847154a5e6f216bcc9f4d97d6709212d"
+      "sha256": "3e2c84365dbeee0c4a73674c1be6b53161c8dc0f66597f0c28183ad36a2ea5d6"
     },
     {
       "bytes": 4661,
@@ -1529,9 +1534,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 3997,
+      "bytes": 4046,
       "path": "reports/documentation-audit.json",
-      "sha256": "3c9e611de57d39b3b488077e0c23adf8523c68c98768af8fa9e87a83ee93796d"
+      "sha256": "2be87a00723a2da119c33fc20ca31740277180e1b12b551ad89603b42875f3a2"
     },
     {
       "bytes": 245,
@@ -1661,17 +1666,17 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "25d3c2776991ba0245909621a138a1807a636e3d82520010e7880460f7a2641e"
+      "sha256": "8f56e860c227cd409f4c1d86b459bf747da0bb1cf8eb62bd7356db17e5a97c1c"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "22687c98465327d0059c9959a65a893ba2550f11d9d891aa1c2da118e1d72bd8"
+      "sha256": "df6859660cfeda79e96220ae3bcb40d8c7b914af30e524af4cc7979e38d2c60f"
     },
     {
-      "bytes": 255,
+      "bytes": 297,
       "path": "reports/release-attestation-audit.json",
-      "sha256": "edee7fa73b8d327cc086ab171fc9533b691e5308f64142b91de6078e65e267ef"
+      "sha256": "a378fb01564742a5720008d38f73a2ae8eb1ee440053f4255fc2009c7eaa7cf1"
     },
     {
       "bytes": 380,
@@ -1746,7 +1751,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "e7e14046b6f7580c240d3bf2590a45f5a3bd6ee36467da62e18829112c24e243"
+      "sha256": "f1fc0a9d3c42f804722ad50ff6308088a5652f8f22b7849457fe64d27ddc4168"
     },
     {
       "bytes": 349,
@@ -2174,9 +2179,9 @@
       "sha256": "3294afc9bd04bc550f0c041003ef32444acf2e42cb0308b517e26c05bc1dc670"
     },
     {
-      "bytes": 198,
+      "bytes": 561,
       "path": "tests/test_release_attestation_contract.py",
-      "sha256": "14bc2e41dea191ea456aa896feac4fcc6d2e44698fbaca5a7324ec4d09f7b5b3"
+      "sha256": "ef58fb5c2ca4f0a51c73b780449afcc523557d388c0b5323a0c705301f1f5306"
     },
     {
       "bytes": 968,
@@ -2362,6 +2367,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "56c730c1ef69248cf330d024c5d21e479d51fc4379f50e18f741d5fbd460bd82",
+  "tree_sha256": "8bd3304dac84c1be8d64614945123d9594ab9073564869b5906a306dd1c64ea1",
   "unexpected_entries": []
 }

@@ -1,3 +1,10 @@
+## Commit 122 - Release Provenance Source Binding
+
+- Bound SLSA provenance to the exact checked-out commit validated against the release tag.
+- Exported a single `RELEASE_SOURCE_SHA` after tag/source validation and reused it for provenance generation.
+- Rejected workflow use of `${{ github.sha }}` for release provenance.
+- Added documentation and regression coverage for provenance source identity.
+
 
 ## Commit 121 - Release Tag and Source Revision Integrity
 

@@ -6,5 +6,6 @@
   "status": "pass",
   "tampering_detected": true,
   "unsafe_inputs_rejected": true,
+  "verified_source_revision_bound": true,
   "workflow_integrated": true
 }
