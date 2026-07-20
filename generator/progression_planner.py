@@ -77,6 +77,9 @@ class BlueprintQuest:
     review_required: bool
     reward_decision: str = "unassigned"
     rewards: tuple[BlueprintReward, ...] = ()
+    difficulty: str = "normal"
+    hidden: bool = False
+    optional: bool = False
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -95,6 +98,9 @@ class BlueprintQuest:
             "review_required": self.review_required,
             "reward_decision": self.reward_decision,
             "rewards": [reward.to_dict() for reward in self.rewards],
+            "difficulty": self.difficulty,
+            "hidden": self.hidden,
+            "optional": self.optional,
         }
 
 

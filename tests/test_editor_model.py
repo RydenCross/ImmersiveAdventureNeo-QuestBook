@@ -146,3 +146,58 @@ def test_editor_rejects_invalid_custom_reward_updates(tmp_path: Path) -> None:
     )
     assert not invalid_count.is_clean
     assert any("count must be at least 1" in error for error in invalid_count.errors)
+
+
+def test_editor_updates_objective_and_challenge_settings(tmp_path: Path) -> None:
+    document = _document(tmp_path)
+    quest = document.quests[0]
+    transaction = apply_editor_operation(
+        document,
+        EditorOperation.create(
+            "update_quest",
+            quest.quest_id,
+            objective={"type": "item", "id": "minecraft:diamond", "count": 12},
+            difficulty="expert",
+            optional=True,
+            hidden=True,
+        ),
+    )
+    assert transaction.is_clean
+    updated = next(item for item in transaction.after.quests if item.quest_id == quest.quest_id)
+    assert updated.objective.identifier == "minecraft:diamond"
+    assert updated.objective.count == 12
+    assert updated.difficulty == "expert"
+    assert updated.optional is True
+    assert updated.hidden is True
+    restored = editor_document_to_blueprint(transaction.after)
+    exported = next(
+        item
+        for chapter in restored.chapters
+        for item in chapter.quests
+        if item.quest_id == quest.quest_id
+    )
+    assert exported.difficulty == "expert"
+    assert exported.optional is True
+    assert exported.hidden is True
+
+
+def test_editor_rejects_invalid_objective_and_difficulty(tmp_path: Path) -> None:
+    document = _document(tmp_path)
+    quest = document.quests[0]
+    invalid_objective = apply_editor_operation(
+        document,
+        EditorOperation.create(
+            "update_quest",
+            quest.quest_id,
+            objective={"type": "item", "id": "", "count": 0},
+        ),
+    )
+    assert not invalid_objective.is_clean
+    assert any("objective id is required" in error for error in invalid_objective.errors)
+
+    invalid_difficulty = apply_editor_operation(
+        document,
+        EditorOperation.create("update_quest", quest.quest_id, difficulty="impossible"),
+    )
+    assert not invalid_difficulty.is_clean
+    assert any("unsupported quest difficulty" in error for error in invalid_difficulty.errors)

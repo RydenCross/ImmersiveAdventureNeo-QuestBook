@@ -1,5 +1,15 @@
 # Changelog
 
+## Commit 136 - Editable Quest Objectives and Challenge Controls
+
+- Added visual objective editing for item and advancement quests.
+- Added editable objective identifiers and required quantities.
+- Added per-quest difficulty controls from trivial through endgame.
+- Added optional-challenge and hidden-until-unlocked controls.
+- Persisted objective and challenge settings through undo/redo, autosave, project bundles, and blueprint conversion.
+- Exported difficulty, optional, and hidden settings into actual FTB Quests fields.
+- Added fail-closed validation and focused regression coverage for invalid objectives and difficulties.
+
 ## Commit 135 - Modpack Analysis Dashboard and Generation Controls
 
 - Added an offline pre-generation modpack analysis step to the visual editor.

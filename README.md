@@ -2,6 +2,11 @@
 
 A deterministic Python authoring toolkit and generated FTB Quests v13 questbook for **Immersive Adventure Neo** on Minecraft 1.21.1/NeoForge.
 
+## Visual quest editing
+
+The browser workspace lets pack authors edit generated quest titles, descriptions, objectives, required counts, difficulty, optional/hidden challenge flags, dependencies, and custom rewards before exporting valid FTB Quests files. Objective and challenge edits are preserved by undo/redo, autosave, portable project bundles, and final export.
+
+
 ## Current questbook
 
 - 13 chapters

@@ -18,6 +18,7 @@ from generator.writer import FTBQuestWriter
 from model import (
     Chapter,
     Dependency,
+    Difficulty,
     Position,
     Project,
     Quest,
@@ -209,6 +210,9 @@ def blueprint_to_project(
                         for dependency in blueprint_quest.prerequisite_quests
                     ],
                     position=Position(float(blueprint_quest.x), float(blueprint_quest.y)),
+                    difficulty=Difficulty(blueprint_quest.difficulty),
+                    hidden=blueprint_quest.hidden,
+                    optional=blueprint_quest.optional,
                     raw_data=raw_data,
                 )
             )

@@ -133,6 +133,12 @@ textarea { min-height: 150px; resize: vertical; }
     <div id="quest-meta" class="meta"></div>
     <label>Title</label><input id="title">
     <label>Description</label><textarea id="description"></textarea>
+    <label>Objective type</label><select id="objective-type"><option value="item">Item</option><option value="advancement">Advancement</option></select>
+    <label>Objective ID</label><input id="objective-id" placeholder="minecraft:iron_ingot">
+    <label>Required amount</label><input id="objective-count" type="number" min="1" value="1">
+    <label>Difficulty</label><select id="quest-difficulty"><option value="trivial">Trivial</option><option value="easy">Easy</option><option value="normal">Normal</option><option value="hard">Hard</option><option value="expert">Expert</option><option value="endgame">Endgame</option></select>
+    <label><input id="quest-optional" type="checkbox" style="width:auto"> Optional challenge</label>
+    <label><input id="quest-hidden" type="checkbox" style="width:auto"> Hidden until unlocked</label>
     <label><input id="review-required" type="checkbox" style="width:auto"> Requires manual review</label>
     <label>Reward mode</label><select id="reward-decision"><option value="unassigned">Unassigned</option><option value="none">No reward</option><option value="rewarded">Custom rewards</option></select>
     <label>Rewards</label><div id="reward-list"></div><button id="add-reward" type="button">Add reward</button>
@@ -369,13 +375,13 @@ function readRewards(){return [...document.querySelectorAll('.reward-row')].map(
 function renderInspector() {
   const quest = doc && doc.quests.find(item=>item.id===selected); const editor=document.getElementById('editor');
   if(!quest){editor.hidden=true;document.getElementById('quest-title').textContent='Select a quest';return;}
-  editor.hidden=false; document.getElementById('quest-title').textContent=quest.title; document.getElementById('title').value=quest.title; document.getElementById('description').value=quest.description; document.getElementById('review-required').checked=quest.review_required;
+  editor.hidden=false; document.getElementById('quest-title').textContent=quest.title; document.getElementById('title').value=quest.title; document.getElementById('description').value=quest.description; document.getElementById('objective-type').value=quest.objective.type||'item'; document.getElementById('objective-id').value=quest.objective.id||''; document.getElementById('objective-count').value=quest.objective.count||1; document.getElementById('quest-difficulty').value=quest.difficulty||'normal'; document.getElementById('quest-optional').checked=!!quest.optional; document.getElementById('quest-hidden').checked=!!quest.hidden; document.getElementById('review-required').checked=quest.review_required;
   document.getElementById('reward-decision').value=quest.reward_decision||'unassigned'; const list=document.getElementById('reward-list'); list.innerHTML=''; (quest.rewards||[]).forEach(addReward);
   document.getElementById('quest-meta').textContent=`${quest.objective.type} · ${quest.reward_decision}
 ${quest.objective.id}
 Position ${quest.position.x}, ${quest.position.y}`;
 }
-async function saveQuest(){try{const rewardDecision=document.getElementById('reward-decision').value;const rewards=rewardDecision==='rewarded'?readRewards():[];await request('/operations',{method:'POST',body:JSON.stringify({action:'update_quest',target_id:selected,values:{title:document.getElementById('title').value,description:document.getElementById('description').value,review_required:document.getElementById('review-required').checked,reward_decision:rewardDecision,rewards}})});showError();await refresh();}catch(error){showError(error);}}
+async function saveQuest(){try{const rewardDecision=document.getElementById('reward-decision').value;const rewards=rewardDecision==='rewarded'?readRewards():[];const objective={type:document.getElementById('objective-type').value,id:document.getElementById('objective-id').value.trim(),count:Number(document.getElementById('objective-count').value||1)};await request('/operations',{method:'POST',body:JSON.stringify({action:'update_quest',target_id:selected,values:{title:document.getElementById('title').value,description:document.getElementById('description').value,objective,difficulty:document.getElementById('quest-difficulty').value,optional:document.getElementById('quest-optional').checked,hidden:document.getElementById('quest-hidden').checked,review_required:document.getElementById('review-required').checked,reward_decision:rewardDecision,rewards}})});showError();await refresh();}catch(error){showError(error);}}
 async function createDependency(prerequisite, dependent){try{await request('/operations',{method:'POST',body:JSON.stringify({action:'set_dependency',target_id:dependent,values:{prerequisite_id:prerequisite,enabled:true}})});showError();await refresh();}catch(error){showError(error);}}
 async function undo(){try{await request('/undo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}
 async function redo(){try{await request('/redo',{method:'POST',body:'{}'});showError();await refresh();}catch(error){showError(error);}}

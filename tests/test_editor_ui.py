@@ -117,6 +117,13 @@ def test_editor_html_contains_drop_import_and_interactive_graph() -> None:
         'id="add-reward"',
         "readRewards",
         "reward_decision",
+        'id="objective-type"',
+        'id="objective-id"',
+        'id="objective-count"',
+        'id="quest-difficulty"',
+        'id="quest-optional"',
+        'id="quest-hidden"',
+        "objective,difficulty",
     )
     assert all(token in EDITOR_HTML for token in required)
 

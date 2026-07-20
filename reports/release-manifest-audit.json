@@ -1,6 +1,6 @@
 {
   "archive_entries": 484,
-  "archive_sha256": "6130f1ff9bf4395f423bff021f5456324c901aee72771d82ab972c408e0c89ee",
+  "archive_sha256": "4c99cab2ccc1ac221274b17cdb66f2aad1561f27e90ef80c1eb1f1d41eac2953",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 40947,
+      "bytes": 42197,
       "path": "CHANGELOG.md",
-      "sha256": "ae3040e75dd33cd71aba48356a3f3d3c90f2ca1fc125aca9717fad0334207aa3"
+      "sha256": "8699dcccce0f020b5fe506fbba41fd9e77a136c0d378478b82312f7750a23b73"
     },
     {
       "bytes": 532,
@@ -34,9 +34,9 @@
       "sha256": "5310e50b1af4bc68ca0cc5a6787ba8da581aa8ff5641a30fc1919816a92e96c8"
     },
     {
-      "bytes": 36170,
+      "bytes": 36540,
       "path": "README.md",
-      "sha256": "b56cde8468d48aaf036667ff6daf5ddacc61d71409a695dbed21d869c0b531cd"
+      "sha256": "ded2812f1cd6a21cf66e48016d47370a7d6336717d17f2cace9b4fe61e3f7818"
     },
     {
       "bytes": 1275,
@@ -969,9 +969,9 @@
       "sha256": "b6f2acf25277067609ac1a790688aaebeec59ff985269986e01159e5eedf5af6"
     },
     {
-      "bytes": 36870,
+      "bytes": 39240,
       "path": "generator/editor_model.py",
-      "sha256": "5ee06d00dfdc861d29e83fc0219b229c8963e1fcfd6507a7b3108d76db156216"
+      "sha256": "155c5791f104d51d5bc4586d55a01efb5b15b43900d69116efa4d3c1f78b8813"
     },
     {
       "bytes": 7913,
@@ -999,9 +999,9 @@
       "sha256": "bd43036aa1aeb58b99948a1bf27088a0e1707544fe5c7c2757877e1f1e8e29ab"
     },
     {
-      "bytes": 34758,
+      "bytes": 36405,
       "path": "generator/editor_ui.py",
-      "sha256": "688c1636fe8c8d579bb0fced5a3de31cf00f37e1ef3e957025c65bf700480d5b"
+      "sha256": "f1e959cada35b28eb9a8093993f7db1f2baf8d146c3ca488e416f54eda1aee7e"
     },
     {
       "bytes": 6596,
@@ -1019,9 +1019,9 @@
       "sha256": "3a3efe60cf40409ba587b5c036b7ca37eba32ddf032466980bdb7cc94db9a2e3"
     },
     {
-      "bytes": 15728,
+      "bytes": 15921,
       "path": "generator/ftb_blueprint_exporter.py",
-      "sha256": "21aa4a7caa761f551dc2903ff72d2935fea671c0c0445ec2118ec8efac9fa0cb"
+      "sha256": "6d16b7318105c53be22c49e51e06a84f1b892ddede3b3d43a2f844cba71cc533"
     },
     {
       "bytes": 4777,
@@ -1129,9 +1129,9 @@
       "sha256": "fdd0a928b05a6ea4403ca23042cec92050d2bd4b37937c4b5206f62564aca59c"
     },
     {
-      "bytes": 16283,
+      "bytes": 16483,
       "path": "generator/progression_planner.py",
-      "sha256": "24fb6dec27b9c5735d15e5dbbe6066efe187ea50a7d663968c70e1ff589b4b90"
+      "sha256": "60ea8f65f2ed3aaacba9f9d6840d3f07d00a270c8512e5fa0bd7bcac65517e1c"
     },
     {
       "bytes": 4685,
@@ -2014,9 +2014,9 @@
       "sha256": "c36e4cc2733547767bb779077bb5d029c9f227035f536feb81f9af99b8ea907c"
     },
     {
-      "bytes": 5092,
+      "bytes": 7070,
       "path": "tests/test_editor_model.py",
-      "sha256": "922e09d9dc72c294e0bcc468e1c1381eccc8eeb2d9d90a0ea5db504db496899c"
+      "sha256": "bf816de35ed3229e67de9a148789c8baccdaf411de89f7fbdd108813f2773f9b"
     },
     {
       "bytes": 206,
@@ -2044,9 +2044,9 @@
       "sha256": "0dedbc5cc6fe1bd778b94a2121bee532140d7e4a845b23cc99860185c93c50e4"
     },
     {
-      "bytes": 4505,
+      "bytes": 4722,
       "path": "tests/test_editor_ui.py",
-      "sha256": "343a9e11b785e05ba15b527041b04116a65ab7d6ab494563022dd61a8469a8be"
+      "sha256": "0c53a1236dc8d25034e7835a51a6e4284d155e4602d451dc806e5a4bb2db2e10"
     },
     {
       "bytes": 457,
@@ -2427,6 +2427,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "ffac9ac1f4958dd25f7e7a9bb763d109efc7a63904420a50f586ab6502aade16",
+  "tree_sha256": "50fc3e27d8a2e98478c944ff76c5eaafac97791c335da86425b2c777cd6308d5",
   "unexpected_entries": []
 }

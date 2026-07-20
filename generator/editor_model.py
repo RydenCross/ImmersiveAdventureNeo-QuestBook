@@ -17,6 +17,8 @@ from generator.reward_planner import REWARD_POLICIES, generate_quest_reward_plan
 
 EDITOR_SCHEMA_VERSION = "1.0"
 EDITOR_REWARD_DECISIONS = ("unassigned", "none", "rewarded")
+EDITOR_DIFFICULTIES = ("trivial", "easy", "normal", "hard", "expert", "endgame")
+EDITOR_OBJECTIVE_TYPES = ("item", "advancement")
 EDITOR_OPERATION_TYPES = ("update_chapter", "update_quest", "move_quest", "set_dependency")
 
 
@@ -115,6 +117,9 @@ class EditorQuest:
     review_required: bool
     reward_decision: str = "unassigned"
     rewards: tuple[EditorReward, ...] = ()
+    difficulty: str = "normal"
+    hidden: bool = False
+    optional: bool = False
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -134,6 +139,9 @@ class EditorQuest:
             "review_required": self.review_required,
             "reward_decision": self.reward_decision,
             "rewards": [reward.to_dict() for reward in self.rewards],
+            "difficulty": self.difficulty,
+            "hidden": self.hidden,
+            "optional": self.optional,
         }
 
     @classmethod
@@ -171,6 +179,9 @@ class EditorQuest:
                 for item in rewards or ()
                 if isinstance(item, Mapping)
             ),
+            difficulty=str(payload.get("difficulty", "normal")),
+            hidden=bool(payload.get("hidden", False)),
+            optional=bool(payload.get("optional", False)),
         )
 
 
@@ -475,7 +486,7 @@ def validate_editor_document(document: EditorDocument) -> EditorValidation:
             )
         if not quest.title.strip():
             errors.append(f"quest {quest.quest_id!r} has an empty title")
-        if quest.objective.objective_type not in {"item", "advancement"}:
+        if quest.objective.objective_type not in EDITOR_OBJECTIVE_TYPES:
             errors.append(
                 f"quest {quest.quest_id!r} uses unsupported objective type "
                 f"{quest.objective.objective_type!r}"
@@ -484,6 +495,10 @@ def validate_editor_document(document: EditorDocument) -> EditorValidation:
             errors.append(f"quest {quest.quest_id!r} has an empty objective identifier")
         if quest.objective.count < 1:
             errors.append(f"quest {quest.quest_id!r} has a non-positive objective count")
+        if quest.difficulty not in EDITOR_DIFFICULTIES:
+            errors.append(
+                f"quest {quest.quest_id!r} has invalid difficulty {quest.difficulty!r}"
+            )
         if quest.reward_decision not in EDITOR_REWARD_DECISIONS:
             errors.append(
                 f"quest {quest.quest_id!r} has invalid reward decision {quest.reward_decision!r}"
@@ -575,6 +590,9 @@ def build_editor_document(blueprint: QuestBlueprint) -> EditorDocument:
             y=quest.y,
             review_required=quest.review_required,
             reward_decision=quest.reward_decision,
+            difficulty=quest.difficulty,
+            hidden=quest.hidden,
+            optional=quest.optional,
             rewards=tuple(
                 EditorReward(
                     reward.reward_type,
@@ -645,6 +663,9 @@ def editor_document_to_blueprint(document: EditorDocument) -> QuestBlueprint:
             y=quest.y,
             review_required=quest.review_required,
             reward_decision=quest.reward_decision,
+            difficulty=quest.difficulty,
+            hidden=quest.hidden,
+            optional=quest.optional,
             rewards=tuple(
                 BlueprintReward(
                     reward.reward_type,
@@ -770,7 +791,7 @@ def apply_editor_operation(
 
     elif operation.action in {"update_quest", "move_quest"}:
         allowed = (
-            {"title", "description", "review_required", "reward_decision", "rewards"}
+            {"title", "description", "review_required", "reward_decision", "rewards", "objective", "difficulty", "hidden", "optional"}
             if operation.action == "update_quest"
             else {"chapter_id", "order", "x", "y"}
         )
@@ -793,8 +814,27 @@ def apply_editor_operation(
             for key, value in values.items():
                 if key in {"order", "x", "y"}:
                     changes[key] = int(value)
-                elif key == "review_required":
+                elif key in {"review_required", "hidden", "optional"}:
                     changes[key] = bool(value)
+                elif key == "objective":
+                    if not isinstance(value, Mapping):
+                        return EditorTransaction(document, document, operation, ("quest objective must be an object",))
+                    try:
+                        objective = EditorObjective.from_dict(value)
+                    except (TypeError, ValueError) as exc:
+                        return EditorTransaction(document, document, operation, (f"invalid quest objective: {exc}",))
+                    if objective.objective_type not in EDITOR_OBJECTIVE_TYPES:
+                        return EditorTransaction(document, document, operation, ("objective type must be item or advancement",))
+                    if not objective.identifier.strip():
+                        return EditorTransaction(document, document, operation, ("objective id is required",))
+                    if objective.count < 1:
+                        return EditorTransaction(document, document, operation, ("objective count must be at least 1",))
+                    changes[key] = objective
+                elif key == "difficulty":
+                    difficulty = str(value)
+                    if difficulty not in EDITOR_DIFFICULTIES:
+                        return EditorTransaction(document, document, operation, ("unsupported quest difficulty",))
+                    changes[key] = difficulty
                 elif key == "rewards":
                     if not isinstance(value, (list, tuple)):
                         return EditorTransaction(
