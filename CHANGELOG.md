@@ -1,3 +1,12 @@
+## Commit 123 - Release Asset Allowlist and Manifest Completeness
+
+- Made the staged release directory a strict allowlisted artifact set.
+- Required exactly one installer per platform plus one update feed, checksum manifest, CycloneDX SBOM, and provenance statement.
+- Rejected unexpected files, symbolic links, non-regular entries, and duplicate basenames before attestation or publication.
+- Required exact one-to-one checksum-manifest coverage for every staged release asset.
+- Added documentation and regression coverage for release asset-set integrity.
+
+
 ## Commit 122 - Release Provenance Source Binding
 
 - Bound SLSA provenance to the exact checked-out commit validated against the release tag.

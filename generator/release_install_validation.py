@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import re
+import stat
 
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -68,18 +69,70 @@ def validate_release_installers(
     assets = assets.resolve()
     errors: list[str] = []
     verified: list[str] = []
-    windows = sorted(assets.rglob("*.exe"))
-    linux = sorted(assets.rglob("*.AppImage"))
+    all_entries = sorted(assets.rglob("*"))
+    regular_files: list[Path] = []
+    for path in all_entries:
+        try:
+            mode = path.lstat().st_mode
+        except OSError as exc:
+            errors.append(f"cannot inspect staged asset {path.name}: {exc}")
+            continue
+        if stat.S_ISLNK(mode):
+            errors.append(f"symbolic links are not allowed in release assets: {path.name}")
+        elif stat.S_ISREG(mode):
+            regular_files.append(path)
+        elif not stat.S_ISDIR(mode):
+            errors.append(f"non-regular release asset is not allowed: {path.name}")
+
+    basenames = [path.name for path in regular_files]
+    duplicate_names = sorted({name for name in basenames if basenames.count(name) > 1})
+    for name in duplicate_names:
+        errors.append(f"duplicate release asset basename: {name}")
+
+    windows = sorted(path for path in regular_files if path.suffix.casefold() == ".exe")
+    linux = sorted(path for path in regular_files if path.suffix == ".AppImage")
+    sboms = sorted(path for path in regular_files if path.name.endswith(".cdx.json"))
+    provenance = sorted(path for path in regular_files if path.name.endswith(".intoto.jsonl"))
+    updates = sorted(path for path in regular_files if path.name == "update.json")
+    checksum_files = sorted(path for path in regular_files if path.name == "SHA256SUMS")
+
     if len(windows) != 1:
         errors.append(f"expected exactly one Windows installer, found {len(windows)}")
     if len(linux) != 1:
         errors.append(f"expected exactly one Linux AppImage, found {len(linux)}")
+    if len(sboms) != 1:
+        errors.append(f"expected exactly one CycloneDX SBOM, found {len(sboms)}")
+    if len(provenance) != 1:
+        errors.append(f"expected exactly one provenance statement, found {len(provenance)}")
+    if len(updates) != 1:
+        errors.append(f"expected exactly one update.json, found {len(updates)}")
+    if len(checksum_files) != 1:
+        errors.append(f"expected exactly one SHA256SUMS, found {len(checksum_files)}")
+
+    allowed = {
+        *(path.name for path in windows),
+        *(path.name for path in linux),
+        *(path.name for path in sboms),
+        *(path.name for path in provenance),
+        "update.json",
+        "SHA256SUMS",
+    }
+    for path in regular_files:
+        if path.name not in allowed:
+            errors.append(f"unexpected release asset: {path.name}")
 
     try:
         manifest = _read_checksums(checksums)
     except (OSError, UnicodeError, ValueError) as exc:
         manifest = {}
         errors.append(f"invalid checksum manifest: {exc}")
+
+    expected_manifest_names = {path.name for path in regular_files if path.name != "SHA256SUMS"}
+    manifest_names = set(manifest)
+    for name in sorted(expected_manifest_names - manifest_names):
+        errors.append(f"checksum manifest is missing staged asset {name}")
+    for name in sorted(manifest_names - expected_manifest_names):
+        errors.append(f"checksum manifest references unexpected asset {name}")
 
     selected = windows[:1] + linux[:1]
     for path in selected:

@@ -2,7 +2,9 @@
 
 Commit 120 adds a publication gate for the actual desktop artifacts produced by GitHub Actions.
 
-Before attestation or release publication, the workflow now requires exactly one Windows installer and one Linux AppImage. It verifies minimum file size, the Windows PE `MZ` signature, the Linux ELF signature and executable permission, SHA-256 consistency with `SHA256SUMS`, and filename/hash binding in `update.json`.
+Before attestation or release publication, the workflow requires exactly one Windows installer, one Linux AppImage, one CycloneDX SBOM, one SLSA provenance statement, one `update.json`, and one `SHA256SUMS`. It verifies minimum installer size, the Windows PE `MZ` signature, the Linux ELF signature and executable permission, filename/hash binding in `update.json`, and exact one-to-one SHA-256 manifest coverage for every staged file except the manifest itself.
+
+The staged release directory is fail-closed: unexpected regular files, symbolic links, non-regular filesystem entries, duplicate basenames, missing metadata, missing checksum entries, and checksum entries for nonexistent assets all block attestation and publication. This prevents debug output, stale packages, path collisions, or untracked files from being silently included in a GitHub Release.
 
 Run the same validation locally against staged release assets:
 
