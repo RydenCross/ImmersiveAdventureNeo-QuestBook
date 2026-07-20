@@ -36,3 +36,13 @@ def test_manifest_write_is_atomic(tmp_path: Path):
     output = write_lock_manifest(path, tmp_path / "nested" / "manifest.json")
     assert output.is_file()
     assert not output.with_name(output.name + ".tmp").exists()
+
+
+def test_ci_installs_hash_verified_lock():
+    workflow = Path(".github/workflows/ci.yml").read_text(encoding="utf-8")
+    assert (
+        "python -m pip install --require-hashes --no-deps "
+        "--only-binary=:all: -r requirements-ci.lock"
+    ) in workflow
+    assert "pip install .[dev,desktop] pip-audit" not in workflow
+    assert "python -m pip install --no-deps ." in workflow

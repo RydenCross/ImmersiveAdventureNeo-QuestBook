@@ -18,7 +18,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install .[dev,desktop] pip-audit
+      - name: Install hash-verified CI dependencies
+        run: |
+          python -m pip install --require-hashes --no-deps --only-binary=:all: -r requirements-ci.lock
+          python -m pip install --no-deps .
       - name: Scan repository secrets and workflow permissions
         run: python -m generator repository-security-audit --format json
       - name: Verify dependency lock and license policy

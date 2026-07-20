@@ -988,3 +988,5 @@ See [`docs/DEPENDENCY_LICENSE_POLICY.md`](docs/DEPENDENCY_LICENSE_POLICY.md) for
 This repository includes an explicit project license notice in [`LICENSE`](LICENSE).
 Third-party mods, names, trademarks, and referenced assets remain governed by their
 respective owners and licenses.
+
+See [CI lockfile enforcement](docs/CI_LOCKFILE_ENFORCEMENT.md).

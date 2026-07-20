@@ -1,3 +1,10 @@
+## Commit 118 - CI Lockfile Enforcement and Reproducible Test Environments
+
+- Replaced mutable CI dependency resolution with the checked-in hash-verified lock.
+- Added `--require-hashes`, `--no-deps`, and binary-only installation enforcement.
+- Installed the project separately without dependency resolution.
+- Extended the dependency-lock contract, tests, and documentation to prevent regression.
+
 ## Commit 117 - Repository Packaging Hygiene and License Metadata Integrity
 
 - Replaced the empty root license placeholder with an explicit project license notice.

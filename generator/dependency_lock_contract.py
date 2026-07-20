@@ -23,6 +23,8 @@ class DependencyLockContract:
     reproducible_plan_hardened: bool
     atomic_manifest_write: bool
     ci_integrated: bool
+    ci_lock_install_enforced: bool
+    mutable_ci_install_rejected: bool
 
     @property
     def is_clean(self) -> bool:
@@ -89,4 +91,9 @@ def run_dependency_lock_contract() -> DependencyLockContract:
             ),
             atomic_manifest_write=output.is_file() and not output.with_name(output.name + ".tmp").exists(),
             ci_integrated="dependency-lock-audit" in workflow,
+            ci_lock_install_enforced=(
+                "pip install --require-hashes --no-deps --only-binary=:all: -r requirements-ci.lock"
+                in workflow
+            ),
+            mutable_ci_install_rejected="pip install .[dev,desktop] pip-audit" not in workflow,
         )

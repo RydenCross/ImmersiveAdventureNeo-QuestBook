@@ -1,10 +1,12 @@
 {
   "atomic_manifest_write": true,
   "ci_integrated": true,
+  "ci_lock_install_enforced": true,
   "deterministic_digest": true,
   "duplicate_names_rejected": true,
   "exact_pins_required": true,
   "hashes_required": true,
+  "mutable_ci_install_rejected": true,
   "repository_lock_valid": true,
   "reproducible_plan_hardened": true,
   "status": "pass"
