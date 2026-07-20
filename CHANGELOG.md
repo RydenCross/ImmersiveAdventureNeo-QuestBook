@@ -1,3 +1,10 @@
+
+## Commit 121 - Release Tag and Source Revision Integrity
+
+- Built both release jobs directly from the requested tag.
+- Added fail-closed validation that the tag resolves to the checked-out full Git SHA.
+- Rejected malformed tags, unresolved tags, abbreviated revisions, and tag/source mismatches.
+- Added release-source integrity documentation and regression tests.
 ## Commit 120 - Release Artifact Verification and Installation Validation
 
 - Added pre-publication validation for Windows installers and Linux AppImages.
