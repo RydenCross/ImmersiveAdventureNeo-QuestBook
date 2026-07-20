@@ -393,3 +393,28 @@ def test_rejects_cross_version_update_and_sbom_metadata(tmp_path: Path) -> None:
     assert not result.is_clean
     assert any("SBOM application version" in error for error in result.errors)
     assert any("update metadata version" in error for error in result.errors)
+
+
+def test_rejects_forged_sbom_document_and_application_identity(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    payload = json.loads(sbom.read_text(encoding="utf-8"))
+    payload["specVersion"] = "1.4"
+    payload["version"] = 2
+    payload["serialNumber"] = "urn:uuid:forged"
+    payload["metadata"]["component"]["type"] = "library"
+    payload["metadata"]["component"]["name"] = "different-application"
+    payload["components"][0]["properties"][0]["value"] = "1"
+    sbom.write_text(json.dumps(payload), encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(
+        assets, checksums, update, expected_version="1.2.3"
+    )
+    assert not result.is_clean
+    assert any("specVersion" in error for error in result.errors)
+    assert any("document version" in error for error in result.errors)
+    assert any("serialNumber" in error for error in result.errors)
+    assert any("component type" in error for error in result.errors)
+    assert any("application name" in error for error in result.errors)
+    assert any("size property" in error for error in result.errors)

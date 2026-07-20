@@ -1,3 +1,10 @@
+## Commit 131 - Release SBOM Document and Application Identity Binding
+
+- Bound CycloneDX spec version, document version, application type, and application name to the release contract.
+- Required the deterministic SBOM serial number derived from the normalized release version and exact installer set.
+- Bound each installer component's size property to the staged artifact size.
+- Added regression coverage and release SBOM identity documentation.
+
 ## Commit 130 - Release Version Identity Binding
 
 - Derived a normalized semantic release version from the required `v`-prefixed Git tag.

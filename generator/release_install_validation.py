@@ -82,6 +82,10 @@ def _validate_sbom(path: Path, installers: list[Path], *, expected_version: str 
         return ("CycloneDX SBOM root must be an object",)
     if payload.get("bomFormat") != "CycloneDX":
         errors.append("SBOM bomFormat must be CycloneDX")
+    if payload.get("specVersion") != "1.5":
+        errors.append("SBOM specVersion must be 1.5")
+    if payload.get("version") != 1:
+        errors.append("SBOM document version must be 1")
     metadata = payload.get("metadata")
     if not isinstance(metadata, dict):
         metadata = {}
@@ -90,6 +94,10 @@ def _validate_sbom(path: Path, installers: list[Path], *, expected_version: str 
     if not isinstance(application, dict):
         application = {}
         errors.append("SBOM metadata component must be an object")
+    if application.get("type") != "application":
+        errors.append("SBOM metadata component type must be application")
+    if application.get("name") != "ftb-quest-maker":
+        errors.append("SBOM application name must be ftb-quest-maker")
     if expected_version is not None and application.get("version") != expected_version:
         errors.append("SBOM application version does not match expected release version")
     components = payload.get("components")
@@ -97,6 +105,12 @@ def _validate_sbom(path: Path, installers: list[Path], *, expected_version: str 
         return tuple(errors + ["SBOM components must be an array"])
 
     expected = _artifact_digest_map(installers)
+    expected_sizes = {path.name: path.stat().st_size for path in installers}
+    if expected_version is not None:
+        serial_material = expected_version + "|" + "|".join(sorted(name.casefold() for name in expected))
+        expected_serial = f"urn:uuid:{hashlib.sha256(serial_material.encode()).hexdigest()[:32]}"
+        if payload.get("serialNumber") != expected_serial:
+            errors.append("SBOM serialNumber does not match release version and installer set")
     actual: dict[str, str] = {}
     seen: set[str] = set()
     for row in components:
@@ -132,6 +146,16 @@ def _validate_sbom(path: Path, installers: list[Path], *, expected_version: str 
             errors.append(f"SBOM must contain exactly one SHA-256 for {name}")
         else:
             actual[name] = sha_values[0]
+        properties = row.get("properties")
+        if not isinstance(properties, list):
+            errors.append(f"SBOM properties must be an array for {name}")
+        else:
+            size_values = [
+                prop.get("value") for prop in properties
+                if isinstance(prop, dict) and prop.get("name") == "ftb-quest-maker:size-bytes"
+            ]
+            if len(size_values) != 1 or size_values[0] != str(expected_sizes.get(name, "")):
+                errors.append(f"SBOM size property does not match staged artifact for {name}")
     for name, digest in sorted(expected.items()):
         if actual.get(name) != digest:
             errors.append(f"SBOM does not bind SHA-256 for {name}")
