@@ -40,7 +40,7 @@ def test_valid_release_installers_pass(tmp_path: Path) -> None:
     assets, checksums, update = _fixture(tmp_path)
     result = validate_release_installers(assets, checksums, update)
     assert result.is_clean
-    assert len(result.verified_files) == 2
+    assert len(result.verified_files) == 5
 
 
 def test_rejects_bad_signature_and_checksum(tmp_path: Path) -> None:
@@ -120,3 +120,25 @@ def test_rejects_external_metadata_paths(tmp_path: Path) -> None:
     assert not result.is_clean
     assert any("checksum manifest must be" in error for error in result.errors)
     assert any("update metadata must be" in error for error in result.errors)
+
+
+def test_rejects_tampered_non_installer_assets(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    sbom.write_text('{"tampered": true}', encoding="utf-8")
+    provenance.write_text('{"tampered": true}', encoding="utf-8")
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any(f"checksum mismatch for {sbom.name}" in error for error in result.errors)
+    assert any(f"checksum mismatch for {provenance.name}" in error for error in result.errors)
+
+
+def test_rejects_tampered_update_metadata_even_when_json_is_valid(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    payload = json.loads(update.read_text(encoding="utf-8"))
+    payload["channel"] = "tampered"
+    update.write_text(json.dumps(payload), encoding="utf-8")
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any("checksum mismatch for update.json" in error for error in result.errors)

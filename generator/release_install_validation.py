@@ -145,6 +145,22 @@ def validate_release_installers(
     for name in sorted(manifest_names - expected_manifest_names):
         errors.append(f"checksum manifest references unexpected asset {name}")
 
+    for path in regular_files:
+        if path.name == "SHA256SUMS":
+            continue
+        try:
+            digest = _sha256(path)
+        except OSError as exc:
+            errors.append(f"cannot hash {path.name}: {exc}")
+            continue
+        expected = manifest.get(path.name)
+        if expected is None:
+            errors.append(f"checksum manifest is missing {path.name}")
+        elif expected != digest:
+            errors.append(f"checksum mismatch for {path.name}")
+        else:
+            verified.append(path.name)
+
     selected = windows[:1] + linux[:1]
     for path in selected:
         try:
@@ -162,14 +178,6 @@ def validate_release_installers(
                 errors.append(f"AppImage lacks ELF signature: {path.name}")
             if os.name != "nt" and not os.access(path, os.X_OK):
                 errors.append(f"AppImage is not executable: {path.name}")
-        digest = _sha256(path)
-        expected = manifest.get(path.name)
-        if expected is None:
-            errors.append(f"checksum manifest is missing {path.name}")
-        elif expected != digest:
-            errors.append(f"checksum mismatch for {path.name}")
-        else:
-            verified.append(path.name)
 
     try:
         payload = json.loads(update_metadata.read_text(encoding="utf-8"))

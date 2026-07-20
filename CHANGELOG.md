@@ -1,3 +1,9 @@
+## Commit 125 - Complete Release Asset Checksum Verification
+
+- Recomputed and verified SHA-256 digests for every staged release asset except the checksum manifest itself.
+- Closed a validation bypass that allowed tampered SBOM, provenance, or update metadata files to retain stale manifest entries.
+- Expanded release-install validation regression coverage and documentation.
+
 ## Commit 124 - Release Asset Root and Metadata Path Binding
 
 - Require all staged release assets to be direct children of the release asset root.
