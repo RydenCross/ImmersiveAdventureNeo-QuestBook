@@ -23,3 +23,13 @@ filenames, and files larger than one megabyte.
 Runtime cache directories such as `__pycache__` and `.pytest_cache` are skipped during
 the scan because test and CLI execution can create them locally; their required
 `.gitignore` coverage is still enforced.
+
+## Required project and legal metadata
+
+The audit requires non-empty root `LICENSE`, `README.md`, `CHANGELOG.md`, and
+`pyproject.toml` files. Missing or zero-byte metadata fails the quality gate so
+release archives cannot silently ship without their legal and project context.
+
+The audit also rejects common accidental command-output files such as `tatus`,
+`git-status`, and `git-status.txt`. These files typically come from a mistyped
+redirection or copied terminal output and are not valid repository content.

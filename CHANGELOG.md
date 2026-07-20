@@ -1,3 +1,12 @@
+## Commit 117 - Repository Packaging Hygiene and License Metadata Integrity
+
+- Replaced the empty root license placeholder with an explicit project license notice.
+- Declared the root license file in Python package metadata.
+- Removed an accidentally committed ANSI-colored `tatus` command-output artifact.
+- Extended repository hygiene validation to reject missing or empty legal/project metadata.
+- Added detection for common accidentally committed command-output filenames.
+- Added regression tests and documentation for the strengthened packaging-hygiene contract.
+
 ## Commit 116 - CI Workflow Syntax and Command Integrity
 
 - Fixed the CI dependency-license audit step so both lock and license checks execute in a valid multiline shell block.

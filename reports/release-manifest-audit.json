@@ -1,6 +1,6 @@
 {
-  "archive_entries": 464,
-  "archive_sha256": "6bcbc2fc6690259b1558b107085cbb7c8cb7619d5a0edb7b43a0919c40d8bf69",
+  "archive_entries": 463,
+  "archive_sha256": "47ede267a2387fe9e253b8f951473ce5f1d3ffb0810607740e8ee0b998c05847",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,19 +24,19 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 32813,
+      "bytes": 33383,
       "path": "CHANGELOG.md",
-      "sha256": "2aab0670ca93e2625db5290b39469823a827ad45dd77a2107ecd31ba8a968d00"
+      "sha256": "e819ede6097f5d39a3f0eeebdb8998b8124861ee935cbc825b60a9a540307bac"
     },
     {
-      "bytes": 0,
+      "bytes": 532,
       "path": "LICENSE",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "sha256": "5310e50b1af4bc68ca0cc5a6787ba8da581aa8ff5641a30fc1919816a92e96c8"
     },
     {
-      "bytes": 35346,
+      "bytes": 35560,
       "path": "README.md",
-      "sha256": "7fbefa5fd29a8a372ff1091244848d740afbbf02ad3901289cddc8ef1615a814"
+      "sha256": "46ad8e1878a79fd156c2ebc14e97fcee57e2483d178d39bc42a2a3187457d931"
     },
     {
       "bytes": 1275,
@@ -644,9 +644,9 @@
       "sha256": "5c09e27238211b3254b3c7e8288ab3a19a6d11a6b98b7db64fba96b765587e98"
     },
     {
-      "bytes": 885,
+      "bytes": 1398,
       "path": "docs/REPOSITORY_HYGIENE.md",
-      "sha256": "41512db368f7133c12a014184927212c25fc54a56852f2e0a33f39297d2021fc"
+      "sha256": "0bee67f05aa41b713990e3f945d7d42cb351531359e6aebf53d812f303809f2d"
     },
     {
       "bytes": 992,
@@ -1244,9 +1244,9 @@
       "sha256": "6e348d171f48d26b5378ff4795b0e6912fc5652d9c19266003144c82ce869d63"
     },
     {
-      "bytes": 5016,
+      "bytes": 6836,
       "path": "generator/repository_hygiene.py",
-      "sha256": "c30572bbb6adb8ac047d75de1b3ff467e4b3a359f5aabb46f60ac82afde69a35"
+      "sha256": "0273ea7e4ad2a92d8b2d03f35481ef6adbf05433ce52fd2bf722b8d7f14d8372"
     },
     {
       "bytes": 8356,
@@ -1404,9 +1404,9 @@
       "sha256": "be7117657115e5dcb74c9d188ab5880e8a332860befa1782d92bde92ca4f07e2"
     },
     {
-      "bytes": 504,
+      "bytes": 535,
       "path": "pyproject.toml",
-      "sha256": "a5156cacee779b2dc60e411b5b0da084f1964b398946612fc33c40f564a0bc16"
+      "sha256": "bd402b5b9dfc7ca1d3d6d962501118df7ecbeaec043817372694f70a4db902f3"
     },
     {
       "bytes": 316,
@@ -1631,12 +1631,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "aa6cf22ecaf58c359a9bec351e6eec08856a03a132567cb43bd8d38425c5da91"
+      "sha256": "c7d936fff9e5d86505b42a22f98c7bc5938b62994a68e51950ed599774fa0757"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "bb4bb9219fe15b7231a91e2a271a3a3a04bd1c74a7d8464792cc998a0ffb4b1d"
+      "sha256": "0be0d7ad96a682ed8ac9448bcc95d942d70cb7562d80ccec5c08aea19a6b9781"
     },
     {
       "bytes": 255,
@@ -1714,9 +1714,9 @@
       "sha256": "3d1f34cb55fcc4665bee57ce13cf97f2f30a8ccac5974d08c22effb5fa0358aa"
     },
     {
-      "bytes": 189,
+      "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "3519177cb316100f74b5d5549a0365512f051fef00bcd809d274f78f32fb88a2"
+      "sha256": "ff21c115481680340024b9c7b22c4f92b5e272f3d5b58de838c13ee2386b5873"
     },
     {
       "bytes": 349,
@@ -1757,11 +1757,6 @@
       "bytes": 1582,
       "path": "requirements-ci.lock",
       "sha256": "13fffe5bd4d0c0eca36f66b334fcd9885e14b829dd3eb88676930d38d8b81624"
-    },
-    {
-      "bytes": 4221,
-      "path": "tatus",
-      "sha256": "437841e6b7e1d1d8445eda8bf75f4388bd453a2f0823c6030016d92d98946da1"
     },
     {
       "bytes": 0,
@@ -2201,12 +2196,12 @@
     {
       "bytes": 1356,
       "path": "tests/test_report_consistency_contract.py",
-      "sha256": "48abe26c2132cfd8cc7ff4f56a21283f26beffe2afe6d3422127328fbd746f9c"
+      "sha256": "a23872bd3a321c26936f3b91c07f218088833d79c87401e3d6353a689dfe4776"
     },
     {
       "bytes": 928,
       "path": "tests/test_report_determinism_contract.py",
-      "sha256": "dcaf2157c97f567c0bb08a36cfc134a3af964ef3777e3fb2a12d12b539032667"
+      "sha256": "8aa17616907d36569a95eedea46d23c1468ed909d41cfb24615f6d848bec7675"
     },
     {
       "bytes": 1640,
@@ -2216,7 +2211,7 @@
     {
       "bytes": 807,
       "path": "tests/test_report_provenance_contract.py",
-      "sha256": "cf54145266ab420b40f7372a2517d70b9f6dc962a7c7085c5e17fc57a744433e"
+      "sha256": "3b1f6d60ae8bb2da15c968cd6bcd60445644e05cbb9df91d70d9677e7ccf3cde"
     },
     {
       "bytes": 2473,
@@ -2246,7 +2241,7 @@
     {
       "bytes": 1282,
       "path": "tests/test_report_schema_contract.py",
-      "sha256": "66a4e76804a0cc800067dd20cb333623ac2121ad7718a48249f2a0e4a09543db"
+      "sha256": "38f8c6b21a41b620bffee3b7c2798331c16d99d65b65da96b0b3918c98609481"
     },
     {
       "bytes": 1101,
@@ -2254,9 +2249,9 @@
       "sha256": "12306d9cf40ec5c1b4b3bba0a931ef8b0e3877e72536b7fe3d545c944af08cf6"
     },
     {
-      "bytes": 2006,
+      "bytes": 3186,
       "path": "tests/test_repository_hygiene.py",
-      "sha256": "8aadd16d242708be493a379a834e52ccc6b1c453e3f67456be6006e368d915b1"
+      "sha256": "9cf5e86a0336733ad2eb5a5902ddf832ef0718a980d6ec3f48a8d77e7e4fe8c0"
     },
     {
       "bytes": 1097,
@@ -2327,6 +2322,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "087cdb237cc722aba945bafb469ad9775123860a5cd79f08cfb96ec38afd3e54",
+  "tree_sha256": "873c3a7cf2e3949576d4d831874791442a6641546150a787a8868fadbc4002e3",
   "unexpected_entries": []
 }

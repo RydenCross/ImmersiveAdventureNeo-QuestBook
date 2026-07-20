@@ -60,3 +60,27 @@ def test_hygiene_audit_json_is_machine_readable() -> None:
     rendered = run_repository_hygiene_audit().format_json()
     assert '"status": "pass"' in rendered
     assert '"forbidden_paths": []' in rendered
+
+
+def test_hygiene_audit_detects_missing_and_empty_legal_metadata(tmp_path: Path) -> None:
+    _write_complete_gitignore(tmp_path)
+    (tmp_path / "README.md").write_text("Project\n", encoding="utf-8")
+    (tmp_path / "CHANGELOG.md").write_text("Changes\n", encoding="utf-8")
+    (tmp_path / "pyproject.toml").write_text("[project]\nname='demo'\n", encoding="utf-8")
+    result = run_repository_hygiene_audit(tmp_path)
+    assert "LICENSE" in result.missing_required_files
+
+    (tmp_path / "LICENSE").write_text("", encoding="utf-8")
+    result = run_repository_hygiene_audit(tmp_path)
+    assert result.missing_required_files == ()
+    assert result.empty_required_files == ("LICENSE",)
+
+
+def test_hygiene_audit_detects_accidental_command_output(tmp_path: Path) -> None:
+    _write_complete_gitignore(tmp_path)
+    for name in ("LICENSE", "README.md", "CHANGELOG.md", "pyproject.toml"):
+        (tmp_path / name).write_text("present\n", encoding="utf-8")
+    (tmp_path / "tatus").write_text("git diff --stat output\n", encoding="utf-8")
+    result = run_repository_hygiene_audit(tmp_path)
+    assert result.suspicious_command_outputs == ("tatus",)
+    assert not result.is_clean

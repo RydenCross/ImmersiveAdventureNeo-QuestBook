@@ -982,3 +982,9 @@ See [Locked Dependencies and Hash-Verified Reproduction](docs/LOCKED_DEPENDENCIE
 ## Dependency license policy
 
 See [`docs/DEPENDENCY_LICENSE_POLICY.md`](docs/DEPENDENCY_LICENSE_POLICY.md) for license inventory and distribution-policy commands.
+
+## License
+
+This repository includes an explicit project license notice in [`LICENSE`](LICENSE).
+Third-party mods, names, trademarks, and referenced assets remain governed by their
+respective owners and licenses.

@@ -44,6 +44,14 @@ _FORBIDDEN_DIRECTORY_NAMES = {
     "build",
 }
 
+_REQUIRED_NONEMPTY_FILES = ("LICENSE", "README.md", "CHANGELOG.md", "pyproject.toml")
+
+_SUSPICIOUS_COMMAND_OUTPUT_NAMES = {
+    "tatus",
+    "git-status",
+    "git-status.txt",
+}
+
 _FORBIDDEN_FILE_NAMES = {
     ".DS_Store",
     ".coverage",
@@ -67,6 +75,9 @@ class RepositoryHygieneAudit:
     forbidden_paths: tuple[str, ...]
     secret_like_paths: tuple[str, ...]
     oversized_files: tuple[str, ...]
+    missing_required_files: tuple[str, ...]
+    empty_required_files: tuple[str, ...]
+    suspicious_command_outputs: tuple[str, ...]
     max_file_bytes: int
 
     @property
@@ -77,6 +88,9 @@ class RepositoryHygieneAudit:
                 self.forbidden_paths,
                 self.secret_like_paths,
                 self.oversized_files,
+                self.missing_required_files,
+                self.empty_required_files,
+                self.suspicious_command_outputs,
             )
         )
 
@@ -89,6 +103,9 @@ class RepositoryHygieneAudit:
             "forbidden_paths": list(self.forbidden_paths),
             "secret_like_paths": list(self.secret_like_paths),
             "oversized_files": list(self.oversized_files),
+            "missing_required_files": list(self.missing_required_files),
+            "empty_required_files": list(self.empty_required_files),
+            "suspicious_command_outputs": list(self.suspicious_command_outputs),
         }
 
     def format_json(self) -> str:
@@ -102,11 +119,19 @@ class RepositoryHygieneAudit:
             f"Forbidden paths: {len(self.forbidden_paths)}.",
             f"Secret-like paths: {len(self.secret_like_paths)}.",
             f"Oversized files: {len(self.oversized_files)}.",
+            f"Missing required files: {len(self.missing_required_files)}.",
+            f"Empty required files: {len(self.empty_required_files)}.",
+            f"Suspicious command outputs: {len(self.suspicious_command_outputs)}.",
         ]
         lines.extend(f"Missing ignore pattern: {item}" for item in self.missing_gitignore_patterns)
         lines.extend(f"Forbidden path: {item}" for item in self.forbidden_paths)
         lines.extend(f"Secret-like path: {item}" for item in self.secret_like_paths)
         lines.extend(f"Oversized file: {item}" for item in self.oversized_files)
+        lines.extend(f"Missing required file: {item}" for item in self.missing_required_files)
+        lines.extend(f"Empty required file: {item}" for item in self.empty_required_files)
+        lines.extend(
+            f"Suspicious command output: {item}" for item in self.suspicious_command_outputs
+        )
         return "\n".join(lines)
 
 
@@ -132,6 +157,13 @@ def run_repository_hygiene_audit(
     secret_like: list[str] = []
     oversized: list[str] = []
     scanned = 0
+    missing_required = [name for name in _REQUIRED_NONEMPTY_FILES if not (root / name).is_file()]
+    empty_required = [
+        name
+        for name in _REQUIRED_NONEMPTY_FILES
+        if (root / name).is_file() and (root / name).stat().st_size == 0
+    ]
+    suspicious_outputs: list[str] = []
 
     for path in sorted(root.rglob("*")):
         relative = path.relative_to(root)
@@ -152,6 +184,8 @@ def run_repository_hygiene_audit(
         scanned += 1
         name = path.name
         lowered = name.lower()
+        if name in _SUSPICIOUS_COMMAND_OUTPUT_NAMES:
+            suspicious_outputs.append(relative.as_posix())
         if name in _FORBIDDEN_FILE_NAMES or path.suffix.lower() in _FORBIDDEN_SUFFIXES:
             forbidden.append(relative.as_posix())
         if lowered.startswith(".env") or lowered in {"id_rsa", "id_ed25519"}:
@@ -165,5 +199,8 @@ def run_repository_hygiene_audit(
         forbidden_paths=tuple(sorted(set(forbidden))),
         secret_like_paths=tuple(sorted(set(secret_like))),
         oversized_files=tuple(sorted(oversized)),
+        missing_required_files=tuple(sorted(missing_required)),
+        empty_required_files=tuple(sorted(empty_required)),
+        suspicious_command_outputs=tuple(sorted(suspicious_outputs)),
         max_file_bytes=max_file_bytes,
     )
