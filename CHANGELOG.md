@@ -1,3 +1,10 @@
+## Commit 127 - Release Metadata Uniqueness and Canonical Digest Enforcement
+
+- Rejected duplicate CycloneDX file components and duplicate in-toto subjects.
+- Required exactly one canonical lowercase SHA-256 digest per installer metadata entry.
+- Required exactly one resolved provenance dependency for the verified source revision.
+- Added release metadata uniqueness documentation and regression coverage.
+
 ## Commit 126 - Release Metadata Semantic Binding
 
 - Added semantic CycloneDX SBOM validation for exact installer filename and SHA-256 coverage.

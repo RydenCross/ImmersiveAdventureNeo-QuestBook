@@ -30,6 +30,7 @@ jobs:
           python -m generator dependency-license-audit --format json
       - name: Audit Python dependencies
         run: |
+          python -m pip install pip-audit
           python -m generator quest-maker-dependency-inventory --output dependency-inventory.json
           pip-audit --format json --output dependency-audit.json || true
           python -m generator quest-maker-vulnerability-policy --report dependency-audit.json --format json

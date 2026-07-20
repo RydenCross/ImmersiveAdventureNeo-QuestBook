@@ -3,7 +3,7 @@
   "documented_command_count": 117,
   "empty_documents": [],
   "expected_command_count": 117,
-  "markdown_file_count": 109,
+  "markdown_file_count": 110,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -82,6 +82,7 @@
     "docs/RELEASE_LOCKFILE_ENFORCEMENT.md",
     "docs/RELEASE_MANIFEST_CONTRACT.md",
     "docs/RELEASE_METADATA_SEMANTIC_BINDING.md",
+    "docs/RELEASE_METADATA_UNIQUENESS.md",
     "docs/RELEASE_PACKAGE_VERIFICATION_CONTRACT.md",
     "docs/RELEASE_PROVENANCE_SOURCE_BINDING.md",
     "docs/RELEASE_REPORT_FINALIZATION_CONTRACT.md",

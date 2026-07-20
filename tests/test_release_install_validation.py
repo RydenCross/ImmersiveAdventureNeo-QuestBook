@@ -181,3 +181,50 @@ def test_accepts_semantically_bound_release_metadata(tmp_path: Path) -> None:
         expected_repository="https://github.com/example/project"
     )
     assert result.is_clean
+
+
+def _rewrite_manifest(assets: Path, checksums: Path) -> None:
+    checksums.write_text("".join(
+        f"{_digest(path)}  {path.name}\n"
+        for path in sorted((p for p in assets.iterdir() if p.name != "SHA256SUMS"), key=lambda item: item.name)
+    ), encoding="utf-8")
+
+
+def test_rejects_duplicate_sbom_components_and_provenance_subjects(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    sbom_payload = json.loads(sbom.read_text(encoding="utf-8"))
+    sbom_payload["components"].append(dict(sbom_payload["components"][0]))
+    sbom.write_text(json.dumps(sbom_payload), encoding="utf-8")
+
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    provenance_payload = json.loads(provenance.read_text(encoding="utf-8"))
+    provenance_payload["subject"].append(dict(provenance_payload["subject"][0]))
+    provenance.write_text(json.dumps(provenance_payload) + "\n", encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any("duplicate file component" in error for error in result.errors)
+    assert any("duplicate subject" in error for error in result.errors)
+
+
+def test_rejects_noncanonical_or_multiple_metadata_digests(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    sbom_payload = json.loads(sbom.read_text(encoding="utf-8"))
+    sbom_payload["components"][0]["hashes"].append({
+        "alg": "SHA-256", "content": sbom_payload["components"][0]["hashes"][0]["content"]
+    })
+    sbom.write_text(json.dumps(sbom_payload), encoding="utf-8")
+
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    provenance_payload = json.loads(provenance.read_text(encoding="utf-8"))
+    provenance_payload["subject"][0]["digest"]["sha256"] = provenance_payload["subject"][0]["digest"]["sha256"].upper()
+    provenance.write_text(json.dumps(provenance_payload) + "\n", encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any("exactly one SHA-256" in error for error in result.errors)
+    assert any("non-canonical SHA-256" in error for error in result.errors)

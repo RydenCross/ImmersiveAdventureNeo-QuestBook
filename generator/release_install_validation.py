@@ -64,6 +64,12 @@ def _artifact_digest_map(paths: list[Path]) -> dict[str, str]:
     return {path.name: _sha256(path) for path in paths}
 
 
+def _canonical_sha256(value: object) -> str | None:
+    if not isinstance(value, str) or not _SHA256.fullmatch(value):
+        return None
+    return value
+
+
 def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
     errors: list[str] = []
     try:
@@ -74,12 +80,27 @@ def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
         errors.append("SBOM bomFormat must be CycloneDX")
     expected = _artifact_digest_map(installers)
     actual: dict[str, str] = {}
+    seen: set[str] = set()
     for row in payload.get("components", []):
         if not isinstance(row, dict) or row.get("type") != "file" or not isinstance(row.get("name"), str):
             continue
+        name = row["name"]
+        if name in seen:
+            errors.append(f"SBOM contains duplicate file component {name}")
+            continue
+        seen.add(name)
+        sha_values: list[str] = []
         for digest in row.get("hashes", []):
-            if isinstance(digest, dict) and digest.get("alg") == "SHA-256" and isinstance(digest.get("content"), str):
-                actual[row["name"]] = digest["content"]
+            if isinstance(digest, dict) and digest.get("alg") == "SHA-256":
+                value = _canonical_sha256(digest.get("content"))
+                if value is None:
+                    errors.append(f"SBOM contains non-canonical SHA-256 for {name}")
+                else:
+                    sha_values.append(value)
+        if len(sha_values) != 1:
+            errors.append(f"SBOM must contain exactly one SHA-256 for {name}")
+        else:
+            actual[name] = sha_values[0]
     for name, digest in sorted(expected.items()):
         if actual.get(name) != digest:
             errors.append(f"SBOM does not bind SHA-256 for {name}")
@@ -103,11 +124,21 @@ def _validate_provenance(path: Path, installers: list[Path], *, revision: str | 
         errors.append("provenance statement has invalid SLSA predicate type")
     expected = _artifact_digest_map(installers)
     actual: dict[str, str] = {}
+    seen: set[str] = set()
     for row in payload.get("subject", []):
-        if isinstance(row, dict) and isinstance(row.get("name"), str):
-            digest = row.get("digest")
-            if isinstance(digest, dict) and isinstance(digest.get("sha256"), str):
-                actual[row["name"]] = digest["sha256"]
+        if not isinstance(row, dict) or not isinstance(row.get("name"), str):
+            continue
+        name = row["name"]
+        if name in seen:
+            errors.append(f"provenance contains duplicate subject {name}")
+            continue
+        seen.add(name)
+        digest = row.get("digest")
+        value = _canonical_sha256(digest.get("sha256") if isinstance(digest, dict) else None)
+        if value is None:
+            errors.append(f"provenance contains non-canonical SHA-256 for {name}")
+        else:
+            actual[name] = value
     for name, digest in sorted(expected.items()):
         if actual.get(name) != digest:
             errors.append(f"provenance does not bind SHA-256 for {name}")
@@ -119,8 +150,9 @@ def _validate_provenance(path: Path, installers: list[Path], *, revision: str | 
         if params.get("ref") != revision:
             errors.append("provenance source revision does not match verified release source")
         deps = build.get("resolvedDependencies", []) if isinstance(build, dict) else []
-        if not any(isinstance(d, dict) and isinstance(d.get("digest"), dict) and d["digest"].get("gitCommit") == revision for d in deps):
-            errors.append("provenance resolved dependency does not bind verified release source")
+        matches = [d for d in deps if isinstance(d, dict) and isinstance(d.get("digest"), dict) and d["digest"].get("gitCommit") == revision]
+        if len(matches) != 1:
+            errors.append("provenance must contain exactly one resolved dependency for verified release source")
     if repository is not None and params.get("repository") != repository:
         errors.append("provenance repository does not match expected repository")
     if params.get("workflow") != workflow:

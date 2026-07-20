@@ -1,6 +1,6 @@
 {
   "archive_entries": 476,
-  "archive_sha256": "090705c599788d5f3a6d40873cfb816c8d3307fccbd19f09ff5177c758a47191",
+  "archive_sha256": "bcb23e2fedc7cd1d67d95d0ce1088edd0519725556826aec22d6a4cb5c0ae8fe",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,14 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 37031,
+      "bytes": 37440,
       "path": "CHANGELOG.md",
-      "sha256": "499c06874306499be17bd36cf9d253a8da67c86167bdf4571dd0e4cddaf95099"
-    },
-    {
-      "bytes": 167,
-      "path": "ImmersiveAdventureNeo-QuestBook-Commit125-Complete-Release-Asset-Checksum-Verification.zip.sha256",
-      "sha256": "5024ec6d61cf33a1af12a36515e118e536434a971fe7521be1a657d7f87e6e94"
+      "sha256": "b6d368d139f68edccceebe4b89b00f4a00a3cbda167a8b5cb7877d80741081d3"
     },
     {
       "bytes": 532,
@@ -597,6 +592,11 @@
       "bytes": 1329,
       "path": "docs/RELEASE_METADATA_SEMANTIC_BINDING.md",
       "sha256": "41c483da37a5b0ac9ff5275b191bc99c40fd0f4187b79487f3fbf88d23c2297c"
+    },
+    {
+      "bytes": 815,
+      "path": "docs/RELEASE_METADATA_UNIQUENESS.md",
+      "sha256": "e5c3a03828c0b8744c0de72e25b6d41b9f082fe381258720626c558975974b51"
     },
     {
       "bytes": 556,
@@ -1194,9 +1194,9 @@
       "sha256": "4ec73c00f348ffd1dbc3bf59aeb93b6fa0822a3ccd3d6d488195d8a9e97b728a"
     },
     {
-      "bytes": 13184,
+      "bytes": 14278,
       "path": "generator/release_install_validation.py",
-      "sha256": "8e72dc1306288005d6c5c3fdfce205873d4e6637ebd4022460f2dbbd4a4b297d"
+      "sha256": "4f606cd6969b0ea41379164ce49446615ca6f37c826119395cfe977fb1bd4e09"
     },
     {
       "bytes": 4390,
@@ -1554,9 +1554,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 4182,
+      "bytes": 4225,
       "path": "reports/documentation-audit.json",
-      "sha256": "e8266ded192957588a5e2f88e50608db720ad306d35a659e7d5fe6a4c6ee9571"
+      "sha256": "586902df8438d53f5402f77f5acdf041fe8a57a5e0c75ff84af45af5bffd325e"
     },
     {
       "bytes": 245,
@@ -1811,7 +1811,7 @@
     {
       "bytes": 1582,
       "path": "requirements-ci.lock",
-      "sha256": "13fffe5bd4d0c0eca36f66b334fcd9885e14b829dd3eb88676930d38d8b81624"
+      "sha256": "1ac78199e8c07ae613b08cbcdf56563da0a1d1636faa150f4649b1178a64d915"
     },
     {
       "bytes": 0,
@@ -2219,9 +2219,9 @@
       "sha256": "35b6eb0778485ade1ba4c266ac8ed8dbcf39f75d405f43586776ab055082e946"
     },
     {
-      "bytes": 8229,
+      "bytes": 10566,
       "path": "tests/test_release_install_validation.py",
-      "sha256": "380961b307c277e7b4ac145f177e46b6110f3c4d81828c23bec31ea94c083716"
+      "sha256": "8e738d2e00243a496be5d84d994a8a9dc30d1bd620651b4eec6db93b277c69a3"
     },
     {
       "bytes": 1483,
@@ -2387,6 +2387,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "3f18a3cd5f6aced75c7a0294072d39b100e095bc7b2962ad5e3aa73ef6589551",
+  "tree_sha256": "9a113bf48121652430f057db0604ebf379088f7b42086e9b72b5ea867899323c",
   "unexpected_entries": []
 }
