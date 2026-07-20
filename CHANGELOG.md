@@ -1,3 +1,9 @@
+## Commit 120 - Release Artifact Verification and Installation Validation
+
+- Added pre-publication validation for Windows installers and Linux AppImages.
+- Added platform signature, executable permission, minimum-size, checksum, and update-metadata binding checks.
+- Added GitHub release workflow enforcement, documentation, and regression coverage.
+
 ## Commit 119 - Release Workflow Lockfile Enforcement
 
 - Replaced mutable desktop dependency installation in the release workflow with the hash-verified repository lock.

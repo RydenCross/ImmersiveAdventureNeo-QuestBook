@@ -3,7 +3,7 @@
   "documented_command_count": 117,
   "empty_documents": [],
   "expected_command_count": 117,
-  "markdown_file_count": 103,
+  "markdown_file_count": 104,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -77,6 +77,7 @@
     "docs/RELEASE_CHECK.md",
     "docs/RELEASE_COMPARISON.md",
     "docs/RELEASE_GUARD.md",
+    "docs/RELEASE_INSTALLATION_VALIDATION.md",
     "docs/RELEASE_LOCKFILE_ENFORCEMENT.md",
     "docs/RELEASE_MANIFEST_CONTRACT.md",
     "docs/RELEASE_PACKAGE_VERIFICATION_CONTRACT.md",
