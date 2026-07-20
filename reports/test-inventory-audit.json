@@ -59,6 +59,7 @@
     "test_report_schema_contract.py",
     "test_report_write_safety_contract.py",
     "test_repository_hygiene.py",
+    "test_repository_security_contract.py",
     "test_reward_audit.py",
     "test_reward_planner_contract.py",
     "test_task_audit.py",
@@ -68,7 +69,7 @@
   ],
   "files_without_tests": [],
   "missing_test_files": [],
-  "registered_audits": 65,
+  "registered_audits": 66,
   "status": "pass",
   "unregistered_mappings": []
 }

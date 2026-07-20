@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 112 - Secret Scanning and GitHub Actions Permission Hardening
+
+- Added deterministic high-confidence repository secret detection without exposing matched values.
+- Added explicit reviewed-path exclusions and GitHub Actions least-privilege permission validation.
+- Added CI enforcement, CLI commands, tests, documentation, tracked reports, and quality-gate registration.
+
 ## Commit 111 - Dependency Vulnerability Policy and CI Security Scanning
 
 - Added deterministic inventory generation for runtime, development, and desktop Python dependencies.

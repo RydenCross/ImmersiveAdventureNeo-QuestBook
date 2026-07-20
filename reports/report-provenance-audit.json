@@ -236,6 +236,10 @@
       "report": "repository-hygiene-audit.json"
     },
     {
+      "command": "repository-security-audit",
+      "report": "repository-security-audit.json"
+    },
+    {
       "command": "reward-audit",
       "report": "reward-audit.json"
     },
@@ -261,5 +265,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 64
+  "tracked_reports": 65
 }

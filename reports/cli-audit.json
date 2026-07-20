@@ -1,5 +1,5 @@
 {
-  "command_count": 110,
+  "command_count": 112,
   "commands": [
     "application-update-client-audit",
     "audit",
@@ -61,6 +61,7 @@
     "quest-maker-release-provenance",
     "quest-maker-release-sbom",
     "quest-maker-release-verify-attestations",
+    "quest-maker-secret-scan",
     "quest-maker-setup",
     "quest-maker-update-apply",
     "quest-maker-update-check",
@@ -105,6 +106,7 @@
     "report-schema-audit",
     "report-write-safety-audit",
     "repository-hygiene-audit",
+    "repository-security-audit",
     "reward-audit",
     "reward-planner-audit",
     "task-audit",

@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 110,
+  "documented_command_count": 112,
   "empty_documents": [],
-  "expected_command_count": 110,
-  "markdown_file_count": 96,
+  "expected_command_count": 112,
+  "markdown_file_count": 97,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -89,6 +89,7 @@
     "docs/REPORT_SCHEMA_CONTRACT.md",
     "docs/REPORT_WRITE_SAFETY_CONTRACT.md",
     "docs/REPOSITORY_HYGIENE.md",
+    "docs/REPOSITORY_SECRET_SCANNING.md",
     "docs/REWARD_AUDIT.md",
     "docs/REWARD_PLANNER.md",
     "docs/SURVIVAL.md",

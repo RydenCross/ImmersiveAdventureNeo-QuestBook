@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +19,8 @@ jobs:
           python-version: "3.12"
 
       - run: pip install .[dev,desktop] pip-audit
+      - name: Scan repository secrets and workflow permissions
+        run: python -m generator repository-security-audit --format json
       - name: Audit Python dependencies
         run: |
           python -m generator quest-maker-dependency-inventory --output dependency-inventory.json

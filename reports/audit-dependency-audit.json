@@ -154,6 +154,7 @@
       "CLI output contract"
     ],
     "repository hygiene audit": [],
+    "repository secret scanning and workflow permission contract": [],
     "reward audit": [],
     "reward planner contract": [
       "questbook review contract",
@@ -178,7 +179,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 65,
+  "registered_audits": 66,
   "status": "pass",
   "unknown_dependencies": []
 }

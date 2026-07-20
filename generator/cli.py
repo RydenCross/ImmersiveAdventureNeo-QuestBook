@@ -158,6 +158,8 @@ from generator.dependency_security import (
     write_dependency_inventory,
 )
 from generator.dependency_security_contract import run_dependency_security_contract
+from generator.repository_security import run_repository_security_policy
+from generator.repository_security_contract import run_repository_security_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -940,6 +942,14 @@ def create_parser() -> argparse.ArgumentParser:
     vulnerability_policy.add_argument("--ignore", action="append", default=[])
     vulnerability_policy.add_argument("--format", choices=("text", "json"), default="text")
     vulnerability_policy.add_argument("--output", type=Path)
+    secret_scan = subparsers.add_parser(
+        "quest-maker-secret-scan",
+        help="Scan repository text files for high-confidence credential formats.",
+    )
+    secret_scan.add_argument("--root", type=Path, default=Path("."))
+    secret_scan.add_argument("--exclude", action="append", default=[])
+    secret_scan.add_argument("--format", choices=("text", "json"), default="text")
+    secret_scan.add_argument("--output", type=Path)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -1230,6 +1240,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     dependency_security.add_argument("--format", choices=("text", "json"), default="text")
     dependency_security.add_argument("--output", type=Path)
+    repository_security = subparsers.add_parser(
+        "repository-security-audit",
+        help="Validate repository secret scanning and GitHub Actions permissions.",
+    )
+    repository_security.add_argument("--format", choices=("text", "json"), default="text")
+    repository_security.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1629,6 +1645,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "repository-security-audit":
+        result = run_repository_security_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "dependency-security-audit":
         result = run_dependency_security_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1908,6 +1933,19 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0
+
+    if args.command == "quest-maker-secret-scan":
+        try:
+            result = run_repository_security_policy(args.root, excluded_paths=args.exclude)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Repository secret scan failed: {exc}")
+            return 1
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
 
     if args.command == "quest-maker-dependency-inventory":
         try:

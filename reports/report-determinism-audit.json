@@ -1,5 +1,5 @@
 {
-  "checked_reports": 64,
+  "checked_reports": 65,
   "deterministic_reports": [
     "application-update-client-audit.json",
     "audit-dependency-audit.json",
@@ -59,6 +59,7 @@
     "report-schema-audit.json",
     "report-write-safety-audit.json",
     "repository-hygiene-audit.json",
+    "repository-security-audit.json",
     "reward-audit.json",
     "reward-planner-audit.json",
     "task-audit.json",

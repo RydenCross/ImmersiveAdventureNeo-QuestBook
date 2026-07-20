@@ -1,0 +1,9 @@
+{
+  "ci_integrated": true,
+  "exclusions_supported": true,
+  "github_token_detected": true,
+  "private_key_detected": true,
+  "repository_clean": true,
+  "status": "pass",
+  "workflow_permissions_valid": true
+}

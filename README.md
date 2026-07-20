@@ -966,3 +966,8 @@ Release workflows now generate deterministic `SHA256SUMS` and GitHub artifact at
 ## Dependency vulnerability policy
 
 Generate a deterministic dependency inventory and enforce `pip-audit` JSON findings with the commands documented in [Dependency Vulnerability Policy and CI Security Scanning](docs/DEPENDENCY_VULNERABILITY_POLICY.md). CI runs the same policy before the test and quality-gate stages.
+
+
+## Repository secret scanning
+
+Scan tracked text files for high-confidence credential formats and validate least-privilege GitHub Actions permissions with `quest-maker-secret-scan` and `repository-security-audit`. See [Repository Secret Scanning and Workflow Permission Policy](docs/REPOSITORY_SECRET_SCANNING.md).
