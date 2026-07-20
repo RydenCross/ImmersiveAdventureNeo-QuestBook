@@ -4,7 +4,7 @@ from generator.audit_dependency_contract import run_audit_dependency_contract
 def test_repository_audit_dependency_contract_is_clean() -> None:
     result = run_audit_dependency_contract()
     assert result.is_clean
-    assert result.registered_audits == 62
+    assert result.registered_audits == 63
     assert result.dependency_cycles == ()
 
 

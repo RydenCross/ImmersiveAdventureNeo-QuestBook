@@ -1,9 +1,9 @@
 {
   "broken_links": [],
-  "documented_command_count": 101,
+  "documented_command_count": 104,
   "empty_documents": [],
-  "expected_command_count": 101,
-  "markdown_file_count": 93,
+  "expected_command_count": 104,
+  "markdown_file_count": 94,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -74,6 +74,7 @@
     "docs/RELEASE_PACKAGE_VERIFICATION_CONTRACT.md",
     "docs/RELEASE_REPORT_FINALIZATION_CONTRACT.md",
     "docs/RELEASE_REPRODUCIBILITY_AUDIT.md",
+    "docs/RELEASE_SBOM_AND_PROVENANCE.md",
     "docs/REPORT_CONSISTENCY_CONTRACT.md",
     "docs/REPORT_DETERMINISM_CONTRACT.md",
     "docs/REPORT_FRESHNESS.md",

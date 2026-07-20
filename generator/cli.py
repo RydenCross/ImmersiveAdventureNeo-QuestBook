@@ -145,6 +145,8 @@ from generator.update_application import apply_staged_update, rollback_applied_u
 from generator.update_application_contract import run_update_application_contract
 from generator.github_release import create_github_release_plan, publish_github_release
 from generator.github_release_contract import run_github_release_contract
+from generator.release_attestation import create_cyclonedx_sbom, create_slsa_provenance, write_json_document
+from generator.release_attestation_contract import run_release_attestation_contract
 from generator.report_refresh import refresh_reports
 from generator.output_writer import atomic_write_text
 from generator.release_check import run_release_check
@@ -882,6 +884,23 @@ def create_parser() -> argparse.ArgumentParser:
     github_release_publish.add_argument("--draft", action="store_true")
     github_release_publish.add_argument("--execute", action="store_true")
     github_release_publish.add_argument("--output", type=Path)
+    release_sbom = subparsers.add_parser(
+        "quest-maker-release-sbom",
+        help="Generate a deterministic CycloneDX SBOM for release artifacts.",
+    )
+    release_sbom.add_argument("--version", required=True)
+    release_sbom.add_argument("--artifact", action="append", type=Path, required=True)
+    release_sbom.add_argument("--component", action="append", default=[])
+    release_sbom.add_argument("--output", type=Path, required=True)
+    release_provenance = subparsers.add_parser(
+        "quest-maker-release-provenance",
+        help="Generate deterministic SLSA provenance for release artifacts.",
+    )
+    release_provenance.add_argument("--repository", required=True)
+    release_provenance.add_argument("--revision", required=True)
+    release_provenance.add_argument("--workflow", default=".github/workflows/publish-release.yml")
+    release_provenance.add_argument("--artifact", action="append", type=Path, required=True)
+    release_provenance.add_argument("--output", type=Path, required=True)
     quest_editor_serve = subparsers.add_parser(
         "quest-editor-serve",
         help="Launch the local FTB Quest Maker visual editor service and JSON API.",
@@ -1154,6 +1173,12 @@ def create_parser() -> argparse.ArgumentParser:
     )
     github_release.add_argument("--format", choices=("text", "json"), default="text")
     github_release.add_argument("--output", type=Path)
+    release_attestation = subparsers.add_parser(
+        "release-attestation-audit",
+        help="Validate deterministic release SBOMs, provenance, and artifact bindings.",
+    )
+    release_attestation.add_argument("--format", choices=("text", "json"), default="text")
+    release_attestation.add_argument("--output", type=Path)
     audit_performance = subparsers.add_parser(
         "audit-performance-audit",
         help="Validate audit timing instrumentation, execution uniqueness, and runtime budget.",
@@ -1544,6 +1569,15 @@ def main(argv: list[str] | None = None) -> int:
             print(rendered)
         return 0 if result.is_clean else 1
 
+    if args.command == "release-attestation-audit":
+        result = run_release_attestation_contract()
+        rendered = result.format_json() if args.format == "json" else result.format()
+        if args.output:
+            atomic_write_text(args.output, rendered + "\n")
+        else:
+            print(rendered)
+        return 0 if result.is_clean else 1
+
     if args.command == "github-release-publishing-audit":
         result = run_github_release_contract()
         rendered = result.format_json() if args.format == "json" else result.format()
@@ -1754,6 +1788,33 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print(rendered)
         return 0 if result.is_clean else 1
+
+    if args.command == "quest-maker-release-sbom":
+        try:
+            components = []
+            for item in args.component:
+                if "==" not in item:
+                    raise ValueError("components must use NAME==VERSION")
+                components.append(tuple(item.split("==", 1)))
+            payload = create_cyclonedx_sbom(args.artifact, version=args.version, components=components)
+            output = write_json_document(args.output, payload)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Release SBOM generation failed: {exc}")
+            return 1
+        print(output)
+        return 0
+
+    if args.command == "quest-maker-release-provenance":
+        try:
+            payload = create_slsa_provenance(
+                args.artifact, repository=args.repository, revision=args.revision, workflow=args.workflow
+            )
+            output = write_json_document(args.output, payload)
+        except (OSError, TypeError, ValueError) as exc:
+            print(f"Release provenance generation failed: {exc}")
+            return 1
+        print(output)
+        return 0
 
     if args.command == "quest-maker-update-stage":
         try:

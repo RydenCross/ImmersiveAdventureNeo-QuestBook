@@ -205,6 +205,11 @@ AUDIT_REGISTRY = (
         "github-release-publishing-audit.json",
     ),
     AuditRegistration(
+        "release SBOM and provenance contract",
+        "release-attestation-audit",
+        "release-attestation-audit.json",
+    ),
+    AuditRegistration(
         "audit performance contract", "audit-performance-audit", "audit-performance-audit.json"
     ),
     AuditRegistration(

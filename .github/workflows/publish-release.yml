@@ -54,6 +54,18 @@ jobs:
             --artifact "windows=$(find release-assets -type f -name '*.exe' | head -1)" \
             --artifact "linux=$(find release-assets -type f -name '*.AppImage' | head -1)" \
             --output release-assets/update.json
+      - name: Generate release SBOM and provenance
+        run: |
+          python -m generator quest-maker-release-sbom \
+            --version "${{ inputs.tag }}" \
+            $(find release-assets -type f \( -name '*.exe' -o -name '*.AppImage' \) -printf '%p\n' | sed 's/^/--artifact /') \
+            --output release-assets/ftb-quest-maker-sbom.cdx.json
+          python -m generator quest-maker-release-provenance \
+            --repository "https://github.com/${{ github.repository }}" \
+            --revision "${{ github.sha }}" \
+            --workflow .github/workflows/publish-release.yml \
+            $(find release-assets -type f \( -name '*.exe' -o -name '*.AppImage' \) -printf '%p\n' | sed 's/^/--artifact /') \
+            --output release-assets/ftb-quest-maker-provenance.intoto.jsonl
       - name: Publish verified assets
         env:
           GH_TOKEN: ${{ github.token }}

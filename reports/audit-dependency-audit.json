@@ -80,6 +80,7 @@
     "questbook review contract": [
       "FTB blueprint exporter contract"
     ],
+    "release SBOM and provenance contract": [],
     "release archive Unicode path contract": [
       "release archive extraction safety contract"
     ],
@@ -170,7 +171,7 @@
   "gate_order_violations": [],
   "missing_nodes": [],
   "refresh_order_violations": [],
-  "registered_audits": 62,
+  "registered_audits": 63,
   "status": "pass",
   "unknown_dependencies": []
 }

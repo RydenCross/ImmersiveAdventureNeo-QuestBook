@@ -160,6 +160,10 @@
       "report": "release-artifact-audit.json"
     },
     {
+      "command": "release-attestation-audit",
+      "report": "release-attestation-audit.json"
+    },
+    {
       "command": "release-guard",
       "report": "release-guard.json"
     },
@@ -249,5 +253,5 @@
     }
   ],
   "status": "pass",
-  "tracked_reports": 61
+  "tracked_reports": 62
 }

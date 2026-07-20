@@ -953,3 +953,8 @@ See [`docs/UPDATE_APPLY_AND_ROLLBACK.md`](docs/UPDATE_APPLY_AND_ROLLBACK.md). Mu
 ## GitHub release publishing
 
 See [GitHub Release Publishing](docs/GITHUB_RELEASE_PUBLISHING.md). Create a safe plan with `quest-maker-github-release-plan`, then publish explicitly with `quest-maker-github-release-publish --execute`.
+
+
+## Release supply-chain metadata
+
+Generate deterministic CycloneDX SBOM and SLSA provenance documents with `quest-maker-release-sbom` and `quest-maker-release-provenance`. See [Release SBOM and provenance](docs/RELEASE_SBOM_AND_PROVENANCE.md).

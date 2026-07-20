@@ -1,5 +1,5 @@
 {
-  "checked_reports": 61,
+  "checked_reports": 62,
   "deterministic_reports": [
     "application-update-client-audit.json",
     "audit-dependency-audit.json",
@@ -41,6 +41,7 @@
     "release-archive-metadata-audit.json",
     "release-archive-unicode-path-audit.json",
     "release-artifact-audit.json",
+    "release-attestation-audit.json",
     "release-guard.json",
     "release-manifest-audit.json",
     "release-package-verification-audit.json",

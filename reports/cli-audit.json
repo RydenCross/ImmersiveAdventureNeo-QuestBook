@@ -1,5 +1,5 @@
 {
-  "command_count": 101,
+  "command_count": 104,
   "commands": [
     "application-update-client-audit",
     "audit",
@@ -55,6 +55,8 @@
     "quest-maker-launch",
     "quest-maker-native-build",
     "quest-maker-package-build",
+    "quest-maker-release-provenance",
+    "quest-maker-release-sbom",
     "quest-maker-setup",
     "quest-maker-update-apply",
     "quest-maker-update-check",
@@ -75,6 +77,7 @@
     "release-archive-metadata-audit",
     "release-archive-unicode-path-audit",
     "release-artifact-audit",
+    "release-attestation-audit",
     "release-baseline",
     "release-check",
     "release-compare",

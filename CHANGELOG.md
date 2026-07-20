@@ -1,5 +1,11 @@
 ## Unreleased
 
+## Commit 109 - SBOM, Build Provenance, and Release Attestation
+
+- Added deterministic CycloneDX SBOM generation for release artifacts and declared Python components.
+- Added SLSA provenance statements binding GitHub workflow, repository revision, and artifact SHA-256 digests.
+- Added CLI commands, workflow integration, tests, documentation, tracked reports, and quality-gate registration.
+
 ## Commit 108 - GitHub Release Publishing and Update Feed Automation
 
 - Added deterministic checksum-backed GitHub Release plans and explicit `gh` publishing gates.

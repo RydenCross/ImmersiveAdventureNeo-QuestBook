@@ -71,6 +71,7 @@ SPECIAL_TEST_FILES = {
     "secure application update client contract": ("test_application_updates_contract.py"),
     "verified update apply and rollback contract": ("test_update_application.py"),
     "GitHub release publishing contract": "test_github_release_contract.py",
+    "release SBOM and provenance contract": "test_release_attestation_contract.py",
     "audit performance contract": "test_audit_performance_contract.py",
     "audit dependency contract": "test_audit_dependency_contract.py",
 }
