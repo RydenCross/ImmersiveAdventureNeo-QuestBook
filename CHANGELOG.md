@@ -1,3 +1,10 @@
+## Commit 124 - Release Asset Root and Metadata Path Binding
+
+- Require all staged release assets to be direct children of the release asset root.
+- Reject nested allowlisted files and directory-based basename substitution.
+- Bind checksum and update metadata arguments to the exact files inside the staged asset root.
+- Add regression tests and release asset root-binding documentation.
+
 ## Commit 123 - Release Asset Allowlist and Manifest Completeness
 
 - Made the staged release directory a strict allowlisted artifact set.

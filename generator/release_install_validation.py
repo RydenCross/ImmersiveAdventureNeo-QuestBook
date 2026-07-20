@@ -67,7 +67,16 @@ def validate_release_installers(
     minimum_bytes: int = 4096,
 ) -> ReleaseInstallValidation:
     assets = assets.resolve()
+    checksums = checksums.resolve()
+    update_metadata = update_metadata.resolve()
     errors: list[str] = []
+
+    expected_checksums = assets / "SHA256SUMS"
+    expected_update = assets / "update.json"
+    if checksums != expected_checksums:
+        errors.append("checksum manifest must be the release-assets/SHA256SUMS file")
+    if update_metadata != expected_update:
+        errors.append("update metadata must be the release-assets/update.json file")
     verified: list[str] = []
     all_entries = sorted(assets.rglob("*"))
     regular_files: list[Path] = []
@@ -81,6 +90,8 @@ def validate_release_installers(
             errors.append(f"symbolic links are not allowed in release assets: {path.name}")
         elif stat.S_ISREG(mode):
             regular_files.append(path)
+            if path.parent != assets:
+                errors.append(f"release assets must be stored directly in the asset root: {path.relative_to(assets)}")
         elif not stat.S_ISDIR(mode):
             errors.append(f"non-regular release asset is not allowed: {path.name}")
 

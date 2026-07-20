@@ -96,3 +96,27 @@ def test_requires_complete_release_metadata_set(tmp_path: Path) -> None:
     assert not result.is_clean
     assert any("CycloneDX SBOM" in error for error in result.errors)
     assert any("provenance statement" in error for error in result.errors)
+
+
+def test_rejects_nested_allowlisted_asset(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    exe = next(assets.glob("*.exe"))
+    nested = assets / "nested"
+    nested.mkdir()
+    moved = nested / exe.name
+    exe.replace(moved)
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any("stored directly in the asset root" in error for error in result.errors)
+
+
+def test_rejects_external_metadata_paths(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    external_checksums = tmp_path / "SHA256SUMS"
+    external_checksums.write_bytes(checksums.read_bytes())
+    external_update = tmp_path / "update.json"
+    external_update.write_bytes(update.read_bytes())
+    result = validate_release_installers(assets, external_checksums, external_update)
+    assert not result.is_clean
+    assert any("checksum manifest must be" in error for error in result.errors)
+    assert any("update metadata must be" in error for error in result.errors)

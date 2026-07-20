@@ -3,7 +3,7 @@
   "documented_command_count": 117,
   "empty_documents": [],
   "expected_command_count": 117,
-  "markdown_file_count": 106,
+  "markdown_file_count": 107,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -74,6 +74,7 @@
     "docs/RELEASE_ARCHIVE_METADATA_CONTRACT.md",
     "docs/RELEASE_ARCHIVE_UNICODE_PATH_CONTRACT.md",
     "docs/RELEASE_ARTIFACT_AUDIT.md",
+    "docs/RELEASE_ASSET_ROOT_BINDING.md",
     "docs/RELEASE_CHECK.md",
     "docs/RELEASE_COMPARISON.md",
     "docs/RELEASE_GUARD.md",

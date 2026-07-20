@@ -1,6 +1,6 @@
 {
-  "archive_entries": 472,
-  "archive_sha256": "5fe3768c6561f35320d6c07d1f8393332008bbd3c53853f6905e71ae807fda4d",
+  "archive_entries": 473,
+  "archive_sha256": "dd428b50c292a3dd5e1f7fd86631e80e4e35397da3c163dc058a6eca8ee9b75f",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 35828,
+      "bytes": 36217,
       "path": "CHANGELOG.md",
-      "sha256": "5599ea637f27bc30ec1e758b5082010661bc7b1f3cbd22f74682105ee47da190"
+      "sha256": "787678a47c5daeaef644d013b165f90c854a95ff5dd93404672a393012a7dc12"
     },
     {
       "bytes": 532,
@@ -552,6 +552,11 @@
       "bytes": 463,
       "path": "docs/RELEASE_ARTIFACT_AUDIT.md",
       "sha256": "668741d189082bd1353d227dd8156272abe4545f72b39c3c98e8ee858814bac3"
+    },
+    {
+      "bytes": 765,
+      "path": "docs/RELEASE_ASSET_ROOT_BINDING.md",
+      "sha256": "f50210a0286f14905dc81b3a018d051d6e9728ef5f0b991c5a300b57cdd6a6f2"
     },
     {
       "bytes": 1423,
@@ -1174,9 +1179,9 @@
       "sha256": "4ec73c00f348ffd1dbc3bf59aeb93b6fa0822a3ccd3d6d488195d8a9e97b728a"
     },
     {
-      "bytes": 7734,
+      "bytes": 8322,
       "path": "generator/release_install_validation.py",
-      "sha256": "92713e31dd09b3c99b814306fad457b6e89a05d0a9321aaca22b55d9972219cf"
+      "sha256": "d7d2551c61bb21151c339026aa85012a48ca8bc30955ecd940f027ac41dbf8a7"
     },
     {
       "bytes": 4390,
@@ -1534,9 +1539,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 4046,
+      "bytes": 4088,
       "path": "reports/documentation-audit.json",
-      "sha256": "2be87a00723a2da119c33fc20ca31740277180e1b12b551ad89603b42875f3a2"
+      "sha256": "c8a434cf3ebdd37621c57c9f21d76ccd20de7ffec38f47b91cb547ebf502b13d"
     },
     {
       "bytes": 245,
@@ -1666,12 +1671,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "8f56e860c227cd409f4c1d86b459bf747da0bb1cf8eb62bd7356db17e5a97c1c"
+      "sha256": "8068a7e008e51e3f9d39c077d84a7e77fa16adf41937463bba812e7d302bc4fa"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "df6859660cfeda79e96220ae3bcb40d8c7b914af30e524af4cc7979e38d2c60f"
+      "sha256": "fca62b1f810f389999ea8fb9efba1d31b5944c5f9947190a4f19791ce0c41aa8"
     },
     {
       "bytes": 297,
@@ -1751,7 +1756,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "f1fc0a9d3c42f804722ad50ff6308088a5652f8f22b7849457fe64d27ddc4168"
+      "sha256": "f149626fd8d9a0b8ae2e073cee08ec5c2a173754e5902ddd626a7f4d621f74a6"
     },
     {
       "bytes": 349,
@@ -2199,9 +2204,9 @@
       "sha256": "35b6eb0778485ade1ba4c266ac8ed8dbcf39f75d405f43586776ab055082e946"
     },
     {
-      "bytes": 4000,
+      "bytes": 5049,
       "path": "tests/test_release_install_validation.py",
-      "sha256": "a1ab4a81c77f9e65eb18c37173e01357fb33fcc6e69fe1ee6f4b82d490640a63"
+      "sha256": "4747abae8c2fb96dec544776891f174a0c27bf6e8bc3a13197d2a48508365080"
     },
     {
       "bytes": 1483,
@@ -2367,6 +2372,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "d011277efa129d839fc4c749c69ef9c660f5476c706edb0f8d20dc7f076a223c",
+  "tree_sha256": "bea7bbe5ae6cb7f39ae2586bb9af5d671e4bb0448957913576ffd79d75e020e4",
   "unexpected_entries": []
 }
