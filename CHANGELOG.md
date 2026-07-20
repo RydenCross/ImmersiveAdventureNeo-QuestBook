@@ -1,5 +1,13 @@
 ## Unreleased
 
+## Commit 113 - Immutable CI Dependencies and Automated Action Updates
+
+- Pinned every external GitHub Action to a full 40-character commit SHA.
+- Extended repository security validation to reject mutable action tags and branches.
+- Added weekly Dependabot maintenance for GitHub Actions dependencies.
+- Added documentation and contract coverage for immutable CI dependencies.
+
+
 ## Commit 112 - Secret Scanning and GitHub Actions Permission Hardening
 
 - Added deterministic high-confidence repository secret detection without exposing matched values.

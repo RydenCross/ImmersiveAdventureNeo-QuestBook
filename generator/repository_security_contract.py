@@ -16,6 +16,8 @@ class RepositorySecurityContract:
     exclusions_supported: bool
     workflow_permissions_valid: bool
     ci_integrated: bool
+    action_references_pinned: bool
+    dependabot_configured: bool
 
     @property
     def is_clean(self) -> bool:
@@ -47,4 +49,6 @@ def run_repository_security_contract() -> RepositorySecurityContract:
         exclusions_supported=not excluded,
         workflow_permissions_valid=not repository.workflow_errors,
         ci_integrated="repository-security-audit --format json" in workflow,
+        action_references_pinned=all("@v" not in item.read_text(encoding="utf-8") for item in Path(".github/workflows").glob("*.y*ml")),
+        dependabot_configured=Path(".github/dependabot.yml").is_file(),
     )

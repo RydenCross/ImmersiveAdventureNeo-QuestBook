@@ -5,6 +5,9 @@ from pathlib import Path
 import re
 from typing import Iterable
 
+_ACTION_USE = re.compile(r"^\s*-?\s*uses:\s*([^\s#]+)", re.MULTILINE)
+_FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
+
 _SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("private-key", re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----")),
     ("github-token", re.compile(r"\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{30,}\b")),
@@ -112,6 +115,17 @@ def validate_workflow_permissions(workflow_directory: Path = Path(".github/workf
             errors.append(f"{path.name}: pull_request_target requires an explicit security review")
         if "${{ secrets." in lowered and "persist-credentials: false" not in lowered:
             errors.append(f"{path.name}: secret-consuming workflows must disable checkout credential persistence")
+        for reference in _ACTION_USE.findall(text):
+            if reference.startswith("./"):
+                continue
+            if "@" not in reference:
+                errors.append(f"{path.name}: action reference lacks an immutable revision: {reference}")
+                continue
+            action, revision = reference.rsplit("@", 1)
+            if action.startswith("docker://") and revision.startswith("sha256:"):
+                continue
+            if not _FULL_SHA.fullmatch(revision):
+                errors.append(f"{path.name}: action must be pinned to a full 40-character commit SHA: {reference}")
         if path.name == "ci.yml" and "permissions:\n  contents: read" not in text:
             errors.append("ci.yml: top-level contents: read permission is required")
         if path.name == "publish-release.yml":

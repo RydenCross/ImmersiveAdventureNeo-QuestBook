@@ -3,7 +3,7 @@
   "documented_command_count": 112,
   "empty_documents": [],
   "expected_command_count": 112,
-  "markdown_file_count": 97,
+  "markdown_file_count": 98,
   "markdown_files": [
     "README.md",
     "docs/ACTUALLY_ADDITIONS.md",
@@ -47,6 +47,7 @@
     "docs/FTB_BLUEPRINT_EXPORTER.md",
     "docs/GITHUB_RELEASE_PUBLISHING.md",
     "docs/IDENTITY_GUARD.md",
+    "docs/IMMUTABLE_CI_DEPENDENCIES.md",
     "docs/KEYLESS_RELEASE_SIGNING.md",
     "docs/MINING.md",
     "docs/MODPACK_CONTENT_SCANNER.md",

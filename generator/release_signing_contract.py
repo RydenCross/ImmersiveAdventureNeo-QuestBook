@@ -91,5 +91,5 @@ def run_release_signing_contract() -> ReleaseSigningContract:
             dry_run_safe=dry_run_safe,
             execution_failure_detected=failed,
             unsafe_inputs_rejected=rejected,
-            workflow_integrated=("actions/attest@v4" in workflow and "attestations: write" in workflow and "SHA256SUMS" in workflow),
+            workflow_integrated=("actions/attest@" in workflow and "# v4.2.0" in workflow and "attestations: write" in workflow and "SHA256SUMS" in workflow),
         )

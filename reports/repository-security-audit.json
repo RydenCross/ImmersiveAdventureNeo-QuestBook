@@ -1,5 +1,7 @@
 {
+  "action_references_pinned": true,
   "ci_integrated": true,
+  "dependabot_configured": true,
   "exclusions_supported": true,
   "github_token_detected": true,
   "private_key_detected": true,
