@@ -1,3 +1,10 @@
+## Commit 129 - Fail-Closed Release Metadata Schema Validation
+
+- Made CycloneDX, SLSA provenance, and update metadata parsing fail closed for malformed JSON structures.
+- Rejected non-object roots, null or non-array collections, malformed nested records, unsafe subject/component names, and invalid digest objects without uncaught exceptions.
+- Replaced update-metadata substring matching with exact schema, platform, filename, size, and SHA-256 verification.
+- Added regression coverage for structurally malformed metadata and misplaced filename/digest strings.
+
 ## Commit 128 - Provenance Build and Dependency Identity Binding
 
 - Bound SLSA provenance to the GitHub Actions workflow build type and runner builder identity.

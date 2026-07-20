@@ -22,8 +22,27 @@ def _fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
     app.chmod(0o755)
     update = assets / "update.json"
     update.write_text(json.dumps({
-        "windows": {"filename": exe.name, "sha256": _digest(exe)},
-        "linux": {"filename": app.name, "sha256": _digest(app)},
+        "schema_version": "1.0",
+        "application_id": "ftb-quest-maker",
+        "application_name": "FTB Quest Maker",
+        "version": "1.2.3",
+        "channel": "stable",
+        "artifacts": [
+            {
+                "platform": "windows",
+                "filename": exe.name,
+                "url": exe.name,
+                "size_bytes": exe.stat().st_size,
+                "sha256": _digest(exe),
+            },
+            {
+                "platform": "linux",
+                "filename": app.name,
+                "url": app.name,
+                "size_bytes": app.stat().st_size,
+                "sha256": _digest(app),
+            },
+        ],
     }), encoding="utf-8")
     sbom = assets / "ftb-quest-maker-sbom.cdx.json"
     sbom.write_text(json.dumps(create_cyclonedx_sbom([exe, app], version="v1.2.3")), encoding="utf-8")
@@ -270,3 +289,73 @@ def test_rejects_surplus_resolved_provenance_dependencies(tmp_path: Path) -> Non
     )
     assert not result.is_clean
     assert any("exactly one repository-bound resolved dependency" in error for error in result.errors)
+
+
+def test_rejects_structurally_invalid_metadata_without_crashing(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    provenance = next(assets.glob("*.intoto.jsonl"))
+
+    sbom.write_text(json.dumps({"bomFormat": "CycloneDX", "components": None}), encoding="utf-8")
+    provenance.write_text(json.dumps({
+        "_type": "https://in-toto.io/Statement/v1",
+        "predicateType": "https://slsa.dev/provenance/v1",
+        "subject": None,
+        "predicate": {"buildDefinition": None, "runDetails": None},
+    }) + "\n", encoding="utf-8")
+    update.write_text(json.dumps(["not-an-object"]), encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(
+        assets, checksums, update, expected_revision="a" * 40,
+        expected_repository="https://github.com/example/project"
+    )
+    assert not result.is_clean
+    assert any("SBOM components must be an array" in error for error in result.errors)
+    assert any("provenance subject must be an array" in error for error in result.errors)
+    assert any("provenance buildDefinition must be an object" in error for error in result.errors)
+    assert any("update metadata root must be an object" in error for error in result.errors)
+
+
+def test_rejects_misplaced_update_filename_and_digest_strings(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    installers = [next(assets.glob("*.exe")), next(assets.glob("*.AppImage"))]
+    update.write_text(json.dumps({
+        "schema_version": "1.0",
+        "application_id": "ftb-quest-maker",
+        "application_name": "FTB Quest Maker",
+        "version": "1.2.3",
+        "channel": "stable",
+        "artifacts": [],
+        "notes": [{"filename": path.name, "sha256": _digest(path)} for path in installers],
+    }), encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(assets, checksums, update)
+    assert not result.is_clean
+    assert any("must contain at least one artifact" in error for error in result.errors)
+    assert any("does not bind installer" in error for error in result.errors)
+
+
+def test_rejects_malformed_nested_sbom_and_provenance_collections(tmp_path: Path) -> None:
+    assets, checksums, update = _fixture(tmp_path)
+    sbom = next(assets.glob("*.cdx.json"))
+    sbom_payload = json.loads(sbom.read_text(encoding="utf-8"))
+    sbom_payload["components"][0]["hashes"] = None
+    sbom.write_text(json.dumps(sbom_payload), encoding="utf-8")
+
+    provenance = next(assets.glob("*.intoto.jsonl"))
+    provenance_payload = json.loads(provenance.read_text(encoding="utf-8"))
+    provenance_payload["predicate"]["buildDefinition"]["resolvedDependencies"] = None
+    provenance_payload["predicate"]["runDetails"]["metadata"] = None
+    provenance.write_text(json.dumps(provenance_payload) + "\n", encoding="utf-8")
+    _rewrite_manifest(assets, checksums)
+
+    result = validate_release_installers(
+        assets, checksums, update, expected_revision="a" * 40,
+        expected_repository="https://github.com/example/project"
+    )
+    assert not result.is_clean
+    assert any("SBOM hashes must be an array" in error for error in result.errors)
+    assert any("resolvedDependencies must be an array" in error for error in result.errors)
+    assert any("provenance metadata must be an object" in error for error in result.errors)

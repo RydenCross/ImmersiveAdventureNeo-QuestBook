@@ -9,6 +9,8 @@ from pathlib import Path
 import re
 import stat
 
+from generator.desktop_packages import verify_update_metadata
+
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -76,22 +78,41 @@ def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         return (f"invalid CycloneDX SBOM: {exc}",)
+    if not isinstance(payload, dict):
+        return ("CycloneDX SBOM root must be an object",)
     if payload.get("bomFormat") != "CycloneDX":
         errors.append("SBOM bomFormat must be CycloneDX")
+    components = payload.get("components")
+    if not isinstance(components, list):
+        return tuple(errors + ["SBOM components must be an array"])
+
     expected = _artifact_digest_map(installers)
     actual: dict[str, str] = {}
     seen: set[str] = set()
-    for row in payload.get("components", []):
-        if not isinstance(row, dict) or row.get("type") != "file" or not isinstance(row.get("name"), str):
+    for row in components:
+        if not isinstance(row, dict):
+            errors.append("SBOM component entries must be objects")
             continue
-        name = row["name"]
+        if row.get("type") != "file":
+            continue
+        name = row.get("name")
+        if not isinstance(name, str) or not name or Path(name).name != name:
+            errors.append("SBOM file components must have safe filenames")
+            continue
         if name in seen:
             errors.append(f"SBOM contains duplicate file component {name}")
             continue
         seen.add(name)
+        hashes = row.get("hashes")
+        if not isinstance(hashes, list):
+            errors.append(f"SBOM hashes must be an array for {name}")
+            continue
         sha_values: list[str] = []
-        for digest in row.get("hashes", []):
-            if isinstance(digest, dict) and digest.get("alg") == "SHA-256":
+        for digest in hashes:
+            if not isinstance(digest, dict):
+                errors.append(f"SBOM hash entries must be objects for {name}")
+                continue
+            if digest.get("alg") == "SHA-256":
                 value = _canonical_sha256(digest.get("content"))
                 if value is None:
                     errors.append(f"SBOM contains non-canonical SHA-256 for {name}")
@@ -109,7 +130,14 @@ def _validate_sbom(path: Path, installers: list[Path]) -> tuple[str, ...]:
     return tuple(errors)
 
 
-def _validate_provenance(path: Path, installers: list[Path], *, revision: str | None, repository: str | None, workflow: str) -> tuple[str, ...]:
+def _validate_provenance(
+    path: Path,
+    installers: list[Path],
+    *,
+    revision: str | None,
+    repository: str | None,
+    workflow: str,
+) -> tuple[str, ...]:
     errors: list[str] = []
     try:
         lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -118,23 +146,39 @@ def _validate_provenance(path: Path, installers: list[Path], *, revision: str | 
         payload = json.loads(lines[0])
     except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         return (f"invalid provenance statement: {exc}",)
+    if not isinstance(payload, dict):
+        return ("provenance statement root must be an object",)
     if payload.get("_type") != "https://in-toto.io/Statement/v1":
         errors.append("provenance statement has invalid in-toto type")
     if payload.get("predicateType") != "https://slsa.dev/provenance/v1":
         errors.append("provenance statement has invalid SLSA predicate type")
+
+    subjects = payload.get("subject")
+    if not isinstance(subjects, list):
+        subjects = []
+        errors.append("provenance subject must be an array")
     expected = _artifact_digest_map(installers)
     actual: dict[str, str] = {}
     seen: set[str] = set()
-    for row in payload.get("subject", []):
-        if not isinstance(row, dict) or not isinstance(row.get("name"), str):
+    for row in subjects:
+        if not isinstance(row, dict):
+            errors.append("provenance subject entries must be objects")
             continue
-        name = row["name"]
+        name = row.get("name")
+        if not isinstance(name, str) or not name or Path(name).name != name:
+            errors.append("provenance subjects must have safe filenames")
+            continue
         if name in seen:
             errors.append(f"provenance contains duplicate subject {name}")
             continue
         seen.add(name)
         digest = row.get("digest")
-        value = _canonical_sha256(digest.get("sha256") if isinstance(digest, dict) else None)
+        if not isinstance(digest, dict):
+            errors.append(f"provenance digest must be an object for {name}")
+            continue
+        if set(digest) != {"sha256"}:
+            errors.append(f"provenance digest must contain only sha256 for {name}")
+        value = _canonical_sha256(digest.get("sha256"))
         if value is None:
             errors.append(f"provenance contains non-canonical SHA-256 for {name}")
         else:
@@ -144,27 +188,45 @@ def _validate_provenance(path: Path, installers: list[Path], *, revision: str | 
             errors.append(f"provenance does not bind SHA-256 for {name}")
     for name in sorted(set(actual) - set(expected)):
         errors.append(f"provenance references unexpected subject {name}")
+
     predicate = payload.get("predicate")
-    build = predicate.get("buildDefinition", {}) if isinstance(predicate, dict) else {}
-    params = build.get("externalParameters", {}) if isinstance(build, dict) else {}
-    run_details = predicate.get("runDetails", {}) if isinstance(predicate, dict) else {}
-    builder = run_details.get("builder", {}) if isinstance(run_details, dict) else {}
-    metadata = run_details.get("metadata", {}) if isinstance(run_details, dict) else {}
+    if not isinstance(predicate, dict):
+        return tuple(errors + ["provenance predicate must be an object"])
+    build = predicate.get("buildDefinition")
+    if not isinstance(build, dict):
+        return tuple(errors + ["provenance buildDefinition must be an object"])
+    params = build.get("externalParameters")
+    if not isinstance(params, dict):
+        params = {}
+        errors.append("provenance externalParameters must be an object")
+    run_details = predicate.get("runDetails")
+    if not isinstance(run_details, dict):
+        run_details = {}
+        errors.append("provenance runDetails must be an object")
+    builder = run_details.get("builder")
+    if not isinstance(builder, dict):
+        builder = {}
+        errors.append("provenance builder must be an object")
+    metadata = run_details.get("metadata")
+    if not isinstance(metadata, dict):
+        metadata = {}
+        errors.append("provenance metadata must be an object")
 
     if build.get("buildType") != "https://github.com/actions/workflow/v1":
         errors.append("provenance build type must identify GitHub Actions workflow v1")
     if builder.get("id") != "https://github.com/actions/runner":
         errors.append("provenance builder identity does not match GitHub Actions runner")
-
-    if revision is not None:
-        if params.get("ref") != revision:
-            errors.append("provenance source revision does not match verified release source")
+    if revision is not None and params.get("ref") != revision:
+        errors.append("provenance source revision does not match verified release source")
     if repository is not None and params.get("repository") != repository:
         errors.append("provenance repository does not match expected repository")
     if params.get("workflow") != workflow:
         errors.append("provenance workflow does not match release workflow")
 
-    deps = build.get("resolvedDependencies", []) if isinstance(build, dict) else []
+    deps = build.get("resolvedDependencies")
+    if not isinstance(deps, list):
+        deps = []
+        errors.append("provenance resolvedDependencies must be an array")
     if revision is not None and repository is not None:
         valid_deps = [
             row for row in deps
@@ -175,7 +237,6 @@ def _validate_provenance(path: Path, installers: list[Path], *, revision: str | 
         ]
         if len(deps) != 1 or len(valid_deps) != 1:
             errors.append("provenance must contain exactly one repository-bound resolved dependency for verified release source")
-
         expected_invocation = f"{repository}@{revision}:{workflow}"
         if metadata.get("invocationId") != expected_invocation:
             errors.append("provenance invocation identity does not match repository, revision, and workflow")
@@ -311,17 +372,28 @@ def validate_release_installers(
             if os.name != "nt" and not os.access(path, os.X_OK):
                 errors.append(f"AppImage is not executable: {path.name}")
 
-    try:
-        payload = json.loads(update_metadata.read_text(encoding="utf-8"))
-        text = json.dumps(payload, sort_keys=True)
-        for path in selected:
-            digest = _sha256(path)
-            if path.name not in text:
-                errors.append(f"update metadata does not reference {path.name}")
-            if digest not in text:
-                errors.append(f"update metadata does not bind SHA-256 for {path.name}")
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
-        errors.append(f"invalid update metadata: {exc}")
+    update_verification = verify_update_metadata(
+        update_metadata, artifact_directory=assets
+    )
+    errors.extend(f"invalid update metadata: {error}" for error in update_verification.errors)
+    errors.extend(
+        f"update metadata is missing artifact {name}"
+        for name in update_verification.missing_artifacts
+    )
+    errors.extend(
+        f"update metadata does not bind filename, size, and SHA-256 for {name}"
+        for name in update_verification.changed_artifacts
+    )
+    selected_names = {path.name for path in selected}
+    verified_update_names = set(update_verification.verified_artifacts)
+    if update_verification.artifact_count != len(selected_names):
+        errors.append(
+            f"update metadata must contain exactly {len(selected_names)} installer records"
+        )
+    for name in sorted(selected_names - verified_update_names):
+        errors.append(f"update metadata does not bind installer {name}")
+    for name in sorted(verified_update_names - selected_names):
+        errors.append(f"update metadata references unexpected installer {name}")
 
     return ReleaseInstallValidation(
         windows[0].name if len(windows) == 1 else None,

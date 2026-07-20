@@ -1,6 +1,6 @@
 {
-  "archive_entries": 477,
-  "archive_sha256": "792a4819221c36e06c55eec97d527e2eab2b426d612729380a06f5ea3ef8969c",
+  "archive_entries": 479,
+  "archive_sha256": "b9c18ab1a31d5da4787135d6c91a44fe2ad3d3212e8347d4f36b3e1cbfdd879c",
   "digest_mismatches": [],
   "manifest_entries": [
     {
@@ -24,9 +24,9 @@
       "sha256": "a506681fc86a24d22b2df933eb747e3ca562f3839d606febeb0b3a55162d51e6"
     },
     {
-      "bytes": 37948,
+      "bytes": 38513,
       "path": "CHANGELOG.md",
-      "sha256": "07043e3b3ea2786ad0f441090f4b6eb10eec644df126b97966fc647afd547499"
+      "sha256": "fae86c18464daa25271c7a1e85006df631f663d069e8016056b595460e12d82c"
     },
     {
       "bytes": 532,
@@ -207,6 +207,11 @@
       "bytes": 53885,
       "path": "content/project.py",
       "sha256": "8c0270939daca82b0915d63a409d47b51972264f339f970790cf56a092063301"
+    },
+    {
+      "bytes": 559,
+      "path": "dependency-inventory.json",
+      "sha256": "f07a500735beb535e64cc2b7fab66462f99a31f4bf930d658f1752ec22d64348"
     },
     {
       "bytes": 913,
@@ -587,6 +592,11 @@
       "bytes": 643,
       "path": "docs/RELEASE_MANIFEST_CONTRACT.md",
       "sha256": "c9755fdf6bd3c515b799dc90a3d6d178fe91647a489f4330378546988598dd16"
+    },
+    {
+      "bytes": 891,
+      "path": "docs/RELEASE_METADATA_SCHEMA_VALIDATION.md",
+      "sha256": "0ac86fc3cb9c4a46caddd4c01bdb9d1aedb9ace6e716deb84575249d81f3c409"
     },
     {
       "bytes": 1329,
@@ -1199,9 +1209,9 @@
       "sha256": "4ec73c00f348ffd1dbc3bf59aeb93b6fa0822a3ccd3d6d488195d8a9e97b728a"
     },
     {
-      "bytes": 15318,
+      "bytes": 17956,
       "path": "generator/release_install_validation.py",
-      "sha256": "670017e27c1da9a83e892dec7c099df5b6a48f7b31cb9523687fb10ba5164c2c"
+      "sha256": "e5839d7d39d15424971d06349b26a1ad33b0ed71dd323dd7c5bdaa6e89b6df15"
     },
     {
       "bytes": 4390,
@@ -1559,9 +1569,9 @@
       "sha256": "9e9d76e5851f9fa332ee4cfbdb51e4a69d15279a026b8203f6a63dbc0efdbfb6"
     },
     {
-      "bytes": 4276,
+      "bytes": 4326,
       "path": "reports/documentation-audit.json",
-      "sha256": "07986952944a71ba014c7b52b9b55ea560b394985c0954928d772ffc9501b9d7"
+      "sha256": "a050407c3173aa9dbb8af166071011aa8682341372eca4066ad87b58a8a0ab92"
     },
     {
       "bytes": 245,
@@ -1691,12 +1701,12 @@
     {
       "bytes": 186,
       "path": "reports/release-archive-extraction-safety-audit.json",
-      "sha256": "e70d1386abd5130bb723a56b7b830f0a182c306b829487ed9e5aed3a316f8d93"
+      "sha256": "0ac665f88157c7bed71b86f1bb34eccc7c1df666b483d27f7e22fe6c20149c48"
     },
     {
       "bytes": 198,
       "path": "reports/release-archive-unicode-path-audit.json",
-      "sha256": "3289b4bcc3122c7ddb134d74192f8c02f21062466ba6bee86c037a50a7504cbf"
+      "sha256": "4dac295296790d96100d81de2fab62f0398ca41810ae99617b9763eb70279ce3"
     },
     {
       "bytes": 297,
@@ -1776,7 +1786,7 @@
     {
       "bytes": 287,
       "path": "reports/repository-hygiene-audit.json",
-      "sha256": "b4d5a54f6a44f5022da2ad56f7f4b97673e3032c2c063b1528a9121cb22b7f83"
+      "sha256": "6387dfdb5b4bf339b7c1b953f5362a53ee1d7f62a371e495045f1658087dd6ee"
     },
     {
       "bytes": 349,
@@ -2224,9 +2234,9 @@
       "sha256": "35b6eb0778485ade1ba4c266ac8ed8dbcf39f75d405f43586776ab055082e946"
     },
     {
-      "bytes": 12669,
+      "bytes": 16648,
       "path": "tests/test_release_install_validation.py",
-      "sha256": "a0a417489b242759861c53224a2f44ed78f500a1119850906430951356c5c835"
+      "sha256": "ab322ea4092ca7d98bdf4c70281925a8d56e096aeaa7097ea0eab9063ba058cf"
     },
     {
       "bytes": 1483,
@@ -2392,6 +2402,6 @@
   "missing_entries": [],
   "size_mismatches": [],
   "status": "pass",
-  "tree_sha256": "435cb092af086984781954584ca32f96d5146d1bdb7458efe778d719be5b26e2",
+  "tree_sha256": "9203b12c12b70d64b73584006ad3ee857ae3b1abfdc2b498c35189db5b75b3d3",
   "unexpected_entries": []
 }
